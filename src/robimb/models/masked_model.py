@@ -82,6 +82,11 @@ class MultiTaskBERTMasked(nn.Module):
         arcface_m: float | None = None,
         l2_normalize_emb: bool | None = None,
         return_concat_logits: bool | None = None,
+        num_properties: int = 0,
+        property_cat_mask: torch.Tensor | None = None,
+        property_numeric_mask: torch.Tensor | None = None,
+        property_presence_weight: float = 1.0,
+        property_regression_weight: float = 1.0,
     ) -> None:
         super().__init__()
         if not backbone_src:
@@ -105,6 +110,9 @@ class MultiTaskBERTMasked(nn.Module):
         self.return_concat_logits = bool(
             getattr(config, "return_concat_logits", True) if return_concat_logits is None else return_concat_logits
         )
+        self.num_properties = int(num_properties or 0)
+        self.property_presence_weight = float(property_presence_weight)
+        self.property_regression_weight = float(property_regression_weight)
 
         self.backbone = AutoModel.from_pretrained(backbone_src, config=config)
         hidden = getattr(self.backbone.config, "hidden_size", getattr(config, "hidden_size", 768))
@@ -130,6 +138,43 @@ class MultiTaskBERTMasked(nn.Module):
 
         self.super_class_weights: Optional[torch.Tensor] = None
         self.cat_class_weights: Optional[torch.Tensor] = None
+
+        if self.num_properties > 0:
+            self.property_presence_head = nn.Linear(self.proj_dim, self.num_properties)
+            self.property_regression_head = nn.Linear(self.proj_dim, self.num_properties)
+
+            if property_cat_mask is None:
+                property_cat_mask = torch.ones(
+                    (self.num_cat, self.num_properties), dtype=torch.bool
+                )
+            elif property_cat_mask.shape != (self.num_cat, self.num_properties):
+                raise ValueError(
+                    "property_cat_mask shape errata: atteso (%s, %s), trovato %s"
+                    % (self.num_cat, self.num_properties, tuple(property_cat_mask.shape))
+                )
+            self.register_buffer(
+                "property_cat_mask",
+                property_cat_mask.to(dtype=torch.bool),
+                persistent=False,
+            )
+
+            if property_numeric_mask is None:
+                property_numeric_mask = torch.zeros(self.num_properties, dtype=torch.bool)
+            elif property_numeric_mask.shape != (self.num_properties,):
+                raise ValueError(
+                    "property_numeric_mask shape errata: atteso (%s,), trovato %s"
+                    % (self.num_properties, tuple(property_numeric_mask.shape))
+                )
+            self.register_buffer(
+                "property_numeric_mask",
+                property_numeric_mask.to(dtype=torch.bool),
+                persistent=False,
+            )
+        else:
+            self.property_presence_head = None
+            self.property_regression_head = None
+            self.property_cat_mask = None
+            self.property_numeric_mask = None
 
     def set_super_class_weights(self, weights: Optional[torch.Tensor]) -> None:
         self.super_class_weights = None if weights is None else weights.to(dtype=torch.float32, device=self.mask_matrix.device)
@@ -162,6 +207,10 @@ class MultiTaskBERTMasked(nn.Module):
         token_type_ids: Optional[torch.Tensor] = None,
         super_labels: Optional[torch.Tensor] = None,
         cat_labels: Optional[torch.Tensor] = None,
+        property_slot_mask: Optional[torch.Tensor] = None,
+        property_presence_labels: Optional[torch.Tensor] = None,
+        property_regression_targets: Optional[torch.Tensor] = None,
+        property_regression_mask: Optional[torch.Tensor] = None,
         return_dict: bool = True,
     ):
         out = self.backbone(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids)
@@ -215,21 +264,95 @@ class MultiTaskBERTMasked(nn.Module):
                     )
             loss = loss_super if loss_cat is None else (loss_super + self.lambda_cat * loss_cat)
 
-        if self.return_concat_logits:
-            logits = torch.cat([logits_super_pred, logits_cat_pred_masked, logits_cat_gold_masked], dim=-1)
+        if self.num_properties > 0:
+            property_presence_logits = self.property_presence_head(emb)
+            property_regression_pred = self.property_regression_head(emb)
+
+            allowed_mask = None
+            if self.property_cat_mask is not None:
+                if cat_labels is not None:
+                    allowed_mask = self.property_cat_mask[cat_labels]
+                else:
+                    pred_cats = logits_cat_pred_masked.argmax(dim=-1)
+                    allowed_mask = self.property_cat_mask[pred_cats]
+
+            if allowed_mask is not None:
+                allowed_bool = allowed_mask.to(dtype=torch.bool)
+                property_presence_logits_masked = torch.where(
+                    allowed_bool, property_presence_logits, _very_neg_like(property_presence_logits)
+                )
+                zeros = torch.zeros_like(property_regression_pred)
+                property_regression_pred_masked = torch.where(allowed_bool, property_regression_pred, zeros)
+            else:
+                property_presence_logits_masked = property_presence_logits
+                property_regression_pred_masked = property_regression_pred
+
+            if self.property_numeric_mask is not None:
+                numeric_mask = self.property_numeric_mask.to(property_regression_pred_masked.dtype)
+                property_regression_pred_masked = property_regression_pred_masked * numeric_mask
+
+            if property_slot_mask is not None and property_presence_labels is not None:
+                mask = property_slot_mask.to(device=property_presence_logits.device, dtype=torch.bool)
+                labels_presence = property_presence_labels.to(
+                    device=property_presence_logits.device, dtype=torch.float32
+                )
+                if mask.any():
+                    presence_loss = F.binary_cross_entropy_with_logits(
+                        property_presence_logits[mask], labels_presence[mask]
+                    )
+                    weighted_presence = self.property_presence_weight * presence_loss
+                    loss = weighted_presence if loss is None else loss + weighted_presence
+
+            if (
+                property_regression_targets is not None
+                and property_regression_mask is not None
+            ):
+                reg_mask = property_regression_mask.to(
+                    device=property_regression_pred.device, dtype=torch.bool
+                )
+                targets_reg = property_regression_targets.to(
+                    device=property_regression_pred.device, dtype=torch.float32
+                )
+                if reg_mask.any():
+                    regression_loss = F.mse_loss(
+                        property_regression_pred[reg_mask], targets_reg[reg_mask]
+                    )
+                    weighted_reg = self.property_regression_weight * regression_loss
+                    loss = weighted_reg if loss is None else loss + weighted_reg
         else:
-            logits = logits_super_pred
+            property_presence_logits_masked = torch.empty(
+                emb.size(0), 0, device=emb.device, dtype=emb.dtype
+            )
+            property_regression_pred_masked = torch.empty(
+                emb.size(0), 0, device=emb.device, dtype=emb.dtype
+            )
+
+        if self.return_concat_logits:
+            concat_logits = torch.cat(
+                [logits_super_pred, logits_cat_pred_masked, logits_cat_gold_masked], dim=-1
+            )
+        else:
+            concat_logits = logits_super_pred
 
         if return_dict:
             return {
                 "loss": loss,
-                "logits": logits,
+                "logits": (
+                    logits_super_pred,
+                    logits_cat_pred_masked,
+                    logits_cat_gold_masked,
+                    property_presence_logits_masked,
+                    property_regression_pred_masked,
+                ),
+                "logits_concat": concat_logits,
                 "logits_super": logits_super_pred,
                 "logits_cat_pred_masked": logits_cat_pred_masked,
                 "logits_cat_gold_masked": logits_cat_gold_masked,
+                "property_presence_logits": property_presence_logits_masked,
+                "property_regression": property_regression_pred_masked,
                 "emb": emb,
             }
-        return loss, logits
+        return loss, concat_logits
 
     def save_pretrained(self, save_directory: str, safe_serialization: bool = True) -> None:
         import os
@@ -302,6 +425,14 @@ class MultiTaskBERTMasked(nn.Module):
 def load_masked_model(model_dir: str, **kwargs) -> MultiTaskBERTMasked:
     config = AutoConfig.from_pretrained(model_dir, **kwargs)
     mask_matrix = torch.tensor(config.mask_matrix, dtype=torch.float32)
+    cat_mask = getattr(config, "property_cat_mask", None)
+    property_cat_tensor = (
+        torch.tensor(cat_mask, dtype=torch.bool) if cat_mask is not None else None
+    )
+    numeric_mask = getattr(config, "property_numeric_mask", None)
+    property_numeric_tensor = (
+        torch.tensor(numeric_mask, dtype=torch.bool) if numeric_mask is not None else None
+    )
     return MultiTaskBERTMasked.from_pretrained(
         model_dir,
         config=config,
@@ -320,4 +451,9 @@ def load_masked_model(model_dir: str, **kwargs) -> MultiTaskBERTMasked:
         arcface_m=getattr(config, "arcface_m", 0.30),
         l2_normalize_emb=getattr(config, "l2_normalize_emb", True),
         return_concat_logits=getattr(config, "return_concat_logits", True),
+        num_properties=getattr(config, "num_properties", 0),
+        property_cat_mask=property_cat_tensor,
+        property_numeric_mask=property_numeric_tensor,
+        property_presence_weight=getattr(config, "property_presence_weight", 1.0),
+        property_regression_weight=getattr(config, "property_regression_weight", 1.0),
     )

@@ -119,6 +119,15 @@ Il comando utilizza `LabelEmbedModel`, inizializza i prototipi delle classi dai
 rispettivi testi e salva un pacchetto di export (`export/`) contenente pesi
 `safetensors`, tokenizer, mapping e ontologia.
 
+Quando il dataset fornisce le colonne aggiuntive `properties` e
+`property_schema`, il trainer abilita automaticamente una testa secondaria che
+predice la presenza degli slot e i valori numerici associati. Il contributo
+delle due componenti può essere bilanciato tramite:
+
+* `--property_presence_weight` per la loss multi-label di presenza (default `1.0`).
+* `--property_regression_weight` per la loss di regressione sugli slot numerici
+  (default `1.0`).
+
 > Suggerimento: `atipiqal/roBERTino` fornisce un backbone già specializzato per
 > la classificazione BIM e rappresenta il punto di partenza ideale per il label
 > model. In alternativa è possibile riutilizzare qualsiasi checkpoint Hugging
@@ -138,7 +147,9 @@ robimb train hier \
 
 Viene addestrato `MultiTaskBERTMasked` con maschera ontologica, ArcFace
 opzionale e pesi di classe. Anche in questo caso il comando crea `export/` con il
-modello pronto all'uso.
+modello pronto all'uso. La testata sulle proprietà è condivisa con il trainer a
+label embedding e usa gli stessi argomenti facoltativi `--property_presence_weight`
+e `--property_regression_weight` per regolare le nuove perdite.
 
 ### 5. Validazione
 

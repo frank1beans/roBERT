@@ -72,6 +72,11 @@ class LabelEmbedModel(nn.Module):
         nd_id: Optional[int] = None,
         freeze_encoder: bool = False,
         train_label_emb: bool = True,
+        num_properties: int = 0,
+        property_cat_mask: Optional[torch.Tensor] = None,
+        property_numeric_mask: Optional[torch.Tensor] = None,
+        property_presence_weight: float = 1.0,
+        property_regression_weight: float = 1.0,
     ) -> None:
         super().__init__()
         self.num_super = int(num_super)
@@ -84,6 +89,9 @@ class LabelEmbedModel(nn.Module):
         self.ban_nd_in_eval = bool(ban_nd_in_eval)
         self.config = config
         self.tokenizer = tokenizer
+        self.num_properties = int(num_properties or 0)
+        self.property_presence_weight = float(property_presence_weight)
+        self.property_regression_weight = float(property_regression_weight)
 
         self.backbone = AutoModel.from_pretrained(backbone_src, config=config)
         hidden = getattr(self.backbone.config, "hidden_size", getattr(config, "hidden_size", 768))
@@ -117,6 +125,43 @@ class LabelEmbedModel(nn.Module):
                     % (self.num_super, self.num_cat, tuple(mask_matrix.shape))
                 )
         self.register_buffer("mask_matrix", mask_matrix, persistent=False)
+
+        if self.num_properties > 0:
+            self.property_presence_head = nn.Linear(self.proj_dim, self.num_properties)
+            self.property_regression_head = nn.Linear(self.proj_dim, self.num_properties)
+
+            if property_cat_mask is None:
+                property_cat_mask = torch.ones(
+                    (self.num_cat, self.num_properties), dtype=torch.bool
+                )
+            elif property_cat_mask.shape != (self.num_cat, self.num_properties):
+                raise ValueError(
+                    "property_cat_mask shape errata: atteso (%s, %s), trovato %s"
+                    % (self.num_cat, self.num_properties, tuple(property_cat_mask.shape))
+                )
+            self.register_buffer(
+                "property_cat_mask",
+                property_cat_mask.to(dtype=torch.bool),
+                persistent=False,
+            )
+
+            if property_numeric_mask is None:
+                property_numeric_mask = torch.zeros(self.num_properties, dtype=torch.bool)
+            elif property_numeric_mask.shape != (self.num_properties,):
+                raise ValueError(
+                    "property_numeric_mask shape errata: atteso (%s,), trovato %s"
+                    % (self.num_properties, tuple(property_numeric_mask.shape))
+                )
+            self.register_buffer(
+                "property_numeric_mask",
+                property_numeric_mask.to(dtype=torch.bool),
+                persistent=False,
+            )
+        else:
+            self.property_presence_head = None
+            self.property_regression_head = None
+            self.property_cat_mask = None
+            self.property_numeric_mask = None
 
     @torch.no_grad()
     def _encode_label_texts(self, texts: List[str]) -> torch.Tensor:
@@ -165,6 +210,10 @@ class LabelEmbedModel(nn.Module):
         token_type_ids: Optional[torch.Tensor] = None,
         super_labels: Optional[torch.Tensor] = None,
         cat_labels: Optional[torch.Tensor] = None,
+        property_slot_mask: Optional[torch.Tensor] = None,
+        property_presence_labels: Optional[torch.Tensor] = None,
+        property_regression_targets: Optional[torch.Tensor] = None,
+        property_regression_mask: Optional[torch.Tensor] = None,
         return_dict: bool = True,
     ) -> dict:
         outputs = self.backbone(
@@ -206,12 +255,84 @@ class LabelEmbedModel(nn.Module):
                 loss_cat = F.cross_entropy(logits_cat_for_loss.float(), cat_labels, ignore_index=-100)
                 loss = loss + loss_cat
 
+        if self.num_properties > 0:
+            property_presence_logits = self.property_presence_head(emb)
+            property_regression_pred = self.property_regression_head(emb)
+
+            allowed_mask = None
+            if self.property_cat_mask is not None:
+                if cat_labels is not None:
+                    allowed_mask = self.property_cat_mask[cat_labels]
+                else:
+                    pred_cats = logits_cat_pred_masked.argmax(dim=-1)
+                    allowed_mask = self.property_cat_mask[pred_cats]
+
+            if allowed_mask is not None:
+                allowed_bool = allowed_mask.to(dtype=torch.bool)
+                property_presence_logits_masked = torch.where(
+                    allowed_bool, property_presence_logits, _very_neg_like(property_presence_logits)
+                )
+                zeros = torch.zeros_like(property_regression_pred)
+                property_regression_pred_masked = torch.where(allowed_bool, property_regression_pred, zeros)
+            else:
+                property_presence_logits_masked = property_presence_logits
+                property_regression_pred_masked = property_regression_pred
+
+            if self.property_numeric_mask is not None:
+                numeric_mask = self.property_numeric_mask.to(property_regression_pred_masked.dtype)
+                property_regression_pred_masked = property_regression_pred_masked * numeric_mask
+
+            if property_slot_mask is not None and property_presence_labels is not None:
+                mask = property_slot_mask.to(device=property_presence_logits.device, dtype=torch.bool)
+                labels_presence = property_presence_labels.to(
+                    device=property_presence_logits.device, dtype=torch.float32
+                )
+                if mask.any():
+                    presence_loss = F.binary_cross_entropy_with_logits(
+                        property_presence_logits[mask], labels_presence[mask]
+                    )
+                    weighted_presence = self.property_presence_weight * presence_loss
+                    loss = weighted_presence if loss is None else loss + weighted_presence
+
+            if (
+                property_regression_targets is not None
+                and property_regression_mask is not None
+            ):
+                reg_mask = property_regression_mask.to(
+                    device=property_regression_pred.device, dtype=torch.bool
+                )
+                targets_reg = property_regression_targets.to(
+                    device=property_regression_pred.device, dtype=torch.float32
+                )
+                if reg_mask.any():
+                    regression_loss = F.mse_loss(
+                        property_regression_pred[reg_mask], targets_reg[reg_mask]
+                    )
+                    weighted_reg = self.property_regression_weight * regression_loss
+                    loss = weighted_reg if loss is None else loss + weighted_reg
+        else:
+            property_presence_logits_masked = torch.empty(
+                emb.size(0), 0, device=emb.device, dtype=emb.dtype
+            )
+            property_regression_pred_masked = torch.empty(
+                emb.size(0), 0, device=emb.device, dtype=emb.dtype
+            )
+
         return {
             "loss": loss,
             "logits_super": logits_super,
             "logits_cat_pred_masked": logits_cat_pred_masked,
             "logits_cat_gold_masked": logits_cat_gold_masked,
+            "property_presence_logits": property_presence_logits_masked,
+            "property_regression": property_regression_pred_masked,
             "emb": emb,
+            "logits": (
+                logits_super,
+                logits_cat_pred_masked,
+                logits_cat_gold_masked,
+                property_presence_logits_masked,
+                property_regression_pred_masked,
+            ),
         }
 
     # ---- Hugging Face style save/load helpers ----
@@ -315,6 +436,17 @@ def load_label_embed_model(
         tokenizer = AutoTokenizer.from_pretrained(model_dir)
     mask = getattr(config, "mask_matrix", None)
     mask_tensor = torch.tensor(mask, dtype=torch.float32) if mask is not None else None
+    num_properties = getattr(config, "num_properties", 0)
+    cat_mask = getattr(config, "property_cat_mask", None)
+    property_cat_tensor = (
+        torch.tensor(cat_mask, dtype=torch.bool) if cat_mask is not None else None
+    )
+    numeric_mask = getattr(config, "property_numeric_mask", None)
+    property_numeric_tensor = (
+        torch.tensor(numeric_mask, dtype=torch.bool) if numeric_mask is not None else None
+    )
+    presence_weight = getattr(config, "property_presence_weight", 1.0)
+    regression_weight = getattr(config, "property_regression_weight", 1.0)
     return LabelEmbedModel.from_pretrained(
         model_dir,
         config=config,
@@ -327,4 +459,9 @@ def load_label_embed_model(
         mask_matrix=mask_tensor,
         ban_nd_in_eval=getattr(config, "ban_nd_in_eval", True),
         nd_id=getattr(config, "nd_id", None),
+        num_properties=num_properties,
+        property_cat_mask=property_cat_tensor,
+        property_numeric_mask=property_numeric_tensor,
+        property_presence_weight=presence_weight,
+        property_regression_weight=regression_weight,
     )
