@@ -43,6 +43,9 @@ class ConversionConfig:
     mlm_output: Optional[Path] = None
     extra_mlm: Sequence[Path] = ()
     reports_dir: Optional[Path] = None
+    properties_registry: Optional[Path] = None
+    extractors_pack: Optional[Path] = None
+    text_field: str = "text"
 
     def iter_mlm_sources(self) -> Iterable[Path]:
         if not self.make_mlm_corpus:
@@ -103,6 +106,9 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
         done_uids_path=config.done_uids,
         val_split=config.val_split,
         random_state=config.random_state,
+        properties_registry_path=config.properties_registry,
+        extractors_pack_path=config.extractors_pack,
+        text_field=config.text_field,
     )
 
     save_datasets(train_df, val_df, config.out_dir)
@@ -187,6 +193,21 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=None,
         help="Directory where dataset reports and visualizations will be stored",
     )
+    parser.add_argument(
+        "--properties-registry",
+        default=None,
+        help="Optional JSON mapping super|cat to property schemas to attach to rows",
+    )
+    parser.add_argument(
+        "--extractors-pack",
+        default=None,
+        help="Optional extractors JSON used to auto-extract properties during conversion",
+    )
+    parser.add_argument(
+        "--text-field",
+        default="text",
+        help="Column name that contains the textual description to analyse for properties",
+    )
     return parser
 
 
@@ -206,6 +227,9 @@ def main(argv: List[str] | None = None) -> None:
         mlm_output=Path(args.mlm_output) if args.mlm_output else None,
         extra_mlm=[Path(p) for p in args.extra_mlm],
         reports_dir=Path(args.reports_dir) if args.reports_dir else None,
+        properties_registry=Path(args.properties_registry) if args.properties_registry else None,
+        extractors_pack=Path(args.extractors_pack) if args.extractors_pack else None,
+        text_field=args.text_field,
     )
 
     artifacts = run_conversion(config)

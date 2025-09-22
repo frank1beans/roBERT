@@ -3,12 +3,13 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Iterable, List, Mapping, Optional, Tuple
+from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
 
 from .ontology_utils import Ontology, build_mask_from_ontology, load_label_maps, load_ontology, save_label_maps
+from ..features.extractors import extract_properties
 
 __all__ = [
     "load_jsonl_to_df",
@@ -69,6 +70,9 @@ def prepare_classification_dataset(
     done_uids_path: Optional[str | Path] = None,
     val_split: float = 0.2,
     random_state: int = 42,
+    properties_registry_path: Optional[str | Path] = None,
+    extractors_pack_path: Optional[str | Path] = None,
+    text_field: str = "text",
 ) -> Tuple[pd.DataFrame, pd.DataFrame, Mapping[str, int], Mapping[str, int]]:
     super_name_to_id, cat_name_to_id, _, _ = create_or_load_label_maps(
         label_maps_path, ontology_path=ontology_path
@@ -76,12 +80,48 @@ def prepare_classification_dataset(
 
     train_df = load_jsonl_to_df(train_path)
 
+    property_registry: Optional[Dict[str, Dict[str, object]]] = None
+    if properties_registry_path is not None:
+        with open(properties_registry_path, "r", encoding="utf-8") as handle:
+            property_registry = json.load(handle)
+
+    extractors_pack: Optional[Dict[str, object]] = None
+    if extractors_pack_path is not None:
+        with open(extractors_pack_path, "r", encoding="utf-8") as handle:
+            extractors_pack = json.load(handle)
+
+    def _resolve_schema(super_name: str, cat_name: str) -> Dict[str, object]:
+        if property_registry is None:
+            return {}
+        key = f"{super_name}|{cat_name}"
+        if key in property_registry and isinstance(property_registry[key], dict):
+            return property_registry[key]
+        lowered = key.lower()
+        for candidate, value in property_registry.items():
+            if (
+                isinstance(candidate, str)
+                and "|" in candidate
+                and candidate.lower() == lowered
+                and isinstance(value, dict)
+            ):
+                return value
+        return {}
+
+    def _extract_props(text_value: str, allowed: Optional[Sequence[str]]) -> Dict[str, object]:
+        if not text_value or extractors_pack is None:
+            return {}
+        extracted = extract_properties(text_value, extractors_pack)
+        if allowed is None:
+            return extracted
+        allowed_set = set(allowed)
+        return {key: val for key, val in extracted.items() if key in allowed_set}
+
     if done_uids_path and Path(done_uids_path).exists():
         done_uids = {line.strip() for line in open(done_uids_path, "r", encoding="utf-8") if line.strip()}
         if "uid" in train_df.columns:
             train_df = train_df[~train_df["uid"].isin(done_uids)]
 
-    def _map_row(row: pd.Series) -> Optional[Tuple[int, int]]:
+    def _map_row(row: pd.Series) -> Optional[Tuple[int, int, str, str]]:
         super_name = row.get("super_id") or row.get("super") or row.get("super_name")
         cat_name = row.get("cat_id") or row.get("cat") or row.get("cat_name")
         if isinstance(cat_name, str) and "::" in cat_name:
@@ -96,36 +136,60 @@ def prepare_classification_dataset(
             cat_idx = cat_name_to_id.get(str(cat_name).lower())
         if super_idx is None or cat_idx is None:
             return None
-        return int(super_idx), int(cat_idx)
+        return int(super_idx), int(cat_idx), str(super_name), str(cat_name)
 
     mapped_super: List[int] = []
     mapped_cat: List[int] = []
+    property_schemas: List[Dict[str, object]] = []
+    extracted_properties: List[Dict[str, object]] = []
     kept_rows = []
     for _, row in train_df.iterrows():
         mapping = _map_row(row)
         if mapping is None:
             continue
-        s_idx, c_idx = mapping
+        s_idx, c_idx, super_name, cat_name = mapping
         mapped_super.append(s_idx)
         mapped_cat.append(c_idx)
+        schema = _resolve_schema(super_name, cat_name)
+        property_schemas.append(schema)
+        text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
+        allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
+        extracted_properties.append(_extract_props(text_value, allowed))
         kept_rows.append(row)
     processed = pd.DataFrame(kept_rows)
-    processed = processed.assign(super_label=mapped_super, cat_label=mapped_cat)
+    processed = processed.assign(
+        super_label=mapped_super,
+        cat_label=mapped_cat,
+        property_schema=property_schemas,
+        properties=extracted_properties,
+    )
 
     if val_path:
         val_df = load_jsonl_to_df(val_path)
         val_rows = []
         mapped_super_val: List[int] = []
         mapped_cat_val: List[int] = []
+        property_schemas_val: List[Dict[str, object]] = []
+        extracted_properties_val: List[Dict[str, object]] = []
         for _, row in val_df.iterrows():
             mapping = _map_row(row)
             if mapping is None:
                 continue
-            s_idx, c_idx = mapping
+            s_idx, c_idx, super_name, cat_name = mapping
             mapped_super_val.append(s_idx)
             mapped_cat_val.append(c_idx)
+            schema = _resolve_schema(super_name, cat_name)
+            property_schemas_val.append(schema)
+            text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
+            allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
+            extracted_properties_val.append(_extract_props(text_value, allowed))
             val_rows.append(row)
-        val_processed = pd.DataFrame(val_rows).assign(super_label=mapped_super_val, cat_label=mapped_cat_val)
+        val_processed = pd.DataFrame(val_rows).assign(
+            super_label=mapped_super_val,
+            cat_label=mapped_cat_val,
+            property_schema=property_schemas_val,
+            properties=extracted_properties_val,
+        )
     else:
         processed = processed.sample(frac=1.0, random_state=random_state).reset_index(drop=True)
         split_idx = int(len(processed) * (1.0 - val_split))

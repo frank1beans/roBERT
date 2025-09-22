@@ -1,0 +1,17 @@
+{
+  "version": "1.1.0",
+  "generated_at": "2025-09-22T21:52:11Z",
+  "files": {
+    "registry": "../v1/registry.json",
+    "extractors": "../v1/extractors.json",
+    "validators": "../v1/validators.json",
+    "formulas": "../v1/formulas.json",
+    "views": "../v1/views.json",
+    "templates": "../v1/templates.json",
+    "profiles": "../v1/profiles.json",
+    "contexts": "../v1/contexts.json",
+    "categories": "../v1/categories.json",
+    "catmap": "../v1/catmap.json",
+    "manifest": "../v1/manifest.json"
+  }
+}
