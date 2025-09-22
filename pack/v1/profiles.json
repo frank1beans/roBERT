@@ -1,0 +1,75 @@
+{
+  "version": "1.1.0",
+  "generated_at": "2025-09-22T21:52:11Z",
+  "profiles": [
+    {
+      "id": "acoustic.esec",
+      "label": null,
+      "discipline": "acoustic",
+      "phase": "esecutivo",
+      "required_groups_add": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "frs",
+        "aco"
+      ],
+      "recommended_groups_add": [
+        "thm",
+        "aco",
+        "inst"
+      ]
+    },
+    {
+      "id": "arch.concept",
+      "label": "Architettura – Concept",
+      "discipline": "arch",
+      "phase": "concept",
+      "required_groups_add": [
+        "idn",
+        "mat"
+      ],
+      "recommended_groups_add": [
+        "qty",
+        "geo"
+      ],
+      "property_overrides": {
+        "frs.resistenza_fuoco": {
+          "required": false
+        },
+        "opn.trasmittanza_uw": {
+          "required": false
+        }
+      }
+    },
+    {
+      "id": "detailed",
+      "label": "Architettura – Definitivo/Esecutivo",
+      "discipline": "arch",
+      "phase": "detailed",
+      "required_groups_add": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "frs",
+        "aco"
+      ],
+      "recommended_groups_add": [
+        "frs",
+        "thm",
+        "aco",
+        "inst"
+      ],
+      "property_overrides": {
+        "frs.resistenza_fuoco": {
+          "required": true
+        },
+        "aco.rw": {
+          "required": true
+        }
+      }
+    }
+  ]
+}

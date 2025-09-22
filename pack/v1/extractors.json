@@ -1,0 +1,166 @@
+{
+  "version": "1.1.0",
+  "generated_at": "2025-09-22T21:52:11Z",
+  "patterns": [
+    {
+      "property_id": "aco.rw",
+      "regex": [
+        "\\bRw\\s*(\\d{2})\\s*dB\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it"
+    },
+    {
+      "property_id": "cst.unita_misura",
+      "regex": [
+        "\\b(m²|m3|m|kg|pz|cad)\\b"
+      ],
+      "normalizers": [
+        "as_string"
+      ]
+    },
+    {
+      "property_id": "flr.formato",
+      "regex": [
+        "\\b(\\d{2,4})\\s*[x×]\\s*(\\d{2,4})\\b"
+      ],
+      "normalizers": [
+        "concat_dims"
+      ]
+    },
+    {
+      "property_id": "frs.resistenza_fuoco",
+      "regex": [
+        "\\b(REI?|EI)\\s?(15|30|45|60|90|120|180|240)\\b"
+      ],
+      "normalizers": [
+        "format_EI_from_last_int",
+        "take_last_int->EI {n}"
+      ],
+      "language": "it"
+    },
+    {
+      "property_id": "geo.foratura_laterizio",
+      "regex": [
+        "\\b(pieno|forato|semi[-\\s]?pieno)\\b"
+      ],
+      "normalizers": [
+        "normalize_foratura"
+      ]
+    },
+    {
+      "property_id": "geo.spessore_elemento",
+      "regex": [
+        "\\bspessore\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ]
+    },
+    {
+      "property_id": "gyp.interasse_orditura",
+      "regex": [
+        "\\b(?:interasse|passo)\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ]
+    },
+    {
+      "property_id": "gyp.numero_strati",
+      "regex": [
+        "\\b(\\d+)\\s*(?:x|×)?\\s*strati?\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ]
+    },
+    {
+      "property_id": "opn.resistenza_vento",
+      "regex": [
+        "\\bEN\\s*12210\\b.*?\\b([ABC]\\d\\/[ABC]\\d)\\b"
+      ],
+      "normalizers": [
+        "as_string"
+      ]
+    },
+    {
+      "property_id": "opn.tenuta_acqua",
+      "regex": [
+        "\\bEN\\s*12208\\b.*?\\b(Classe\\s*[A-Z]?\\d+)\\b",
+        "\\bClasse\\s*([A-Z]?\\d+)\\b.*?\\bEN\\s*12208\\b"
+      ],
+      "normalizers": [
+        "as_string"
+      ]
+    },
+    {
+      "property_id": "opn.tenuta_aria",
+      "regex": [
+        "\\bEN\\s*12207\\b.*?\\b(Classe\\s*\\d)\\b",
+        "\\bClasse\\s*(\\d)\\b.*?\\bEN\\s*12207\\b"
+      ],
+      "normalizers": [
+        "as_string"
+      ]
+    },
+    {
+      "property_id": "opn.trasmittanza_uw",
+      "regex": [
+        "\\bUw\\s*=?\\s*(\\d+(?:[.,]\\d+)?)\\s*W/?m²K\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ]
+    },
+    {
+      "property_id": "qty.spessore",
+      "regex": [
+        "\\bsp\\.?\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b",
+        "\\b(\\d+(?:[.,]\\d+)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it"
+    },
+    {
+      "property_id": "thm.lambda",
+      "regex": [
+        "\\bλ\\s*=?\\s*(0\\.\\d{2,3})\\s*W/?mK\\b",
+        "\\blambda\\s*(0\\.\\d{2,3})\\b"
+      ],
+      "normalizers": [
+        "to_float"
+      ]
+    },
+    {
+      "property_id": "wpf.spessore_strato",
+      "regex": [
+        "\\bspessore\\s*strato\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ]
+    }
+  ],
+  "normalizers": {
+    "comma_to_dot": "replace decimal comma with dot",
+    "to_float": "cast to float",
+    "cm_to_mm?": "if original unit is cm, multiply by 10",
+    "take_last_int->EI {n}": "format EI class from last int capture",
+    "to_int": "cast to int",
+    "format_EI_from_last_int": "emit 'EI {n}' from last numeric group",
+    "concat_dims": "join captures as 'L×W'",
+    "normalize_foratura": "map 'semi pieno'→'semipieno'",
+    "as_string": "keep matched text"
+  }
+}
