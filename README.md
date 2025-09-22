@@ -19,8 +19,9 @@ addestrare i modelli e validarli da riga di comando.
 │       ├── models/                           # Implementazioni LabelEmbedModel e MultiTaskBERTMasked
 │       ├── training/                         # Trainer modulari per i due modelli
 │       └── utils/                            # Funzioni condivise (ontologia, dati, metriche, IO)
+├── pyproject.toml                         # Metadata del pacchetto e dipendenze
 ├── README.md
-└── requirements.txt (opzionale, da generare in base all'ambiente)
+└── tests/                                 # Smoke test per la CLI Typer
 ```
 
 ### Dati di input attesi (`data/`)
@@ -44,6 +45,7 @@ Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 * `label_maps.json` – mapping completo `super2id`, `cat2id`, `id2super`, `id2cat`.
 * `mask_matrix.npy` – maschera S×C derivata dall'ontologia.
 * `mask_report.json` – report diagnostico sulla maschera prodotta.
+* `reports/` – grafici e statistiche descrittive su train/val (distribuzioni label, lunghezza testi, ecc.).
 * `splits.json` *(se implementato)* – descrizione degli split generati.
 
 ## Installazione rapida
@@ -52,28 +54,33 @@ Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 python -m venv .venv
 source .venv/bin/activate
 pip install -U pip
-pip install -r requirements.txt  # oppure installazione manuale di torch, transformers, datasets, pandas, numpy, scikit-learn
+pip install -e .[dev]
 ```
 
-Il pacchetto può essere installato in modalità sviluppo con:
-
-```bash
-pip install -e .
-```
+L'installazione precedente crea la console `robimb` e installa le dipendenze
+necessarie (inclusi `pytest` e gli extra Typer per i test). Per un'installazione
+runtime minimale è sufficiente `pip install .`.
 
 ## Utilizzo da riga di comando
+
+La console unificata `robimb` espone tutti i comandi principali. Verificare la
+versione installata con:
+
+```bash
+robimb --version
+```
 
 ### 1. Conversione dei dati
 
 ```bash
-python -m robimb.cli.convert \
+robimb convert \
   --train-file data/train_classif.jsonl \
   --ontology data/ontology.json \
   --label-maps outputs/label_maps.json \
   --out-dir outputs/ \
   --make-mlm-corpus \
   --mlm-output data/mlm_corpus.txt \
-  --extra-mlm data/label_texts_super.jsonl data/label_texts_cat.jsonl
+  --extra-mlm data/label_texts_super.jsonl --extra-mlm data/label_texts_cat.jsonl
 ```
 
 Il comando genera i dataset preprocessati, salva la maschera ontologica e, se
@@ -82,20 +89,23 @@ richiesto, costruisce un corpus testuale per TAPT/MLM.
 ### 2. Training TAPT (Masked Language Modeling)
 
 ```bash
-python -m robimb.training.tapt_mlm \
-  data/mlm_corpus.txt \
-  --model xlm-roberta-base \
+robimb tapt data/mlm_corpus.txt \
+  --model atipiqal/BOB \
   --output_dir runs/mlm_tapt
 ```
 
-Lo script esegue TAPT con opzioni per whole-word masking, LLRD, congelamento e
+Il comando esegue TAPT con opzioni per whole-word masking, LLRD, congelamento e
 sblocco progressivo dei layer.
+
+> Suggerimento: `atipiqal/BOB` è il checkpoint TAPT di riferimento per il
+> dominio AEC. È possibile usarlo direttamente oppure come base model per
+> riaddestramenti mirati.
 
 ### 3. Training del classificatore a label embedding
 
 ```bash
-python -m robimb.cli.train label \
-  --base_model runs/mlm_tapt \
+robimb train label \
+  --base_model atipiqal/roBERTino \
   --train_jsonl outputs/train_processed.jsonl \
   --val_jsonl outputs/val_processed.jsonl \
   --label_maps outputs/label_maps.json \
@@ -105,14 +115,19 @@ python -m robimb.cli.train label \
   --out_dir runs/label_model
 ```
 
-Lo script utilizza `LabelEmbedModel`, inizializza i prototipi delle classi dai
+Il comando utilizza `LabelEmbedModel`, inizializza i prototipi delle classi dai
 rispettivi testi e salva un pacchetto di export (`export/`) contenente pesi
 `safetensors`, tokenizer, mapping e ontologia.
+
+> Suggerimento: `atipiqal/roBERTino` fornisce un backbone già specializzato per
+> la classificazione BIM e rappresenta il punto di partenza ideale per il label
+> model. In alternativa è possibile riutilizzare qualsiasi checkpoint Hugging
+> Face compatibile.
 
 ### 4. Training del modello gerarchico con maschera
 
 ```bash
-python -m robimb.cli.train hier \
+robimb train hier \
   --base_model runs/mlm_tapt \
   --train_jsonl outputs/train_processed.jsonl \
   --val_jsonl outputs/val_processed.jsonl \
@@ -128,7 +143,7 @@ modello pronto all'uso.
 ### 5. Validazione
 
 ```bash
-python -m robimb.cli.validate \
+robimb validate \
   --model-dir runs/label_model/export \
   --test-file outputs/val_processed.jsonl \
   --label-maps outputs/label_maps.json \
@@ -139,6 +154,28 @@ python -m robimb.cli.validate \
 Il comando carica automaticamente il tipo corretto di modello (label o
 mask-based), calcola le metriche gerarchiche e, se richiesto, esporta le
 predizioni.
+
+### 6. Reportistica e visualizzazioni
+
+La pipeline genera automaticamente una reportistica visuale pensata per analizzare
+sia i dataset in ingresso sia le prestazioni in uscita:
+
+* Durante `robimb convert` viene popolata la cartella `reports/` (configurabile con
+  `--reports-dir`), contenente:
+  * istogrammi delle lunghezze testuali per train e validation;
+  * distribuzioni delle classi *super* e *cat* (grafici a barre ordinati);
+  * un file `dataset_summary.json` con statistiche descrittive (conteggi, medie,
+    percentile 95) utili per monitorare sbilanciamenti e anomalie.
+* Con `robimb validate` si possono produrre artefatti diagnostici passando
+  `--report-dir outputs/eval_reports`:
+  * matrici di confusione normalizzate (super e cat) renderizzate con seaborn;
+  * `validation_prediction_report.json` con classification report dettagliati e
+    l'elenco delle principali coppie confuse.
+
+I grafici sono realizzati con `matplotlib`/`seaborn` in modalità headless (backend
+`Agg`), quindi sono generabili anche su macchine senza interfaccia grafica. Le
+sezioni di reportistica possono essere archiviate insieme agli artefatti di run
+per alimentare dashboard esterne o documentazione interna del progetto BIM NLP.
 
 ## Modelli
 

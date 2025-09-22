@@ -1,3 +1,5 @@
 """Command line utilities for robimb."""
 
-__all__ = []
+from .main import app, run
+
+__all__ = ["app", "run"]
