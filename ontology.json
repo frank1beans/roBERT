@@ -1,0 +1,251 @@
+{
+  "Cantierizzazioni": [
+    "Impianti di cantiere",
+    "Installazione cantiere",
+    "Noli",
+    "Pulizie di cantiere"
+  ],
+  "Assistenze murarie": [
+    "Assistenze murarie ai subappaltatori",
+    "Assistenze murarie alla posa di impianti"
+  ],
+  "Opere murarie": [
+    "Blocchi in calcestruzzo cellulare aerato autoclavato",
+    "Blocchi in calcestruzzo vibrocompresso",
+    "Elementi in laterizio",
+    "Murature in altri materiali"
+  ],
+  "Opere da cartongessista": [
+    "Accessori per cartongessi",
+    "Contropareti in cartongesso resistente al fuoco",
+    "Contropareti in cartongesso standard e idrorepellente",
+    "Contropareti in lastre di fibrocemento",
+    "Pareti in cartongesso resistente al fuoco",
+    "Pareti in cartongesso standard e idrorepellente",
+    "Pareti in lastre di fibrocemento",
+    "Setto autoportante cartongesso resistente al fuoco",
+    "Setto autoportante in cartongesso standard e idrorepellente",
+    "Setto autoportante in lastre di fibrocemento"
+  ],
+  "Opere di coibentazione": [
+    "Isolanti acustici",
+    "Isolanti termici in copertura",
+    "Isolanti termici su solai e pareti"
+  ],
+  "Opere di impermeabilizzazione": [
+    "Accessori per l'impermeabilizzazione",
+    "Barriere al vapore",
+    "Impermeabilizzazioni bituminose",
+    "Impermeabilizzazioni liquide",
+    "Impermeabilizzazioni resine",
+    "Impermeabilizzazioni sintetiche"
+  ],
+  "Massetti, sottofondi, drenaggi, vespai": [
+    "Cappe di completamento",
+    "Massetti alleggeriti",
+    "Massetti pendenzati",
+    "Sottofondi pavimentazioni",
+    "Teli di separazione",
+    "Vespai aerati"
+  ],
+  "Opere da intonacatore e stuccatore": [
+    "Intonaco intumescente",
+    "Intonaco per esterno",
+    "Intonaco per interno"
+  ],
+  "Opere di rivestimento": [
+    "Altri rivestimenti",
+    "Rivestimenti in gomma o PVC",
+    "Rivestimenti in gres e ceramica",
+    "Rivestimenti in legno",
+    "Rivestimenti in pietra"
+  ],
+  "Opere di pavimentazione": [
+    "Pavimenti in altri materiali",
+    "Pavimenti in gomma o PVC",
+    "Pavimenti in gres e ceramica",
+    "Pavimenti in legno e laminato",
+    "Pavimenti in moquette e zerbini",
+    "Pavimenti in pietra",
+    "Pavimenti industriali",
+    "Pavimenti sopraelevati e flottanti",
+    "Zoccolini e accessori per pavimentazioni"
+  ],
+  "Controsoffitti": [
+    "Botole d'ispezione e accessori",
+    "Controsoffitti a Baffles e ispezionabili",
+    "Controsoffitti a doghe in legno",
+    "Controsoffitti in PVC o materiali plastici",
+    "Controsoffitti in PVC o plastici",
+    "Controsoffitti in altri materiali",
+    "Controsoffitti in cartongesso",
+    "Controsoffitti in fibre minerali e acustici",
+    "Controsoffitti metallici",
+    "Velette di raccordo"
+  ],
+  "Opere da facciatista e da cappottista": [
+    "Cappotti termici finiti a intonachino",
+    "Cappotti termici finiti con rivestimenti ceramici",
+    "Facciata vetrata a doppia pelle",
+    "Facciata vetrata montanti e traversi",
+    "Facciata vetrata riportata a cellule",
+    "Sistemi di facciata prefabbricati",
+    "Sistemi di facciata ventilata"
+  ],
+  "Sistemi oscuranti per facciate": [
+    "Schermature fisse e brisè soleil",
+    "Schermature mobili",
+    "Tende da sole e alla veneziana"
+  ],
+  "Tetti, manti di copertura e opere accessorie": [
+    "Accessi in copertura",
+    "Accessori per fotovoltaico",
+    "Dispositivi anticaduta e di protezione",
+    "Manti di copertura con elementi puntuali",
+    "Manti di copertura con pannelli o lastre"
+  ],
+  "Condotti e canne fumarie": [
+    "Canne Shunt",
+    "Canne fumarie",
+    "Canne per esalazioni",
+    "Comignoli e pezzi speciali"
+  ],
+  "Opere da serramentista": [
+    "Avvolgibili, controtelai, cassonetti e persiane",
+    "Porte blindate, portoni e bussole",
+    "Porte metalliche",
+    "Porte tagliafuoco",
+    "Serramenti in PVC",
+    "Serramenti in legno",
+    "Serramenti in legno e alluminio",
+    "Serramenti metallici",
+    "Sistemi di partizione trasparenti, porte e parapetti vetrati"
+  ],
+  "Pareti mobili, attrezzate, impacchettabili": [
+    "Pareti impacchettabili",
+    "Pareti mobili opache",
+    "Pareti mobili vetrate"
+  ],
+  "Opere da falegname": [
+    "Boiserie in legno",
+    "Opere in legno custom",
+    "Persiane e scuri in legno",
+    "Porte in legno"
+  ],
+  "Opere da lattoniere": [
+    "Canali di gronda",
+    "Pezzi speciali per lattonerie",
+    "Scossaline",
+    "Tubi pluviali"
+  ],
+  "Opere da fabbro": [
+    "Cancelli e recinzioni",
+    "Carpenterie metalliche",
+    "Grigliati",
+    "Parapetti metallici, ringhiere e inferriate",
+    "Portoni metallici e porte basculanti",
+    "Trattamenti per strutture in acciaio"
+  ],
+  "Opere da tappezziere": [
+    "Carta da parati",
+    "Tende da interno manuali",
+    "Tende da interno motorizzate"
+  ],
+  "Opere da vetraio": [
+    "Lavorazioni su vetri e serramenti",
+    "Pensiline vetrate",
+    "Vetrazioni e accessori"
+  ],
+  "Opere da verniciatore": [
+    "Lavorazioni decorative",
+    "Preparazione delle superfici",
+    "Tinteggiature intumescenti",
+    "Tinteggiature su agglomerati edili (murature, cartongessi ecc.)",
+    "Tinteggiature su legno",
+    "Tinteggiature su metallo"
+  ],
+  "Opere in pietra naturale": [
+    "Copertine e pezzi speciali",
+    "Davanzali e soglie",
+    "Materiali semilavorati (sola fornitura)",
+    "Rivestimenti di scale"
+  ],
+  "Apparecchi sanitari e accessori": [
+    "Accessori per l'allestimento di servizi igienici",
+    "Apparecchi sanitari",
+    "Cassette di scarico"
+  ],
+  "Sistemi per verde pensile": [
+    "Verde pensile estensivo",
+    "Verde pensile intensivo"
+  ],
+  "Opere da florovivaista": [
+    "Alberature (prima seconda e terza grandezza)",
+    "Altro materiale vegetale (terricci pacciamature)",
+    "Arbusti",
+    "Tappezzanti"
+  ],
+  "Opere stradali, fognature e sistemazioni esterne": [
+    "Complementi edili per illuminazione esterna",
+    "Ghiaie sabbie e aggregati",
+    "Manti stradali in asfalto e bitumi",
+    "Marciapiedi e accessori",
+    "Massicciate stradali",
+    "Pavimentazione in autobloccanti o masselli",
+    "Segnaletica orizzontale e verticale",
+    "Sistema di raccolta e smaltimento acque meteoriche"
+  ],
+  "Arredi standard": [
+    "Altri arredi standard",
+    "Arredi per esterno",
+    "Arredi per strutture ricettive",
+    "Arredo bagno",
+    "Arredo per uffici"
+  ],
+  "Arredi su misura": [
+    "Arredi su misura in altri materiali",
+    "Arredi su misura in legno",
+    "Arredi su misura insegne e simboli"
+  ],
+  "Impianti elevatori": [
+    "Allestimenti e personalizzazioni di impianti elevatori",
+    "Impianti ascensori",
+    "Montacarichi",
+    "Montapersone",
+    "Piattaforme elevatrici",
+    "Scale mobili"
+  ],
+  "Presidi antincendio": [
+    "Altri presidi antincendio",
+    "Estintori",
+    "Portoni tagliafuoco",
+    "Sigillature",
+    "Tende tagliafuoco"
+  ],
+  "Opere di bonifica e analisi di laboratorio": [
+    "Altre attività di bonifica e analisi di laboratorio",
+    "Bonifica materiali pericolosi"
+  ],
+  "Demolizioni e rimozioni": [
+    "Demolizione di fabbricati",
+    "Demolizione elementi civili",
+    "Demolizione elementi strutturali",
+    "Oneri per trasporto e discarica",
+    "Rimozione di impianti tecnologici"
+  ],
+  "Opere di sicurezza": [
+    "Apparecchi di sicurezza (reti, cartellonistica ecc.)",
+    "Baraccamenti",
+    "Mezzi di cantiere",
+    "Opere Provvisionali"
+  ],
+  "#N/D": [],
+  "Impianto distribuzione fluidi UTA": [],
+  "Movimenti di terra": [
+    "Scavi e trasporti a discarica",
+    "Rinterri e forniture di terreno"
+  ],
+  "Strutture in altri materiali": [],
+  "Strutture in carpenteria metallica": [],
+  "Strutture in cemento armato in opera": []
+}
