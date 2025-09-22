@@ -9,6 +9,7 @@ from typing import Iterable, List, Mapping, Optional, Sequence
 
 import numpy as np
 
+from ..reporting import generate_dataset_reports
 from ..utils.data_utils import (
     build_mask_and_report,
     create_or_load_label_maps,
@@ -41,6 +42,7 @@ class ConversionConfig:
     make_mlm_corpus: bool = False
     mlm_output: Optional[Path] = None
     extra_mlm: Sequence[Path] = ()
+    reports_dir: Optional[Path] = None
 
     def iter_mlm_sources(self) -> Iterable[Path]:
         if not self.make_mlm_corpus:
@@ -62,6 +64,7 @@ class ConversionArtifacts:
     mask_matrix: Path
     mask_report: Path
     mlm_corpus: Optional[Path] = None
+    reports_dir: Optional[Path] = None
 
     def as_dict(self) -> Mapping[str, str]:
         payload = {
@@ -73,6 +76,8 @@ class ConversionArtifacts:
         }
         if self.mlm_corpus is not None:
             payload["mlm_corpus"] = str(self.mlm_corpus)
+        if self.reports_dir is not None:
+            payload["reports_dir"] = str(self.reports_dir)
         return payload
 
 
@@ -123,6 +128,15 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
             ensure_ascii=False,
         )
 
+    reports_dir = config.reports_dir or (config.out_dir / "reports")
+    generate_dataset_reports(
+        train_df,
+        val_df,
+        super_id_to_name=super_id_to_name,
+        cat_id_to_name=cat_id_to_name,
+        output_dir=reports_dir,
+    )
+
     mlm_corpus_path: Optional[Path] = None
     if config.make_mlm_corpus:
         if config.mlm_output is None:
@@ -139,6 +153,7 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
         mask_matrix=mask_matrix_path,
         mask_report=mask_report_path,
         mlm_corpus=mlm_corpus_path,
+        reports_dir=reports_dir,
     )
 
 
@@ -168,6 +183,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=[],
         help="Additional jsonl files whose text field should be added to the MLM corpus",
     )
+    parser.add_argument(
+        "--reports-dir",
+        default=None,
+        help="Directory where dataset reports and visualizations will be stored",
+    )
     return parser
 
 
@@ -187,6 +207,7 @@ def main(argv: List[str] | None = None) -> None:
         make_mlm_corpus=args.make_mlm_corpus,
         mlm_output=Path(args.mlm_output) if args.mlm_output else None,
         extra_mlm=[Path(p) for p in args.extra_mlm],
+        reports_dir=Path(args.reports_dir) if args.reports_dir else None,
     )
 
     artifacts = run_conversion(config)

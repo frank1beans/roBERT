@@ -45,6 +45,7 @@ Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 * `label_maps.json` – mapping completo `super2id`, `cat2id`, `id2super`, `id2cat`.
 * `mask_matrix.npy` – maschera S×C derivata dall'ontologia.
 * `mask_report.json` – report diagnostico sulla maschera prodotta.
+* `reports/` – grafici e statistiche descrittive su train/val (distribuzioni label, lunghezza testi, ecc.).
 * `splits.json` *(se implementato)* – descrizione degli split generati.
 
 ## Installazione rapida
@@ -153,6 +154,28 @@ robimb validate \
 Il comando carica automaticamente il tipo corretto di modello (label o
 mask-based), calcola le metriche gerarchiche e, se richiesto, esporta le
 predizioni.
+
+### 6. Reportistica e visualizzazioni
+
+La pipeline genera automaticamente una reportistica visuale pensata per analizzare
+sia i dataset in ingresso sia le prestazioni in uscita:
+
+* Durante `robimb convert` viene popolata la cartella `reports/` (configurabile con
+  `--reports-dir`), contenente:
+  * istogrammi delle lunghezze testuali per train e validation;
+  * distribuzioni delle classi *super* e *cat* (grafici a barre ordinati);
+  * un file `dataset_summary.json` con statistiche descrittive (conteggi, medie,
+    percentile 95) utili per monitorare sbilanciamenti e anomalie.
+* Con `robimb validate` si possono produrre artefatti diagnostici passando
+  `--report-dir outputs/eval_reports`:
+  * matrici di confusione normalizzate (super e cat) renderizzate con seaborn;
+  * `validation_prediction_report.json` con classification report dettagliati e
+    l'elenco delle principali coppie confuse.
+
+I grafici sono realizzati con `matplotlib`/`seaborn` in modalità headless (backend
+`Agg`), quindi sono generabili anche su macchine senza interfaccia grafica. Le
+sezioni di reportistica possono essere archiviate insieme agli artefatti di run
+per alimentare dashboard esterne o documentazione interna del progetto BIM NLP.
 
 ## Modelli
 

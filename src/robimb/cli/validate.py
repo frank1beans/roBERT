@@ -13,6 +13,7 @@ from transformers import AutoConfig, AutoTokenizer, DataCollatorWithPadding
 
 from ..models.label_model import load_label_embed_model
 from ..models.masked_model import load_masked_model
+from ..reporting import generate_prediction_reports
 from ..utils.data_utils import load_jsonl_to_df
 from ..utils.metrics_utils import make_compute_metrics
 from ..utils.ontology_utils import load_label_maps
@@ -30,6 +31,7 @@ class ValidationConfig:
     max_length: int = 256
     output: Optional[Path] = None
     predictions: Optional[Path] = None
+    report_dir: Optional[Path] = None
 
 
 def _build_dataset(path: Path, max_length: int, tokenizer) -> Dataset:
@@ -135,10 +137,21 @@ def validate_model(config: ValidationConfig) -> Mapping[str, float]:
     if config.output:
         with open(config.output, "w", encoding="utf-8") as handle:
             json.dump(metrics, handle, indent=2)
+    pred_super = logits_super.argmax(axis=-1)
+    pred_cat = logits_cat_pred.argmax(axis=-1)
+    if config.report_dir is not None:
+        generate_prediction_reports(
+            pred_super=pred_super,
+            pred_cat=pred_cat,
+            gold_super=labels_super_arr,
+            gold_cat=labels_cat_arr,
+            super_id_to_name=s_id2name,
+            cat_id_to_name=c_id2name,
+            output_dir=config.report_dir,
+            prefix="validation",
+        )
     if config.predictions:
         preds = []
-        pred_super = logits_super.argmax(axis=-1)
-        pred_cat = logits_cat_pred.argmax(axis=-1)
         for idx in range(len(pred_super)):
             preds.append(
                 {
@@ -169,6 +182,7 @@ def main(argv: List[str] | None = None) -> None:
             max_length=args.max_length,
             output=Path(args.output) if args.output else None,
             predictions=Path(args.predictions) if args.predictions else None,
+            report_dir=Path(args.report_dir) if args.report_dir else None,
         )
     )
 
@@ -186,6 +200,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-length", type=int, default=256)
     parser.add_argument("--output", default=None, help="Optional metrics output path")
     parser.add_argument("--predictions", default=None, help="Optional path to save predictions")
+    parser.add_argument("--report-dir", default=None, help="Directory for plots and evaluation reports")
     return parser
 
 

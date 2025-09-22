@@ -45,6 +45,11 @@ def convert_command(
         metavar="PATH",
         show_default=False,
     ),
+    reports_dir: Optional[Path] = typer.Option(
+        None,
+        "--reports-dir",
+        help="Directory where dataset plots and summary files will be saved",
+    ),
 ) -> None:
     """Prepare datasets, label maps and ontology masks."""
 
@@ -62,6 +67,7 @@ def convert_command(
         make_mlm_corpus=make_mlm_corpus,
         mlm_output=mlm_output,
         extra_mlm=tuple(extra_mlm or ()),
+        reports_dir=reports_dir,
     )
     artifacts = convert_cli.run_conversion(config)
     typer.echo(json.dumps(artifacts.as_dict(), indent=2, ensure_ascii=False))
@@ -117,6 +123,11 @@ def validate_command(
     max_length: int = typer.Option(256, "--max-length", help="Tokenizer max length"),
     output: Optional[Path] = typer.Option(None, "--output", help="Path where metrics JSON should be saved"),
     predictions: Optional[Path] = typer.Option(None, "--predictions", help="Optional JSONL with detailed predictions"),
+    report_dir: Optional[Path] = typer.Option(
+        None,
+        "--report-dir",
+        help="Directory that will host confusion matrices and analytics",
+    ),
 ) -> None:
     """Evaluate an exported model on labelled data."""
 
@@ -132,6 +143,7 @@ def validate_command(
             max_length=max_length,
             output=output,
             predictions=predictions,
+            report_dir=report_dir,
         )
     )
     if output is None:
