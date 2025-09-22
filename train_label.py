@@ -8,7 +8,7 @@ Trainer per Label-Embedding allineato al trainer ontologico:
 - Verbose logging
 """
 from __future__ import annotations
-import os, re
+import os
 import json, argparse, random, glob, shutil, textwrap
 import numpy as np
 import torch
@@ -22,6 +22,7 @@ from transformers import AutoTokenizer, AutoConfig, TrainingArguments, Trainer, 
 from torch.optim import AdamW
 from transformers import TrainerCallback
 
+from robert.data.ontology import load_label_maps, load_ontology, build_mask
 from label_model import LabelEmbedModel
 
 # -------------------------- Utils --------------------------
@@ -44,82 +45,12 @@ def load_jsonl_to_df(path: str) -> pd.DataFrame:
                 rows.append(json.loads(line))
     return pd.DataFrame(rows)
 
-def load_label_maps(path: str):
-    """
-    Carica mappe label name<->id da vari formati:
-    - id2super/id2cat
-    - super2id/cat2id
-    - supercats/cats  (storico)  ← name->id (string/int)
-    Ritorna: name2id_super, name2id_cat, id2name_super, id2name_cat
-    """
-    raw = json.load(open(path, "r", encoding="utf-8"))
-
-    def _norm_name2id(d: dict) -> dict[str,int]:
-        return {str(k): int(v) for k, v in d.items()}
-
-    def _invert(name2id: dict[str,int]) -> dict[int,str]:
-        return {int(v): str(k) for k, v in name2id.items()}
-
-    s_name2id = c_name2id = None
-
-    # preferisci id2* se presenti
-    if "id2super" in raw and "id2cat" in raw:
-        s_id2name = {int(k): str(v) for k, v in raw["id2super"].items()}
-        c_id2name = {int(k): str(v) for k, v in raw["id2cat"].items()}
-        s_name2id = {v: k for k, v in s_id2name.items()}
-        c_name2id = {v: k for k, v in c_id2name.items()}
-    # poi *2id
-    elif "super2id" in raw and "cat2id" in raw:
-        s_name2id = _norm_name2id(raw["super2id"])
-        c_name2id = _norm_name2id(raw["cat2id"])
-    # infine alias storici
-    elif "supercats" in raw and "cats" in raw:
-        s_name2id = _norm_name2id(raw["supercats"])
-        c_name2id = _norm_name2id(raw["cats"])
-    else:
-        raise ValueError(f"label_maps non riconosciuto: chiavi={list(raw.keys())[:8]}")
-
-    s_id2name = _invert(s_name2id)
-    c_id2name = _invert(c_name2id)
-    return s_name2id, c_name2id, s_id2name, c_id2name
-
-
 def build_mask_from_ontology(ontology_path: str, super_name_to_id, cat_name_to_id):
     if not ontology_path or not os.path.isfile(ontology_path):
         return None, {"note": "no ontology provided"}
-    ont = json.load(open(ontology_path, "r", encoding="utf-8"))
-    # Supporta sia {"super_to_cats": {...}} sia mappa diretta {super: [cats]}
-    super_to_cats = ont.get("super_to_cats", None)
-    if super_to_cats is None and isinstance(ont, dict):
-        super_to_cats = ont  # fallback: ont è già {super: [cats]}
-
-    if not isinstance(super_to_cats, dict):
-        return None, {"note": "ontology format unsupported for mask"}
-
-    norm = lambda s: re.sub(r"\s+", " ", s).strip().lower()
-    s_norm2id = {norm(k): v for k, v in super_name_to_id.items()}
-    c_norm2id = {norm(k): v for k, v in cat_name_to_id.items()}
-
-    S = max(s_norm2id.values()) + 1
-    C = max(c_norm2id.values()) + 1
-    M = np.zeros((S, C), dtype=np.float32)
-
-    missing_super = 0; missing_cat = 0
-    for sname, clist in super_to_cats.items():
-        sid = s_norm2id.get(norm(sname))
-        if sid is None:
-            missing_super += 1
-            continue
-        for cname in clist:
-            cid = c_norm2id.get(norm(cname))
-            if cid is None:
-                missing_cat += 1
-                continue
-            M[int(sid), int(cid)] = 1.0
-
-    rep = {"note": "mask built from ontology", "coverage": float(M.sum()),
-           "missing_super": int(missing_super), "missing_cat": int(missing_cat)}
-    return M, rep
+    ontology = load_ontology(ontology_path)
+    mask, report = build_mask(ontology, super_name_to_id, cat_name_to_id, return_report=True)
+    return mask, report
 
 class SanitizeGrads(TrainerCallback):
     def on_after_backward(self, args, state, control, **kwargs):

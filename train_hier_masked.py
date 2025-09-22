@@ -27,8 +27,8 @@ from transformers import (
 from torch.optim import AdamW
 from transformers import TrainerCallback
 
-from ontology_utils import load_ontology, build_name_maps, load_label_maps, build_mask
-from masked_model import MultiTaskBERTMasked, ArcMarginProduct
+from robert.data.ontology import load_ontology, load_label_maps, build_mask
+from robert.models.masked import MultiTaskBERTMasked, ArcMarginProduct
 
 # -------------------------- Utils --------------------------
 def pick_latest_checkpoint(run_dir: str) -> str | None:
@@ -242,11 +242,15 @@ def main():
     set_seed(args.seed)
 
     # ---------- Ontologia & Label maps ----------
-    supers_json = load_ontology(args.ontology)
-    super_name_to_cats = build_name_maps(supers_json)
+    ontology = load_ontology(args.ontology)
     super_name_to_id, cat_name_to_id, id_to_super_name, id_to_cat_name = load_label_maps(args.label_maps)
 
-    mask_matrix, report = build_mask(super_name_to_id, cat_name_to_id, super_name_to_cats=super_name_to_cats)
+    mask_matrix, report = build_mask(
+        ontology,
+        super_name_to_id,
+        cat_name_to_id,
+        return_report=True,
+    )
     with open(os.path.join(args.out_dir, "mask_report.json"), "w", encoding="utf-8") as w:
         json.dump(report, w, ensure_ascii=False, indent=2)
 
