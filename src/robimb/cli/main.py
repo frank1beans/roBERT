@@ -50,6 +50,29 @@ def convert_command(
         "--reports-dir",
         help="Directory where dataset plots and summary files will be saved",
     ),
+    properties_registry: Optional[Path] = typer.Option(
+        Path("data/properties_registry_extended.json")
+        if (Path("data") / "properties_registry_extended.json").exists()
+        else None,
+        "--properties-registry",
+        exists=True,
+        dir_okay=False,
+        help="Optional registry mapping super|cat to property schemas",
+    ),
+    extractors_pack: Optional[Path] = typer.Option(
+        Path("data/extractors_patterns.json")
+        if (Path("data") / "extractors_patterns.json").exists()
+        else None,
+        "--extractors-pack",
+        exists=True,
+        dir_okay=False,
+        help="Regex extractors pack used to auto-populate property values",
+    ),
+    text_field: str = typer.Option(
+        "text",
+        "--text-field",
+        help="Column containing the textual description analysed for property extraction",
+    ),
 ) -> None:
     """Prepare datasets, label maps and ontology masks."""
 
@@ -68,6 +91,9 @@ def convert_command(
         mlm_output=mlm_output,
         extra_mlm=tuple(extra_mlm or ()),
         reports_dir=reports_dir,
+        properties_registry=properties_registry,
+        extractors_pack=extractors_pack,
+        text_field=text_field,
     )
     artifacts = convert_cli.run_conversion(config)
     typer.echo(json.dumps(artifacts.as_dict(), indent=2, ensure_ascii=False))
