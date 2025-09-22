@@ -1,125 +1,191 @@
-# roBERT modular pipelines
+# BIM NLP Project
 
-Questo repository contiene ora un progetto Python strutturato come package (`robert/`) che
-raccoglie la logica comune per il training e l'inferenza dei modelli gerarchici
-utilizzati per classificare le lavorazioni edili e stimarne le proprietà
-collegate.
+Questa repository contiene la versione riorganizzata del progetto **BIM NLP**. Il
+codice è stato strutturato come pacchetto Python installabile (`src/robimb`) e
+accompagnato dai dati e dalle utility necessarie per preparare i dataset,
+addestrare i modelli e validarli da riga di comando.
 
-## Struttura del package
+## Struttura del repository
 
 ```
-robert/
-├── __init__.py                 # Esporta le API principali
-├── config.py                   # Dataclass di configurazione per model, training, inference e pipeline
 ├── data/
-│   └── ontology.py             # Utility per ontologia, label maps e matrici di mascheramento
-├── models/
-│   ├── masked.py               # Implementazione del modello MultiTaskBERTMasked (ex masked_model.py)
-│   └── label.py                # Implementazione del LabelEmbedModel (ex label_model.py)
-├── pipelines/
-│   ├── inference.py            # Pipeline di inferenza con estrazione proprietà
-│   └── training.py             # Pipeline di training per MLM e Label Embedding
-└── properties/
-    ├── registry.py             # Classi per gestire registri e slot di proprietà
-    └── extractors.py           # Estrattori regex basati sul registro
+│   ├── ontology.json                         # Ontologia gerarchica super→cat
+│   ├── properties_registry_extended.json     # Registry esteso per l'estrazione proprietà
+│   └── ... (altri file json/jsonl descritti più avanti)
+├── outputs/                                  # Directory per artefatti generati (vuota, con .gitkeep)
+├── src/
+│   └── robimb/
+│       ├── cli/                              # Comandi CLI convert/train/validate
+│       ├── models/                           # Implementazioni LabelEmbedModel e MultiTaskBERTMasked
+│       ├── training/                         # Trainer modulari per i due modelli
+│       └── utils/                            # Funzioni condivise (ontologia, dati, metriche, IO)
+├── README.md
+└── requirements.txt (opzionale, da generare in base all'ambiente)
 ```
 
-I vecchi file `masked_model.py` e `label_model.py` sono rimasti come wrapper di
-retro-compatibilità e reindirizzano alle nuove posizioni.
+### Dati di input attesi (`data/`)
 
-## Dataset, ontologia e registry proprietà
+I file seguenti devono essere forniti (alcuni sono opzionali ma consigliati):
 
-Gli helper in `robert.data.ontology` permettono di:
+| File | Descrizione |
+| ---- | ----------- |
+| `train_classif.jsonl` | Dataset grezzo con campi `text`, `super_id`, `cat_id`, `uid`. |
+| `label_texts_super.jsonl` | Testi descrittivi delle classi *super*. |
+| `label_texts_cat.jsonl` | Testi descrittivi delle classi *cat*. |
+| `ontology.json` | Ontologia che mappa ogni super alle rispettive categorie. |
+| `properties_registry_extended.json` | Dizionario di proprietà per ogni `Super|Cat`. |
+| `contrastive_pairs.jsonl` *(opzionale)* | Coppie per eventuale training contrastivo. |
+| `run_log.jsonl` *(opzionale)* | Log storici di run o knowledge pack. |
+| `done_uids.txt` *(opzionale)* | Elenco di UID da escludere/suddividere nei vari split. |
 
-* caricare ontologie (`load_ontology`) e label-map storiche (`load_label_maps`)
-* costruire matrici di mascheramento consistenti con la gerarchia (`build_mask`)
-  con la possibilità di ottenere report diagnostici sulla copertura.
+Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 
-La gestione delle proprietà è stata resa modulare tramite:
+* `train_processed.jsonl` e `val_processed.jsonl` – dataset con ID numerici `super_label` e `cat_label`.
+* `label_maps.json` – mapping completo `super2id`, `cat2id`, `id2super`, `id2cat`.
+* `mask_matrix.npy` – maschera S×C derivata dall'ontologia.
+* `mask_report.json` – report diagnostico sulla maschera prodotta.
+* `splits.json` *(se implementato)* – descrizione degli split generati.
 
-* `PropertyRegistry` per rappresentare l'intero registro (incluso `_schema`)
-* `PropertyGroup` per ogni coppia `Super|Cat` con priorità, slot e pattern
-* `PropertySlot` per descrivere e normalizzare ciascuna proprietà
-* `RegexPropertyExtractor` per estrarre valori dal testo in funzione del gruppo
-  previsto, restituendo risultati normalizzati e ordinati secondo la priorità
-  definita nel registro.
+## Installazione rapida
 
-Il registro esteso (`properties_registry_extended.json`) può quindi essere
-caricato, manipolato (merge/append) e nuovamente serializzato in modo semplice.
-
-## Pipeline di training
-
-`robert.pipelines.training` espone due classi:
-
-* `MaskedMLMTrainingPipeline` — per addestrare `MultiTaskBERTMasked` a partire da
-  file JSONL con chiavi configurabili (`text`, `super`, `cat`).
-* `LabelEmbeddingTrainingPipeline` — per addestrare il modello a label embedding
-  con logica analoga.
-
-Entrambe ereditano da una base comune che:
-
-1. carica le label maps e, opzionalmente, l'ontologia per ricostruire la mask;
-2. effettua la normalizzazione dei record e la costruzione dei dataset Hugging
-   Face `Dataset`;
-3. applica la tokenizzazione con la lunghezza massima richiesta;
-4. costruisce il modello con i parametri dichiarati in `PipelineConfig`.
-
-La `PipelineConfig` combina le dataclass `ModelConfig` e `TrainingConfig` per
-centralizzare gli iper-parametri, con la possibilità di aggiungere argomenti
-extra (es. nomi di campo del dataset). Entrambe le pipeline restituiscono un
-`Trainer` Hugging Face già configurato, pronto per la chiamata a `train()`.
-
-Gli script CLI storici (`train_hier_masked.py` e `train_label.py`) sono stati
-aggiornati per sfruttare le nuove utility di ontologia/label maps mantenendo le
-interfacce originali.
-
-## Pipeline di inferenza
-
-La classe `InferencePipeline` consente di:
-
-1. caricare il modello gerarchico e, opzionalmente, quello a label embedding;
-2. gestire label maps e mask coerenti con l'ontologia fornita;
-3. applicare in batch la predizione su una lista di testi;
-4. estrarre automaticamente le proprietà dal testo in base al gruppo predetto
-   sfruttando `RegexPropertyExtractor`.
-
-Il risultato (`PredictionOutput`) include ID, etichette e score di `super` e
-`cat`, oltre alle proprietà rilevate (con relativa traccia del pattern usato).
-
-## Utilizzo rapido
-
-```python
-from pathlib import Path
-
-from robert import (
-    ModelConfig, TrainingConfig, PipelineConfig,
-    MaskedMLMTrainingPipeline, InferencePipeline,
-    InferenceConfig,
-)
-
-model_cfg = ModelConfig(name_or_path="dbmdz/bert-base-italian-xxl-uncased")
-train_cfg = TrainingConfig(epochs=3, batch_size=32, output_dir=Path("outputs/mlm"))
-pipeline_cfg = PipelineConfig(model=model_cfg, training=train_cfg)
-
-pipeline = MaskedMLMTrainingPipeline(
-    pipeline_cfg,
-    label_maps_path="label_maps.json",
-    ontology_path="ontology.json",
-)
-trainer = pipeline.fit("train.jsonl", "val.jsonl")
-trainer.train()
-
-inf_cfg = InferenceConfig(
-    masked_model_path=Path("outputs/mlm/checkpoint-best"),
-    label_maps_path=Path("label_maps.json"),
-    ontology_path=Path("ontology.json"),
-    properties_registry_path=Path("properties_registry_extended.json"),
-)
-inference = InferencePipeline(inf_cfg)
-results = inference.predict(["Testo di descrizione lavorazione..."])
-print(results[0].properties)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install -r requirements.txt  # oppure installazione manuale di torch, transformers, datasets, pandas, numpy, scikit-learn
 ```
 
-Questa struttura modulare semplifica l'integrazione di nuovi modelli o estrattori
-in futuro, garantendo riuso del codice esistente e una gestione uniforme di
-ontologie, registry di proprietà e pipeline di addestramento/inferenza.
+Il pacchetto può essere installato in modalità sviluppo con:
+
+```bash
+pip install -e .
+```
+
+## Utilizzo da riga di comando
+
+### 1. Conversione dei dati
+
+```bash
+python -m robimb.cli.convert \
+  --train-file data/train_classif.jsonl \
+  --ontology data/ontology.json \
+  --label-maps outputs/label_maps.json \
+  --out-dir outputs/ \
+  --make-mlm-corpus \
+  --mlm-output data/mlm_corpus.txt \
+  --extra-mlm data/label_texts_super.jsonl data/label_texts_cat.jsonl
+```
+
+Il comando genera i dataset preprocessati, salva la maschera ontologica e, se
+richiesto, costruisce un corpus testuale per TAPT/MLM.
+
+### 2. Training TAPT (Masked Language Modeling)
+
+```bash
+python -m robimb.training.tapt_mlm \
+  data/mlm_corpus.txt \
+  --model xlm-roberta-base \
+  --output_dir runs/mlm_tapt
+```
+
+Lo script esegue TAPT con opzioni per whole-word masking, LLRD, congelamento e
+sblocco progressivo dei layer.
+
+### 3. Training del classificatore a label embedding
+
+```bash
+python -m robimb.cli.train label \
+  --base_model runs/mlm_tapt \
+  --train_jsonl outputs/train_processed.jsonl \
+  --val_jsonl outputs/val_processed.jsonl \
+  --label_maps outputs/label_maps.json \
+  --ontology data/ontology.json \
+  --label_texts_super data/label_texts_super.jsonl \
+  --label_texts_cat data/label_texts_cat.jsonl \
+  --out_dir runs/label_model
+```
+
+Lo script utilizza `LabelEmbedModel`, inizializza i prototipi delle classi dai
+rispettivi testi e salva un pacchetto di export (`export/`) contenente pesi
+`safetensors`, tokenizer, mapping e ontologia.
+
+### 4. Training del modello gerarchico con maschera
+
+```bash
+python -m robimb.cli.train hier \
+  --base_model runs/mlm_tapt \
+  --train_jsonl outputs/train_processed.jsonl \
+  --val_jsonl outputs/val_processed.jsonl \
+  --label_maps outputs/label_maps.json \
+  --ontology data/ontology.json \
+  --out_dir runs/hier_model
+```
+
+Viene addestrato `MultiTaskBERTMasked` con maschera ontologica, ArcFace
+opzionale e pesi di classe. Anche in questo caso il comando crea `export/` con il
+modello pronto all'uso.
+
+### 5. Validazione
+
+```bash
+python -m robimb.cli.validate \
+  --model-dir runs/label_model/export \
+  --test-file outputs/val_processed.jsonl \
+  --label-maps outputs/label_maps.json \
+  --ontology data/ontology.json \
+  --output outputs/metrics.json
+```
+
+Il comando carica automaticamente il tipo corretto di modello (label o
+mask-based), calcola le metriche gerarchiche e, se richiesto, esporta le
+predizioni.
+
+## Modelli
+
+### `robimb.models.label_model.LabelEmbedModel`
+
+* Combina un backbone Transformer con una testa di embedding L2-normalized.
+* I logit sono ottenuti come similarità coseno tra embedding del testo e
+  embedding delle label.
+* Supporta inizializzazione da testi descrittivi, maschere ontologiche e
+  salvataggio in formato Hugging Face (`save_pretrained`).
+
+### `robimb.models.masked_model.MultiTaskBERTMasked`
+
+* Doppia testa (super/cat) con maschera ontologica applicata su predizione e
+  loss.
+* Supporto ArcFace, label smoothing, pesi di classe e gestione robusta dei NaN.
+* Salvataggio e caricamento compatibile con Hugging Face.
+
+## Utility principali
+
+* `robimb.utils.ontology_utils` – caricamento ontologia, generazione mask e
+  label map.
+* `robimb.utils.data_utils` – preparazione dataset, salvataggio JSONL,
+  costruzione corpus MLM.
+* `robimb.utils.metrics_utils` – metriche gerarchiche (accuratezza e macro-F1
+  su super e cat in vista pred/gold).
+
+## Packaging e distribuzione
+
+Gli artefatti prodotti in `runs/<nome_run>/export` possono essere compressi e
+consegnati. Ogni pacchetto contiene:
+
+* `config.json`, `model.safetensors`/`pytorch_model.bin`, tokenizer e vocab.
+* `label_maps.json`, `ontology.json`, `mask_report.json`.
+* `metrics.json` con i risultati di validazione.
+
+Per distribuire l'intero progetto è sufficiente creare un archivio contenente:
+
+```
+- src/robimb/
+- data/
+- outputs/ (vuota o con esempi)
+- README.md
+- eventuale requirements.txt / pyproject.toml
+```
+
+In ambiente di produzione è possibile installare il pacchetto, preparare i dati
+con `robimb convert`, addestrare con `robimb train` e validare con `robimb
+validate`, replicando l'intera pipeline descritta.
+
