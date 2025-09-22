@@ -7,7 +7,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from ..core.pack_loader import load_pack
-from ..inference.pipeline import run_pipeline
+from ..inference.pipeline import find_cat_entry, predict_properties
 from ..inference.predict_category import load_classifier, _load_id2label
 from ..inference.calibration import TemperatureCalibrator
 
@@ -103,17 +103,13 @@ def predict(payload: PredictIn):
 
     # Reuse the same code path of CLI pipeline but pass preloaded objects via env vars
     from ..inference.predict_category import predict_topk as _predict_topk
-    from ..features.extractors import extract_properties
     from ..validators.engine import validate
     from ..templates.render import render
 
     top, topk_list, probs, logits = _predict_topk(payload.text, model, tokenizer, id2label, topk=payload.topk, calibrator=calibrator)
-    props = extract_properties(payload.text, pack.extractors)
+    props = predict_properties(payload.text, pack, top["label"])
     # Prepare cat entry and validation
-    cat_entry = None
-    for m in pack.catmap.get("mappings", []):
-        if m.get("cat_label","").lower() == top["label"].lower():
-            cat_entry = m; break
+    cat_entry = find_cat_entry(pack, top["label"])
     ctx = payload.context.dict() if payload.context else {}
     issues = validate(top["label"], props, ctx, rules_pack=pack.validators, cat_entry=cat_entry)
     descr = render(top["label"], props, pack.templates)
