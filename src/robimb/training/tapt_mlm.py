@@ -200,6 +200,7 @@ class UnfreezeCallback(EarlyStoppingCallback):
         return super().on_epoch_begin(args, state, control, **kwargs)
 
 # ------------------ MAIN ------------------
+
 def main(argv: Optional[List[str]] = None) -> None:
     ap = argparse.ArgumentParser(description="TAPT/MLM su corpus (GPU-first, XLM-R consigliato).")
     ap.add_argument("txt_dir", help="Cartella con file *-clean-MLM.txt")
@@ -222,6 +223,7 @@ def main(argv: Optional[List[str]] = None) -> None:
     ap.add_argument("--safe_resume", action="store_true",
                     help="Prima del resume, rimuove optimizer/scheduler/scaler .pt per evitare torch.load")
     ap.add_argument("--cpu", action="store_true", help="Forza training su CPU (skip check CUDA)")
+
     args = ap.parse_args(argv)
 
     set_seed(args.seed)

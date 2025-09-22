@@ -156,7 +156,6 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
         reports_dir=reports_dir,
     )
 
-
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Convert raw BIM data to training-ready artefacts")
     parser.add_argument("--train-file", required=True, help="Path to the raw training jsonl file")
@@ -194,7 +193,6 @@ def build_arg_parser() -> argparse.ArgumentParser:
 def main(argv: List[str] | None = None) -> None:
     parser = build_arg_parser()
     args = parser.parse_args(argv)
-
     config = ConversionConfig(
         train_file=Path(args.train_file),
         val_file=Path(args.val_file) if args.val_file else None,

@@ -8,16 +8,18 @@ from pathlib import Path
 from typing import List, Mapping, Optional
 
 import numpy as np
+
 from datasets import Dataset
 from transformers import AutoConfig, AutoTokenizer, DataCollatorWithPadding
 
 from ..models.label_model import load_label_embed_model
 from ..models.masked_model import load_masked_model
+
 from ..reporting import generate_prediction_reports
+
 from ..utils.data_utils import load_jsonl_to_df
 from ..utils.metrics_utils import make_compute_metrics
 from ..utils.ontology_utils import load_label_maps
-
 __all__ = ["ValidationConfig", "validate_model", "build_arg_parser", "main"]
 
 
@@ -53,18 +55,15 @@ def _build_dataset(path: Path, max_length: int, tokenizer) -> Dataset:
     dataset = Dataset.from_pandas(df, preserve_index=False)
     return dataset.map(_tokenize, batched=True, remove_columns=df.columns.tolist())
 
-
 def validate_model(config: ValidationConfig) -> Mapping[str, float]:
     import torch
     from torch.utils.data import DataLoader
 
     model_dir = config.model_dir
     label_maps = config.label_maps
-
     s_name2id, c_name2id, s_id2name, c_id2name = load_label_maps(label_maps)
     num_super = max(s_name2id.values()) + 1
     num_cat = max(c_name2id.values()) + 1
-
     model_config = AutoConfig.from_pretrained(model_dir)
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
 
@@ -83,7 +82,6 @@ def validate_model(config: ValidationConfig) -> Mapping[str, float]:
     # manual evaluation loop to avoid Trainer dependency at inference time
     model.eval()
     model.to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
-
     predictions_super: List[np.ndarray] = []
     predictions_cat_pred: List[np.ndarray] = []
     predictions_cat_gold: List[np.ndarray] = []
@@ -91,6 +89,7 @@ def validate_model(config: ValidationConfig) -> Mapping[str, float]:
     labels_cat: List[np.ndarray] = []
 
     dataloader = DataLoader(dataset, batch_size=config.batch_size, collate_fn=data_collator)
+
     device = next(model.parameters()).device
 
     with torch.no_grad():
@@ -202,7 +201,6 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--predictions", default=None, help="Optional path to save predictions")
     parser.add_argument("--report-dir", default=None, help="Directory for plots and evaluation reports")
     return parser
-
 
 if __name__ == "__main__":
     main()
