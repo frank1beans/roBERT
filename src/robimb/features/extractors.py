@@ -78,6 +78,68 @@ def _unique_list(v, m):
             out.append(x); seen.add(x)
     return out
 
+def _as_string(v, m):
+    if isinstance(v, list):
+        return [str(x) for x in v]
+    return str(v)
+
+def _concat_dims(v, m):
+    if isinstance(v, (list, tuple)) and len(v) == 2:
+        return f"{v[0]}×{v[1]}"
+    return v
+
+_EI_PATTERN = re.compile(r"(15|30|45|60|90|120|180|240)")
+
+def _format_ei_from_last_int(v, m):
+    if isinstance(v, (list, tuple)):
+        hay = " ".join(str(x) for x in v)
+    else:
+        hay = str(v)
+    nums = _EI_PATTERN.findall(hay)
+    if not nums:
+        nums = _EI_PATTERN.findall(m)
+    if not nums:
+        return v
+    return f"EI {nums[-1]}"
+
+def _take_last_int_to_ei(v, m):
+    return _format_ei_from_last_int(v, m)
+
+_FORATURA_MAP = {
+    "pieno": "pieno",
+    "forato": "forato",
+    "semi pieno": "semipieno",
+    "semi-pieno": "semipieno",
+    "semipieno": "semipieno",
+}
+
+def _normalize_foratura(v, m):
+    def norm_one(x):
+        key = str(x).strip().lower().replace("  ", " ")
+        return _FORATURA_MAP.get(key, x)
+    if isinstance(v, list):
+        return [norm_one(x) for x in v]
+    return norm_one(v)
+
+def _cm_to_mm_optional(v, m):
+    lower = m.lower()
+    convert = "cm" in lower and "mm" not in lower
+
+    def conv_one(x):
+        if not convert:
+            return x
+        try:
+            return float(x) * 10.0
+        except Exception:
+            try:
+                return float(str(x).replace(",", ".")) * 10.0
+            except Exception:
+                return x
+
+    if isinstance(v, list):
+        return [conv_one(x) for x in v]
+    return conv_one(v)
+
 def _map_enum_factory(mapping: Dict[str, str]):
     def _map_enum(v, m):
         def map_one(x):
@@ -100,6 +162,12 @@ BUILTINS: Dict[str, NormalizerFn] = {
     "collect_many": _collect_many,
     "if_cm_to_mm": _if_cm_to_mm,
     "unique_list": _unique_list,
+    "as_string": _as_string,
+    "concat_dims": _concat_dims,
+    "format_EI_from_last_int": _format_ei_from_last_int,
+    "take_last_int->EI {n}": _take_last_int_to_ei,
+    "normalize_foratura": _normalize_foratura,
+    "cm_to_mm?": _cm_to_mm_optional,
     # dynamic "map_enum:<name>" supported below
 }
 

@@ -1,5 +1,11 @@
 
+import json
+from pathlib import Path
+
 from robimb.features.extractors import extract_properties
+
+
+PACK_V1 = json.loads(Path("pack/v1/extractors.json").read_text(encoding="utf-8"))
 
 def test_basic_extraction():
     extractors_pack = {
@@ -24,3 +30,18 @@ def test_basic_extraction():
     assert abs(props["opn.trasmittanza_uw"] - 1.30) < 1e-6
     assert props["flr.formato"] == "60×60"
     assert props["geo.foratura_laterizio"] == "forato"
+
+
+def test_pack_v1_normalizers_examples():
+    text = (
+        "Unità di misura m²; Formato 60 x 120; EI120; laterizio semi pieno; "
+        "sp 2,5 cm; Parete Rw 54 dB."
+    )
+    props = extract_properties(text, PACK_V1)
+
+    assert props["cst.unita_misura"] == "m²"
+    assert props["flr.formato"] == "60×120"
+    assert props["frs.resistenza_fuoco"] == "EI 120"
+    assert props["geo.foratura_laterizio"] == "semipieno"
+    assert abs(props["qty.spessore"] - 25.0) < 1e-6
+    assert props["aco.rw"] == 54
