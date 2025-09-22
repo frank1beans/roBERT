@@ -1,0 +1,319 @@
+{
+  "version": "0.3.1",
+  "units": "SI",
+  "groups": {
+    "idn": {
+      "label": "Identità",
+      "description": "Dati identificativi",
+      "properties": [
+        "idn.codice",
+        "idn.descrizione",
+        "idn.ambito"
+      ]
+    },
+    "qty": {
+      "label": "Quantità",
+      "description": "QTO",
+      "properties": [
+        "qty.lunghezza",
+        "qty.larghezza",
+        "qty.altezza",
+        "qty.spessore"
+      ]
+    },
+    "mat": {
+      "label": "Materiali",
+      "description": "Composizione",
+      "properties": [
+        "mat.materiale"
+      ]
+    },
+    "mech": {
+      "label": "Meccaniche",
+      "description": "Prestazioni meccaniche",
+      "properties": [
+        "mech.resistenza_compressione"
+      ]
+    },
+    "thm": {
+      "label": "Termiche",
+      "description": "Prestazioni termiche",
+      "properties": [
+        "thm.lambda"
+      ]
+    },
+    "aco": {
+      "label": "Acustiche",
+      "description": "Prestazioni acustiche",
+      "properties": [
+        "aco.rw"
+      ]
+    },
+    "frs": {
+      "label": "Fuoco",
+      "description": "Reazione/Resistenza",
+      "properties": [
+        "frs.resistenza_fuoco"
+      ]
+    },
+    "wpf": {
+      "label": "Impermeabilizzazione",
+      "description": "Sistemi impermeabili",
+      "properties": [
+        "wpf.tipo_impermeabilizzante"
+      ]
+    },
+    "gyp": {
+      "label": "Sistemi a secco",
+      "description": "Cartongesso",
+      "properties": [
+        "gyp.tipo_lastra"
+      ]
+    },
+    "flr": {
+      "label": "Finiture orizz./vert.",
+      "description": "Pav/Riv",
+      "properties": [
+        "flr.classe_antiscivolo"
+      ]
+    },
+    "opn": {
+      "label": "Aperture",
+      "description": "Serramenti/Facciate",
+      "properties": [
+        "opn.trasmittanza_uw"
+      ]
+    },
+    "inst": {
+      "label": "Posa",
+      "description": "Istruzioni di posa",
+      "properties": [
+        "inst.substrato"
+      ]
+    },
+    "cmp": {
+      "label": "Conformità",
+      "description": "Norme/Marcature",
+      "properties": [
+        "cmp.marcatura_ce"
+      ]
+    },
+    "cst": {
+      "label": "Costo",
+      "description": "Prezzi/UM",
+      "properties": [
+        "cst.unita_misura"
+      ]
+    },
+    "geo": {
+      "label": "Geometria",
+      "description": "Geometrie utili",
+      "properties": [
+        "geo.foratura_laterizio",
+        "geo.spessore_elemento"
+      ]
+    }
+  },
+  "properties": {
+    "idn.codice": {
+      "id": "idn.codice",
+      "group": "idn",
+      "label": "Codice voce",
+      "type": "string"
+    },
+    "idn.descrizione": {
+      "id": "idn.descrizione",
+      "group": "idn",
+      "label": "Descrizione canonica",
+      "type": "string"
+    },
+    "idn.ambito": {
+      "id": "idn.ambito",
+      "group": "idn",
+      "label": "Ambito di posa",
+      "type": "enum"
+    },
+    "qty.lunghezza": {
+      "id": "qty.lunghezza",
+      "group": "qty",
+      "label": "Lunghezza",
+      "type": "number",
+      "uom": "m"
+    },
+    "qty.larghezza": {
+      "id": "qty.larghezza",
+      "group": "qty",
+      "label": "Larghezza",
+      "type": "number",
+      "uom": "m"
+    },
+    "qty.altezza": {
+      "id": "qty.altezza",
+      "group": "qty",
+      "label": "Altezza",
+      "type": "number",
+      "uom": "m"
+    },
+    "qty.spessore": {
+      "id": "qty.spessore",
+      "group": "qty",
+      "label": "Spessore",
+      "type": "number",
+      "uom": "mm"
+    },
+    "mat.materiale": {
+      "id": "mat.materiale",
+      "group": "mat",
+      "label": "Materiale principale",
+      "type": "string"
+    },
+    "mech.resistenza_compressione": {
+      "id": "mech.resistenza_compressione",
+      "group": "mech",
+      "label": "Resistenza a compressione",
+      "type": "number",
+      "uom": "MPa"
+    },
+    "thm.lambda": {
+      "id": "thm.lambda",
+      "group": "thm",
+      "label": "Conducibilità λ",
+      "type": "number",
+      "uom": "W/mK"
+    },
+    "aco.rw": {
+      "id": "aco.rw",
+      "group": "aco",
+      "label": "Rw",
+      "type": "number",
+      "uom": "dB"
+    },
+    "frs.resistenza_fuoco": {
+      "id": "frs.resistenza_fuoco",
+      "group": "frs",
+      "label": "Resistenza al fuoco",
+      "type": "string"
+    },
+    "wpf.tipo_impermeabilizzante": {
+      "id": "wpf.tipo_impermeabilizzante",
+      "group": "wpf",
+      "label": "Tipo impermeabilizzante",
+      "type": "enum"
+    },
+    "gyp.tipo_lastra": {
+      "id": "gyp.tipo_lastra",
+      "group": "gyp",
+      "label": "Tipo lastra GK",
+      "type": "enum"
+    },
+    "flr.classe_antiscivolo": {
+      "id": "flr.classe_antiscivolo",
+      "group": "flr",
+      "label": "Classe antiscivolo",
+      "type": "enum"
+    },
+    "opn.trasmittanza_uw": {
+      "id": "opn.trasmittanza_uw",
+      "group": "opn",
+      "label": "Trasmittanza Uw",
+      "type": "number",
+      "uom": "W/m²K"
+    },
+    "inst.substrato": {
+      "id": "inst.substrato",
+      "group": "inst",
+      "label": "Substrato richiesto",
+      "type": "string"
+    },
+    "cmp.marcatura_ce": {
+      "id": "cmp.marcatura_ce",
+      "group": "cmp",
+      "label": "Marcatura CE",
+      "type": "boolean"
+    },
+    "cst.unita_misura": {
+      "id": "cst.unita_misura",
+      "group": "cst",
+      "label": "UM prezzo",
+      "type": "string"
+    },
+    "geo.foratura_laterizio": {
+      "id": "geo.foratura_laterizio",
+      "group": "geo",
+      "label": "Foratura laterizio",
+      "type": "enum"
+    },
+    "geo.spessore_elemento": {
+      "id": "geo.spessore_elemento",
+      "group": "geo",
+      "label": "Spessore elemento",
+      "type": "number",
+      "uom": "mm"
+    }
+  },
+  "enums": {
+    "AmbitoPosa": {
+      "values": [
+        "interno",
+        "esterno",
+        "interno/esterno"
+      ]
+    },
+    "LaterizioForatura": {
+      "values": [
+        "pieno",
+        "semipieno",
+        "forato"
+      ]
+    },
+    "CartongessoTipoLastra": {
+      "values": [
+        "standard",
+        "idr",
+        "fuoco",
+        "acustica",
+        "antimuffa",
+        "fibrocemento"
+      ]
+    },
+    "ClasseAntiscivolo": {
+      "values": [
+        "R9",
+        "R10",
+        "R11",
+        "R12",
+        "R13"
+      ]
+    },
+    "SerramentoMateriale": {
+      "values": [
+        "PVC",
+        "legno",
+        "alluminio",
+        "legno-alluminio",
+        "acciaio"
+      ]
+    },
+    "ReazioneFuoco": {
+      "values": [
+        "A1",
+        "A2",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    },
+    "TrasmittanzaClasse": {
+      "values": [
+        "A++",
+        "A+",
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  }
+}

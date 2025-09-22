@@ -1,0 +1,38 @@
+{
+  "version": "0.1.0",
+  "generated_at": "2025-09-21T09:16:56.940028Z",
+  "dimensions": {
+    "intervention_type": {
+      "label": "Tipo intervento",
+      "values": [
+        "nuova_costruzione",
+        "ristrutturazione",
+        "restauro_conservativo"
+      ]
+    },
+    "exposure_env": {
+      "label": "Esposizione ambientale",
+      "values": [
+        "interno_asciutto",
+        "interno_umido",
+        "esterno_sheltered",
+        "esterno_esposto_marino"
+      ]
+    },
+    "climate_zone_UNI10349": {
+      "label": "Zona climatica (UNI 10349)",
+      "values": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    }
+  },
+  "defaults": {
+    "intervention_type": "nuova_costruzione",
+    "exposure_env": "interno_asciutto"
+  }
+}

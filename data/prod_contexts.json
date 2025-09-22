@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2025-09-21T09:27:56.010851Z",
+  "dimensions": {
+    "intervention_type": {
+      "values": [
+        "nuova_costruzione",
+        "ristrutturazione",
+        "restauro_conservativo"
+      ]
+    },
+    "exposure_env": {
+      "values": [
+        "interno_asciutto",
+        "interno_umido",
+        "esterno_sheltered",
+        "esterno_esposto_marino"
+      ]
+    },
+    "climate_zone_UNI10349": {
+      "values": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    }
+  },
+  "defaults": {
+    "intervention_type": "nuova_costruzione",
+    "exposure_env": "interno_asciutto"
+  }
+}
