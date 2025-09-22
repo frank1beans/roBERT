@@ -1,0 +1,19 @@
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.cpu
+    image: robimb/api:latest
+    ports:
+      - "8080:8080"
+    environment:
+      ROBIMB_PACK: /app/pack/current/pack.json
+      ROBIMB_MODEL: ${ROBIMB_MODEL:-/app/runs/label}
+      ROBIMB_LABEL_INDEX: ${ROBIMB_LABEL_INDEX:-/app/data/metadata/label_index/cat.json}
+      ROBIMB_CALIBRATOR: ${ROBIMB_CALIBRATOR:-}
+      HF_TOKEN: ${HF_TOKEN:-}
+    volumes:
+      - ./pack:/app/pack:ro
+      - ./data:/app/data:ro
+      - ./runs:/app/runs:ro

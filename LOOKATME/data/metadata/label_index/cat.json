@@ -1,0 +1,12 @@
+{
+  "label2id": {
+    "Canaline e passacavi": 0,
+    "Elementi in laterizio": 1,
+    "Serramenti esterni in alluminio": 2
+  },
+  "id2label": {
+    "0": "Canaline e passacavi",
+    "1": "Elementi in laterizio",
+    "2": "Serramenti esterni in alluminio"
+  }
+}

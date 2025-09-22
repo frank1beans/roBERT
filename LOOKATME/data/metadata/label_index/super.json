@@ -1,0 +1,12 @@
+{
+  "label2id": {
+    "Impianti elettrici": 0,
+    "Opere murarie": 1,
+    "Serramenti": 2
+  },
+  "id2label": {
+    "0": "Impianti elettrici",
+    "1": "Opere murarie",
+    "2": "Serramenti"
+  }
+}

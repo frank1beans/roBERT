@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "version",
+    "computed"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "computed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "target",
+          "expr"
+        ],
+        "properties": {
+          "target": {
+            "type": "string"
+          },
+          "expr": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

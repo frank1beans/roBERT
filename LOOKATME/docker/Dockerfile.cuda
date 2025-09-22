@@ -1,0 +1,18 @@
+
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive     PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1     PIP_NO_CACHE_DIR=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends     python3.10 python3-pip python3-venv git build-essential &&     ln -s /usr/bin/python3.10 /usr/bin/python &&     rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . /app
+
+RUN python -m pip install --upgrade pip &&     pip install -e .
+# Nota: aggiungi la build di Torch specifica GPU se necessario
+
+ENV ROBIMB_PACK=/app/pack/current/pack.json
+ENV ROBIMB_MODEL=/app/runs/label
+ENV ROBIMB_LABEL_INDEX=/app/data/metadata/label_index/cat.json
+EXPOSE 8080
+CMD ["python","-m","uvicorn","robimb.service.app:app","--host","0.0.0.0","--port","8080"]

@@ -1,0 +1,7 @@
+{
+  "model_name": "atipiqal/roBERTino",
+  "max_length": 256,
+  "batch_size": 16,
+  "epochs": 5,
+  "lr": 3e-05
+}
