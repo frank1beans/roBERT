@@ -2,7 +2,7 @@
 from __future__ import annotations
 import re
 from dataclasses import dataclass
-from typing import Any, Callable, Dict, List, Sequence, Tuple, Optional
+from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 # ---------- Normalizers registry ----------
 
@@ -109,11 +109,17 @@ class Pattern:
     regex: List[str]
     normalizers: List[str]
 
-def _compile_patterns(extractors_pack: Dict) -> List[Pattern]:
+def _compile_patterns(extractors_pack: Dict, allowed_properties: Optional[Iterable[str]] = None) -> List[Pattern]:
     pats: List[Pattern] = []
+    allowed: Optional[Set[str]] = None
+    if allowed_properties is not None:
+        allowed = {p for p in allowed_properties if p}
     for item in extractors_pack.get("patterns", []):
+        pid = item["property_id"]
+        if allowed is not None and pid not in allowed:
+            continue
         pats.append(Pattern(
-            property_id=item["property_id"],
+            property_id=pid,
             regex=item.get("regex", []),
             normalizers=item.get("normalizers", [])
         ))
@@ -148,7 +154,7 @@ def _coerce_capture(match: re.Match) -> Any:
     # 2+ groups: return tuple of groups
     return tuple(match.group(i) for i in range(1, match.lastindex+1))
 
-def extract_properties(text: str, extractors_pack: Dict) -> Dict[str, Any]:
+def extract_properties(text: str, extractors_pack: Dict, allowed_properties: Optional[Iterable[str]] = None) -> Dict[str, Any]:
     """
     Applica i pattern in ordine; per default prende il primo match per proprietà.
     Se presente 'collect_many' nei normalizers, accumula tutti i match (deduplicabili con 'unique_list').
@@ -157,7 +163,7 @@ def extract_properties(text: str, extractors_pack: Dict) -> Dict[str, Any]:
     'map_enum:<name>' mappa valori verso enum/tabellati definiti nel pack.
     """
     out: Dict[str, Any] = {}
-    pats = _compile_patterns(extractors_pack)
+    pats = _compile_patterns(extractors_pack, allowed_properties=allowed_properties)
     # precompile all regex for speed
     compiled = [(p, [re.compile(rx, flags=re.IGNORECASE) for rx in p.regex]) for p in pats]
     for pat, regs in compiled:
@@ -187,12 +193,12 @@ def extract_properties(text: str, extractors_pack: Dict) -> Dict[str, Any]:
             out[pat.property_id] = BUILTINS["unique_list"](out[pat.property_id], "")
     return out
 
-def dry_run(text: str, extractors_pack: Dict) -> Dict[str, Any]:
+def dry_run(text: str, extractors_pack: Dict, allowed_properties: Optional[Iterable[str]] = None) -> Dict[str, Any]:
     """
     Restituisce dettagli di matching per debug.
     """
     details = []
-    pats = _compile_patterns(extractors_pack)
+    pats = _compile_patterns(extractors_pack, allowed_properties=allowed_properties)
     for pat in pats:
         for rx in pat.regex:
             comp = re.compile(rx, re.IGNORECASE)
@@ -203,4 +209,4 @@ def dry_run(text: str, extractors_pack: Dict) -> Dict[str, Any]:
                     "match": m.group(0),
                     "groups": m.groups()
                 })
-    return {"matches": details, "extracted": extract_properties(text, extractors_pack)}
+    return {"matches": details, "extracted": extract_properties(text, extractors_pack, allowed_properties=allowed_properties)}
