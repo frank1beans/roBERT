@@ -24,6 +24,11 @@ from transformers import (
 )
 
 from ..models.label_model import LabelEmbedModel, load_label_embed_model
+from ..training.property_utils import (
+    PropertyMetadata,
+    build_property_metadata,
+    build_property_targets,
+)
 from ..utils.data_utils import build_mask_and_report, load_jsonl_to_df
 from ..utils.metrics_utils import make_compute_metrics
 from ..utils.ontology_utils import load_label_maps
@@ -65,6 +70,8 @@ class LabelTrainingArgs:
     publish_hub: bool = False
     hub_repo: Optional[str] = None
     hub_private: bool = False
+    property_presence_weight: float = 1.0
+    property_regression_weight: float = 1.0
 
 
 class SanitizeGrads(TrainerCallback):
@@ -108,12 +115,14 @@ def _load_label_texts(path: Optional[str], fallback: Iterable[str]) -> List[str]
     return output
 
 
-def _build_dataset(path: str, max_length: int, tokenizer) -> Dataset:
-    df = load_jsonl_to_df(path)
+def _build_dataset(
+    df: pd.DataFrame,
+    max_length: int,
+    tokenizer,
+    property_meta: Optional[PropertyMetadata],
+) -> Dataset:
     if not {"text", "super_label", "cat_label"}.issubset(df.columns):
-        raise ValueError(
-            f"Dataset {path} must contain 'text', 'super_label' and 'cat_label' columns."
-        )
+        raise ValueError("Dataset must contain 'text', 'super_label' and 'cat_label' columns.")
 
     def _tokenize(batch: Dict[str, List]):
         tokens = tokenizer(
@@ -124,10 +133,29 @@ def _build_dataset(path: str, max_length: int, tokenizer) -> Dataset:
         )
         tokens["super_labels"] = batch["super_label"]
         tokens["cat_labels"] = batch["cat_label"]
+        if property_meta is not None and property_meta.has_properties():
+            properties = batch.get("properties", [{} for _ in batch["cat_label"]])
+            mask, presence, reg_targets, reg_mask = build_property_targets(
+                properties,
+                batch["cat_label"],
+                property_meta,
+            )
+            tokens["property_slot_mask"] = mask.tolist()
+            tokens["property_presence_labels"] = presence.tolist()
+            tokens["property_regression_targets"] = reg_targets.tolist()
+            tokens["property_regression_mask"] = reg_mask.tolist()
+        else:
+            empty = [[0.0] * 0 for _ in batch["cat_label"]]
+            tokens["property_slot_mask"] = empty
+            tokens["property_presence_labels"] = empty
+            tokens["property_regression_targets"] = empty
+            tokens["property_regression_mask"] = empty
         return tokens
 
     dataset = Dataset.from_pandas(df, preserve_index=False)
-    return dataset.map(_tokenize, batched=True, remove_columns=df.columns.tolist())
+    keep_cols = {"properties", "property_schema"}
+    remove_cols = [col for col in df.columns.tolist() if col not in keep_cols]
+    return dataset.map(_tokenize, batched=True, remove_columns=remove_cols)
 
 
 def _param_groups(model: LabelEmbedModel, lr_head: float, lr_encoder: float, weight_decay: float):
@@ -189,6 +217,36 @@ def train_label_model(args: LabelTrainingArgs) -> Tuple[Trainer, Dict[str, float
     config.label_texts_cat = label_texts_cat
     config.backbone_src = args.base_model if args.backbone_src is None else args.backbone_src
 
+    train_df = load_jsonl_to_df(args.train_jsonl)
+    eval_df = load_jsonl_to_df(args.val_jsonl)
+
+    property_meta = build_property_metadata((train_df, eval_df), num_cat)
+    if property_meta.has_properties():
+        config.num_properties = property_meta.num_slots
+        config.property_slot_names = list(property_meta.slot_names)
+        config.property_numeric_mask = property_meta.numeric_mask.astype(int).tolist()
+        config.property_cat_mask = property_meta.cat_property_mask.tolist()
+        config.property_presence_weight = float(args.property_presence_weight)
+        config.property_regression_weight = float(args.property_regression_weight)
+    else:
+        config.num_properties = 0
+        config.property_slot_names = []
+        config.property_numeric_mask = []
+        config.property_cat_mask = []
+        config.property_presence_weight = float(args.property_presence_weight)
+        config.property_regression_weight = float(args.property_regression_weight)
+
+    property_cat_mask_tensor = (
+        torch.tensor(property_meta.cat_property_mask, dtype=torch.bool)
+        if property_meta.has_properties()
+        else None
+    )
+    property_numeric_tensor = (
+        torch.tensor(property_meta.numeric_mask, dtype=torch.bool)
+        if property_meta.has_properties()
+        else None
+    )
+
     if args.init_from:
         print(f"[INFO] Ripartenza da {args.init_from}")
         model = load_label_embed_model(
@@ -200,6 +258,12 @@ def train_label_model(args: LabelTrainingArgs) -> Tuple[Trainer, Dict[str, float
                 "num_labels_cat": num_cat,
                 "mask_matrix": mask_matrix.tolist(),
                 "nd_id": nd_id,
+                "num_properties": config.num_properties,
+                "property_slot_names": config.property_slot_names,
+                "property_numeric_mask": config.property_numeric_mask,
+                "property_cat_mask": config.property_cat_mask,
+                "property_presence_weight": float(args.property_presence_weight),
+                "property_regression_weight": float(args.property_regression_weight),
             },
         )
     else:
@@ -218,6 +282,11 @@ def train_label_model(args: LabelTrainingArgs) -> Tuple[Trainer, Dict[str, float
             nd_id=nd_id,
             freeze_encoder=args.freeze_encoder,
             train_label_emb=args.train_label_emb,
+            num_properties=config.num_properties,
+            property_cat_mask=property_cat_mask_tensor,
+            property_numeric_mask=property_numeric_tensor,
+            property_presence_weight=args.property_presence_weight,
+            property_regression_weight=args.property_regression_weight,
         )
 
     if args.unfreeze_last and not args.freeze_encoder:
@@ -229,8 +298,8 @@ def train_label_model(args: LabelTrainingArgs) -> Tuple[Trainer, Dict[str, float
                 for param in encoder_layers.layer[i].parameters():
                     param.requires_grad = False
 
-    train_dataset = _build_dataset(args.train_jsonl, args.max_length, tokenizer)
-    eval_dataset = _build_dataset(args.val_jsonl, args.max_length, tokenizer)
+    train_dataset = _build_dataset(train_df, args.max_length, tokenizer, property_meta)
+    eval_dataset = _build_dataset(eval_df, args.max_length, tokenizer, property_meta)
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer, pad_to_multiple_of=8)
 
@@ -256,6 +325,16 @@ def train_label_model(args: LabelTrainingArgs) -> Tuple[Trainer, Dict[str, float
         hub_private_repo=args.hub_private,
         report_to=["tensorboard"],
         save_total_limit=3,
+        label_names=[
+            "super_labels",
+            "cat_labels",
+            "property_slot_mask",
+            "property_presence_labels",
+            "property_regression_targets",
+            "property_regression_mask",
+        ]
+        if property_meta.has_properties()
+        else ["super_labels", "cat_labels"],
     )
 
     optimizer = AdamW(_param_groups(model, args.lr_head, args.lr_encoder, args.weight_decay))
@@ -268,7 +347,7 @@ def train_label_model(args: LabelTrainingArgs) -> Tuple[Trainer, Dict[str, float
         tokenizer=tokenizer,
         data_collator=data_collator,
         optimizers=(optimizer, None),
-        compute_metrics=make_compute_metrics(num_super, num_cat),
+        compute_metrics=make_compute_metrics(num_super, num_cat, property_meta),
         callbacks=[SanitizeGrads()],
     )
 
@@ -291,6 +370,12 @@ def train_label_model(args: LabelTrainingArgs) -> Tuple[Trainer, Dict[str, float
     tokenizer.save_pretrained(export_dir)
     with open(export_dir / "metrics.json", "w", encoding="utf-8") as handle:
         json.dump(metrics, handle, indent=2)
+    property_metrics = {
+        key: value for key, value in metrics.items() if key.startswith("eval_prop_")
+    }
+    if property_metrics:
+        with open(export_dir / "property_metrics.json", "w", encoding="utf-8") as handle:
+            json.dump(property_metrics, handle, indent=2)
     with open(out_dir / "mask_report.json", "w", encoding="utf-8") as handle:
         json.dump(mask_report, handle, indent=2)
     shutil.copyfile(args.label_maps, export_dir / "label_maps.json")
@@ -334,6 +419,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--publish_hub", action="store_true")
     parser.add_argument("--hub_repo", default=None)
     parser.add_argument("--hub_private", action="store_true")
+    parser.add_argument("--property_presence_weight", type=float, default=1.0)
+    parser.add_argument("--property_regression_weight", type=float, default=1.0)
     return parser
 
 
