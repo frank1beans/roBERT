@@ -1,0 +1,13 @@
+{
+  "groups": {},
+  "properties": {
+    "idn.ifc_class": {
+      "id": "idn.ifc_class",
+      "group": "identificazione",
+      "label": "IFC Class",
+      "type": "string"
+    }
+  },
+  "enums": {},
+  "units": {}
+}

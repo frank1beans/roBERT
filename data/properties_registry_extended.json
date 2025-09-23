@@ -1,0 +1,10 @@
+{
+  "Strutture|Elementi in laterizio": {
+    "priority": ["frs.resistenza_fuoco"],
+    "slots": {
+      "frs.resistenza_fuoco": {
+        "type": "string"
+      }
+    }
+  }
+}

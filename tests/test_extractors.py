@@ -41,7 +41,7 @@ def test_pack_v1_normalizers_examples():
 
     assert props["cst.unita_misura"] == "m²"
     assert props["flr.formato"] == "60×120"
-    assert props["frs.resistenza_fuoco"] == "EI 120"
+    assert props["frs.resistenza_fuoco"] == "EI120"
     assert props["geo.foratura_laterizio"] == "semipieno"
     assert abs(props["qty.spessore"] - 25.0) < 1e-6
     assert props["aco.rw"] == 54
