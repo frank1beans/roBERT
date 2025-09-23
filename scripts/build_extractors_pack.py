@@ -36,6 +36,8 @@ NORMALIZER_DESCRIPTIONS = {
     "normalize_unit_symbols": "canonicalise SI unit tokens",
     "split_structured_list": "split textual lists on punctuation and conjunctions",
     "map_yes_no_multilang": "map yes/no multilingual variants to boolean",
+    "to_ei_class": "standardise EI fire rating notation",
+    "to_strati_count": "extract per-side gypsum board layer count",
 }
 
 PRIORITY_CONFIDENCE = 0.85
@@ -117,6 +119,7 @@ class SlotInfo:
     slot_type: str | None
     is_priority: bool
     regexes: Sequence[str]
+    normalizers_override: Sequence[str] | None = None
 
 
 def load_registry() -> Dict[str, Dict[str, object]]:
@@ -137,6 +140,8 @@ def augment_regexes(regexes: Iterable[str]) -> List[str]:
 
 
 def infer_normalizers(property_id: str, slot: SlotInfo) -> List[str]:
+    if slot.normalizers_override is not None:
+        return list(slot.normalizers_override)
     normals: List[str] = []
     if slot.slot_type == "float":
         normals.extend(["comma_to_dot", "to_float"])
@@ -214,7 +219,14 @@ def build_patterns(registry: Dict[str, Dict[str, object]]):
             regexes = augment_regexes(patterns.get(prop, []))
             if not regexes:
                 continue
-            slot = SlotInfo(slot_type=slot_type, is_priority=True, regexes=regexes)
+            override = slot_spec.get("normalizers") if isinstance(slot_spec, dict) else None
+            normals_override = list(override) if isinstance(override, (list, tuple)) else None
+            slot = SlotInfo(
+                slot_type=slot_type,
+                is_priority=True,
+                regexes=regexes,
+                normalizers_override=normals_override,
+            )
             normalizers = infer_normalizers(prop, slot)
             regex_repr = "<br>".join(f"`{rx}`" for rx in regexes)
             norm_repr = ", ".join(f"`{name}`" for name in normalizers) if normalizers else "—"
@@ -263,7 +275,14 @@ def build_patterns(registry: Dict[str, Dict[str, object]]):
             augmented_regexes = augment_regexes(regexes)
             if not augmented_regexes:
                 continue
-            slot = SlotInfo(slot_type=slot_type, is_priority=False, regexes=augmented_regexes)
+            override = slot_spec.get("normalizers") if isinstance(slot_spec, dict) else None
+            normals_override = list(override) if isinstance(override, (list, tuple)) else None
+            slot = SlotInfo(
+                slot_type=slot_type,
+                is_priority=False,
+                regexes=augmented_regexes,
+                normalizers_override=normals_override,
+            )
             entry = aggregated.setdefault(
                 prop,
                 {
