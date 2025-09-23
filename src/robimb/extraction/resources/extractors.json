@@ -3,6 +3,44 @@
   "generated_at": "2025-01-01T00:00:00Z",
   "patterns": [
     {
+      "property_id": "CER_codice",
+      "regex": [
+        "\\bCER\\s*\\d{2}\\s*\\d{2}\\s*\\d{2}\\b|\\b\\d{2}\\s*\\d{2}\\s*\\d{2}\\b"
+      ],
+      "normalizers": [],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:text",
+        "subcategory:Oneri per trasporto e discarica"
+      ]
+    },
+    {
+      "property_id": "Rw_dB",
+      "regex": [
+        "\\bR[wW]?\\s*=?\\s*(3[2-9]|4[0-9]|5[0-5])\\s*dB\\b",
+        "\\bR[wW]?\\s*=?\\s*(3[2-9]|4[0-9]|5[0-8])\\s*dB\\b",
+        "\\bR[wW]?\\s*=?\\s*(\\d{2})\\s*dB\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di coibentazione",
+        "category:Pareti mobili, attrezzate, impacchettabili",
+        "priority",
+        "slot_type:float",
+        "subcategory:Isolanti acustici",
+        "subcategory:Pareti impacchettabili",
+        "subcategory:Pareti mobili opache"
+      ]
+    },
+    {
       "property_id": "aco.rw",
       "regex": [
         "\\bRw\\s*(\\d{2})\\s*dB\\b"
@@ -10,15 +48,1378 @@
       "normalizers": [
         "to_int"
       ],
-      "language": "it"
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
+      ]
+    },
+    {
+      "property_id": "altezza_baffle_mm",
+      "regex": [
+        "\\b(h|altezza)\\s*(\\d{2,3})\\s*cm\\b",
+        "\\b(h|altezza)\\s*(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "priority",
+        "slot_type:float",
+        "subcategory:Controsoffitti a Baffles e ispezionabili"
+      ]
+    },
+    {
+      "property_id": "altezza_cm",
+      "regex": [
+        "\\b(\\d{1,2})\\s*cm\\b",
+        "\\b(\\d{2})\\s*cm\\b|\\bH\\s*(\\d{2})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Massetti, sottofondi, drenaggi, vespai",
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Tappezzanti",
+        "subcategory:Vespai aerati"
+      ]
+    },
+    {
+      "property_id": "altezza_condotto_m",
+      "regex": [
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Condotti e canne fumarie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Canne Shunt"
+      ]
+    },
+    {
+      "property_id": "altezza_lavoro_m",
+      "regex": [
+        "\\b(\\d{1,3})\\s*m\\b",
+        "\\b(h|altezza)\\s*(\\d{1,2}(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:float",
+        "subcategory:Noli",
+        "subcategory:Opere Provvisionali"
+      ]
+    },
+    {
+      "property_id": "altezza_m",
+      "regex": [
+        "\\b(h|altezza)\\s*(\\d(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "priority",
+        "slot_type:float",
+        "subcategory:Cancelli e recinzioni"
+      ]
+    },
+    {
+      "property_id": "altezza_max_m",
+      "regex": [
+        "\\b(h|altezza)\\s*(\\d(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Pareti mobili, attrezzate, impacchettabili",
+        "priority",
+        "slot_type:float",
+        "subcategory:Pareti impacchettabili"
+      ]
+    },
+    {
+      "property_id": "altezza_mm",
+      "regex": [
+        "\\b(\\d{2,3})\\s*cm\\b",
+        "\\b(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "priority",
+        "slot_type:float",
+        "subcategory:Zoccolini e accessori per pavimentazioni"
+      ]
+    },
+    {
+      "property_id": "altezza_palo_m",
+      "regex": [
+        "\\b(h|altezza)\\s*(\\d{1,2}(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Complementi edili per illuminazione esterna"
+      ]
+    },
+    {
+      "property_id": "altezza_parapetto_mm",
+      "regex": [
+        "\\b(9\\d{2}|1[01]\\d{2}|1200)\\s*cm\\b",
+        "\\b(9\\d{2}|1[01]\\d{2}|1200)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "priority",
+        "slot_type:float",
+        "subcategory:Parapetti metallici, ringhiere e inferriate"
+      ]
+    },
+    {
+      "property_id": "altezza_piante_cm",
+      "regex": [
+        "\\b(h|altezza)\\s*(\\d{2,3})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Arbusti"
+      ]
+    },
+    {
+      "property_id": "altezza_piante_m",
+      "regex": [
+        "\\b(h|altezza)\\s*(\\d{1,2}(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Alberature (prima seconda e terza grandezza)"
+      ]
+    },
+    {
+      "property_id": "altezza_setto_m",
+      "regex": [
+        "\\b(h|altezza)\\s*(\\d(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da cartongessista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Setto autoportante cartongesso resistente al fuoco"
+      ]
+    },
+    {
+      "property_id": "altezza_strutturale_mm",
+      "regex": [
+        "\\b(\\d{2,3})\\s*cm\\b",
+        "\\b(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "priority",
+        "slot_type:float",
+        "subcategory:Pavimenti sopraelevati e flottanti"
+      ]
+    },
+    {
+      "property_id": "ambiente_corrosivita",
+      "regex": [
+        "\\bC[2-5]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Tinteggiature su metallo"
+      ]
+    },
+    {
+      "property_id": "ancoraggio",
+      "regex": [
+        "\\bincollat[oa]|meccanic[oa]|a\\s*secco\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere di rivestimento",
+        "slot_type:enum",
+        "subcategory:Rivestimenti in pietra"
+      ]
+    },
+    {
+      "property_id": "angolo_lamella_gradi",
+      "regex": [
+        "\\b(\\d{1,2})\\s*°\\b|\\bangolo\\s*(\\d{1,2})\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Sistemi oscuranti per facciate",
+        "slot_type:float",
+        "subcategory:Schermature fisse e brisè soleil"
+      ]
+    },
+    {
+      "property_id": "approvvigionamento_idrico",
+      "regex": [
+        "\\b(allaccio\\s*rete|autobotte|pozzo)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Impianti di cantiere"
+      ]
+    },
+    {
+      "property_id": "armatura_tipo",
+      "regex": [
+        "\\bB450[AC]\\b|\\bfibra\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Strutture in cemento armato in opera",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Strutture in cemento armato in opera"
+      ]
+    },
+    {
+      "property_id": "automatismo",
+      "regex": [
+        "\\bautomatizzat[oi]|motorizzat[oi]\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere da fabbro",
+        "slot_type:bool",
+        "subcategory:Cancelli e recinzioni"
+      ]
+    },
+    {
+      "property_id": "automazione",
+      "regex": [
+        "\\bmanuale|motorizzat[oa]|BMS\\b",
+        "\\bradio\\b|\\bBMS\\b|\\binterruttore\\b|\\bfilo\\s*bus\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da tappezziere",
+        "category:Sistemi oscuranti per facciate",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Schermature mobili",
+        "subcategory:Tende da interno motorizzate"
+      ]
+    },
+    {
+      "property_id": "baraccamenti_moduli_n",
+      "regex": [
+        "\\b(\\d{1,3})\\s*modul[oi]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:int",
+        "subcategory:Installazione cantiere"
+      ]
+    },
+    {
+      "property_id": "bitume_classe",
+      "regex": [
+        "\\b(50/70|70/100|modificato|PMB|MOD)\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Manti stradali in asfalto e bitumi"
+      ]
+    },
+    {
+      "property_id": "bonifica_preliminare",
+      "regex": [
+        "\\bbonific[ae]\\b|\\bsvuotamento\\b|\\bneutralizzazion[ei]\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Rimozione di impianti tecnologici"
+      ]
+    },
+    {
+      "property_id": "capacita_kg",
+      "regex": [
+        "\\b(\\d{1,2})\\s*kg\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Presidi antincendio",
+        "priority",
+        "slot_type:float",
+        "subcategory:Estintori"
+      ]
+    },
+    {
+      "property_id": "categoria_grandezza",
+      "regex": [
+        "\\b(I|II|III)\\s*grandezz?a\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Alberature (prima seconda e terza grandezza)"
+      ]
+    },
+    {
+      "property_id": "ceramica_trattata",
+      "regex": [
+        "\\b(trattamento\\s*anticalcare|ceramica\\s*trattata|smalto\\s*attivo)\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Apparecchi sanitari"
+      ]
+    },
+    {
+      "property_id": "chimica",
+      "regex": [
+        "\\bPMMA|poliuretanica|epossidic[ae]|cementizi[ae]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Impermeabilizzazioni liquide"
+      ]
+    },
+    {
+      "property_id": "ciclo",
+      "regex": [
+        "\\bimpregnante\\b|\\bfondo\\s*\\+\\s*finitura\\b|\\boliatur[ae]\\b|\\bvernice\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Tinteggiature su legno"
+      ]
+    },
+    {
+      "property_id": "ciclo_mani",
+      "regex": [
+        "\\b(\\d)\\s*man[ií]?\\b|\\b(\\d)\\s*strat[oi]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:int",
+        "subcategory:Tinteggiature su agglomerati edili (murature, cartongessi ecc.)"
+      ]
+    },
+    {
+      "property_id": "circonferenza_fusto_cm",
+      "regex": [
+        "\\b(circonferenza|circ\\.)\\s*(\\d{2,3})\\s*cm\\b|\\bC(\\d{2,3})\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Alberature (prima seconda e terza grandezza)"
+      ]
+    },
+    {
+      "property_id": "classe_EI_min",
+      "regex": [
+        "\\bEI(30|60|90|120)\\b",
+        "\\bEI(60|90|120)\\b",
+        "\\bEI\\s?(30|60|90|120)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da cartongessista",
+        "category:Opere da serramentista",
+        "category:Presidi antincendio",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Contropareti in cartongesso resistente al fuoco",
+        "subcategory:Pareti in cartongesso resistente al fuoco",
+        "subcategory:Porte tagliafuoco",
+        "subcategory:Portoni tagliafuoco",
+        "subcategory:Tende tagliafuoco"
+      ]
+    },
+    {
+      "property_id": "classe_EN795",
+      "regex": [
+        "\\bEN\\s*795\\s*([A-E])\\b|\\bclasse\\s*([A-E])\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Dispositivi anticaduta e di protezione"
+      ]
+    },
+    {
+      "property_id": "classe_PEI",
+      "regex": [
+        "\\bPEI\\s*(I|II|III|IV|V)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere di rivestimento",
+        "slot_type:enum",
+        "subcategory:Rivestimenti in gres e ceramica"
+      ]
+    },
+    {
+      "property_id": "classe_acciaio",
+      "regex": [
+        "\\bS(235|275|355)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "category:Strutture in carpenteria metallica",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Carpenterie metalliche",
+        "subcategory:Strutture in carpenteria metallica"
+      ]
+    },
+    {
+      "property_id": "classe_antieffrazione",
+      "regex": [
+        "\\bRC[2-4]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da serramentista",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Porte blindate, portoni e bussole"
+      ]
+    },
+    {
+      "property_id": "classe_antiscivolo",
+      "regex": [
+        "\\bR(9|10|11|12|13)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pavimenti in gomma o PVC",
+        "subcategory:Pavimenti in gres e ceramica",
+        "subcategory:Rivestimenti in gomma o PVC",
+        "subcategory:Rivestimenti in gres e ceramica"
+      ]
+    },
+    {
+      "property_id": "classe_calcestruzzo",
+      "regex": [
+        "\\bC(25/30|28/35|30/37|32/40|35/45|40/50)\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Strutture in cemento armato in opera",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Strutture in cemento armato in opera"
+      ]
+    },
+    {
+      "property_id": "classe_carico_ponti",
+      "regex": [
+        "\\bClasse\\s*[1-5]\\b|\\bUNI\\s*EN\\s*12811\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Opere Provvisionali"
+      ]
+    },
+    {
+      "property_id": "classe_norma",
+      "regex": [
+        "\\bEN\\s*13374|UNI|D\\.Lgs\\.?\\s*81/08\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:text",
+        "subcategory:Apparecchi di sicurezza (reti, cartellonistica ecc.)"
+      ]
+    },
+    {
+      "property_id": "classe_pellicola",
+      "regex": [
+        "\\bRA?\\s?2|Classe\\s*[123]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Segnaletica orizzontale e verticale"
+      ]
+    },
+    {
+      "property_id": "classe_reazione_fuoco",
+      "regex": [
+        "\\bClasse\\s*(1IM|2IM)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Arredi standard",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Arredi per strutture ricettive"
+      ]
+    },
+    {
+      "property_id": "classe_resistenza",
+      "regex": [
+        "\\b(2\\.5|3\\.5|5\\.0)\\b",
+        "\\bR\\s?(7\\.5|10|12|15)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere murarie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Blocchi in calcestruzzo cellulare aerato autoclavato",
+        "subcategory:Blocchi in calcestruzzo vibrocompresso"
+      ]
+    },
+    {
+      "property_id": "classe_resistenza_fuoco",
+      "regex": [
+        "\\bR(30|60|90|120)\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "format_EI_from_last_int",
+        "to_ei_class"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "category:Opere da intonacatore e stuccatore",
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Intonaco intumescente",
+        "subcategory:Tinteggiature intumescenti",
+        "subcategory:Trattamenti per strutture in acciaio"
+      ]
+    },
+    {
+      "property_id": "classe_sicurezza",
+      "regex": [
+        "\\b[12]B[12]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da serramentista",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Sistemi di partizione trasparenti, porte e parapetti vetrati"
+      ]
+    },
+    {
+      "property_id": "classe_temperatura",
+      "regex": [
+        "\\bT(200|400|600)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Condotti e canne fumarie",
+        "slot_type:enum",
+        "subcategory:Canne fumarie"
+      ]
+    },
+    {
+      "property_id": "comando",
+      "regex": [
+        "\\bplacca\\s*(meccanica|pneumatica)|sensore\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Cassette di scarico"
+      ]
+    },
+    {
+      "property_id": "compatibilita_modulo",
+      "regex": [
+        "\\b30[-–]35\\s*cm\\b|\\b40\\s*cm\\b|vetro[- ]vetro|universale\\b",
+        "\\b30[-–]35\\s*mm\\b|\\b40\\s*mm\\b|vetro[- ]vetro|universale\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Accessori per fotovoltaico"
+      ]
+    },
+    {
+      "property_id": "compattazione_Proctor_%",
+      "regex": [
+        "\\b(Proctor|SPD)\\s*(\\d{2})\\s*%\\b|\\b95\\s*%\\s*Mod\\.?\\s*Proctor\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Movimenti di terra",
+        "priority",
+        "slot_type:float",
+        "subcategory:Rinterri e forniture di terreno"
+      ]
+    },
+    {
+      "property_id": "con_operatore",
+      "regex": [
+        "\\bcon\\s+operatore\\b|\\bsenza\\s+operatore\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Cantierizzazioni",
+        "slot_type:bool",
+        "subcategory:Noli"
+      ]
+    },
+    {
+      "property_id": "confezione_litri",
+      "regex": [
+        "\\b(\\d{2,4})\\s*L\\b|\\b(\\d{2,4})\\s*litri\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Altro materiale vegetale (terricci pacciamature)"
+      ]
+    },
+    {
+      "property_id": "consumo_kgm2",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*kg/?m2\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:float",
+        "subcategory:Impermeabilizzazioni liquide"
+      ]
+    },
+    {
+      "property_id": "contenitore_litri",
+      "regex": [
+        "\\b(\\d{1,2}|[1-8]\\d)\\s*L\\b|\\b(\\d{1,2}|[1-8]\\d)\\s*litri\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Arbusti"
+      ]
+    },
+    {
+      "property_id": "copriferro_cm",
+      "regex": [
+        "\\bcopriferro\\s*(\\d)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Strutture in cemento armato in opera",
+        "priority",
+        "slot_type:float",
+        "subcategory:Strutture in cemento armato in opera"
+      ]
+    },
+    {
+      "property_id": "corsa_m",
+      "regex": [
+        "\\bcorsa\\s*(\\d{1,2})\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Impianti elevatori",
+        "priority",
+        "slot_type:float",
+        "subcategory:Impianti ascensori",
+        "subcategory:Montapersone",
+        "subcategory:Piattaforme elevatrici"
+      ]
     },
     {
       "property_id": "cst.unita_misura",
       "regex": [
-        "\\b(m²|m3|m|kg|pz|cad)\\b"
+        "\\b(m²|m3|m|kg|pz|cad)\\b",
+        "\\b(mq|metri\\s*quad(?:ri|rati))\\b"
       ],
       "normalizers": [
-        "as_string"
+        "as_string",
+        "normalize_unit_symbols"
+      ],
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
+      ]
+    },
+    {
+      "property_id": "densita_impianto_pt_m2",
+      "regex": [
+        "\\b(\\d{1,2})\\s*p[tz]\\s*/\\s*m2\\b|\\b(\\d{1,2})\\s*\\b[pP]iante\\s*/\\s*m2\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Tappezzanti"
+      ]
+    },
+    {
+      "property_id": "densita_kgm3",
+      "regex": [
+        "\\b(\\d{3,4})\\s*kg/?(?:m3|m³|metri\\\\s*cub(?:i|ici))\\b",
+        "\\b(\\d{3,4})\\s*kg/?m3\\b",
+        "\\b(\\d{3})\\s*kg/?(?:m3|m³|metri\\\\s*cub(?:i|ici))\\b|\\bρ\\s*=\\s*(\\d{3})\\b",
+        "\\b(\\d{3})\\s*kg/?m3\\b|\\bρ\\s*=\\s*(\\d{3})\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Massetti, sottofondi, drenaggi, vespai",
+        "category:Opere murarie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Blocchi in calcestruzzo cellulare aerato autoclavato",
+        "subcategory:Massetti alleggeriti"
+      ]
+    },
+    {
+      "property_id": "destinazione",
+      "regex": [
+        "\\bcucine|bagni|autorimess[ea]|laboratori\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Condotti e canne fumarie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Canne per esalazioni"
+      ]
+    },
+    {
+      "property_id": "diametro_mm",
+      "regex": [
+        "\\bØ\\s*(\\d{2,3})\\s*cm\\b|\\bdiametro\\s*(\\d{2,3})\\s*cm\\b",
+        "\\bØ\\s*(\\d{2,3})\\s*mm\\b|\\bdiametro\\s*(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Condotti e canne fumarie",
+        "category:Opere da lattoniere",
+        "priority",
+        "slot_type:float",
+        "subcategory:Canne fumarie",
+        "subcategory:Canne per esalazioni",
+        "subcategory:Tubi pluviali"
+      ]
+    },
+    {
+      "property_id": "diametro_tubi_mm",
+      "regex": [
+        "\\bØ\\s*(\\d{3})\\s*cm\\b|\\bDN\\s*(\\d{2,3})\\b",
+        "\\bØ\\s*(\\d{3})\\s*mm\\b|\\bDN\\s*(\\d{2,3})\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Sistema di raccolta e smaltimento acque meteoriche"
+      ]
+    },
+    {
+      "property_id": "dimensione_cm",
+      "regex": [
+        "\\b\\d{2,3}\\s*[x×]\\s*\\d{2,3}\\s*cm\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "priority",
+        "slot_type:text",
+        "subcategory:Botole d'ispezione e accessori"
+      ]
+    },
+    {
+      "property_id": "dimensione_luce_cm",
+      "regex": [
+        "\\b(\\d{2,3})\\s*[x×]\\s*(\\d{2,3})\\s*cm\\b",
+        "\\b\\d{2,3}\\s*[x×]\\s*\\d{2,3}\\s*cm\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "category:Presidi antincendio",
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:text",
+        "subcategory:Accessi in copertura",
+        "subcategory:Portoni metallici e porte basculanti",
+        "subcategory:Portoni tagliafuoco"
+      ]
+    },
+    {
+      "property_id": "dimensione_pannello",
+      "regex": [
+        "\\b60\\s*[x×]\\s*60\\s*cm\\b|\\b120\\s*[x×]\\s*60\\s*cm\\b"
+      ],
+      "normalizers": [],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "priority",
+        "slot_type:text",
+        "subcategory:Controsoffitti in fibre minerali e acustici"
+      ]
+    },
+    {
+      "property_id": "dimensione_rotolo",
+      "regex": [
+        "\\b(\\d{2,3})\\s*cm\\s*[x×]\\s*(\\d{2,3})\\s*m\\b|\\b(\\d\\.?\\d)\\s*m\\s*[x×]\\s*(\\d{2,3})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere da tappezziere",
+        "slot_type:text",
+        "subcategory:Carta da parati"
+      ]
+    },
+    {
+      "property_id": "dimensioni_cabina_cm",
+      "regex": [
+        "\\b(\\d{2,3})\\s*[x×]\\s*(\\d{2,3})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Impianti elevatori",
+        "priority",
+        "slot_type:text",
+        "subcategory:Montacarichi"
+      ]
+    },
+    {
+      "property_id": "dimensioni_notevoli",
+      "regex": [
+        "\\bfuori\\s*standard|oversize|su\\s*misura\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da falegname",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Opere in legno custom"
+      ]
+    },
+    {
+      "property_id": "disegno",
+      "regex": [
+        "\\bspina\\s*(italiana|ungherese)\\b|\\bliston[ei]\\b|\\bquadrott[ei]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere di rivestimento",
+        "slot_type:enum",
+        "subcategory:Rivestimenti in legno"
+      ]
+    },
+    {
+      "property_id": "dotazioni",
+      "regex": [
+        "\\buffici|spogliatoi|servizi|mensa|deposito\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Baraccamenti"
+      ]
+    },
+    {
+      "property_id": "durata_giorni",
+      "regex": [
+        "\\b(\\d{1,3})\\s*(giorni?|(?:gg|giorni))\\b",
+        "\\b(\\d{1,3})\\s*(giorni?|gg)\\b",
+        "\\b(\\d{1,3})\\s*giorni?\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:int",
+        "subcategory:Installazione cantiere",
+        "subcategory:Mezzi di cantiere",
+        "subcategory:Noli"
+      ]
+    },
+    {
+      "property_id": "durata_ore",
+      "regex": [
+        "\\b(\\d{1,3}(?:[.,]\\d)?)\\s*ore\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Assistenze murarie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Assistenze murarie ai subappaltatori"
+      ]
+    },
+    {
+      "property_id": "estensione",
+      "regex": [
+        "\\b(\\d{1,5})\\s*((?:mq|m²|m2|metri\\\\s*quad(?:ri|rati))|m2|ml|pz)\\b",
+        "\\b(\\d{1,5})\\s*(mq|m2|ml|(?:pz|pz\\\\.|pezzi))\\b",
+        "\\b(\\d{1,5})\\s*(mq|m2|ml|pz)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:float",
+        "subcategory:Apparecchi di sicurezza (reti, cartellonistica ecc.)"
+      ]
+    },
+    {
+      "property_id": "falda_presente",
+      "regex": [
+        "\\bfalda\\b|\\bwellpoint\\b|\\babbassamento\\s*falda\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Movimenti di terra",
+        "slot_type:bool",
+        "subcategory:Scavi e trasporti a discarica"
+      ]
+    },
+    {
+      "property_id": "finitura",
+      "regex": [
+        "\\bfratazzato|lisciato|rasato\\b",
+        "\\bgraffiato|fratazzato|lisciato\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da intonacatore e stuccatore",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Intonaco per esterno",
+        "subcategory:Intonaco per interno"
+      ]
+    },
+    {
+      "property_id": "finitura_superficie",
+      "regex": [
+        "\\b(opaca|satinata|lucida|strutturata)\\b",
+        "\\blucidat[oa]|levigat[oa]|bocciardat[oa]|spazzolat[oa]|fiacmat[oa]|sabatat[oa]|anticat[oa]\\b",
+        "\\blucidat[oa]|levigat[oa]|bocciardat[oa]|spazzolat[oa]|fiammat[oa]|sabatat[oa]|anticat[oa]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di rivestimento",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Altri rivestimenti",
+        "subcategory:Rivestimenti in pietra"
+      ]
+    },
+    {
+      "property_id": "fissaggio",
+      "regex": [
+        "\\b(meccanico|incollato|zavorrato)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Impermeabilizzazioni sintetiche"
       ]
     },
     {
@@ -28,6 +1429,70 @@
       ],
       "normalizers": [
         "concat_dims"
+      ],
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
+      ]
+    },
+    {
+      "property_id": "fori_n",
+      "regex": [
+        "\\b(\\d{1,3})\\s*fori\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Assistenze murarie",
+        "slot_type:int",
+        "subcategory:Assistenze murarie alla posa di impianti"
+      ]
+    },
+    {
+      "property_id": "formato",
+      "regex": [
+        "\\b\\d{2,3}\\s*[x×]\\s*\\d{2,3}\\s*(cm|mm)\\b",
+        "\\brotol[oi]|quadrott[ei]|doghe|\\bLVT\\b",
+        "\\btelo|quadrott[ei]|plank\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "priority",
+        "slot_type:enum",
+        "slot_type:text",
+        "subcategory:Pavimenti in gomma o PVC",
+        "subcategory:Pavimenti in gres e ceramica",
+        "subcategory:Pavimenti in moquette e zerbini",
+        "subcategory:Rivestimenti in gomma o PVC",
+        "subcategory:Rivestimenti in gres e ceramica"
+      ]
+    },
+    {
+      "property_id": "formato_lastra_cm",
+      "regex": [
+        "\\b(\\d{2,3})\\s*[x×]\\s*(\\d{2,3})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere in pietra naturale",
+        "priority",
+        "slot_type:text",
+        "subcategory:Materiali semilavorati (sola fornitura)"
       ]
     },
     {
@@ -37,9 +1502,13 @@
       ],
       "normalizers": [
         "format_EI_from_last_int",
-        "take_last_int->EI {n}"
+        "to_ei_class"
       ],
-      "language": "it"
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
+      ]
     },
     {
       "property_id": "geo.foratura_laterizio",
@@ -48,16 +1517,119 @@
       ],
       "normalizers": [
         "normalize_foratura"
+      ],
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
       ]
     },
     {
       "property_id": "geo.spessore_elemento",
       "regex": [
-        "\\bspessore\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
+        "\\bspessore\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b",
+        "\\bspessore\\s*(\\d+(?:[.,]\\d+)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
+      ]
+    },
+    {
+      "property_id": "grado_preparazione",
+      "regex": [
+        "\\bsabbiatura\\s*SA\\s*2\\.?5|carte(?:gg|giorni)iat[oa]|spazzolatura|lava(?:gg|giorni)i?o\\b",
+        "\\bsabbiatura\\s*SA\\s*2\\.?5|carteggiat[oa]|spazzolatura|lavaggi?o\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Preparazione delle superfici"
+      ]
+    },
+    {
+      "property_id": "grado_protezione_IP",
+      "regex": [
+        "\\bIP(5[5-9]|6[5-8])\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Complementi edili per illuminazione esterna"
+      ]
+    },
+    {
+      "property_id": "grammatura_gm2",
+      "regex": [
+        "\\b(\\d{2,3})\\s*g/?m2\\b",
+        "\\b(\\d{2,3})\\s*g/?m2\\b|\\b(\\d{2,3})\\s*g\\s*m-?2\\b"
       ],
       "normalizers": [
         "comma_to_dot",
         "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Massetti, sottofondi, drenaggi, vespai",
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:float",
+        "subcategory:Barriere al vapore",
+        "subcategory:Teli di separazione"
+      ]
+    },
+    {
+      "property_id": "granulometria_mm",
+      "regex": [
+        "\\b(\\d{1,2})\\s*[-–]\\s*(\\d{1,2})\\s*cm\\b",
+        "\\b(\\d{1,2})\\s*[-–]\\s*(\\d{1,2})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:text",
+        "subcategory:Ghiaie sabbie e aggregati"
+      ]
+    },
+    {
+      "property_id": "griglia_classe_carico",
+      "regex": [
+        "\\b(A15|B125|C250|D400|E600|F900)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Sistema di raccolta e smaltimento acque meteoriche"
       ]
     },
     {
@@ -77,6 +1649,577 @@
       ],
       "normalizers": [
         "to_int"
+      ]
+    },
+    {
+      "property_id": "illuminazione",
+      "regex": [
+        "\\bLED|retroilluminat[ao]|retro\\s*illuminat[ao]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Arredi su misura",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Arredi su misura insegne e simboli"
+      ]
+    },
+    {
+      "property_id": "impianto",
+      "regex": [
+        "\\b(elettric[oi]|idraulic[oi]|hvac|climatizzazione|speciali)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Assistenze murarie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Assistenze murarie alla posa di impianti"
+      ]
+    },
+    {
+      "property_id": "impianto_autorizzato",
+      "regex": [
+        "\\bautorizzat[oa]\\b|\\bAIA\\b|\\bEND\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Oneri per trasporto e discarica"
+      ]
+    },
+    {
+      "property_id": "indurente_quarzo",
+      "regex": [
+        "\\bindurente\\s*(al)?\\s*quarzo\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Pavimenti industriali"
+      ]
+    },
+    {
+      "property_id": "installazione",
+      "regex": [
+        "\\bincasso|esterna|monoblocco\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Cassette di scarico"
+      ]
+    },
+    {
+      "property_id": "interasse_montanti_mm",
+      "regex": [
+        "\\binterasse\\s*(\\d{3}|4\\d{2}|5\\d{2}|625)\\s*cm\\b",
+        "\\binterasse\\s*(\\d{3}|4\\d{2}|5\\d{2}|625)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere da cartongessista",
+        "slot_type:float",
+        "subcategory:Setto autoportante cartongesso resistente al fuoco"
+      ]
+    },
+    {
+      "property_id": "intercapedine_isolata",
+      "regex": [
+        "\\b(lana\\s+di\\s+roccia|lana\\s+di\\s+vetro|EPS|XPS|PIR)\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da cartongessista",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Contropareti in cartongesso standard e idrorepellente"
+      ]
+    },
+    {
+      "property_id": "irrigazione",
+      "regex": [
+        "\\ba\\s*goccia|spruzzo|centralina\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Sistemi per verde pensile",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Verde pensile intensivo"
+      ]
+    },
+    {
+      "property_id": "isolamento_cassonetto_UW",
+      "regex": [
+        "\\bU[wW]?\\s*=?\\s*(0\\.[5-9]|[1-2](?:\\.[0-9])?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere da serramentista",
+        "slot_type:float",
+        "subcategory:Avvolgibili, controtelai, cassonetti e persiane"
+      ]
+    },
+    {
+      "property_id": "lambda_WmK",
+      "regex": [
+        "[λΛ]\\s*=?\\s*0[.,]\\d{3}\\b|\\b0[.,]\\d{3}\\s*W/?mK\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di coibentazione",
+        "priority",
+        "slot_type:float",
+        "subcategory:Isolanti termici in copertura",
+        "subcategory:Isolanti termici su solai e pareti"
+      ]
+    },
+    {
+      "property_id": "larghezza_fuga_mm",
+      "regex": [
+        "\\bfuga\\s*(\\d(?:[.,]\\d)?)\\s*cm\\b",
+        "\\bfuga\\s*(\\d(?:[.,]\\d)?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "slot_type:float",
+        "subcategory:Pavimenti in gres e ceramica",
+        "subcategory:Rivestimenti in gres e ceramica",
+        "subcategory:Rivestimenti in pietra"
+      ]
+    },
+    {
+      "property_id": "larghezza_gradinata_mm",
+      "regex": [
+        "\\b(600|800|1000)\\s*cm\\b",
+        "\\b(600|800|1000)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Impianti elevatori",
+        "priority",
+        "slot_type:float",
+        "subcategory:Scale mobili"
+      ]
+    },
+    {
+      "property_id": "larghezza_luce_m",
+      "regex": [
+        "\\b(larghezza|luce)\\s*(\\d(?:[.,]\\d)?)\\s*m\\b",
+        "\\b(larghezza|luce)\\s*(\\d(?:[.,]\\d)?)\\s*m\\b|\\b(\\d(?:[.,]\\d)?)\\s*m\\s*(?:di\\s*)?luce\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da tappezziere",
+        "category:Sistemi oscuranti per facciate",
+        "priority",
+        "slot_type:float",
+        "subcategory:Tende da interno manuali",
+        "subcategory:Tende da interno motorizzate",
+        "subcategory:Tende da sole e alla veneziana"
+      ]
+    },
+    {
+      "property_id": "larghezza_m",
+      "regex": [
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Presidi antincendio",
+        "priority",
+        "slot_type:float",
+        "subcategory:Tende tagliafuoco"
+      ]
+    },
+    {
+      "property_id": "larghezza_traccia_cm",
+      "regex": [
+        "\\b(\\d{1,2})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Segnaletica orizzontale e verticale"
+      ]
+    },
+    {
+      "property_id": "lastre_per_lato",
+      "regex": [
+        "\\b(\\d)\\s*lastre\\b|\\b(doppia|tripla)\\s+lastra\\b",
+        "\\b(\\d)\\s*lastre\\b|\\b(doppia|tripla|quadrupla)\\s+lastra\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da cartongessista",
+        "priority",
+        "slot_type:int",
+        "subcategory:Contropareti in cartongesso resistente al fuoco",
+        "subcategory:Pareti in cartongesso resistente al fuoco",
+        "subcategory:Pareti in cartongesso standard e idrorepellente"
+      ]
+    },
+    {
+      "property_id": "linee_cavo_m",
+      "regex": [
+        "\\b(\\d{1,4})\\s*m\\s*(?:di\\s*)?cavo\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Cantierizzazioni",
+        "slot_type:float",
+        "subcategory:Impianti di cantiere"
+      ]
+    },
+    {
+      "property_id": "lunghezza_barra_m",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da lattoniere",
+        "priority",
+        "slot_type:float",
+        "subcategory:Scossaline"
+      ]
+    },
+    {
+      "property_id": "maglia_mm",
+      "regex": [
+        "\\b(\\d{1,2})\\s*[x×]\\s*(\\d{1,2})\\s*cm\\b",
+        "\\b(\\d{1,2})\\s*[x×]\\s*(\\d{1,2})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "priority",
+        "slot_type:text",
+        "subcategory:Grigliati"
+      ]
+    },
+    {
+      "property_id": "manodopera_strati",
+      "regex": [
+        "\\b(\\d)\\s*man[ií]?\\b|\\b(\\d)\\s*strat[oi]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:int",
+        "subcategory:Lavorazioni decorative"
+      ]
+    },
+    {
+      "property_id": "materiale",
+      "regex": [
+        "\\b(pietrame|pietra\\s*naturale|sasso|tufo|calcestruzzo\\s*pieno|legno\\s*massello|adobe)\\b",
+        "\\bAISI\\s*30[46]|alluminio|ABS|vetro\\b",
+        "\\balluminio\\s*a?\\s*taglio\\s*termico|acciaio\\s*a?\\s*taglio\\s*termico|ferro\\s*freddo\\b",
+        "\\blamellar[ei]|massicci[oi]|acciaio\\s*le(?:gg|giorni)ero|fibra\\s*di\\s*carbonio|composit[oi]|bamboo\\b",
+        "\\blamellar[ei]|massicci[oi]|acciaio\\s*leggero|fibra\\s*di\\s*carbonio|composit[oi]|bamboo\\b",
+        "\\blamiera\\s*grecat[ae]|sandwich|policarbonato|fibrocemento\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "category:Opere da serramentista",
+        "category:Opere murarie",
+        "category:Strutture in altri materiali",
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Accessori per l'allestimento di servizi igienici",
+        "subcategory:Manti di copertura con pannelli o lastre",
+        "subcategory:Murature in altri materiali",
+        "subcategory:Serramenti metallici",
+        "subcategory:Strutture in altri materiali"
+      ]
+    },
+    {
+      "property_id": "materiale_compreso",
+      "regex": [
+        "\\bmateriale\\s*compreso\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Assistenze murarie",
+        "slot_type:bool",
+        "subcategory:Assistenze murarie ai subappaltatori"
+      ]
+    },
+    {
+      "property_id": "materiale_pericoloso",
+      "regex": [
+        "\\bamianto|eternit|piombo|PCB|idrocarburi\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di bonifica e analisi di laboratorio",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Bonifica materiali pericolosi"
+      ]
+    },
+    {
+      "property_id": "membrana",
+      "regex": [
+        "\\bPVC\\b|\\bTPO\\b|\\bEPDM\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Impermeabilizzazioni sintetiche"
+      ]
+    },
+    {
+      "property_id": "metodo",
+      "regex": [
+        "\\bcarota(?:gg|giorni)i?o|taglio\\s*(a\\s*)?disco|filo\\s*di\\s*taglio|martellone|idrodemolizion[ei]\\b",
+        "\\bcarotaggi?o|taglio\\s*(a\\s*)?disco|filo\\s*di\\s*taglio|martellone|idrodemolizion[ei]\\b",
+        "\\bmeccanic[ao]|manuale|pinza|martello\\s*demolitore|filo\\s*di\\s*taglio\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Demolizione di fabbricati",
+        "subcategory:Demolizione elementi strutturali"
+      ]
+    },
+    {
+      "property_id": "metodo_bonifica",
+      "regex": [
+        "\\brimozion[ei]|incapsulament[oi]|confinament[oi]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di bonifica e analisi di laboratorio",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Bonifica materiali pericolosi"
+      ]
+    },
+    {
+      "property_id": "moduli_n",
+      "regex": [
+        "\\b(\\d{1,3})\\s*modul[oi]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:int",
+        "subcategory:Baraccamenti"
+      ]
+    },
+    {
+      "property_id": "motorizzazione",
+      "regex": [
+        "\\bmotore\\b|\\bradio\\b|\\bmanuale\\b|\\bBMS\\b",
+        "\\bmotorizzat[oa]|manuale|BMS\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "category:Opere da serramentista",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Avvolgibili, controtelai, cassonetti e persiane",
+        "subcategory:Portoni metallici e porte basculanti"
+      ]
+    },
+    {
+      "property_id": "numero_addetti",
+      "regex": [
+        "\\b(\\d{1,2})\\s*addett[oi]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Assistenze murarie",
+        "priority",
+        "slot_type:int",
+        "subcategory:Assistenze murarie ai subappaltatori"
+      ]
+    },
+    {
+      "property_id": "numero_passaggi",
+      "regex": [
+        "\\b(\\d)\\s*passa(?:gg|giorni)[i]\\b",
+        "\\b(\\d)\\s*passagg[i]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:int",
+        "subcategory:Pulizie di cantiere"
+      ]
+    },
+    {
+      "property_id": "omologazione",
+      "regex": [
+        "\\bomologat[oa]|certificat[oa]\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da serramentista",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Porte tagliafuoco"
       ]
     },
     {
@@ -116,6 +2259,473 @@
       "normalizers": [
         "comma_to_dot",
         "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
+      ]
+    },
+    {
+      "property_id": "orientamento_lamelle",
+      "regex": [
+        "\\b(orizzontal[ei]|vertical[ei]|variabile)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Sistemi oscuranti per facciate",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Schermature fisse e brisè soleil"
+      ]
+    },
+    {
+      "property_id": "passo_lamelle_mm",
+      "regex": [
+        "\\bpasso\\s*(\\d{2,3})\\s*cm\\b",
+        "\\bpasso\\s*(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Sistemi oscuranti per facciate",
+        "priority",
+        "slot_type:float",
+        "subcategory:Schermature fisse e brisè soleil"
+      ]
+    },
+    {
+      "property_id": "passo_mm",
+      "regex": [
+        "\\bpasso\\s*(\\d{2,3})\\s*cm\\b",
+        "\\bpasso\\s*(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "priority",
+        "slot_type:float",
+        "subcategory:Controsoffitti a Baffles e ispezionabili"
+      ]
+    },
+    {
+      "property_id": "pendenza_%",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*%\\b",
+        "\\b(\\d(?:[.,]\\d)?)\\s*%\\s*penden[za]a?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Massetti, sottofondi, drenaggi, vespai",
+        "category:Opere di coibentazione",
+        "priority",
+        "slot_type:float",
+        "subcategory:Isolanti termici in copertura",
+        "subcategory:Massetti pendenzati"
+      ]
+    },
+    {
+      "property_id": "pendenza_min_%",
+      "regex": [
+        "\\bpendenza\\s*min\\.?\\s*(\\d{1,2})\\s*%\\b|\\b(\\d{1,2})\\s*%\\s*minima\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Manti di copertura con elementi puntuali"
+      ]
+    },
+    {
+      "property_id": "percentuale_foratura",
+      "regex": [
+        "\\b(\\d{1,2})\\s*%\\s*foratura\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere murarie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Blocchi in calcestruzzo vibrocompresso",
+        "subcategory:Elementi in laterizio"
+      ]
+    },
+    {
+      "property_id": "peso_saturo_kNm2",
+      "regex": [
+        "\\b(0\\.[8-9]|1\\.[0-8])\\s*kN/?m2\\b|\\b(80-180)\\s*kg/?m2\\b",
+        "\\b(2\\.[0-9]|[3-5]\\.[0-9]|6\\.0)\\s*kN/?m2\\b|\\b(200-600)\\s*kg/?m2\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Sistemi per verde pensile",
+        "priority",
+        "slot_type:float",
+        "subcategory:Verde pensile estensivo",
+        "subcategory:Verde pensile intensivo"
+      ]
+    },
+    {
+      "property_id": "portanza_Evd_MPa",
+      "regex": [
+        "\\bEvd\\s*(\\d{2,3})\\s*MPa\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Massicciate stradali"
+      ]
+    },
+    {
+      "property_id": "portata_kg",
+      "regex": [
+        "\\b(\\d{2,3,4})\\s*kg\\b",
+        "\\b(\\d{2,3})\\s*kg\\b",
+        "\\b(\\d{3,4})\\s*kg\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Impianti elevatori",
+        "priority",
+        "slot_type:float",
+        "subcategory:Impianti ascensori",
+        "subcategory:Montacarichi",
+        "subcategory:Montapersone",
+        "subcategory:Piattaforme elevatrici"
+      ]
+    },
+    {
+      "property_id": "portata_l_s",
+      "regex": [
+        "\\b(\\d{1,3}(?:[.,]\\d)?)\\s*l/?s\\b|\\b(\\d{1,3}(?:[.,]\\d)?)\\s*L/s\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Sistema di raccolta e smaltimento acque meteoriche"
+      ]
+    },
+    {
+      "property_id": "portata_scarico_litri",
+      "regex": [
+        "\\b(3\\s*/\\s*6|4\\.?5\\s*/\\s*9|dual\\s*flush)\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Cassette di scarico"
+      ]
+    },
+    {
+      "property_id": "portata_t",
+      "regex": [
+        "\\b(\\d{1,3}(?:[.,]\\d)?)\\s*t\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:float",
+        "subcategory:Noli"
+      ]
+    },
+    {
+      "property_id": "posa",
+      "regex": [
+        "\\bincollat[oa]|flottant[ei]|chiodat[oa]\\b",
+        "\\bincollat[oa]|flottant[ei]|chiodat[oa]|\\bclic\\b",
+        "\\bincollat[oa]|flottant[ei]|meccanic[oa]|gettata\\s*in\\s*opera\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pavimenti in altri materiali",
+        "subcategory:Pavimenti in legno e laminato",
+        "subcategory:Rivestimenti in legno"
+      ]
+    },
+    {
+      "property_id": "posizione_installazione",
+      "regex": [
+        "\\bintern[oi]|estern[oi]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Arredi su misura",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Arredi su misura in altri materiali"
+      ]
+    },
+    {
+      "property_id": "postazione_tipo",
+      "regex": [
+        "\\boperativ[ao]|direzional[ei]|meeting|bench\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Arredi standard",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Arredo per uffici"
+      ]
+    },
+    {
+      "property_id": "potenza_elettrica_kVA",
+      "regex": [
+        "\\b(\\d{1,3}(?:[.,]\\d)?)\\s*(?:kVA|kva|kilovolt[\\\\s-]*ampere)\\b",
+        "\\b(\\d{1,3}(?:[.,]\\d)?)\\s*kVA\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:float",
+        "subcategory:Impianti di cantiere"
+      ]
+    },
+    {
+      "property_id": "presenza_amianto",
+      "regex": [
+        "\\bamianto|eternit\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "slot_type:bool",
+        "subcategory:Demolizione di fabbricati"
+      ]
+    },
+    {
+      "property_id": "prestazione_acustica",
+      "regex": [
+        "\\bαw\\s*0\\.(6|7|8|9)|\\bαw\\s*1\\.0\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Controsoffitti in fibre minerali e acustici"
+      ]
+    },
+    {
+      "property_id": "prestazione_termica_U",
+      "regex": [
+        "\\bU\\s*=?\\s*0\\.(1\\d|[2-9]\\d?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da facciatista e da cappottista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Sistemi di facciata prefabbricati"
+      ]
+    },
+    {
+      "property_id": "prestazione_termica_UW",
+      "regex": [
+        "\\bU[wf]?\\s*=?\\s*(0\\.[6-9]|1\\.[0-9]|2\\.[0-5])\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da facciatista e da cappottista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Facciata vetrata montanti e traversi"
+      ]
+    },
+    {
+      "property_id": "primer",
+      "regex": [
+        "\\bprimer\\b|\\bfondo\\b|\\banticorrosiv[oi]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Preparazione delle superfici"
+      ]
+    },
+    {
+      "property_id": "profili_visibili",
+      "regex": [
+        "\\btutto\\s*vetro|minimale|standard\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Pareti mobili, attrezzate, impacchettabili",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pareti mobili vetrate"
+      ]
+    },
+    {
+      "property_id": "profilo",
+      "regex": [
+        "\\b(IPE|HEA|HEB|UPN)\\b|\\bangolar[ei]|tubolar[ei]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "category:Strutture in carpenteria metallica",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Carpenterie metalliche",
+        "subcategory:Strutture in carpenteria metallica"
+      ]
+    },
+    {
+      "property_id": "profondita_m",
+      "regex": [
+        "\\bprofondit[aà]\\s*(\\d(?:[.,]\\d)?)\\s*m\\b|\\bscavo\\s*(\\d(?:[.,]\\d)?)\\s*m\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Movimenti di terra",
+        "priority",
+        "slot_type:float",
+        "subcategory:Scavi e trasporti a discarica"
+      ]
+    },
+    {
+      "property_id": "protezione_esterna",
+      "regex": [
+        "\\bestern[oi]|UV|marino\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Tinteggiature su legno"
       ]
     },
     {
@@ -129,7 +2739,1051 @@
         "to_float",
         "cm_to_mm?"
       ],
-      "language": "it"
+      "language": "it",
+      "confidence": 0.9,
+      "tags": [
+        "legacy"
+      ]
+    },
+    {
+      "property_id": "quadri_elettrici_n",
+      "regex": [
+        "\\b(\\d{1,2})\\s*quadri?\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:int",
+        "subcategory:Impianti di cantiere"
+      ]
+    },
+    {
+      "property_id": "quantita_t",
+      "regex": [
+        "\\b(\\d{1,4}(?:[.,]\\d)?)\\s*t\\b|\\b(\\d{1,4}(?:[.,]\\d)?)\\s*tonnellat[ae]\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:float",
+        "subcategory:Oneri per trasporto e discarica"
+      ]
+    },
+    {
+      "property_id": "quantita_unita",
+      "regex": [
+        "\\b(\\d{1,5})\\s*((?:mq|m²|m2|metri\\\\s*quad(?:ri|rati))|m2|ml|pz)\\b",
+        "\\b(\\d{1,5})\\s*(mq|m2|ml|(?:pz|pz\\\\.|pezzi))\\b",
+        "\\b(\\d{1,5})\\s*(mq|m2|ml|pz)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "normalize_unit_symbols"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:float",
+        "subcategory:Demolizione elementi civili",
+        "subcategory:Rimozione di impianti tecnologici"
+      ]
+    },
+    {
+      "property_id": "reazione_al_fuoco",
+      "regex": [
+        "\\b(B|C)-s[12],d0\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da tappezziere",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Carta da parati"
+      ]
+    },
+    {
+      "property_id": "recinzione_ml",
+      "regex": [
+        "\\b(\\d{1,4})\\s*ml\\s*recinzione\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Cantierizzazioni",
+        "slot_type:float",
+        "subcategory:Installazione cantiere"
+      ]
+    },
+    {
+      "property_id": "resina_tipo",
+      "regex": [
+        "\\bPMMA\\b|\\bPU\\b|\\bEP\\b|poliuretanica|epossidic[ae]"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Impermeabilizzazioni resine"
+      ]
+    },
+    {
+      "property_id": "rettificato",
+      "regex": [
+        "\\brettificat[oa]\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "slot_type:bool",
+        "subcategory:Pavimenti in gres e ceramica",
+        "subcategory:Rivestimenti in gres e ceramica"
+      ]
+    },
+    {
+      "property_id": "ripristini_m2",
+      "regex": [
+        "\\b(\\d{1,5})\\s*((?:mq|m²|m2|metri\\\\s*quad(?:ri|rati))|m2)\\s*ripristi?n[oi]?\\b",
+        "\\b(\\d{1,5})\\s*(mq|m2)\\s*ripristi?n[oi]?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Assistenze murarie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Assistenze murarie alla posa di impianti"
+      ]
+    },
+    {
+      "property_id": "saldatura_certificata",
+      "regex": [
+        "\\bEN\\s*1090|UNI\\s*EN\\s*ISO\\s*3834\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Strutture in carpenteria metallica",
+        "slot_type:bool",
+        "subcategory:Strutture in carpenteria metallica"
+      ]
+    },
+    {
+      "property_id": "scarico_litri",
+      "regex": [
+        "\\b(3\\.?0?|4\\.?5|6\\.?0?|7\\.?5|9\\.?0?)\\s*l\\b|\\b(3|4\\.5|6|7\\.5|9)\\s*litri\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "priority",
+        "slot_type:float",
+        "subcategory:Apparecchi sanitari"
+      ]
+    },
+    {
+      "property_id": "schema_posa",
+      "regex": [
+        "\\bspina\\s*di\\s*pesce|corsi\\s*diritt[ei]|a\\s*cerchi|a\\s*el{1,2}e\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pavimentazione in autobloccanti o masselli"
+      ]
+    },
+    {
+      "property_id": "sempreverde",
+      "regex": [
+        "\\bsempreverde\\b|\\bcaduc[ao]\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da florovivaista",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Arbusti"
+      ]
+    },
+    {
+      "property_id": "sensori",
+      "regex": [
+        "\\bvento\\b|\\birra(?:gg|giorni)iament[oa]\\b|\\bpio(?:gg|giorni)ia\\b",
+        "\\bvento\\b|\\birraggiament[oa]\\b|\\bpioggia\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Sistemi oscuranti per facciate",
+        "slot_type:enum",
+        "subcategory:Schermature mobili"
+      ]
+    },
+    {
+      "property_id": "servizi_wc_n",
+      "regex": [
+        "\\b(\\d{1,2})\\s*wc\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Cantierizzazioni",
+        "slot_type:int",
+        "subcategory:Installazione cantiere"
+      ]
+    },
+    {
+      "property_id": "sezione",
+      "regex": [
+        "\\bsemi?circolar[ei]|quadra|ogivale\\b",
+        "\\btond[ao]|quadr[ao]|rettangolar[ei]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da lattoniere",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Canali di gronda",
+        "subcategory:Tubi pluviali"
+      ]
+    },
+    {
+      "property_id": "sezione_lato_mm",
+      "regex": [
+        "\\b(\\d{3})\\s*cm\\b",
+        "\\b(\\d{3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Condotti e canne fumarie",
+        "slot_type:float",
+        "subcategory:Canne Shunt"
+      ]
+    },
+    {
+      "property_id": "sezione_passaggio_cm2",
+      "regex": [
+        "\\b(\\d{2,4})\\s*cm2\\b|\\bsezione\\s*(\\d{2,4})\\s*cm\\^?2\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Condotti e canne fumarie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Comignoli e pezzi speciali"
+      ]
+    },
+    {
+      "property_id": "sezioni_servite_n",
+      "regex": [
+        "\\b(\\d{1,2})\\s*sezion[i]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Condotti e canne fumarie",
+        "priority",
+        "slot_type:int",
+        "subcategory:Canne Shunt"
+      ]
+    },
+    {
+      "property_id": "sistema_apertura",
+      "regex": [
+        "\\bbattent[ei]|scorrevol[ei]|vasistas|push\\s*pull\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Arredi su misura",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Arredi su misura in legno"
+      ]
+    },
+    {
+      "property_id": "sistema_omologato",
+      "regex": [
+        "\\bomologat[oa]|certificat[oa]\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:bool",
+        "subcategory:Tinteggiature intumescenti"
+      ]
+    },
+    {
+      "property_id": "smaltimento_rifiuti",
+      "regex": [
+        "\\bsmaltimento\\b|\\bCER\\s*17\\w+\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Cantierizzazioni",
+        "slot_type:bool",
+        "subcategory:Pulizie di cantiere"
+      ]
+    },
+    {
+      "property_id": "specie_vegetali",
+      "regex": [
+        "\\bsedum|erbacee|muscine[ee]|miste\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Sistemi per verde pensile",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Verde pensile estensivo"
+      ]
+    },
+    {
+      "property_id": "spessore_allettamento_cm",
+      "regex": [
+        "\\b(\\d)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Marciapiedi e accessori"
+      ]
+    },
+    {
+      "property_id": "spessore_alzata_cm",
+      "regex": [
+        "\\balzata\\s*(\\d(?:[.,]\\d)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere in pietra naturale",
+        "priority",
+        "slot_type:float",
+        "subcategory:Rivestimenti di scale"
+      ]
+    },
+    {
+      "property_id": "spessore_anta_mm",
+      "regex": [
+        "\\b(3[8-9]|[4-5]\\d|60)\\s*cm\\b",
+        "\\b(3[8-9]|[4-5]\\d|60)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da falegname",
+        "priority",
+        "slot_type:float",
+        "subcategory:Porte in legno"
+      ]
+    },
+    {
+      "property_id": "spessore_cm",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*cm\\b",
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*cm\\b",
+        "\\b(\\d{1,2})\\s*cm\\b",
+        "\\b(\\d{2,3})\\s*cm\\b",
+        "\\b(\\d{2})\\s*cm\\b",
+        "\\bspessore\\s*(\\d{1,2}(?:[.,]\\d)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "category:Massetti, sottofondi, drenaggi, vespai",
+        "category:Opere di pavimentazione",
+        "category:Opere in pietra naturale",
+        "category:Opere murarie",
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Blocchi in calcestruzzo cellulare aerato autoclavato",
+        "subcategory:Blocchi in calcestruzzo vibrocompresso",
+        "subcategory:Cappe di completamento",
+        "subcategory:Copertine e pezzi speciali",
+        "subcategory:Davanzali e soglie",
+        "subcategory:Demolizione elementi civili",
+        "subcategory:Demolizione elementi strutturali",
+        "subcategory:Elementi in laterizio",
+        "subcategory:Massetti alleggeriti",
+        "subcategory:Massicciate stradali",
+        "subcategory:Murature in altri materiali",
+        "subcategory:Pavimenti in pietra",
+        "subcategory:Pavimenti industriali",
+        "subcategory:Sottofondi pavimentazioni"
+      ]
+    },
+    {
+      "property_id": "spessore_isolante_mm",
+      "regex": [
+        "\\b(\\d{2,3})\\s*cm\\b",
+        "\\b(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da facciatista e da cappottista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Sistemi di facciata ventilata"
+      ]
+    },
+    {
+      "property_id": "spessore_lamiera_mm",
+      "regex": [
+        "\\b(0\\.[5-9]|1\\.0)\\s*cm\\b",
+        "\\b(0\\.[5-9]|1\\.0)\\s*mm\\b",
+        "\\b(0\\.[8-9]|1\\.[0-9])\\s*cm\\b|\\bspessore\\s*(\\d(?:\\.\\d)?)\\s*cm\\b",
+        "\\b(0\\.[8-9]|1\\.[0-9])\\s*mm\\b|\\bspessore\\s*(\\d(?:\\.\\d)?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da lattoniere",
+        "category:Opere da serramentista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Canali di gronda",
+        "subcategory:Porte metalliche"
+      ]
+    },
+    {
+      "property_id": "spessore_lastra_mm",
+      "regex": [
+        "\\b(10|12[.,]5|15)\\s*cm\\b",
+        "\\b(10|12[.,]5|15)\\s*mm\\b",
+        "\\b(10|12[.,]5|15|18)\\s*cm\\b",
+        "\\b(10|12[.,]5|15|18)\\s*mm\\b",
+        "\\b(8|10|12[.,]5|15)\\s*cm\\b",
+        "\\b(8|10|12[.,]5|15)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "lower",
+        "split_structured_list"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "category:Opere da cartongessista",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Contropareti in cartongesso resistente al fuoco",
+        "subcategory:Contropareti in lastre di fibrocemento",
+        "subcategory:Controsoffitti in cartongesso",
+        "subcategory:Pareti in cartongesso standard e idrorepellente",
+        "subcategory:Pareti in lastre di fibrocemento"
+      ]
+    },
+    {
+      "property_id": "spessore_lastre_cm",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di rivestimento",
+        "category:Opere in pietra naturale",
+        "priority",
+        "slot_type:float",
+        "subcategory:Materiali semilavorati (sola fornitura)",
+        "subcategory:Rivestimenti in pietra"
+      ]
+    },
+    {
+      "property_id": "spessore_massello_cm",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Pavimentazione in autobloccanti o masselli"
+      ]
+    },
+    {
+      "property_id": "spessore_mm",
+      "regex": [
+        "\\b(1\\.[2-9]|2\\.[0-4])\\s*cm\\b",
+        "\\b(1\\.[2-9]|2\\.[0-4])\\s*mm\\b",
+        "\\b(\\d(?:[.,]\\d)?)\\s*cm\\b",
+        "\\b(\\d(?:[.,]\\d)?)\\s*mm\\b",
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*cm\\b",
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*cm\\b|\\bpannello\\s*(\\d{2,3})\\s*cm\\b",
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*mm\\b",
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*mm\\b|\\bpannello\\s*(\\d{2,3})\\s*mm\\b",
+        "\\b(\\d{1,2})\\s*cm\\b",
+        "\\b(\\d{1,2})\\s*mm\\b",
+        "\\b(\\d{2,3})\\s*cm\\b",
+        "\\b(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "category:Opere da facciatista e da cappottista",
+        "category:Opere da intonacatore e stuccatore",
+        "category:Opere di coibentazione",
+        "category:Opere di impermeabilizzazione",
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "category:Presidi antincendio",
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Altri rivestimenti",
+        "subcategory:Cappotti termici finiti a intonachino",
+        "subcategory:Controsoffitti in PVC o materiali plastici",
+        "subcategory:Controsoffitti in PVC o plastici",
+        "subcategory:Impermeabilizzazioni sintetiche",
+        "subcategory:Intonaco intumescente",
+        "subcategory:Intonaco per esterno",
+        "subcategory:Intonaco per interno",
+        "subcategory:Isolanti acustici",
+        "subcategory:Isolanti termici in copertura",
+        "subcategory:Isolanti termici su solai e pareti",
+        "subcategory:Manti di copertura con pannelli o lastre",
+        "subcategory:Pavimenti in altri materiali",
+        "subcategory:Pavimenti in gomma o PVC",
+        "subcategory:Pavimenti in gres e ceramica",
+        "subcategory:Pavimenti in legno e laminato",
+        "subcategory:Rivestimenti in gomma o PVC",
+        "subcategory:Rivestimenti in gres e ceramica",
+        "subcategory:Rivestimenti in legno",
+        "subcategory:Sigillature"
+      ]
+    },
+    {
+      "property_id": "spessore_orditura_mm",
+      "regex": [
+        "\\b(U|CD|UD|CW|UW)\\s?(50|75|100|125)\\b",
+        "\\b(U|CW|UW)\\s?(50|75|100|125)\\b|\\bprofil[oi]\\s*(50|75|100|125)\\s*cm\\b",
+        "\\b(U|CW|UW)\\s?(50|75|100|125)\\b|\\bprofil[oi]\\s*(50|75|100|125)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "category:Opere da cartongessista",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Contropareti in cartongesso resistente al fuoco",
+        "subcategory:Contropareti in cartongesso standard e idrorepellente",
+        "subcategory:Contropareti in lastre di fibrocemento",
+        "subcategory:Controsoffitti in cartongesso",
+        "subcategory:Pareti in cartongesso resistente al fuoco",
+        "subcategory:Pareti in cartongesso standard e idrorepellente",
+        "subcategory:Pareti in lastre di fibrocemento",
+        "subcategory:Setto autoportante cartongesso resistente al fuoco",
+        "subcategory:Setto autoportante in cartongesso standard e idrorepellente",
+        "subcategory:Setto autoportante in lastre di fibrocemento"
+      ]
+    },
+    {
+      "property_id": "spessore_pacchetto_cm",
+      "regex": [
+        "\\b(\\d{1,2}(?:[.,]\\d)?)\\s*cm\\b",
+        "\\b(\\d{2,3})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Sistemi per verde pensile",
+        "priority",
+        "slot_type:float",
+        "subcategory:Verde pensile estensivo",
+        "subcategory:Verde pensile intensivo"
+      ]
+    },
+    {
+      "property_id": "spessore_pannello_mm",
+      "regex": [
+        "\\b(1\\d|2[0-5])\\s*cm\\b",
+        "\\b(1\\d|2[0-5])\\s*mm\\b",
+        "\\b(\\d{2,3})\\s*cm\\b",
+        "\\b(\\d{2,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da falegname",
+        "category:Pareti mobili, attrezzate, impacchettabili",
+        "priority",
+        "slot_type:float",
+        "subcategory:Boiserie in legno",
+        "subcategory:Pareti mobili opache"
+      ]
+    },
+    {
+      "property_id": "spessore_pedata_cm",
+      "regex": [
+        "\\bpedata\\s*(\\d(?:[.,]\\d)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere in pietra naturale",
+        "priority",
+        "slot_type:float",
+        "subcategory:Rivestimenti di scale"
+      ]
+    },
+    {
+      "property_id": "spessore_piattina_mm",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*cm\\b",
+        "\\b(\\d(?:[.,]\\d)?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "priority",
+        "slot_type:float",
+        "subcategory:Grigliati"
+      ]
+    },
+    {
+      "property_id": "spessore_secco_tot_um",
+      "regex": [
+        "\\b(\\d{2,3})\\s*µm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:float",
+        "subcategory:Tinteggiature su metallo"
+      ]
+    },
+    {
+      "property_id": "spessore_secco_um",
+      "regex": [
+        "\\b(\\d{2,4})\\s*µm\\b|\\b(\\d{2,4})\\s*micron\\b",
+        "\\b(\\d{3,4})\\s*µm\\b|\\b(\\d{3,4})\\s*micron\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "category:Opere da verniciatore",
+        "priority",
+        "slot_type:float",
+        "subcategory:Tinteggiature intumescenti",
+        "subcategory:Trattamenti per strutture in acciaio"
+      ]
+    },
+    {
+      "property_id": "spessore_strato_cm",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere stradali, fognature e sistemazioni esterne",
+        "priority",
+        "slot_type:float",
+        "subcategory:Manti stradali in asfalto e bitumi"
+      ]
+    },
+    {
+      "property_id": "spessore_tot_mm",
+      "regex": [
+        "\\b(\\d(?:[.,]\\d)?)\\s*cm\\b",
+        "\\b(\\d(?:[.,]\\d)?)\\s*mm\\b",
+        "\\b(\\d{1,2})\\s*cm\\b",
+        "\\b(\\d{1,2})\\s*mm\\b",
+        "\\b(\\d{2})\\s*cm\\b|\\b(\\d{2})-\\d{2}-\\d{2}\\b",
+        "\\b(\\d{2})\\s*mm\\b|\\b(\\d{2})-\\d{2}-\\d{2}\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da vetraio",
+        "category:Opere di impermeabilizzazione",
+        "category:Opere di pavimentazione",
+        "priority",
+        "slot_type:float",
+        "subcategory:Impermeabilizzazioni bituminose",
+        "subcategory:Impermeabilizzazioni resine",
+        "subcategory:Pavimenti in moquette e zerbini",
+        "subcategory:Vetrazioni e accessori"
+      ]
+    },
+    {
+      "property_id": "spessore_vetro_mm",
+      "regex": [
+        "\\b(10|12|16|18|20|21)\\s*cm\\b",
+        "\\b(10|12|16|18|20|21)\\s*mm\\b",
+        "\\b(8|10|12|16|\\d{2})\\s*cm\\b|\\b(44\\.[1-2])\\b",
+        "\\b(8|10|12|16|\\d{2})\\s*mm\\b|\\b(44\\.[1-2])\\b",
+        "\\b(\\d{1,2})\\s*cm\\b",
+        "\\b(\\d{1,2})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da serramentista",
+        "category:Opere da vetraio",
+        "category:Pareti mobili, attrezzate, impacchettabili",
+        "priority",
+        "slot_type:float",
+        "subcategory:Lavorazioni su vetri e serramenti",
+        "subcategory:Pareti mobili vetrate",
+        "subcategory:Sistemi di partizione trasparenti, porte e parapetti vetrati"
+      ]
+    },
+    {
+      "property_id": "sporgenza_cm",
+      "regex": [
+        "\\b(\\d{2,3})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da vetraio",
+        "priority",
+        "slot_type:float",
+        "subcategory:Pensiline vetrate"
+      ]
+    },
+    {
+      "property_id": "strati",
+      "regex": [
+        "\\b(\\d)\\s*strat[oi]\\b"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:int",
+        "subcategory:Impermeabilizzazioni bituminose"
+      ]
+    },
+    {
+      "property_id": "strato_usura_mm",
+      "regex": [
+        "\\bstrato\\s*usura\\s*(0\\.[2-9]\\d?)\\s*cm\\b",
+        "\\bstrato\\s*usura\\s*(0\\.[2-9]\\d?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "priority",
+        "slot_type:float",
+        "subcategory:Pavimenti in gomma o PVC",
+        "subcategory:Rivestimenti in gomma o PVC"
+      ]
+    },
+    {
+      "property_id": "superficie_area_m2",
+      "regex": [
+        "\\b(\\d{2,5})\\s*((?:mq|m²|m2|metri\\\\s*quad(?:ri|rati))|m2)\\b",
+        "\\b(\\d{2,5})\\s*(mq|m2)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:float",
+        "subcategory:Installazione cantiere"
+      ]
+    },
+    {
+      "property_id": "superficie_m2",
+      "regex": [
+        "\\b(\\d{2,6})\\s*((?:mq|m²|m2|metri\\\\s*quad(?:ri|rati))|m2)\\b",
+        "\\b(\\d{2,6})\\s*(mq|m2)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:float",
+        "subcategory:Pulizie di cantiere"
+      ]
+    },
+    {
+      "property_id": "sviluppo_lamiera_mm",
+      "regex": [
+        "\\bsviluppo\\s*(\\d{2,3})\\s*cm\\b",
+        "\\bsviluppo\\s*(\\d{2,3})\\s*mm\\b",
+        "\\bsviluppo\\s*(\\d{3})\\s*cm\\b|\\b(\\d{3})\\s*cm\\s*sviluppo\\b",
+        "\\bsviluppo\\s*(\\d{3})\\s*mm\\b|\\b(\\d{3})\\s*mm\\s*sviluppo\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "cm_to_mm?"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da lattoniere",
+        "priority",
+        "slot_type:float",
+        "subcategory:Canali di gronda",
+        "subcategory:Pezzi speciali per lattonerie",
+        "subcategory:Scossaline"
+      ]
+    },
+    {
+      "property_id": "tamponamento",
+      "regex": [
+        "\\bbarre|vetro|lamiera\\s*forata|rete\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Parapetti metallici, ringhiere e inferriate"
+      ]
+    },
+    {
+      "property_id": "tenuta_fuoco",
+      "regex": [
+        "\\bEI\\s?(30|60|90)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Controsoffitti",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Botole d'ispezione e accessori"
+      ]
     },
     {
       "property_id": "thm.lambda",
@@ -139,6 +3793,540 @@
       ],
       "normalizers": [
         "to_float"
+      ]
+    },
+    {
+      "property_id": "tipo_accessorio",
+      "regex": [
+        "\\bbocchettone|parafango|angolar[ei]|scossalina|sfiato|parapassat[ae]\\b",
+        "\\bbotol[ae]|paraspigolo|staffe|pendinatura|tassell[oi]|nastr[oi]\\s*giunto\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da cartongessista",
+        "category:Opere di impermeabilizzazione",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Accessori per cartongessi",
+        "subcategory:Accessori per l'impermeabilizzazione"
+      ]
+    },
+    {
+      "property_id": "tipo_calcestruzzo",
+      "regex": [
+        "\\bRck\\s*(25|30|35)|fibro\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pavimenti industriali"
+      ]
+    },
+    {
+      "property_id": "tipo_lastra",
+      "regex": [
+        "\\bidrorepellent[ei]|\\bH2\\b|\\bverde\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Opere da cartongessista",
+        "slot_type:enum",
+        "subcategory:Contropareti in cartongesso standard e idrorepellente"
+      ]
+    },
+    {
+      "property_id": "tipo_legante",
+      "regex": [
+        "\\b(calce|cemento|terra\\s*cruda|resine)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere murarie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Murature in altri materiali"
+      ]
+    },
+    {
+      "property_id": "tipo_mezzo",
+      "regex": [
+        "\\bgru\\s*torr?e|autogr[uù]|piattaforma\\s*aerea|miniescavatore|escavatore|sollevatore\\s*telescopico\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Noli"
+      ]
+    },
+    {
+      "property_id": "tipo_pietra",
+      "regex": [
+        "\\bmarmo\\b|\\bgranito\\b|\\btravertino\\b|\\bardesia\\b|\\bquarzite\\b|\\bbasalto\\b|\\bpietra\\s*calcarea\\b",
+        "\\bmarmo|granito|travertino|ardesia|quarzite|basalto|pietra\\s*calcarea\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pavimenti in pietra",
+        "subcategory:Rivestimenti in pietra"
+      ]
+    },
+    {
+      "property_id": "tipo_vetro",
+      "regex": [
+        "\\bfloat|extrachiaro|temprat[oa]|stratificat[oa]|camera\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da vetraio",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Lavorazioni su vetri e serramenti"
+      ]
+    },
+    {
+      "property_id": "tipologia",
+      "regex": [
+        "\\b(forato|alveolato|pieno|porizzato|poroton)\\b",
+        "\\bangol[oi]|dilatazion[ei]|testat[ei]|imbocch[io]i|raccord[oi]|coprigiunt[oi]\\b",
+        "\\bavvolgibil[ei]|persian[ae]|cassonett[oi]|controtelai[oi]|scur[oi]\\b",
+        "\\bcomignol[oi]|eolico|antipio(?:gg|giorni)ia|curv[ae]|tee[s]?|riduzion[ei]\\b",
+        "\\bcomignol[oi]|eolico|antipioggia|curv[ae]|tee[s]?|riduzion[ei]\\b",
+        "\\bmobile\\s*sospeso|a\\s*terra|colonna|specchier[ae]|piano\\s*lavabo\\b",
+        "\\bpersian[ae]|scur[oi]|grigliat[oi]|orientabil[ei]\\b",
+        "\\brullo|pacchetto|pannello|plissettat[ae]|veneziana\\b",
+        "\\bvenezian[ae]|tenda\\s*da\\s*sole|zip\\s*screen\\b",
+        "\\bwc|bidet|lavab[oi]|piatto\\s*doccia|urinale\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "category:Arredi standard",
+        "category:Condotti e canne fumarie",
+        "category:Opere da falegname",
+        "category:Opere da lattoniere",
+        "category:Opere da serramentista",
+        "category:Opere da tappezziere",
+        "category:Opere murarie",
+        "category:Sistemi oscuranti per facciate",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Apparecchi sanitari",
+        "subcategory:Arredo bagno",
+        "subcategory:Avvolgibili, controtelai, cassonetti e persiane",
+        "subcategory:Comignoli e pezzi speciali",
+        "subcategory:Elementi in laterizio",
+        "subcategory:Persiane e scuri in legno",
+        "subcategory:Pezzi speciali per lattonerie",
+        "subcategory:Tende da interno manuali",
+        "subcategory:Tende da sole e alla veneziana"
+      ]
+    },
+    {
+      "property_id": "tipologia_accessorio",
+      "regex": [
+        "\\bdispenser|porta\\s*salviet?te|porta\\s*rotolo|specchi[oi]|maniglion[ei]|appendin[oi]\\b",
+        "\\bmorsett[oi]|staffe|binar[io]i|ganc[hi]\\b|passacavo|fermapannello"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Apparecchi sanitari e accessori",
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Accessori per fotovoltaico",
+        "subcategory:Accessori per l'allestimento di servizi igienici"
+      ]
+    },
+    {
+      "property_id": "tipologia_allestimento",
+      "regex": [
+        "\\brivestiment[oi]|paviment[oi]|soffitt[oi]|corriman[oi]|illuminazione\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Impianti elevatori",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Allestimenti e personalizzazioni di impianti elevatori"
+      ]
+    },
+    {
+      "property_id": "tipologia_elemento",
+      "regex": [
+        "\\bcopp[io]i|tegole|ardesia|scandol[ae]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Tetti, manti di copertura e opere accessorie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Manti di copertura con elementi puntuali"
+      ]
+    },
+    {
+      "property_id": "tipologia_impianto",
+      "regex": [
+        "\\belettric[oi]|idric[oi]|hvac|climatizzazione|gas|speciali|fotovoltaic[oi]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Rimozione di impianti tecnologici"
+      ]
+    },
+    {
+      "property_id": "tipologia_legno",
+      "regex": [
+        "\\bprefinito|multistrato|massello|lamellare\\b",
+        "\\bprefinito|multistrato|massello|laminato\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di pavimentazione",
+        "category:Opere di rivestimento",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pavimenti in legno e laminato",
+        "subcategory:Rivestimenti in legno"
+      ]
+    },
+    {
+      "property_id": "tipologia_mezzo",
+      "regex": [
+        "\\bgru\\b|\\bPLE\\b|sollevatore|escavator[ei]|miniescavator[ei]|autocarro\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere di sicurezza",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Mezzi di cantiere"
+      ]
+    },
+    {
+      "property_id": "tipologia_movimento",
+      "regex": [
+        "\\borientabil[i]|scorrevol[i]|impacchettabil[i]|avvolgibil[i]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Sistemi oscuranti per facciate",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Schermature mobili"
+      ]
+    },
+    {
+      "property_id": "tipologia_pulizia",
+      "regex": [
+        "\\bsgrosso\\b|\\bfino\\b|\\bpost[- ]demolizione\\b|\\bpost[- ]posa\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Cantierizzazioni",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Pulizie di cantiere"
+      ]
+    },
+    {
+      "property_id": "tipologia_supporto",
+      "regex": [
+        "\\b(aperture|scasso|riprese\\s*intonaco|tracce|fori)\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Assistenze murarie",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Assistenze murarie ai subappaltatori"
+      ]
+    },
+    {
+      "property_id": "tracce_ml",
+      "regex": [
+        "\\b(\\d{1,4})\\s*ml\\s*tracce\\b|\\btracce\\s*(\\d{1,4})\\s*ml\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Assistenze murarie",
+        "priority",
+        "slot_type:float",
+        "subcategory:Assistenze murarie alla posa di impianti"
+      ]
+    },
+    {
+      "property_id": "trasmittanza_UW",
+      "regex": [
+        "\\bU[wW]?\\s*=?\\s*(0\\.[7-9]|1\\.[0-9]|2\\.[0-5])\\b",
+        "\\bU[wW]\\s*=?\\s*(0\\.[7-9]|1\\.[0-7])\\b",
+        "\\bU[wW]\\s*=?\\s*(0\\.[7-9]|1\\.[0-9])\\b",
+        "\\bU[wW]\\s*=?\\s*(0\\.[8-9]|1\\.[0-9])\\b",
+        "\\bU[wW]\\s*=?\\s*(0\\.[8-9]|[1-2](?:\\.[0-9])?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da serramentista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Porte blindate, portoni e bussole",
+        "subcategory:Serramenti in PVC",
+        "subcategory:Serramenti in legno",
+        "subcategory:Serramenti in legno e alluminio",
+        "subcategory:Serramenti metallici"
+      ]
+    },
+    {
+      "property_id": "trasporto_iscrizione_albo",
+      "regex": [
+        "\\bAlbo\\s*Gestori|categoria\\s*[1-5]\\b"
+      ],
+      "normalizers": [
+        "map_yes_no_multilang"
+      ],
+      "language": "it",
+      "confidence": 0.6,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "slot_type:bool",
+        "subcategory:Oneri per trasporto e discarica"
+      ]
+    },
+    {
+      "property_id": "trattamento",
+      "regex": [
+        "\\bimpregnant[ei]|resina|verniciatur[ae]\\b",
+        "\\bzincatura|verniciatur[ae]|intumescent[ei]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Strutture in altri materiali",
+        "category:Strutture in carpenteria metallica",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Strutture in altri materiali",
+        "subcategory:Strutture in carpenteria metallica"
+      ]
+    },
+    {
+      "property_id": "trattamento_protettivo",
+      "regex": [
+        "\\bzincatura|verniciatur[ae]|intumescent[ei]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da fabbro",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Carpenterie metalliche"
+      ]
+    },
+    {
+      "property_id": "trattamento_superficiale",
+      "regex": [
+        "\\bzincatura|polver[ei]|oliat[oa]\\b"
+      ],
+      "normalizers": [
+        "lower"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Arredi standard",
+        "priority",
+        "slot_type:enum",
+        "subcategory:Arredi per esterno"
+      ]
+    },
+    {
+      "property_id": "velocita_m_s",
+      "regex": [
+        "\\b(0\\.[3-9]|[1-2](?:\\.[0-5])?)\\s*m/s\\b",
+        "\\b0\\.(45|5|65|75)\\s*m/s\\b",
+        "\\b0\\.[1-6]\\s*m/s\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Impianti elevatori",
+        "priority",
+        "slot_type:float",
+        "subcategory:Impianti ascensori",
+        "subcategory:Montapersone",
+        "subcategory:Scale mobili"
+      ]
+    },
+    {
+      "property_id": "vetro_Ug",
+      "regex": [
+        "\\bU[gG]\\s*=?\\s*(0\\.[5-9]|1\\.[0-3])\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da serramentista",
+        "priority",
+        "slot_type:float",
+        "subcategory:Serramenti in PVC",
+        "subcategory:Serramenti in legno"
+      ]
+    },
+    {
+      "property_id": "vetro_stratig_mm",
+      "regex": [
+        "\\b(\\d{2})\\+(\\d{2})(?:\\+(\\d{2}))?\\s*cm\\b",
+        "\\b(\\d{2})\\+(\\d{2})(?:\\+(\\d{2}))?\\s*mm\\b"
+      ],
+      "normalizers": [],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Opere da vetraio",
+        "priority",
+        "slot_type:text",
+        "subcategory:Pensiline vetrate"
+      ]
+    },
+    {
+      "property_id": "volume_m3",
+      "regex": [
+        "\\b(\\d{2,5})\\s*(?:m3|m³|metri\\\\s*cub(?:i|ici))\\b|\\b(\\d{2,5})\\s*mc\\b",
+        "\\b(\\d{2,5})\\s*m3\\b|\\b(\\d{2,5})\\s*mc\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Demolizioni e rimozioni",
+        "priority",
+        "slot_type:float",
+        "subcategory:Demolizione di fabbricati"
+      ]
+    },
+    {
+      "property_id": "volume_scavo_m3",
+      "regex": [
+        "\\b(\\d{1,6})\\s*(?:m3|m³|metri\\\\s*cub(?:i|ici))\\b|\\b(\\d{1,6})\\s*mc\\b",
+        "\\b(\\d{1,6})\\s*m3\\b|\\b(\\d{1,6})\\s*mc\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "language": "it",
+      "confidence": 0.85,
+      "tags": [
+        "category:Movimenti di terra",
+        "priority",
+        "slot_type:float",
+        "subcategory:Scavi e trasporti a discarica"
       ]
     },
     {
@@ -155,9 +4343,13 @@
   "normalizers": {
     "comma_to_dot": "replace decimal comma with dot",
     "to_float": "cast to float",
-    "cm_to_mm?": "if original unit is cm, multiply by 10",
-    "take_last_int->EI {n}": "format EI class from last int capture",
     "to_int": "cast to int",
+    "lower": "lowercase string values",
+    "strip": "strip leading/trailing whitespace",
+    "normalize_unit_symbols": "canonicalise SI unit tokens",
+    "split_structured_list": "split textual lists on punctuation and conjunctions",
+    "map_yes_no_multilang": "map yes/no multilingual variants to boolean",
+    "cm_to_mm?": "if original unit is cm, multiply by 10",
     "format_EI_from_last_int": "emit 'EI {n}' from last numeric group",
     "concat_dims": "join captures as 'L×W'",
     "normalize_foratura": "map 'semi pieno'→'semipieno'",

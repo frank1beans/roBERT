@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from typing import Any, Callable, Dict, List, Protocol, Set
+from typing import Any, Callable, Dict, List, Protocol, Sequence, Set
 
 from .dsl import ExtractorsPack
 
@@ -71,6 +71,47 @@ def _strip(v: Any, m: str) -> Any:
     return v.strip() if isinstance(v, str) else v
 
 
+_UNIT_VARIANTS: Dict[str, Sequence[str]] = {
+    "m²": ["mq", "m2", "m²", "m^2", "metri quadri", "metri quadrati"],
+    "m³": ["m3", "m³", "metri cubi", "metri cubici"],
+    "m": ["m", "mt", "metri", "metro"],
+    "cm": ["cm", "centimetri", "centimetro"],
+    "mm": ["mm", "millimetri", "millimetro"],
+    "kg": ["kg", "chilogrammo", "chilogrammi"],
+    "kW": ["kw", "kilowatt", "kilowatts"],
+    "kVA": ["kva", "kilovolt ampere", "kilovolt-ampere"],
+}
+
+
+def _normalize_unit_symbols(v: Any, m: str) -> Any:
+    """Coerce textual unit variants to a canonical SI representation."""
+
+    unit_lookup: Dict[str, str] = {}
+    for canonical, variants in _UNIT_VARIANTS.items():
+        for variant in variants:
+            unit_lookup[variant.lower()] = canonical
+
+    if not unit_lookup:
+        return v
+
+    pattern = re.compile(
+        r"(?i)\b(" + "|".join(sorted((re.escape(k) for k in unit_lookup), key=len, reverse=True)) + r")\b"
+    )
+
+    def normalize_text(text: str) -> str:
+        def repl(match: re.Match[str]) -> str:
+            token = match.group(0).lower()
+            return unit_lookup.get(token, match.group(0))
+
+        return pattern.sub(repl, text)
+
+    if isinstance(v, list):
+        return [normalize_text(str(x)) for x in v]
+    if isinstance(v, str):
+        return normalize_text(v)
+    return v
+
+
 def _ei_from_any(v: Any, m: str) -> Any:
     s = " ".join(v) if isinstance(v, (list, tuple)) else str(v)
     mnum = re.search(r"(15|30|45|60|90|120|180|240)", s)
@@ -132,6 +173,21 @@ def _as_string(v: Any, m: str) -> Any:
 def _concat_dims(v: Any, m: str) -> Any:
     if isinstance(v, (list, tuple)) and len(v) == 2:
         return f"{v[0]}×{v[1]}"
+    return v
+
+
+def _split_structured_list(v: Any, m: str) -> Any:
+    """Split structured textual lists into individual elements."""
+
+    def split_one(text: str) -> List[str]:
+        parts = re.split(r"[;,/]|(?:\s+e\s+)|(?:\s+and\s+)", text)
+        cleaned = [p.strip() for p in parts if p and p.strip()]
+        return cleaned if cleaned else [text.strip()]
+
+    if isinstance(v, list):
+        return [item for x in v for item in split_one(str(x))]
+    if isinstance(v, str):
+        return split_one(v)
     return v
 
 
@@ -292,6 +348,38 @@ def _map_tipo_lastra_enum(v: Any, m: str) -> Any:
     return v
 
 
+_YES_NO_MAP = {
+    "si": True,
+    "sì": True,
+    "yes": True,
+    "oui": True,
+    "ja": True,
+    "vero": True,
+    "true": True,
+    "no": False,
+    "not": False,
+    "non": False,
+    "nope": False,
+    "false": False,
+}
+
+
+def _map_yes_no_multilang(v: Any, m: str) -> Any:
+    """Normalize multilingual affirmative/negative markers into booleans."""
+
+    def normalize_token(token: str) -> Any:
+        lowered = token.strip().lower().replace("ì", "i")
+        if lowered in _YES_NO_MAP:
+            return _YES_NO_MAP[lowered]
+        return token
+
+    if isinstance(v, list):
+        return [normalize_token(str(x)) for x in v]
+    if isinstance(v, str):
+        return normalize_token(v)
+    return v
+
+
 BUILTIN_NORMALIZERS: Dict[str, Normalizer] = {
     "comma_to_dot": _comma_to_dot,
     "dot_to_comma": _dot_to_comma,
@@ -307,6 +395,8 @@ BUILTIN_NORMALIZERS: Dict[str, Normalizer] = {
     "unique_list": _unique_list,
     "as_string": _as_string,
     "concat_dims": _concat_dims,
+    "normalize_unit_symbols": _normalize_unit_symbols,
+    "split_structured_list": _split_structured_list,
     "format_EI_from_last_int": _format_ei_from_last_int,
     "take_last_int->EI {n}": _take_last_int_to_ei,
     "normalize_foratura": _normalize_foratura,
@@ -315,6 +405,7 @@ BUILTIN_NORMALIZERS: Dict[str, Normalizer] = {
     "cm_to_mm_if_cm": _cm_to_mm_if_cm,
     "to_strati_count": _to_strati_count,
     "map_tipo_lastra_enum": _map_tipo_lastra_enum,
+    "map_yes_no_multilang": _map_yes_no_multilang,
     # dynamic "map_enum:<name>" supported by :func:`build_normalizer`.
 }
 
