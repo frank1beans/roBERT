@@ -1,5 +1,5 @@
 # Checklist estrazione proprietà prioritari
-Generata automaticamente il 2025-09-23 15:42:22Z a partire da `data/properties_registry_extended.json`.
+Generata automaticamente il 2025-09-23 17:17:51Z a partire da `data/properties_registry_extended.json`.
 Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum, stringhe) con le regex di supporto e i normalizzatori suggeriti.
 
 ## Apparecchi sanitari e accessori|Accessori per l'allestimento di servizi igienici
@@ -294,8 +294,8 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Opere da cartongessista|Contropareti in cartongesso resistente al fuoco
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `classe_EI_min` | enum | `\bEI\s?(30|60|90|120)\b` | `lower` |
-| `lastre_per_lato` | int | `\b(\d)\s*lastre\b|\b(doppia|tripla)\s+lastra\b` | `to_int` |
+| `classe_EI_min` | enum | `\bEI\s?(30|60|90|120)\b` | `format_EI_from_last_int`, `to_ei_class` |
+| `lastre_per_lato` | int | `\b([1-3])\s*lastre\b|\b(doppia|tripla)\s+lastra\b` | `to_strati_count` |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
 
 ## Opere da cartongessista|Contropareti in cartongesso standard e idrorepellente
@@ -307,27 +307,27 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Opere da cartongessista|Contropareti in lastre di fibrocemento
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_lastra_mm` | enum | `\b(8|10|12[.,]5|15)\s*cm\b`<br>`\b(8|10|12[.,]5|15)\s*mm\b` | `lower`, `split_structured_list` |
+| `spessore_lastra_mm` | enum | `\b(8|10|12[.,]5|15)\s*cm\b`<br>`\b(8|10|12[.,]5|15)\s*mm\b` | `comma_to_dot`, `to_float` |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
 
 ## Opere da cartongessista|Pareti in cartongesso resistente al fuoco
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `classe_EI_min` | enum | `\bEI\s?(30|60|90|120)\b` | `lower` |
+| `classe_EI_min` | enum | `\bEI\s?(30|60|90|120)\b` | `format_EI_from_last_int`, `to_ei_class` |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
-| `lastre_per_lato` | int | `\b(\d)\s*lastre\b|\b(doppia|tripla|quadrupla)\s+lastra\b` | `to_int` |
+| `lastre_per_lato` | int | `\b([1-3])\s*lastre\b|\b(doppia|tripla)\s+lastra\b` | `to_strati_count` |
 
 ## Opere da cartongessista|Pareti in cartongesso standard e idrorepellente
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
-| `lastre_per_lato` | int | `\b(\d)\s*lastre\b|\b(doppia|tripla|quadrupla)\s+lastra\b` | `to_int` |
-| `spessore_lastra_mm` | enum | `\b(10|12[.,]5|15|18)\s*cm\b`<br>`\b(10|12[.,]5|15|18)\s*mm\b` | `lower`, `split_structured_list` |
+| `lastre_per_lato` | int | `\b([1-4])\s*lastre\b|\b(doppia|tripla|quadrupla)\s+lastra\b` | `to_strati_count` |
+| `spessore_lastra_mm` | enum | `\b(10|12[.,]5|15|18)\s*cm\b`<br>`\b(10|12[.,]5|15|18)\s*mm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere da cartongessista|Pareti in lastre di fibrocemento
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_lastra_mm` | enum | `\b(8|10|12[.,]5|15)\s*cm\b`<br>`\b(8|10|12[.,]5|15)\s*mm\b` | `lower`, `split_structured_list` |
+| `spessore_lastra_mm` | enum | `\b(8|10|12[.,]5|15)\s*cm\b`<br>`\b(8|10|12[.,]5|15)\s*mm\b` | `comma_to_dot`, `to_float` |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
 
 ## Opere da cartongessista|Setto autoportante cartongesso resistente al fuoco
@@ -521,7 +521,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Opere da serramentista|Porte tagliafuoco
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `classe_EI_min` | enum | `\bEI\s?(30|60|90|120)\b` | `lower` |
+| `classe_EI_min` | enum | `\bEI\s?(30|60|90|120)\b` | `format_EI_from_last_int`, `to_ei_class` |
 | `omologazione` | bool | `\bomologat[oa]|certificat[oa]\b` | `map_yes_no_multilang` |
 
 ## Opere da serramentista|Serramenti in PVC
@@ -926,7 +926,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Presidi antincendio|Portoni tagliafuoco
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `classe_EI_min` | enum | `\bEI(30|60|90|120)\b` | `lower` |
+| `classe_EI_min` | enum | `\bEI(30|60|90|120)\b` | `format_EI_from_last_int`, `to_ei_class` |
 | `dimensione_luce_cm` | text | `\b(\d{2,3})\s*[x×]\s*(\d{2,3})\s*cm\b` | `split_structured_list` |
 
 ## Presidi antincendio|Sigillature
@@ -937,7 +937,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Presidi antincendio|Tende tagliafuoco
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `classe_EI_min` | enum | `\bEI(60|90|120)\b` | `lower` |
+| `classe_EI_min` | enum | `\bEI(60|90|120)\b` | `format_EI_from_last_int`, `to_ei_class` |
 | `larghezza_m` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*m\b` | `comma_to_dot`, `to_float` |
 
 ## Sistemi oscuranti per facciate|Schermature fisse e brisè soleil

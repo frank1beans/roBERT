@@ -1,6 +1,6 @@
 {
-  "version": "9.9.9",
-  "generated_at": "2025-01-01T00:00:00Z",
+  "version": "0.2.0",
+  "generated_at": "2025-09-23T17:17:51Z",
   "patterns": [
     {
       "property_id": "CER_codice",
@@ -606,7 +606,8 @@
         "\\bEI\\s?(30|60|90|120)\\b"
       ],
       "normalizers": [
-        "lower"
+        "format_EI_from_last_int",
+        "to_ei_class"
       ],
       "language": "it",
       "confidence": 0.85,
@@ -1043,8 +1044,8 @@
         "\\b(mq|metri\\s*quad(?:ri|rati))\\b"
       ],
       "normalizers": [
-        "as_string",
-        "normalize_unit_symbols"
+        "normalize_unit_symbols",
+        "as_string"
       ],
       "language": "it",
       "confidence": 0.9,
@@ -1633,25 +1634,6 @@
       ]
     },
     {
-      "property_id": "gyp.interasse_orditura",
-      "regex": [
-        "\\b(?:interasse|passo)\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
-      ],
-      "normalizers": [
-        "comma_to_dot",
-        "to_float"
-      ]
-    },
-    {
-      "property_id": "gyp.numero_strati",
-      "regex": [
-        "\\b(\\d+)\\s*(?:x|×)?\\s*strati?\\b"
-      ],
-      "normalizers": [
-        "to_int"
-      ]
-    },
-    {
       "property_id": "illuminazione",
       "regex": [
         "\\bLED|retroilluminat[ao]|retro\\s*illuminat[ao]\\b"
@@ -1929,11 +1911,11 @@
     {
       "property_id": "lastre_per_lato",
       "regex": [
-        "\\b(\\d)\\s*lastre\\b|\\b(doppia|tripla)\\s+lastra\\b",
-        "\\b(\\d)\\s*lastre\\b|\\b(doppia|tripla|quadrupla)\\s+lastra\\b"
+        "\\b([1-3])\\s*lastre\\b|\\b(doppia|tripla)\\s+lastra\\b",
+        "\\b([1-4])\\s*lastre\\b|\\b(doppia|tripla|quadrupla)\\s+lastra\\b"
       ],
       "normalizers": [
-        "to_int"
+        "to_strati_count"
       ],
       "language": "it",
       "confidence": 0.85,
@@ -2220,35 +2202,6 @@
         "priority",
         "slot_type:bool",
         "subcategory:Porte tagliafuoco"
-      ]
-    },
-    {
-      "property_id": "opn.resistenza_vento",
-      "regex": [
-        "\\bEN\\s*12210\\b.*?\\b([ABC]\\d\\/[ABC]\\d)\\b"
-      ],
-      "normalizers": [
-        "as_string"
-      ]
-    },
-    {
-      "property_id": "opn.tenuta_acqua",
-      "regex": [
-        "\\bEN\\s*12208\\b.*?\\b(Classe\\s*[A-Z]?\\d+)\\b",
-        "\\bClasse\\s*([A-Z]?\\d+)\\b.*?\\bEN\\s*12208\\b"
-      ],
-      "normalizers": [
-        "as_string"
-      ]
-    },
-    {
-      "property_id": "opn.tenuta_aria",
-      "regex": [
-        "\\bEN\\s*12207\\b.*?\\b(Classe\\s*\\d)\\b",
-        "\\bClasse\\s*(\\d)\\b.*?\\bEN\\s*12207\\b"
-      ],
-      "normalizers": [
-        "as_string"
       ]
     },
     {
@@ -3290,7 +3243,9 @@
       ],
       "normalizers": [
         "lower",
-        "split_structured_list"
+        "split_structured_list",
+        "comma_to_dot",
+        "to_float"
       ],
       "language": "it",
       "confidence": 0.85,
@@ -3783,16 +3738,6 @@
         "priority",
         "slot_type:enum",
         "subcategory:Botole d'ispezione e accessori"
-      ]
-    },
-    {
-      "property_id": "thm.lambda",
-      "regex": [
-        "\\bλ\\s*=?\\s*(0\\.\\d{2,3})\\s*W/?mK\\b",
-        "\\blambda\\s*(0\\.\\d{2,3})\\b"
-      ],
-      "normalizers": [
-        "to_float"
       ]
     },
     {
@@ -4328,16 +4273,6 @@
         "slot_type:float",
         "subcategory:Scavi e trasporti a discarica"
       ]
-    },
-    {
-      "property_id": "wpf.spessore_strato",
-      "regex": [
-        "\\bspessore\\s*strato\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
-      ],
-      "normalizers": [
-        "comma_to_dot",
-        "to_float"
-      ]
     }
   ],
   "normalizers": {
@@ -4349,10 +4284,7 @@
     "normalize_unit_symbols": "canonicalise SI unit tokens",
     "split_structured_list": "split textual lists on punctuation and conjunctions",
     "map_yes_no_multilang": "map yes/no multilingual variants to boolean",
-    "cm_to_mm?": "if original unit is cm, multiply by 10",
-    "format_EI_from_last_int": "emit 'EI {n}' from last numeric group",
-    "concat_dims": "join captures as 'L×W'",
-    "normalize_foratura": "map 'semi pieno'→'semipieno'",
-    "as_string": "keep matched text"
+    "to_ei_class": "standardise EI fire rating notation",
+    "to_strati_count": "extract per-side gypsum board layer count"
   }
 }
