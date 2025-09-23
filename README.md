@@ -48,6 +48,13 @@ Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 * `reports/` – grafici e statistiche descrittive su train/val (distribuzioni label, lunghezza testi, ecc.).
 * `splits.json` *(se implementato)* – descrizione degli split generati.
 
+## Prerequisiti
+
+Il progetto richiede **Python 3.9+** e **PyTorch 2.x**. Gli esperimenti sono
+stati validati con `torch 2.1`, pertanto si consiglia di utilizzare la stessa
+minor release per evitare incompatibilità con `transformers` e con gli script
+di training distribuiti.
+
 ## Installazione rapida
 
 ```bash
