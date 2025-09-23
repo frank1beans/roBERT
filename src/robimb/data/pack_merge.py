@@ -10,10 +10,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional, Sequence
 
+from robimb.extraction import resources as extraction_resources
+
 BASE_FILES = {
     "registry": "properties_registry_modular.json",
     "catmap": "category_property_map.json",
-    "extractors": "extractors_patterns.json",
+    "extractors": extraction_resources.default_path().with_name("extractors_patterns.json"),
     "validators": "validators.json",
     "formulas": "formulas.json",
     "templates": "templates_descriptions.json",
@@ -393,14 +395,16 @@ def _merge_categories(prod: Mapping[str, Any], version: str, generated_at: str) 
     return merged
 
 
-def _compute_manifest(files: Mapping[str, Path], generated_at: str) -> Dict[str, Any]:
+def _compute_manifest(files: Mapping[str, Path], generated_at: str, *, manifest_dir: Optional[Path] = None) -> Dict[str, Any]:
     entries: List[Dict[str, Any]] = []
+    manifest_dir = manifest_dir or Path.cwd()
     for key, path in sorted(files.items()):
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        rel_path = os.path.relpath(path, manifest_dir)
         entries.append(
             {
                 "name": key,
-                "path": path.name,
+                "path": rel_path,
                 "sha256": digest,
                 "size": path.stat().st_size,
             }
@@ -432,8 +436,13 @@ def build_merged_pack(
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    base_data = {key: _load_json(data_dir / path) for key, path in BASE_FILES.items()}
-    prod_data = {key: _load_json(data_dir / path) for key, path in PROD_FILES.items()}
+    base_data = {}
+    for key, location in BASE_FILES.items():
+        candidate = Path(location)
+        source = candidate if candidate.is_absolute() else data_dir / candidate
+        base_data[key] = _load_json(source)
+
+    prod_data = {key: _load_json(data_dir / Path(path)) for key, path in PROD_FILES.items()}
 
     generated_at = timestamp or dt.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
 
@@ -448,9 +457,10 @@ def build_merged_pack(
     categories = _merge_categories(prod_data["categories"], version, generated_at)
     catmap = _merge_catmap(prod_data["catmap"], base_data["catmap"], base_data["properties_ext"], version, generated_at)
 
+    resource_extractors_path = extraction_resources.default_path()
+
     files: Dict[str, Path] = {
         "registry": output_dir / "registry.json",
-        "extractors": output_dir / "extractors.json",
         "validators": output_dir / "validators.json",
         "formulas": output_dir / "formulas.json",
         "views": output_dir / "views.json",
@@ -460,6 +470,8 @@ def build_merged_pack(
         "categories": output_dir / "categories.json",
         "catmap": output_dir / "catmap.json",
     }
+
+    files["extractors"] = resource_extractors_path
 
     payloads = {
         "registry": registry,
@@ -477,7 +489,7 @@ def build_merged_pack(
     for key, path in files.items():
         _write_json(path, payloads[key])
 
-    manifest = _compute_manifest(files, generated_at)
+    manifest = _compute_manifest(files, generated_at, manifest_dir=output_dir)
     manifest_path = output_dir / "manifest.json"
     _write_json(manifest_path, manifest)
     files["manifest"] = manifest_path

@@ -4,6 +4,8 @@ import os, json, shutil, hashlib
 from pathlib import Path
 from typing import Dict
 
+from ..extraction import resources as extraction_resources
+
 PACK_KEYS = [
     "registry","catmap","categories","extractors","validators",
     "formulas","templates","views","profiles","contexts",
@@ -49,22 +51,24 @@ def update_current(pack_root: str, version_dir: str):
     current = root/"current"/"pack.json"
     rel = f"../{Path(version_dir).name}/"
     # assemble mapping
+    files = {
+        "registry":        rel+"registry.json",
+        "catmap":          rel+"catmap.json",
+        "categories":      rel+"categories.json",
+        "validators":      rel+"validators.json",
+        "formulas":        rel+"formulas.json",
+        "templates":       rel+"templates.json",
+        "views":           rel+"views.json",
+        "profiles":        rel+"profiles.json",
+        "contexts":        rel+"contexts.json",
+        "schema_keynote":  rel+"keynote.schema.json",
+        "manifest":        rel+"manifest.json"
+    }
+    resource_rel = os.path.relpath(extraction_resources.default_path(), current.parent)
+    files["extractors"] = resource_rel
     mapping = {
         "version": str(Path(version_dir).name),
-        "files": {
-            "registry":        rel+"registry.json",
-            "catmap":          rel+"catmap.json",
-            "categories":      rel+"categories.json",
-            "extractors":      rel+"extractors.json",
-            "validators":      rel+"validators.json",
-            "formulas":        rel+"formulas.json",
-            "templates":       rel+"templates.json",
-            "views":           rel+"views.json",
-            "profiles":        rel+"profiles.json",
-            "contexts":        rel+"contexts.json",
-            "schema_keynote":  rel+"keynote.schema.json",
-            "manifest":        rel+"manifest.json"
-        }
+        "files": files
     }
     current.parent.mkdir(parents=True, exist_ok=True)
     with open(current,"w",encoding="utf-8") as f:

@@ -60,6 +60,8 @@ def test_build_merged_pack(tmp_path: Path) -> None:
     manifest_path = artifacts.files["manifest"]
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert manifest["files"]
+    manifest_extractors = next(item for item in manifest["files"] if item["name"] == "extractors")
+    assert manifest_extractors["path"].endswith("src/robimb/extraction/resources/extractors.json")
 
     current_dir = tmp_path / "pack" / "current"
     index_path = write_pack_index(artifacts, current_dir)

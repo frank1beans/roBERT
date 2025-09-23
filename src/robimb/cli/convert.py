@@ -9,6 +9,7 @@ from typing import Iterable, List, Mapping, Optional, Sequence
 
 import numpy as np
 
+from ..extraction import resources as extraction_resources
 from ..reporting import generate_dataset_reports
 from ..utils.data_utils import (
     build_mask_and_report,
@@ -25,6 +26,9 @@ __all__ = [
     "build_arg_parser",
     "main",
 ]
+
+
+DEFAULT_EXTRACTORS_PACK = extraction_resources.default_path()
 
 
 @dataclass(frozen=True)
@@ -200,7 +204,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--extractors-pack",
-        default=None,
+        default=str(DEFAULT_EXTRACTORS_PACK) if DEFAULT_EXTRACTORS_PACK.exists() else None,
         help="Optional extractors JSON used to auto-extract properties during conversion",
     )
     parser.add_argument(

@@ -8,10 +8,13 @@ from typing import List, Optional, Sequence
 import typer
 
 from .._version import __version__
+from ..extraction import resources as extraction_resources
 
 __all__ = ["app", "run"]
 
 app = typer.Typer(help="Production-ready BIM NLP pipeline utilities", add_completion=False)
+
+DEFAULT_EXTRACTORS_PATH = extraction_resources.default_path()
 
 
 @app.callback(invoke_without_command=True)
@@ -60,9 +63,7 @@ def convert_command(
         help="Optional registry mapping super|cat to property schemas",
     ),
     extractors_pack: Optional[Path] = typer.Option(
-        Path("data/extractors_patterns.json")
-        if (Path("data") / "extractors_patterns.json").exists()
-        else None,
+        DEFAULT_EXTRACTORS_PATH if DEFAULT_EXTRACTORS_PATH.exists() else None,
         "--extractors-pack",
         exists=True,
         dir_okay=False,
