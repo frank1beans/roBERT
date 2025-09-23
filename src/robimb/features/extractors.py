@@ -105,6 +105,13 @@ def _format_ei_from_last_int(v, m):
 def _take_last_int_to_ei(v, m):
     return _format_ei_from_last_int(v, m)
 
+
+def _to_ei_class(v, m):
+    formatted = _format_ei_from_last_int(v, m)
+    if isinstance(formatted, str):
+        return formatted.replace(" ", "").upper()
+    return formatted
+
 _FORATURA_MAP = {
     "pieno": "pieno",
     "forato": "forato",
@@ -140,6 +147,32 @@ def _cm_to_mm_optional(v, m):
         return [conv_one(x) for x in v]
     return conv_one(v)
 
+
+def _cm_to_mm_if_cm(v, m):
+    def _to_number(x):
+        if isinstance(x, (int, float)):
+            return float(x)
+        try:
+            return float(str(x).replace(",", "."))
+        except Exception:
+            return x
+
+    if isinstance(v, (list, tuple)) and v:
+        value = v[0]
+        unit = v[1] if len(v) > 1 else ""
+        num = _to_number(value)
+        if isinstance(num, (int, float)):
+            unit_norm = str(unit).strip().lower()
+            if unit_norm == "cm":
+                return num * 10.0
+            if unit_norm == "mm":
+                return num
+        return v
+
+    num = _to_number(v)
+    return num
+
+
 def _map_enum_factory(mapping: Dict[str, str]):
     def _map_enum(v, m):
         def map_one(x):
@@ -148,6 +181,72 @@ def _map_enum_factory(mapping: Dict[str, str]):
         if isinstance(v, list): return [map_one(x) for x in v]
         return map_one(v)
     return _map_enum
+
+
+_STRATI_WORDS = {
+    "doppia": 2,
+    "tripla": 3,
+}
+
+
+def _to_strati_count(v, m):
+    if isinstance(v, (list, tuple)) and v:
+        base = str(v[-1])
+    else:
+        base = str(v)
+    key = base.strip().lower()
+    if key in _STRATI_WORDS:
+        return _STRATI_WORDS[key]
+    try:
+        return int(re.sub(r"[^0-9]", "", key))
+    except Exception:
+        digits = re.findall(r"\d+", m)
+        if digits:
+            try:
+                return int(digits[-1])
+            except Exception:
+                pass
+    return v
+
+
+_TIPO_LASTRA_MAP = {
+    "gkb": "standard",
+    "standard": "standard",
+    "gkfi": "fuoco",
+    "gkf": "fuoco",
+    "gklo": "fuoco",
+    "fuoco": "fuoco",
+    "hf": "fuoco",
+    "h2": "idr",
+    "idro": "idr",
+    "idr": "idr",
+    "idrorepellente": "idr",
+    "acustico": "acustica",
+    "acustica": "acustica",
+    "antimuffa": "antimuffa",
+    "fibrocemento": "fibrocemento",
+}
+
+
+def _map_tipo_lastra_enum(v, m):
+    def infer_from_text(text: str) -> Optional[str]:
+        lower = text.strip().lower()
+        for key, value in _TIPO_LASTRA_MAP.items():
+            if key in lower:
+                return value
+        return None
+
+    if isinstance(v, list):
+        return [_map_tipo_lastra_enum(x, m) for x in v]
+
+    match_hint = infer_from_text(m)
+    value_hint = infer_from_text(str(v))
+
+    if value_hint is not None:
+        return value_hint
+    if match_hint is not None:
+        return match_hint
+    return v
 
 BUILTINS: Dict[str, NormalizerFn] = {
     "comma_to_dot": _comma_to_dot,
@@ -168,6 +267,10 @@ BUILTINS: Dict[str, NormalizerFn] = {
     "take_last_int->EI {n}": _take_last_int_to_ei,
     "normalize_foratura": _normalize_foratura,
     "cm_to_mm?": _cm_to_mm_optional,
+    "to_ei_class": _to_ei_class,
+    "cm_to_mm_if_cm": _cm_to_mm_if_cm,
+    "to_strati_count": _to_strati_count,
+    "map_tipo_lastra_enum": _map_tipo_lastra_enum,
     # dynamic "map_enum:<name>" supported below
 }
 

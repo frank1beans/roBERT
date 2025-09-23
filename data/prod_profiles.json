@@ -1,0 +1,13 @@
+{
+  "profiles": [
+    {
+      "id": "arch.concept",
+      "label": "Arch Concept",
+      "property_overrides": {
+        "frs.resistenza_fuoco": {
+          "required": true
+        }
+      }
+    }
+  ]
+}

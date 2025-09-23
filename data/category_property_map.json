@@ -1,0 +1,10 @@
+{
+  "default_requirements_by_super": {
+    "Strutture": {
+      "required_groups": ["fire"],
+      "recommended_groups": []
+    }
+  },
+  "category_overrides": {},
+  "ifc_defaults_by_super": {}
+}

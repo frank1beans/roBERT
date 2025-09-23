@@ -1,0 +1,10 @@
+{
+  "mappings": [
+    {
+      "super_label": "Strutture",
+      "cat_label": "Elementi in laterizio",
+      "props_required": ["frs.resistenza_fuoco"],
+      "slot_priority": ["frs.resistenza_fuoco"]
+    }
+  ]
+}

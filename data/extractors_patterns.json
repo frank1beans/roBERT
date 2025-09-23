@@ -1,0 +1,10 @@
+{
+  "patterns": [
+    {
+      "property_id": "qty.spessore",
+      "regex": ["sp \\d+"],
+      "normalizers": ["cm_to_mm?"]
+    }
+  ],
+  "normalizers": {}
+}
