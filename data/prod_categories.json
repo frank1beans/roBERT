@@ -1,0 +1,8 @@
+{
+  "super": [
+    {"id": "Strutture", "label": "Strutture"}
+  ],
+  "cat": [
+    {"id": "laterizio", "label": "Elementi in laterizio"}
+  ]
+}

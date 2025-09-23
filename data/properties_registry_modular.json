@@ -1,0 +1,18 @@
+{
+  "groups": {
+    "fire": {
+      "label": "Antincendio",
+      "description": "",
+      "properties": ["frs.resistenza_fuoco"]
+    }
+  },
+  "properties": {
+    "frs.resistenza_fuoco": {
+      "id": "frs.resistenza_fuoco",
+      "group": "fire",
+      "label": "Resistenza al fuoco",
+      "type": "string"
+    }
+  },
+  "enums": {}
+}

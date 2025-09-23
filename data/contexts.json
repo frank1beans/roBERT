@@ -1,0 +1,8 @@
+{
+  "dimensions": {
+    "intervention_type": {
+      "label": "Tipo intervento",
+      "values": ["Nuova"]
+    }
+  }
+}
