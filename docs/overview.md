@@ -1,0 +1,9 @@
+# Panoramica architetturale
+
+Il pacchetto `robimb` espone un toolkit modulare per la classificazione di testi BIM basato su Transformer. Il namespace principale (`src/robimb/__init__.py`) organizza i sotto-moduli funzionali: CLI Typer, componenti core per i knowledge pack, modelli, pipeline di inferenza, servizio FastAPI, training e utility condivise. Questa organizzazione consente di installare il progetto come pacchetto Python e riutilizzarlo tanto da riga di comando quanto da codice.
+
+L'interazione principale avviene tramite l'applicazione Typer (`cli/main.py`), che funge da front-end per la conversione dei dati, l'addestramento dei modelli, la validazione e le operazioni sui knowledge pack. I moduli `models/label_model.py` e `models/masked_model.py` implementano rispettivamente il classificatore a label embedding e la variante gerarchica multi-task; entrambi sfruttano encoder Hugging Face pre-addestrati e supportano maschere ontologiche derivate dai file `ontology.json`.
+
+Le routine di training (`training/label_trainer.py`, `training/hier_trainer.py`, `training/tapt_mlm.py`) orchestrano `transformers.Trainer`, gestendo tokenizzazione, sampler, callback per sanificare i gradienti e pubblicazione su Hugging Face Hub. Le funzioni di utilità nelle cartelle `utils/` e `features/` coprono la preparazione dei dataset, la costruzione delle maschere ontologiche e l'estrazione automatica di proprietà tramite regex.
+
+Per l'esecuzione in produzione sono disponibili due percorsi: la pipeline di inferenza (`inference/pipeline.py`) che combina classificazione, estrazione proprietà, validazione e rendering descrittivo, e il servizio FastAPI (`service/app.py`) che esegue le stesse operazioni esponendo endpoint HTTP e gestendo la cache di modelli e knowledge pack. I componenti core (`core/pack_loader.py`, `core/pack_tools.py`) governano la lettura e la fusione dei pack legacy, mentre i template e i validator definiscono le regole di dominio.
