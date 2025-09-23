@@ -1,5 +1,5 @@
 # Checklist estrazione proprietà prioritari
-Generata automaticamente il 2025-09-23 17:17:51Z a partire da `data/properties_registry_extended.json`.
+Generata automaticamente il 2025-09-23 21:16:20Z a partire da `data/properties_registry_extended.json`.
 Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum, stringhe) con le regex di supporto e i normalizzatori suggeriti.
 
 ## Apparecchi sanitari e accessori|Accessori per l'allestimento di servizi igienici
@@ -159,7 +159,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Controsoffitti|Controsoffitti in cartongesso
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_lastra_mm` | enum | `\b(10|12[.,]5|15)\s*cm\b`<br>`\b(10|12[.,]5|15)\s*mm\b` | `lower`, `split_structured_list` |
+| `spessore_lastra_mm` | float | `\b(\d{1,3}(?:[.,]\d+)?)\s*(?:mm|cm)\b` | `comma_to_dot`, `to_float`, `if_cm_to_mm` |
 
 ## Controsoffitti|Controsoffitti in fibre minerali e acustici
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -307,7 +307,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Opere da cartongessista|Contropareti in lastre di fibrocemento
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_lastra_mm` | enum | `\b(8|10|12[.,]5|15)\s*cm\b`<br>`\b(8|10|12[.,]5|15)\s*mm\b` | `comma_to_dot`, `to_float` |
+| `spessore_lastra_mm` | float | `\b(\d{1,3}(?:[.,]\d+)?)\s*(?:mm|cm)\b` | `comma_to_dot`, `to_float`, `if_cm_to_mm` |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
 
 ## Opere da cartongessista|Pareti in cartongesso resistente al fuoco
@@ -322,12 +322,12 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | --- | --- | --- | --- |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
 | `lastre_per_lato` | int | `\b([1-4])\s*lastre\b|\b(doppia|tripla|quadrupla)\s+lastra\b` | `to_strati_count` |
-| `spessore_lastra_mm` | enum | `\b(10|12[.,]5|15|18)\s*cm\b`<br>`\b(10|12[.,]5|15|18)\s*mm\b` | `comma_to_dot`, `to_float` |
+| `spessore_lastra_mm` | float | `\b(\d{1,3}(?:[.,]\d+)?)\s*(?:mm|cm)\b` | `comma_to_dot`, `to_float`, `if_cm_to_mm` |
 
 ## Opere da cartongessista|Pareti in lastre di fibrocemento
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_lastra_mm` | enum | `\b(8|10|12[.,]5|15)\s*cm\b`<br>`\b(8|10|12[.,]5|15)\s*mm\b` | `comma_to_dot`, `to_float` |
+| `spessore_lastra_mm` | float | `\b(\d{1,3}(?:[.,]\d+)?)\s*(?:mm|cm)\b` | `comma_to_dot`, `to_float`, `if_cm_to_mm` |
 | `spessore_orditura_mm` | enum | `\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*cm\b`<br>`\b(U|CW|UW)\s?(50|75|100|125)\b|\bprofil[oi]\s*(50|75|100|125)\s*mm\b` | `lower` |
 
 ## Opere da cartongessista|Setto autoportante cartongesso resistente al fuoco
