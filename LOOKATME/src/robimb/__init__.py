@@ -1,1 +1,0 @@
-"""roBIMB root package (scaffold)."""

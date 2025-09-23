@@ -1,6 +1,0 @@
-{
-  "model_name": "atipiqal/BOB",
-  "block_size": 128,
-  "epochs": 3,
-  "lr": 5e-05
-}
