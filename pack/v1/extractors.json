@@ -1,92 +1,125 @@
 {
-  "version": "1.1.0",
-  "generated_at": "2025-09-22T21:52:11Z",
+  "version": "1.2.0",
+  "generated_at": "2025-09-23T00:00:00Z",
   "patterns": [
     {
       "property_id": "aco.rw",
       "regex": [
-        "\\bRw\\s*(\\d{2})\\s*dB\\b"
+        "\\bRw\\s*[:=]?\\s*(\\d{2})\\s*dB\\b"
       ],
-      "normalizers": [
-        "to_int"
-      ],
-      "language": "it"
+      "normalizers": ["to_int"],
+      "units": { "default": "dB" },
+      "priority": 70,
+      "confidence": 0.85,
+      "examples": ["Sistema certificato Rw 52 dB"]
     },
     {
       "property_id": "cst.unita_misura",
       "regex": [
-        "\\b(m²|m3|m|kg|pz|cad)\\b"
+        "\\b(m²|m2|m³|m3|m|kg|pz|cad|ml|h)\\b"
       ],
-      "normalizers": [
-        "as_string"
-      ]
+      "normalizers": ["as_string"],
+      "priority": 20,
+      "confidence": 0.8,
+      "examples": ["Prezzo € 35/m²", "€/m2", "€/cad"]
     },
     {
       "property_id": "flr.formato",
       "regex": [
-        "\\b(\\d{2,4})\\s*[x×]\\s*(\\d{2,4})\\b"
+        "\\b(\\d{2,4})\\s*[x×]\\s*(\\d{2,4})\\s*(?:mm|cm)?\\b"
       ],
-      "normalizers": [
-        "concat_dims"
-      ]
+      "normalizers": ["concat_dims"],
+      "priority": 40,
+      "confidence": 0.8,
+      "examples": ["Formato 600×600 mm", "120x20 cm"]
     },
     {
       "property_id": "frs.resistenza_fuoco",
       "regex": [
-        "\\b(REI?|EI)\\s?(15|30|45|60|90|120|180|240)\\b"
+        "\\b(R?EI)\\s*[:=]?\\s*(15|30|45|60|90|120|180|240)\\b",
+        "\\b(EI)\\s*(30|45|60|90|120|180|240)\\b",
+        "\\bREI\\s*(30|45|60|90|120|180|240)\\b"
       ],
-      "normalizers": [
-        "format_EI_from_last_int",
-        "take_last_int->EI {n}"
-      ],
-      "language": "it"
+      "normalizers": ["to_ei_class"],
+      "priority": 80,
+      "confidence": 0.9,
+      "examples": ["Parete EI 60", "Porta REI120"]
     },
     {
       "property_id": "geo.foratura_laterizio",
       "regex": [
-        "\\b(pieno|forato|semi[-\\s]?pieno)\\b"
+        "\\b(semi[-\\s]?pieno|pieno|forato)\\b"
       ],
-      "normalizers": [
-        "normalize_foratura"
-      ]
+      "normalizers": ["normalize_foratura"],
+      "priority": 30,
+      "confidence": 0.8,
+      "examples": ["Blocco semipieno", "Laterizio forato"]
     },
     {
       "property_id": "geo.spessore_elemento",
       "regex": [
-        "\\bspessore\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
+        "\\bspessore\\s*[:=]?\\s*(\\d+(?:[.,]\\d+)?)\\s*(mm|cm)\\b",
+        "\\b(\\d+(?:[.,]\\d+)?)\\s*(mm)\\b"
       ],
-      "normalizers": [
-        "comma_to_dot",
-        "to_float"
-      ]
+      "normalizers": ["comma_to_dot", "to_float", "cm_to_mm_if_cm"],
+      "units": { "default": "mm" },
+      "priority": 90,
+      "confidence": 0.9,
+      "examples": ["Spessore 50 mm", "spessore 12,5 mm", "spessore 1.5 cm"]
     },
     {
       "property_id": "gyp.interasse_orditura",
       "regex": [
-        "\\b(?:interasse|passo)\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
+        "\\b(?:interasse|passo)\\s*[:=]?\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
       ],
-      "normalizers": [
-        "comma_to_dot",
-        "to_float"
-      ]
+      "normalizers": ["comma_to_dot", "to_float"],
+      "units": { "default": "mm" },
+      "priority": 70,
+      "confidence": 0.85,
+      "examples": ["Interasse 600 mm"]
     },
     {
       "property_id": "gyp.numero_strati",
       "regex": [
-        "\\b(\\d+)\\s*(?:x|×)?\\s*strati?\\b"
+        "\\b(\\d)\\s*(?:x|×)?\\s*strati?\\b",
+        "\\b(doppia|tripla)\\s*lastra\\b"
       ],
-      "normalizers": [
-        "to_int"
-      ]
+      "normalizers": ["to_strati_count"],
+      "priority": 60,
+      "confidence": 0.85,
+      "examples": ["2 strati per lato", "doppia lastra"]
+    },
+    {
+      "property_id": "gyp.tipo_lastra",
+      "regex": [
+        "\\b(GKB|GKFI|GKF|GKLO|IDRO|Idro|H2|HF|Antimuffa|Acustic[ao]?)\\b",
+        "\\b(cartongesso)\\s*(?:standard|idrorepellente|acustico|fuoco)\\b"
+      ],
+      "normalizers": ["map_tipo_lastra_enum"],
+      "priority": 80,
+      "confidence": 0.8,
+      "examples": ["Lastra GKFI 12,5", "Cartongesso idrorepellente"]
+    },
+    {
+      "property_id": "mat.densita",
+      "regex": [
+        "\\bdensit[àa]\\s*[:=]?\\s*(\\d{2,4})\\s*(?:kg\\s*/\\s*m\\s*3|kg\\s*/\\s*m\\^?3|kg/m³)\\b"
+      ],
+      "normalizers": ["to_int"],
+      "units": { "default": "kg/m³" },
+      "priority": 60,
+      "confidence": 0.8,
+      "examples": ["Densità 800 kg/m3"]
     },
     {
       "property_id": "opn.resistenza_vento",
       "regex": [
         "\\bEN\\s*12210\\b.*?\\b([ABC]\\d\\/[ABC]\\d)\\b"
       ],
-      "normalizers": [
-        "as_string"
-      ]
+      "normalizers": ["as_string"],
+      "priority": 60,
+      "confidence": 0.8,
+      "examples": ["EN 12210 Classe C3/B3"]
     },
     {
       "property_id": "opn.tenuta_acqua",
@@ -94,9 +127,9 @@
         "\\bEN\\s*12208\\b.*?\\b(Classe\\s*[A-Z]?\\d+)\\b",
         "\\bClasse\\s*([A-Z]?\\d+)\\b.*?\\bEN\\s*12208\\b"
       ],
-      "normalizers": [
-        "as_string"
-      ]
+      "normalizers": ["as_string"],
+      "priority": 60,
+      "confidence": 0.8
     },
     {
       "property_id": "opn.tenuta_aria",
@@ -104,63 +137,96 @@
         "\\bEN\\s*12207\\b.*?\\b(Classe\\s*\\d)\\b",
         "\\bClasse\\s*(\\d)\\b.*?\\bEN\\s*12207\\b"
       ],
-      "normalizers": [
-        "as_string"
-      ]
+      "normalizers": ["as_string"],
+      "priority": 60,
+      "confidence": 0.8
     },
     {
       "property_id": "opn.trasmittanza_uw",
       "regex": [
-        "\\bUw\\s*=?\\s*(\\d+(?:[.,]\\d+)?)\\s*W/?m²K\\b"
+        "\\bUw\\s*[:=]?\\s*(\\d+(?:[.,]\\d+)?)\\s*(?:W\\s*/?\\s*m(?:²|2)K|W\\s*m\\s*[-⁻]?2\\s*K\\s*[-⁻]?1)?\\b"
       ],
-      "normalizers": [
-        "comma_to_dot",
-        "to_float"
-      ]
+      "normalizers": ["comma_to_dot", "to_float"],
+      "units": { "default": "W/m²K" },
+      "priority": 85,
+      "confidence": 0.9,
+      "examples": ["Uw = 1,4 W/m²K", "Uw 1.1 W/m2K", "Uw 1.3"]
+    },
+    {
+      "property_id": "opn.vetro_stratigrafia",
+      "regex": [
+        "\\b(\\d{2}(?:\\.\\d)?(?:\\+\\d{1,2})?)(?:\\s*\\/\\s*)(\\d{1,2})(?:\\s*\\/\\s*)(\\d{1,2}(?:\\.\\d)?)\\b",
+        "\\b(temprato|stratificat[oa]|extrachiaro|camera)\\b"
+      ],
+      "normalizers": ["as_string"],
+      "priority": 30,
+      "confidence": 0.7,
+      "examples": ["44.2/16/4 bassoemissivo", "vetro camera 33.1/12/33.1"]
     },
     {
       "property_id": "qty.spessore",
       "regex": [
-        "\\bsp\\.?\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b",
-        "\\b(\\d+(?:[.,]\\d+)?)\\s*cm\\b"
+        "\\bsp\\.?\\s*[:=]?\\s*(\\d+(?:[.,]\\d+)?)\\s*(mm|cm)\\b"
       ],
-      "normalizers": [
-        "comma_to_dot",
-        "to_float",
-        "cm_to_mm?"
-      ],
-      "language": "it"
+      "normalizers": ["comma_to_dot", "to_float", "cm_to_mm_if_cm"],
+      "units": { "default": "mm" },
+      "priority": 50,
+      "confidence": 0.85,
+      "examples": ["sp. 12,5 mm", "spessore 1.8 cm"]
     },
     {
       "property_id": "thm.lambda",
       "regex": [
-        "\\bλ\\s*=?\\s*(0\\.\\d{2,3})\\s*W/?mK\\b",
-        "\\blambda\\s*(0\\.\\d{2,3})\\b"
+        "\\b[λ|lambda]\\s*[:=]?\\s*(\\d+(?:[.,]\\d{2,3}))\\s*(?:W\\s*/\\s*mK|W/mK)\\b",
+        "\\blambda\\s*(0[.,]\\d{2,3})\\b"
       ],
-      "normalizers": [
-        "to_float"
-      ]
+      "normalizers": ["comma_to_dot", "to_float"],
+      "units": { "default": "W/mK" },
+      "priority": 50,
+      "confidence": 0.8,
+      "examples": ["λ = 0,035 W/mK"]
+    },
+    {
+      "property_id": "thm.trasmittanza_u",
+      "regex": [
+        "\\bU(?!w)\\s*[:=]?\\s*(\\d+(?:[.,]\\d+)?)\\s*(?:W\\s*/?\\s*m(?:²|2)K|W\\s*m\\s*[-⁻]?2\\s*K\\s*[-⁻]?1)?\\b"
+      ],
+      "normalizers": ["comma_to_dot", "to_float"],
+      "units": { "default": "W/m²K" },
+      "priority": 45,
+      "confidence": 0.8,
+      "examples": ["U=0,28 W/m²K"]
     },
     {
       "property_id": "wpf.spessore_strato",
       "regex": [
-        "\\bspessore\\s*strato\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
+        "\\bspessore\\s*strato\\s*[:=]?\\s*(\\d+(?:[.,]\\d+)?)\\s*mm\\b"
       ],
-      "normalizers": [
-        "comma_to_dot",
-        "to_float"
-      ]
+      "normalizers": ["comma_to_dot", "to_float"],
+      "units": { "default": "mm" },
+      "priority": 60,
+      "confidence": 0.85
+    },
+    {
+      "property_id": "geo.peso_areico",
+      "computed": { "formula_id": "geo.peso_areico" },
+      "requires": ["mat.densita", "geo.spessore_elemento"],
+      "units": { "default": "kg/m²" },
+      "priority": 20,
+      "confidence": 0.7,
+      "notes": "kg/m³ * (mm/1000) = kg/m²"
     }
   ],
   "normalizers": {
     "comma_to_dot": "replace decimal comma with dot",
     "to_float": "cast to float",
-    "cm_to_mm?": "if original unit is cm, multiply by 10",
-    "take_last_int->EI {n}": "format EI class from last int capture",
     "to_int": "cast to int",
-    "format_EI_from_last_int": "emit 'EI {n}' from last numeric group",
-    "concat_dims": "join captures as 'L×W'",
-    "normalize_foratura": "map 'semi pieno'→'semipieno'",
-    "as_string": "keep matched text"
+    "as_string": "keep matched text",
+    "concat_dims": "join captures as 'L×W' with unicode multiplication sign",
+    "normalize_foratura": "map 'semi pieno'→'semipieno'; lowercase",
+    "cm_to_mm_if_cm": "if unit capture is 'cm', multiply value by 10; drop unit; set to mm",
+    "to_ei_class": "format 'EI{n}' from last numeric capture; uppercase; remove spaces",
+    "to_strati_count": "map 'doppia lastra'→2, 'tripla lastra'→3; else cast captured int",
+    "map_tipo_lastra_enum": "map GK codes/keywords to registry enum CartongessoTipoLastra: GKB/standard→'standard'; GKFI/GKF/fuoco→'fuoco'; H2/IDRO/idr/idrorepellente→'idr'; acustico→'acustica'; antimuffa→'antimuffa'; fibrocemento→'fibrocemento'"
   }
 }
