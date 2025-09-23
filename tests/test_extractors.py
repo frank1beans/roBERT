@@ -2,7 +2,7 @@
 import json
 from pathlib import Path
 
-from robimb.features.extractors import extract_properties
+from robimb.extraction import extract_properties
 
 
 PACK_V1 = json.loads(Path("pack/v1/extractors.json").read_text(encoding="utf-8"))

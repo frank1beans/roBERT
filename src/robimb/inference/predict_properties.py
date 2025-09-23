@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, Iterable, Optional, Sequence, Set
 
-from ..features.extractors import extract_properties
+from ..extraction import extract_properties
 
 
 def _normalize_category_labels(category: Any) -> Sequence[str]:

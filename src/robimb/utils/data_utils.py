@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 from .ontology_utils import Ontology, build_mask_from_ontology, load_label_maps, load_ontology, save_label_maps
-from ..features.extractors import extract_properties
+from ..extraction import extract_properties
 
 __all__ = [
     "load_jsonl_to_df",
