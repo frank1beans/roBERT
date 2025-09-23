@@ -8,6 +8,8 @@ from typing import Dict, Iterable, List, Mapping, MutableMapping, Optional, Tupl
 
 import numpy as np
 
+FALLBACK_LABEL = "#N/D"
+
 __all__ = [
     "Ontology",
     "load_ontology",
@@ -63,6 +65,15 @@ def _normalise_name(text: str) -> str:
     return " ".join(str(text).split()).strip().lower()
 
 
+def _ensure_fallback_label(mapping: Mapping[str, int]) -> Dict[str, int]:
+    """Return a copy of *mapping* that contains the fallback label at index 0."""
+
+    ordered = sorted(((str(name), int(idx)) for name, idx in mapping.items()), key=lambda item: item[1])
+    labels = [name for name, _ in ordered if name != FALLBACK_LABEL]
+    labels.insert(0, FALLBACK_LABEL)
+    return {label: idx for idx, label in enumerate(labels)}
+
+
 def load_label_maps(
     path: str | Path,
     *,
@@ -80,6 +91,18 @@ def load_label_maps(
             cat_name_to_id = {str(v): int(k) for k, v in raw["id2cat"].items()}
         else:
             raise ValueError(f"Unsupported label map schema in {path}")
+        normalised_super = _ensure_fallback_label(super_name_to_id)
+        normalised_cat = _ensure_fallback_label(cat_name_to_id)
+        if normalised_super != super_name_to_id or normalised_cat != cat_name_to_id:
+            super_name_to_id = normalised_super
+            cat_name_to_id = normalised_cat
+            save_label_maps(
+                path,
+                super_name_to_id=super_name_to_id,
+                cat_name_to_id=cat_name_to_id,
+                super_id_to_name=_invert(super_name_to_id),
+                cat_id_to_name=_invert(cat_name_to_id),
+            )
         super_id_to_name = _invert(super_name_to_id)
         cat_id_to_name = _invert(cat_name_to_id)
         return super_name_to_id, cat_name_to_id, super_id_to_name, cat_id_to_name
@@ -89,10 +112,12 @@ def load_label_maps(
     if ontology is None:
         raise ValueError("An ontology is required to build label maps from scratch")
 
-    super_labels = ontology.super_labels()
-    cat_labels = ontology.cat_labels()
-    super_name_to_id = {name: idx for idx, name in enumerate(super_labels)}
-    cat_name_to_id = {name: idx for idx, name in enumerate(cat_labels)}
+    super_labels = [label for label in ontology.super_labels() if label != FALLBACK_LABEL]
+    cat_labels = [label for label in ontology.cat_labels() if label != FALLBACK_LABEL]
+    super_name_to_id = {FALLBACK_LABEL: 0}
+    super_name_to_id.update({name: idx for idx, name in enumerate(super_labels, start=1)})
+    cat_name_to_id = {FALLBACK_LABEL: 0}
+    cat_name_to_id.update({name: idx for idx, name in enumerate(cat_labels, start=1)})
     super_id_to_name = _invert(super_name_to_id)
     cat_id_to_name = _invert(cat_name_to_id)
 
