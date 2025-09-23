@@ -1,13 +1,52 @@
 {
+  "version": "1.0.0",
+  "generated_at": "2025-09-21T09:27:56.010851Z",
   "profiles": [
     {
       "id": "arch.concept",
-      "label": "Arch Concept",
-      "property_overrides": {
-        "frs.resistenza_fuoco": {
-          "required": true
-        }
-      }
+      "discipline": "arch",
+      "phase": "concept",
+      "required_groups_add": [
+        "idn",
+        "mat"
+      ],
+      "recommended_groups_add": [
+        "qty",
+        "geo"
+      ]
+    },
+    {
+      "id": "arch.esec",
+      "discipline": "arch",
+      "phase": "esecutivo",
+      "required_groups_add": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "frs"
+      ],
+      "recommended_groups_add": [
+        "thm",
+        "aco",
+        "inst"
+      ]
+    },
+    {
+      "id": "fire.esec",
+      "discipline": "fire",
+      "phase": "esecutivo",
+      "required_groups_add": [
+        "frs"
+      ]
+    },
+    {
+      "id": "acoustic.esec",
+      "discipline": "acoustic",
+      "phase": "esecutivo",
+      "required_groups_add": [
+        "aco"
+      ]
     }
   ]
 }

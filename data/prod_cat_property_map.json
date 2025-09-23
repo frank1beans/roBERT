@@ -1,10 +1,4397 @@
 {
+  "version": "1.0.0",
+  "generated_at": "2025-09-21T09:27:56.010851Z",
   "mappings": [
     {
-      "super_label": "Strutture",
+      "cat_id": "cat.impianti_di_cantiere",
+      "cat_label": "Impianti di cantiere",
+      "super_id": "sup.cantierizzazioni",
+      "super_label": "Cantierizzazioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.installazione_cantiere",
+      "cat_label": "Installazione cantiere",
+      "super_id": "sup.cantierizzazioni",
+      "super_label": "Cantierizzazioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.noli",
+      "cat_label": "Noli",
+      "super_id": "sup.cantierizzazioni",
+      "super_label": "Cantierizzazioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pulizie_di_cantiere",
+      "cat_label": "Pulizie di cantiere",
+      "super_id": "sup.cantierizzazioni",
+      "super_label": "Cantierizzazioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.assistenze_murarie_ai_subappaltatori",
+      "cat_label": "Assistenze murarie ai subappaltatori",
+      "super_id": "sup.assistenze_murarie",
+      "super_label": "Assistenze murarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "geo.foratura_laterizio",
+        "mech.resistenza_compressione",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "geo.peso_areico",
+        "mat.classe_reazione_fuoco"
+      ],
+      "keynote_mapping": {
+        "Spessore": "geo.spessore_elemento",
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.assistenze_murarie_alla_posa_di_impianti",
+      "cat_label": "Assistenze murarie alla posa di impianti",
+      "super_id": "sup.assistenze_murarie",
+      "super_label": "Assistenze murarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "geo.foratura_laterizio",
+        "mech.resistenza_compressione",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "geo.peso_areico",
+        "mat.classe_reazione_fuoco"
+      ],
+      "keynote_mapping": {
+        "Spessore": "geo.spessore_elemento",
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.blocchi_in_calcestruzzo_cellulare_aerato_autoclavato",
+      "cat_label": "Blocchi in calcestruzzo cellulare aerato autoclavato",
+      "super_id": "sup.opere_murarie",
+      "super_label": "Opere murarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "geo.foratura_laterizio",
+        "mech.resistenza_compressione",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "geo.peso_areico",
+        "mat.classe_reazione_fuoco"
+      ],
+      "keynote_mapping": {
+        "Spessore": "geo.spessore_elemento",
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.blocchi_in_calcestruzzo_vibrocompresso",
+      "cat_label": "Blocchi in calcestruzzo vibrocompresso",
+      "super_id": "sup.opere_murarie",
+      "super_label": "Opere murarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "geo.foratura_laterizio",
+        "mech.resistenza_compressione",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "geo.peso_areico",
+        "mat.classe_reazione_fuoco"
+      ],
+      "keynote_mapping": {
+        "Spessore": "geo.spessore_elemento",
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.elementi_in_laterizio",
       "cat_label": "Elementi in laterizio",
-      "props_required": ["frs.resistenza_fuoco"],
-      "slot_priority": ["frs.resistenza_fuoco"]
+      "super_id": "sup.opere_murarie",
+      "super_label": "Opere murarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "geo.foratura_laterizio",
+        "mech.resistenza_compressione",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "geo.peso_areico",
+        "mat.classe_reazione_fuoco"
+      ],
+      "keynote_mapping": {
+        "Spessore": "geo.spessore_elemento",
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.murature_in_altri_materiali",
+      "cat_label": "Murature in altri materiali",
+      "super_id": "sup.opere_murarie",
+      "super_label": "Opere murarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "geo.foratura_laterizio",
+        "mech.resistenza_compressione",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "geo.peso_areico",
+        "mat.classe_reazione_fuoco"
+      ],
+      "keynote_mapping": {
+        "Spessore": "geo.spessore_elemento",
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.accessori_per_cartongessi",
+      "cat_label": "Accessori per cartongessi",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.contropareti_in_cartongesso_resistente_al_fuoco",
+      "cat_label": "Contropareti in cartongesso resistente al fuoco",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.contropareti_in_cartongesso_standard_e_idrorepellente",
+      "cat_label": "Contropareti in cartongesso standard e idrorepellente",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.contropareti_in_lastre_di_fibrocemento",
+      "cat_label": "Contropareti in lastre di fibrocemento",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pareti_in_cartongesso_resistente_al_fuoco",
+      "cat_label": "Pareti in cartongesso resistente al fuoco",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pareti_in_cartongesso_standard_e_idrorepellente",
+      "cat_label": "Pareti in cartongesso standard e idrorepellente",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pareti_in_lastre_di_fibrocemento",
+      "cat_label": "Pareti in lastre di fibrocemento",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.setto_autoportante_cartongesso_resistente_al_fuoco",
+      "cat_label": "Setto autoportante cartongesso resistente al fuoco",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.setto_autoportante_in_cartongesso_standard_e_idrorepellente",
+      "cat_label": "Setto autoportante in cartongesso standard e idrorepellente",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.setto_autoportante_in_lastre_di_fibrocemento",
+      "cat_label": "Setto autoportante in lastre di fibrocemento",
+      "super_id": "sup.opere_da_cartongessista",
+      "super_label": "Opere da cartongessista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "groups_recommended": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "props_recommended": [
+        "aco.rw",
+        "thm.lambda"
+      ],
+      "keynote_mapping": {
+        "EI": "frs.resistenza_fuoco"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.isolanti_acustici",
+      "cat_label": "Isolanti acustici",
+      "super_id": "sup.opere_di_coibentazione",
+      "super_label": "Opere di coibentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.isolanti_termici_in_copertura",
+      "cat_label": "Isolanti termici in copertura",
+      "super_id": "sup.opere_di_coibentazione",
+      "super_label": "Opere di coibentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.isolanti_termici_su_solai_e_pareti",
+      "cat_label": "Isolanti termici su solai e pareti",
+      "super_id": "sup.opere_di_coibentazione",
+      "super_label": "Opere di coibentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.accessori_per_l_impermeabilizzazione",
+      "cat_label": "Accessori per l'impermeabilizzazione",
+      "super_id": "sup.opere_di_impermeabilizzazione",
+      "super_label": "Opere di impermeabilizzazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "wpf",
+        "inst"
+      ],
+      "groups_recommended": [
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "props_recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.barriere_al_vapore",
+      "cat_label": "Barriere al vapore",
+      "super_id": "sup.opere_di_impermeabilizzazione",
+      "super_label": "Opere di impermeabilizzazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "wpf",
+        "inst"
+      ],
+      "groups_recommended": [
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "props_recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.impermeabilizzazioni_bituminose",
+      "cat_label": "Impermeabilizzazioni bituminose",
+      "super_id": "sup.opere_di_impermeabilizzazione",
+      "super_label": "Opere di impermeabilizzazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "wpf",
+        "inst"
+      ],
+      "groups_recommended": [
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "props_recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.impermeabilizzazioni_liquide",
+      "cat_label": "Impermeabilizzazioni liquide",
+      "super_id": "sup.opere_di_impermeabilizzazione",
+      "super_label": "Opere di impermeabilizzazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "wpf",
+        "inst"
+      ],
+      "groups_recommended": [
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "props_recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.impermeabilizzazioni_resine",
+      "cat_label": "Impermeabilizzazioni resine",
+      "super_id": "sup.opere_di_impermeabilizzazione",
+      "super_label": "Opere di impermeabilizzazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "wpf",
+        "inst"
+      ],
+      "groups_recommended": [
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "props_recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.impermeabilizzazioni_sintetiche",
+      "cat_label": "Impermeabilizzazioni sintetiche",
+      "super_id": "sup.opere_di_impermeabilizzazione",
+      "super_label": "Opere di impermeabilizzazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "wpf",
+        "inst"
+      ],
+      "groups_recommended": [
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "props_recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.cappe_di_completamento",
+      "cat_label": "Cappe di completamento",
+      "super_id": "sup.massetti_sottofondi_drenaggi_vespai",
+      "super_label": "Massetti, sottofondi, drenaggi, vespai",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.massetti_alleggeriti",
+      "cat_label": "Massetti alleggeriti",
+      "super_id": "sup.massetti_sottofondi_drenaggi_vespai",
+      "super_label": "Massetti, sottofondi, drenaggi, vespai",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.massetti_pendenzati",
+      "cat_label": "Massetti pendenzati",
+      "super_id": "sup.massetti_sottofondi_drenaggi_vespai",
+      "super_label": "Massetti, sottofondi, drenaggi, vespai",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.sottofondi_pavimentazioni",
+      "cat_label": "Sottofondi pavimentazioni",
+      "super_id": "sup.massetti_sottofondi_drenaggi_vespai",
+      "super_label": "Massetti, sottofondi, drenaggi, vespai",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.teli_di_separazione",
+      "cat_label": "Teli di separazione",
+      "super_id": "sup.massetti_sottofondi_drenaggi_vespai",
+      "super_label": "Massetti, sottofondi, drenaggi, vespai",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.vespai_aerati",
+      "cat_label": "Vespai aerati",
+      "super_id": "sup.massetti_sottofondi_drenaggi_vespai",
+      "super_label": "Massetti, sottofondi, drenaggi, vespai",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.intonaco_intumescente",
+      "cat_label": "Intonaco intumescente",
+      "super_id": "sup.opere_da_intonacatore_e_stuccatore",
+      "super_label": "Opere da intonacatore e stuccatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.intonaco_per_esterno",
+      "cat_label": "Intonaco per esterno",
+      "super_id": "sup.opere_da_intonacatore_e_stuccatore",
+      "super_label": "Opere da intonacatore e stuccatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.intonaco_per_interno",
+      "cat_label": "Intonaco per interno",
+      "super_id": "sup.opere_da_intonacatore_e_stuccatore",
+      "super_label": "Opere da intonacatore e stuccatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.altri_rivestimenti",
+      "cat_label": "Altri rivestimenti",
+      "super_id": "sup.opere_di_rivestimento",
+      "super_label": "Opere di rivestimento",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.rivestimenti_in_gomma_o_pvc",
+      "cat_label": "Rivestimenti in gomma o PVC",
+      "super_id": "sup.opere_di_rivestimento",
+      "super_label": "Opere di rivestimento",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.rivestimenti_in_gres_e_ceramica",
+      "cat_label": "Rivestimenti in gres e ceramica",
+      "super_id": "sup.opere_di_rivestimento",
+      "super_label": "Opere di rivestimento",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.rivestimenti_in_legno",
+      "cat_label": "Rivestimenti in legno",
+      "super_id": "sup.opere_di_rivestimento",
+      "super_label": "Opere di rivestimento",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.rivestimenti_in_pietra",
+      "cat_label": "Rivestimenti in pietra",
+      "super_id": "sup.opere_di_rivestimento",
+      "super_label": "Opere di rivestimento",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_in_altri_materiali",
+      "cat_label": "Pavimenti in altri materiali",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_in_gomma_o_pvc",
+      "cat_label": "Pavimenti in gomma o PVC",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_in_gres_e_ceramica",
+      "cat_label": "Pavimenti in gres e ceramica",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_in_legno_e_laminato",
+      "cat_label": "Pavimenti in legno e laminato",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_in_moquette_e_zerbini",
+      "cat_label": "Pavimenti in moquette e zerbini",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_in_pietra",
+      "cat_label": "Pavimenti in pietra",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_industriali",
+      "cat_label": "Pavimenti industriali",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimenti_sopraelevati_e_flottanti",
+      "cat_label": "Pavimenti sopraelevati e flottanti",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.zoccolini_e_accessori_per_pavimentazioni",
+      "cat_label": "Zoccolini e accessori per pavimentazioni",
+      "super_id": "sup.opere_di_pavimentazione",
+      "super_label": "Opere di pavimentazione",
+      "groups_required": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "props_recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "keynote_mapping": {
+        "Formato": "flr.formato"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.botole_d_ispezione_e_accessori",
+      "cat_label": "Botole d'ispezione e accessori",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_a_baffles_e_ispezionabili",
+      "cat_label": "Controsoffitti a Baffles e ispezionabili",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_a_doghe_in_legno",
+      "cat_label": "Controsoffitti a doghe in legno",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_in_pvc_o_materiali_plastici",
+      "cat_label": "Controsoffitti in PVC o materiali plastici",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_in_pvc_o_plastici",
+      "cat_label": "Controsoffitti in PVC o plastici",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_in_altri_materiali",
+      "cat_label": "Controsoffitti in altri materiali",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_in_cartongesso",
+      "cat_label": "Controsoffitti in cartongesso",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_in_fibre_minerali_e_acustici",
+      "cat_label": "Controsoffitti in fibre minerali e acustici",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.controsoffitti_metallici",
+      "cat_label": "Controsoffitti metallici",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.velette_di_raccordo",
+      "cat_label": "Velette di raccordo",
+      "super_id": "sup.controsoffitti",
+      "super_label": "Controsoffitti",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.cappotti_termici_finiti_a_intonachino",
+      "cat_label": "Cappotti termici finiti a intonachino",
+      "super_id": "sup.opere_da_facciatista_e_da_cappottista",
+      "super_label": "Opere da facciatista e da cappottista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.cappotti_termici_finiti_con_rivestimenti_ceramici",
+      "cat_label": "Cappotti termici finiti con rivestimenti ceramici",
+      "super_id": "sup.opere_da_facciatista_e_da_cappottista",
+      "super_label": "Opere da facciatista e da cappottista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.facciata_vetrata_a_doppia_pelle",
+      "cat_label": "Facciata vetrata a doppia pelle",
+      "super_id": "sup.opere_da_facciatista_e_da_cappottista",
+      "super_label": "Opere da facciatista e da cappottista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.facciata_vetrata_montanti_e_traversi",
+      "cat_label": "Facciata vetrata montanti e traversi",
+      "super_id": "sup.opere_da_facciatista_e_da_cappottista",
+      "super_label": "Opere da facciatista e da cappottista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.facciata_vetrata_riportata_a_cellule",
+      "cat_label": "Facciata vetrata riportata a cellule",
+      "super_id": "sup.opere_da_facciatista_e_da_cappottista",
+      "super_label": "Opere da facciatista e da cappottista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.sistemi_di_facciata_prefabbricati",
+      "cat_label": "Sistemi di facciata prefabbricati",
+      "super_id": "sup.opere_da_facciatista_e_da_cappottista",
+      "super_label": "Opere da facciatista e da cappottista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.sistemi_di_facciata_ventilata",
+      "cat_label": "Sistemi di facciata ventilata",
+      "super_id": "sup.opere_da_facciatista_e_da_cappottista",
+      "super_label": "Opere da facciatista e da cappottista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.schermature_fisse_e_brise_soleil",
+      "cat_label": "Schermature fisse e brisè soleil",
+      "super_id": "sup.sistemi_oscuranti_per_facciate",
+      "super_label": "Sistemi oscuranti per facciate",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.schermature_mobili",
+      "cat_label": "Schermature mobili",
+      "super_id": "sup.sistemi_oscuranti_per_facciate",
+      "super_label": "Sistemi oscuranti per facciate",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tende_da_sole_e_alla_veneziana",
+      "cat_label": "Tende da sole e alla veneziana",
+      "super_id": "sup.sistemi_oscuranti_per_facciate",
+      "super_label": "Sistemi oscuranti per facciate",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.accessi_in_copertura",
+      "cat_label": "Accessi in copertura",
+      "super_id": "sup.tetti_manti_di_copertura_e_opere_accessorie",
+      "super_label": "Tetti, manti di copertura e opere accessorie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.accessori_per_fotovoltaico",
+      "cat_label": "Accessori per fotovoltaico",
+      "super_id": "sup.tetti_manti_di_copertura_e_opere_accessorie",
+      "super_label": "Tetti, manti di copertura e opere accessorie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.dispositivi_anticaduta_e_di_protezione",
+      "cat_label": "Dispositivi anticaduta e di protezione",
+      "super_id": "sup.tetti_manti_di_copertura_e_opere_accessorie",
+      "super_label": "Tetti, manti di copertura e opere accessorie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.manti_di_copertura_con_elementi_puntuali",
+      "cat_label": "Manti di copertura con elementi puntuali",
+      "super_id": "sup.tetti_manti_di_copertura_e_opere_accessorie",
+      "super_label": "Tetti, manti di copertura e opere accessorie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.manti_di_copertura_con_pannelli_o_lastre",
+      "cat_label": "Manti di copertura con pannelli o lastre",
+      "super_id": "sup.tetti_manti_di_copertura_e_opere_accessorie",
+      "super_label": "Tetti, manti di copertura e opere accessorie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.canne_shunt",
+      "cat_label": "Canne Shunt",
+      "super_id": "sup.condotti_e_canne_fumarie",
+      "super_label": "Condotti e canne fumarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.canne_fumarie",
+      "cat_label": "Canne fumarie",
+      "super_id": "sup.condotti_e_canne_fumarie",
+      "super_label": "Condotti e canne fumarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.canne_per_esalazioni",
+      "cat_label": "Canne per esalazioni",
+      "super_id": "sup.condotti_e_canne_fumarie",
+      "super_label": "Condotti e canne fumarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.comignoli_e_pezzi_speciali",
+      "cat_label": "Comignoli e pezzi speciali",
+      "super_id": "sup.condotti_e_canne_fumarie",
+      "super_label": "Condotti e canne fumarie",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.avvolgibili_controtelai_cassonetti_e_persiane",
+      "cat_label": "Avvolgibili, controtelai, cassonetti e persiane",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.porte_blindate_portoni_e_bussole",
+      "cat_label": "Porte blindate, portoni e bussole",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.porte_metalliche",
+      "cat_label": "Porte metalliche",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.porte_tagliafuoco",
+      "cat_label": "Porte tagliafuoco",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.serramenti_in_pvc",
+      "cat_label": "Serramenti in PVC",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.serramenti_in_legno",
+      "cat_label": "Serramenti in legno",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.serramenti_in_legno_e_alluminio",
+      "cat_label": "Serramenti in legno e alluminio",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.serramenti_metallici",
+      "cat_label": "Serramenti metallici",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.sistemi_di_partizione_trasparenti_porte_e_parapetti_vetrati",
+      "cat_label": "Sistemi di partizione trasparenti, porte e parapetti vetrati",
+      "super_id": "sup.opere_da_serramentista",
+      "super_label": "Opere da serramentista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "props_recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "keynote_mapping": {
+        "Uw": "opn.trasmittanza_uw"
+      },
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pareti_impacchettabili",
+      "cat_label": "Pareti impacchettabili",
+      "super_id": "sup.pareti_mobili_attrezzate_impacchettabili",
+      "super_label": "Pareti mobili, attrezzate, impacchettabili",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pareti_mobili_opache",
+      "cat_label": "Pareti mobili opache",
+      "super_id": "sup.pareti_mobili_attrezzate_impacchettabili",
+      "super_label": "Pareti mobili, attrezzate, impacchettabili",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pareti_mobili_vetrate",
+      "cat_label": "Pareti mobili vetrate",
+      "super_id": "sup.pareti_mobili_attrezzate_impacchettabili",
+      "super_label": "Pareti mobili, attrezzate, impacchettabili",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.boiserie_in_legno",
+      "cat_label": "Boiserie in legno",
+      "super_id": "sup.opere_da_falegname",
+      "super_label": "Opere da falegname",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.opere_in_legno_custom",
+      "cat_label": "Opere in legno custom",
+      "super_id": "sup.opere_da_falegname",
+      "super_label": "Opere da falegname",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.persiane_e_scuri_in_legno",
+      "cat_label": "Persiane e scuri in legno",
+      "super_id": "sup.opere_da_falegname",
+      "super_label": "Opere da falegname",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.porte_in_legno",
+      "cat_label": "Porte in legno",
+      "super_id": "sup.opere_da_falegname",
+      "super_label": "Opere da falegname",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.canali_di_gronda",
+      "cat_label": "Canali di gronda",
+      "super_id": "sup.opere_da_lattoniere",
+      "super_label": "Opere da lattoniere",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pezzi_speciali_per_lattonerie",
+      "cat_label": "Pezzi speciali per lattonerie",
+      "super_id": "sup.opere_da_lattoniere",
+      "super_label": "Opere da lattoniere",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.scossaline",
+      "cat_label": "Scossaline",
+      "super_id": "sup.opere_da_lattoniere",
+      "super_label": "Opere da lattoniere",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tubi_pluviali",
+      "cat_label": "Tubi pluviali",
+      "super_id": "sup.opere_da_lattoniere",
+      "super_label": "Opere da lattoniere",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.cancelli_e_recinzioni",
+      "cat_label": "Cancelli e recinzioni",
+      "super_id": "sup.opere_da_fabbro",
+      "super_label": "Opere da fabbro",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.carpenterie_metalliche",
+      "cat_label": "Carpenterie metalliche",
+      "super_id": "sup.opere_da_fabbro",
+      "super_label": "Opere da fabbro",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.grigliati",
+      "cat_label": "Grigliati",
+      "super_id": "sup.opere_da_fabbro",
+      "super_label": "Opere da fabbro",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.parapetti_metallici_ringhiere_e_inferriate",
+      "cat_label": "Parapetti metallici, ringhiere e inferriate",
+      "super_id": "sup.opere_da_fabbro",
+      "super_label": "Opere da fabbro",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.portoni_metallici_e_porte_basculanti",
+      "cat_label": "Portoni metallici e porte basculanti",
+      "super_id": "sup.opere_da_fabbro",
+      "super_label": "Opere da fabbro",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.trattamenti_per_strutture_in_acciaio",
+      "cat_label": "Trattamenti per strutture in acciaio",
+      "super_id": "sup.opere_da_fabbro",
+      "super_label": "Opere da fabbro",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.carta_da_parati",
+      "cat_label": "Carta da parati",
+      "super_id": "sup.opere_da_tappezziere",
+      "super_label": "Opere da tappezziere",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tende_da_interno_manuali",
+      "cat_label": "Tende da interno manuali",
+      "super_id": "sup.opere_da_tappezziere",
+      "super_label": "Opere da tappezziere",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tende_da_interno_motorizzate",
+      "cat_label": "Tende da interno motorizzate",
+      "super_id": "sup.opere_da_tappezziere",
+      "super_label": "Opere da tappezziere",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.lavorazioni_su_vetri_e_serramenti",
+      "cat_label": "Lavorazioni su vetri e serramenti",
+      "super_id": "sup.opere_da_vetraio",
+      "super_label": "Opere da vetraio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pensiline_vetrate",
+      "cat_label": "Pensiline vetrate",
+      "super_id": "sup.opere_da_vetraio",
+      "super_label": "Opere da vetraio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.vetrazioni_e_accessori",
+      "cat_label": "Vetrazioni e accessori",
+      "super_id": "sup.opere_da_vetraio",
+      "super_label": "Opere da vetraio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.lavorazioni_decorative",
+      "cat_label": "Lavorazioni decorative",
+      "super_id": "sup.opere_da_verniciatore",
+      "super_label": "Opere da verniciatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.preparazione_delle_superfici",
+      "cat_label": "Preparazione delle superfici",
+      "super_id": "sup.opere_da_verniciatore",
+      "super_label": "Opere da verniciatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tinteggiature_intumescenti",
+      "cat_label": "Tinteggiature intumescenti",
+      "super_id": "sup.opere_da_verniciatore",
+      "super_label": "Opere da verniciatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tinteggiature_su_agglomerati_edili_murature_cartongessi_ecc",
+      "cat_label": "Tinteggiature su agglomerati edili (murature, cartongessi ecc.)",
+      "super_id": "sup.opere_da_verniciatore",
+      "super_label": "Opere da verniciatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tinteggiature_su_legno",
+      "cat_label": "Tinteggiature su legno",
+      "super_id": "sup.opere_da_verniciatore",
+      "super_label": "Opere da verniciatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tinteggiature_su_metallo",
+      "cat_label": "Tinteggiature su metallo",
+      "super_id": "sup.opere_da_verniciatore",
+      "super_label": "Opere da verniciatore",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.copertine_e_pezzi_speciali",
+      "cat_label": "Copertine e pezzi speciali",
+      "super_id": "sup.opere_in_pietra_naturale",
+      "super_label": "Opere in pietra naturale",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.davanzali_e_soglie",
+      "cat_label": "Davanzali e soglie",
+      "super_id": "sup.opere_in_pietra_naturale",
+      "super_label": "Opere in pietra naturale",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.materiali_semilavorati_sola_fornitura",
+      "cat_label": "Materiali semilavorati (sola fornitura)",
+      "super_id": "sup.opere_in_pietra_naturale",
+      "super_label": "Opere in pietra naturale",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.rivestimenti_di_scale",
+      "cat_label": "Rivestimenti di scale",
+      "super_id": "sup.opere_in_pietra_naturale",
+      "super_label": "Opere in pietra naturale",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.accessori_per_l_allestimento_di_servizi_igienici",
+      "cat_label": "Accessori per l'allestimento di servizi igienici",
+      "super_id": "sup.apparecchi_sanitari_e_accessori",
+      "super_label": "Apparecchi sanitari e accessori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.apparecchi_sanitari",
+      "cat_label": "Apparecchi sanitari",
+      "super_id": "sup.apparecchi_sanitari_e_accessori",
+      "super_label": "Apparecchi sanitari e accessori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.cassette_di_scarico",
+      "cat_label": "Cassette di scarico",
+      "super_id": "sup.apparecchi_sanitari_e_accessori",
+      "super_label": "Apparecchi sanitari e accessori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.verde_pensile_estensivo",
+      "cat_label": "Verde pensile estensivo",
+      "super_id": "sup.sistemi_per_verde_pensile",
+      "super_label": "Sistemi per verde pensile",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.verde_pensile_intensivo",
+      "cat_label": "Verde pensile intensivo",
+      "super_id": "sup.sistemi_per_verde_pensile",
+      "super_label": "Sistemi per verde pensile",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.alberature_prima_seconda_e_terza_grandezza",
+      "cat_label": "Alberature (prima seconda e terza grandezza)",
+      "super_id": "sup.opere_da_florovivaista",
+      "super_label": "Opere da florovivaista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.altro_materiale_vegetale_terricci_pacciamature",
+      "cat_label": "Altro materiale vegetale (terricci pacciamature)",
+      "super_id": "sup.opere_da_florovivaista",
+      "super_label": "Opere da florovivaista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arbusti",
+      "cat_label": "Arbusti",
+      "super_id": "sup.opere_da_florovivaista",
+      "super_label": "Opere da florovivaista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tappezzanti",
+      "cat_label": "Tappezzanti",
+      "super_id": "sup.opere_da_florovivaista",
+      "super_label": "Opere da florovivaista",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.complementi_edili_per_illuminazione_esterna",
+      "cat_label": "Complementi edili per illuminazione esterna",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.ghiaie_sabbie_e_aggregati",
+      "cat_label": "Ghiaie sabbie e aggregati",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.manti_stradali_in_asfalto_e_bitumi",
+      "cat_label": "Manti stradali in asfalto e bitumi",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.marciapiedi_e_accessori",
+      "cat_label": "Marciapiedi e accessori",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.massicciate_stradali",
+      "cat_label": "Massicciate stradali",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.pavimentazione_in_autobloccanti_o_masselli",
+      "cat_label": "Pavimentazione in autobloccanti o masselli",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.segnaletica_orizzontale_e_verticale",
+      "cat_label": "Segnaletica orizzontale e verticale",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.sistema_di_raccolta_e_smaltimento_acque_meteoriche",
+      "cat_label": "Sistema di raccolta e smaltimento acque meteoriche",
+      "super_id": "sup.opere_stradali_fognature_e_sistemazioni_esterne",
+      "super_label": "Opere stradali, fognature e sistemazioni esterne",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.altri_arredi_standard",
+      "cat_label": "Altri arredi standard",
+      "super_id": "sup.arredi_standard",
+      "super_label": "Arredi standard",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arredi_per_esterno",
+      "cat_label": "Arredi per esterno",
+      "super_id": "sup.arredi_standard",
+      "super_label": "Arredi standard",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arredi_per_strutture_ricettive",
+      "cat_label": "Arredi per strutture ricettive",
+      "super_id": "sup.arredi_standard",
+      "super_label": "Arredi standard",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arredo_bagno",
+      "cat_label": "Arredo bagno",
+      "super_id": "sup.arredi_standard",
+      "super_label": "Arredi standard",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arredo_per_uffici",
+      "cat_label": "Arredo per uffici",
+      "super_id": "sup.arredi_standard",
+      "super_label": "Arredi standard",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arredi_su_misura_in_altri_materiali",
+      "cat_label": "Arredi su misura in altri materiali",
+      "super_id": "sup.arredi_su_misura",
+      "super_label": "Arredi su misura",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arredi_su_misura_in_legno",
+      "cat_label": "Arredi su misura in legno",
+      "super_id": "sup.arredi_su_misura",
+      "super_label": "Arredi su misura",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.arredi_su_misura_insegne_e_simboli",
+      "cat_label": "Arredi su misura insegne e simboli",
+      "super_id": "sup.arredi_su_misura",
+      "super_label": "Arredi su misura",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.allestimenti_e_personalizzazioni_di_impianti_elevatori",
+      "cat_label": "Allestimenti e personalizzazioni di impianti elevatori",
+      "super_id": "sup.impianti_elevatori",
+      "super_label": "Impianti elevatori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.impianti_ascensori",
+      "cat_label": "Impianti ascensori",
+      "super_id": "sup.impianti_elevatori",
+      "super_label": "Impianti elevatori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.montacarichi",
+      "cat_label": "Montacarichi",
+      "super_id": "sup.impianti_elevatori",
+      "super_label": "Impianti elevatori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.montapersone",
+      "cat_label": "Montapersone",
+      "super_id": "sup.impianti_elevatori",
+      "super_label": "Impianti elevatori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.piattaforme_elevatrici",
+      "cat_label": "Piattaforme elevatrici",
+      "super_id": "sup.impianti_elevatori",
+      "super_label": "Impianti elevatori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.scale_mobili",
+      "cat_label": "Scale mobili",
+      "super_id": "sup.impianti_elevatori",
+      "super_label": "Impianti elevatori",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.altri_presidi_antincendio",
+      "cat_label": "Altri presidi antincendio",
+      "super_id": "sup.presidi_antincendio",
+      "super_label": "Presidi antincendio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.estintori",
+      "cat_label": "Estintori",
+      "super_id": "sup.presidi_antincendio",
+      "super_label": "Presidi antincendio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.portoni_tagliafuoco",
+      "cat_label": "Portoni tagliafuoco",
+      "super_id": "sup.presidi_antincendio",
+      "super_label": "Presidi antincendio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.sigillature",
+      "cat_label": "Sigillature",
+      "super_id": "sup.presidi_antincendio",
+      "super_label": "Presidi antincendio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.tende_tagliafuoco",
+      "cat_label": "Tende tagliafuoco",
+      "super_id": "sup.presidi_antincendio",
+      "super_label": "Presidi antincendio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.altre_attivita_di_bonifica_e_analisi_di_laboratorio",
+      "cat_label": "Altre attività di bonifica e analisi di laboratorio",
+      "super_id": "sup.opere_di_bonifica_e_analisi_di_laboratorio",
+      "super_label": "Opere di bonifica e analisi di laboratorio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.bonifica_materiali_pericolosi",
+      "cat_label": "Bonifica materiali pericolosi",
+      "super_id": "sup.opere_di_bonifica_e_analisi_di_laboratorio",
+      "super_label": "Opere di bonifica e analisi di laboratorio",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.demolizione_di_fabbricati",
+      "cat_label": "Demolizione di fabbricati",
+      "super_id": "sup.demolizioni_e_rimozioni",
+      "super_label": "Demolizioni e rimozioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.demolizione_elementi_civili",
+      "cat_label": "Demolizione elementi civili",
+      "super_id": "sup.demolizioni_e_rimozioni",
+      "super_label": "Demolizioni e rimozioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.demolizione_elementi_strutturali",
+      "cat_label": "Demolizione elementi strutturali",
+      "super_id": "sup.demolizioni_e_rimozioni",
+      "super_label": "Demolizioni e rimozioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.oneri_per_trasporto_e_discarica",
+      "cat_label": "Oneri per trasporto e discarica",
+      "super_id": "sup.demolizioni_e_rimozioni",
+      "super_label": "Demolizioni e rimozioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.rimozione_di_impianti_tecnologici",
+      "cat_label": "Rimozione di impianti tecnologici",
+      "super_id": "sup.demolizioni_e_rimozioni",
+      "super_label": "Demolizioni e rimozioni",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.apparecchi_di_sicurezza_reti_cartellonistica_ecc",
+      "cat_label": "Apparecchi di sicurezza (reti, cartellonistica ecc.)",
+      "super_id": "sup.opere_di_sicurezza",
+      "super_label": "Opere di sicurezza",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.baraccamenti",
+      "cat_label": "Baraccamenti",
+      "super_id": "sup.opere_di_sicurezza",
+      "super_label": "Opere di sicurezza",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.mezzi_di_cantiere",
+      "cat_label": "Mezzi di cantiere",
+      "super_id": "sup.opere_di_sicurezza",
+      "super_label": "Opere di sicurezza",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.opere_provvisionali",
+      "cat_label": "Opere Provvisionali",
+      "super_id": "sup.opere_di_sicurezza",
+      "super_label": "Opere di sicurezza",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.scavi_e_trasporti_a_discarica",
+      "cat_label": "Scavi e trasporti a discarica",
+      "super_id": "sup.movimenti_di_terra",
+      "super_label": "Movimenti di terra",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
+    },
+    {
+      "cat_id": "cat.rinterri_e_forniture_di_terreno",
+      "cat_label": "Rinterri e forniture di terreno",
+      "super_id": "sup.movimenti_di_terra",
+      "super_label": "Movimenti di terra",
+      "groups_required": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "groups_recommended": [
+        "inst",
+        "cmp",
+        "cst"
+      ],
+      "props_required": [
+        "mat.materiale"
+      ],
+      "props_recommended": [],
+      "keynote_mapping": {},
+      "notes": "Auto-generated from SUPER profile; refine as needed."
     }
   ]
 }

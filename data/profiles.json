@@ -1,1 +1,75 @@
-{"profiles": []}
+{
+  "version": "0.1.0",
+  "generated_at": "2025-09-21T09:16:56.940028Z",
+  "profiles": [
+    {
+      "id": "profile.arch.concept",
+      "label": "Architettura – Concept",
+      "discipline": "arch",
+      "phase": "concept",
+      "required_groups_add": [
+        "idn",
+        "mat"
+      ],
+      "recommended_groups_add": [
+        "qty",
+        "geo"
+      ],
+      "property_overrides": {
+        "frs.resistenza_fuoco": {
+          "required": false
+        },
+        "opn.trasmittanza_uw": {
+          "required": false
+        }
+      }
+    },
+    {
+      "id": "profile.arch.detailed",
+      "label": "Architettura – Definitivo/Esecutivo",
+      "discipline": "arch",
+      "phase": "detailed",
+      "required_groups_add": [
+        "idn",
+        "qty",
+        "mat",
+        "geo"
+      ],
+      "recommended_groups_add": [
+        "frs",
+        "thm",
+        "aco",
+        "inst"
+      ],
+      "property_overrides": {}
+    },
+    {
+      "id": "profile.fire.detailed",
+      "label": "Antincendio – Esecutivo",
+      "discipline": "fire",
+      "phase": "detailed",
+      "required_groups_add": [
+        "frs"
+      ],
+      "property_overrides": {
+        "frs.resistenza_fuoco": {
+          "required": true
+        }
+      }
+    },
+    {
+      "id": "profile.acoustic.detailed",
+      "label": "Acustica – Esecutivo",
+      "discipline": "acoustic",
+      "phase": "detailed",
+      "required_groups_add": [
+        "aco"
+      ],
+      "property_overrides": {
+        "aco.rw": {
+          "required": true
+        }
+      }
+    }
+  ]
+}

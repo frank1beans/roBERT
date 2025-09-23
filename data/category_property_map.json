@@ -1,10 +1,1029 @@
 {
+  "version": "0.3.0",
   "default_requirements_by_super": {
-    "Strutture": {
-      "required_groups": ["fire"],
-      "recommended_groups": []
+    "Cantierizzazioni": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Assistenze murarie": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere murarie": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat",
+        "geo",
+        "mech",
+        "frs",
+        "thm",
+        "aco"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da cartongessista": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "gyp",
+        "frs",
+        "aco"
+      ],
+      "recommended_groups": [
+        "thm",
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere di coibentazione": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere di impermeabilizzazione": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "wpf",
+        "inst"
+      ],
+      "recommended_groups": [
+        "cmp",
+        "cst"
+      ]
+    },
+    "Massetti, sottofondi, drenaggi, vespai": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da intonacatore e stuccatore": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere di rivestimento": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere di pavimentazione": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "flr",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Controsoffitti": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da facciatista e da cappottista": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Sistemi oscuranti per facciate": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Tetti, manti di copertura e opere accessorie": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Condotti e canne fumarie": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da serramentista": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "opn",
+        "thm",
+        "aco",
+        "frs"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Pareti mobili, attrezzate, impacchettabili": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da falegname": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da lattoniere": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da fabbro": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da tappezziere": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da vetraio": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da verniciatore": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere in pietra naturale": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Apparecchi sanitari e accessori": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Sistemi per verde pensile": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere da florovivaista": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere stradali, fognature e sistemazioni esterne": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Arredi standard": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Arredi su misura": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Impianti elevatori": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Presidi antincendio": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere di bonifica e analisi di laboratorio": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Demolizioni e rimozioni": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Opere di sicurezza": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "#N/D": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Impianto distribuzione fluidi UTA": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Movimenti di terra": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Strutture in altri materiali": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Strutture in carpenteria metallica": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
+    },
+    "Strutture in cemento armato in opera": {
+      "required_groups": [
+        "idn",
+        "qty",
+        "mat"
+      ],
+      "recommended_groups": [
+        "inst",
+        "cmp",
+        "cst"
+      ]
     }
   },
-  "category_overrides": {},
-  "ifc_defaults_by_super": {}
+  "category_overrides": {
+    "Elementi in laterizio": {
+      "required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "geo.foratura_laterizio",
+        "mech.resistenza_compressione",
+        "frs.resistenza_fuoco"
+      ],
+      "recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "geo.peso_areico",
+        "mat.classe_reazione_fuoco"
+      ],
+      "ifc_classes": [
+        "IfcWall",
+        "IfcBuildingElementPart"
+      ],
+      "rules": [
+        {
+          "if": "contains(text, ['laterizio','forato','pieno','porizzato'])",
+          "then": "boost_category('Elementi in laterizio', 1.0)"
+        },
+        {
+          "if": "geo.foratura_laterizio in ['pieno','forato','semipieno']",
+          "then": "require_group('geo')"
+        }
+      ]
+    },
+    "Blocchi in calcestruzzo vibrocompresso": {
+      "required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "mech.resistenza_compressione"
+      ],
+      "recommended": [
+        "thm.lambda",
+        "aco.rw",
+        "mat.densita"
+      ],
+      "ifc_classes": [
+        "IfcWall"
+      ]
+    },
+    "Blocchi in calcestruzzo cellulare aerato autoclavato": {
+      "required": [
+        "mat.materiale",
+        "geo.spessore_elemento",
+        "thm.lambda"
+      ],
+      "recommended": [
+        "mech.resistenza_compressione",
+        "aco.rw"
+      ],
+      "ifc_classes": [
+        "IfcWall"
+      ]
+    },
+    "Pareti in cartongesso standard e idrorepellente": {
+      "required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "recommended": [
+        "aco.rw",
+        "thm.lambda",
+        "inst.primer_collante"
+      ],
+      "ifc_classes": [
+        "IfcWall",
+        "IfcCovering"
+      ]
+    },
+    "Pareti in cartongesso resistente al fuoco": {
+      "required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "recommended": [
+        "aco.rw",
+        "thm.lambda",
+        "inst.primer_collante"
+      ],
+      "ifc_classes": [
+        "IfcWall",
+        "IfcCovering"
+      ]
+    },
+    "Contropareti in cartongesso standard e idrorepellente": {
+      "required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "recommended": [
+        "aco.rw",
+        "thm.lambda",
+        "inst.primer_collante"
+      ],
+      "ifc_classes": [
+        "IfcWall",
+        "IfcCovering"
+      ]
+    },
+    "Contropareti in cartongesso resistente al fuoco": {
+      "required": [
+        "gyp.tipo_lastra",
+        "gyp.numero_strati",
+        "gyp.interasse_orditura",
+        "frs.resistenza_fuoco"
+      ],
+      "recommended": [
+        "aco.rw",
+        "thm.lambda",
+        "inst.primer_collante"
+      ],
+      "ifc_classes": [
+        "IfcWall",
+        "IfcCovering"
+      ]
+    },
+    "Impermeabilizzazioni bituminose": {
+      "required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "ifc_classes": [
+        "IfcCovering",
+        "IfcRoof"
+      ]
+    },
+    "Impermeabilizzazioni liquide": {
+      "required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "ifc_classes": [
+        "IfcCovering",
+        "IfcRoof"
+      ]
+    },
+    "Impermeabilizzazioni sintetiche": {
+      "required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "ifc_classes": [
+        "IfcCovering",
+        "IfcRoof"
+      ]
+    },
+    "Impermeabilizzazioni resine": {
+      "required": [
+        "wpf.tipo_impermeabilizzante",
+        "wpf.spessore_strato",
+        "inst.substrato"
+      ],
+      "recommended": [
+        "idn.ambito",
+        "inst.condizioni_ambientali",
+        "cmp.norme_riferimento"
+      ],
+      "ifc_classes": [
+        "IfcCovering",
+        "IfcRoof"
+      ]
+    },
+    "Pavimenti in gres e ceramica": {
+      "required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "ifc_classes": [
+        "IfcCovering"
+      ]
+    },
+    "Rivestimenti in gres e ceramica": {
+      "required": [
+        "flr.formato",
+        "flr.spessore_finito",
+        "mat.materiale"
+      ],
+      "recommended": [
+        "flr.classe_antiscivolo",
+        "mat.finitura_superficie"
+      ],
+      "ifc_classes": [
+        "IfcCovering"
+      ]
+    },
+    "Serramenti in PVC": {
+      "required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "ifc_classes": [
+        "IfcWindow",
+        "IfcDoor",
+        "IfcCurtainWall"
+      ]
+    },
+    "Serramenti metallici": {
+      "required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "ifc_classes": [
+        "IfcWindow",
+        "IfcDoor",
+        "IfcCurtainWall"
+      ]
+    },
+    "Serramenti in legno": {
+      "required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "ifc_classes": [
+        "IfcWindow",
+        "IfcDoor",
+        "IfcCurtainWall"
+      ]
+    },
+    "Serramenti in legno e alluminio": {
+      "required": [
+        "opn.materiale_serramento",
+        "opn.trasmittanza_uw",
+        "opn.tenuta_aria",
+        "opn.tenuta_acqua",
+        "opn.resistenza_vento"
+      ],
+      "recommended": [
+        "opn.vetro_stratigrafia",
+        "aco.rw",
+        "frs.resistenza_fuoco"
+      ],
+      "ifc_classes": [
+        "IfcWindow",
+        "IfcDoor",
+        "IfcCurtainWall"
+      ]
+    }
+  },
+  "ifc_defaults_by_super": {
+    "Cantierizzazioni": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Assistenze murarie": {
+      "ifc_classes": [
+        "IfcWall",
+        "IfcWallType",
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere murarie": {
+      "ifc_classes": [
+        "IfcWall",
+        "IfcWallType",
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da cartongessista": {
+      "ifc_classes": [
+        "IfcWall",
+        "IfcWallType",
+        "IfcCovering"
+      ]
+    },
+    "Opere di coibentazione": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere di impermeabilizzazione": {
+      "ifc_classes": [
+        "IfcCovering",
+        "IfcRoof"
+      ]
+    },
+    "Massetti, sottofondi, drenaggi, vespai": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da intonacatore e stuccatore": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere di rivestimento": {
+      "ifc_classes": [
+        "IfcCovering",
+        "IfcSlab"
+      ]
+    },
+    "Opere di pavimentazione": {
+      "ifc_classes": [
+        "IfcCovering",
+        "IfcSlab"
+      ]
+    },
+    "Controsoffitti": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da facciatista e da cappottista": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Sistemi oscuranti per facciate": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Tetti, manti di copertura e opere accessorie": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Condotti e canne fumarie": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da serramentista": {
+      "ifc_classes": [
+        "IfcDoor",
+        "IfcWindow",
+        "IfcCurtainWall"
+      ]
+    },
+    "Pareti mobili, attrezzate, impacchettabili": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da falegname": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da lattoniere": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da fabbro": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da tappezziere": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da vetraio": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da verniciatore": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere in pietra naturale": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Apparecchi sanitari e accessori": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Sistemi per verde pensile": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere da florovivaista": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere stradali, fognature e sistemazioni esterne": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Arredi standard": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Arredi su misura": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Impianti elevatori": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Presidi antincendio": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere di bonifica e analisi di laboratorio": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Demolizioni e rimozioni": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Opere di sicurezza": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "#N/D": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Impianto distribuzione fluidi UTA": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Movimenti di terra": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Strutture in altri materiali": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Strutture in carpenteria metallica": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    },
+    "Strutture in cemento armato in opera": {
+      "ifc_classes": [
+        "IfcBuildingElementProxy"
+      ]
+    }
+  }
 }

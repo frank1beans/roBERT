@@ -1,1 +1,15 @@
-{"computed": []}
+{
+  "version": "1.0.0",
+  "generated_at": "2025-09-21T09:27:56.010851Z",
+  "computed": [
+    {
+      "target": "geo.peso_areico",
+      "expr": "mat.densita * (geo.spessore_elemento/1000.0)",
+      "units": "kg/m²",
+      "requires": [
+        "mat.densita (kg/m³)",
+        "geo.spessore_elemento (mm)"
+      ]
+    }
+  ]
+}
