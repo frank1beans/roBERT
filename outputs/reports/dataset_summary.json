@@ -1,0 +1,14 @@
+{
+  "train": {
+    "num_records": 39280,
+    "avg_text_length": 847.1959521384929,
+    "median_text_length": 640.0,
+    "p95_text_length": 2320.0
+  },
+  "val": {
+    "num_records": 9821,
+    "avg_text_length": 851.1460136442317,
+    "median_text_length": 643.0,
+    "p95_text_length": 2367.0
+  }
+}
