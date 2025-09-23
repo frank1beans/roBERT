@@ -1,11 +1,9 @@
 
-import json
-from pathlib import Path
-
 from robimb.extraction import extract_properties
+from robimb.extraction.resources import load_default
 
 
-PACK_V1 = json.loads(Path("pack/v1/extractors.json").read_text(encoding="utf-8"))
+PACK_V1 = load_default()
 
 def test_basic_extraction():
     extractors_pack = {

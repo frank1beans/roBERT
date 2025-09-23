@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 
+from robimb.extraction.resources import load_default
 from robimb.features.extractors import extract_properties
 from robimb.utils.data_utils import prepare_classification_dataset
 
@@ -70,8 +71,7 @@ def test_prepare_classification_dataset_enriches_properties(tmp_path):
 
 
 def test_pack_extractors_normalize_ei_and_spessore_cm():
-    pack_path = Path(__file__).resolve().parents[1] / "pack" / "v1" / "extractors.json"
-    extractors_pack = json.loads(pack_path.read_text(encoding="utf-8"))
+    extractors_pack = load_default()
 
     text = "Parete EI 60 con spessore 12 cm"
     props = extract_properties(text, extractors_pack)

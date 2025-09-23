@@ -21,7 +21,7 @@
     },
     {
       "name": "extractors",
-      "path": "extractors.json",
+      "path": "../../src/robimb/extraction/resources/extractors.json",
       "sha256": "bf80368ebba3a0a64d84240849e075f575d3c1d57bd39cfb5dff1ba151f36d41",
       "size": 3791
     },

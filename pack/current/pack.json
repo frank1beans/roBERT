@@ -3,7 +3,7 @@
   "generated_at": "2025-09-22T21:52:11Z",
   "files": {
     "registry": "../v1/registry.json",
-    "extractors": "../v1/extractors.json",
+    "extractors": "../../src/robimb/extraction/resources/extractors.json",
     "validators": "../v1/validators.json",
     "formulas": "../v1/formulas.json",
     "views": "../v1/views.json",
