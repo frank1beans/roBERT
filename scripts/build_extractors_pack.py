@@ -157,7 +157,9 @@ def infer_normalizers(property_id: str, slot: SlotInfo) -> List[str]:
         if any(sep in rx for rx in slot.regexes for sep in (",", ";", "/")):
             normals.append("split_structured_list")
     if slot.slot_type in {"float", "int"}:
-        if any("cm" in rx for rx in slot.regexes):
+        property_id_lower = property_id.lower()
+        destination_is_mm = "_mm" in property_id_lower or property_id_lower.endswith("mm")
+        if destination_is_mm and any("cm" in rx for rx in slot.regexes):
             normals.append("cm_to_mm?")
     if "resistenza_fuoco" in property_id or property_id.lower().startswith("frs.rei"):
         normals.append("format_EI_from_last_int")

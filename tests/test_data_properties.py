@@ -78,3 +78,12 @@ def test_pack_extractors_normalize_ei_and_spessore_cm():
 
     assert props["frs.resistenza_fuoco"] == "EI60"
     assert pytest.approx(props["geo.spessore_elemento"], rel=1e-6) == 120.0
+
+
+def test_cm_targets_keep_centimetres():
+    extractors_pack = load_default()
+
+    text = "Rivestimento con lastre spessore 1,4 cm"
+    props = extract_properties(text, extractors_pack)
+
+    assert pytest.approx(props["spessore_lastre_cm"], rel=1e-6) == 1.4

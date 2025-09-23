@@ -1,5 +1,5 @@
 # Checklist estrazione proprietà prioritari
-Generata automaticamente il 2025-09-23 17:17:51Z a partire da `data/properties_registry_extended.json`.
+Generata automaticamente il 2025-09-23 20:38:17Z a partire da `data/properties_registry_extended.json`.
 Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum, stringhe) con le regex di supporto e i normalizzatori suggeriti.
 
 ## Apparecchi sanitari e accessori|Accessori per l'allestimento di servizi igienici
@@ -124,7 +124,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `tipologia` | enum | `\bcomignol[oi]|eolico|antipio(?:gg|giorni)ia|curv[ae]|tee[s]?|riduzion[ei]\b`<br>`\bcomignol[oi]|eolico|antipioggia|curv[ae]|tee[s]?|riduzion[ei]\b` | `lower` |
-| `sezione_passaggio_cm2` | float | `\b(\d{2,4})\s*cm2\b|\bsezione\s*(\d{2,4})\s*cm\^?2\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `sezione_passaggio_cm2` | float | `\b(\d{2,4})\s*cm2\b|\bsezione\s*(\d{2,4})\s*cm\^?2\b` | `comma_to_dot`, `to_float` |
 
 ## Controsoffitti|Botole d'ispezione e accessori
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -185,12 +185,12 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `quantita_unita` | float | `\b(\d{1,5})\s*((?:mq|m²|m2|metri\\s*quad(?:ri|rati))|m2|ml|pz)\b`<br>`\b(\d{1,5})\s*(mq|m2|ml|(?:pz|pz\\.|pezzi))\b`<br>`\b(\d{1,5})\s*(mq|m2|ml|pz)\b` | `comma_to_dot`, `to_float`, `normalize_unit_symbols` |
-| `spessore_cm` | float | `\bspessore\s*(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\bspessore\s*(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Demolizioni e rimozioni|Demolizione elementi strutturali
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float` |
 | `metodo` | enum | `\bcarota(?:gg|giorni)i?o|taglio\s*(a\s*)?disco|filo\s*di\s*taglio|martellone|idrodemolizion[ei]\b`<br>`\bcarotaggi?o|taglio\s*(a\s*)?disco|filo\s*di\s*taglio|martellone|idrodemolizion[ei]\b` | `lower` |
 
 ## Demolizioni e rimozioni|Oneri per trasporto e discarica
@@ -247,12 +247,12 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Massetti, sottofondi, drenaggi, vespai|Cappe di completamento
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Massetti, sottofondi, drenaggi, vespai|Massetti alleggeriti
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `densita_kgm3` | float | `\b(\d{3,4})\s*kg/?(?:m3|m³|metri\\s*cub(?:i|ici))\b`<br>`\b(\d{3,4})\s*kg/?m3\b` | `comma_to_dot`, `to_float` |
 
 ## Massetti, sottofondi, drenaggi, vespai|Massetti pendenzati
@@ -263,7 +263,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Massetti, sottofondi, drenaggi, vespai|Sottofondi pavimentazioni
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Massetti, sottofondi, drenaggi, vespai|Teli di separazione
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -273,7 +273,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Massetti, sottofondi, drenaggi, vespai|Vespai aerati
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `altezza_cm` | float | `\b(\d{2})\s*cm\b|\bH\s*(\d{2})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `altezza_cm` | float | `\b(\d{2})\s*cm\b|\bH\s*(\d{2})\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Movimenti di terra|Rinterri e forniture di terreno
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -439,7 +439,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | --- | --- | --- | --- |
 | `categoria_grandezza` | enum | `\b(I|II|III)\s*grandezz?a\b` | `lower` |
 | `altezza_piante_m` | float | `\b(h|altezza)\s*(\d{1,2}(?:[.,]\d)?)\s*m\b` | `comma_to_dot`, `to_float` |
-| `circonferenza_fusto_cm` | float | `\b(circonferenza|circ\.)\s*(\d{2,3})\s*cm\b|\bC(\d{2,3})\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `circonferenza_fusto_cm` | float | `\b(circonferenza|circ\.)\s*(\d{2,3})\s*cm\b|\bC(\d{2,3})\b` | `comma_to_dot`, `to_float` |
 
 ## Opere da florovivaista|Altro materiale vegetale (terricci pacciamature)
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -449,7 +449,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Opere da florovivaista|Arbusti
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `altezza_piante_cm` | float | `\b(h|altezza)\s*(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `altezza_piante_cm` | float | `\b(h|altezza)\s*(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float` |
 | `contenitore_litri` | float | `\b(\d{1,2}|[1-8]\d)\s*L\b|\b(\d{1,2}|[1-8]\d)\s*litri\b` | `comma_to_dot`, `to_float` |
 | `sempreverde` | bool | `\bsempreverde\b|\bcaduc[ao]\b` | `map_yes_no_multilang` |
 
@@ -457,7 +457,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `densita_impianto_pt_m2` | float | `\b(\d{1,2})\s*p[tz]\s*/\s*m2\b|\b(\d{1,2})\s*\b[pP]iante\s*/\s*m2\b` | `comma_to_dot`, `to_float` |
-| `altezza_cm` | float | `\b(\d{1,2})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `altezza_cm` | float | `\b(\d{1,2})\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere da intonacatore e stuccatore|Intonaco intumescente
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -615,7 +615,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `vetro_stratig_mm` | text | `\b(\d{2})\+(\d{2})(?:\+(\d{2}))?\s*cm\b`<br>`\b(\d{2})\+(\d{2})(?:\+(\d{2}))?\s*mm\b` | — |
-| `sporgenza_cm` | float | `\b(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `sporgenza_cm` | float | `\b(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere da vetraio|Vetrazioni e accessori
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -722,13 +722,13 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `tipo_pietra` | enum | `\bmarmo|granito|travertino|ardesia|quarzite|basalto|pietra\s*calcarea\b` | `lower` |
-| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere di pavimentazione|Pavimenti industriali
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `tipo_calcestruzzo` | enum | `\bRck\s*(25|30|35)|fibro\b` | `lower` |
-| `spessore_cm` | float | `\b(\d{1,2})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{1,2})\s*cm\b` | `comma_to_dot`, `to_float` |
 | `indurente_quarzo` | bool | `\bindurente\s*(al)?\s*quarzo\b` | `map_yes_no_multilang` |
 
 ## Opere di pavimentazione|Pavimenti sopraelevati e flottanti
@@ -772,7 +772,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `tipo_pietra` | enum | `\bmarmo\b|\bgranito\b|\btravertino\b|\bardesia\b|\bquarzite\b|\bbasalto\b|\bpietra\s*calcarea\b` | `lower` |
-| `spessore_lastre_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_lastre_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `finitura_superficie` | enum | `\blucidat[oa]|levigat[oa]|bocciardat[oa]|spazzolat[oa]|fiacmat[oa]|sabatat[oa]|anticat[oa]\b`<br>`\blucidat[oa]|levigat[oa]|bocciardat[oa]|spazzolat[oa]|fiammat[oa]|sabatat[oa]|anticat[oa]\b` | `lower` |
 
 ## Opere di sicurezza|Apparecchi di sicurezza (reti, cartellonistica ecc.)
@@ -802,36 +802,36 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Opere in pietra naturale|Copertine e pezzi speciali
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere in pietra naturale|Davanzali e soglie
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere in pietra naturale|Materiali semilavorati (sola fornitura)
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_lastre_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_lastre_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `formato_lastra_cm` | text | `\b(\d{2,3})\s*[x×]\s*(\d{2,3})\s*cm\b` | `split_structured_list` |
 
 ## Opere in pietra naturale|Rivestimenti di scale
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_alzata_cm` | float | `\balzata\s*(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
-| `spessore_pedata_cm` | float | `\bpedata\s*(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_alzata_cm` | float | `\balzata\s*(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
+| `spessore_pedata_cm` | float | `\bpedata\s*(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere murarie|Blocchi in calcestruzzo cellulare aerato autoclavato
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `densita_kgm3` | float | `\b(\d{3})\s*kg/?(?:m3|m³|metri\\s*cub(?:i|ici))\b|\bρ\s*=\s*(\d{3})\b`<br>`\b(\d{3})\s*kg/?m3\b|\bρ\s*=\s*(\d{3})\b` | `comma_to_dot`, `to_float` |
 | `classe_resistenza` | enum | `\b(2\.5|3\.5|5\.0)\b` | `lower` |
 
 ## Opere murarie|Blocchi in calcestruzzo vibrocompresso
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `percentuale_foratura` | float | `\b(\d{1,2})\s*%\s*foratura\b` | `comma_to_dot`, `to_float` |
 | `classe_resistenza` | enum | `\bR\s?(7\.5|10|12|15)\b` | `lower` |
 
@@ -839,14 +839,14 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `tipologia` | enum | `\b(forato|alveolato|pieno|porizzato|poroton)\b` | `lower` |
-| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `percentuale_foratura` | float | `\b(\d{1,2})\s*%\s*foratura\b` | `comma_to_dot`, `to_float` |
 
 ## Opere murarie|Murature in altri materiali
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `materiale` | enum | `\b(pietrame|pietra\s*naturale|sasso|tufo|calcestruzzo\s*pieno|legno\s*massello|adobe)\b` | `lower` |
-| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `tipo_legante` | enum | `\b(calce|cemento|terra\s*cruda|resine)\b` | `lower` |
 
 ## Opere stradali, fognature e sistemazioni esterne|Complementi edili per illuminazione esterna
@@ -863,31 +863,31 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Opere stradali, fognature e sistemazioni esterne|Manti stradali in asfalto e bitumi
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_strato_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_strato_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `bitume_classe` | enum | `\b(50/70|70/100|modificato|PMB|MOD)\b` | `lower`, `split_structured_list` |
 
 ## Opere stradali, fognature e sistemazioni esterne|Marciapiedi e accessori
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_allettamento_cm` | float | `\b(\d)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_allettamento_cm` | float | `\b(\d)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere stradali, fognature e sistemazioni esterne|Massicciate stradali
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_cm` | float | `\b(\d{2})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_cm` | float | `\b(\d{2})\s*cm\b` | `comma_to_dot`, `to_float` |
 | `portanza_Evd_MPa` | float | `\bEvd\s*(\d{2,3})\s*MPa\b` | `comma_to_dot`, `to_float` |
 
 ## Opere stradali, fognature e sistemazioni esterne|Pavimentazione in autobloccanti o masselli
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_massello_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_massello_cm` | float | `\b(\d(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `schema_posa` | enum | `\bspina\s*di\s*pesce|corsi\s*diritt[ei]|a\s*cerchi|a\s*el{1,2}e\b` | `lower`, `split_structured_list` |
 
 ## Opere stradali, fognature e sistemazioni esterne|Segnaletica orizzontale e verticale
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
 | `classe_pellicola` | enum | `\bRA?\s?2|Classe\s*[123]\b` | `lower` |
-| `larghezza_traccia_cm` | float | `\b(\d{1,2})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `larghezza_traccia_cm` | float | `\b(\d{1,2})\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Opere stradali, fognature e sistemazioni esterne|Sistema di raccolta e smaltimento acque meteoriche
 | Proprietà | Tipo | Regex | Normalizzatori |
@@ -961,14 +961,14 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 ## Sistemi per verde pensile|Verde pensile estensivo
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_pacchetto_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_pacchetto_cm` | float | `\b(\d{1,2}(?:[.,]\d)?)\s*cm\b` | `comma_to_dot`, `to_float` |
 | `peso_saturo_kNm2` | float | `\b(0\.[8-9]|1\.[0-8])\s*kN/?m2\b|\b(80-180)\s*kg/?m2\b` | `comma_to_dot`, `to_float` |
 | `specie_vegetali` | enum | `\bsedum|erbacee|muscine[ee]|miste\b` | `lower` |
 
 ## Sistemi per verde pensile|Verde pensile intensivo
 | Proprietà | Tipo | Regex | Normalizzatori |
 | --- | --- | --- | --- |
-| `spessore_pacchetto_cm` | float | `\b(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `spessore_pacchetto_cm` | float | `\b(\d{2,3})\s*cm\b` | `comma_to_dot`, `to_float` |
 | `peso_saturo_kNm2` | float | `\b(2\.[0-9]|[3-5]\.[0-9]|6\.0)\s*kN/?m2\b|\b(200-600)\s*kg/?m2\b` | `comma_to_dot`, `to_float` |
 | `irrigazione` | enum | `\ba\s*goccia|spruzzo|centralina\b` | `lower` |
 
@@ -990,7 +990,7 @@ Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum
 | --- | --- | --- | --- |
 | `classe_calcestruzzo` | enum | `\bC(25/30|28/35|30/37|32/40|35/45|40/50)\b` | `lower`, `split_structured_list` |
 | `armatura_tipo` | enum | `\bB450[AC]\b|\bfibra\b` | `lower` |
-| `copriferro_cm` | float | `\bcopriferro\s*(\d)\s*cm\b` | `comma_to_dot`, `to_float`, `cm_to_mm?` |
+| `copriferro_cm` | float | `\bcopriferro\s*(\d)\s*cm\b` | `comma_to_dot`, `to_float` |
 
 ## Tetti, manti di copertura e opere accessorie|Accessi in copertura
 | Proprietà | Tipo | Regex | Normalizzatori |
