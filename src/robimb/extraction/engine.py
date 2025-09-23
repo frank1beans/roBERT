@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from dataclasses import dataclass, field
+from typing import Any, Dict, Iterable, List, Optional, Sequence
 
 from .dsl import ExtractorsPack
 from .normalizers import BUILTIN_NORMALIZERS, Normalizer, build_normalizer
@@ -17,6 +17,21 @@ class Pattern:
     property_id: str
     regex: Sequence[str]
     normalizers: Sequence[str]
+    language: Optional[str] = None
+    confidence: Optional[float] = None
+    tags: Sequence[str] | None = None
+    compiled_regex: List[re.Pattern[str]] = field(default_factory=list)
+
+
+class PatternValidationError(ValueError):
+    """Raised when at least one regex pattern cannot be compiled."""
+
+    def __init__(self, errors: Sequence[Dict[str, Any]]):
+        self.errors: List[Dict[str, Any]] = list(errors)
+        summary = ", ".join(
+            f"{err.get('property_id')}: {err.get('regex')} -> {err.get('error')}" for err in self.errors
+        )
+        super().__init__(f"Invalid extractor patterns: {summary}")
 
 
 def _compile_patterns(
@@ -24,6 +39,7 @@ def _compile_patterns(
     allowed_properties: Optional[Iterable[str]] = None,
 ) -> List[Pattern]:
     pats: List[Pattern] = []
+    errors: List[Dict[str, Any]] = []
     allowed: Optional[set[str]] = None
     if allowed_properties is not None:
         allowed = {p for p in allowed_properties if p}
@@ -32,13 +48,26 @@ def _compile_patterns(
         pid = item["property_id"]
         if allowed is not None and pid not in allowed:
             continue
+        regex_list = list(item.get("regex", []))
+        compiled_regex: List[re.Pattern[str]] = []
+        for rx in regex_list:
+            try:
+                compiled_regex.append(re.compile(rx, flags=re.IGNORECASE))
+            except re.error as exc:  # pragma: no cover - defensive guard
+                errors.append({"property_id": pid, "regex": rx, "error": str(exc)})
         pats.append(
             Pattern(
                 property_id=pid,
-                regex=list(item.get("regex", [])),
+                regex=regex_list,
                 normalizers=list(item.get("normalizers", [])),
+                language=item.get("language"),
+                confidence=item.get("confidence"),
+                tags=item.get("tags"),
+                compiled_regex=compiled_regex,
             )
         )
+    if errors:
+        raise PatternValidationError(errors)
     return pats
 
 
@@ -75,13 +104,10 @@ def extract_properties(
 
     out: Dict[str, Any] = {}
     pats = _compile_patterns(extractors_pack, allowed_properties=allowed_properties)
-    compiled: List[Tuple[Pattern, List[re.Pattern[str]]]] = [
-        (p, [re.compile(rx, flags=re.IGNORECASE) for rx in p.regex]) for p in pats
-    ]
-    for pat, regs in compiled:
+    for pat in pats:
         has_collect = "collect_many" in pat.normalizers
-        for rx in regs:
-            for m in rx.finditer(text):
+        for _, compiled_rx in zip(pat.regex, pat.compiled_regex):
+            for m in compiled_rx.finditer(text):
                 cap = _coerce_capture(m)
                 val = _apply_normalizers(cap, m.group(0), pat.normalizers, extractors_pack)
                 if has_collect:
@@ -110,13 +136,12 @@ def dry_run(
     details: List[Dict[str, Any]] = []
     pats = _compile_patterns(extractors_pack, allowed_properties=allowed_properties)
     for pat in pats:
-        for rx in pat.regex:
-            comp = re.compile(rx, re.IGNORECASE)
-            for m in comp.finditer(text):
+        for rx_str, compiled in zip(pat.regex, pat.compiled_regex):
+            for m in compiled.finditer(text):
                 details.append(
                     {
                         "property_id": pat.property_id,
-                        "regex": rx,
+                        "regex": rx_str,
                         "match": m.group(0),
                         "groups": m.groups(),
                     }
@@ -129,4 +154,10 @@ def dry_run(
     return {"matches": details, "extracted": extracted}
 
 
-__all__ = ["Pattern", "extract_properties", "dry_run"]
+def validate_extractors_pack(extractors_pack: ExtractorsPack) -> None:
+    """Validate that all regex patterns in the pack compile successfully."""
+
+    _compile_patterns(extractors_pack)
+
+
+__all__ = ["Pattern", "PatternValidationError", "extract_properties", "dry_run", "validate_extractors_pack"]
