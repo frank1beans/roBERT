@@ -1,35 +1,90 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "version",
-    "rules"
-  ],
   "properties": {
-    "version": {
-      "type": "string"
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
     },
     "rules": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "if",
-          "assert",
-          "message"
-        ],
         "properties": {
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "when": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "requires": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "range": {
+            "type": "object",
+            "properties": {
+              "prop": {
+                "type": "string"
+              },
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": true
+          },
+          "enum": {
+            "type": "object",
+            "properties": {
+              "prop": {
+                "type": "string"
+              },
+              "in": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": true
+          },
+          "regex": {
+            "type": "object",
+            "properties": {
+              "prop": {
+                "type": "string"
+              },
+              "pattern": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          },
           "if": {
             "type": "string"
           },
           "assert": {
             "type": "string"
-          },
-          "message": {
-            "type": "string"
           }
-        }
+        },
+        "additionalProperties": true
       }
     }
-  }
+  },
+  "required": [
+    "rules"
+  ],
+  "additionalProperties": true
 }
