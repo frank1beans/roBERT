@@ -1,7 +1,7 @@
 """Normalizers registry used by the extraction engine."""
 
 from __future__ import annotations
-
+import json
 import math
 import re
 from typing import Any, Callable, Dict, List, Optional, Protocol, Sequence, Set
@@ -889,7 +889,15 @@ def _map_enum_factory(mapping: Dict[str, str]) -> Normalizer:
 
 def build_normalizer(name: str, extractors_pack: ExtractorsPack) -> Normalizer:
     """Resolve ``name`` to a callable normalizer."""
-
+    if name.startswith("set_value:"):
+            # payload JSON o stringa grezza
+            raw = name.split(":", 1)[1]
+            try:
+                const = json.loads(raw)
+            except Exception:
+                const = raw
+            return lambda v, m: const
+    
     if name.startswith("map_enum:"):
         key = name.split(":", 1)[1]
         pack_normalizers = extractors_pack.get("normalizers", {})
