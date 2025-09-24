@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import Any, Dict, Iterable, List, Optional, Sequence
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Set
 
 from .dsl import ExtractorsPack
 from .normalizers import BUILTIN_NORMALIZERS, Normalizer, build_normalizer
@@ -20,6 +20,10 @@ class Pattern:
     language: Optional[str] = None
     confidence: Optional[float] = None
     tags: Sequence[str] | None = None
+    unit: Optional[str] = None
+    examples: Sequence[str] | None = None
+    max_matches: Optional[int] = None
+    first_wins: Optional[bool] = None
     compiled_regex: List[re.Pattern[str]] = field(default_factory=list)
 
 
@@ -60,13 +64,26 @@ def _compile_patterns(
             pattern_tags = set(tags_list or [])
             if not pattern_tags or pattern_tags.isdisjoint(requested_tags):
                 continue
+
         regex_list = list(item.get("regex", []))
         compiled_regex: List[re.Pattern[str]] = []
         for rx in regex_list:
             try:
-                compiled_regex.append(re.compile(rx, flags=re.IGNORECASE))
+                compiled_regex.append(re.compile(rx, flags=re.IGNORECASE | re.UNICODE))
             except re.error as exc:  # pragma: no cover - defensive guard
                 errors.append({"property_id": pid, "regex": rx, "error": str(exc)})
+
+        max_matches: Optional[int] = None
+        raw_max = item.get("max_matches")
+        if isinstance(raw_max, int) and raw_max > 0:
+            max_matches = raw_max
+        elif isinstance(raw_max, str) and raw_max.isdigit():
+            max_matches = int(raw_max)
+
+        first_wins: Optional[bool] = None
+        if "first_wins" in item:
+            first_wins = bool(item.get("first_wins"))
+
         pats.append(
             Pattern(
                 property_id=pid,
@@ -75,6 +92,10 @@ def _compile_patterns(
                 language=item.get("language"),
                 confidence=item.get("confidence"),
                 tags=tags_list,
+                unit=item.get("unit"),
+                examples=list(item.get("examples", [])) if item.get("examples") else None,
+                max_matches=max_matches,
+                first_wins=first_wins,
                 compiled_regex=compiled_regex,
             )
         )
@@ -99,7 +120,25 @@ def _apply_normalizers(
 def _coerce_capture(match: re.Match[str]) -> Any:
     """Normalize match groups dropping empty values."""
 
-    # No groups: return entire matched text
+    named = match.groupdict()
+    if named:
+        for key in ("val", "value"):
+            if key in named and named[key] not in (None, ""):
+                primary = named[key]
+                extras = []
+                for extra_key in ("unit", "second", "unit2", "min", "max", "value2"):
+                    extra_val = named.get(extra_key)
+                    if extra_val not in (None, ""):
+                        extras.append(extra_val)
+                if extras:
+                    return [primary, *extras]
+                return primary
+        values = [v for v in named.values() if v not in (None, "")]
+        if len(values) == 1:
+            return values[0]
+        if values:
+            return values
+
     if match.lastindex is None:
         return match.group(0)
 
@@ -127,30 +166,88 @@ def extract_properties(
     """Apply patterns declared in ``extractors_pack`` to ``text``."""
 
     out: Dict[str, Any] = {}
+    confidences: Dict[str, float] = {}
     pats = _compile_patterns(
         extractors_pack,
         allowed_properties=allowed_properties,
         target_tags=target_tags,
     )
+
+    defaults = extractors_pack.get("defaults", {}) or {}
+    default_norms_raw = defaults.get("normalizers", [])
+    default_normalizers: List[str] = []
+    if isinstance(default_norms_raw, Sequence) and not isinstance(default_norms_raw, (str, bytes)):
+        default_normalizers = [str(n) for n in default_norms_raw]
+
+    selection_default = str(defaults.get("selection_strategy", "first_wins")).lower()
+    if selection_default not in {"first_wins", "best_confidence"}:
+        selection_default = "first_wins"
+
+    property_modes: Dict[str, str] = {}
+    collect_properties: Set[str] = set()
+
     for pat in pats:
-        has_collect = "collect_many" in pat.normalizers
-        for _, compiled_rx in zip(pat.regex, pat.compiled_regex):
+        property_id = pat.property_id
+        combined_normalizers = list(default_normalizers) + list(pat.normalizers)
+        has_collect = "collect_many" in combined_normalizers
+        if has_collect:
+            collect_properties.add(property_id)
+            existing = out.get(property_id)
+            if not isinstance(existing, list):
+                out[property_id] = [] if existing is None else [existing]
+
+        selection_mode = property_modes.get(property_id)
+        if selection_mode is None:
+            if pat.first_wins is not None:
+                selection_mode = "first_wins" if pat.first_wins else "best_confidence"
+            else:
+                selection_mode = selection_default
+            property_modes[property_id] = selection_mode
+
+        matched_count = 0
+        for compiled_rx in pat.compiled_regex:
+            if has_collect and pat.max_matches is not None and matched_count >= pat.max_matches:
+                break
+            if not has_collect and selection_mode == "first_wins" and property_id in out:
+                break
             for m in compiled_rx.finditer(text):
                 cap = _coerce_capture(m)
-                val = _apply_normalizers(cap, m.group(0), pat.normalizers, extractors_pack)
+                if cap is None:
+                    continue
+                value = _apply_normalizers(cap, m.group(0), combined_normalizers, extractors_pack)
                 if has_collect:
-                    prev = out.get(pat.property_id, [])
-                    if not isinstance(prev, list):
-                        prev = [prev]
-                    prev.append(val)
-                    out[pat.property_id] = prev
+                    bucket = out.setdefault(property_id, [])
+                    if isinstance(value, list):
+                        for item in value:
+                            if pat.max_matches is not None and matched_count >= pat.max_matches:
+                                break
+                            bucket.append(item)
+                            matched_count += 1
+                    else:
+                        bucket.append(value)
+                        matched_count += 1
+                    if pat.max_matches is not None and matched_count >= pat.max_matches:
+                        break
                 else:
-                    if pat.property_id not in out:
-                        out[pat.property_id] = val
-            if pat.property_id in out and not has_collect:
-                break
-        if has_collect and pat.property_id in out and "unique_list" in pat.normalizers:
-            out[pat.property_id] = BUILTIN_NORMALIZERS["unique_list"](out[pat.property_id], "")
+                    confidence = pat.confidence if pat.confidence is not None else 0.0
+                    if selection_mode == "best_confidence":
+                        previous = confidences.get(property_id, float("-inf"))
+                        if property_id not in out or confidence > previous:
+                            out[property_id] = value
+                            confidences[property_id] = confidence
+                    else:
+                        if property_id not in out:
+                            out[property_id] = value
+                            confidences[property_id] = confidence
+                    if selection_mode == "first_wins":
+                        break
+            else:
+                continue
+            break
+
+    for prop in collect_properties:
+        if prop in out:
+            out[prop] = BUILTIN_NORMALIZERS["unique_list"](out[prop], "")
     return out
 
 
@@ -177,7 +274,7 @@ def dry_run(
                         "property_id": pat.property_id,
                         "regex": rx_str,
                         "match": m.group(0),
-                        "groups": m.groups(),
+                        "groups": m.groupdict() or m.groups(),
                     }
                 )
     extracted = extract_properties(
@@ -196,3 +293,4 @@ def validate_extractors_pack(extractors_pack: ExtractorsPack) -> None:
 
 
 __all__ = ["Pattern", "PatternValidationError", "extract_properties", "dry_run", "validate_extractors_pack"]
+
