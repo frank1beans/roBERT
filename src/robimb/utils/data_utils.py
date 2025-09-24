@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
+import unicodedata
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
@@ -30,6 +32,124 @@ def _load_json(path: Path) -> Any:
         return json.load(handle)
 
 
+_SLUG_RE = re.compile(r"[^a-z0-9]+")
+
+
+def _slugify(value: str) -> str:
+    """Return a stable slug suitable for property identifiers."""
+
+    normalized = unicodedata.normalize("NFKD", str(value))
+    ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
+    lowered = ascii_value.lower()
+    slug = _SLUG_RE.sub("_", lowered).strip("_")
+    if slug:
+        return slug
+    # Fall back to a deterministic placeholder derived from the original text
+    digest = unicodedata.normalize("NFKD", str(value)).encode("utf-8")
+    return "slot_" + re.sub(r"[^a-f0-9]", "", digest.hex())[:8]
+
+
+def _flatten_registry_v4(payload: Mapping[str, Any]) -> Dict[str, Dict[str, object]]:
+    """Flatten the hierarchical registry layout introduced in v4 packs."""
+
+    result: Dict[str, Dict[str, object]] = {}
+
+    for super_name, block in payload.items():
+        if not isinstance(block, Mapping):
+            continue
+        if not isinstance(super_name, str):
+            continue
+        if super_name.startswith("_") or super_name == "metadata":
+            continue
+
+        categories = block.get("categories") if isinstance(block.get("categories"), Mapping) else None
+        global_block = block.get("_global") if isinstance(block.get("_global"), Mapping) else None
+
+        if not categories:
+            continue
+
+        super_slug = _slugify(super_name)
+        global_slots = {}
+        global_patterns = {}
+        global_meta = {}
+        if isinstance(global_block, Mapping):
+            raw_slots = global_block.get("slots")
+            if isinstance(raw_slots, Mapping):
+                global_slots = {
+                    f"{super_slug}.__global__.{_slugify(slot_name)}": dict(slot_schema)
+                    for slot_name, slot_schema in raw_slots.items()
+                    if isinstance(slot_name, str) and isinstance(slot_schema, Mapping)
+                }
+            raw_patterns = global_block.get("patterns")
+            if isinstance(raw_patterns, Mapping):
+                global_patterns = {
+                    f"{super_slug}.__global__.{_slugify(slot_name)}": list(patterns)
+                    for slot_name, patterns in raw_patterns.items()
+                    if isinstance(slot_name, str)
+                }
+            global_meta = {
+                key: value
+                for key, value in global_block.items()
+                if key not in {"slots", "patterns"}
+            }
+
+        for cat_name, cat_block in categories.items():
+            if not isinstance(cat_name, str) or not isinstance(cat_block, Mapping):
+                continue
+
+            cat_slug = _slugify(cat_name)
+            schema: Dict[str, Any] = {}
+
+            cat_slots = {}
+            raw_cat_slots = cat_block.get("slots")
+            if isinstance(raw_cat_slots, Mapping):
+                cat_slots = {
+                    f"{super_slug}.{cat_slug}.{_slugify(slot_name)}": dict(slot_schema)
+                    for slot_name, slot_schema in raw_cat_slots.items()
+                    if isinstance(slot_name, str) and isinstance(slot_schema, Mapping)
+                }
+
+            cat_patterns = {}
+            raw_cat_patterns = cat_block.get("patterns")
+            if isinstance(raw_cat_patterns, Mapping):
+                cat_patterns = {
+                    f"{super_slug}.{cat_slug}.{_slugify(slot_name)}": list(patterns)
+                    for slot_name, patterns in raw_cat_patterns.items()
+                    if isinstance(slot_name, str)
+                }
+
+            # Merge inherited structures first, then the category-specific ones.
+            slots: Dict[str, Any] = {}
+            slots.update(global_slots)
+            slots.update(cat_slots)
+            schema["slots"] = slots
+
+            if global_patterns or cat_patterns:
+                patterns: Dict[str, Any] = {}
+                patterns.update(global_patterns)
+                patterns.update(cat_patterns)
+                schema["patterns"] = patterns
+
+            for key, value in global_meta.items():
+                schema[key] = value
+
+            for key, value in cat_block.items():
+                if key in {"slots", "patterns"}:
+                    continue
+                schema[key] = value
+
+            metadata = dict(schema.get("metadata", {}))
+            metadata.setdefault("super_name", super_name)
+            metadata.setdefault("category_name", cat_name)
+            metadata.setdefault("super_id", super_slug)
+            metadata.setdefault("category_id", cat_slug)
+            schema["metadata"] = metadata
+
+            result[f"{super_name}|{cat_name}"] = schema
+
+    return result
+
+
 def _normalize_registry_payload(payload: Any) -> Optional[Dict[str, Dict[str, object]]]:
     """Translate various registry layouts into a flat mapping."""
 
@@ -53,6 +173,14 @@ def _normalize_registry_payload(payload: Any) -> Optional[Dict[str, Dict[str, ob
             return _build_from_entries(payload["mappings"])
         if "files" in payload:
             return None
+        if any(
+            isinstance(value, Mapping) and ("categories" in value or "_global" in value)
+            for key, value in payload.items()
+            if isinstance(key, str) and not key.startswith("_") and key != "metadata"
+        ):
+            flattened = _flatten_registry_v4(payload)
+            if flattened:
+                return flattened
         if all(isinstance(key, str) for key in payload.keys()):
             return {str(key): dict(value) if isinstance(value, Mapping) else value for key, value in payload.items()}
     elif isinstance(payload, list):
