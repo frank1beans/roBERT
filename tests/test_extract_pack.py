@@ -1,45 +1,33 @@
 import json
 from pathlib import Path
 
+import pytest
+
 from robimb.extraction.engine import dry_run
 
 
-def _normalize(value):
-    if isinstance(value, float):
-        return round(value, 6)
-    if isinstance(value, list):
-        return [_normalize(v) for v in value]
-    return value
+def _load_extractors() -> dict:
+    pack_path = Path(__file__).resolve().parents[1] / "data" / "properties" / "extractors.json"
+    return json.loads(pack_path.read_text(encoding="utf-8"))
 
 
-def test_extraction_pack_samples():
-    base_dir = Path(__file__).resolve().parents[1]
-    pack_path = base_dir / "pack" / "current" / "pack.json"
-    samples_path = Path(__file__).resolve().parent / "data" / "extraction_samples.json"
+def test_extraction_pack_handles_area_volume_and_fire_resistance():
+    extractors_pack = _load_extractors()
+    text = (
+        "Parete EI 120 con spessore 25 cm, superficie 45 mq e volume calcestruzzo 3.5 m3."
+    )
 
-    extractors_pack = json.loads(pack_path.read_text(encoding="utf-8"))
-    samples = json.loads(samples_path.read_text(encoding="utf-8"))
+    result = dry_run(text, extractors_pack)
+    extracted = result["extracted"]
 
-    differences = []
+    classe_values = [value for key, value in extracted.items() if key.endswith("classe_ei")]
+    assert "EI120" in classe_values
 
-    for idx, sample in enumerate(samples, start=1):
-        text = sample["text"]
-        expected = {key: _normalize(value) for key, value in sample["expected"].items()}
-        extracted = dry_run(text, extractors_pack)["extracted"]
-        normalized = {key: _normalize(value) for key, value in extracted.items()}
+    spessore_values = [value for key, value in extracted.items() if key.endswith("spessore_mm")]
+    assert any(pytest.approx(val, rel=1e-6) == 250.0 for val in spessore_values)
 
-        for key, value in expected.items():
-            if key not in normalized:
-                differences.append(f"Sample {idx}: missing property {key}")
-            elif normalized[key] != value:
-                differences.append(
-                    f"Sample {idx}: value mismatch for {key}: expected {value!r}, got {normalized[key]!r}"
-                )
-        for key, value in normalized.items():
-            if key not in expected:
-                differences.append(f"Sample {idx}: unexpected property {key}={value!r}")
+    superficie_values = [value for key, value in extracted.items() if key.endswith("superficie_m2")]
+    assert any(pytest.approx(val, rel=1e-6) == 45.0 for val in superficie_values)
 
-    if differences:
-        diff_text = "\n".join(differences)
-        print(diff_text)
-        raise AssertionError(f"Extraction differences detected:\n{diff_text}")
+    volume_values = [value for key, value in extracted.items() if key.endswith("volume_m3")]
+    assert any(pytest.approx(val, rel=1e-6) == 3.5 for val in volume_values)

@@ -32,7 +32,11 @@ _DATA_PROPERTIES_DIR = Path(__file__).resolve().parents[3] / "data" / "propertie
 
 
 def _resolve_default_registry_path() -> Optional[Path]:
-    for name in ("properties_registry_extended.json", "properties_registry.json"):
+    for name in (
+        "properties_registry_extended.json",
+        "properties_registry.json",
+        "registry.json",
+    ):
         candidate = _DATA_PROPERTIES_DIR / name
         if candidate.exists():
             return candidate

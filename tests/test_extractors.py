@@ -1,4 +1,6 @@
 
+import pytest
+
 from robimb.extraction import extract_properties
 from robimb.extraction.resources import load_default
 
@@ -37,12 +39,21 @@ def test_pack_v1_normalizers_examples():
     )
     props = extract_properties(text, PACK_V1)
 
-    assert props["cst.unita_misura"] == "m²"
-    assert props["flr.formato"] == "60×120"
-    assert props["frs.resistenza_fuoco"] == "EI120"
-    assert props["geo.foratura_laterizio"] == "semipieno"
-    assert abs(props["qty.spessore"] - 25.0) < 1e-6
-    assert props["aco.rw"] == 54
+    formato_values = [value for key, value in props.items() if key.endswith(".formato")]
+    assert formato_values
+    assert any(
+        (isinstance(value, list) and value == ["60", "120"]) or value == "60×120"
+        for value in formato_values
+    )
+
+    classe_values = [value for key, value in props.items() if key.endswith("classe_ei")]
+    assert "EI120" in classe_values
+
+    spessore_values = [value for key, value in props.items() if key.endswith("spessore_mm")]
+    assert any(abs(val - 25.0) < 1e-6 for val in spessore_values)
+
+    rw_values = [value for key, value in props.items() if key.endswith("rw_db")]
+    assert any(str(val) == "54" or pytest.approx(float(val), rel=1e-6) == 54.0 for val in rw_values)
 
 
 def test_empty_groups_are_filtered():

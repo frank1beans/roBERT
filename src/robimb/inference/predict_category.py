@@ -5,11 +5,30 @@ import json, torch
 import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
+
 def _load_id2label(path: str) -> Dict[int, str]:
     with open(path, "r", encoding="utf-8") as f:
         js = json.load(f)
-    id2label = {int(k): v for k, v in js["id2label"].items()}
-    return id2label
+
+    def _coerce(mapping_key: str) -> Optional[Dict[int, str]]:
+        raw = js.get(mapping_key)
+        if isinstance(raw, dict):
+            return {int(k): str(v) for k, v in raw.items()}
+        return None
+
+    id2label = _coerce("id2label")
+    if id2label is not None:
+        return id2label
+
+    id2cat = _coerce("id2cat")
+    if id2cat is not None:
+        return id2cat
+
+    cats = js.get("cats")
+    if isinstance(cats, list):
+        return {idx: str(value) for idx, value in enumerate(cats)}
+
+    raise KeyError(f"Cannot find id2label mapping in {path}")
 
 def load_classifier(model_path_or_name: str):
     tok = AutoTokenizer.from_pretrained(model_path_or_name, use_fast=True)
