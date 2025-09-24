@@ -4,6 +4,7 @@ Il pacchetto `robimb.extraction` implementa un motore di estrazione basato su pa
 
 Gli asset di default (pattern e normalizzatori) sono distribuiti nel knowledge pack `pack/current/pack.json`. La funzione `robimb.extraction.resources.load_default()` restituisce la sezione `extractors` del pack e rappresenta il riferimento usato da CLI e servizio, mentre le altre sezioni (`registry`, `catmap`, `templates`, `validators`, ecc.) vengono caricate tramite `robimb.core.pack_loader.load_pack()`.
 
+
 La funzione `_compile_patterns` filtra i pattern in base all'elenco di proprietà consentite e produce oggetti immutabili efficienti per la fase di matching. Durante l'estrazione (`extract_properties`) ogni regex viene applicata al testo, i match vengono normalizzati e aggregati secondo le regole definite; l'opzione `collect_many` consente di mantenere liste di valori anziché singoli campi.
 
 Le proprietà estratte vengono iniettate nella pipeline di conversione (`utils.data_utils.prepare_classification_dataset`) e successivamente sfruttate dai modelli durante l'addestramento multi-task per la previsione dei valori di proprietà. Questo approccio rende modulare l'aggiunta di nuovi schemi: è sufficiente aggiornare il pacchetto JSON di estrattori senza toccare il codice Python.
