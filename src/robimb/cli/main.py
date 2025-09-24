@@ -54,9 +54,7 @@ def convert_command(
         help="Directory where dataset plots and summary files will be saved",
     ),
     properties_registry: Optional[Path] = typer.Option(
-        Path("data/properties_registry_extended.json")
-        if (Path("data") / "properties_registry_extended.json").exists()
-        else None,
+        None,
         "--properties-registry",
         exists=True,
         dir_okay=False,
@@ -175,55 +173,6 @@ def validate_command(
     )
     if output is None:
         typer.echo(json.dumps(metrics, indent=2, ensure_ascii=False))
-
-
-@app.command("pack-merge")
-def pack_merge_command(
-    data_dir: Path = typer.Option(
-        Path("data"),
-        "--data-dir",
-        exists=True,
-        file_okay=False,
-        help="Directory containing legacy/production knowledge pack JSON files",
-    ),
-    out_dir: Path = typer.Option(
-        Path("pack") / "v1",
-        "--out-dir",
-        file_okay=False,
-        help="Destination directory for the merged knowledge pack",
-    ),
-    version: str = typer.Option("1.1.0", "--version", help="Semantic version assigned to the merged pack"),
-    current_dir: Path = typer.Option(
-        Path("pack") / "current",
-        "--current-dir",
-        file_okay=False,
-        help="Directory that will host pack.json",
-    ),
-    update_current: bool = typer.Option(
-        True,
-        "--update-current/--no-update-current",
-        help="Whether to (re)write pack/current/pack.json after merging",
-    ),
-) -> None:
-    """Merge legacy and production knowledge packs into a single bundle."""
-
-    from ..data import build_merged_pack, write_pack_index
-
-    artifacts = build_merged_pack(data_dir=data_dir, output_dir=out_dir, version=version)
-    index_path: Optional[Path] = None
-    if update_current:
-        index_path = write_pack_index(artifacts, current_dir)
-
-    summary = {
-        "version": artifacts.version,
-        "generated_at": artifacts.generated_at,
-        "files": {key: str(path) for key, path in artifacts.files.items()},
-        "manifest": str(artifacts.manifest_path),
-    }
-    if index_path is not None:
-        summary["pack_index"] = str(index_path)
-
-    typer.echo(json.dumps(summary, indent=2, ensure_ascii=False))
 
 
 @app.command(
