@@ -1,40 +1,47 @@
-"""Typed primitives for the regex extraction DSL."""
+import re
+from typing import Dict, Any, List
 
-from __future__ import annotations
+class AutoPack:
+    def __init__(self, registry: Dict[str, Any]):
+        self.registry = registry
+        self.compiled = []
+        for prop, spec in registry.items():
+            pats = spec.get("patterns", [])
+            for p in pats:
+                self.compiled.append((prop, re.compile(p, re.IGNORECASE), spec))
 
-from typing import Dict, List, Sequence, TypedDict
+    @staticmethod
+    def _to_mm(val: str) -> int:
+        # “10 cm” -> 100; “75” (mm) -> 75 (se hai già mm)
+        v = int(val)
+        return v * 10 if v < 50 else v  # euristica semplice
 
+    def apply_all(self, text: str) -> Dict[str, Any]:
+        out: Dict[str, Any] = {}
+        for prop, rx, spec in self.compiled:
+            m = rx.search(text)
+            if not m:
+                continue
+            if "value_if_match" in spec:
+                out[prop] = spec["value_if_match"]
+                continue
+            if m.groups():
+                val = m.group(1)
+                tp = spec.get("type")
+                norm = spec.get("normalizer")
+                if tp == "int":
+                    val = int(val)
+                if norm == "to_mm":
+                    val = self._to_mm(str(val))
+                out[prop] = val
+        return out
 
-class PatternSpec(TypedDict, total=False):
-    """Description of a regex pattern entry in the extractors pack."""
-
-    property_id: str
-    regex: Sequence[str]
-    normalizers: Sequence[str]
-    language: str
-    confidence: float
-    tags: Sequence[str]
-    unit: str | None
-    examples: Sequence[str]
-    max_matches: int
-    first_wins: bool
-
-
-class ExtractorsDefaults(TypedDict, total=False):
-    """Optional defaults applied to all patterns."""
-
-    normalizers: Sequence[str]
-    selection_strategy: str
-
-
-class ExtractorsPack(TypedDict, total=False):
-    """Minimal structure expected from an extractors JSON pack."""
-
-    patterns: List[PatternSpec]
-    normalizers: Dict[str, Dict[str, str]]
-    defaults: ExtractorsDefaults
-    metadata: Dict[str, object]
-
-
-PatternSpecs = Sequence[PatternSpec]
-"""Convenience alias used by the extraction engine."""
+def build_property_schema_from_registry(reg: Dict[str, Any]) -> Dict[str, Any]:
+    # schema minimale
+    schema = {}
+    for k, spec in reg.items():
+        schema[k] = {
+            "type": spec.get("type", "string"),
+            "patterns": spec.get("patterns", []),
+        }
+    return schema
