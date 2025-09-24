@@ -14,7 +14,7 @@ addestrare i modelli e validarli da riga di comando.
 │   └── robimb/
 │       ├── cli/                              # Comandi CLI convert/train/validate
 │       ├── extraction/                       # Motore regex, normalizzatori e risorse JSON
-│       │   └── resources/                    # Pack predefiniti (extractors.json, extractors_patterns.json)
+│       │   └── resources/                    # Accesso al knowledge pack distribuito
 │       ├── models/                           # Implementazioni LabelEmbedModel e MultiTaskBERTMasked
 │       ├── training/                         # Trainer modulari per i due modelli
 │       └── utils/                            # Funzioni condivise (ontologia, dati, metriche, IO)
@@ -40,9 +40,9 @@ I file seguenti devono essere forniti (alcuni sono opzionali ma consigliati):
 
 ### Asset di estrazione proprietà
 
-Gli asset per l'estrazione automatica delle proprietà sono versionati direttamente nel pacchetto Python. I pattern consolidati e i normalizzatori sono disponibili in `src/robimb/extraction/resources/extractors.json`, caricabile tramite `robimb.extraction.resources.load_default()`. Nella stessa cartella è presente anche `extractors_patterns.json`, mantenuta come base legacy di riferimento.
+Gli asset per l'estrazione automatica delle proprietà, insieme a registry, mappe di categoria, validatori e template descrittivi, sono raccolti in un unico knowledge pack distribuito in `pack/current/pack.json`. La funzione `robimb.extraction.resources.load_default()` restituisce direttamente la sezione `extractors` presente nel pack, mentre `robimb.core.pack_loader.load_pack()` carica l'intero bundle quando serve accedere anche a registry e template.
 
-Gli script `robimb convert` e la pipeline di inferenza puntano a questi percorsi di default; è comunque possibile fornire un file alternativo via CLI (`--extractors-pack`) o sostituire manualmente i JSON nella cartella `resources/` quando si dispone di una nuova versione del pack. In caso di aggiornamento è necessario mantenere allineato anche l'indice `pack/current/pack.json`, utilizzato dal servizio FastAPI come bundle di default.
+Gli script `robimb convert` e la pipeline di inferenza utilizzano questo stesso file come punto di ingresso predefinito. È comunque possibile fornire un pack alternativo via CLI (`--extractors-pack` o `--properties-registry`) indicando un JSON con struttura analoga oppure un knowledge pack completo contenente la chiave `extractors`.
 
 Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 

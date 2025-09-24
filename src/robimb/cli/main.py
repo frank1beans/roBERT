@@ -58,14 +58,14 @@ def convert_command(
         "--properties-registry",
         exists=True,
         dir_okay=False,
-        help="Optional registry mapping super|cat to property schemas",
+        help="Optional registry JSON or knowledge pack containing property schemas",
     ),
     extractors_pack: Optional[Path] = typer.Option(
         DEFAULT_EXTRACTORS_PATH if DEFAULT_EXTRACTORS_PATH.exists() else None,
         "--extractors-pack",
         exists=True,
         dir_okay=False,
-        help="Regex extractors pack used to auto-populate property values",
+        help="Knowledge pack or extractors JSON used to auto-populate property values",
     ),
     text_field: str = typer.Option(
         "text",

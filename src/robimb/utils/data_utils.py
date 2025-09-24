@@ -83,12 +83,27 @@ def prepare_classification_dataset(
     property_registry: Optional[Dict[str, Dict[str, object]]] = None
     if properties_registry_path is not None:
         with open(properties_registry_path, "r", encoding="utf-8") as handle:
-            property_registry = json.load(handle)
+            registry_payload = json.load(handle)
+        if isinstance(registry_payload, dict) and "registry" in registry_payload:
+            registry_payload = registry_payload["registry"]
+        if isinstance(registry_payload, dict) and "mappings" in registry_payload:
+            # Accept knowledge-pack style registries with explicit mappings list
+            property_registry = {
+                entry.get("key", ""): entry
+                for entry in registry_payload.get("mappings", [])
+                if isinstance(entry, dict) and entry.get("key")
+            }
+        elif isinstance(registry_payload, dict):
+            property_registry = registry_payload
 
     extractors_pack: Optional[Dict[str, object]] = None
     if extractors_pack_path is not None:
         with open(extractors_pack_path, "r", encoding="utf-8") as handle:
-            extractors_pack = json.load(handle)
+            extractors_payload = json.load(handle)
+        if isinstance(extractors_payload, dict) and "extractors" in extractors_payload:
+            extractors_pack = extractors_payload["extractors"]
+        elif isinstance(extractors_payload, dict):
+            extractors_pack = extractors_payload
 
     def _resolve_schema(super_name: str, cat_name: str) -> Dict[str, object]:
         if property_registry is None:
