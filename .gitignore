@@ -1,3 +1,1 @@
-# Ignore generated analysis artifacts
-outputs/**/*.png
-outputs/**/*.npy
+outputs
