@@ -1,7 +1,5 @@
 # Gestione del knowledge pack
 
-I moduli sotto `core/` definiscono i contratti e le utility per i knowledge pack. `pack_loader.py` dichiara il dataclass `KnowledgePack` (registry, catmap, templates, validators, ecc.) e la funzione `load_pack`, che legge `pack.json`, risolve i percorsi relativi e carica in memoria i singoli componenti JSON.
+I moduli sotto `core/` definiscono i contratti e le utility per i knowledge pack. `pack_loader.py` dichiara il dataclass `KnowledgePack` (versione, registry, catmap, templates, validators, ecc.) e la funzione `load_pack`, che legge `pack.json` e restituisce tutte le sezioni del bundle.
 
-`pack_tools.py` fornisce funzioni di supporto per costruire manifest e aggiornare il pack corrente. `build_manifest` copia i file chiave in una directory di destinazione, calcola hash SHA-256 e scrive `manifest.json` con metadati (dimensioni, digest, timestamp). `update_current` genera `pack/current/pack.json` puntando alla versione appena creata tramite percorsi relativi.
-
-Infine `pack_merge.py` e `pack_validate.py` (non trattati in dettaglio qui) orchestrano rispettivamente la fusione di pack legacy e la validazione degli schemi. Queste routine sono richiamate dal comando `robimb pack-merge` e assicurano che il servizio e la CLI lavorino sempre con un bundle coerente e tracciabile.
+Il repository distribuisce direttamente un pack pronto all'uso in `pack/current/pack.json`, generato offline a partire dalle risorse proprietarie e già in forma "inline" (tutti i componenti sono contenuti nello stesso file). Gli script applicativi (CLI e servizio FastAPI) lo caricano tramite `pack_loader.load_pack` oppure consumano singole sezioni (`extractors`, `templates`, ...) leggendo il medesimo JSON. Per aggiornare il bundle è sufficiente rigenerare le sezioni necessarie e sostituire il file, senza doversi occupare di riferimenti incrociati a percorsi esterni.

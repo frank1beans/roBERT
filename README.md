@@ -8,16 +8,13 @@ addestrare i modelli e validarli da riga di comando.
 ## Struttura del repository
 
 ```
-├── data/
-│   ├── ontology.json                         # Ontologia gerarchica super→cat
-│   ├── properties_registry_extended.json     # Registry esteso per l'estrazione proprietà
-│   └── ... (altri file json/jsonl descritti più avanti)
+├── data/                                     # Directory di lavoro per file utente (vuota)
 ├── outputs/                                  # Directory per artefatti generati (vuota, con .gitkeep)
 ├── src/
 │   └── robimb/
 │       ├── cli/                              # Comandi CLI convert/train/validate
 │       ├── extraction/                       # Motore regex, normalizzatori e risorse JSON
-│       │   └── resources/                    # Pack predefiniti (extractors.json, extractors_patterns.json)
+│       │   └── resources/                    # Accesso al knowledge pack distribuito
 │       ├── models/                           # Implementazioni LabelEmbedModel e MultiTaskBERTMasked
 │       ├── training/                         # Trainer modulari per i due modelli
 │       └── utils/                            # Funzioni condivise (ontologia, dati, metriche, IO)
@@ -36,16 +33,16 @@ I file seguenti devono essere forniti (alcuni sono opzionali ma consigliati):
 | `label_texts_super.jsonl` | Testi descrittivi delle classi *super*. |
 | `label_texts_cat.jsonl` | Testi descrittivi delle classi *cat*. |
 | `ontology.json` | Ontologia che mappa ogni super alle rispettive categorie. |
-| `properties_registry_extended.json` | Dizionario di proprietà per ogni `Super|Cat`. |
+| `properties_registry.json` *(opzionale)* | Dizionario personalizzato di proprietà per ogni `Super|Cat`. |
 | `contrastive_pairs.jsonl` *(opzionale)* | Coppie per eventuale training contrastivo. |
 | `run_log.jsonl` *(opzionale)* | Log storici di run o knowledge pack. |
 | `done_uids.txt` *(opzionale)* | Elenco di UID da escludere/suddividere nei vari split. |
 
 ### Asset di estrazione proprietà
 
-Gli asset per l'estrazione automatica delle proprietà sono versionati direttamente nel pacchetto Python. I pattern consolidati e i normalizzatori sono disponibili in `src/robimb/extraction/resources/extractors.json`, caricabile tramite `robimb.extraction.resources.load_default()`. Nella stessa cartella è presente anche `extractors_patterns.json`, mantenuta come base legacy per gli strumenti di merge.
+Gli asset per l'estrazione automatica delle proprietà, insieme a registry, mappe di categoria, validatori e template descrittivi, sono raccolti in un unico knowledge pack distribuito in `pack/current/pack.json`. La funzione `robimb.extraction.resources.load_default()` restituisce direttamente la sezione `extractors` presente nel pack, mentre `robimb.core.pack_loader.load_pack()` carica l'intero bundle quando serve accedere anche a registry e template.
 
-Gli script `robimb convert` e `robimb.data.pack_merge.build_merged_pack` puntano a questi percorsi di default; è comunque possibile fornire un file alternativo via CLI (`--extractors-pack`) o rigenerare gli asset eseguendo `python -m robimb.data.pack_merge`, che salva automaticamente il risultato nella cartella delle risorse e aggiorna manifest e pack correnti.
+Gli script `robimb convert` e la pipeline di inferenza utilizzano questo stesso file come punto di ingresso predefinito. È comunque possibile fornire un pack alternativo via CLI (`--extractors-pack` o `--properties-registry`) indicando un JSON con struttura analoga oppure un knowledge pack completo contenente la chiave `extractors`.
 
 Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 

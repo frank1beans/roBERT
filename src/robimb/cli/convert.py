@@ -200,12 +200,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--properties-registry",
         default=None,
-        help="Optional JSON mapping super|cat to property schemas to attach to rows",
+        help="Optional registry JSON or knowledge pack containing property schemas to attach to rows",
     )
     parser.add_argument(
         "--extractors-pack",
         default=str(DEFAULT_EXTRACTORS_PACK) if DEFAULT_EXTRACTORS_PACK.exists() else None,
-        help="Optional extractors JSON used to auto-extract properties during conversion",
+        help="Knowledge pack or extractors JSON used to auto-extract properties during conversion",
     )
     parser.add_argument(
         "--text-field",
