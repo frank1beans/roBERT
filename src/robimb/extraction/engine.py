@@ -37,17 +37,29 @@ class PatternValidationError(ValueError):
 def _compile_patterns(
     extractors_pack: ExtractorsPack,
     allowed_properties: Optional[Iterable[str]] = None,
+    target_tags: Optional[Iterable[str]] = None,
 ) -> List[Pattern]:
     pats: List[Pattern] = []
     errors: List[Dict[str, Any]] = []
     allowed: Optional[set[str]] = None
     if allowed_properties is not None:
         allowed = {p for p in allowed_properties if p}
+    requested_tags: Optional[set[str]] = None
+    if target_tags is not None:
+        requested_tags = {t for t in target_tags if t}
 
     for item in extractors_pack.get("patterns", []):
         pid = item["property_id"]
         if allowed is not None and pid not in allowed:
             continue
+        pattern_tags_raw = item.get("tags")
+        tags_list: Optional[List[str]] = None
+        if isinstance(pattern_tags_raw, Sequence):
+            tags_list = [str(tag) for tag in pattern_tags_raw if isinstance(tag, str) and tag]
+        if requested_tags is not None:
+            pattern_tags = set(tags_list or [])
+            if not pattern_tags or pattern_tags.isdisjoint(requested_tags):
+                continue
         regex_list = list(item.get("regex", []))
         compiled_regex: List[re.Pattern[str]] = []
         for rx in regex_list:
@@ -62,7 +74,7 @@ def _compile_patterns(
                 normalizers=list(item.get("normalizers", [])),
                 language=item.get("language"),
                 confidence=item.get("confidence"),
-                tags=item.get("tags"),
+                tags=tags_list,
                 compiled_regex=compiled_regex,
             )
         )
@@ -85,25 +97,41 @@ def _apply_normalizers(
 
 
 def _coerce_capture(match: re.Match[str]) -> Any:
+    """Normalize match groups dropping empty values."""
+
     # No groups: return entire matched text
     if match.lastindex is None:
         return match.group(0)
-    # 1 group: return that group
-    if match.lastindex == 1:
-        return match.group(1)
-    # 2+ groups: return tuple of groups
-    return tuple(match.group(i) for i in range(1, match.lastindex + 1))
+
+    groups = [match.group(i) for i in range(1, match.lastindex + 1)]
+
+    def _is_empty(value: Any) -> bool:
+        return value is None or (isinstance(value, str) and value == "")
+
+    cleaned = [value for value in groups if not _is_empty(value)]
+
+    if not cleaned:
+        return None
+    if len(cleaned) == 1:
+        return cleaned[0]
+    return cleaned
 
 
 def extract_properties(
     text: str,
     extractors_pack: ExtractorsPack,
     allowed_properties: Optional[Iterable[str]] = None,
+    *,
+    target_tags: Optional[Iterable[str]] = None,
 ) -> Dict[str, Any]:
     """Apply patterns declared in ``extractors_pack`` to ``text``."""
 
     out: Dict[str, Any] = {}
-    pats = _compile_patterns(extractors_pack, allowed_properties=allowed_properties)
+    pats = _compile_patterns(
+        extractors_pack,
+        allowed_properties=allowed_properties,
+        target_tags=target_tags,
+    )
     for pat in pats:
         has_collect = "collect_many" in pat.normalizers
         for _, compiled_rx in zip(pat.regex, pat.compiled_regex):
@@ -130,11 +158,17 @@ def dry_run(
     text: str,
     extractors_pack: ExtractorsPack,
     allowed_properties: Optional[Iterable[str]] = None,
+    *,
+    target_tags: Optional[Iterable[str]] = None,
 ) -> Dict[str, Any]:
     """Return debug information with raw matches and normalized output."""
 
     details: List[Dict[str, Any]] = []
-    pats = _compile_patterns(extractors_pack, allowed_properties=allowed_properties)
+    pats = _compile_patterns(
+        extractors_pack,
+        allowed_properties=allowed_properties,
+        target_tags=target_tags,
+    )
     for pat in pats:
         for rx_str, compiled in zip(pat.regex, pat.compiled_regex):
             for m in compiled.finditer(text):
@@ -150,6 +184,7 @@ def dry_run(
         text,
         extractors_pack,
         allowed_properties=allowed_properties,
+        target_tags=target_tags,
     )
     return {"matches": details, "extracted": extracted}
 

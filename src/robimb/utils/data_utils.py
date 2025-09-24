@@ -107,10 +107,19 @@ def prepare_classification_dataset(
                 return value
         return {}
 
-    def _extract_props(text_value: str, allowed: Optional[Sequence[str]]) -> Dict[str, object]:
+    def _extract_props(
+        text_value: str,
+        allowed: Optional[Sequence[str]],
+        tags: Optional[Sequence[str]] = None,
+    ) -> Dict[str, object]:
         if not text_value or extractors_pack is None:
             return {}
-        extracted = extract_properties(text_value, extractors_pack)
+        extracted = extract_properties(
+            text_value,
+            extractors_pack,
+            allowed_properties=allowed,
+            target_tags=tags,
+        )
         if allowed is None:
             return extracted
         allowed_set = set(allowed)
@@ -154,7 +163,15 @@ def prepare_classification_dataset(
         property_schemas.append(schema)
         text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
         allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
-        extracted_properties.append(_extract_props(text_value, allowed))
+        target_tags: Optional[Tuple[str, ...]] = None
+        if not schema:
+            tags = []
+            if super_name:
+                tags.append(f"category:{super_name}")
+            if cat_name:
+                tags.append(f"subcategory:{cat_name}")
+            target_tags = tuple(tags) if tags else None
+        extracted_properties.append(_extract_props(text_value, allowed, target_tags))
         kept_rows.append(row)
     processed = pd.DataFrame(kept_rows)
     processed = processed.assign(
@@ -182,7 +199,15 @@ def prepare_classification_dataset(
             property_schemas_val.append(schema)
             text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
             allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
-            extracted_properties_val.append(_extract_props(text_value, allowed))
+            target_tags: Optional[Tuple[str, ...]] = None
+            if not schema:
+                tags = []
+                if super_name:
+                    tags.append(f"category:{super_name}")
+                if cat_name:
+                    tags.append(f"subcategory:{cat_name}")
+                target_tags = tuple(tags) if tags else None
+            extracted_properties_val.append(_extract_props(text_value, allowed, target_tags))
             val_rows.append(row)
         val_processed = pd.DataFrame(val_rows).assign(
             super_label=mapped_super_val,

@@ -43,3 +43,21 @@ def test_pack_v1_normalizers_examples():
     assert props["geo.foratura_laterizio"] == "semipieno"
     assert abs(props["qty.spessore"] - 25.0) < 1e-6
     assert props["aco.rw"] == 54
+
+
+def test_empty_groups_are_filtered():
+    extractors_pack = {
+        "version": "0.0.1",
+        "patterns": [
+            {
+                "property_id": "safety.classe",
+                "regex": [r"classe_EN795\s+(?:([A-Z])|([a-z]))"],
+                "normalizers": [],
+            }
+        ],
+    }
+    text = "Dispositivo di ancoraggio classe_EN795 e"
+
+    props = extract_properties(text, extractors_pack)
+
+    assert props["safety.classe"] == "e"
