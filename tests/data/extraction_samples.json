@@ -1,0 +1,139 @@
+[
+    {
+        "text": "Descrizione serramento: serramento certificato EN 12207 classe 4. Tenuta all\u2019acqua EN 12208 classe 9A. Resistenza al vento EN 12210 classe C5. Ug = 1,1 W/m\u00b2K con vetro tripla camera 6/14/6 e lastra esterna 6 mm. Trasmittanza termica del serramento \u2264 1.3 W/m\u00b2K. g-value = 45%. Materiale serramento: legno-alluminio. Finitura esterna: verniciato RAL 9010 opaco.",
+        "expected": {
+            "serr.permeabilita_aria_classe": "4",
+            "serr.tenuta_acqua_classe": "9A",
+            "serr.resistenza_vento_classe": "C5",
+            "vetro.Ug_Wm2K": 1.1,
+            "serr.trasmittanza_UW": 1.3,
+            "vetro.g": 0.45,
+            "vetro.tipologia": "camera",
+            "vetro.spessore_lastra_mm": 6,
+            "serr.materiale": "legno-alluminio",
+            "serr.finitura": "verniciato RAL 9010 opaco"
+        }
+    },
+    {
+        "text": "Potere fonoisolante Rw = 45 dB con correzione C = -1 dB e correzione Ctr = -5 dB.",
+        "expected": {
+            "aco.Rw_dB": 45,
+            "aco.C_dB": -1,
+            "aco.Ctr_dB": -5,
+            "aco.rw": 45
+        }
+    },
+    {
+        "text": "Parete EI 120 e reazione al fuoco EN 13501-1 B-s2,d0.",
+        "expected": {
+            "fr.resistenza.EI": "EI120",
+            "fr.reazione.EN13501_1": "B-s2,d0",
+            "frs.resistenza_fuoco": "EI120"
+        }
+    },
+    {
+        "text": "Spessore parete 150 mm, altezza 2,70 m, larghezza 1,20 m, superficie utile 45 mq, volume calcestruzzo 3.5 m\u00b3.",
+        "expected": {
+            "geom.spessore_mm": 150,
+            "geom.altezza_mm": 2700,
+            "geom.larghezza_mm": 1200,
+            "geom.superficie_m2": 45,
+            "geom.volume_m3": 3.5,
+            "geo.spessore_elemento": 150,
+            "qty.spessore": 150
+        }
+    },
+    {
+        "text": "Formato piastre 60\u00d760 cm con interasse travetti 40 cm e diametro barra \u00d812 mm.",
+        "expected": {
+            "geom.formato": "600\u00d7600",
+            "geom.interasse_mm": 400,
+            "geom.diametro_mm": 12,
+            "flr.formato": "600\u00d7600"
+        }
+    },
+    {
+        "text": "Calcestruzzo classe C30/37 e profili in acciaio S355.",
+        "expected": {
+            "cal.cls_calcestruzzo": "C30/37",
+            "str.el.acc.classe": "S355"
+        }
+    },
+    {
+        "text": "Legante bituminoso 50/70, densit\u00e0 apparente 1800 kg/m3, lambda dichiarata 0,035 W/mK.",
+        "expected": {
+            "mat.bitume_classe": "50/70",
+            "mat.densita_kgm3": 1800,
+            "mat.lambda_WmK": 0.035
+        }
+    },
+    {
+        "text": "Parete in cartongesso con 2 lastre per lato, lastre da 12,5 mm tipo antincendio, orditura primaria interasse 600 mm con profili MS 48.",
+        "expected": {
+            "gyp.lastre_per_lato": 2,
+            "gyp.spessore_lastra_mm": 12.5,
+            "gyp.tipo_lastra": "fuoco",
+            "gyp.orditura_interasse_mm": 600,
+            "gyp.orditura_tipo": "MS48"
+        }
+    },
+    {
+        "text": "Quadro elettrico con potenza installata 1500 W, tensione di alimentazione 400VAC e grado IP55.",
+        "expected": {
+            "elet.potenza_kW": 1.5,
+            "elet.tensione_V": 400,
+            "elet.gradoIP": "IP55"
+        }
+    },
+    {
+        "text": "Unit\u00e0 trattamento aria con portata aria 350 l/s, COP = 3,8 e EER 3,2.",
+        "expected": {
+            "hvac.portata_aria_m3h": 1260,
+            "hvac.COP": 3.8,
+            "hvac.EER": 3.2
+        }
+    },
+    {
+        "text": "Ventilatore con prevalenza disponibile 300 Pa. Impianto idrico con portata acqua 30 m3/h, pressione esercizio 6 bar e diametro nominale DN 100.",
+        "expected": {
+            "hvac.prevalenza_Pa": 300,
+            "idro.portata_l_s": 8.333333333333334,
+            "idro.pressione_bar": 6,
+            "idro.diametro_nominale_mm": 100
+        }
+    },
+    {
+        "text": "Caditoia classe D400 e tubo fognario DN 300 con granulometria 0/30 mm per il misto.",
+        "expected": {
+            "strade.griglia_classe": "D400",
+            "fogn.tubo_dn_mm": 300,
+            "strade.granulometria_mm": [
+                0,
+                30
+            ]
+        }
+    },
+    {
+        "text": "Fornitura alberi con circonferenza fusto 18 cm, altezza pianta 250 cm, densit\u00e0 impianto 4 piante/m\u00b2 e contenitore 25 l.",
+        "expected": {
+            "verde.circonferenza_fusto_cm": 18,
+            "verde.altezza_pianta_m": 2.5,
+            "verde.densita_impianto_pt_m2": 4,
+            "verde.contenitore_l": 25
+        }
+    },
+    {
+        "text": "Codice CER 17 05 04*, rifiuto pericoloso: no. Conferimento presso impianto autorizzato EcoGest S.r.l.",
+        "expected": {
+            "rifiuti.CER": "17 05 04*",
+            "rifiuti.pericoloso_bool": false,
+            "rifiuti.imp_impianto_autorizzato": "EcoGest S.r.l."
+        }
+    },
+    {
+        "text": "Portata aria richiesta 0,5 m3/s per il recuperatore.",
+        "expected": {
+            "hvac.portata_aria_m3h": 1800
+        }
+    }
+]

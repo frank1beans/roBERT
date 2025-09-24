@@ -11,6 +11,20 @@ class PatternSpec(TypedDict, total=False):
     property_id: str
     regex: Sequence[str]
     normalizers: Sequence[str]
+    language: str
+    confidence: float
+    tags: Sequence[str]
+    unit: str | None
+    examples: Sequence[str]
+    max_matches: int
+    first_wins: bool
+
+
+class ExtractorsDefaults(TypedDict, total=False):
+    """Optional defaults applied to all patterns."""
+
+    normalizers: Sequence[str]
+    selection_strategy: str
 
 
 class ExtractorsPack(TypedDict, total=False):
@@ -18,6 +32,8 @@ class ExtractorsPack(TypedDict, total=False):
 
     patterns: List[PatternSpec]
     normalizers: Dict[str, Dict[str, str]]
+    defaults: ExtractorsDefaults
+    metadata: Dict[str, object]
 
 
 PatternSpecs = Sequence[PatternSpec]
