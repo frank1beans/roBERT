@@ -1,0 +1,5170 @@
+{
+  "_schema": "v4",
+  "metadata": {
+    "version": "2025-09-24T181323",
+    "description": "Registry v4 PLUS (rebuilt)"
+  },
+  "Cantierizzazioni": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Impianti di cantiere": {
+        "slots": {}
+      },
+      "Installazione cantiere": {
+        "slots": {}
+      },
+      "Noli": {
+        "slots": {}
+      },
+      "Pulizie di cantiere": {
+        "slots": {}
+      }
+    }
+  },
+  "Assistenze murarie": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Assistenze murarie ai subappaltatori": {
+        "slots": {}
+      },
+      "Assistenze murarie alla posa di impianti": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere murarie": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Blocchi in calcestruzzo cellulare aerato autoclavato": {
+        "slots": {}
+      },
+      "Blocchi in calcestruzzo vibrocompresso": {
+        "slots": {}
+      },
+      "Elementi in laterizio": {
+        "slots": {}
+      },
+      "Murature in altri materiali": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da cartongessista": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Accessori per cartongessi": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Contropareti in cartongesso resistente al fuoco": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Contropareti in cartongesso standard e idrorepellente": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Contropareti in lastre di fibrocemento": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Pareti in cartongesso resistente al fuoco": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Pareti in cartongesso standard e idrorepellente": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Pareti in lastre di fibrocemento": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Setto autoportante cartongesso resistente al fuoco": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Setto autoportante in cartongesso standard e idrorepellente": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Setto autoportante in lastre di fibrocemento": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Opere di coibentazione": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Isolanti acustici": {
+        "slots": {}
+      },
+      "Isolanti termici in copertura": {
+        "slots": {}
+      },
+      "Isolanti termici su solai e pareti": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere di impermeabilizzazione": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Accessori per l'impermeabilizzazione": {
+        "slots": {}
+      },
+      "Barriere al vapore": {
+        "slots": {}
+      },
+      "Impermeabilizzazioni bituminose": {
+        "slots": {}
+      },
+      "Impermeabilizzazioni liquide": {
+        "slots": {}
+      },
+      "Impermeabilizzazioni resine": {
+        "slots": {}
+      },
+      "Impermeabilizzazioni sintetiche": {
+        "slots": {}
+      }
+    }
+  },
+  "Massetti, sottofondi, drenaggi, vespai": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Cappe di completamento": {
+        "slots": {}
+      },
+      "Massetti alleggeriti": {
+        "slots": {}
+      },
+      "Massetti pendenzati": {
+        "slots": {}
+      },
+      "Sottofondi pavimentazioni": {
+        "slots": {}
+      },
+      "Teli di separazione": {
+        "slots": {}
+      },
+      "Vespai aerati": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da intonacatore e stuccatore": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Intonaco intumescente": {
+        "slots": {}
+      },
+      "Intonaco per esterno": {
+        "slots": {}
+      },
+      "Intonaco per interno": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere di rivestimento": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Altri rivestimenti": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Rivestimenti in gomma o PVC": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Rivestimenti in gres e ceramica": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "classe_PEI": {
+            "type": "enum",
+            "priority": 7,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_pei_v2"
+            ],
+            "values": [
+              "PEI I",
+              "PEI II",
+              "PEI III",
+              "PEI IV",
+              "PEI V"
+            ]
+          }
+        }
+      },
+      "Rivestimenti in legno": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Rivestimenti in pietra": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Opere di pavimentazione": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Pavimenti in altri materiali": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Pavimenti in gomma o PVC": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Pavimenti in gres e ceramica": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "classe_PEI": {
+            "type": "enum",
+            "priority": 7,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_pei_v2"
+            ],
+            "values": [
+              "PEI I",
+              "PEI II",
+              "PEI III",
+              "PEI IV",
+              "PEI V"
+            ]
+          }
+        }
+      },
+      "Pavimenti in legno e laminato": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Pavimenti in moquette e zerbini": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Pavimenti in pietra": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Pavimenti industriali": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Pavimenti sopraelevati e flottanti": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      },
+      "Zoccolini e accessori per pavimentazioni": {
+        "slots": {
+          "formato": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          },
+          "spessore_mm": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm",
+            "expected_atoms": [
+              "atom_spessori_mm_v2"
+            ]
+          },
+          "classe_antiscivolo": {
+            "type": "enum",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_antiscivolo_v2"
+            ],
+            "values": [
+              "R9",
+              "R10",
+              "R11",
+              "R12",
+              "R13",
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Controsoffitti": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Botole d'ispezione e accessori": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti a Baffles e ispezionabili": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti a doghe in legno": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti in PVC o materiali plastici": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti in PVC o plastici": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti in altri materiali": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti in cartongesso": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti in fibre minerali e acustici": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Controsoffitti metallici": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      },
+      "Velette di raccordo": {
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 9,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "Rw_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB",
+            "expected_atoms": [
+              "atom_rw_db_v2"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Opere da facciatista e da cappottista": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Cappotti termici finiti a intonachino": {
+        "slots": {}
+      },
+      "Cappotti termici finiti con rivestimenti ceramici": {
+        "slots": {}
+      },
+      "Facciata vetrata a doppia pelle": {
+        "slots": {}
+      },
+      "Facciata vetrata montanti e traversi": {
+        "slots": {}
+      },
+      "Facciata vetrata riportata a cellule": {
+        "slots": {}
+      },
+      "Sistemi di facciata prefabbricati": {
+        "slots": {}
+      },
+      "Sistemi di facciata ventilata": {
+        "slots": {}
+      }
+    }
+  },
+  "Sistemi oscuranti per facciate": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Schermature fisse e brisè soleil": {
+        "slots": {}
+      },
+      "Schermature mobili": {
+        "slots": {}
+      },
+      "Tende da sole e alla veneziana": {
+        "slots": {}
+      }
+    }
+  },
+  "Tetti, manti di copertura e opere accessorie": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Accessi in copertura": {
+        "slots": {}
+      },
+      "Accessori per fotovoltaico": {
+        "slots": {}
+      },
+      "Dispositivi anticaduta e di protezione": {
+        "slots": {}
+      },
+      "Manti di copertura con elementi puntuali": {
+        "slots": {}
+      },
+      "Manti di copertura con pannelli o lastre": {
+        "slots": {}
+      }
+    }
+  },
+  "Condotti e canne fumarie": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Canne Shunt": {
+        "slots": {}
+      },
+      "Canne fumarie": {
+        "slots": {}
+      },
+      "Canne per esalazioni": {
+        "slots": {}
+      },
+      "Comignoli e pezzi speciali": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da serramentista": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Avvolgibili, controtelai, cassonetti e persiane": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Porte blindate, portoni e bussole": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Porte metalliche": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Porte tagliafuoco": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Serramenti in PVC": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Serramenti in legno": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Serramenti in legno e alluminio": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Serramenti metallici": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      },
+      "Sistemi di partizione trasparenti, porte e parapetti vetrati": {
+        "slots": {
+          "Uw_Wm2K": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          },
+          "classe_permeabilita_aria": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_air_class_12207_v2"
+            ]
+          },
+          "classe_tenuta_acqua": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_water_class_12208_v2"
+            ]
+          },
+          "classe_resistenza_vento": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "prestazioni"
+            ],
+            "expected_atoms": [
+              "atom_wind_class_12210_v2"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Pareti mobili, attrezzate, impacchettabili": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Pareti impacchettabili": {
+        "slots": {}
+      },
+      "Pareti mobili opache": {
+        "slots": {}
+      },
+      "Pareti mobili vetrate": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da falegname": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Boiserie in legno": {
+        "slots": {}
+      },
+      "Opere in legno custom": {
+        "slots": {}
+      },
+      "Persiane e scuri in legno": {
+        "slots": {}
+      },
+      "Porte in legno": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da lattoniere": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Canali di gronda": {
+        "slots": {}
+      },
+      "Pezzi speciali per lattonerie": {
+        "slots": {}
+      },
+      "Scossaline": {
+        "slots": {}
+      },
+      "Tubi pluviali": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da fabbro": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Cancelli e recinzioni": {
+        "slots": {}
+      },
+      "Carpenterie metalliche": {
+        "slots": {}
+      },
+      "Grigliati": {
+        "slots": {}
+      },
+      "Parapetti metallici, ringhiere e inferriate": {
+        "slots": {}
+      },
+      "Portoni metallici e porte basculanti": {
+        "slots": {}
+      },
+      "Trattamenti per strutture in acciaio": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da tappezziere": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Carta da parati": {
+        "slots": {}
+      },
+      "Tende da interno manuali": {
+        "slots": {}
+      },
+      "Tende da interno motorizzate": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da vetraio": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Lavorazioni su vetri e serramenti": {
+        "slots": {}
+      },
+      "Pensiline vetrate": {
+        "slots": {}
+      },
+      "Vetrazioni e accessori": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da verniciatore": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Lavorazioni decorative": {
+        "slots": {}
+      },
+      "Preparazione delle superfici": {
+        "slots": {}
+      },
+      "Tinteggiature intumescenti": {
+        "slots": {}
+      },
+      "Tinteggiature su agglomerati edili (murature, cartongessi ecc.)": {
+        "slots": {}
+      },
+      "Tinteggiature su legno": {
+        "slots": {}
+      },
+      "Tinteggiature su metallo": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere in pietra naturale": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Copertine e pezzi speciali": {
+        "slots": {}
+      },
+      "Davanzali e soglie": {
+        "slots": {}
+      },
+      "Materiali semilavorati (sola fornitura)": {
+        "slots": {}
+      },
+      "Rivestimenti di scale": {
+        "slots": {}
+      }
+    }
+  },
+  "Apparecchi sanitari e accessori": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Accessori per l'allestimento di servizi igienici": {
+        "slots": {}
+      },
+      "Apparecchi sanitari": {
+        "slots": {}
+      },
+      "Cassette di scarico": {
+        "slots": {}
+      }
+    }
+  },
+  "Sistemi per verde pensile": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Verde pensile estensivo": {
+        "slots": {}
+      },
+      "Verde pensile intensivo": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere da florovivaista": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Alberature (prima seconda e terza grandezza)": {
+        "slots": {}
+      },
+      "Altro materiale vegetale (terricci pacciamature)": {
+        "slots": {}
+      },
+      "Arbusti": {
+        "slots": {}
+      },
+      "Tappezzanti": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere stradali, fognature e sistemazioni esterne": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Complementi edili per illuminazione esterna": {
+        "slots": {}
+      },
+      "Ghiaie sabbie e aggregati": {
+        "slots": {}
+      },
+      "Manti stradali in asfalto e bitumi": {
+        "slots": {}
+      },
+      "Marciapiedi e accessori": {
+        "slots": {}
+      },
+      "Massicciate stradali": {
+        "slots": {}
+      },
+      "Pavimentazione in autobloccanti o masselli": {
+        "slots": {}
+      },
+      "Segnaletica orizzontale e verticale": {
+        "slots": {}
+      },
+      "Sistema di raccolta e smaltimento acque meteoriche": {
+        "slots": {}
+      }
+    }
+  },
+  "Arredi standard": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Altri arredi standard": {
+        "slots": {}
+      },
+      "Arredi per esterno": {
+        "slots": {}
+      },
+      "Arredi per strutture ricettive": {
+        "slots": {}
+      },
+      "Arredo bagno": {
+        "slots": {}
+      },
+      "Arredo per uffici": {
+        "slots": {}
+      }
+    }
+  },
+  "Arredi su misura": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Arredi su misura in altri materiali": {
+        "slots": {}
+      },
+      "Arredi su misura in legno": {
+        "slots": {}
+      },
+      "Arredi su misura insegne e simboli": {
+        "slots": {}
+      }
+    }
+  },
+  "Impianti elevatori": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Allestimenti e personalizzazioni di impianti elevatori": {
+        "slots": {}
+      },
+      "Impianti ascensori": {
+        "slots": {}
+      },
+      "Montacarichi": {
+        "slots": {}
+      },
+      "Montapersone": {
+        "slots": {}
+      },
+      "Piattaforme elevatrici": {
+        "slots": {}
+      },
+      "Scale mobili": {
+        "slots": {}
+      }
+    }
+  },
+  "Presidi antincendio": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Altri presidi antincendio": {
+        "slots": {}
+      },
+      "Estintori": {
+        "slots": {}
+      },
+      "Portoni tagliafuoco": {
+        "slots": {}
+      },
+      "Sigillature": {
+        "slots": {}
+      },
+      "Tende tagliafuoco": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere di bonifica e analisi di laboratorio": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Altre attività di bonifica e analisi di laboratorio": {
+        "slots": {}
+      },
+      "Bonifica materiali pericolosi": {
+        "slots": {}
+      }
+    }
+  },
+  "Demolizioni e rimozioni": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Demolizione di fabbricati": {
+        "slots": {}
+      },
+      "Demolizione elementi civili": {
+        "slots": {}
+      },
+      "Demolizione elementi strutturali": {
+        "slots": {}
+      },
+      "Oneri per trasporto e discarica": {
+        "slots": {}
+      },
+      "Rimozione di impianti tecnologici": {
+        "slots": {}
+      }
+    }
+  },
+  "Opere di sicurezza": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Apparecchi di sicurezza (reti, cartellonistica ecc.)": {
+        "slots": {}
+      },
+      "Baraccamenti": {
+        "slots": {}
+      },
+      "Mezzi di cantiere": {
+        "slots": {}
+      },
+      "Opere Provvisionali": {
+        "slots": {}
+      }
+    }
+  },
+  "#N/D": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {}
+  },
+  "Impianto distribuzione fluidi UTA": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {}
+  },
+  "Movimenti di terra": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Scavi e trasporti a discarica": {
+        "slots": {}
+      },
+      "Rinterri e forniture di terreno": {
+        "slots": {}
+      }
+    }
+  },
+  "Strutture in altri materiali": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {}
+  },
+  "Strutture in carpenteria metallica": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {}
+  },
+  "Strutture in cemento armato in opera": {
+    "_global": {
+      "slots": {
+        "produttore": {
+          "type": "text",
+          "priority": 10,
+          "tags": [
+            "brand"
+          ],
+          "expected_atoms": [
+            "atom_brand_generic_v2"
+          ]
+        },
+        "modello": {
+          "type": "text",
+          "priority": 9,
+          "tags": [
+            "brand",
+            "collezione"
+          ],
+          "expected_atoms": [
+            "atom_model_variants_it_v2"
+          ]
+        },
+        "norme_riferimento": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "normativa"
+          ],
+          "expected_atoms": [
+            "atom_std_generic_v2",
+            "atom_dm_date_v2",
+            "atom_dpr_v2",
+            "atom_dlgs_v2",
+            "atom_en_13501_1_v2",
+            "atom_uni_en_1279_v2"
+          ]
+        },
+        "dimensioni_lxh_mm": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm×mm",
+          "expected_atoms": [
+            "atom_formati_dims_v2",
+            "atom_dimensione_LxHxP_v2"
+          ]
+        },
+        "superficie_m2": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m²",
+          "expected_atoms": [
+            "atom_surface_m2_v2"
+          ]
+        },
+        "volume_m3": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "quantita"
+          ],
+          "unit": "m³",
+          "expected_atoms": [
+            "atom_volume_m3_v2"
+          ]
+        }
+      }
+    },
+    "categories": {}
+  }
+}
