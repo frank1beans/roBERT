@@ -3225,18 +3225,12 @@
     {
       "property_id": "spessore_lastra_mm",
       "regex": [
-        "\\b(10|12[.,]5|15)\\s*cm\\b",
-        "\\b(10|12[.,]5|15)\\s*mm\\b",
-        "\\b(10|12[.,]5|15|18)\\s*cm\\b",
-        "\\b(10|12[.,]5|15|18)\\s*mm\\b",
-        "\\b(8|10|12[.,]5|15)\\s*cm\\b",
-        "\\b(8|10|12[.,]5|15)\\s*mm\\b"
+        "\\b(\\d{1,3}(?:[.,]\\d+)?)\\s*(?:mm|cm)\\b"
       ],
       "normalizers": [
-        "lower",
-        "split_structured_list",
         "comma_to_dot",
-        "to_float"
+        "to_float",
+        "if_cm_to_mm"
       ],
       "language": "it",
       "confidence": 0.85,
@@ -3244,7 +3238,7 @@
         "category:Controsoffitti",
         "category:Opere da cartongessista",
         "priority",
-        "slot_type:enum",
+        "slot_type:float",
         "subcategory:Contropareti in cartongesso resistente al fuoco",
         "subcategory:Contropareti in lastre di fibrocemento",
         "subcategory:Controsoffitti in cartongesso",
