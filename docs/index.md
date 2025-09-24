@@ -15,7 +15,6 @@ Questa cartella raccoglie una serie di note operative e di design pensate per ac
 - [Comando `convert`](cli_convert.md)
 - [Comando `train`](cli_train.md)
 - [Comando `validate`](cli_validate.md)
-- [Comando `pack-merge`](cli_pack_merge.md)
 - [Pipeline di inferenza end-to-end](inference_pipeline.md)
 - [Servizio FastAPI](service_api.md)
 - [Gestione del knowledge pack](core_knowledge_pack.md)
