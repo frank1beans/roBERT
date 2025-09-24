@@ -78,3 +78,63 @@ def test_pack_extractors_normalize_ei_and_spessore_cm():
 
     assert props["frs.resistenza_fuoco"] == "EI60"
     assert pytest.approx(props["geo.spessore_elemento"], rel=1e-6) == 120.0
+
+
+def test_prepare_classification_dataset_filters_by_category_tags(tmp_path):
+    train_path = tmp_path / "train.jsonl"
+    val_path = tmp_path / "val.jsonl"
+    rows = [
+        {
+            "text": "Elemento isolante sp 30 mm",
+            "super": "Opere di coibentazione",
+            "cat": "Isolanti termici",
+        }
+    ]
+    _write_jsonl(train_path, rows)
+    _write_jsonl(val_path, rows)
+
+    label_maps_path = tmp_path / "labels.json"
+    label_maps = {
+        "super2id": {"Opere di coibentazione": 0},
+        "cat2id": {"Isolanti termici": 0},
+    }
+    label_maps_path.write_text(json.dumps(label_maps), encoding="utf-8")
+
+    extractors_path = tmp_path / "extractors.json"
+    extractors = {
+        "patterns": [
+            {
+                "property_id": "ins.spessore",
+                "regex": [r"sp\s*(\d+)"],
+                "normalizers": ["to_int"],
+                "tags": [
+                    "category:Opere di coibentazione",
+                    "subcategory:Isolanti termici",
+                ],
+            },
+            {
+                "property_id": "altro.valore",
+                "regex": [r"sp\s*(\d+)"],
+                "normalizers": ["to_int"],
+                "tags": ["category:Opere da lattoniere"],
+            },
+        ]
+    }
+    extractors_path.write_text(json.dumps(extractors), encoding="utf-8")
+
+    train_df, val_df, _, _ = prepare_classification_dataset(
+        train_path,
+        val_path,
+        label_maps_path=label_maps_path,
+        ontology_path=None,
+        properties_registry_path=None,
+        extractors_pack_path=extractors_path,
+    )
+
+    train_props = train_df.iloc[0]["properties"]
+    assert train_props["ins.spessore"] == 30
+    assert "altro.valore" not in train_props
+
+    val_props = val_df.iloc[0]["properties"]
+    assert val_props["ins.spessore"] == 30
+    assert "altro.valore" not in val_props
