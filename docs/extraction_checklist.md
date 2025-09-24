@@ -1,5 +1,5 @@
 # Checklist estrazione proprietà prioritari
-Generata automaticamente il 2025-09-23 21:09:58Z a partire da `data/properties_registry_extended.json`.
+Generata automaticamente il 2025-09-23 20:38:17Z a partire da `data/properties_registry_extended.json`.
 Per ogni categoria sono elencati gli slot prioritari strutturati (numerici, enum, stringhe) con le regex di supporto e i normalizzatori suggeriti.
 
 ## Apparecchi sanitari e accessori|Accessori per l'allestimento di servizi igienici
