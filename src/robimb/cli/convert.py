@@ -28,7 +28,30 @@ __all__ = [
 ]
 
 
-DEFAULT_EXTRACTORS_PACK = extraction_resources.default_path()
+_DATA_PROPERTIES_DIR = Path(__file__).resolve().parents[3] / "data" / "properties"
+
+
+def _resolve_default_registry_path() -> Optional[Path]:
+    for name in ("properties_registry_extended.json", "properties_registry.json"):
+        candidate = _DATA_PROPERTIES_DIR / name
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def _resolve_default_extractors_path() -> Optional[Path]:
+    for name in ("extractors_extended.json", "extractors.json"):
+        candidate = _DATA_PROPERTIES_DIR / name
+        if candidate.exists():
+            return candidate
+    bundled = extraction_resources.default_path()
+    if bundled.exists():
+        return bundled
+    return None
+
+
+DEFAULT_PROPERTIES_REGISTRY = _resolve_default_registry_path()
+DEFAULT_EXTRACTORS_PACK = _resolve_default_extractors_path()
 
 
 @dataclass(frozen=True)
@@ -47,8 +70,8 @@ class ConversionConfig:
     mlm_output: Optional[Path] = None
     extra_mlm: Sequence[Path] = ()
     reports_dir: Optional[Path] = None
-    properties_registry: Optional[Path] = None
-    extractors_pack: Optional[Path] = None
+    properties_registry: Optional[Path] = DEFAULT_PROPERTIES_REGISTRY
+    extractors_pack: Optional[Path] = DEFAULT_EXTRACTORS_PACK
     text_field: str = "text"
 
     def iter_mlm_sources(self) -> Iterable[Path]:
@@ -199,12 +222,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--properties-registry",
-        default=None,
+        default=str(DEFAULT_PROPERTIES_REGISTRY) if DEFAULT_PROPERTIES_REGISTRY else None,
         help="Optional registry JSON or knowledge pack containing property schemas to attach to rows",
     )
     parser.add_argument(
         "--extractors-pack",
-        default=str(DEFAULT_EXTRACTORS_PACK) if DEFAULT_EXTRACTORS_PACK.exists() else None,
+        default=str(DEFAULT_EXTRACTORS_PACK) if DEFAULT_EXTRACTORS_PACK else None,
         help="Knowledge pack or extractors JSON used to auto-extract properties during conversion",
     )
     parser.add_argument(

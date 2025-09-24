@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Any
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
@@ -140,6 +140,98 @@ def _load_extractors_pack(path: Path) -> Optional[Dict[str, Any]]:
         return None
     return pack_obj.extractors or None
 
+
+def _infer_slot_normalizers(slot: Mapping[str, Any]) -> List[str]:
+    slot_type = str(slot.get("type", "")).strip().lower()
+    if slot_type in {"float", "number", "numeric", "ratio"}:
+        return ["to_number"]
+    if slot_type in {"int", "integer"}:
+        return ["to_number"]
+    if slot_type in {"bool", "boolean"}:
+        return ["to_bool_strict"]
+    if slot_type in {"enum", "text"}:
+        return ["strip"]
+    return []
+
+
+def _build_registry_extractors(
+    registry: Mapping[str, Mapping[str, Any]]
+) -> Optional[Dict[str, Any]]:
+    patterns: List[Dict[str, Any]] = []
+    for key, schema in registry.items():
+        if not isinstance(schema, Mapping):
+            continue
+        schema_patterns = schema.get("patterns")
+        if not isinstance(schema_patterns, Mapping):
+            continue
+        slots = schema.get("slots") if isinstance(schema.get("slots"), Mapping) else {}
+        tags: List[str] = []
+        if isinstance(key, str) and "|" in key:
+            super_name, cat_name = [part.strip() for part in key.split("|", 1)]
+            if super_name:
+                tags.append(f"category:{super_name}")
+            if cat_name:
+                tags.append(f"subcategory:{cat_name}")
+        for prop_id, regexes in schema_patterns.items():
+            if not isinstance(prop_id, str):
+                continue
+            if not isinstance(regexes, (list, tuple)):
+                continue
+            cleaned = [str(rx) for rx in regexes if isinstance(rx, str) and rx]
+            if not cleaned:
+                continue
+            pattern_spec: Dict[str, Any] = {"property_id": prop_id, "regex": cleaned}
+            if tags:
+                pattern_spec["tags"] = list(tags)
+            slot_info = slots.get(prop_id) if isinstance(slots, Mapping) else None
+            if isinstance(slot_info, Mapping):
+                normals = _infer_slot_normalizers(slot_info)
+                if normals:
+                    pattern_spec["normalizers"] = normals
+            patterns.append(pattern_spec)
+    if not patterns:
+        return None
+    return {"patterns": patterns}
+
+
+def _merge_extractors_pack(
+    primary: Optional[Mapping[str, Any]],
+    secondary: Optional[Mapping[str, Any]],
+) -> Optional[Dict[str, Any]]:
+    if primary is None:
+        return dict(secondary) if isinstance(secondary, Mapping) else None
+    if secondary is None:
+        return dict(primary)
+
+    merged: Dict[str, Any] = {}
+    if isinstance(primary, Mapping):
+        for key, value in primary.items():
+            if key == "patterns":
+                continue
+            if key == "normalizers" and isinstance(value, Mapping):
+                merged["normalizers"] = dict(value)
+            else:
+                merged[key] = value
+    if isinstance(secondary, Mapping):
+        for key, value in secondary.items():
+            if key == "patterns":
+                continue
+            if key == "normalizers" and isinstance(value, Mapping):
+                base_norms = merged.get("normalizers")
+                if not isinstance(base_norms, dict):
+                    base_norms = {}
+                merged["normalizers"] = {**base_norms, **value}
+            elif key not in merged:
+                merged[key] = value
+
+    patterns: List[Any] = []
+    if isinstance(primary, Mapping):
+        patterns.extend(list(primary.get("patterns", [])))
+    if isinstance(secondary, Mapping):
+        patterns.extend(list(secondary.get("patterns", [])))
+    merged["patterns"] = patterns
+    return merged
+
 __all__ = [
     "load_jsonl_to_df",
     "prepare_classification_dataset",
@@ -213,9 +305,22 @@ def prepare_classification_dataset(
     if properties_registry_path is not None:
         property_registry = _load_property_registry(Path(properties_registry_path))
 
-    extractors_pack: Optional[Dict[str, object]] = None
+    registry_extractors: Optional[Dict[str, Any]] = None
+    if property_registry:
+        registry_extractors = _build_registry_extractors(property_registry)
+
+    extractors_pack: Optional[Dict[str, Any]] = None
+    use_registry_tags = False
     if extractors_pack_path is not None:
         extractors_pack = _load_extractors_pack(Path(extractors_pack_path))
+        if extractors_pack is None:
+            extractors_pack = registry_extractors
+            use_registry_tags = registry_extractors is not None
+        elif registry_extractors is not None:
+            extractors_pack = _merge_extractors_pack(extractors_pack, registry_extractors)
+    else:
+        extractors_pack = registry_extractors
+        use_registry_tags = registry_extractors is not None
 
     def _resolve_schema(super_name: str, cat_name: str) -> Dict[str, object]:
         if property_registry is None:
@@ -291,7 +396,14 @@ def prepare_classification_dataset(
         text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
         allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
         target_tags: Optional[Tuple[str, ...]] = None
-        if not schema:
+        if use_registry_tags:
+            tags = []
+            if super_name:
+                tags.append(f"category:{super_name}")
+            if cat_name:
+                tags.append(f"subcategory:{cat_name}")
+            target_tags = tuple(tags) if tags else None
+        elif not schema:
             tags = []
             if super_name:
                 tags.append(f"category:{super_name}")
@@ -327,7 +439,14 @@ def prepare_classification_dataset(
             text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
             allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
             target_tags: Optional[Tuple[str, ...]] = None
-            if not schema:
+            if use_registry_tags:
+                tags = []
+                if super_name:
+                    tags.append(f"category:{super_name}")
+                if cat_name:
+                    tags.append(f"subcategory:{cat_name}")
+                target_tags = tuple(tags) if tags else None
+            elif not schema:
                 tags = []
                 if super_name:
                     tags.append(f"category:{super_name}")
