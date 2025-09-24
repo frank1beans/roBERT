@@ -85,14 +85,24 @@ def _apply_normalizers(
 
 
 def _coerce_capture(match: re.Match[str]) -> Any:
+    """Normalize match groups dropping empty values."""
+
     # No groups: return entire matched text
     if match.lastindex is None:
         return match.group(0)
-    # 1 group: return that group
-    if match.lastindex == 1:
-        return match.group(1)
-    # 2+ groups: return tuple of groups
-    return tuple(match.group(i) for i in range(1, match.lastindex + 1))
+
+    groups = [match.group(i) for i in range(1, match.lastindex + 1)]
+
+    def _is_empty(value: Any) -> bool:
+        return value is None or (isinstance(value, str) and value == "")
+
+    cleaned = [value for value in groups if not _is_empty(value)]
+
+    if not cleaned:
+        return None
+    if len(cleaned) == 1:
+        return cleaned[0]
+    return cleaned
 
 
 def extract_properties(
