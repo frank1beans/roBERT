@@ -1,13 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "version",
-    "computed"
-  ],
   "properties": {
-    "version": {
-      "type": "string"
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
     },
     "computed": {
       "type": "array",
@@ -23,9 +20,20 @@
           },
           "expr": {
             "type": "string"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
-        }
+        },
+        "additionalProperties": true
       }
     }
-  }
+  },
+  "required": [
+    "computed"
+  ],
+  "additionalProperties": true
 }

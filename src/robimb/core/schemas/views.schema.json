@@ -1,16 +1,32 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "version",
-    "views"
-  ],
   "properties": {
-    "version": {
-      "type": "string"
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
     },
     "views": {
-      "type": "array"
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      ]
     }
-  }
+  },
+  "required": [
+    "views"
+  ],
+  "additionalProperties": true
 }

@@ -1,54 +1,97 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "version",
-    "super",
-    "cat"
-  ],
   "properties": {
-    "version": {
-      "type": "string"
-    },
-    "super": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "id",
-          "label"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "label": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "cat": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "id",
-          "label",
-          "super_id"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "label": {
-            "type": "string"
-          },
-          "super_id": {
-            "type": "string"
-          }
-        }
-      }
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
     }
+  },
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "label": {
+        "type": "string"
+      },
+      "description": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "categories": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "slots": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "priority": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "expected_atoms": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": true
+        }
+      }
+    },
+    "required": [
+      "categories"
+    ],
+    "additionalProperties": true
   }
 }

@@ -1,35 +1,34 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "generated_at",
-    "files"
-  ],
   "properties": {
-    "generated_at": {
-      "type": "string"
+    "schema": {
+      "type": [
+        "string",
+        "object",
+        "null"
+      ]
     },
-    "files": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "path",
-          "size",
-          "sha256"
-        ],
-        "properties": {
-          "path": {
-            "type": "string"
-          },
-          "size": {
-            "type": "integer"
-          },
-          "sha256": {
-            "type": "string"
-          }
-        }
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
       }
+    },
+    "extractors_metadata": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true
     }
-  }
+  },
+  "required": [
+    "metadata"
+  ],
+  "additionalProperties": true
 }

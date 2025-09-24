@@ -1,14 +1,75 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "version",
-    "patterns",
-    "normalizers"
-  ],
   "properties": {
-    "version": {
-      "type": "string"
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "alias_hints": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "normalizers": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "atoms_embedded": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "atoms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "pattern_id",
+              "regex"
+            ],
+            "properties": {
+              "pattern_id": {
+                "type": "string"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "regex": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "normalizers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "validation": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
     },
     "patterns": {
       "type": "array",
@@ -25,7 +86,10 @@
           "regex": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": [
+                "string",
+                "object"
+              ]
             }
           },
           "normalizers": {
@@ -33,13 +97,30 @@
             "items": {
               "type": "string"
             }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confidence": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "defaults": {
+            "type": "object",
+            "additionalProperties": true
           }
-        }
+        },
+        "additionalProperties": true
       }
-    },
-    "normalizers": {
-      "type": "object",
-      "additionalProperties": {}
     }
-  }
+  },
+  "required": [
+    "patterns"
+  ],
+  "additionalProperties": true
 }
