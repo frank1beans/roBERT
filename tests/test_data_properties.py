@@ -70,6 +70,47 @@ def test_prepare_classification_dataset_enriches_properties(tmp_path):
     assert pytest.approx(val_props["geo.spessore"], rel=1e-6) == 20.0
 
 
+def test_prepare_classification_dataset_uses_registry_patterns(tmp_path):
+    train_path = tmp_path / "train.jsonl"
+    val_path = tmp_path / "val.jsonl"
+    rows = [
+        {"text": "Parete spessore 25 cm", "super": "Strutture", "cat": "Pareti"},
+    ]
+    _write_jsonl(train_path, rows)
+    _write_jsonl(val_path, rows)
+
+    label_maps_path = tmp_path / "labels.json"
+    label_maps = {
+        "super2id": {"Strutture": 0},
+        "cat2id": {"Pareti": 0},
+    }
+    label_maps_path.write_text(json.dumps(label_maps), encoding="utf-8")
+
+    registry_path = tmp_path / "registry.json"
+    registry = {
+        "Strutture|Pareti": {
+            "slots": {"geo.spessore": {"type": "float"}},
+            "patterns": {"geo.spessore": [r"spessore\s*(\d+(?:[.,]\d+)?)\s*cm"]},
+        }
+    }
+    registry_path.write_text(json.dumps(registry), encoding="utf-8")
+
+    train_df, val_df, _, _ = prepare_classification_dataset(
+        train_path,
+        val_path,
+        label_maps_path=label_maps_path,
+        ontology_path=None,
+        properties_registry_path=registry_path,
+        extractors_pack_path=None,
+    )
+
+    assert "properties" in train_df.columns
+    assert pytest.approx(train_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 25
+
+    assert "properties" in val_df.columns
+    assert pytest.approx(val_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 25
+
+
 def test_pack_extractors_normalize_ei_and_spessore_cm():
     extractors_pack = load_default()
 

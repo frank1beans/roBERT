@@ -8,14 +8,11 @@ from typing import List, Optional, Sequence
 import typer
 
 from .._version import __version__
-from ..extraction import resources as extraction_resources
+from .convert import DEFAULT_EXTRACTORS_PACK, DEFAULT_PROPERTIES_REGISTRY
 
 __all__ = ["app", "run"]
 
 app = typer.Typer(help="Production-ready BIM NLP pipeline utilities", add_completion=False)
-
-DEFAULT_EXTRACTORS_PATH = extraction_resources.default_path()
-
 
 @app.callback(invoke_without_command=True)
 def version_callback(
@@ -54,14 +51,14 @@ def convert_command(
         help="Directory where dataset plots and summary files will be saved",
     ),
     properties_registry: Optional[Path] = typer.Option(
-        None,
+        DEFAULT_PROPERTIES_REGISTRY,
         "--properties-registry",
         exists=True,
         dir_okay=False,
         help="Optional registry JSON or knowledge pack containing property schemas",
     ),
     extractors_pack: Optional[Path] = typer.Option(
-        DEFAULT_EXTRACTORS_PATH if DEFAULT_EXTRACTORS_PATH.exists() else None,
+        DEFAULT_EXTRACTORS_PACK,
         "--extractors-pack",
         exists=True,
         dir_okay=False,
