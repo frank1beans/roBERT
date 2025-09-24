@@ -146,3 +146,71 @@ def test_prepare_classification_dataset_filters_by_category_tags(tmp_path):
     val_props = val_df.iloc[0]["properties"]
     assert val_props["ins.spessore"] == 30
     assert "altro.valore" not in val_props
+
+
+def test_prepare_classification_dataset_accepts_pack_index(tmp_path):
+    pack_dir = tmp_path / "pack"
+    pack_dir.mkdir()
+
+    registry_payload = {
+        "registry": {
+            "mappings": [
+                {
+                    "key": "Strutture|Pareti",
+                    "slots": {"geo.spessore": {"type": "float"}},
+                }
+            ]
+        }
+    }
+    (pack_dir / "registry.json").write_text(json.dumps(registry_payload), encoding="utf-8")
+
+    extractors_payload = {
+        "defaults": {"selection_strategy": "best_confidence"},
+        "patterns": [
+            {
+                "property_id": "geo.spessore",
+                "regex": [r"sp\s*(\d+)"],
+                "normalizers": ["to_float"],
+            }
+        ],
+    }
+    (pack_dir / "extractors.json").write_text(json.dumps(extractors_payload), encoding="utf-8")
+
+    pack_index = {
+        "version": "1.0",
+        "files": {
+            "registry": "registry.json",
+            "extractors": "extractors.json",
+        },
+    }
+    pack_path = pack_dir / "pack.json"
+    pack_path.write_text(json.dumps(pack_index), encoding="utf-8")
+
+    train_path = tmp_path / "train.jsonl"
+    val_path = tmp_path / "val.jsonl"
+    rows = [
+        {"text": "Parete sp 18 cm", "super": "Strutture", "cat": "Pareti"},
+    ]
+    _write_jsonl(train_path, rows)
+    _write_jsonl(val_path, rows)
+
+    label_maps_path = tmp_path / "labels.json"
+    label_maps = {
+        "super2id": {"Strutture": 0},
+        "cat2id": {"Pareti": 0},
+    }
+    label_maps_path.write_text(json.dumps(label_maps), encoding="utf-8")
+
+    train_df, val_df, _, _ = prepare_classification_dataset(
+        train_path,
+        val_path,
+        label_maps_path=label_maps_path,
+        ontology_path=None,
+        properties_registry_path=pack_path,
+        extractors_pack_path=pack_path,
+    )
+
+    assert pytest.approx(train_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 18.0
+    assert train_df.iloc[0]["property_schema"]["slots"] == {"geo.spessore": {"type": "float"}}
+
+    assert pytest.approx(val_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 18.0

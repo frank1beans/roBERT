@@ -3,13 +3,142 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
+from typing import Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Any
 
 import numpy as np
 import pandas as pd
 
 from .ontology_utils import Ontology, build_mask_from_ontology, load_label_maps, load_ontology, save_label_maps
 from ..extraction import extract_properties
+
+from ..core.pack_loader import load_pack
+
+
+def _resolve_pack_json(path: Path) -> Path:
+    """Return the JSON file to read when ``path`` points to a pack folder."""
+
+    path = Path(path)
+    if path.is_dir():
+        candidate = path / "pack.json"
+        if candidate.exists():
+            return candidate
+    return path
+
+
+def _load_json(path: Path) -> Any:
+    with open(path, "r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def _normalize_registry_payload(payload: Any) -> Optional[Dict[str, Dict[str, object]]]:
+    """Translate various registry layouts into a flat mapping."""
+
+    def _build_from_entries(entries: Iterable[Mapping[str, Any]]) -> Dict[str, Dict[str, object]]:
+        result: Dict[str, Dict[str, object]] = {}
+        for entry in entries:
+            if not isinstance(entry, Mapping):
+                continue
+            key = entry.get("key")
+            if isinstance(key, str) and key:
+                result[key] = dict(entry)
+        return result
+
+    if isinstance(payload, Mapping):
+        if "registry" in payload:
+            candidate = payload["registry"]
+            normalized = _normalize_registry_payload(candidate)
+            if normalized is not None:
+                return normalized
+        if "mappings" in payload and isinstance(payload["mappings"], Iterable):
+            return _build_from_entries(payload["mappings"])
+        if "files" in payload:
+            return None
+        if all(isinstance(key, str) for key in payload.keys()):
+            return {str(key): dict(value) if isinstance(value, Mapping) else value for key, value in payload.items()}
+    elif isinstance(payload, list):
+        return _build_from_entries(payload)
+    return None
+
+
+def _load_property_registry(path: Path) -> Optional[Dict[str, Dict[str, object]]]:
+    """Load a property registry from either a raw JSON or a knowledge pack."""
+
+    path = _resolve_pack_json(path)
+    try:
+        payload = _load_json(path)
+    except OSError:
+        return None
+
+    registry = _normalize_registry_payload(payload)
+    if registry is not None:
+        return registry
+
+    if isinstance(payload, Mapping) and "files" in payload:
+        files = payload.get("files", {})
+        if isinstance(files, Mapping):
+            registry_ref = files.get("registry")
+            if isinstance(registry_ref, str):
+                registry_path = (path.parent / registry_ref).resolve()
+                if registry_path.exists():
+                    nested_payload = _load_json(registry_path)
+                    normalized = _normalize_registry_payload(nested_payload)
+                    if normalized is not None:
+                        return normalized
+
+    try:
+        pack = load_pack(str(path))
+    except Exception:  # pragma: no cover - defensive fallback
+        return None
+    return pack.registry or None
+
+
+def _normalize_extractors_payload(payload: Any) -> Optional[Dict[str, Any]]:
+    if isinstance(payload, Mapping):
+        if "extractors" in payload and isinstance(payload["extractors"], Mapping):
+            return _normalize_extractors_payload(payload["extractors"])
+        patterns = payload.get("patterns") if "patterns" in payload else None
+        if isinstance(patterns, list):
+            pack: Dict[str, Any] = {"patterns": patterns}
+            if "normalizers" in payload and isinstance(payload["normalizers"], Mapping):
+                pack["normalizers"] = dict(payload["normalizers"])
+            if "defaults" in payload and isinstance(payload["defaults"], Mapping):
+                pack["defaults"] = dict(payload["defaults"])
+            return pack
+    elif isinstance(payload, list):
+        return {"patterns": list(payload)}
+    return None
+
+
+def _load_extractors_pack(path: Path) -> Optional[Dict[str, Any]]:
+    """Load an extractors pack from raw JSON or a knowledge pack."""
+
+    path = _resolve_pack_json(path)
+    try:
+        payload = _load_json(path)
+    except OSError:
+        return None
+
+    pack = _normalize_extractors_payload(payload)
+    if pack is not None:
+        return pack
+
+    if isinstance(payload, Mapping) and "files" in payload:
+        files = payload.get("files", {})
+        if isinstance(files, Mapping):
+            extractors_ref = files.get("extractors")
+            if isinstance(extractors_ref, str):
+                extractors_path = (path.parent / extractors_ref).resolve()
+                if extractors_path.exists():
+                    nested_payload = _load_json(extractors_path)
+                    normalized = _normalize_extractors_payload(nested_payload)
+                    if normalized is not None:
+                        return normalized
+
+    try:
+        pack_obj = load_pack(str(path))
+    except Exception:  # pragma: no cover - defensive fallback
+        return None
+    return pack_obj.extractors or None
 
 __all__ = [
     "load_jsonl_to_df",
@@ -82,28 +211,11 @@ def prepare_classification_dataset(
 
     property_registry: Optional[Dict[str, Dict[str, object]]] = None
     if properties_registry_path is not None:
-        with open(properties_registry_path, "r", encoding="utf-8") as handle:
-            registry_payload = json.load(handle)
-        if isinstance(registry_payload, dict) and "registry" in registry_payload:
-            registry_payload = registry_payload["registry"]
-        if isinstance(registry_payload, dict) and "mappings" in registry_payload:
-            # Accept knowledge-pack style registries with explicit mappings list
-            property_registry = {
-                entry.get("key", ""): entry
-                for entry in registry_payload.get("mappings", [])
-                if isinstance(entry, dict) and entry.get("key")
-            }
-        elif isinstance(registry_payload, dict):
-            property_registry = registry_payload
+        property_registry = _load_property_registry(Path(properties_registry_path))
 
     extractors_pack: Optional[Dict[str, object]] = None
     if extractors_pack_path is not None:
-        with open(extractors_pack_path, "r", encoding="utf-8") as handle:
-            extractors_payload = json.load(handle)
-        if isinstance(extractors_payload, dict) and "extractors" in extractors_payload:
-            extractors_pack = extractors_payload["extractors"]
-        elif isinstance(extractors_payload, dict):
-            extractors_pack = extractors_payload
+        extractors_pack = _load_extractors_pack(Path(extractors_pack_path))
 
     def _resolve_schema(super_name: str, cat_name: str) -> Dict[str, object]:
         if property_registry is None:
