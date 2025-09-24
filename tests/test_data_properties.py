@@ -32,9 +32,15 @@ def test_prepare_classification_dataset_enriches_properties(tmp_path):
 
     registry_path = tmp_path / "registry.json"
     registry = {
-        "Strutture|Pareti": {
-            "slots": {"geo.spessore": {"type": "float"}},
-        }
+        "_schema": "v4",
+        "Strutture": {
+            "_global": {
+                "slots": {"geo.spessore": {"type": "float"}},
+            },
+            "categories": {
+                "Pareti": {"slots": {}},
+            },
+        },
     }
     registry_path.write_text(json.dumps(registry), encoding="utf-8")
 
@@ -42,7 +48,7 @@ def test_prepare_classification_dataset_enriches_properties(tmp_path):
     extractors = {
         "patterns": [
             {
-                "property_id": "geo.spessore",
+                "property_id": "strutture.__global__.geo_spessore",
                 "regex": [r"sp\s*(\d+)"],
                 "normalizers": ["to_float"],
             }
@@ -61,13 +67,21 @@ def test_prepare_classification_dataset_enriches_properties(tmp_path):
 
     assert "properties" in train_df.columns
     first_props = train_df.iloc[0]["properties"]
-    assert pytest.approx(first_props["geo.spessore"], rel=1e-6) == 20.0
+    assert (
+        pytest.approx(first_props["strutture.__global__.geo_spessore"], rel=1e-6)
+        == 20.0
+    )
 
     assert "property_schema" in train_df.columns
-    assert train_df.iloc[0]["property_schema"]["slots"] == {"geo.spessore": {"type": "float"}}
+    assert train_df.iloc[0]["property_schema"]["slots"] == {
+        "strutture.__global__.geo_spessore": {"type": "float"}
+    }
 
     val_props = val_df.iloc[0]["properties"]
-    assert pytest.approx(val_props["geo.spessore"], rel=1e-6) == 20.0
+    assert (
+        pytest.approx(val_props["strutture.__global__.geo_spessore"], rel=1e-6)
+        == 20.0
+    )
 
 
 def test_prepare_classification_dataset_uses_registry_patterns(tmp_path):
@@ -88,10 +102,18 @@ def test_prepare_classification_dataset_uses_registry_patterns(tmp_path):
 
     registry_path = tmp_path / "registry.json"
     registry = {
-        "Strutture|Pareti": {
-            "slots": {"geo.spessore": {"type": "float"}},
-            "patterns": {"geo.spessore": [r"spessore\s*(\d+(?:[.,]\d+)?)\s*cm"]},
-        }
+        "_schema": "v4",
+        "Strutture": {
+            "_global": {"slots": {}},
+            "categories": {
+                "Pareti": {
+                    "slots": {"geo.spessore": {"type": "float"}},
+                    "patterns": {
+                        "geo.spessore": [r"spessore\s*(\d+(?:[.,]\d+)?)\s*cm"],
+                    },
+                }
+            },
+        },
     }
     registry_path.write_text(json.dumps(registry), encoding="utf-8")
 
@@ -105,10 +127,14 @@ def test_prepare_classification_dataset_uses_registry_patterns(tmp_path):
     )
 
     assert "properties" in train_df.columns
-    assert pytest.approx(train_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 25
+    assert pytest.approx(
+        train_df.iloc[0]["properties"]["strutture.pareti.geo_spessore"], rel=1e-6
+    ) == 25
 
     assert "properties" in val_df.columns
-    assert pytest.approx(val_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 25
+    assert pytest.approx(
+        val_df.iloc[0]["properties"]["strutture.pareti.geo_spessore"], rel=1e-6
+    ) == 25
 
 
 def test_pack_extractors_normalize_ei_and_spessore_cm():
@@ -158,7 +184,7 @@ def test_prepare_classification_dataset_filters_by_category_tags(tmp_path):
     extractors = {
         "patterns": [
             {
-                "property_id": "ins.spessore",
+                "property_id": "opere_di_coibentazione.isolanti_termici.ins_spessore",
                 "regex": [r"sp\s*(\d+)"],
                 "normalizers": ["to_int"],
                 "tags": [
@@ -167,7 +193,7 @@ def test_prepare_classification_dataset_filters_by_category_tags(tmp_path):
                 ],
             },
             {
-                "property_id": "altro.valore",
+                "property_id": "opere_da_lattoniere.__global__.altro_valore",
                 "regex": [r"sp\s*(\d+)"],
                 "normalizers": ["to_int"],
                 "tags": ["category:Opere da lattoniere"],
@@ -186,12 +212,12 @@ def test_prepare_classification_dataset_filters_by_category_tags(tmp_path):
     )
 
     train_props = train_df.iloc[0]["properties"]
-    assert train_props["ins.spessore"] == 30
-    assert "altro.valore" not in train_props
+    assert train_props["opere_di_coibentazione.isolanti_termici.ins_spessore"] == 30
+    assert "opere_da_lattoniere.__global__.altro_valore" not in train_props
 
     val_props = val_df.iloc[0]["properties"]
-    assert val_props["ins.spessore"] == 30
-    assert "altro.valore" not in val_props
+    assert val_props["opere_di_coibentazione.isolanti_termici.ins_spessore"] == 30
+    assert "opere_da_lattoniere.__global__.altro_valore" not in val_props
 
 
 def test_prepare_classification_dataset_accepts_pack_index(tmp_path):
@@ -199,14 +225,15 @@ def test_prepare_classification_dataset_accepts_pack_index(tmp_path):
     pack_dir.mkdir()
 
     registry_payload = {
-        "registry": {
-            "mappings": [
-                {
-                    "key": "Strutture|Pareti",
-                    "slots": {"geo.spessore": {"type": "float"}},
-                }
-            ]
-        }
+        "_schema": "v4",
+        "Strutture": {
+            "_global": {
+                "slots": {"geo.spessore": {"type": "float"}},
+            },
+            "categories": {
+                "Pareti": {"slots": {}},
+            },
+        },
     }
     (pack_dir / "registry.json").write_text(json.dumps(registry_payload), encoding="utf-8")
 
@@ -214,7 +241,7 @@ def test_prepare_classification_dataset_accepts_pack_index(tmp_path):
         "defaults": {"selection_strategy": "best_confidence"},
         "patterns": [
             {
-                "property_id": "geo.spessore",
+                "property_id": "strutture.__global__.geo_spessore",
                 "regex": [r"sp\s*(\d+)"],
                 "normalizers": ["to_float"],
             }
@@ -256,7 +283,13 @@ def test_prepare_classification_dataset_accepts_pack_index(tmp_path):
         extractors_pack_path=pack_path,
     )
 
-    assert pytest.approx(train_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 18.0
-    assert train_df.iloc[0]["property_schema"]["slots"] == {"geo.spessore": {"type": "float"}}
+    assert pytest.approx(
+        train_df.iloc[0]["properties"]["strutture.__global__.geo_spessore"], rel=1e-6
+    ) == 18.0
+    assert train_df.iloc[0]["property_schema"]["slots"] == {
+        "strutture.__global__.geo_spessore": {"type": "float"}
+    }
 
-    assert pytest.approx(val_df.iloc[0]["properties"]["geo.spessore"], rel=1e-6) == 18.0
+    assert pytest.approx(
+        val_df.iloc[0]["properties"]["strutture.__global__.geo_spessore"], rel=1e-6
+    ) == 18.0
