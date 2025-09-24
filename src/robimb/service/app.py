@@ -14,9 +14,9 @@ from ..inference.calibration import TemperatureCalibrator
 APP_VERSION = "0.1.0"
 
 # ---- Env config ----
-ENV_PACK = os.getenv("ROBIMB_PACK", "pack/current/pack.json")
+ENV_PACK = os.getenv("ROBIMB_PACK", "data/properties")
 ENV_MODEL = os.getenv("ROBIMB_MODEL", "runs/label")
-ENV_LABEL_INDEX = os.getenv("ROBIMB_LABEL_INDEX", "data/metadata/label_index/cat.json")
+ENV_LABEL_INDEX = os.getenv("ROBIMB_LABEL_INDEX", "data/wbs/label_maps.json")
 ENV_CALIBRATOR = os.getenv("ROBIMB_CALIBRATOR")  # opzionale
 
 # ---- Singletons with lock ----

@@ -63,6 +63,17 @@ def _normalize_registry_payload(payload: Any) -> Optional[Dict[str, Dict[str, ob
 def _load_property_registry(path: Path) -> Optional[Dict[str, Dict[str, object]]]:
     """Load a property registry from either a raw JSON or a knowledge pack."""
 
+    if path.is_dir():
+        for name in (
+            "registry.json",
+            "properties_registry_extended.json",
+            "properties_registry.json",
+        ):
+            candidate = path / name
+            if candidate.exists():
+                path = candidate
+                break
+
     path = _resolve_pack_json(path)
     try:
         payload = _load_json(path)
@@ -111,6 +122,16 @@ def _normalize_extractors_payload(payload: Any) -> Optional[Dict[str, Any]]:
 
 def _load_extractors_pack(path: Path) -> Optional[Dict[str, Any]]:
     """Load an extractors pack from raw JSON or a knowledge pack."""
+
+    if path.is_dir():
+        for name in (
+            "extractors_extended.json",
+            "extractors.json",
+        ):
+            candidate = path / name
+            if candidate.exists():
+                path = candidate
+                break
 
     path = _resolve_pack_json(path)
     try:

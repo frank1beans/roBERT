@@ -308,15 +308,45 @@ def _flow_to_l_s(v: Any, m: str) -> Any:
 
 
 def _unit_from_context(matched_text: str) -> Optional[str]:
-    unit_pattern = re.compile(r"\b(mm|cm|m)\b", re.IGNORECASE)
-    found = unit_pattern.findall(matched_text)
+    normalized = matched_text.lower()
+    normalized = normalized.replace("²", "2").replace("³", "3")
+    replacements = {
+        "metri quadrati": "m2",
+        "metri quadri": "m2",
+        "metri cubi": "m3",
+        "metri cubes": "m3",
+        "metri cube": "m3",
+    }
+    for src, dst in replacements.items():
+        normalized = normalized.replace(src, dst)
+
+    unit_pattern = re.compile(
+        r"\b(mm3|cm3|m3|mm2|cm2|m2|mq|mc|mm|cm|m)\b",
+        re.IGNORECASE,
+    )
+    found = unit_pattern.findall(normalized)
     if not found:
         return None
-    return found[-1].lower()
+    candidate = found[-1].lower()
+    if candidate == "mq":
+        return "m2"
+    if candidate == "mc":
+        return "m3"
+    return candidate
 
 
 def _to_unit_factory(target_unit: str) -> Normalizer:
-    factors = {"mm": 1.0, "cm": 10.0, "m": 1000.0}
+    factors = {
+        "mm": 1.0,
+        "cm": 10.0,
+        "m": 1000.0,
+        "mm2": 1.0,
+        "cm2": 100.0,
+        "m2": 1_000_000.0,
+        "mm3": 1.0,
+        "cm3": 1000.0,
+        "m3": 1_000_000_000.0,
+    }
     if target_unit not in factors:
         raise ValueError(f"Unsupported unit normalizer target: {target_unit}")
 
