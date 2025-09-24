@@ -1,15 +1,14 @@
-"""CLI command to prepare datasets, label maps and ontology masks."""
+"""CLI command to prepare datasets, label maps and ontology masks (ONLY using data/properties)."""
 from __future__ import annotations
 
 import argparse
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List, Mapping, Optional, Sequence
+from typing import Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 
-from ..extraction import resources as extraction_resources
 from ..reporting import generate_dataset_reports
 from ..utils.data_utils import (
     build_mask_and_report,
@@ -27,40 +26,60 @@ __all__ = [
     "main",
 ]
 
+# ---------------------------------------------------------------------
+# Defaults: we ONLY look under data/properties (repo-local)
+# ---------------------------------------------------------------------
 
-_DATA_PROPERTIES_DIR = Path(__file__).resolve().parents[3] / "data" / "properties"
+# repo_root/src/robimb/cli/convert.py -> parents[3] = repo_root
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+_DATA_PROPERTIES_DIR = _REPO_ROOT / "data" / "properties"
 
+_REQUIRED_REGISTRY_CANDIDATES = (
+    "properties_registry_extended.json",
+    "properties_registry.json",
+    "registry.json",
+)
+_REQUIRED_EXTRACTORS_CANDIDATES = (
+    "extractors_extended.json",
+    "extractors.json",
+)
 
-def _resolve_default_registry_path() -> Optional[Path]:
-    for name in (
-        "properties_registry_extended.json",
-        "properties_registry.json",
-        "registry.json",
-    ):
-        candidate = _DATA_PROPERTIES_DIR / name
-        if candidate.exists():
-            return candidate
+def _find_first_existing(base: Path, candidates: Sequence[str]) -> Optional[Path]:
+    for name in candidates:
+        p = base / name
+        if p.exists():
+            return p
     return None
 
+def _resolve_registry_path() -> Path:
+    p = _find_first_existing(_DATA_PROPERTIES_DIR, _REQUIRED_REGISTRY_CANDIDATES)
+    if p is None:
+        raise FileNotFoundError(
+            f"Registry non trovato. Attesi uno tra: {', '.join(_REQUIRED_REGISTRY_CANDIDATES)} "
+            f"all’interno di: {str(_DATA_PROPERTIES_DIR)}"
+        )
+    return p
 
-def _resolve_default_extractors_path() -> Optional[Path]:
-    for name in ("extractors_extended.json", "extractors.json"):
-        candidate = _DATA_PROPERTIES_DIR / name
-        if candidate.exists():
-            return candidate
-    bundled = extraction_resources.default_path()
-    if bundled.exists():
-        return bundled
-    return None
+def _resolve_extractors_path() -> Path:
+    p = _find_first_existing(_DATA_PROPERTIES_DIR, _REQUIRED_EXTRACTORS_CANDIDATES)
+    if p is None:
+        raise FileNotFoundError(
+            f"Extractors non trovati. Attesi uno tra: {', '.join(_REQUIRED_EXTRACTORS_CANDIDATES)} "
+            f"all’interno di: {str(_DATA_PROPERTIES_DIR)}"
+        )
+    return p
+
+DEFAULT_PROPERTIES_REGISTRY: Path = _resolve_registry_path()
+DEFAULT_EXTRACTORS_PACK: Path = _resolve_extractors_path()
 
 
-DEFAULT_PROPERTIES_REGISTRY = _resolve_default_registry_path()
-DEFAULT_EXTRACTORS_PACK = _resolve_default_extractors_path()
-
+# ---------------------------------------------------------------------
+# Data classes
+# ---------------------------------------------------------------------
 
 @dataclass(frozen=True)
 class ConversionConfig:
-    """Configuration for dataset conversion."""
+    """Configuration for dataset conversion (hard-wired to data/properties)."""
 
     train_file: Path
     val_file: Optional[Path]
@@ -70,12 +89,18 @@ class ConversionConfig:
     done_uids: Optional[Path] = None
     val_split: float = 0.2
     random_state: int = 42
+
+    # MLM/TAPT
     make_mlm_corpus: bool = False
     mlm_output: Optional[Path] = None
     extra_mlm: Sequence[Path] = ()
     reports_dir: Optional[Path] = None
-    properties_registry: Optional[Path] = DEFAULT_PROPERTIES_REGISTRY
-    extractors_pack: Optional[Path] = DEFAULT_EXTRACTORS_PACK
+
+    # Properties / Extractors: **always** under data/properties
+    properties_registry: Path = DEFAULT_PROPERTIES_REGISTRY
+    extractors_pack: Path = DEFAULT_EXTRACTORS_PACK
+
+    # Text column
     text_field: str = "text"
 
     def iter_mlm_sources(self) -> Iterable[Path]:
@@ -115,20 +140,46 @@ class ConversionArtifacts:
         return payload
 
 
-def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
-    """Execute the conversion pipeline using the provided configuration."""
+# ---------------------------------------------------------------------
+# Core
+# ---------------------------------------------------------------------
 
+def _validate_inputs_exist(config: ConversionConfig) -> None:
+    missing: list[Tuple[str, Path]] = []
+    for label, p in (
+        ("train_file", config.train_file),
+        ("label_maps (dir parent)", config.label_maps.parent),
+        ("out_dir", config.out_dir),
+        ("properties_registry", config.properties_registry),
+        ("extractors_pack", config.extractors_pack),
+    ):
+        if label in ("label_maps (dir parent)", "out_dir"):
+            # For directories we only ensure parent exists / can be created later
+            continue
+        if p is not None and not p.exists():
+            missing.append((label, p))
+    if missing:
+        lines = "\n".join(f"- {k}: {v}" for k, v in missing)
+        raise FileNotFoundError(f"I seguenti path non esistono:\n{lines}")
+
+def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
+    """Execute the conversion pipeline using ONLY data/properties for extraction."""
+
+    _validate_inputs_exist(config)
     config.out_dir.mkdir(parents=True, exist_ok=True)
 
+    # 1) Label maps
     label_maps_path = config.label_maps
     ontology_path = config.ontology
     if not label_maps_path.exists() and ontology_path is None:
-        raise ValueError("An ontology must be provided to build label maps from scratch")
+        raise ValueError("Manca l'ontologia: è necessaria per costruire le label maps ex novo.")
 
     super_name_to_id, cat_name_to_id, super_id_to_name, cat_id_to_name = create_or_load_label_maps(
         label_maps_path, ontology_path=ontology_path
     )
 
+    # 2) Dataset prep (classification + property extraction)
+    #    Enforce usage of data/properties registry + extractors
     train_df, val_df, _, _ = prepare_classification_dataset(
         config.train_file,
         config.val_file,
@@ -144,13 +195,15 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
 
     save_datasets(train_df, val_df, config.out_dir)
 
+    # 3) Ontology masks
     mask_matrix, mask_report = build_mask_and_report(ontology_path, super_name_to_id, cat_name_to_id)
     mask_matrix_path = config.out_dir / "mask_matrix.npy"
     mask_report_path = config.out_dir / "mask_report.json"
     np.save(mask_matrix_path, mask_matrix)
     with open(mask_report_path, "w", encoding="utf-8") as handle:
-        json.dump(mask_report, handle, indent=2)
+        json.dump(mask_report, handle, indent=2, ensure_ascii=False)
 
+    # 4) Dump label maps (freeze what we used)
     label_maps_dump = config.out_dir / "label_maps.json"
     with open(label_maps_dump, "w", encoding="utf-8") as handle:
         json.dump(
@@ -165,6 +218,7 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
             ensure_ascii=False,
         )
 
+    # 5) Reports
     reports_dir = config.reports_dir or (config.out_dir / "reports")
     generate_dataset_reports(
         train_df,
@@ -174,10 +228,11 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
         output_dir=reports_dir,
     )
 
+    # 6) (Optional) MLM/TAPT corpus
     mlm_corpus_path: Optional[Path] = None
     if config.make_mlm_corpus:
         if config.mlm_output is None:
-            raise SystemExit("--mlm-output is required when --make-mlm-corpus is provided")
+            raise SystemExit("--mlm-output è obbligatorio quando usi --make-mlm-corpus")
         mlm_sources = [str(path) for path in config.iter_mlm_sources()]
         count = prepare_mlm_corpus(mlm_sources, config.mlm_output)
         print(f"[INFO] Salvate {count} frasi nel corpus MLM {config.mlm_output}")
@@ -193,8 +248,14 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
         reports_dir=reports_dir,
     )
 
+# ---------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------
+
 def build_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Convert raw BIM data to training-ready artefacts")
+    parser = argparse.ArgumentParser(
+        description="Convert raw AEC/BIM data using ONLY data/properties for property extraction."
+    )
     parser.add_argument("--train-file", required=True, help="Path to the raw training jsonl file")
     parser.add_argument("--val-file", default=None, help="Optional validation jsonl file")
     parser.add_argument("--ontology", default=None, help="Ontology json file")
@@ -203,6 +264,8 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--done-uids", default=None, help="Optional text file listing UIDs to skip")
     parser.add_argument("--val-split", type=float, default=0.2, help="Validation split ratio if no val file is provided")
     parser.add_argument("--random-state", type=int, default=42)
+
+    # MLM/TAPT
     parser.add_argument(
         "--make-mlm-corpus",
         action="store_true",
@@ -224,21 +287,20 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=None,
         help="Directory where dataset reports and visualizations will be stored",
     )
+
+    # Hard-wired defaults (still overridable, but MUST reside in data/properties)
     parser.add_argument(
         "--properties-registry",
-        default=str(DEFAULT_PROPERTIES_REGISTRY) if DEFAULT_PROPERTIES_REGISTRY else None,
-        help="Optional registry JSON or knowledge pack containing property schemas to attach to rows",
+        default=str(DEFAULT_PROPERTIES_REGISTRY),
+        help="Registry JSON in data/properties (default auto-resolved)",
     )
     parser.add_argument(
         "--extractors-pack",
-        default=str(DEFAULT_EXTRACTORS_PACK) if DEFAULT_EXTRACTORS_PACK else None,
-        help="Knowledge pack or extractors JSON used to auto-extract properties during conversion",
+        default=str(DEFAULT_EXTRACTORS_PACK),
+        help="Extractors JSON in data/properties (default auto-resolved)",
     )
-    parser.add_argument(
-        "--text-field",
-        default="text",
-        help="Column name that contains the textual description to analyse for properties",
-    )
+
+    parser.add_argument("--text-field", default="text", help="Column name for the textual description")
     return parser
 
 
@@ -258,14 +320,13 @@ def main(argv: List[str] | None = None) -> None:
         mlm_output=Path(args.mlm_output) if args.mlm_output else None,
         extra_mlm=[Path(p) for p in args.extra_mlm],
         reports_dir=Path(args.reports_dir) if args.reports_dir else None,
-        properties_registry=Path(args.properties_registry) if args.properties_registry else None,
-        extractors_pack=Path(args.extractors_pack) if args.extractors_pack else None,
+        properties_registry=Path(args.properties_registry) if args.properties_registry else DEFAULT_PROPERTIES_REGISTRY,
+        extractors_pack=Path(args.extractors_pack) if args.extractors_pack else DEFAULT_EXTRACTORS_PACK,
         text_field=args.text_field,
     )
 
     artifacts = run_conversion(config)
-    summary = json.dumps(artifacts.as_dict(), indent=2)
-    print(summary)
+    print(json.dumps(artifacts.as_dict(), indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
