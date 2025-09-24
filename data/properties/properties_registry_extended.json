@@ -9760,5 +9760,864 @@
         "\\bimpregnant[ei]|resina|verniciatur[ae]\\b"
       ]
     }
+  },
+  "Opere da serramentista|Prestazioni serramenti": {
+    "priority": [
+      "permeabilita_aria_classe",
+      "tenuta_acqua_classe",
+      "resistenza_vento_classe",
+      "Ug_Wm2K",
+      "g"
+    ],
+    "slots": {
+      "permeabilita_aria_classe": {
+        "type": "enum",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "ignoto"
+        ]
+      },
+      "tenuta_acqua_classe": {
+        "type": "enum",
+        "values": [
+          "1A",
+          "2A",
+          "3A",
+          "4A",
+          "5A",
+          "6A",
+          "7A",
+          "8A",
+          "9A",
+          "1B",
+          "2B",
+          "3B",
+          "4B",
+          "5B",
+          "ignoto"
+        ]
+      },
+      "resistenza_vento_classe": {
+        "type": "enum",
+        "values": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5",
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "B5",
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "ignoto"
+        ]
+      },
+      "Ug_Wm2K": {
+        "type": "float",
+        "range": [
+          0.3,
+          3.0
+        ],
+        "unknown": "ignoto"
+      },
+      "g": {
+        "type": "float",
+        "range": [
+          0.1,
+          0.9
+        ],
+        "unknown": "ignoto"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "permeabilita_aria_classe": [
+        "(?i)\\bEN\\s*12207\\b[^\\n]{0,50}?\\bclasse\\s*(?P<val>[1-4])\\b",
+        "(?i)\\bpermeabilit[aà]\\s*all'?aria\\b[^\\n]{0,40}?\\bclasse\\s*(?P<val>[1-4])\\b",
+        "(?i)\\bclasse\\s*(?P<val>[1-4])\\b[^\\n]{0,30}?\\bEN\\s*12207\\b"
+      ],
+      "tenuta_acqua_classe": [
+        "(?i)\\bEN\\s*12208\\b[^\\n]{0,50}?\\bclasse\\s*(?P<val>[0-9]\\s*[AB])\\b",
+        "(?i)\\btenuta\\s*all'?acqua\\b[^\\n]{0,40}?\\bclasse\\s*(?P<val>[0-9]\\s*[AB])\\b",
+        "(?i)\\bclasse\\s*(?P<val>[0-9]\\s*[AB])\\b[^\\n]{0,30}?\\bEN\\s*12208\\b"
+      ],
+      "resistenza_vento_classe": [
+        "(?i)\\bEN\\s*12210\\b[^\\n]{0,50}?\\bclasse\\s*(?P<val>[ABC]\\s*[1-5])\\b",
+        "(?i)\\bresistenza\\s+al\\s+vento\\b[^\\n]{0,40}?\\bclasse\\s*(?P<val>[ABC]\\s*[1-5])\\b",
+        "(?i)\\bclasse\\s*(?P<val>[ABC]\\s*[1-5])\\b[^\\n]{0,30}?\\bEN\\s*12210\\b"
+      ],
+      "Ug_Wm2K": [
+        "(?i)\\bUg\\s*[:=]?\\s*(?:≥|<=|>=|≤|almeno|max\\.?|non\\s+superiore\\s+a)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:W\\s*/\\s*m\\s*(?:²|2)|W/m2K?|W\\s*/\\s*m\\s*²\\s*K)\\b",
+        "(?i)\\btrasmittanza\\s+vetro\\b[^\\n]{0,40}?\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:W\\s*/\\s*m\\s*(?:²|2)|W/m2K?)\\b"
+      ],
+      "g": [
+        "(?i)\\bg[-\\s]*value\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*%)?",
+        "(?i)\\bfattore\\s+(?:solare|g)\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*%)?",
+        "(?i)\\bg\\s*=\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*%)?"
+      ]
+    }
+  },
+  "Prestazioni|Isolamento acustico edilizio": {
+    "priority": [
+      "Rw_dB",
+      "rw",
+      "C_dB",
+      "Ctr_dB"
+    ],
+    "slots": {
+      "Rw_dB": {
+        "type": "float",
+        "range": [
+          30,
+          70
+        ],
+        "unknown": "ignoto"
+      },
+      "rw": {
+        "type": "float",
+        "range": [
+          30,
+          70
+        ],
+        "unknown": "ignoto"
+      },
+      "C_dB": {
+        "type": "float",
+        "range": [
+          -10,
+          10
+        ],
+        "unknown": "ignoto"
+      },
+      "Ctr_dB": {
+        "type": "float",
+        "range": [
+          -15,
+          5
+        ],
+        "unknown": "ignoto"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "Rw_dB": [
+        "(?i)\\bRw\\b[^\\n]{0,10}?[:=]?\\s*(?:≥|<=|>=|≤|almeno|min\\.?|non\\s+inferiore\\s+a)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*dB)\\b",
+        "(?i)\\bpotere\\s+fonoisolante\\b[^\\n]{0,40}?\\b(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*dB)\\b",
+        "(?i)\\bindice\\s+Rw\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*dB)\\b"
+      ],
+      "rw": [
+        "(?i)\\bRw\\b[^\\n]{0,10}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*dB)?\\b",
+        "(?i)\\bpotere\\s+fonoisolante\\b[^\\n]{0,40}?\\b(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*dB)?\\b"
+      ],
+      "C_dB": [
+        "(?i)\\bC\\s*[:=]?\\s*(?P<val>[+\\-\\u2212–—]?\\d+(?:[.,]\\d+)?)(?:\\s*dB)\\b",
+        "(?i)\\bcorrezione\\s*C\\b[^\\n]{0,10}?[:=]?\\s*(?P<val>[+\\-\\u2212–—]?\\d+(?:[.,]\\d+)?)(?:\\s*dB)\\b"
+      ],
+      "Ctr_dB": [
+        "(?i)\\bC\\s*tr\\s*[:=]?\\s*(?P<val>[+\\-\\u2212–—]?\\d+(?:[.,]\\d+)?)(?:\\s*dB)\\b",
+        "(?i)\\bcorrezione\\s*Ctr\\b[^\\n]{0,10}?[:=]?\\s*(?P<val>[+\\-\\u2212–—]?\\d+(?:[.,]\\d+)?)(?:\\s*dB)\\b"
+      ]
+    }
+  },
+  "Prestazioni|Resistenza e reazione al fuoco": {
+    "priority": [
+      "resistenza.EI",
+      "resistenza_fuoco",
+      "reazione.EN13501_1"
+    ],
+    "slots": {
+      "resistenza.EI": {
+        "type": "enum",
+        "values": [
+          "EI15",
+          "EI30",
+          "EI45",
+          "EI60",
+          "EI90",
+          "EI120",
+          "EI180",
+          "EI240",
+          "ignoto"
+        ]
+      },
+      "resistenza_fuoco": {
+        "type": "enum",
+        "values": [
+          "EI15",
+          "EI30",
+          "EI45",
+          "EI60",
+          "EI90",
+          "EI120",
+          "EI180",
+          "EI240",
+          "ignoto"
+        ]
+      },
+      "reazione.EN13501_1": {
+        "type": "enum",
+        "values": [
+          "A1",
+          "A2-s1,d0",
+          "A2-s1,d1",
+          "A2-s1,d2",
+          "A2-s2,d0",
+          "A2-s2,d1",
+          "A2-s2,d2",
+          "A2-s3,d0",
+          "A2-s3,d1",
+          "A2-s3,d2",
+          "B-s1,d0",
+          "B-s1,d1",
+          "B-s1,d2",
+          "B-s2,d0",
+          "B-s2,d1",
+          "B-s2,d2",
+          "B-s3,d0",
+          "B-s3,d1",
+          "B-s3,d2",
+          "C-s1,d0",
+          "C-s1,d1",
+          "C-s1,d2",
+          "C-s2,d0",
+          "C-s2,d1",
+          "C-s2,d2",
+          "C-s3,d0",
+          "C-s3,d1",
+          "C-s3,d2",
+          "D-s1,d0",
+          "D-s1,d1",
+          "D-s1,d2",
+          "D-s2,d0",
+          "D-s2,d1",
+          "D-s2,d2",
+          "D-s3,d0",
+          "D-s3,d1",
+          "D-s3,d2",
+          "E",
+          "F",
+          "ignoto"
+        ]
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "resistenza.EI": [
+        "(?i)\\b(EI)\\s*(?P<val>15|30|45|60|90|120|180|240)\\b",
+        "(?i)\\bresistenza\\s+al\\s+fuoco\\b[^\\n]{0,30}?\\b(?P<val>15|30|45|60|90|120|180|240)\\b"
+      ],
+      "resistenza_fuoco": [
+        "(?i)\\b(EI)\\s*(?P<val>15|30|45|60|90|120|180|240)\\b",
+        "(?i)\\bresistenza\\s+al\\s+fuoco\\b[^\\n]{0,30}?\\b(?P<val>15|30|45|60|90|120|180|240)\\b"
+      ],
+      "reazione.EN13501_1": [
+        "(?i)\\bEN\\s*13501[- ]?1\\b[^\\n]{0,50}?(?P<val>A1|A2\\s*-?s\\d(?:[,-]d\\d)?|B\\s*-?s\\d[,-]d\\d|C\\s*-?s\\d[,-]d\\d|D\\s*-?s\\d[,-]d\\d|E|F)\\b",
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\b[^\\n]{0,40}?[:=]?\\s*(?P<val>A1|A2\\s*-?s\\d(?:[,-]d\\d)?|B\\s*-?s\\d[,-]d\\d|C\\s*-?s\\d[,-]d\\d|D\\s*-?s\\d[,-]d\\d|E|F)\\b"
+      ]
+    }
+  },
+  "Caratteristiche geometriche|Parametri generali": {
+    "priority": [
+      "spessore_elemento",
+      "spessore",
+      "larghezza_mm",
+      "interasse_mm"
+    ],
+    "slots": {
+      "spessore_elemento": {
+        "type": "float",
+        "range": [
+          5,
+          1000
+        ],
+        "unknown": "ignoto"
+      },
+      "spessore": {
+        "type": "float",
+        "range": [
+          1,
+          2000
+        ],
+        "unknown": "ignoto"
+      },
+      "larghezza_mm": {
+        "type": "float",
+        "range": [
+          20,
+          10000
+        ],
+        "unknown": "ignoto"
+      },
+      "interasse_mm": {
+        "type": "float",
+        "range": [
+          50,
+          2000
+        ],
+        "unknown": "ignoto"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "spessore_elemento": [
+        "(?i)\\bspessore\\b[^\\n]{0,30}?[:=]?\\s*(?:≥|<=|>=|≤|almeno|min\\.?|non\\s+inferiore\\s+a)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))\\b",
+        "(?i)\\bs\\.?\\s*=\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))\\b"
+      ],
+      "spessore": [
+        "(?i)\\bsp\\b[^\\n]{0,15}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))?",
+        "(?i)\\bspessore\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))?"
+      ],
+      "larghezza_mm": [
+        "(?i)\\blarghezza\\b[^\\n]{0,30}?[:=]?\\s*(?:≥|<=|>=|≤|almeno|min\\.?|non\\s+inferiore\\s+a)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))\\b",
+        "(?i)\\b(b|base)\\s*[:=]\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))\\b"
+      ],
+      "interasse_mm": [
+        "(?i)\\binterasse\\b(?![^\\n]{0,25}\\borditura\\b)[^\\n]{0,30}?(?:travetti|travi|montanti|assi|tiranti|bulloni|colonne|pali|fori|staffe|supporti|elementi)\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))\\b",
+        "(?i)\\bpasso\\b[^\\n]{0,30}?(?:travetti|travi|listelli|montanti|assi|staffe)\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm|m))\\b"
+      ]
+    }
+  },
+  "Caratteristiche geometriche|Murature in laterizio": {
+    "priority": [
+      "foratura_laterizio"
+    ],
+    "slots": {
+      "foratura_laterizio": {
+        "type": "enum",
+        "values": [
+          "pieno",
+          "forato",
+          "semipieno",
+          "ignoto"
+        ]
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "foratura_laterizio": [
+        "(?i)\\blaterizio\\b[^\\n]{0,30}?\\b(?P<val>semi\\s*pieno|pieno|forato)\\b",
+        "(?i)\\bforatura\\s+laterizio\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>semi\\s*pieno|pieno|forato)\\b"
+      ]
+    }
+  },
+  "Documentazione|Quantitativi e misure": {
+    "priority": [
+      "unita_misura"
+    ],
+    "slots": {
+      "unita_misura": {
+        "type": "enum",
+        "values": [
+          "m",
+          "m2",
+          "m3",
+          "cm",
+          "mm",
+          "kg/m3",
+          "W/mK",
+          "W/m2K",
+          "pezzi",
+          "ignoto"
+        ]
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "unita_misura": [
+        "(?i)\\bunit[aà]\\s+di\\s+misura\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>m\\s*²|m\\s*³|m2|m3|m\\^2|m\\^3|cm|mm|kg/m3|kg\\s*/\\s*m\\s*³|W/mK|W/m\\s*²K)\\b",
+        "(?i)\\bunita\\s+misura\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>m\\s*²|m\\s*³|m2|m3|cm|mm)\\b"
+      ]
+    }
+  },
+  "Opere strutturali|Calcestruzzo e acciaio": {
+    "priority": [
+      "cls_calcestruzzo",
+      "el.acc.classe"
+    ],
+    "slots": {
+      "cls_calcestruzzo": {
+        "type": "enum",
+        "values": [
+          "C12/15",
+          "C16/20",
+          "C20/25",
+          "C25/30",
+          "C28/35",
+          "C30/37",
+          "C32/40",
+          "C35/45",
+          "C40/50",
+          "C45/55",
+          "C50/60",
+          "ignoto"
+        ]
+      },
+      "el.acc.classe": {
+        "type": "enum",
+        "values": [
+          "S235",
+          "S275",
+          "S355",
+          "S420",
+          "S460",
+          "ignoto"
+        ]
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "cls_calcestruzzo": [
+        "(?i)\\bclasse\\s+calcestruzzo\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>C\\s*\\d+\\s*/\\s*\\d+)\\b",
+        "(?i)\\bcalcestruzzo\\b[^\\n]{0,40}?\\bclasse\\s*(?P<val>C\\s*\\d+\\s*/\\s*\\d+)\\b",
+        "(?i)\\b(?P<val>C\\s*\\d+\\s*/\\s*\\d+)\\b\\s*(?:calcestruzzo|cls)"
+      ],
+      "el.acc.classe": [
+        "(?i)\\bacciaio\\b[^\\n]{0,30}?\\bclasse\\s*(?P<val>S\\s*\\d{3})\\b",
+        "(?i)\\b(?P<val>S\\s*\\d{3})\\b\\s*(?:acciaio|profilo|trave)",
+        "(?i)\\bs\\s*=\\s*(?P<val>S\\s*\\d{3})\\b",
+        "(?i)\\bacciaio\\b[^\\n]{0,20}?\\b(?P<val>S\\s*\\d{3})\\b"
+      ]
+    }
+  },
+  "Opere da cartongessista|Sistemi di orditura": {
+    "priority": [
+      "orditura_interasse_mm",
+      "orditura_tipo"
+    ],
+    "slots": {
+      "orditura_interasse_mm": {
+        "type": "float",
+        "range": [
+          300,
+          1200
+        ],
+        "unknown": "ignoto"
+      },
+      "orditura_tipo": {
+        "type": "enum",
+        "values": [
+          "MS48",
+          "MS75",
+          "MS100",
+          "UA",
+          "UA50",
+          "UA75",
+          "UA100",
+          "ignoto"
+        ]
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "orditura_interasse_mm": [
+        "(?i)\\borditura\\s+(?:primaria|secondaria)?\\b[^\\n]{0,30}?\\binterasse\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm))\\b",
+        "(?i)\\binterasse\\s+montanti\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>mm|cm))\\b"
+      ],
+      "orditura_tipo": [
+        "(?i)\\bprofil[io]\\s+(?P<val>MS\\s*48|MS\\s*75|UA\\s*50|UA)\\b",
+        "(?i)\\bmontanti\\b[^\\n]{0,30}?\\b(?P<val>MS\\s*48|MS\\s*75|UA\\s*50|UA)\\b",
+        "(?i)\\bprofili\\b[^\\n]{0,30}?\\b(?P<val>MS\\s*48|MS\\s*75|UA\\s*50|UA)\\b"
+      ]
+    }
+  },
+  "Impianti elettrici|Quadri e apparecchiature": {
+    "priority": [
+      "potenza_kW",
+      "tensione_V",
+      "gradoIP"
+    ],
+    "slots": {
+      "potenza_kW": {
+        "type": "float",
+        "range": [
+          0.1,
+          1000
+        ],
+        "unknown": "ignoto"
+      },
+      "tensione_V": {
+        "type": "float",
+        "range": [
+          12,
+          24000
+        ],
+        "unknown": "ignoto"
+      },
+      "gradoIP": {
+        "type": "enum",
+        "values": [
+          "IP20",
+          "IP21",
+          "IP23",
+          "IP30",
+          "IP33",
+          "IP40",
+          "IP44",
+          "IP45",
+          "IP54",
+          "IP55",
+          "IP56",
+          "IP65",
+          "IP66",
+          "IP67",
+          "IP68",
+          "ignoto"
+        ]
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "potenza_kW": [
+        "(?i)\\bpotenza\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(kW|kw|W|w))\\b",
+        "(?i)\\bP\\s*=\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(kW|kw|W|w))\\b"
+      ],
+      "tensione_V": [
+        "(?i)\\btensione\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(V|Volt|VAC|Vca))\\b",
+        "(?i)\\bU\\s*=\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(V|VAC))\\b"
+      ],
+      "gradoIP": [
+        "(?i)\\bgrado\\s*IP\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>IP\\s*\\d{2}[A-Z]?)\\b",
+        "(?i)\\b(?P<val>IP\\s*\\d{2}[A-Z]?)\\b"
+      ]
+    }
+  },
+  "Impianti HVAC|Unità di trattamento aria": {
+    "priority": [
+      "portata_aria_m3h",
+      "COP",
+      "EER",
+      "prevalenza_Pa"
+    ],
+    "slots": {
+      "portata_aria_m3h": {
+        "type": "float",
+        "range": [
+          50,
+          50000
+        ],
+        "unknown": "ignoto"
+      },
+      "COP": {
+        "type": "float",
+        "range": [
+          1.0,
+          10.0
+        ],
+        "unknown": "ignoto"
+      },
+      "EER": {
+        "type": "float",
+        "range": [
+          1.0,
+          10.0
+        ],
+        "unknown": "ignoto"
+      },
+      "prevalenza_Pa": {
+        "type": "float",
+        "range": [
+          50,
+          2000
+        ],
+        "unknown": "ignoto"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "portata_aria_m3h": [
+        "(?i)\\bportata\\s+aria\\b[^\\n]{0,40}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(m3/h|m\\s*³/h|m3h|l/s|m3/s))\\b",
+        "(?i)\\bportata\\b[^\\n]{0,40}?(?:aria|ventilatore|UTA|trattamento\\s+aria|flusso\\s+d'?aria)\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(m3/h|l/s|m3/s))\\b"
+      ],
+      "COP": [
+        "(?i)\\bCOP\\b[^\\n]{0,10}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\b",
+        "(?i)\\bcoefficiente\\s+di\\s+prestazione\\b[^\\n]{0,40}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\b"
+      ],
+      "EER": [
+        "(?i)\\bEER\\b[^\\n]{0,10}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\b",
+        "(?i)\\bindice\\s+EER\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\b"
+      ],
+      "prevalenza_Pa": [
+        "(?i)\\bprevalenza\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(Pa|Pascal))\\b",
+        "(?i)\\bpressione\\s+disponibile\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(Pa))\\b"
+      ]
+    }
+  },
+  "Impianti idraulici|Reti e tubazioni": {
+    "priority": [
+      "pressione_bar",
+      "diametro_nominale_mm"
+    ],
+    "slots": {
+      "pressione_bar": {
+        "type": "float",
+        "range": [
+          0.5,
+          25
+        ],
+        "unknown": "ignoto"
+      },
+      "diametro_nominale_mm": {
+        "type": "int",
+        "min": 10,
+        "max": 1200,
+        "unknown": "ignoto"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "pressione_bar": [
+        "(?i)\\bpressione\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(bar|BAR))\\b",
+        "(?i)\\bp\\s*=\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(bar))\\b"
+      ],
+      "diametro_nominale_mm": [
+        "(?i)(?=[^\\n]{0,80}\\b(acqua|idrico|idrica|impianto\\s+idrico|sanitaria|mandata|ritorno|circuito)\\b)\\bDN\\s*(?P<val>\\d{2,3})\\b",
+        "(?i)(?=[^\\n]{0,80}\\b(acqua|idrico|idrica|impianto\\s+idrico|sanitaria|mandata|ritorno|circuito)\\b)\\bdiametro\\s+nominale\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(mm))?\\b",
+        "(?i)\\b(?:impianto|rete|linea|collettore|mandata|ritorno|acqua|idrico)\\b[^\\n]{0,80}?\\bDN\\s*(?P<val>\\d{2,3})\\b",
+        "(?i)\\b(?:impianto|rete|linea|collettore|mandata|ritorno|acqua|idrico)\\b[^\\n]{0,80}?\\bdiametro\\s+nominale\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(mm))?\\b"
+      ]
+    }
+  },
+  "Opere stradali|Caditoie e drenaggi": {
+    "priority": [
+      "griglia_classe"
+    ],
+    "slots": {
+      "griglia_classe": {
+        "type": "enum",
+        "values": [
+          "A15",
+          "B125",
+          "C250",
+          "D400",
+          "E600",
+          "F900",
+          "ignoto"
+        ]
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "griglia_classe": [
+        "(?i)\\bclasse\\s*(?P<val>[A-F]\\s*(?:15|125|250|400|600|900))\\b",
+        "(?i)\\b(?P<val>A15|B125|C250|D400|E600|F900)\\b"
+      ]
+    }
+  },
+  "Opere fognarie|Condotte": {
+    "priority": [
+      "tubo_dn_mm"
+    ],
+    "slots": {
+      "tubo_dn_mm": {
+        "type": "int",
+        "min": 80,
+        "max": 2000,
+        "unknown": "ignoto"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "tubo_dn_mm": [
+        "(?i)\\btubo\\b[^\\n]{0,30}?\\bDN\\s*(?P<val>\\d{2,3})\\b",
+        "(?i)\\bDN\\s*(?P<val>\\d{2,3})\\b[^\\n]{0,20}?\\bfognario"
+      ]
+    }
+  },
+  "Opere a verde|Forniture vegetali": {
+    "priority": [
+      "altezza_pianta_m",
+      "contenitore_l"
+    ],
+    "slots": {
+      "altezza_pianta_m": {
+        "type": "float",
+        "range": [
+          0.2,
+          35.0
+        ],
+        "unknown": "ignoto"
+      },
+      "contenitore_l": {
+        "type": "float",
+        "range": [
+          1,
+          500
+        ],
+        "unknown": "ignoto"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "altezza_pianta_m": [
+        "(?i)\\baltezza\\s+pianta\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>m|cm))\\b",
+        "(?i)\\bh\\s*pianta\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(?P<unit>m|cm))\\b"
+      ],
+      "contenitore_l": [
+        "(?i)\\bcontenitore\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(l|litri))\\b",
+        "(?i)\\bvaso\\b[^\\n]{0,30}?[:=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)(?:\\s*(l|litri))\\b"
+      ]
+    }
+  },
+  "Gestione rifiuti|Registrazioni di smaltimento": {
+    "priority": [
+      "CER",
+      "pericoloso_bool",
+      "imp_impianto_autorizzato"
+    ],
+    "slots": {
+      "CER": {
+        "type": "text"
+      },
+      "pericoloso_bool": {
+        "type": "bool"
+      },
+      "imp_impianto_autorizzato": {
+        "type": "text"
+      },
+      "note_tecniche": {
+        "type": "text"
+      },
+      "riferimenti_normativi": {
+        "type": "text"
+      },
+      "alt_units": {
+        "type": "text"
+      }
+    },
+    "patterns": {
+      "CER": [
+        "(?i)\\bCER\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>\\d{2}\\s*\\d{2}\\s*\\d{2}(?:\\*))(?=[^0-9])",
+        "(?i)(?P<val>\\d{2}\\s*\\d{2}\\s*\\d{2}(?:\\*))(?=[^0-9])\\s*(?:rifiuti|CER)"
+      ],
+      "pericoloso_bool": [
+        "(?i)\\brifiuto\\s+pericoloso\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>s[iì]|no|yes|nope)\\b",
+        "(?i)\\bpericolosit[aà]\\b[^\\n]{0,20}?[:=]?\\s*(?P<val>s[iì]|no|true|false)\\b"
+      ],
+      "imp_impianto_autorizzato": [
+        "(?i)\\bimpianto\\s+autorizzato\\b[^\\n]{0,60}?[:=]?\\s*(?P<val>[^\\n;,]+)",
+        "(?i)\\bconferimento\\s+presso\\s+(?P<val>impianto[^\\n;,]+)"
+      ]
+    }
   }
 }
