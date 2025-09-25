@@ -120,8 +120,8 @@
         "pattern_id": "atom_brand_generic_v2",
         "description": "Brand/marca/produttore (incl. lettere spaziate)",
         "regex": [
-          "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-          "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b"
+          "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+          "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b"
         ],
         "normalizers": [
           "strip"
@@ -131,10 +131,10 @@
         "pattern_id": "atom_brand_manufacturer_v2",
         "description": "Brand and manufacturer identification",
         "regex": [
-          "(?i)\\b(?:produttore|manufacturer|made\\s+by)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s&]{2,50})\\b",
-          "(?i)\\b(?:brand|marca|marchio)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s&]{2,50})\\b",
-          "(?i)\\b(?:fabbricante|producer|supplier|fornitore)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s&]{2,50})\\b",
-          "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})(?:\\s+(?:group|spa|srl|ltd|inc|gmbh|sa))?\\b"
+          "(?i)\\b(?:produttore|manufacturer|made\\s+by)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s&]{2,50})\\b",
+          "(?i)\\b(?:brand|marca|marchio)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s&]{2,50})\\b",
+          "(?i)\\b(?:fabbricante|producer|supplier|fornitore)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s&]{2,50})\\b",
+          "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})(?:\\s+(?:group|spa|srl|ltd|inc|gmbh|sa))?\\b"
         ],
         "normalizers": [
           "strip",
@@ -1158,8 +1158,8 @@
     {
       "property_id": "cantierizzazioni.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -1369,8 +1369,8 @@
     {
       "property_id": "assistenze_murarie.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -1580,8 +1580,8 @@
     {
       "property_id": "opere_murarie.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -1791,8 +1791,8 @@
     {
       "property_id": "opere_da_cartongessista.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -2662,8 +2662,8 @@
     {
       "property_id": "opere_di_coibentazione.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -2873,8 +2873,8 @@
     {
       "property_id": "opere_di_impermeabilizzazione.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -3084,8 +3084,8 @@
     {
       "property_id": "massetti_sottofondi_drenaggi_vespai.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -3295,8 +3295,8 @@
     {
       "property_id": "opere_da_intonacatore_e_stuccatore.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -3506,8 +3506,8 @@
     {
       "property_id": "opere_di_rivestimento.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -4258,8 +4258,8 @@
     {
       "property_id": "opere_di_pavimentazione.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -5418,8 +5418,8 @@
     {
       "property_id": "controsoffitti.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -6289,8 +6289,8 @@
     {
       "property_id": "opere_da_facciatista_e_da_cappottista.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -6500,8 +6500,8 @@
     {
       "property_id": "sistemi_oscuranti_per_facciate.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -6711,8 +6711,8 @@
     {
       "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -6922,8 +6922,8 @@
     {
       "property_id": "condotti_e_canne_fumarie.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -7133,8 +7133,8 @@
     {
       "property_id": "opere_da_serramentista.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -8415,8 +8415,8 @@
     {
       "property_id": "pareti_mobili_attrezzate_impacchettabili.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -8626,8 +8626,8 @@
     {
       "property_id": "opere_da_falegname.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -8837,8 +8837,8 @@
     {
       "property_id": "opere_da_lattoniere.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -9048,8 +9048,8 @@
     {
       "property_id": "opere_da_fabbro.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -9259,8 +9259,8 @@
     {
       "property_id": "opere_da_tappezziere.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -9470,8 +9470,8 @@
     {
       "property_id": "opere_da_vetraio.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -9681,8 +9681,8 @@
     {
       "property_id": "opere_da_verniciatore.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -9892,8 +9892,8 @@
     {
       "property_id": "opere_in_pietra_naturale.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -10103,8 +10103,8 @@
     {
       "property_id": "apparecchi_sanitari_e_accessori.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -10314,8 +10314,8 @@
     {
       "property_id": "sistemi_per_verde_pensile.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -10525,8 +10525,8 @@
     {
       "property_id": "opere_da_florovivaista.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -10736,8 +10736,8 @@
     {
       "property_id": "opere_stradali_fognature_e_sistemazioni_esterne.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -10947,8 +10947,8 @@
     {
       "property_id": "arredi_standard.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -11158,8 +11158,8 @@
     {
       "property_id": "arredi_su_misura.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -11369,8 +11369,8 @@
     {
       "property_id": "impianti_elevatori.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -11580,8 +11580,8 @@
     {
       "property_id": "presidi_antincendio.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -11791,8 +11791,8 @@
     {
       "property_id": "opere_di_bonifica_e_analisi_di_laboratorio.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -12002,8 +12002,8 @@
     {
       "property_id": "demolizioni_e_rimozioni.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -12213,8 +12213,8 @@
     {
       "property_id": "opere_di_sicurezza.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -12424,8 +12424,8 @@
     {
       "property_id": "n_d.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -12635,8 +12635,8 @@
     {
       "property_id": "impianto_distribuzione_fluidi_uta.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -12846,8 +12846,8 @@
     {
       "property_id": "movimenti_di_terra.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -13057,8 +13057,8 @@
     {
       "property_id": "strutture_in_altri_materiali.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -13268,8 +13268,8 @@
     {
       "property_id": "strutture_in_carpenteria_metallica.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
@@ -13479,8 +13479,8 @@
     {
       "property_id": "strutture_in_cemento_armato_in_opera.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
-        "(?i)\\b(?P<val>(?:[A-Z]\\s*){3,})\\b",
+        "(?i)\\b(?:produttore|brand|marca|manufacturer)\\b\\s*[:=\\-]?\\s*(?P<val>[A-Z][A-Za-z0-9\\-\\s]{2,40})\\b",
+        "(?i)\\b(?P<val>(?:(?-i:[A-Z])\\s*){3,})\\b",
         "(?i)\\bproduttore\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bproduttore[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
         "(?i)\\bm\\s*a\\s*r\\s*a\\s*z\\s*z\\s*i\\b",
