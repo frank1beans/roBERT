@@ -1,3 +1,4 @@
+# robimb/cli/main.py
 """Unified Typer-based command line interface for robimb."""
 from __future__ import annotations
 
@@ -6,6 +7,8 @@ from pathlib import Path
 from typing import List, Optional, Sequence
 
 import typer
+from ..props.unpack import convert_monolith_to_folders as _unpack
+from ..props.pack import pack_folders_to_monolith as _pack
 
 from .._version import __version__
 from .convert import DEFAULT_EXTRACTORS_PACK, DEFAULT_PROPERTIES_REGISTRY
@@ -20,10 +23,28 @@ def version_callback(
     version: bool = typer.Option(False, "--version", help="Show robimb version and exit", is_eager=True),
 ) -> None:
     """Handle global options before any sub-command executes."""
-
     if version:
         typer.echo(f"robimb {__version__}")
         raise typer.Exit()
+
+@app.command("unpack")
+def unpack_command(
+    in_registry: Path = typer.Option(..., "--registry", exists=True, dir_okay=False),
+    in_extractors: Path = typer.Option(..., "--extractors", exists=True, dir_okay=False),
+    out_dir: Path = typer.Option(..., "--out-dir")
+) -> None:
+    _unpack(in_registry, in_extractors, out_dir)
+    typer.echo(f"Unpack completato in: {out_dir}")
+
+
+@app.command("pack")
+def pack_command(
+    properties_root: Path = typer.Option(..., "--properties-root", exists=True, file_okay=False),
+    out_registry: Path = typer.Option(..., "--out-registry"),
+    out_extractors: Path = typer.Option(..., "--out-extractors")
+) -> None:
+    _pack(properties_root, out_registry, out_extractors)
+    typer.echo(f"Pack completato.\n  registry:   {out_registry}\n  extractors: {out_extractors}")
 
 
 @app.command("convert")
@@ -196,8 +217,6 @@ def tapt_command(ctx: typer.Context) -> None:
 
 def run() -> None:
     """Entry point compatible with ``python -m robimb.cli.main`` and console scripts."""
-
     from typer.main import get_command
-
     cli = get_command(app)
     cli()

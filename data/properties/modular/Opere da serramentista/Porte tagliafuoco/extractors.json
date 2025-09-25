@@ -1,0 +1,121 @@
+[
+  {
+    "property_id": "opere_da_serramentista.porte_tagliafuoco.uw_wm2k",
+    "regex": [
+      "(?i)\\bU[wfglmr]?\\s*(?:=|:)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,3})?)\\s*(?:W/?(?:m²?K|m2K))\\b",
+      "(?i)\\btrasmittanza\\s+termica\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,3})?)\\s*W/m²K\\b",
+      "(?i)\\bthermal\\s+transmittance\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,3})?)\\s*W/m²K\\b",
+      "(?i)\\bUw Wm2K\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
+      "(?i)\\bUw\\s+Wm2K[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "strip"
+    ],
+    "tags": [
+      "termica"
+    ],
+    "unit": "W/m²K",
+    "applies_to": {
+      "supercats": [
+        "Opere da serramentista"
+      ],
+      "cats": [
+        "Porte tagliafuoco"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "W/m²K"
+    },
+    "confidence": 0.8
+  },
+  {
+    "property_id": "opere_da_serramentista.porte_tagliafuoco.classe_permeabilita_aria",
+    "regex": [
+      "(?i)\\b(?:classe\\s+aria\\s*|air\\s+permeability\\s*)?(?:classe\\s*|class\\s*)?(?P<val>[1-4])\\b.*?(?:EN\\s*12207)?",
+      "(?i)\\bEN\\s*12207\\s*[:=]?\\s*(?:classe\\s*)?(?P<val>[1-4])\\b",
+      "(?i)\\bclasse permeabilita aria\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
+      "(?i)\\bclasse\\s+permeabilita\\s+aria[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})"
+    ],
+    "normalizers": [
+      "strip",
+      "comma_to_dot"
+    ],
+    "tags": [
+      "prestazioni"
+    ],
+    "unit": null,
+    "applies_to": {
+      "supercats": [
+        "Opere da serramentista"
+      ],
+      "cats": [
+        "Porte tagliafuoco"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.8
+  },
+  {
+    "property_id": "opere_da_serramentista.porte_tagliafuoco.classe_tenuta_acqua",
+    "regex": [
+      "(?i)\\b(?:classe\\s+acqua\\s*|water\\s+tightness\\s*)?(?P<val>E\\d{1,2}|(?:classe\\s*)?\\d{1,2}A?)\\b.*?(?:EN\\s*12208)?",
+      "(?i)\\bEN\\s*12208\\s*[:=]?\\s*(?P<val>E?\\d{1,2}A?)\\b",
+      "(?i)\\bclasse tenuta acqua\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
+      "(?i)\\bclasse\\s+tenuta\\s+acqua[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})"
+    ],
+    "normalizers": [
+      "strip",
+      "comma_to_dot"
+    ],
+    "tags": [
+      "prestazioni"
+    ],
+    "unit": null,
+    "applies_to": {
+      "supercats": [
+        "Opere da serramentista"
+      ],
+      "cats": [
+        "Porte tagliafuoco"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.8
+  },
+  {
+    "property_id": "opere_da_serramentista.porte_tagliafuoco.classe_resistenza_vento",
+    "regex": [
+      "(?i)\\b(?:classe\\s+vento\\s*|wind\\s+load\\s*)?(?P<val>C[1-5]|[1-5])\\b.*?(?:EN\\s*12210)?",
+      "(?i)\\bEN\\s*12210\\s*[:=]?\\s*(?P<val>C?[1-5])\\b",
+      "(?i)\\bclasse resistenza vento\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
+      "(?i)\\bclasse\\s+resistenza\\s+vento[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})"
+    ],
+    "normalizers": [
+      "strip",
+      "comma_to_dot"
+    ],
+    "tags": [
+      "prestazioni"
+    ],
+    "unit": null,
+    "applies_to": {
+      "supercats": [
+        "Opere da serramentista"
+      ],
+      "cats": [
+        "Porte tagliafuoco"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.8
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "property_id": "opere_da_cartongessista.setto_autoportante_in_cartongesso_standard_e_idrorepellente.classe_ei",
+    "regex": [
+      "(?i)\\b(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+      "(?i)\\bresistenza\\s+al\\s+fuoco\\s*[:=]?\\s*(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+      "(?i)\\bfire\\s+resistance\\s*[:=]?\\s*(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+      "(?i)\\bclasse\\s+(?P<val>15|20|30|45|60|90|120|180|240|360)\\s*minuti\\b",
+      "(?i)\\bclasse EI\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
+      "(?i)\\bclasse\\s+EI[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})"
+    ],
+    "normalizers": [
+      "to_ei_class",
+      "upper",
+      "strip",
+      "comma_to_dot"
+    ],
+    "tags": [
+      "fuoco"
+    ],
+    "unit": null,
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ],
+      "cats": [
+        "Setto autoportante in cartongesso standard e idrorepellente"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.8
+  },
+  {
+    "property_id": "opere_da_cartongessista.setto_autoportante_in_cartongesso_standard_e_idrorepellente.rw_db",
+    "regex": [
+      "(?i)\\b(?:Rw|R\\s*w)\\s*(?:=|:)?\\s*(?P<val>\\d{2}(?:[.,]\\d{1,2})?)\\s*dB\\b",
+      "(?i)\\bindice\\s+di\\s+potere\\s+fonoisolante\\s*[:=]?\\s*(?P<val>\\d{2}(?:[.,]\\d{1,2})?)\\s*dB\\b",
+      "(?i)\\bsound\\s+reduction\\s+index\\s*[:=]?\\s*(?P<val>\\d{2}(?:[.,]\\d{1,2})?)\\s*dB\\b",
+      "(?i)\\bisolamento\\s+acustico\\s*[:=]?\\s*(?P<val>\\d{2}(?:[.,]\\d{1,2})?)\\s*dB\\b",
+      "(?i)\\bRw dB\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
+      "(?i)\\bRw\\s+dB[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "strip"
+    ],
+    "tags": [
+      "acustica"
+    ],
+    "unit": "dB",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ],
+      "cats": [
+        "Setto autoportante in cartongesso standard e idrorepellente"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "dB"
+    },
+    "confidence": 0.8
+  }
+]
