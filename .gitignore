@@ -1,2 +1,4 @@
+.gitignore
+.vscode
 outputs
 commands.txt
