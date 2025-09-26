@@ -148,6 +148,160 @@
     "confidence": 0.73
   },
   {
+    "property_id": "opere_di_coibentazione.__global__.spessore_mm",
+    "regex": [
+      "(?i)\\bspess(?:ore)?\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)(?:\\s*[-–/a]\\s*\\d{1,3}(?:[.,]\\d{1,2})?)?\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bspess\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "supercats": [
+        "Opere di coibentazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.72
+  },
+  {
+    "property_id": "opere_di_coibentazione.__global__.densita_kg_m3",
+    "regex": [
+      "(?i)\\b(?:densit[àa]|massa\\s+volumica)\\s*(?:apparente\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)(?:\\s*(?:[-–/]|\\ba\\b)\\s*\\d{2,4}(?:[.,]\\d{1,3})?)?\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+      "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b(?=[^\\n]{0,40}densit)"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "kg/m³",
+    "applies_to": {
+      "supercats": [
+        "Opere di coibentazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "kg/m³"
+    },
+    "confidence": 0.7
+  },
+  {
+    "property_id": "opere_di_coibentazione.__global__.conducibilita_termica_W_mK",
+    "regex": [
+      "(?i)\\b(?:conducibilit[àa]\\s+termica|lambda\\s*d?|λ\\s*d?)\\s*(?:dichiarata\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=|<|>)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m\\s*(?:k|°k))\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "termica"
+    ],
+    "unit": "W/mK",
+    "applies_to": {
+      "supercats": [
+        "Opere di coibentazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "W/mK"
+    },
+    "confidence": 0.69
+  },
+  {
+    "property_id": "opere_di_coibentazione.__global__.resistenza_compressione_kPa",
+    "regex": [
+      "(?i)\\bresistenza\\s+a\\s+compressione\\s*(?:pari\\s*a|=|:|≥|>=|≤|<=|>|<)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*(?:k\\s?pa)\\b",
+      "(?i)\\bcompressive\\s+strength\\s*(?:pari\\s*a|=|:|≥|>=|≤|<=|>|<)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*(?:k\\s?pa)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "meccanica"
+    ],
+    "unit": "kPa",
+    "applies_to": {
+      "supercats": [
+        "Opere di coibentazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "kPa"
+    },
+    "confidence": 0.69
+  },
+  {
+    "property_id": "opere_di_coibentazione.__global__.classe_reazione_fuoco",
+    "regex": [
+      "(?i)\\bEuroclasse\\s*(?P<val>[A-F](?:-[A-Z0-9, ]+)?)(?=\\b)",
+      "(?i)\\bclasse\\s+(?P<val>A1|A2|B|B-s1,d0|B-s1,d1|B-s2,d0|B-s2,d1|B-s3,d0|C|C-s1,d0|C-s2,d0|C-s3,d0|D|E|F)(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+    ],
+    "normalizers": [
+      "upper",
+      "strip"
+    ],
+    "tags": [
+      "fuoco"
+    ],
+    "unit": null,
+    "applies_to": {
+      "supercats": [
+        "Opere di coibentazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.7
+  },
+  {
+    "property_id": "opere_di_coibentazione.__global__.trasmittanza_termica_W_m2K",
+    "regex": [
+      "(?i)\\btrasmittanza\\s+termica(?:\\s*U)?\\s*(?:pari\\s*a|=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m(?:²|2|q)\\s*k)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "termica"
+    ],
+    "unit": "W/m²K",
+    "applies_to": {
+      "supercats": [
+        "Opere di coibentazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "W/m²K"
+    },
+    "confidence": 0.68
+  },
+  {
     "property_id": "opere_di_coibentazione.__global__.superficie_m2",
     "regex": [
       "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:m²|m2|mq\\.?|mq)\\b",

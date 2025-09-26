@@ -48,6 +48,53 @@
         "atom_dimensione_LxHxP_v2"
       ]
     },
+    "spessore_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "densita_kg_m3": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³"
+    },
+    "conducibilita_termica_W_mK": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/mK"
+    },
+    "resistenza_compressione_kPa": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "kPa"
+    },
+    "classe_reazione_fuoco": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "fuoco"
+      ]
+    },
+    "trasmittanza_termica_W_m2K": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/m²K"
+    },
     "superficie_m2": {
       "type": "float",
       "priority": 5,
