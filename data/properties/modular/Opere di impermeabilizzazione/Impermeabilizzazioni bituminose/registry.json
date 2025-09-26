@@ -1,12 +1,3 @@
 {
-  "slots": {
-    "indice_riflettanza_sol_SRI": {
-      "type": "float",
-      "priority": 6,
-      "tags": [
-        "prestazione"
-      ],
-      "unit": "SRI"
-    }
-  }
+  "slots": {}
 }
