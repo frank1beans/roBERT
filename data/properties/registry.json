@@ -55,6 +55,32 @@
             "atom_dimensione_LxHxP_v2"
           ]
         },
+        "spessore_mm": {
+          "type": "float",
+          "priority": 8,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "massa_volumica_kg_m3": {
+          "type": "float",
+          "priority": 7,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "kg/m³"
+        },
+        "classe_EI": {
+          "type": "text",
+          "priority": 7,
+          "tags": [
+            "fuoco"
+          ],
+          "expected_atoms": [
+            "atom_ei_rei_v2"
+          ]
+        },
         "superficie_m2": {
           "type": "float",
           "priority": 5,
@@ -76,6 +102,69 @@
           "expected_atoms": [
             "atom_volume_m3_v2"
           ]
+        },
+        "spessore_totale_mm": {
+          "type": "float",
+          "priority": 8,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "altezza_mm": {
+          "type": "float",
+          "priority": 7,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "orditura_metallica_spessore_mm": {
+          "type": "float",
+          "priority": 7,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "passo_montanti_mm": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "isolante_spessore_mm": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "mm"
+        },
+        "isolante_densita_kg_m3": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "kg/m³"
+        },
+        "isolante_lambda_W_mK": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "W/mK"
+        },
+        "classe_reazione_fuoco": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "fuoco"
+          ]
         }
       }
     },
@@ -84,10 +173,67 @@
         "slots": {}
       },
       "Installazione cantiere": {
-        "slots": {}
+        "slots": {
+          "dimensioni_cartello_mm": {
+            "type": "text",
+            "priority": 6,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          }
+        }
       },
       "Noli": {
-        "slots": {}
+        "slots": {
+          "altezza_operativa_m": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "m",
+            "expected_atoms": [
+              "atom_length_m_v2"
+            ]
+          },
+          "sbraccio_operativo_m": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "m",
+            "expected_atoms": [
+              "atom_length_m_v2"
+            ]
+          },
+          "portata_massima_kg": {
+            "type": "float",
+            "priority": 9,
+            "tags": [
+              "prestazioni"
+            ],
+            "unit": "kg",
+            "expected_atoms": [
+              "atom_mass_kg_v2"
+            ]
+          },
+          "dimensioni_piattaforma_mm": {
+            "type": "text",
+            "priority": 6,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm×mm",
+            "expected_atoms": [
+              "atom_formati_dims_v2"
+            ]
+          }
+        }
       },
       "Pulizie di cantiere": {
         "slots": {}
@@ -174,7 +320,30 @@
         "slots": {}
       },
       "Assistenze murarie alla posa di impianti": {
-        "slots": {}
+        "slots": {
+          "sezione_min_cm2": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "cm²",
+            "expected_atoms": [
+              "atom_surface_m2_v2"
+            ]
+          },
+          "sezione_max_cm2": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "cm²",
+            "expected_atoms": [
+              "atom_surface_m2_v2"
+            ]
+          }
+        }
       }
     }
   },
@@ -255,13 +424,45 @@
     },
     "categories": {
       "Blocchi in calcestruzzo cellulare aerato autoclavato": {
-        "slots": {}
+        "slots": {
+          "fonoassorbenza_dB": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ],
+            "unit": "dB"
+          },
+          "trasmittanza_termica_Wm2K": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          }
+        }
       },
       "Blocchi in calcestruzzo vibrocompresso": {
         "slots": {}
       },
       "Elementi in laterizio": {
-        "slots": {}
+        "slots": {
+          "trasmittanza_termica_Wm2K": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/m²K",
+            "expected_atoms": [
+              "atom_u_values_v2"
+            ]
+          }
+        }
       },
       "Murature in altri materiali": {
         "slots": {}
@@ -856,22 +1057,268 @@
     },
     "categories": {
       "Cappe di completamento": {
-        "slots": {}
+        "slots": {
+          "spessore_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_min_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_max_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "massa_volumica_kg_m3": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "kg/m³"
+          },
+          "resistenza_compressione_N_mm2": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "N/mm²"
+          },
+          "conducibilita_termica_W_mK": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/mK"
+          }
+        }
       },
       "Massetti alleggeriti": {
-        "slots": {}
+        "slots": {
+          "spessore_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_min_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_max_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "massa_volumica_kg_m3": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "kg/m³"
+          },
+          "resistenza_compressione_N_mm2": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "N/mm²"
+          },
+          "conducibilita_termica_W_mK": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "termica"
+            ],
+            "unit": "W/mK"
+          }
+        }
       },
       "Massetti pendenzati": {
-        "slots": {}
+        "slots": {
+          "spessore_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_min_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_max_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "dosaggio_cemento_kg_m3": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "kg/m³"
+          },
+          "resistenza_Rck_N_mm2": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "N/mm²"
+          }
+        }
       },
       "Sottofondi pavimentazioni": {
-        "slots": {}
+        "slots": {
+          "spessore_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_min_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_max_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "massa_volumica_kg_m3": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "kg/m³"
+          },
+          "rete_diametro_mm": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "mm"
+          },
+          "rete_maglia_mm": {
+            "type": "text",
+            "priority": 6,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "mm×mm"
+          }
+        }
       },
       "Teli di separazione": {
-        "slots": {}
+        "slots": {
+          "spessore_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "sovrapposizione_min_cm": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "cm"
+          },
+          "peso_areico_kg_m2": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "kg/m²"
+          }
+        }
       },
       "Vespai aerati": {
-        "slots": {}
+        "slots": {
+          "soletta_spessore_min_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "mm"
+          },
+          "casseri_altezza_mm": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "rete_diametro_mm": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "mm"
+          },
+          "rete_maglia_mm": {
+            "type": "text",
+            "priority": 7,
+            "tags": [
+              "strutturale"
+            ],
+            "unit": "mm×mm"
+          }
+        }
       }
     }
   },

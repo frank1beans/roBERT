@@ -103,6 +103,8 @@ def _parse_number(token: str) -> Optional[float]:
     if token is None:
         return None
     cleaned = token.strip().replace("\xa0", "")
+    # treat stray semicolons as decimal separators (common OCR typo)
+    cleaned = cleaned.replace(";", ",")
     if not cleaned:
         return None
 
@@ -203,6 +205,8 @@ _UNIT_VARIANTS: Dict[str, Sequence[str]] = {
     "cm": ["cm", "centimetri", "centimetro"],
     "mm": ["mm", "millimetri", "millimetro"],
     "kg": ["kg", "chilogrammo", "chilogrammi"],
+    "t": ["t", "ton", "tonnellata", "tonnellate"],
+    "g": ["g", "grammo", "grammi"],
     "kW": ["kw", "kilowatt", "kilowatts"],
     "kVA": ["kva", "kilovolt ampere", "kilovolt-ampere"],
 }
@@ -316,12 +320,19 @@ def _unit_from_context(matched_text: str) -> Optional[str]:
         "metri cubi": "m3",
         "metri cubes": "m3",
         "metri cube": "m3",
+        "chilogrammi": "kg",
+        "chilogrammo": "kg",
+        "grammi": "g",
+        "grammo": "g",
+        "tonnellate": "t",
+        "tonnellata": "t",
+        "ton ": "t ",
     }
     for src, dst in replacements.items():
         normalized = normalized.replace(src, dst)
 
     unit_pattern = re.compile(
-        r"\b(mm3|cm3|m3|mm2|cm2|m2|mq|mc|mm|cm|m)\b",
+        r"\b(mm3|cm3|m3|mm2|cm2|m2|mq|mc|mm|cm|m|kg|g|t)\b",
         re.IGNORECASE,
     )
     found = unit_pattern.findall(normalized)
@@ -346,6 +357,9 @@ def _to_unit_factory(target_unit: str) -> Normalizer:
         "mm3": 1.0,
         "cm3": 1000.0,
         "m3": 1_000_000_000.0,
+        "g": 0.001,
+        "kg": 1.0,
+        "t": 1000.0,
     }
     if target_unit not in factors:
         raise ValueError(f"Unsupported unit normalizer target: {target_unit}")

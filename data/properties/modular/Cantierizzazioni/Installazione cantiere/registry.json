@@ -1,3 +1,15 @@
 {
-  "slots": {}
+  "slots": {
+    "dimensioni_cartello_mm": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm×mm",
+      "expected_atoms": [
+        "atom_formati_dims_v2"
+      ]
+    }
+  }
 }

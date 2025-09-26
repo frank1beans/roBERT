@@ -69,6 +69,69 @@
       "expected_atoms": [
         "atom_volume_m3_v2"
       ]
+    },
+    "spessore_totale_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "altezza_mm": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "orditura_metallica_spessore_mm": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "passo_montanti_mm": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "isolante_spessore_mm": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "mm"
+    },
+    "isolante_densita_kg_m3": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³"
+    },
+    "isolante_lambda_W_mK": {
+      "type": "float",
+      "priority": 5,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "W/mK"
+    },
+    "classe_reazione_fuoco": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "fuoco"
+      ]
     }
   }
 }

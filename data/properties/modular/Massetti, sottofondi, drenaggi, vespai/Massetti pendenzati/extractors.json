@@ -1,0 +1,135 @@
+[
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.spessore_mm",
+    "regex": [
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:variabile\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Massetti pendenzati"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.71
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.spessore_min_mm",
+    "regex": [
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:da|min(?:imo)?|variabile\\s+da)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:min(?:imo)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Massetti pendenzati"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.7
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.spessore_max_mm",
+    "regex": [
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:variabile\\s*fino\\s*a|fino\\s*a|max(?:imo)?|massimo|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*)(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Massetti pendenzati"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.7
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.dosaggio_cemento_kg_m3",
+    "regex": [
+      "(?i)\\b(?:dosat[oa]|dosaggio)\\s*(?:a\\s*)?(?:minimo\\s*)?(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*(?:kg)\\b[^\\n]{0,60}?\\b(?:per\\s*(?:m(?:c|3)|metro\\s+cubo))"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "kg/m³",
+    "applies_to": {
+      "cats": [
+        "Massetti pendenzati"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "kg/m³"
+    },
+    "confidence": 0.68
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.resistenza_Rck_N_mm2",
+    "regex": [
+      "(?i)\\brck\\s*(?:=|:|pari\\s*a)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:n/mm2|n/mm\\u00b2|mpa)\\b",
+      "(?i)\\bresistenza\\s+maggiore\\s+di\\s*rck\\s*=\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:n/mm2|mpa)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "strutturale"
+    ],
+    "unit": "N/mm²",
+    "applies_to": {
+      "cats": [
+        "Massetti pendenzati"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "N/mm²"
+    },
+    "confidence": 0.68
+  }
+]
