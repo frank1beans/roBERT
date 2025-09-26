@@ -1,28 +1,3 @@
 {
-  "slots": {
-    "spessore_mm": {
-      "type": "float",
-      "priority": 8,
-      "tags": [
-        "geometria"
-      ],
-      "unit": "mm"
-    },
-    "sovrapposizione_min_cm": {
-      "type": "float",
-      "priority": 7,
-      "tags": [
-        "geometria"
-      ],
-      "unit": "cm"
-    },
-    "peso_areico_kg_m2": {
-      "type": "float",
-      "priority": 6,
-      "tags": [
-        "materiale"
-      ],
-      "unit": "kg/m²"
-    }
-  }
+  "slots": {}
 }

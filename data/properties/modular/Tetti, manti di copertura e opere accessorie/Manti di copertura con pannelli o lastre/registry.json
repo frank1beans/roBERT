@@ -1,38 +1,3 @@
 {
-  "slots": {
-    "spessore_pannello_mm": {
-      "type": "float",
-      "priority": 8,
-      "tags": [
-        "geometria"
-      ],
-      "unit": "mm"
-    },
-    "spessore_lamiera_mm": {
-      "type": "float",
-      "priority": 7,
-      "tags": [
-        "geometria"
-      ],
-      "unit": "mm"
-    },
-    "altezza_greca_mm": {
-      "type": "float",
-      "priority": 6,
-      "tags": [
-        "geometria"
-      ],
-      "unit": "mm"
-    },
-    "classe_EI": {
-      "type": "text",
-      "priority": 6,
-      "tags": [
-        "fuoco"
-      ],
-      "expected_atoms": [
-        "atom_ei_rei_v2"
-      ]
-    }
-  }
+  "slots": {}
 }

@@ -21,5 +21,6 @@ Questa cartella raccoglie una serie di note operative e di design pensate per ac
 - [Utility per i dati](utils_data.md)
 - [Utility per le metriche](utils_metrics.md)
 - [Reportistica e analisi](reporting.md)
+- [Changelog](changelog.md)
 
 Le pagine sono pensate per essere lette in modo indipendente; ogni documento fornisce collegamenti al codice di riferimento e suggerimenti per estensioni future.
