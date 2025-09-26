@@ -8152,6 +8152,166 @@
       "confidence": 0.73
     },
     {
+      "property_id": "controsoffitti.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bspess(?:ore)?\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)(?:\\s*[-–/a]\\s*\\d{1,3}(?:[.,]\\d{1,2})?)?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bspess\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "controsoffitti.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\b(?:massa|peso)\\s*(?:areic[ao]\\s*)?(?:nominale\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d+(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "controsoffitti.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "controsoffitti.__global__.coefficiente_assorbimento_acustico_aw",
+      "regex": [
+        "(?i)\\bα\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\baw\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\balpha\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\bcoefficiente\\s+di\\s+assorbimento\\s+acustico[^\\d]{0,20}(?:α\\s*w|aw|αw)\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.72
+    },
+    {
+      "property_id": "controsoffitti.__global__.percentuale_superficie_forata_percento",
+      "regex": [
+        "(?i)\\bpercentuale\\s+di\\s+superficie\\s+forat[ao]\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\b(?:superficie\\s+forata|foratura\\s+continua|perforazione\\s+continua)\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\b(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b(?=[^\\n]{0,40}(?:superficie\\s+forata|foratura|perforazione))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "controsoffitti.__global__.resistenza_umidita_relativa_percento",
+      "regex": [
+        "(?i)\\bRH\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%?\\b",
+        "(?i)\\bresistenza\\s+all'?umidità\\s+relativa\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%?\\b",
+        "(?i)\\bumidità\\s+relativa\\s*(?:max\\.?\\s*)?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "resistenza"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.66
+    },
+    {
       "property_id": "controsoffitti.botole_d_ispezione_e_accessori.classe_ei",
       "regex": [
         "(?i)\\b(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",

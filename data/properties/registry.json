@@ -359,6 +359,52 @@
           "expected_atoms": [
             "atom_volume_m3_v2"
           ]
+        },
+        "spessore_mm": {
+          "type": "float",
+          "priority": 8,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "peso_areico_kg_m2": {
+          "type": "float",
+          "priority": 7,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "kg/m²"
+        },
+        "classe_reazione_fuoco": {
+          "type": "text",
+          "priority": 7,
+          "tags": [
+            "fuoco"
+          ]
+        },
+        "coefficiente_assorbimento_acustico_aw": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "acustica"
+          ]
+        },
+        "percentuale_superficie_forata_percento": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "acustica"
+          ],
+          "unit": "%"
+        },
+        "resistenza_umidita_relativa_percento": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "resistenza"
+          ],
+          "unit": "%"
         }
       }
     },
