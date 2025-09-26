@@ -7,9 +7,11 @@ from ..extraction import (
     Normalizer,
     NormalizerFactory,
     Pattern,
+    PropertyExtractionResult,
     build_normalizer,
     dry_run,
     extract_properties,
+    extract_properties_with_confidences,
 )
 from ..extraction.dsl import ExtractorsPack, PatternSpec, PatternSpecs
 
@@ -21,11 +23,13 @@ __all__ = [
     "NormalizerFactory",
     "NormalizerFn",
     "Pattern",
+    "PropertyExtractionResult",
     "PatternSpec",
     "PatternSpecs",
     "ExtractorsPack",
     "BUILTIN_NORMALIZERS",
     "build_normalizer",
     "extract_properties",
+    "extract_properties_with_confidences",
     "dry_run",
 ]
