@@ -5448,6 +5448,162 @@
       "confidence": 0.73
     },
     {
+      "property_id": "opere_da_intonacatore_e_stuccatore.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:totale\\s*)?(?:nominale\\s*)?(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|–)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bthick(?:ness)?\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da intonacatore e stuccatore"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere da intonacatore e stuccatore"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_per_esterno.dosaggio_calce_kg_m3",
+      "regex": [
+        "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*kg\\s+di\\s+(?:grassello\\s+di\\s+)?calce(?:\\s+idrata)?[^\\n]{0,40}?\\bper\\s*(?:1(?:[.,]0{1,2})?)\\s*(?:m(?:c|3)|metro\\s+cubo)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Intonaco per esterno"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_per_esterno.dosaggio_cemento_kg_m3",
+      "regex": [
+        "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*kg\\s+di\\s+cemento[^\\n]{0,60}?\\bper\\s*(?:1(?:[.,]0{1,2})?)\\s*(?:m(?:c|3)|metro\\s+cubo)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Intonaco per esterno"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_intumescente.classe_ei",
+      "regex": [
+        "(?i)\\b(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bresistenza\\s+al\\s+fuoco\\s*[:=]?\\s*(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bclasse\\s+R?E\\.?\\s*I\\.?\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bclasse\\s+(?P<val>15|20|30|45|60|90|120|180|240|360)\\s*minuti\\b"
+      ],
+      "normalizers": [
+        "to_ei_class",
+        "upper",
+        "strip",
+        "comma_to_dot"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "cats": [
+          "Intonaco intumescente"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_intumescente.peso_armatura_rete_g_m2",
+      "regex": [
+        "(?i)\\bpeso[^\\n]{0,30}?(?:fibra|rete)[^\\n]{0,30}?\\[?g/m(?:2|²)\\]?\\s*(?:[:=≤<≥]?|=)?\\s*(?P<val>\\d{1,4}(?:[.,]\\d{1,2})?)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "g/m²",
+      "applies_to": {
+        "cats": [
+          "Intonaco intumescente"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "g/m²"
+      },
+      "confidence": 0.65
+    },
+    {
       "property_id": "opere_di_rivestimento.__global__.produttore",
       "regex": [
         "(?i)\\\\b(?:produttore|brand|marca|manufacturer)\\\\b\\\\s*[:=\\\\-]?\\\\s*(?P<val>(?!(?:(?:RAL(?:\\\\s*\\\\d{2,4})?|GK[BFI]|DOP|POE|EER|CE|UNI(?:\\\\s*EN)?(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN\\\\s*AW(?:[-\\\\s]*\\\\d{2,5})?|NTC(?:\\\\s*\\\\d{4})?|ISO(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|DIN(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|CEI(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|Uw(?:\\\\s*[=≤]\\\\s*\\\\d(?:[.,]\\\\d+)?)?))\\\\b)[A-Z][A-Za-z0-9\\\\-\\\\s&]{2,60})\\\\b",

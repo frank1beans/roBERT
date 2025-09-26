@@ -933,6 +933,14 @@
             "atom_dimensione_LxHxP_v2"
           ]
         },
+        "spessore_mm": {
+          "type": "float",
+          "priority": 8,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
         "superficie_m2": {
           "type": "float",
           "priority": 5,
@@ -1596,15 +1604,58 @@
           "expected_atoms": [
             "atom_volume_m3_v2"
           ]
+        },
+        "classe_reazione_fuoco": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "fuoco"
+          ]
         }
       }
     },
     "categories": {
       "Intonaco intumescente": {
-        "slots": {}
+        "slots": {
+          "classe_EI": {
+            "type": "text",
+            "priority": 8,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          },
+          "peso_armatura_rete_g_m2": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "g/m²"
+          }
+        }
       },
       "Intonaco per esterno": {
-        "slots": {}
+        "slots": {
+          "dosaggio_calce_kg_m3": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "kg/m³"
+          },
+          "dosaggio_cemento_kg_m3": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "kg/m³"
+          }
+        }
       },
       "Intonaco per interno": {
         "slots": {}

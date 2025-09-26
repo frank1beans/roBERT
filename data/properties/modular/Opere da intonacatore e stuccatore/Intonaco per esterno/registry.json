@@ -1,3 +1,20 @@
 {
-  "slots": {}
+  "slots": {
+    "dosaggio_calce_kg_m3": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³"
+    },
+    "dosaggio_cemento_kg_m3": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³"
+    }
+  }
 }

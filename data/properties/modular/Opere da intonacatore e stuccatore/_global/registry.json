@@ -48,6 +48,14 @@
         "atom_dimensione_LxHxP_v2"
       ]
     },
+    "spessore_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
     "superficie_m2": {
       "type": "float",
       "priority": 5,
@@ -68,6 +76,13 @@
       "unit": "m³",
       "expected_atoms": [
         "atom_volume_m3_v2"
+      ]
+    },
+    "classe_reazione_fuoco": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "fuoco"
       ]
     }
   }

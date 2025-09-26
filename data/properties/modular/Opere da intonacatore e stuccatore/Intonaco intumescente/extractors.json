@@ -1,0 +1,55 @@
+[
+  {
+    "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_intumescente.classe_ei",
+    "regex": [
+      "(?i)\\b(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+      "(?i)\\bresistenza\\s+al\\s+fuoco\\s*[:=]?\\s*(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+      "(?i)\\bclasse\\s+R?E\\.?\\s*I\\.?\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+      "(?i)\\bclasse\\s+(?P<val>15|20|30|45|60|90|120|180|240|360)\\s*minuti\\b"
+    ],
+    "normalizers": [
+      "to_ei_class",
+      "upper",
+      "strip",
+      "comma_to_dot"
+    ],
+    "tags": [
+      "fuoco"
+    ],
+    "unit": null,
+    "applies_to": {
+      "cats": [
+        "Intonaco intumescente"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.72
+  },
+  {
+    "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_intumescente.peso_armatura_rete_g_m2",
+    "regex": [
+      "(?i)\\bpeso[^\\n]{0,30}?(?:fibra|rete)[^\\n]{0,30}?\\[?g/m(?:2|²)\\]?\\s*(?:[:=≤<≥]?|=)?\\s*(?P<val>\\d{1,4}(?:[.,]\\d{1,2})?)"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "g/m²",
+    "applies_to": {
+      "cats": [
+        "Intonaco intumescente"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "g/m²"
+    },
+    "confidence": 0.65
+  }
+]
