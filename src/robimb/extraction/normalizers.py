@@ -83,6 +83,18 @@ def _strip_trailing_punct(v: Any, m: str) -> Any:
     return v
 
 
+def _collapse_plus_sequences(v: Any, m: str) -> Any:
+    def collapse_one(token: Any) -> Any:
+        if isinstance(token, str):
+            collapsed = re.sub(r"\s*\+\s*", "+", token.strip())
+            return collapsed
+        return token
+
+    if isinstance(v, list):
+        return [collapse_one(x) for x in v]
+    return collapse_one(v)
+
+
 def _as_string(v: Any, m: str) -> Any:
     if isinstance(v, list):
         return [str(x) for x in v]
@@ -856,6 +868,7 @@ BUILTIN_NORMALIZERS: Dict[str, Normalizer] = {
     "upper": _upper,
     "strip": _strip,
     "strip_trailing_punct": _strip_trailing_punct,
+    "collapse_plus_sequences": _collapse_plus_sequences,
     "as_string": _as_string,
     "to_number": _to_number,
     "join_range": _join_range,

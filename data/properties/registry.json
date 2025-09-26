@@ -1003,6 +1003,114 @@
           "expected_atoms": [
             "atom_volume_m3_v2"
           ]
+        },
+        "spessore_mm": {
+          "type": "float",
+          "priority": 8,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "spessori_strati_mm": {
+          "type": "text",
+          "priority": 7,
+          "tags": [
+            "geometria"
+          ]
+        },
+        "sovrapposizione_min_cm": {
+          "type": "float",
+          "priority": 7,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "cm"
+        },
+        "risvolto_min_cm": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "cm"
+        },
+        "peso_areico_kg_m2": {
+          "type": "float",
+          "priority": 7,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "kg/m²"
+        },
+        "massa_volumica_kg_m3": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "kg/m³"
+        },
+        "fattore_resistenza_vapore_mu": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "traspirazione"
+          ]
+        },
+        "flessibilita_freddo_c": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "meccanica"
+          ],
+          "unit": "°C"
+        },
+        "resistenza_scorrimento_caldo_c": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "meccanica"
+          ],
+          "unit": "°C"
+        },
+        "resistenza_trazione_long_N_50mm": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "meccanica"
+          ],
+          "unit": "N/50mm"
+        },
+        "resistenza_trazione_trasv_N_50mm": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "meccanica"
+          ],
+          "unit": "N/50mm"
+        },
+        "resistenza_carico_statico_kg": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "meccanica"
+          ],
+          "unit": "kg"
+        },
+        "classe_reazione_fuoco": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "fuoco"
+          ]
+        },
+        "comportamento_fuoco_esterno": {
+          "type": "text",
+          "priority": 5,
+          "tags": [
+            "fuoco"
+          ]
         }
       }
     },
@@ -1014,7 +1122,16 @@
         "slots": {}
       },
       "Impermeabilizzazioni bituminose": {
-        "slots": {}
+        "slots": {
+          "indice_riflettanza_sol_SRI": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "prestazione"
+            ],
+            "unit": "SRI"
+          }
+        }
       },
       "Impermeabilizzazioni liquide": {
         "slots": {}
