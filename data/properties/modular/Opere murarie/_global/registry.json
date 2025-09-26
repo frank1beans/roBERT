@@ -48,6 +48,32 @@
         "atom_dimensione_LxHxP_v2"
       ]
     },
+    "spessore_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "massa_volumica_kg_m3": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³"
+    },
+    "classe_EI": {
+      "type": "text",
+      "priority": 7,
+      "tags": [
+        "fuoco"
+      ],
+      "expected_atoms": [
+        "atom_ei_rei_v2"
+      ]
+    },
     "superficie_m2": {
       "type": "float",
       "priority": 5,

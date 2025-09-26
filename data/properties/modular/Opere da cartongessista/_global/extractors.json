@@ -209,5 +209,219 @@
       "unit": "m³"
     },
     "confidence": 0.73
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.spessore_totale_mm",
+    "regex": [
+      "(?i)(?:parete|controparete|setto|veletta|placcaggio|controsoffitto)[^\\n]{0,80}?\\bsp(?:essore)?\\.?\\s*(?:totale\\s*)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\bspessore\\s+totale\\s*(?:[:=])?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\bsp\\.?\\s*totale\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "strip"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.7
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.altezza_mm",
+    "regex": [
+      "(?i)\\bH\\.?\\s*(?:max\\s*)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\baltezza\\s*(?:massima\\s*)?(?:fino\\s+a\\s*)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\bh\\s*max\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "strip"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.69
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.orditura_metallica_spessore_mm",
+    "regex": [
+      "(?i)\\borditura\\s+metallica[^\\n]{0,40}?\\b(?:da|sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\bmono\\s+orditura\\s+metallica[^\\n]{0,40}?\\b(?:da|sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\bsottostruttura\\s+metallica[^\\n]{0,60}?\\b(?:sp\\.?|spessore|da)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "strip"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.69
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.passo_montanti_mm",
+    "regex": [
+      "(?i)\\bpasso(?:\\s+dei)?\\s+montanti(?:\\s+di)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\binterasse(?:\\s+non\\s+superiore\\s+a)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "strip"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.68
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.isolante_spessore_mm",
+    "regex": [
+      "(?i)\\bstrato\\s+isolante[^\\n]{0,60}?\\b(?:sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\bisolamento[^\\n]{0,60}?\\b(?:sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+      "(?i)\\blana\\s+minerale[^\\n]{0,60}?\\bsp\\.?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "strip"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.7
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.isolante_densita_kg_m3",
+    "regex": [
+      "(?i)\\bdensit[àa]\\s*(?:=|:)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:kg\\s*/\\s*m3|kg\\s*/\\s*mc|kg/m3|kg/mc|kg/m³)\\b",
+      "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:kg\\s*/\\s*m3|kg\\s*/\\s*mc|kg/m3|kg/mc|kg/m³)\\b(?=[^\\n]{0,20}?densit[àa])"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "strip"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "kg/m³",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "kg/m³"
+    },
+    "confidence": 0.68
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.isolante_lambda_W_mK",
+    "regex": [
+      "(?i)\\b(?:λD?|lambda)\\s*(?:=|:)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:W/mK|W\\s*/\\s*mK)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "strip"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "W/mK",
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "W/mK"
+    },
+    "confidence": 0.65
+  },
+  {
+    "property_id": "opere_da_cartongessista.__global__.classe_reazione_fuoco",
+    "regex": [
+      "(?i)\\bEuroclasse\\s*(?P<val>[A-F](?:-[A-Z0-9,]+)?)\\b",
+      "(?i)\\bclasse\\s+(?P<val>A1|A2|B|B-s1,d0|B-s2,d0|B-s3,d0|C|C-s1,d0|C-s2,d0|D|E|F)\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+    ],
+    "normalizers": [
+      "upper",
+      "strip"
+    ],
+    "tags": [
+      "fuoco"
+    ],
+    "unit": null,
+    "applies_to": {
+      "supercats": [
+        "Opere da cartongessista"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.7
   }
 ]

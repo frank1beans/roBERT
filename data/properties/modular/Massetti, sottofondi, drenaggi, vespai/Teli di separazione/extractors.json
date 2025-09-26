@@ -1,0 +1,80 @@
+[
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.teli_di_separazione.spessore_mm",
+    "regex": [
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:nominale\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Teli di separazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.69
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.teli_di_separazione.sovrapposizione_min_cm",
+    "regex": [
+      "(?i)\\bsovrappost[oi]\\s+(?:sulle\\s+giunture\\s+)?(?:di|per)\\s+(?:almeno\\s+)?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*cm\\b",
+      "(?i)\\bgiunti\\s+sovrapposti\\s+di\\s+(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*cm\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "cm",
+    "applies_to": {
+      "cats": [
+        "Teli di separazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "cm"
+    },
+    "confidence": 0.68
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.teli_di_separazione.peso_areico_kg_m2",
+    "regex": [
+      "(?i)\\bpeso\\s*(?:areico\\s*)?(?P<val>\\d{1,3}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\b",
+      "(?i)\\bpeso\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,3})?)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "kg/m²",
+    "applies_to": {
+      "cats": [
+        "Teli di separazione"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "kg/m²"
+    },
+    "confidence": 0.68
+  }
+]

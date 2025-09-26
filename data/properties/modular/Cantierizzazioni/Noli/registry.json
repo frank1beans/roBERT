@@ -1,3 +1,48 @@
 {
-  "slots": {}
+  "slots": {
+    "altezza_operativa_m": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "expected_atoms": [
+        "atom_length_m_v2"
+      ]
+    },
+    "sbraccio_operativo_m": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "expected_atoms": [
+        "atom_length_m_v2"
+      ]
+    },
+    "portata_massima_kg": {
+      "type": "float",
+      "priority": 9,
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "kg",
+      "expected_atoms": [
+        "atom_mass_kg_v2"
+      ]
+    },
+    "dimensioni_piattaforma_mm": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm×mm",
+      "expected_atoms": [
+        "atom_formati_dims_v2"
+      ]
+    }
+  }
 }

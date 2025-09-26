@@ -41,6 +41,13 @@
         "B",
         "C"
       ]
+    },
+    "coefficiente_assorbimento_acustico_aw": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "acustica"
+      ]
     }
   }
 }

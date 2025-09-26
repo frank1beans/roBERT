@@ -1190,6 +1190,800 @@
   },
   "patterns": [
     {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.cappe_di_completamento.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Cappe di completamento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.cappe_di_completamento.spessore_min_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da|min(?:imo)?|variabile\\s+da)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:min(?:imo)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Cappe di completamento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.cappe_di_completamento.spessore_max_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:fino\\s?a|max(?:imo)?|massimo|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*)(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Cappe di completamento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.cappe_di_completamento.massa_volumica_kg_m3",
+      "regex": [
+        "(?i)\\bmassa\\s+volumica(?:\\s+nominale)?(?:\\s+in\\s+opera)?\\s*(?:pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\bdensit[àa]\\s*(?:in\\s+opera\\s*)?(?:circa\\s*|pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Cappe di completamento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.cappe_di_completamento.resistenza_compressione_N_mm2",
+      "regex": [
+        "(?i)\\bresistenza\\s+(?:media\\s+)?(?:a\\s+)?compressione(?:\\s+certificata)?\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:n/mm2|n/mm\\u00b2|mpa)\\b",
+        "(?i)\\bclasse\\s+di\\s+compressione\\s*(?:c|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:n/mm2|mpa)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "N/mm²",
+      "applies_to": {
+        "cats": [
+          "Cappe di completamento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "N/mm²"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.cappe_di_completamento.conducibilita_termica_W_mK",
+      "regex": [
+        "(?i)\\b(?:conducibilit[àa]\\s+termica|lambda|λ)\\s*(?:certificata\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1}(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m?k)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/mK",
+      "applies_to": {
+        "cats": [
+          "Cappe di completamento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/mK"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_alleggeriti.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Massetti alleggeriti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_alleggeriti.spessore_min_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da|min(?:imo)?|variabile\\s+da)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:min(?:imo)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Massetti alleggeriti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_alleggeriti.spessore_max_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:fino\\s?a|max(?:imo)?|massimo|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*)(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Massetti alleggeriti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_alleggeriti.massa_volumica_kg_m3",
+      "regex": [
+        "(?i)\\bmassa\\s+volumica(?:\\s+nominale)?(?:\\s+in\\s+opera)?\\s*(?:pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\bdensit[àa]\\s*(?:in\\s+opera\\s*)?(?:circa\\s*|pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Massetti alleggeriti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_alleggeriti.resistenza_compressione_N_mm2",
+      "regex": [
+        "(?i)\\bresistenza\\s+(?:media\\s+)?(?:a\\s+)?compressione(?:\\s+certificata)?\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:n/mm2|n/mm\\u00b2|mpa)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "N/mm²",
+      "applies_to": {
+        "cats": [
+          "Massetti alleggeriti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "N/mm²"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_alleggeriti.conducibilita_termica_W_mK",
+      "regex": [
+        "(?i)\\b(?:conducibilit[àa]\\s+termica|lambda|λ)\\s*(?:certificata\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1}(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m?k)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/mK",
+      "applies_to": {
+        "cats": [
+          "Massetti alleggeriti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/mK"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:variabile\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Massetti pendenzati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.spessore_min_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da|min(?:imo)?|variabile\\s+da)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:min(?:imo)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Massetti pendenzati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.spessore_max_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:variabile\\s*fino\\s*a|fino\\s*a|max(?:imo)?|massimo|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*)(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Massetti pendenzati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.dosaggio_cemento_kg_m3",
+      "regex": [
+        "(?i)\\b(?:dosat[oa]|dosaggio)\\s*(?:a\\s*)?(?:minimo\\s*)?(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*(?:kg)\\b[^\\n]{0,60}?\\b(?:per\\s*(?:m(?:c|3)|metro\\s+cubo))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Massetti pendenzati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.massetti_pendenzati.resistenza_Rck_N_mm2",
+      "regex": [
+        "(?i)\\brck\\s*(?:=|:|pari\\s*a)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:n/mm2|n/mm\\u00b2|mpa)\\b",
+        "(?i)\\bresistenza\\s+maggiore\\s+di\\s*rck\\s*=\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:n/mm2|mpa)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "N/mm²",
+      "applies_to": {
+        "cats": [
+          "Massetti pendenzati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "N/mm²"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Sottofondi pavimentazioni"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.spessore_min_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da|min(?:imo)?|variabile\\s+da)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:min(?:imo)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Sottofondi pavimentazioni"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.spessore_max_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:fino\\s?a|max(?:imo)?|massimo|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*)(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Sottofondi pavimentazioni"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.massa_volumica_kg_m3",
+      "regex": [
+        "(?i)\\bmassa\\s+volumica(?:\\s+nominale)?(?:\\s+in\\s+opera)?\\s*(?:pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\bdensit[àa]\\s*(?:in\\s+opera\\s*)?(?:circa\\s*|pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Sottofondi pavimentazioni"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.rete_diametro_mm",
+      "regex": [
+        "(?i)\\bdiametro\\s*(?:di|Ø|ø)?\\s*(?:ø)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b",
+        "(?i)\\bØ\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b",
+        "(?i)\\b(?:tondini|barre)\\s+di\\s+diametro\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Sottofondi pavimentazioni"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.rete_maglia_mm",
+      "regex": [
+        "(?i)\\bmaglia\\s*(?P<a>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*[x×]\\s*(?P<b>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm)\\b",
+        "(?i)\\bmaglia\\s*(?P<a>\\d{1,3})\\s*[x×]\\s*(?P<b>\\d{1,3})\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "normalize_dimensions_to_mm",
+        "strip"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "mm×mm",
+      "applies_to": {
+        "cats": [
+          "Sottofondi pavimentazioni"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm×mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.teli_di_separazione.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:nominale\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Teli di separazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.teli_di_separazione.sovrapposizione_min_cm",
+      "regex": [
+        "(?i)\\bsovrappost[oi]\\s+(?:sulle\\s+giunture\\s+)?(?:di|per)\\s+(?:almeno\\s+)?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*cm\\b",
+        "(?i)\\bgiunti\\s+sovrapposti\\s+di\\s+(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "cm",
+      "applies_to": {
+        "cats": [
+          "Teli di separazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "cm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.teli_di_separazione.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\bpeso\\s*(?:areico\\s*)?(?P<val>\\d{1,3}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\b",
+        "(?i)\\bpeso\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,3})?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "cats": [
+          "Teli di separazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.vespai_aerati.soletta_spessore_min_mm",
+      "regex": [
+        "(?i)\\bsoletta[^\\n]{0,60}?sp(?:essore|\\.)\\s*(?:min(?:imo)?|almeno|min\\.)\\s*(?:di\\s*)?(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Vespai aerati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.vespai_aerati.casseri_altezza_mm",
+      "regex": [
+        "(?i)\\b(?:casseri|elementi\\s+modulari|vespaio)\\b[^\\n]{0,60}?altezza\\s*(?:media\\s*)?(?:di|pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Vespai aerati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.vespai_aerati.rete_diametro_mm",
+      "regex": [
+        "(?i)\\brete[^\\n]{0,40}?diametro\\s*(?:di|Ø|ø)?\\s*(?:ø)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b",
+        "(?i)\\bØ\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "cats": [
+          "Vespai aerati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "massetti_sottofondi_drenaggi_vespai.vespai_aerati.rete_maglia_mm",
+      "regex": [
+        "(?i)\\brete[^\\n]{0,40}?maglia\\s*(?P<a>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*[x×]\\s*(?P<b>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "normalize_dimensions_to_mm",
+        "strip"
+      ],
+      "tags": [
+        "strutturale"
+      ],
+      "unit": "mm×mm",
+      "applies_to": {
+        "cats": [
+          "Vespai aerati"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm×mm"
+      },
+      "confidence": 0.68
+    },
+    {
       "property_id": "cantierizzazioni.__global__.produttore",
       "regex": [
         "(?i)\\\\b(?:produttore|brand|marca|manufacturer)\\\\b\\\\s*[:=\\\\-]?\\\\s*(?P<val>(?!(?:(?:RAL(?:\\\\s*\\\\d{2,4})?|GK[BFI]|DOP|POE|EER|CE|UNI(?:\\\\s*EN)?(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN\\\\s*AW(?:[-\\\\s]*\\\\d{2,5})?|NTC(?:\\\\s*\\\\d{4})?|ISO(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|DIN(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|CEI(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|Uw(?:\\\\s*[=≤]\\\\s*\\\\d(?:[.,]\\\\d+)?)?))\\\\b)[A-Z][A-Za-z0-9\\\\-\\\\s&]{2,60})\\\\b",
@@ -1399,6 +2193,172 @@
         "unit": "m³"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "cantierizzazioni.noli.altezza_operativa_m",
+      "regex": [
+        "(?i)\\baltezza(?:[^0-9]{0,40})?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:m|mt|cm)\\b",
+        "(?i)\\baltezza\\s+(?:totale\\s+)?variabile\\s+da\\s+\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:m|mt|cm)\\s*(?:a|fino\\s+a)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:m|mt|cm)\\b",
+        "(?i)\\b(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:m|mt|cm)\\s+(?:di\\s+)?altezza\\b"
+      ],
+      "normalizers": [
+        "join_range",
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Cantierizzazioni"
+        ],
+        "cats": [
+          "Noli"
+        ]
+      },
+      "examples": [
+        "Piattaforma telescopica articolata autocarrata ... altezza 30,00 m, sbraccio 15,00 m, portata 400 kg"
+      ],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.74
+    },
+    {
+      "property_id": "cantierizzazioni.noli.sbraccio_operativo_m",
+      "regex": [
+        "(?i)\\bsbraccio(?:[^0-9]{0,30})?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:m|mt|cm)\\b",
+        "(?i)\\b(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:m|mt|cm)\\s+(?:di\\s+)?sbraccio\\b"
+      ],
+      "normalizers": [
+        "join_range",
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Cantierizzazioni"
+        ],
+        "cats": [
+          "Noli"
+        ]
+      },
+      "examples": [
+        "Piattaforma telescopica articolata autocarrata ... sbraccio 15,00 m"
+      ],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "cantierizzazioni.noli.portata_massima_kg",
+      "regex": [
+        "(?i)\\bportata(?:[^0-9]{0,30})?(?P<val>\\d{1,6}(?:[.,]\\d{1,3})?)\\s*(?:kg|chilogrammi|t|tonnellate)\\b",
+        "(?i)\\b(?P<val>\\d{1,6}(?:[.,]\\d{1,3})?)\\s*(?:kg|chilogrammi|t|tonnellate)\\s+di\\s+portata\\b"
+      ],
+      "normalizers": [
+        "join_range",
+        "comma_to_dot",
+        "to_unit:kg",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "kg",
+      "applies_to": {
+        "supercats": [
+          "Cantierizzazioni"
+        ],
+        "cats": [
+          "Noli"
+        ]
+      },
+      "examples": [
+        "Elevatore a cremagliera ... portata 1100 kg"
+      ],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg"
+      },
+      "confidence": 0.75
+    },
+    {
+      "property_id": "cantierizzazioni.noli.dimensioni_piattaforma_mm",
+      "regex": [
+        "(?i)\\bpiattaforma\\s*(?:di\\s+carico\\s*)?(?:dimensioni|misure|formato)\\s*(?:[:=]?\\s*)?(?P<a>\\d{2,5})(?:\\s*(?P<unit1>mm|cm|m))?\\s*[x×X]\\s*(?P<b>\\d{2,5})(?:\\s*(?P<unit2>mm|cm|m))?\\b",
+        "(?i)\\bdimensioni\\s*(?:della\\s+)?piattaforma\\s*(?:[:=]?\\s*)?(?P<a>\\d{2,5})(?:\\s*(?P<unit1>mm|cm|m))?\\s*[x×X]\\s*(?P<b>\\d{2,5})(?:\\s*(?P<unit2>mm|cm|m))?\\b"
+      ],
+      "normalizers": [
+        "normalize_dimensions_to_mm",
+        "validate_aspect_ratio",
+        "strip",
+        "comma_to_dot"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm×mm",
+      "applies_to": {
+        "supercats": [
+          "Cantierizzazioni"
+        ],
+        "cats": [
+          "Noli"
+        ]
+      },
+      "examples": [
+        "Elevatore a cremagliera ... piattaforma dimensioni 150x180 cm"
+      ],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm×mm"
+      },
+      "confidence": 0.73
+    },
+    {
+      "property_id": "cantierizzazioni.installazione_cantiere.dimensioni_cartello_mm",
+      "regex": [
+        "(?i)\\bcartello[^0-9]{0,80}?(?P<a>\\d{2,5})(?:\\s*(?P<unit1>mm|cm|m))?\\s*[x×X]\\s*(?P<b>\\d{2,5})(?:\\s*(?P<unit2>mm|cm|m))?\\b",
+        "(?i)\\bdimensioni?[^0-9]{0,40}?cartello[^0-9]{0,40}?(?P<a>\\d{2,5})(?:\\s*(?P<unit1>mm|cm|m))?\\s*[x×X]\\s*(?P<b>\\d{2,5})(?:\\s*(?P<unit2>mm|cm|m))?\\b"
+      ],
+      "normalizers": [
+        "normalize_dimensions_to_mm",
+        "validate_aspect_ratio",
+        "strip",
+        "comma_to_dot"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm×mm",
+      "applies_to": {
+        "supercats": [
+          "Cantierizzazioni"
+        ],
+        "cats": [
+          "Installazione cantiere"
+        ]
+      },
+      "examples": [
+        "Realizzazione di cartello di cantiere ... Dimensione di circa 200 x 140 cm"
+      ],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm×mm"
+      },
+      "confidence": 0.72
     },
     {
       "property_id": "assistenze_murarie.__global__.produttore",
@@ -1612,6 +2572,69 @@
       "confidence": 0.73
     },
     {
+      "property_id": "assistenze_murarie.assistenze_murarie_alla_posa_di_impianti.sezione_min_cm2",
+      "regex": [
+        "(?i)\\bsezione\\s+(?:da|compresa\\s+tra)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cmq|cm²|cm2)?\\s*(?:[,;\\s]*a|[-]\\s*)\\s*\\d+(?:[.,]\\d+)?\\s*(?:cmq|cm²|cm2)\\b",
+        "(?i)\\bsezione\\s+(?:(?<!non\\s)superiore\\s+a|maggiore\\s+di|oltre)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cmq|cm²|cm2)\\b",
+        "(?i)\\bsezione\\s+(?:di|pari\\s+a)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cmq|cm²|cm2)\\b"
+      ],
+      "normalizers": [
+        "strip",
+        "comma_to_dot",
+        "to_unit:cm2"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "cm²",
+      "applies_to": {
+        "supercats": [
+          "Assistenze murarie"
+        ],
+        "cats": [
+          "Assistenze murarie alla posa di impianti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "cm²"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "assistenze_murarie.assistenze_murarie_alla_posa_di_impianti.sezione_max_cm2",
+      "regex": [
+        "(?i)\\bsezione\\s+(?:da|compresa\\s+tra)\\s*\\d+(?:[.,]\\d+)?\\s*(?:cmq|cm²|cm2)?\\s*(?:[,;\\s]*a|[-]\\s*)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cmq|cm²|cm2)\\b",
+        "(?i)\\b(?:sezione\\s+)?(?:ma\\s+)?non\\s+superiore\\s+a\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cmq|cm²|cm2)\\b",
+        "(?i)\\bsezione\\s+(?:fino\\s+a)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cmq|cm²|cm2)\\b",
+        "(?i)\\bsezione\\s+(?:di|pari\\s+a)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cmq|cm²|cm2)\\b"
+      ],
+      "normalizers": [
+        "strip",
+        "comma_to_dot",
+        "to_unit:cm2"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "cm²",
+      "applies_to": {
+        "supercats": [
+          "Assistenze murarie"
+        ],
+        "cats": [
+          "Assistenze murarie alla posa di impianti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "cm²"
+      },
+      "confidence": 0.71
+    },
+    {
       "property_id": "opere_murarie.__global__.produttore",
       "regex": [
         "(?i)\\\\b(?:produttore|brand|marca|manufacturer)\\\\b\\\\s*[:=\\\\-]?\\\\s*(?P<val>(?!(?:(?:RAL(?:\\\\s*\\\\d{2,4})?|GK[BFI]|DOP|POE|EER|CE|UNI(?:\\\\s*EN)?(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN\\\\s*AW(?:[-\\\\s]*\\\\d{2,5})?|NTC(?:\\\\s*\\\\d{4})?|ISO(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|DIN(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|CEI(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|Uw(?:\\\\s*[=≤]\\\\s*\\\\d(?:[.,]\\\\d+)?)?))\\\\b)[A-Z][A-Za-z0-9\\\\-\\\\s&]{2,60})\\\\b",
@@ -1760,6 +2783,90 @@
       "confidence": 0.73
     },
     {
+      "property_id": "opere_murarie.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bspessore\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bspess\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bspessore\\s*:?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:centimetri|millimetri)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere murarie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_murarie.__global__.massa_volumica_kg_m3",
+      "regex": [
+        "(?i)\\bmassa\\s+volumica(?:\\s+lorda|\\s+media)?\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)(?:\\s*[-–]\\s*\\d{2,4}(?:[.,]\\d{1,3})?)?\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\bdensità\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)(?:\\s*[-–]\\s*\\d{2,4}(?:[.,]\\d{1,3})?)?\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\bdensita\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)(?:\\s*[-–]\\s*\\d{2,4}(?:[.,]\\d{1,3})?)?\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere murarie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "opere_murarie.__global__.classe_ei",
+      "regex": [
+        "(?i)\\b(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bresistenza\\s+al\\s+fuoco\\s*[:=]?\\s*(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bfire\\s+resistance\\s*[:=]?\\s*(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bclasse\\s+(?P<val>15|20|30|45|60|90|120|180|240|360)\\s*minuti\\b"
+      ],
+      "normalizers": [
+        "to_ei_class",
+        "upper",
+        "strip",
+        "comma_to_dot"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere murarie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.74
+    },
+    {
       "property_id": "opere_murarie.__global__.superficie_m2",
       "regex": [
         "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:m²|m2|mq\\.?|mq)\\b",
@@ -1821,6 +2928,93 @@
         "unit": "m³"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "opere_murarie.blocchi_in_calcestruzzo_cellulare_aerato_autoclavato.fonoassorbenza_db",
+      "regex": [
+        "(?i)\\bfonoassorbenza\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*dB\\b",
+        "(?i)\\babbattimento\\s+acustico\\s*(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*dB\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere murarie"
+        ],
+        "cats": [
+          "Blocchi in calcestruzzo cellulare aerato autoclavato"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.78
+    },
+    {
+      "property_id": "opere_murarie.blocchi_in_calcestruzzo_cellulare_aerato_autoclavato.trasmittanza_termica_wm2k",
+      "regex": [
+        "(?i)\\btrasmittanza\\s+termica\\s*(?:pari\\s*a|=|:|<|<=)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,3})?)\\s*W\\s*/?\\s*m(?:²|2|q)\\s*K\\b",
+        "(?i)\\bU\\s*=\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,3})?)\\s*W\\s*/?\\s*m(?:²|2|q)\\s*K\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/m²K",
+      "applies_to": {
+        "supercats": [
+          "Opere murarie"
+        ],
+        "cats": [
+          "Blocchi in calcestruzzo cellulare aerato autoclavato"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/m²K"
+      },
+      "confidence": 0.77
+    },
+    {
+      "property_id": "opere_murarie.elementi_in_laterizio.trasmittanza_termica_wm2k",
+      "regex": [
+        "(?i)\\btrasmittanza\\s+termica\\s*(?:pari\\s*a|=|:|<|<=)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,3})?)\\s*W\\s*/?\\s*m(?:²|2|q)\\s*K\\b",
+        "(?i)\\bU\\s*=\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,3})?)\\s*W\\s*/?\\s*m(?:²|2|q)\\s*K\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/m²K",
+      "applies_to": {
+        "supercats": [
+          "Opere murarie"
+        ],
+        "cats": [
+          "Elementi in laterizio"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/m²K"
+      },
+      "confidence": 0.77
     },
     {
       "property_id": "opere_da_cartongessista.__global__.produttore",
@@ -2032,6 +3226,220 @@
         "unit": "m³"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.spessore_totale_mm",
+      "regex": [
+        "(?i)(?:parete|controparete|setto|veletta|placcaggio|controsoffitto)[^\\n]{0,80}?\\bsp(?:essore)?\\.?\\s*(?:totale\\s*)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\bspessore\\s+totale\\s*(?:[:=])?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*totale\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.altezza_mm",
+      "regex": [
+        "(?i)\\bH\\.?\\s*(?:max\\s*)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\baltezza\\s*(?:massima\\s*)?(?:fino\\s+a\\s*)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\bh\\s*max\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.orditura_metallica_spessore_mm",
+      "regex": [
+        "(?i)\\borditura\\s+metallica[^\\n]{0,40}?\\b(?:da|sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\bmono\\s+orditura\\s+metallica[^\\n]{0,40}?\\b(?:da|sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\bsottostruttura\\s+metallica[^\\n]{0,60}?\\b(?:sp\\.?|spessore|da)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.passo_montanti_mm",
+      "regex": [
+        "(?i)\\bpasso(?:\\s+dei)?\\s+montanti(?:\\s+di)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\binterasse(?:\\s+non\\s+superiore\\s+a)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.isolante_spessore_mm",
+      "regex": [
+        "(?i)\\bstrato\\s+isolante[^\\n]{0,60}?\\b(?:sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\bisolamento[^\\n]{0,60}?\\b(?:sp\\.?|spessore)\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b",
+        "(?i)\\blana\\s+minerale[^\\n]{0,60}?\\bsp\\.?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.isolante_densita_kg_m3",
+      "regex": [
+        "(?i)\\bdensit[àa]\\s*(?:=|:)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:kg\\s*/\\s*m3|kg\\s*/\\s*mc|kg/m3|kg/mc|kg/m³)\\b",
+        "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:kg\\s*/\\s*m3|kg\\s*/\\s*mc|kg/m3|kg/mc|kg/m³)\\b(?=[^\\n]{0,20}?densit[àa])"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "strip"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.isolante_lambda_W_mK",
+      "regex": [
+        "(?i)\\b(?:λD?|lambda)\\s*(?:=|:)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:W/mK|W\\s*/\\s*mK)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "strip"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "W/mK",
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/mK"
+      },
+      "confidence": 0.65
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F](?:-[A-Z0-9,]+)?)\\b",
+        "(?i)\\bclasse\\s+(?P<val>A1|A2|B|B-s1,d0|B-s2,d0|B-s3,d0|C|C-s1,d0|C-s2,d0|D|E|F)\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere da cartongessista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.7
     },
     {
       "property_id": "opere_da_cartongessista.accessori_per_cartongessi.classe_ei",
@@ -2842,6 +4250,160 @@
       "confidence": 0.73
     },
     {
+      "property_id": "opere_di_coibentazione.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bspess(?:ore)?\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)(?:\\s*(?:[-–/]|\\ba\\b)\\s*\\d{1,3}(?:[.,]\\d{1,2})?)?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bspess\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di coibentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_di_coibentazione.__global__.densita_kg_m3",
+      "regex": [
+        "(?i)\\b(?:densit[àa]|massa\\s+volumica)\\s*(?:apparente\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)(?:\\s*(?:[-–/]|\\ba\\b)\\s*\\d{2,4}(?:[.,]\\d{1,3})?)?\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b(?=[^\\n]{0,40}densit)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere di coibentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_di_coibentazione.__global__.conducibilita_termica_W_mK",
+      "regex": [
+        "(?i)\\b(?:conducibilit[àa]\\s+termica|lambda\\s*d?|λ\\s*d?)\\s*(?:dichiarata\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=|<|>)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m\\s*(?:k|°k))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/mK",
+      "applies_to": {
+        "supercats": [
+          "Opere di coibentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/mK"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "opere_di_coibentazione.__global__.resistenza_compressione_kPa",
+      "regex": [
+        "(?i)\\bresistenza\\s+a\\s+compressione\\s*(?:pari\\s*a|=|:|≥|>=|≤|<=|>|<)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*(?:k\\s?pa)\\b",
+        "(?i)\\bcompressive\\s+strength\\s*(?:pari\\s*a|=|:|≥|>=|≤|<=|>|<)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*(?:k\\s?pa)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "kPa",
+      "applies_to": {
+        "supercats": [
+          "Opere di coibentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kPa"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "opere_di_coibentazione.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F](?:-[A-Z0-9, ]+)?)(?=\\b)",
+        "(?i)\\bclasse\\s+(?P<val>A1|A2|B|B-s1,d0|B-s1,d1|B-s2,d0|B-s2,d1|B-s3,d0|C|C-s1,d0|C-s2,d0|C-s3,d0|D|E|F)(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di coibentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_di_coibentazione.__global__.trasmittanza_termica_W_m2K",
+      "regex": [
+        "(?i)\\btrasmittanza\\s+termica(?:\\s*U)?\\s*(?:pari\\s*a|=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m(?:²|2|q)\\s*k)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/m²K",
+      "applies_to": {
+        "supercats": [
+          "Opere di coibentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/m²K"
+      },
+      "confidence": 0.68
+    },
+    {
       "property_id": "opere_di_coibentazione.__global__.superficie_m2",
       "regex": [
         "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:m²|m2|mq\\.?|mq)\\b",
@@ -3051,6 +4613,354 @@
         "unit": "mm×mm"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:finale\\s+(?:non\\s+inferiore\\s+a|>=?)\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>(?!\\d+\\s*\\+)\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>(?!\\d+\\s*\\+)\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.69
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.spessori_strati_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d+(?:[.,]\\d+)?(?:\\s*\\+\\s*\\d+(?:[.,]\\d+)?){1,3})\\s*mm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "collapse_plus_sequences",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.sovrapposizione_min_cm",
+      "regex": [
+        "(?i)\\bsovrapposizion[ei][^\\d]{0,25}(?:almeno\\s+)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*cm\\b",
+        "(?i)\\bsormont[oi][^\\d]{0,25}(?P<val>\\d+(?:[.,]\\d+)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "cm",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "cm"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.risvolto_min_cm",
+      "regex": [
+        "(?i)\\brisvolt[oi][^\\d]{0,30}(?P<val>\\d+(?:[.,]\\d+)?)\\s*cm\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "cm",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "cm"
+      },
+      "confidence": 0.65
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\b(?:massa|peso)\\s*(?:areic[ao]\\s*)?(?:nominale\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d+(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.massa_volumica_kg_m3",
+      "regex": [
+        "(?i)\\bmassa\\s+volumica[^\\d]{0,20}(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:kg\\s*/?\\s*m(?:3|c|³))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.fattore_resistenza_vapore_mu",
+      "regex": [
+        "(?i)µ\\s*[:=]?\\s*(?P<val>\\d{1,6}(?:[.,]\\d+)?)",
+        "(?i)\\bfattore\\s+di\\s+resistenza[^\\d]{0,30}(?P<val>\\d{1,6}(?:[.,]\\d+)?)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "traspirazione"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.64
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.flessibilita_freddo_c",
+      "regex": [
+        "(?i)flessibilit[àa][^\\d-]{0,40}(?:[-≤=<>]*\\s*)?(?P<val>-?\\d{1,3}(?:[.,]\\d+)?)\\s*°?C"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "°C",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "°C"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.resistenza_scorrimento_caldo_c",
+      "regex": [
+        "(?i)scorrimento\\s+a\\s+caldo[^\\d-]{0,40}(?:[-≤=<>]*\\s*)?(?P<val>\\d{1,3}(?:[.,]\\d+)?)\\s*°?C"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "°C",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "°C"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.resistenza_trazione_long_N_50mm",
+      "regex": [
+        "(?i)longitudinale[^\\d]{0,20}(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:n\\s*/\\s*50\\s*mm|n\\s*/\\s*5\\s*cm|n/50\\s*mm|n/5\\s*cm)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "N/50mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "N/50mm"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.resistenza_trazione_trasv_N_50mm",
+      "regex": [
+        "(?i)trasversal[ei][^\\d]{0,20}(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:n\\s*/\\s*50\\s*mm|n\\s*/\\s*5\\s*cm|n/50\\s*mm|n/5\\s*cm)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "N/50mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "N/50mm"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.resistenza_carico_statico_kg",
+      "regex": [
+        "(?i)carico\\s+statico[^\\d]{0,30}(?P<val>\\d+(?:[.,]\\d+)?)\\s*kg\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "kg",
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg"
+      },
+      "confidence": 0.65
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F](?:-[A-Z0-9, ]+)?)\\b",
+        "(?i)\\bclasse\\s+(?P<val>A1|A2|B|B-s1,d0|B-s1,d1|B-s2,d0|B-s2,d1|B-s3,d0|C|C-s1,d0|C-s2,d0|C-s3,d0|D|E|F)(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.__global__.comportamento_fuoco_esterno",
+      "regex": [
+        "(?i)broof\\s*\\(t\\d\\)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di impermeabilizzazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.65
     },
     {
       "property_id": "opere_di_impermeabilizzazione.__global__.superficie_m2",
@@ -3538,6 +5448,162 @@
       "confidence": 0.73
     },
     {
+      "property_id": "opere_da_intonacatore_e_stuccatore.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:totale\\s*)?(?:nominale\\s*)?(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|–)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bthick(?:ness)?\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da intonacatore e stuccatore"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere da intonacatore e stuccatore"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_per_esterno.dosaggio_calce_kg_m3",
+      "regex": [
+        "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*kg\\s+di\\s+(?:grassello\\s+di\\s+)?calce(?:\\s+idrata)?[^\\n]{0,40}?\\bper\\s*(?:1(?:[.,]0{1,2})?)\\s*(?:m(?:c|3)|metro\\s+cubo)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Intonaco per esterno"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_per_esterno.dosaggio_cemento_kg_m3",
+      "regex": [
+        "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,2})?)\\s*kg\\s+di\\s+cemento[^\\n]{0,60}?\\bper\\s*(?:1(?:[.,]0{1,2})?)\\s*(?:m(?:c|3)|metro\\s+cubo)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "cats": [
+          "Intonaco per esterno"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_intumescente.classe_ei",
+      "regex": [
+        "(?i)\\b(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bresistenza\\s+al\\s+fuoco\\s*[:=]?\\s*(?:R?E\\.?\\s*I\\.?)\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bclasse\\s+R?E\\.?\\s*I\\.?\\s*(?P<val>15|20|30|45|60|90|120|180|240|360)\\b",
+        "(?i)\\bclasse\\s+(?P<val>15|20|30|45|60|90|120|180|240|360)\\s*minuti\\b"
+      ],
+      "normalizers": [
+        "to_ei_class",
+        "upper",
+        "strip",
+        "comma_to_dot"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "cats": [
+          "Intonaco intumescente"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_da_intonacatore_e_stuccatore.intonaco_intumescente.peso_armatura_rete_g_m2",
+      "regex": [
+        "(?i)\\bpeso[^\\n]{0,30}?(?:fibra|rete)[^\\n]{0,30}?\\[?g/m(?:2|²)\\]?\\s*(?:[:=≤<≥]?|=)?\\s*(?P<val>\\d{1,4}(?:[.,]\\d{1,2})?)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "g/m²",
+      "applies_to": {
+        "cats": [
+          "Intonaco intumescente"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "g/m²"
+      },
+      "confidence": 0.65
+    },
+    {
       "property_id": "opere_di_rivestimento.__global__.produttore",
       "regex": [
         "(?i)\\\\b(?:produttore|brand|marca|manufacturer)\\\\b\\\\s*[:=\\\\-]?\\\\s*(?P<val>(?!(?:(?:RAL(?:\\\\s*\\\\d{2,4})?|GK[BFI]|DOP|POE|EER|CE|UNI(?:\\\\s*EN)?(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN(?:\\\\s*ISO)?(?:\\\\s*\\\\d{2,5}(?:[-/]?\\\\d{1,2})?)?|EN\\\\s*AW(?:[-\\\\s]*\\\\d{2,5})?|NTC(?:\\\\s*\\\\d{4})?|ISO(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|DIN(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|CEI(?:\\\\s*\\\\d{3,5}(?:[-/]?\\\\d{1,2})?)?|Uw(?:\\\\s*[=≤]\\\\s*\\\\d(?:[.,]\\\\d+)?)?))\\\\b)[A-Z][A-Za-z0-9\\\\-\\\\s&]{2,60})\\\\b",
@@ -3684,6 +5750,57 @@
         "unit": "mm×mm"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "opere_di_rivestimento.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\b(?:massa|peso)\\s*(?:areic[ao]\\s*)?(?:nominale\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d+(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Opere di rivestimento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_di_rivestimento.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di rivestimento"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
     },
     {
       "property_id": "opere_di_rivestimento.__global__.superficie_m2",
@@ -3849,6 +5966,36 @@
       "examples_negative": [],
       "post_validations": {},
       "confidence": 0.8
+    },
+    {
+      "property_id": "opere_di_rivestimento.altri_rivestimenti.coefficiente_assorbimento_acustico_aw",
+      "regex": [
+        "(?i)\\bα\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\baw\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\balpha\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\bcoefficiente\\s+di\\s+assorbimento\\s+acustico[^\\d]{0,20}(?:α\\s*w|aw|αw)\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di rivestimento"
+        ],
+        "cats": [
+          "Altri rivestimenti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.72
     },
     {
       "property_id": "opere_di_rivestimento.rivestimenti_in_gomma_o_pvc.formato",
@@ -4084,6 +6231,37 @@
       "examples_negative": [],
       "post_validations": {},
       "confidence": 0.8
+    },
+    {
+      "property_id": "opere_di_rivestimento.rivestimenti_in_gres_e_ceramica.assorbimento_acqua_ev_percento",
+      "regex": [
+        "(?i)\\bEv\\s*[≤<≦≤=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*%?",
+        "(?i)\\bE\\s*v\\s*(?:=|:)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*%?",
+        "(?i)\\bassorbimento\\s+d['i]?\\s*acqua[^\\d]{0,20}(?P<val>\\d+(?:[.,]\\d+)?)\\s*%"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Opere di rivestimento"
+        ],
+        "cats": [
+          "Rivestimenti in gres e ceramica"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.74
     },
     {
       "property_id": "opere_di_rivestimento.rivestimenti_in_legno.formato",
@@ -4436,6 +6614,86 @@
         "unit": "mm×mm"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "opere_di_pavimentazione.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:totale\\s*)?(?:nominale\\s*)?(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|–)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bthick(?:ness)?\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.73
+    },
+    {
+      "property_id": "opere_di_pavimentazione.__global__.densita_kg_m3",
+      "regex": [
+        "(?i)\\b(?:densit[àa]|massa\\s+volumica)\\s*(?:nominale|apparente|in\\s+opera)?\\s*(?:pari\\s*a|=|:|≈|~|≥|<=|>=|≤)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*(?:/|per)?\\s*m(?:c|³|3)|kg/mc|kg/m3|kgm3)\\b",
+        "(?i)\\b(?:≥|>|<|≤|>=|<=)?\\s*(?P<val>\\d{3,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*(?:/|per)?\\s*m(?:c|³|3)|kg/mc|kg/m3|kgm3)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_di_pavimentazione.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
     },
     {
       "property_id": "opere_di_pavimentazione.__global__.superficie_m2",
@@ -5348,6 +7606,239 @@
       "confidence": 0.8
     },
     {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.altezza_min_mm",
+      "regex": [
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?:da\\s*)?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)?\\s*(?:-|a|–)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?:min(?:ima)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.altezza_max_mm",
+      "regex": [
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)?\\s*(?:-|a|–)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?:max(?:ima)?|massima|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b(?!\\s*(?:-|a|–))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.classe_portata",
+      "regex": [
+        "(?i)\\bclasse\\s+(?:di\\s+)?(?:portata|resistenza)\\s*(?:[:=]?\\s*)?(?P<val>(?:[A-F]\\d?|[IVX]{1,4}|\\d{1,2}))\\b",
+        "(?i)\\bUNI\\s*EN\\s*12825\\s*,?\\s*classe\\s*(?P<val>(?:[A-F]\\d?|[IVX]{1,4}|\\d{1,2}))\\b"
+      ],
+      "normalizers": [
+        "roman_to_numeric",
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.carico_concentrato_kN",
+      "regex": [
+        "(?i)\\bcarico(?:\\s+(?:concentrato|ammissibile|max(?:simo)?|massimo))?[^0-9]{0,20}(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:kN|kn)\\b",
+        "(?i)\\bcarico(?:\\s+(?:concentrato|ammissibile|max(?:simo)?|massimo))?[^0-9]{0,30}(?:kN|kn)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\b",
+        "(?i)\\b(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:kN|kn)\\s*(?:di\\s+)?carico\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "kN",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kN"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.delta_rw_db",
+      "regex": [
+        "(?i)\\bΔ\\s*Rw\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b",
+        "(?i)\\bDelta\\s*Rw\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.delta_ln_db",
+      "regex": [
+        "(?i)\\bΔ\\s*L[wn]\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b",
+        "(?i)\\bDelta\\s*L[wn]\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.lnfw_db",
+      "regex": [
+        "(?i)\\bLn\\s*,?f\\s*,?w\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.65
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.dnfw_db",
+      "regex": [
+        "(?i)\\bDn\\s*,?f\\s*,?w\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.65
+    },
+    {
       "property_id": "opere_di_pavimentazione.zoccolini_e_accessori_per_pavimentazioni.formato",
       "regex": [
         "(?i)\\b(?P<a>\\d{2,5})(?:\\s*(?P<unit1>mm|cm|m))?\\s*[x×X]\\s*(?P<b>\\d{2,5})(?:\\s*(?P<unit2>mm|cm|m))?\\b",
@@ -5659,6 +8150,166 @@
         "unit": "m³"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "controsoffitti.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bspess(?:ore)?\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)(?:\\s*[-–/a]\\s*\\d{1,3}(?:[.,]\\d{1,2})?)?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bspess\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "controsoffitti.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\b(?:massa|peso)\\s*(?:areic[ao]\\s*)?(?:nominale\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d+(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:q|2|²))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "controsoffitti.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "controsoffitti.__global__.coefficiente_assorbimento_acustico_aw",
+      "regex": [
+        "(?i)\\bα\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\baw\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\balpha\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\bcoefficiente\\s+di\\s+assorbimento\\s+acustico[^\\d]{0,20}(?:α\\s*w|aw|αw)\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.72
+    },
+    {
+      "property_id": "controsoffitti.__global__.percentuale_superficie_forata_percento",
+      "regex": [
+        "(?i)\\bpercentuale\\s+di\\s+superficie\\s+forat[ao]\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\b(?:superficie\\s+forata|foratura\\s+continua|perforazione\\s+continua)\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\b(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b(?=[^\\n]{0,40}(?:superficie\\s+forata|foratura|perforazione))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "controsoffitti.__global__.resistenza_umidita_relativa_percento",
+      "regex": [
+        "(?i)\\bRH\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%?\\b",
+        "(?i)\\bresistenza\\s+all'?umidità\\s+relativa\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%?\\b",
+        "(?i)\\bumidità\\s+relativa\\s*(?:max\\.?\\s*)?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "resistenza"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Controsoffitti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.66
     },
     {
       "property_id": "controsoffitti.botole_d_ispezione_e_accessori.classe_ei",
@@ -6469,6 +9120,162 @@
       "confidence": 0.73
     },
     {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bspess(?:ore)?\\s*(?:medio\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)(?:\\s*(?:[-–/]|\\ba\\b)\\s*\\d{1,3}(?:[.,]\\d{1,2})?)?\\s*(?:mm\\.?|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm\\.?|cm|m)\\b",
+        "(?i)\\bspess\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm\\.?|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.densita_kg_m3",
+      "regex": [
+        "(?i)\\b(?:densit[àa]|massa\\s+volumica)\\s*(?:apparente\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)(?:\\s*(?:[-–/]|\\ba\\b)\\s*\\d{2,4}(?:[.,]\\d{1,3})?)?\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b(?=[^\\n]{0,40}(?:densit|massa\\s+volumica))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.conducibilita_termica_W_mK",
+      "regex": [
+        "(?i)\\b(?:conducibilit[àa]\\s+termica|lambda\\s*d?|λ\\s*d?)\\s*(?:dichiarata\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=|<|>)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m\\s*(?:k|°k))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/mK",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/mK"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.trasmittanza_termica_W_m2K",
+      "regex": [
+        "(?i)\\b(?:trasmittanza\\s+termica(?:\\s*(?:Uw|Up|U|Ug))?|U[wpg]?|Uw|Ug|Up)\\s*(?:=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m(?:²|2|q)\\s*k)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/m²K",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/m²K"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.Rw_dB",
+      "regex": [
+        "(?i)\\bRw\\s*(?:=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*dB\\b",
+        "(?i)\\bisolamento\\s+acustico\\s+(?:del\\s+vetro\\s+)?Rw\\s*(?:=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*dB\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.66
+    },
+    {
       "property_id": "opere_da_facciatista_e_da_cappottista.__global__.superficie_m2",
       "regex": [
         "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:m²|m2|mq\\.?|mq)\\b",
@@ -6678,6 +9485,273 @@
         "unit": "mm×mm"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:totale\\s*)?(?:nominale\\s*)?(?:medio\\s*)?(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bthick(?:ness)?\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\b(?:peso|massa)\\s*(?:areic[ao]|tessuto)?[^\\d]{0,20}(?P<val>\\d+(?:[.,]\\d{1,3})?)\\s*(?:kg|g|t)\\s*/?\\s*m(?:q|2|²)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "to_areal_density_kg_m2"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.trasmissione_sol_percento",
+      "regex": [
+        "(?i)\\btrasmissione\\s+solare(?:\\s*\\(TS\\))?\\s*(?:esterna\\s*)?(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bTS\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.riflessione_sol_esterna_percento",
+      "regex": [
+        "(?i)\\briflessione\\s+solare\\s*(?:esterna)?(?:\\s*\\(RS\\))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bRS\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.trasmissione_luminosa_percento",
+      "regex": [
+        "(?i)\\btrasmissione\\s+luminosa(?:\\s*\\(TL\\))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bTL\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.riflessione_luminosa_percento",
+      "regex": [
+        "(?i)\\briflessione\\s+luminosa(?:\\s*\\(RL\\))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bRL\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.fattore_apertura_percento",
+      "regex": [
+        "(?i)\\bfattore\\s+d['’]?apertura(?:\\s*(?:medio|average))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bOF\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.trasmissione_uv_percento",
+      "regex": [
+        "(?i)\\btrasmissione\\s+UV\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.coefficiente_assorbimento_acustico_aw",
+      "regex": [
+        "(?i)\\bα\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\baw\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\balpha\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\bcoefficiente\\s+di\\s+assorbimento\\s+acustico[^\\d]{0,25}(?:α\\s*w|aw|αw)\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.7
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
     },
     {
       "property_id": "sistemi_oscuranti_per_facciate.__global__.superficie_m2",
@@ -13720,6 +16794,512 @@
         "unit": "m³"
       },
       "confidence": 0.73
+    },
+    {
+      "property_id": "opere_di_impermeabilizzazione.impermeabilizzazioni_bituminose.indice_riflettanza_sol_SRI",
+      "regex": [
+        "(?i)\\bSRI\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "prestazione"
+      ],
+      "unit": "SRI",
+      "applies_to": {
+        "cats": [
+          "Impermeabilizzazioni bituminose"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "SRI"
+      },
+      "confidence": 0.64
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\\\b(?:spess(?:ore)?|sp\\\\.)\\\\b[^\\\\n]{0,20}[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm|m)\\\\b",
+        "(?i)\\\\bsp\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)\\\\bthk\\\\.?\\\\s*[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\\\b(?:massa|peso)\\\\s*(?:areic[ao]\\\\s*)?(?:nominale\\\\s*)?(?:pari\\\\s*a|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d{1,3})?)\\\\s*(?:kg\\\\s*/?\\\\s*m(?:q|2|²))\\\\b",
+        "(?i)\\\\b(?:peso|massa)\\\\s*(?:superficial[ei])?[^\\\\d]{0,20}(?P<val>\\\\d+(?:[.,]\\\\d{1,3})?)\\\\s*(?:kg|g|t)\\\\s*/?\\\\s*m(?:q|2|²)\\\\b",
+        "(?i)\\\\b(?P<val>\\\\d+(?:[.,]\\\\d{1,3})?)\\\\s*(?:kg|g|t)\\\\s*/?\\\\s*m(?:q|2|²)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "normalize_mass_surface_density",
+        "strip"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\\\bclasse\\\\s+di\\\\s+reazione\\\\s+al\\\\s+fuoco\\\\s*(?:=|:)?\\\\s*(?P<val>[A-F][-\\\\s]*s\\\\d(?:[,;\\\\s]*d\\\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\\\b",
+        "(?i)\\\\bEuroclasse\\\\s*(?P<val>[A-F][-\\\\s]*s\\\\d(?:[,;\\\\s]*d\\\\d)?|A1|A2)\\\\b",
+        "(?i)\\\\bClass(?:e)?\\\\s*(?P<val>[0-5])\\\\b(?=[^\\\\n]{0,40}reazione\\\\s+al\\\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.comportamento_fuoco_esterno",
+      "regex": [
+        "(?i)broof\\\\s*\\\\(t\\\\d\\\\)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.65
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.pendenza_min_percento",
+      "regex": [
+        "(?i)\\\\bpendenz[ae][^\\\\d]{0,30}(?:min(?:ima)?|non\\\\s+inferior[ei]\\\\s+a|>=|≥|maggiore\\\\s+di|superiore\\\\s+a|pari\\\\s*a)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*%",
+        "(?i)\\\\binclinazion[ei][^\\\\d]{0,30}(?:min(?:ima)?|non\\\\s+inferior[ei]\\\\s+a|>=|≥|maggiore\\\\s+di|superiore\\\\s+a|pari\\\\s*a)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*%"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.55
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.spessore_pannello_mm",
+      "regex": [
+        "(?i)pannell[oi][^\\\\n]{0,60}?(?:spess(?:ore)?|sp\\\\.?)\\\\s*(?:di|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)sp\\\\.?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b(?=[^\\\\n]{0,40}pannell[oi])"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.spessore_lamiera_mm",
+      "regex": [
+        "(?i)lamier[ae][^\\\\n]{0,40}?(?:spess(?:ore)?|sp\\\\.?)\\\\s*(?:di|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)spessore\\\\s*di\\\\s*mm\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\b(?=[^\\\\n]{0,40}lamier[ae])"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.64
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.altezza_greca_mm",
+      "regex": [
+        "(?i)altezza\\\\s+greca[^\\\\d]{0,20}(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)greca\\\\s*(?:della\\\\s*lamiera\\\\s*esterna|lamiera\\\\s*esterna)?[^\\\\d]{0,15}[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.63
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.classe_EI",
+      "regex": [
+        "(?i)\\\\b(?:rei|ei)\\\\s*(?P<val>\\\\d{2,3})\\\\b"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.66
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_elementi_puntuali.spessore_elemento_mm",
+      "regex": [
+        "(?i)(?:tegole?|embrici|coppi|lastre|elementi)[^\\\\n]{0,60}?(?:spess(?:ore)?|sp\\\\.?)\\\\s*(?:da|di|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)(?:\\\\s*(?:a|-|–)\\\\s*\\\\d+(?:[.,]\\\\d+)?)?\\\\b",
+        "(?i)sp\\\\.?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b(?=[^\\\\n]{0,40}(?:tegole?|coppi|embrici|lastre|elementi))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con elementi puntuali"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.6
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_elementi_puntuali.percentuale_elementi_sostituiti",
+      "regex": [
+        "(?i)sostituzion[ei][^\\\\d]{0,40}(?:fino\\\\s+al\\\\s+|al\\\\s+)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*%"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "quantita"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con elementi puntuali"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.58
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.altezza_dispositivo_m",
+      "regex": [
+        "(?i)\\\\b(?:h\\\\.?|altezza)\\\\s*(?:circa\\\\s*)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b",
+        "(?i)\\\\baltezza\\\\s*:?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.altezza_min_m",
+      "regex": [
+        "(?i)altezza[^\\\\d]{0,25}(?:compresa\\\\s*(?:tra|fra)|variabile\\\\s*da|da)\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.6
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.altezza_max_m",
+      "regex": [
+        "(?i)altezza[^\\\\d]{0,40}(?:tra|fra|da)[^\\\\d]{0,10}\\\\d+(?:[.,]\\\\d+)?\\\\s*(?:cm|m)[^\\\\d]{0,15}(?:a|e)\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.58
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.diametro_gabbia_mm",
+      "regex": [
+        "(?i)diametro[^\\\\d]{0,20}(?:gabbia|cerchi)[^\\\\d]{0,15}[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.6
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.passo_pioli_mm",
+      "regex": [
+        "(?i)(?:pioli|passo)\\\\s*(?:distanziati[^\\\\d]{0,10}|a\\\\s*)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.57
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.numero_utilizzatori",
+      "regex": [
+        "(?i)(?:numero\\\\s+di\\\\s+)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s+(?:utilizzatori|operatori)\\\\b",
+        "(?i)utilizzatori\\\\s*[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "sicurezza"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.55
     }
   ]
 }

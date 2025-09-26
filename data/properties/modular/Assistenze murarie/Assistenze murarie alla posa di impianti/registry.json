@@ -1,3 +1,26 @@
 {
-  "slots": {}
+  "slots": {
+    "sezione_min_cm2": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "cm²",
+      "expected_atoms": [
+        "atom_surface_m2_v2"
+      ]
+    },
+    "sezione_max_cm2": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "cm²",
+      "expected_atoms": [
+        "atom_surface_m2_v2"
+      ]
+    }
+  }
 }

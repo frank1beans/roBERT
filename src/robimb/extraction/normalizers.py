@@ -83,6 +83,18 @@ def _strip_trailing_punct(v: Any, m: str) -> Any:
     return v
 
 
+def _collapse_plus_sequences(v: Any, m: str) -> Any:
+    def collapse_one(token: Any) -> Any:
+        if isinstance(token, str):
+            collapsed = re.sub(r"\s*\+\s*", "+", token.strip())
+            return collapsed
+        return token
+
+    if isinstance(v, list):
+        return [collapse_one(x) for x in v]
+    return collapse_one(v)
+
+
 def _as_string(v: Any, m: str) -> Any:
     if isinstance(v, list):
         return [str(x) for x in v]
@@ -103,6 +115,8 @@ def _parse_number(token: str) -> Optional[float]:
     if token is None:
         return None
     cleaned = token.strip().replace("\xa0", "")
+    # treat stray semicolons as decimal separators (common OCR typo)
+    cleaned = cleaned.replace(";", ",")
     if not cleaned:
         return None
 
@@ -203,6 +217,8 @@ _UNIT_VARIANTS: Dict[str, Sequence[str]] = {
     "cm": ["cm", "centimetri", "centimetro"],
     "mm": ["mm", "millimetri", "millimetro"],
     "kg": ["kg", "chilogrammo", "chilogrammi"],
+    "t": ["t", "ton", "tonnellata", "tonnellate"],
+    "g": ["g", "grammo", "grammi"],
     "kW": ["kw", "kilowatt", "kilowatts"],
     "kVA": ["kva", "kilovolt ampere", "kilovolt-ampere"],
 }
@@ -316,12 +332,19 @@ def _unit_from_context(matched_text: str) -> Optional[str]:
         "metri cubi": "m3",
         "metri cubes": "m3",
         "metri cube": "m3",
+        "chilogrammi": "kg",
+        "chilogrammo": "kg",
+        "grammi": "g",
+        "grammo": "g",
+        "tonnellate": "t",
+        "tonnellata": "t",
+        "ton ": "t ",
     }
     for src, dst in replacements.items():
         normalized = normalized.replace(src, dst)
 
     unit_pattern = re.compile(
-        r"\b(mm3|cm3|m3|mm2|cm2|m2|mq|mc|mm|cm|m)\b",
+        r"\b(mm3|cm3|m3|mm2|cm2|m2|mq|mc|mm|cm|m|kg|g|t)\b",
         re.IGNORECASE,
     )
     found = unit_pattern.findall(normalized)
@@ -346,6 +369,9 @@ def _to_unit_factory(target_unit: str) -> Normalizer:
         "mm3": 1.0,
         "cm3": 1000.0,
         "m3": 1_000_000_000.0,
+        "g": 0.001,
+        "kg": 1.0,
+        "t": 1000.0,
     }
     if target_unit not in factors:
         raise ValueError(f"Unsupported unit normalizer target: {target_unit}")
@@ -828,6 +854,45 @@ def _dims_to_mm_string(v: Any, m: str) -> Any:
     return v
 
 
+def _to_areal_density_kg_m2(value: Any, matched_text: str) -> Any:
+    normalized = matched_text.lower()
+    replacements = {
+        "²": "2",
+        "metri quadrati": "m2",
+        "metri quadri": "m2",
+        "metro quadrato": "m2",
+        "al mq": "m2",
+        "mq": "m2",
+        "m q": "m2",
+    }
+    for src, dst in replacements.items():
+        normalized = normalized.replace(src, dst)
+    normalized = re.sub(r"\s+", " ", normalized)
+
+    def factor_from_context() -> float:
+        if re.search(r"\b(?:t|tonnellate?|ton)\b\s*/?\s*m2", normalized):
+            return 1000.0
+        if re.search(r"\b(?:g|gr|grammi|grammo)\b\s*/?\s*m2", normalized):
+            return 0.001
+        if re.search(r"\b(?:kg|chilogrammi|chilogrammo)\b\s*/?\s*m2", normalized):
+            return 1.0
+        # default to kilograms per square meter if unit is omitted
+        return 1.0
+
+    factor = factor_from_context()
+
+    def convert(token: Any) -> Any:
+        parsed = _parse_number(str(token))
+        if parsed is None:
+            return token
+        converted = parsed * factor
+        return _coerce_numeric_output(converted)
+
+    if isinstance(value, (list, tuple)):
+        return [convert(v) for v in value]
+    return convert(value)
+
+
 # ---------------------------------------------------------------------------
 # Normalizers registry
 # ---------------------------------------------------------------------------
@@ -842,8 +907,10 @@ BUILTIN_NORMALIZERS: Dict[str, Normalizer] = {
     "upper": _upper,
     "strip": _strip,
     "strip_trailing_punct": _strip_trailing_punct,
+    "collapse_plus_sequences": _collapse_plus_sequences,
     "as_string": _as_string,
     "to_number": _to_number,
+    "to_areal_density_kg_m2": _to_areal_density_kg_m2,
     "join_range": _join_range,
     "percent_to_ratio": _percent_to_ratio,
     "power_to_kw": _power_to_kw,

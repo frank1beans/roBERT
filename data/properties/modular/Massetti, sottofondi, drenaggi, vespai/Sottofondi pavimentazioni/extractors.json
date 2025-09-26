@@ -1,0 +1,164 @@
+[
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.spessore_mm",
+    "regex": [
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Sottofondi pavimentazioni"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.71
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.spessore_min_mm",
+    "regex": [
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:da|min(?:imo)?|variabile\\s+da)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:min(?:imo)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Sottofondi pavimentazioni"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.7
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.spessore_max_mm",
+    "regex": [
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:fino\\s?a|max(?:imo)?|massimo|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+      "(?i)\\bsp(?:essore|\\.)\\s*(?:da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\s*(?:-|a|to)\\s*)(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "to_number"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Sottofondi pavimentazioni"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.7
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.massa_volumica_kg_m3",
+    "regex": [
+      "(?i)\\bmassa\\s+volumica(?:\\s+nominale)?(?:\\s+in\\s+opera)?\\s*(?:pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+      "(?i)\\bdensit[àa]\\s*(?:in\\s+opera\\s*)?(?:circa\\s*|pari\\s*a|=|:|<|>){0,1}\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "kg/m³",
+    "applies_to": {
+      "cats": [
+        "Sottofondi pavimentazioni"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "kg/m³"
+    },
+    "confidence": 0.69
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.rete_diametro_mm",
+    "regex": [
+      "(?i)\\bdiametro\\s*(?:di|Ø|ø)?\\s*(?:ø)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b",
+      "(?i)\\bØ\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b",
+      "(?i)\\b(?:tondini|barre)\\s+di\\s+diametro\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*mm\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_number"
+    ],
+    "tags": [
+      "strutturale"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "cats": [
+        "Sottofondi pavimentazioni"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.68
+  },
+  {
+    "property_id": "massetti_sottofondi_drenaggi_vespai.sottofondi_pavimentazioni.rete_maglia_mm",
+    "regex": [
+      "(?i)\\bmaglia\\s*(?P<a>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*[x×]\\s*(?P<b>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm)\\b",
+      "(?i)\\bmaglia\\s*(?P<a>\\d{1,3})\\s*[x×]\\s*(?P<b>\\d{1,3})\\s*cm\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "normalize_dimensions_to_mm",
+      "strip"
+    ],
+    "tags": [
+      "strutturale"
+    ],
+    "unit": "mm×mm",
+    "applies_to": {
+      "cats": [
+        "Sottofondi pavimentazioni"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm×mm"
+    },
+    "confidence": 0.68
+  }
+]

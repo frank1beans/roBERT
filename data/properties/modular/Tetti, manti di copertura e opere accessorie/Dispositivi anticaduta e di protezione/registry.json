@@ -1,3 +1,51 @@
 {
-  "slots": {}
+  "slots": {
+    "altezza_dispositivo_m": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m"
+    },
+    "altezza_min_m": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m"
+    },
+    "altezza_max_m": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m"
+    },
+    "diametro_gabbia_mm": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "passo_pioli_mm": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "numero_utilizzatori": {
+      "type": "float",
+      "priority": 5,
+      "tags": [
+        "sicurezza"
+      ]
+    }
+  }
 }

@@ -48,6 +48,29 @@
         "atom_dimensione_LxHxP_v2"
       ]
     },
+    "spessore_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "densita_kg_m3": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³"
+    },
+    "classe_reazione_fuoco": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "fuoco"
+      ]
+    },
     "superficie_m2": {
       "type": "float",
       "priority": 5,
