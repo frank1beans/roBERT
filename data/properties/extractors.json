@@ -9120,6 +9120,162 @@
       "confidence": 0.73
     },
     {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bspess(?:ore)?\\s*(?:medio\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)(?:\\s*(?:[-–/]|\\ba\\b)\\s*\\d{1,3}(?:[.,]\\d{1,2})?)?\\s*(?:mm\\.?|cm|m)\\b",
+        "(?i)\\bsp\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm\\.?|cm|m)\\b",
+        "(?i)\\bspess\\.?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm\\.?|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "to_number"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.72
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.densita_kg_m3",
+      "regex": [
+        "(?i)\\b(?:densit[àa]|massa\\s+volumica)\\s*(?:apparente\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)(?:\\s*(?:[-–/]|\\ba\\b)\\s*\\d{2,4}(?:[.,]\\d{1,3})?)?\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b",
+        "(?i)\\b(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*/?\\s*m(?:c|³|3))\\b(?=[^\\n]{0,40}(?:densit|massa\\s+volumica))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.conducibilita_termica_W_mK",
+      "regex": [
+        "(?i)\\b(?:conducibilit[àa]\\s+termica|lambda\\s*d?|λ\\s*d?)\\s*(?:dichiarata\\s*)?(?:pari\\s*a|=|:|≤|<=|≥|>=|<|>)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m\\s*(?:k|°k))\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/mK",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/mK"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.trasmittanza_termica_W_m2K",
+      "regex": [
+        "(?i)\\b(?:trasmittanza\\s+termica(?:\\s*(?:Uw|Up|U|Ug))?|U[wpg]?|Uw|Ug|Up)\\s*(?:=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d(?:[.,]\\d{1,3})?)\\s*(?:w\\s*/?\\s*m(?:²|2|q)\\s*k)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "termica"
+      ],
+      "unit": "W/m²K",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "W/m²K"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_da_facciatista_e_da_cappottista.__global__.Rw_dB",
+      "regex": [
+        "(?i)\\bRw\\s*(?:=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*dB\\b",
+        "(?i)\\bisolamento\\s+acustico\\s+(?:del\\s+vetro\\s+)?Rw\\s*(?:=|:|≤|<=|≥|>=)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*dB\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere da facciatista e da cappottista"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.66
+    },
+    {
       "property_id": "opere_da_facciatista_e_da_cappottista.__global__.superficie_m2",
       "regex": [
         "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:m²|m2|mq\\.?|mq)\\b",
