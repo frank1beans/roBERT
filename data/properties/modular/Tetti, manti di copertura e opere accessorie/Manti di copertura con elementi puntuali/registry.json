@@ -1,20 +1,3 @@
 {
-  "slots": {
-    "spessore_elemento_mm": {
-      "type": "float",
-      "priority": 7,
-      "tags": [
-        "geometria"
-      ],
-      "unit": "mm"
-    },
-    "percentuale_elementi_sostituiti": {
-      "type": "float",
-      "priority": 6,
-      "tags": [
-        "quantita"
-      ],
-      "unit": "%"
-    }
-  }
+  "slots": {}
 }
