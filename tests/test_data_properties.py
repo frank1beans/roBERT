@@ -4,7 +4,11 @@ from pathlib import Path
 import pytest
 
 from robimb.extraction.resources import load_default
-from robimb.features.extractors import extract_properties
+from robimb.features.extractors import (
+    PropertyExtractionResult,
+    extract_properties,
+    extract_properties_with_confidences,
+)
 from robimb.utils.data_utils import prepare_classification_dataset
 
 
@@ -148,6 +152,31 @@ def test_pack_extractors_normalize_ei_and_spessore_cm():
 
     spessore_values = [value for key, value in props.items() if key.endswith("spessore_mm")]
     assert any(pytest.approx(val, rel=1e-6) == 120.0 for val in spessore_values)
+
+
+def test_extract_properties_with_confidences_returns_scores():
+    extractors_pack = {
+        "patterns": [
+            {
+                "property_id": "strutture.__global__.classe_ei",
+                "regex": [r"EI\s*(\d+)"],
+                "normalizers": ["EI_from_any"],
+                "confidence": 0.85,
+            }
+        ]
+    }
+
+    result = extract_properties_with_confidences(
+        "Parete EI 60 REI 120",
+        extractors_pack,
+        allowed_properties=["strutture.__global__.classe_ei"],
+    )
+
+    assert isinstance(result, PropertyExtractionResult)
+    extracted_value = result.values["strutture.__global__.classe_ei"]
+    assert isinstance(extracted_value, str)
+    assert extracted_value.replace(" ", "") == "EI60"
+    assert pytest.approx(result.confidences["strutture.__global__.classe_ei"], rel=1e-9) == 0.85
 
 
 

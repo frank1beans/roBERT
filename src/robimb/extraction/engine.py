@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Set
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
 
 from .dsl import ExtractorsPack
 from .normalizers import BUILTIN_NORMALIZERS, Normalizer, build_normalizer
@@ -156,14 +156,14 @@ def _coerce_capture(match: re.Match[str]) -> Any:
     return cleaned
 
 
-def extract_properties(
+def _extract_properties_internal(
     text: str,
     extractors_pack: ExtractorsPack,
     allowed_properties: Optional[Iterable[str]] = None,
     *,
     target_tags: Optional[Iterable[str]] = None,
-) -> Dict[str, Any]:
-    """Apply patterns declared in ``extractors_pack`` to ``text``."""
+) -> Tuple[Dict[str, Any], Dict[str, float]]:
+    """Return both extracted properties and their confidences."""
 
     out: Dict[str, Any] = {}
     confidences: Dict[str, float] = {}
@@ -248,7 +248,51 @@ def extract_properties(
     for prop in collect_properties:
         if prop in out:
             out[prop] = BUILTIN_NORMALIZERS["unique_list"](out[prop], "")
+    return out, confidences
+
+
+def extract_properties(
+    text: str,
+    extractors_pack: ExtractorsPack,
+    allowed_properties: Optional[Iterable[str]] = None,
+    *,
+    target_tags: Optional[Iterable[str]] = None,
+) -> Dict[str, Any]:
+    """Apply patterns declared in ``extractors_pack`` to ``text``."""
+
+    out, _ = _extract_properties_internal(
+        text,
+        extractors_pack,
+        allowed_properties=allowed_properties,
+        target_tags=target_tags,
+    )
     return out
+
+
+@dataclass(frozen=True)
+class PropertyExtractionResult:
+    """Container exposing both values and confidences for extracted properties."""
+
+    values: Dict[str, Any]
+    confidences: Dict[str, float]
+
+
+def extract_properties_with_confidences(
+    text: str,
+    extractors_pack: ExtractorsPack,
+    allowed_properties: Optional[Iterable[str]] = None,
+    *,
+    target_tags: Optional[Iterable[str]] = None,
+) -> PropertyExtractionResult:
+    """Return extracted properties alongside their confidence scores."""
+
+    values, confidences = _extract_properties_internal(
+        text,
+        extractors_pack,
+        allowed_properties=allowed_properties,
+        target_tags=target_tags,
+    )
+    return PropertyExtractionResult(values=values, confidences=confidences)
 
 
 def dry_run(
@@ -292,5 +336,13 @@ def validate_extractors_pack(extractors_pack: ExtractorsPack) -> None:
     _compile_patterns(extractors_pack)
 
 
-__all__ = ["Pattern", "PatternValidationError", "extract_properties", "dry_run", "validate_extractors_pack"]
+__all__ = [
+    "Pattern",
+    "PatternValidationError",
+    "PropertyExtractionResult",
+    "extract_properties",
+    "extract_properties_with_confidences",
+    "dry_run",
+    "validate_extractors_pack",
+]
 
