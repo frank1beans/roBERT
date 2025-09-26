@@ -325,7 +325,7 @@
         },
         "classe_reazione_fuoco": {
           "type": "text",
-          "priority": 6,
+          "priority": 7,
           "tags": [
             "fuoco"
           ]
@@ -360,14 +360,6 @@
             "atom_volume_m3_v2"
           ]
         },
-        "spessore_mm": {
-          "type": "float",
-          "priority": 8,
-          "tags": [
-            "geometria"
-          ],
-          "unit": "mm"
-        },
         "peso_areico_kg_m2": {
           "type": "float",
           "priority": 7,
@@ -375,13 +367,6 @@
             "materiale"
           ],
           "unit": "kg/m²"
-        },
-        "classe_reazione_fuoco": {
-          "type": "text",
-          "priority": 7,
-          "tags": [
-            "fuoco"
-          ]
         },
         "coefficiente_assorbimento_acustico_aw": {
           "type": "float",
@@ -1143,14 +1128,6 @@
             "atom_volume_m3_v2"
           ]
         },
-        "spessore_mm": {
-          "type": "float",
-          "priority": 8,
-          "tags": [
-            "geometria"
-          ],
-          "unit": "mm"
-        },
         "spessori_strati_mm": {
           "type": "text",
           "priority": 7,
@@ -1236,13 +1213,6 @@
             "meccanica"
           ],
           "unit": "kg"
-        },
-        "classe_reazione_fuoco": {
-          "type": "text",
-          "priority": 6,
-          "tags": [
-            "fuoco"
-          ]
         },
         "comportamento_fuoco_esterno": {
           "type": "text",
@@ -3331,6 +3301,44 @@
           "expected_atoms": [
             "atom_volume_m3_v2"
           ]
+        },
+        "spessore_mm": {
+          "type": "float",
+          "priority": 8,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "mm"
+        },
+        "peso_areico_kg_m2": {
+          "type": "float",
+          "priority": 7,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "kg/m²"
+        },
+        "classe_reazione_fuoco": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "fuoco"
+          ]
+        },
+        "comportamento_fuoco_esterno": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "fuoco"
+          ]
+        },
+        "pendenza_min_percento": {
+          "type": "float",
+          "priority": 5,
+          "tags": [
+            "geometria"
+          ],
+          "unit": "%"
         }
       }
     },
@@ -3342,13 +3350,113 @@
         "slots": {}
       },
       "Dispositivi anticaduta e di protezione": {
-        "slots": {}
+        "slots": {
+          "altezza_dispositivo_m": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "m"
+          },
+          "altezza_min_m": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "m"
+          },
+          "altezza_max_m": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "m"
+          },
+          "diametro_gabbia_mm": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "passo_pioli_mm": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "numero_utilizzatori": {
+            "type": "float",
+            "priority": 5,
+            "tags": [
+              "sicurezza"
+            ]
+          }
+        }
       },
       "Manti di copertura con elementi puntuali": {
-        "slots": {}
+        "slots": {
+          "spessore_elemento_mm": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "percentuale_elementi_sostituiti": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "quantita"
+            ],
+            "unit": "%"
+          }
+        }
       },
       "Manti di copertura con pannelli o lastre": {
-        "slots": {}
+        "slots": {
+          "spessore_pannello_mm": {
+            "type": "float",
+            "priority": 8,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "spessore_lamiera_mm": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "altezza_greca_mm": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "geometria"
+            ],
+            "unit": "mm"
+          },
+          "classe_EI": {
+            "type": "text",
+            "priority": 6,
+            "tags": [
+              "fuoco"
+            ],
+            "expected_atoms": [
+              "atom_ei_rei_v2"
+            ]
+          }
+        }
       }
     }
   },

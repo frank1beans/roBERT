@@ -1,0 +1,61 @@
+[
+  {
+    "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_elementi_puntuali.spessore_elemento_mm",
+    "regex": [
+      "(?i)(?:tegole?|embrici|coppi|lastre|elementi)[^\\n]{0,60}?(?:spess(?:ore)?|sp\\.?)\\s*(?:da|di|=|:)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?P<unit>mm|cm)(?:\\s*(?:a|-|–)\\s*\\d+(?:[.,]\\d+)?)?\\b",
+      "(?i)sp\\.?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?P<unit>mm|cm)\\b(?=[^\\n]{0,40}(?:tegole?|coppi|embrici|lastre|elementi))"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_unit:mm",
+      "strip"
+    ],
+    "tags": [
+      "geometria"
+    ],
+    "unit": "mm",
+    "applies_to": {
+      "supercats": [
+        "Tetti, manti di copertura e opere accessorie"
+      ],
+      "cats": [
+        "Manti di copertura con elementi puntuali"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "mm"
+    },
+    "confidence": 0.6
+  },
+  {
+    "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_elementi_puntuali.percentuale_elementi_sostituiti",
+    "regex": [
+      "(?i)sostituzion[ei][^\\d]{0,40}(?:fino\\s+al\\s+|al\\s+)?(?P<val>\\d+(?:[.,]\\d+)?)\\s*%"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_float",
+      "strip"
+    ],
+    "tags": [
+      "quantita"
+    ],
+    "unit": "%",
+    "applies_to": {
+      "supercats": [
+        "Tetti, manti di copertura e opere accessorie"
+      ],
+      "cats": [
+        "Manti di copertura con elementi puntuali"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "%"
+    },
+    "confidence": 0.58
+  }
+]

@@ -48,6 +48,44 @@
         "atom_dimensione_LxHxP_v2"
       ]
     },
+    "spessore_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "peso_areico_kg_m2": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²"
+    },
+    "classe_reazione_fuoco": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "fuoco"
+      ]
+    },
+    "comportamento_fuoco_esterno": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "fuoco"
+      ]
+    },
+    "pendenza_min_percento": {
+      "type": "float",
+      "priority": 5,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "%"
+    },
     "superficie_m2": {
       "type": "float",
       "priority": 5,

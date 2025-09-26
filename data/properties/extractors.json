@@ -16819,6 +16819,487 @@
         "unit": "SRI"
       },
       "confidence": 0.64
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\\\b(?:spess(?:ore)?|sp\\\\.)\\\\b[^\\\\n]{0,20}[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm|m)\\\\b",
+        "(?i)\\\\bsp\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)\\\\bthk\\\\.?\\\\s*[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\\\b(?:massa|peso)\\\\s*(?:areic[ao]\\\\s*)?(?:nominale\\\\s*)?(?:pari\\\\s*a|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d{1,3})?)\\\\s*(?:kg\\\\s*/?\\\\s*m(?:q|2|²))\\\\b",
+        "(?i)\\\\b(?:peso|massa)\\\\s*(?:superficial[ei])?[^\\\\d]{0,20}(?P<val>\\\\d+(?:[.,]\\\\d{1,3})?)\\\\s*(?:kg|g|t)\\\\s*/?\\\\s*m(?:q|2|²)\\\\b",
+        "(?i)\\\\b(?P<val>\\\\d+(?:[.,]\\\\d{1,3})?)\\\\s*(?:kg|g|t)\\\\s*/?\\\\s*m(?:q|2|²)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "normalize_mass_surface_density",
+        "strip"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\\\bclasse\\\\s+di\\\\s+reazione\\\\s+al\\\\s+fuoco\\\\s*(?:=|:)?\\\\s*(?P<val>[A-F][-\\\\s]*s\\\\d(?:[,;\\\\s]*d\\\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\\\b",
+        "(?i)\\\\bEuroclasse\\\\s*(?P<val>[A-F][-\\\\s]*s\\\\d(?:[,;\\\\s]*d\\\\d)?|A1|A2)\\\\b",
+        "(?i)\\\\bClass(?:e)?\\\\s*(?P<val>[0-5])\\\\b(?=[^\\\\n]{0,40}reazione\\\\s+al\\\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.comportamento_fuoco_esterno",
+      "regex": [
+        "(?i)broof\\\\s*\\\\(t\\\\d\\\\)"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.65
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.__global__.pendenza_min_percento",
+      "regex": [
+        "(?i)\\\\bpendenz[ae][^\\\\d]{0,30}(?:min(?:ima)?|non\\\\s+inferior[ei]\\\\s+a|>=|≥|maggiore\\\\s+di|superiore\\\\s+a|pari\\\\s*a)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*%",
+        "(?i)\\\\binclinazion[ei][^\\\\d]{0,30}(?:min(?:ima)?|non\\\\s+inferior[ei]\\\\s+a|>=|≥|maggiore\\\\s+di|superiore\\\\s+a|pari\\\\s*a)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*%"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.55
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.spessore_pannello_mm",
+      "regex": [
+        "(?i)pannell[oi][^\\\\n]{0,60}?(?:spess(?:ore)?|sp\\\\.?)\\\\s*(?:di|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)sp\\\\.?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b(?=[^\\\\n]{0,40}pannell[oi])"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.spessore_lamiera_mm",
+      "regex": [
+        "(?i)lamier[ae][^\\\\n]{0,40}?(?:spess(?:ore)?|sp\\\\.?)\\\\s*(?:di|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)spessore\\\\s*di\\\\s*mm\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\b(?=[^\\\\n]{0,40}lamier[ae])"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.64
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.altezza_greca_mm",
+      "regex": [
+        "(?i)altezza\\\\s+greca[^\\\\d]{0,20}(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b",
+        "(?i)greca\\\\s*(?:della\\\\s*lamiera\\\\s*esterna|lamiera\\\\s*esterna)?[^\\\\d]{0,15}[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.63
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_pannelli_o_lastre.classe_EI",
+      "regex": [
+        "(?i)\\\\b(?:rei|ei)\\\\s*(?P<val>\\\\d{2,3})\\\\b"
+      ],
+      "normalizers": [
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con pannelli o lastre"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.66
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_elementi_puntuali.spessore_elemento_mm",
+      "regex": [
+        "(?i)(?:tegole?|embrici|coppi|lastre|elementi)[^\\\\n]{0,60}?(?:spess(?:ore)?|sp\\\\.?)\\\\s*(?:da|di|=|:)?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)(?:\\\\s*(?:a|-|–)\\\\s*\\\\d+(?:[.,]\\\\d+)?)?\\\\b",
+        "(?i)sp\\\\.?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b(?=[^\\\\n]{0,40}(?:tegole?|coppi|embrici|lastre|elementi))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con elementi puntuali"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.6
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.manti_di_copertura_con_elementi_puntuali.percentuale_elementi_sostituiti",
+      "regex": [
+        "(?i)sostituzion[ei][^\\\\d]{0,40}(?:fino\\\\s+al\\\\s+|al\\\\s+)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*%"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "quantita"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Manti di copertura con elementi puntuali"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.58
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.altezza_dispositivo_m",
+      "regex": [
+        "(?i)\\\\b(?:h\\\\.?|altezza)\\\\s*(?:circa\\\\s*)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b",
+        "(?i)\\\\baltezza\\\\s*:?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.altezza_min_m",
+      "regex": [
+        "(?i)altezza[^\\\\d]{0,25}(?:compresa\\\\s*(?:tra|fra)|variabile\\\\s*da|da)\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.6
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.altezza_max_m",
+      "regex": [
+        "(?i)altezza[^\\\\d]{0,40}(?:tra|fra|da)[^\\\\d]{0,10}\\\\d+(?:[.,]\\\\d+)?\\\\s*(?:cm|m)[^\\\\d]{0,15}(?:a|e)\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>cm|m)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:m",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "m",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "m"
+      },
+      "confidence": 0.58
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.diametro_gabbia_mm",
+      "regex": [
+        "(?i)diametro[^\\\\d]{0,20}(?:gabbia|cerchi)[^\\\\d]{0,15}[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.6
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.passo_pioli_mm",
+      "regex": [
+        "(?i)(?:pioli|passo)\\\\s*(?:distanziati[^\\\\d]{0,10}|a\\\\s*)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s*(?P<unit>mm|cm)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.57
+    },
+    {
+      "property_id": "tetti_manti_di_copertura_e_opere_accessorie.dispositivi_anticaduta_e_di_protezione.numero_utilizzatori",
+      "regex": [
+        "(?i)(?:numero\\\\s+di\\\\s+)?(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\s+(?:utilizzatori|operatori)\\\\b",
+        "(?i)utilizzatori\\\\s*[:=]?\\\\s*(?P<val>\\\\d+(?:[.,]\\\\d+)?)\\\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "sicurezza"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Tetti, manti di copertura e opere accessorie"
+        ],
+        "cats": [
+          "Dispositivi anticaduta e di protezione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.55
     }
   ]
 }
