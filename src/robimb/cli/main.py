@@ -9,6 +9,7 @@ from typing import List, Optional, Sequence
 import typer
 from ..props.unpack import convert_monolith_to_folders as _unpack
 from ..props.pack import pack_folders_to_monolith as _pack
+from ..utils.data_utils import sample_one_record_per_category
 
 from .._version import __version__
 from .convert import DEFAULT_EXTRACTORS_PACK, DEFAULT_PROPERTIES_REGISTRY
@@ -45,6 +46,41 @@ def pack_command(
 ) -> None:
     _pack(properties_root, out_registry, out_extractors)
     typer.echo(f"Pack completato.\n  registry:   {out_registry}\n  extractors: {out_extractors}")
+
+
+@app.command("sample-categories")
+def sample_categories_command(
+    dataset: Path = typer.Option(
+        ..., "--dataset", exists=True, dir_okay=False, help="JSONL di partenza con le descrizioni"
+    ),
+    output: Path = typer.Option(
+        ..., "--output", dir_okay=False, help="File JSONL di destinazione con una voce per categoria"
+    ),
+    category_field: str = typer.Option(
+        "cat",
+        "--category-field",
+        help="Nome del campo che identifica la categoria (default: 'cat')",
+    ),
+) -> None:
+    """Estrai la prima voce disponibile per ciascuna categoria nel dataset."""
+
+    records = sample_one_record_per_category(dataset, category_field=category_field)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("w", encoding="utf-8") as handle:
+        for row in records:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    typer.echo(
+        json.dumps(
+            {
+                "output": str(output),
+                "num_records": len(records),
+                "category_field": category_field,
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
 
 
 @app.command("convert")
