@@ -445,6 +445,21 @@
             "atom_dimensione_LxHxP_v2"
           ]
         },
+        "peso_areico_kg_m2": {
+          "type": "float",
+          "priority": 6,
+          "tags": [
+            "materiale"
+          ],
+          "unit": "kg/m²"
+        },
+        "classe_reazione_fuoco": {
+          "type": "text",
+          "priority": 6,
+          "tags": [
+            "fuoco"
+          ]
+        },
         "superficie_m2": {
           "type": "float",
           "priority": 5,
@@ -1692,6 +1707,13 @@
               "B",
               "C"
             ]
+          },
+          "coefficiente_assorbimento_acustico_aw": {
+            "type": "float",
+            "priority": 7,
+            "tags": [
+              "acustica"
+            ]
           }
         }
       },
@@ -1801,6 +1823,14 @@
               "PEI IV",
               "PEI V"
             ]
+          },
+          "assorbimento_acqua_ev_percento": {
+            "type": "float",
+            "priority": 6,
+            "tags": [
+              "materiale"
+            ],
+            "unit": "%"
           }
         }
       },

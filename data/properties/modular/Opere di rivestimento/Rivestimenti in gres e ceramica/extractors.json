@@ -131,5 +131,36 @@
     "examples_negative": [],
     "post_validations": {},
     "confidence": 0.8
+  },
+  {
+    "property_id": "opere_di_rivestimento.rivestimenti_in_gres_e_ceramica.assorbimento_acqua_ev_percento",
+    "regex": [
+      "(?i)\\bEv\\s*[≤<≦≤=]?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*%?",
+      "(?i)\\bE\\s*v\\s*(?:=|:)?\\s*(?P<val>\\d+(?:[.,]\\d+)?)\\s*%?",
+      "(?i)\\bassorbimento\\s+d['i]?\\s*acqua[^\\d]{0,20}(?P<val>\\d+(?:[.,]\\d+)?)\\s*%"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_float",
+      "strip"
+    ],
+    "tags": [
+      "materiale"
+    ],
+    "unit": "%",
+    "applies_to": {
+      "supercats": [
+        "Opere di rivestimento"
+      ],
+      "cats": [
+        "Rivestimenti in gres e ceramica"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {
+      "unit": "%"
+    },
+    "confidence": 0.74
   }
 ]

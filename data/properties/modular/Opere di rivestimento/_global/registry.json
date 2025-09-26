@@ -48,6 +48,21 @@
         "atom_dimensione_LxHxP_v2"
       ]
     },
+    "peso_areico_kg_m2": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²"
+    },
+    "classe_reazione_fuoco": {
+      "type": "text",
+      "priority": 6,
+      "tags": [
+        "fuoco"
+      ]
+    },
     "superficie_m2": {
       "type": "float",
       "priority": 5,

@@ -58,6 +58,14 @@
         "PEI IV",
         "PEI V"
       ]
+    },
+    "assorbimento_acqua_ev_percento": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "%"
     }
   }
 }

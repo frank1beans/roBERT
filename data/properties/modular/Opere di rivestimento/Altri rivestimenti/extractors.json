@@ -100,5 +100,35 @@
     "examples_negative": [],
     "post_validations": {},
     "confidence": 0.8
+  },
+  {
+    "property_id": "opere_di_rivestimento.altri_rivestimenti.coefficiente_assorbimento_acustico_aw",
+    "regex": [
+      "(?i)\\bα\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+      "(?i)\\baw\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+      "(?i)\\balpha\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+      "(?i)\\bcoefficiente\\s+di\\s+assorbimento\\s+acustico[^\\d]{0,20}(?:α\\s*w|aw|αw)\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b"
+    ],
+    "normalizers": [
+      "comma_to_dot",
+      "to_float",
+      "strip"
+    ],
+    "tags": [
+      "acustica"
+    ],
+    "unit": null,
+    "applies_to": {
+      "supercats": [
+        "Opere di rivestimento"
+      ],
+      "cats": [
+        "Altri rivestimenti"
+      ]
+    },
+    "examples": [],
+    "examples_negative": [],
+    "post_validations": {},
+    "confidence": 0.72
   }
 ]
