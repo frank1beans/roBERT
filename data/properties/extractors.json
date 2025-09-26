@@ -6460,6 +6460,86 @@
       "confidence": 0.73
     },
     {
+      "property_id": "opere_di_pavimentazione.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:totale\\s*)?(?:nominale\\s*)?(?:medio\\s*)?(?:pari\\s*a|=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bsp(?:essore|\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\s*(?:-|a|–)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bthick(?:ness)?\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.73
+    },
+    {
+      "property_id": "opere_di_pavimentazione.__global__.densita_kg_m3",
+      "regex": [
+        "(?i)\\b(?:densit[àa]|massa\\s+volumica)\\s*(?:nominale|apparente|in\\s+opera)?\\s*(?:pari\\s*a|=|:|≈|~|≥|<=|>=|≤)?\\s*(?P<val>\\d{2,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*(?:/|per)?\\s*m(?:c|³|3)|kg/mc|kg/m3|kgm3)\\b",
+        "(?i)\\b(?:≥|>|<|≤|>=|<=)?\\s*(?P<val>\\d{3,4}(?:[.,]\\d{1,3})?)\\s*(?:kg\\s*(?:/|per)?\\s*m(?:c|³|3)|kg/mc|kg/m3|kgm3)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m³",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m³"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "opere_di_pavimentazione.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
       "property_id": "opere_di_pavimentazione.__global__.superficie_m2",
       "regex": [
         "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:m²|m2|mq\\.?|mq)\\b",
@@ -7368,6 +7448,239 @@
       "examples_negative": [],
       "post_validations": {},
       "confidence": 0.8
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.altezza_min_mm",
+      "regex": [
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?:da\\s*)?(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)?\\s*(?:-|a|–)\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)\\b",
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?:min(?:ima)?|min\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.altezza_max_mm",
+      "regex": [
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*da\\s*\\d{1,3}(?:[.,]\\d{1,2})?\\s*(?:mm|cm|m)?\\s*(?:-|a|–)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?:max(?:ima)?|massima|max\\.)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\baltezza(?:\\s+(?:totale|complessiva|utile|variabile|regolabile))?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b(?!\\s*(?:-|a|–))"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.71
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.classe_portata",
+      "regex": [
+        "(?i)\\bclasse\\s+(?:di\\s+)?(?:portata|resistenza)\\s*(?:[:=]?\\s*)?(?P<val>(?:[A-F]\\d?|[IVX]{1,4}|\\d{1,2}))\\b",
+        "(?i)\\bUNI\\s*EN\\s*12825\\s*,?\\s*classe\\s*(?P<val>(?:[A-F]\\d?|[IVX]{1,4}|\\d{1,2}))\\b"
+      ],
+      "normalizers": [
+        "roman_to_numeric",
+        "upper",
+        "strip"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.carico_concentrato_kN",
+      "regex": [
+        "(?i)\\bcarico(?:\\s+(?:concentrato|ammissibile|max(?:simo)?|massimo))?[^0-9]{0,20}(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:kN|kn)\\b",
+        "(?i)\\bcarico(?:\\s+(?:concentrato|ammissibile|max(?:simo)?|massimo))?[^0-9]{0,30}(?:kN|kn)\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\b",
+        "(?i)\\b(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:kN|kn)\\s*(?:di\\s+)?carico\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "kN",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kN"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.delta_rw_db",
+      "regex": [
+        "(?i)\\bΔ\\s*Rw\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b",
+        "(?i)\\bDelta\\s*Rw\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.delta_ln_db",
+      "regex": [
+        "(?i)\\bΔ\\s*L[wn]\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b",
+        "(?i)\\bDelta\\s*L[wn]\\s*[:=]?\\s*(?P<val>\\d{1,2}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.67
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.lnfw_db",
+      "regex": [
+        "(?i)\\bLn\\s*,?f\\s*,?w\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.65
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.dnfw_db",
+      "regex": [
+        "(?i)\\bDn\\s*,?f\\s*,?w\\s*[:=]?\\s*(?P<val>\\d{1,3}(?:[.,]\\d)?)\\s*(?:dB)?\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB",
+      "applies_to": {
+        "supercats": [
+          "Opere di pavimentazione"
+        ],
+        "cats": [
+          "Pavimenti sopraelevati e flottanti"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "dB"
+      },
+      "confidence": 0.65
     },
     {
       "property_id": "opere_di_pavimentazione.zoccolini_e_accessori_per_pavimentazioni.formato",

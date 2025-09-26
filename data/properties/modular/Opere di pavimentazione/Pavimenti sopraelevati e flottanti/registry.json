@@ -41,6 +41,69 @@
         "B",
         "C"
       ]
+    },
+    "altezza_min_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "altezza_max_mm": {
+      "type": "float",
+      "priority": 8,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "classe_portata": {
+      "type": "text",
+      "priority": 7,
+      "tags": [
+        "meccanica"
+      ]
+    },
+    "carico_concentrato_kN": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "meccanica"
+      ],
+      "unit": "kN"
+    },
+    "delta_rw_db": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB"
+    },
+    "delta_ln_db": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB"
+    },
+    "lnfw_db": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB"
+    },
+    "dnfw_db": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "acustica"
+      ],
+      "unit": "dB"
     }
   }
 }
