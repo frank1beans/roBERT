@@ -854,6 +854,45 @@ def _dims_to_mm_string(v: Any, m: str) -> Any:
     return v
 
 
+def _to_areal_density_kg_m2(value: Any, matched_text: str) -> Any:
+    normalized = matched_text.lower()
+    replacements = {
+        "²": "2",
+        "metri quadrati": "m2",
+        "metri quadri": "m2",
+        "metro quadrato": "m2",
+        "al mq": "m2",
+        "mq": "m2",
+        "m q": "m2",
+    }
+    for src, dst in replacements.items():
+        normalized = normalized.replace(src, dst)
+    normalized = re.sub(r"\s+", " ", normalized)
+
+    def factor_from_context() -> float:
+        if re.search(r"\b(?:t|tonnellate?|ton)\b\s*/?\s*m2", normalized):
+            return 1000.0
+        if re.search(r"\b(?:g|gr|grammi|grammo)\b\s*/?\s*m2", normalized):
+            return 0.001
+        if re.search(r"\b(?:kg|chilogrammi|chilogrammo)\b\s*/?\s*m2", normalized):
+            return 1.0
+        # default to kilograms per square meter if unit is omitted
+        return 1.0
+
+    factor = factor_from_context()
+
+    def convert(token: Any) -> Any:
+        parsed = _parse_number(str(token))
+        if parsed is None:
+            return token
+        converted = parsed * factor
+        return _coerce_numeric_output(converted)
+
+    if isinstance(value, (list, tuple)):
+        return [convert(v) for v in value]
+    return convert(value)
+
+
 # ---------------------------------------------------------------------------
 # Normalizers registry
 # ---------------------------------------------------------------------------
@@ -871,6 +910,7 @@ BUILTIN_NORMALIZERS: Dict[str, Normalizer] = {
     "collapse_plus_sequences": _collapse_plus_sequences,
     "as_string": _as_string,
     "to_number": _to_number,
+    "to_areal_density_kg_m2": _to_areal_density_kg_m2,
     "join_range": _join_range,
     "percent_to_ratio": _percent_to_ratio,
     "power_to_kw": _power_to_kw,

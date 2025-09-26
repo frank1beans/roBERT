@@ -9487,6 +9487,273 @@
       "confidence": 0.73
     },
     {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore|\\.)\\s*(?:totale\\s*)?(?:nominale\\s*)?(?:medio\\s*)?(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b",
+        "(?i)\\bthick(?:ness)?\\s*(?:=|:)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*(?:mm|cm|m)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_unit:mm",
+        "strip"
+      ],
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "mm"
+      },
+      "confidence": 0.7
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.peso_areico_kg_m2",
+      "regex": [
+        "(?i)\\b(?:peso|massa)\\s*(?:areic[ao]|tessuto)?[^\\d]{0,20}(?P<val>\\d+(?:[.,]\\d{1,3})?)\\s*(?:kg|g|t)\\s*/?\\s*m(?:q|2|²)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "to_areal_density_kg_m2"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "kg/m²"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.trasmissione_sol_percento",
+      "regex": [
+        "(?i)\\btrasmissione\\s+solare(?:\\s*\\(TS\\))?\\s*(?:esterna\\s*)?(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bTS\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.riflessione_sol_esterna_percento",
+      "regex": [
+        "(?i)\\briflessione\\s+solare\\s*(?:esterna)?(?:\\s*\\(RS\\))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bRS\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.trasmissione_luminosa_percento",
+      "regex": [
+        "(?i)\\btrasmissione\\s+luminosa(?:\\s*\\(TL\\))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bTL\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.riflessione_luminosa_percento",
+      "regex": [
+        "(?i)\\briflessione\\s+luminosa(?:\\s*\\(RL\\))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bRL\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.fattore_apertura_percento",
+      "regex": [
+        "(?i)\\bfattore\\s+d['’]?apertura(?:\\s*(?:medio|average))?\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*%\\b",
+        "(?i)\\bOF\\s*(?:=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,2}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.68
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.trasmissione_uv_percento",
+      "regex": [
+        "(?i)\\btrasmissione\\s+UV\\s*(?:pari\\s*a|=|:|≈|~|≤|>=|<=|≥)?\\s*(?P<val>\\d{1,3}(?:[.,]\\d{1,2})?)\\s*%\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_number",
+        "strip"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%",
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {
+        "unit": "%"
+      },
+      "confidence": 0.66
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.coefficiente_assorbimento_acustico_aw",
+      "regex": [
+        "(?i)\\bα\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\baw\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\balpha\\s*w\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b",
+        "(?i)\\bcoefficiente\\s+di\\s+assorbimento\\s+acustico[^\\d]{0,25}(?:α\\s*w|aw|αw)\\s*(?:=|:)?\\s*(?P<val>0(?:[.,]\\d{1,2})?|1(?:[.,]0{1,2})?)\\b"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "strip"
+      ],
+      "tags": [
+        "acustica"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.7
+    },
+    {
+      "property_id": "sistemi_oscuranti_per_facciate.__global__.classe_reazione_fuoco",
+      "regex": [
+        "(?i)\\bclasse\\s+di\\s+reazione\\s+al\\s+fuoco\\s*(?:=|:)?\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2|B|C|D|E|F|0|1|2|3|4|5)\\b",
+        "(?i)\\bEuroclasse\\s*(?P<val>[A-F][-\\s]*s\\d(?:[,;\\s]*d\\d)?|A1|A2)\\b",
+        "(?i)\\bClass(?:e)?\\s*(?P<val>[0-5])\\b(?=[^\\n]{0,40}reazione\\s+al\\s+fuoco)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "class_norm:EN13501-1"
+      ],
+      "tags": [
+        "fuoco"
+      ],
+      "unit": null,
+      "applies_to": {
+        "supercats": [
+          "Sistemi oscuranti per facciate"
+        ]
+      },
+      "examples": [],
+      "examples_negative": [],
+      "post_validations": {},
+      "confidence": 0.68
+    },
+    {
       "property_id": "sistemi_oscuranti_per_facciate.__global__.superficie_m2",
       "regex": [
         "(?i)\\b(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:m²|m2|mq\\.?|mq)\\b",

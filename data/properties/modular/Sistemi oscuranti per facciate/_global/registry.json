@@ -48,6 +48,84 @@
         "atom_dimensione_LxHxP_v2"
       ]
     },
+    "spessore_mm": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "geometria"
+      ],
+      "unit": "mm"
+    },
+    "peso_areico_kg_m2": {
+      "type": "float",
+      "priority": 7,
+      "tags": [
+        "materiale"
+      ],
+      "unit": "kg/m²"
+    },
+    "trasmissione_sol_percento": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%"
+    },
+    "riflessione_sol_esterna_percento": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%"
+    },
+    "trasmissione_luminosa_percento": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%"
+    },
+    "riflessione_luminosa_percento": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%"
+    },
+    "fattore_apertura_percento": {
+      "type": "float",
+      "priority": 6,
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%"
+    },
+    "trasmissione_uv_percento": {
+      "type": "float",
+      "priority": 5,
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "%"
+    },
+    "coefficiente_assorbimento_acustico_aw": {
+      "type": "float",
+      "priority": 5,
+      "tags": [
+        "acustica"
+      ]
+    },
+    "classe_reazione_fuoco": {
+      "type": "text",
+      "priority": 5,
+      "tags": [
+        "fuoco"
+      ]
+    },
     "superficie_m2": {
       "type": "float",
       "priority": 5,
