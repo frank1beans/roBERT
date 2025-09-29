@@ -9,7 +9,8 @@
     {
       "property_id": "opere_da_cartongessista.__global__.marchio",
       "regex": [
-        "(?i)\\b(?:marca|marchio)\\b[:=\\s]+(?P<val>[A-Za-z0-9\\-\\s]{2,60})"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -22,7 +23,176 @@
     {
       "property_id": "opere_da_cartongessista.__global__.produttore",
       "regex": [
-        "(?i)\\b(?:produttore|brand|fornitore)\\b[:=\\s]+(?P<val>[A-Za-z0-9\\-\\s]{2,80})"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "controsoffitti.__global__.marchio",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "controsoffitti.__global__.produttore",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_pavimentazione.__global__.marchio",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_pavimentazione.__global__.produttore",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_rivestimento.__global__.marchio",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_rivestimento.__global__.produttore",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_serramentista.__global__.marchio",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_serramentista.__global__.produttore",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_falegname.__global__.marchio",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_falegname.__global__.produttore",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "apparecchi_sanitari_e_accessori.__global__.marchio",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "apparecchi_sanitari_e_accessori.__global__.produttore",
+      "regex": [
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
       ],
       "normalizers": [
         "strip"
