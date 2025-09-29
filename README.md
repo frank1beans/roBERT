@@ -40,7 +40,7 @@ I file seguenti devono essere forniti (alcuni sono opzionali ma consigliati):
 
 ### Asset di estrazione proprietà
 
-Gli asset per l'estrazione automatica delle proprietà, insieme a registry, mappe di categoria, validatori e template descrittivi, sono raccolti in un unico knowledge pack distribuito in `pack/current/pack.json`. La funzione `robimb.extraction.resources.load_default()` restituisce direttamente la sezione `extractors` presente nel pack, mentre `robimb.core.pack_loader.load_pack()` carica l'intero bundle quando serve accedere anche a registry e template.
+Gli asset per l'estrazione automatica delle proprietà, insieme a registry, mappe di categoria, validatori e template descrittivi, sono raccolti in un unico knowledge pack distribuito in `pack/current/pack.json`. La funzione `robimb.extraction.resources.load_default()` restituisce direttamente la sezione `extractors` presente nel pack, mentre `robimb.registry.load_pack()` carica l'intero bundle quando serve accedere anche a registry e template.
 
 Gli script `robimb convert` e la pipeline di inferenza utilizzano questo stesso file come punto di ingresso predefinito. È comunque possibile fornire un pack alternativo via CLI (`--extractors-pack` o `--properties-registry`) indicando un JSON con struttura analoga oppure un knowledge pack completo contenente la chiave `extractors`.
 

@@ -8,9 +8,9 @@ __all__ = [
     "features",
     "inference",
     "models",
+    "registry",
     "service",
     "templates",
     "training",
     "utils",
-    "validators",
 ]

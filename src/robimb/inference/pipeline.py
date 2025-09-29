@@ -4,7 +4,7 @@ from typing import Dict, Any, Optional
 import json, os
 from ..inference.predict_category import load_classifier, predict_topk, _load_id2label
 from ..inference.calibration import TemperatureCalibrator
-from ..validators.engine import validate
+from ..registry import validate
 from ..templates.render import render
 from . import predict_properties as _properties_module
 

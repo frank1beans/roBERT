@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional, List
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from ..core.pack_loader import load_pack
+from ..registry import load_pack, validate
 from ..inference.pipeline import find_cat_entry, predict_properties
 from ..inference.predict_category import load_classifier, _load_id2label
 from ..inference.calibration import TemperatureCalibrator
@@ -103,7 +103,6 @@ def predict(payload: PredictIn):
 
     # Reuse the same code path of CLI pipeline but pass preloaded objects via env vars
     from ..inference.predict_category import predict_topk as _predict_topk
-    from ..validators.engine import validate
     from ..templates.render import render
 
     top, topk_list, probs, logits = _predict_topk(payload.text, model, tokenizer, id2label, topk=payload.topk, calibrator=calibrator)

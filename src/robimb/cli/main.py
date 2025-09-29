@@ -8,7 +8,7 @@ from typing import List, Optional, Sequence
 
 import typer
 from ..props.unpack import convert_monolith_to_folders as _unpack
-from ..props.pack import pack_folders_to_monolith as _pack
+from ..registry import pack_folders_to_monolith as _pack
 from ..utils.data_utils import sample_one_record_per_category
 
 from .._version import __version__

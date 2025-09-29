@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 from .unpack import convert_monolith_to_folders
-from .pack import pack_folders_to_monolith
+from ..registry import pack_folders_to_monolith
 
 def main():
     p = argparse.ArgumentParser(prog="robimb", description="Registry/Extractors converter")
