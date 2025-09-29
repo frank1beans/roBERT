@@ -2,10 +2,8 @@
 from __future__ import annotations
 
 import json
-import re
 from collections import OrderedDict
 from pathlib import Path
-import unicodedata
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
@@ -13,13 +11,11 @@ import pandas as pd
 
 from .ontology_utils import Ontology, build_mask_from_ontology, load_label_maps, load_ontology, save_label_maps
 from ..extraction import extract_properties
-
-from ..core.pack_loader import load_pack
+from ..registry import RegistryLoader, load_pack
+from ..registry.schemas import build_category_key, CategoryDefinition
 
 
 def _resolve_pack_json(path: Path) -> Path:
-    """Return the JSON file to read when ``path`` points to a pack folder."""
-
     path = Path(path)
     if path.is_dir():
         candidate = path / "pack.json"
@@ -33,185 +29,21 @@ def _load_json(path: Path) -> Any:
         return json.load(handle)
 
 
-_SLUG_RE = re.compile(r"[^a-z0-9]+")
+def _load_property_registry(path: Path) -> Optional[Dict[str, CategoryDefinition]]:
+    """Load a property registry returning :class:`CategoryDefinition` objects."""
 
-
-def _slugify(value: str) -> str:
-    """Return a stable slug suitable for property identifiers."""
-
-    normalized = unicodedata.normalize("NFKD", str(value))
-    ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
-    lowered = ascii_value.lower()
-    slug = _SLUG_RE.sub("_", lowered).strip("_")
-    if slug:
-        return slug
-    # Fall back to a deterministic placeholder derived from the original text
-    digest = unicodedata.normalize("NFKD", str(value)).encode("utf-8")
-    return "slot_" + re.sub(r"[^a-f0-9]", "", digest.hex())[:8]
-
-
-def _flatten_registry_v4(payload: Mapping[str, Any]) -> Dict[str, Dict[str, object]]:
-    """Flatten the hierarchical registry layout introduced in v4 packs."""
-
-    result: Dict[str, Dict[str, object]] = {}
-
-    for super_name, block in payload.items():
-        if not isinstance(block, Mapping):
-            continue
-        if not isinstance(super_name, str):
-            continue
-        if super_name.startswith("_") or super_name == "metadata":
-            continue
-
-        categories = block.get("categories") if isinstance(block.get("categories"), Mapping) else None
-        global_block = block.get("_global") if isinstance(block.get("_global"), Mapping) else None
-
-        if not categories:
-            continue
-
-        super_slug = _slugify(super_name)
-        global_slots = {}
-        global_patterns = {}
-        global_meta = {}
-        if isinstance(global_block, Mapping):
-            raw_slots = global_block.get("slots")
-            if isinstance(raw_slots, Mapping):
-                global_slots = {
-                    f"{super_slug}.__global__.{_slugify(slot_name)}": dict(slot_schema)
-                    for slot_name, slot_schema in raw_slots.items()
-                    if isinstance(slot_name, str) and isinstance(slot_schema, Mapping)
-                }
-            raw_patterns = global_block.get("patterns")
-            if isinstance(raw_patterns, Mapping):
-                global_patterns = {
-                    f"{super_slug}.__global__.{_slugify(slot_name)}": list(patterns)
-                    for slot_name, patterns in raw_patterns.items()
-                    if isinstance(slot_name, str)
-                }
-            global_meta = {
-                key: value
-                for key, value in global_block.items()
-                if key not in {"slots", "patterns"}
-            }
-
-        for cat_name, cat_block in categories.items():
-            if not isinstance(cat_name, str) or not isinstance(cat_block, Mapping):
-                continue
-
-            cat_slug = _slugify(cat_name)
-            schema: Dict[str, Any] = {}
-
-            cat_slots = {}
-            raw_cat_slots = cat_block.get("slots")
-            if isinstance(raw_cat_slots, Mapping):
-                cat_slots = {
-                    f"{super_slug}.{cat_slug}.{_slugify(slot_name)}": dict(slot_schema)
-                    for slot_name, slot_schema in raw_cat_slots.items()
-                    if isinstance(slot_name, str) and isinstance(slot_schema, Mapping)
-                }
-
-            cat_patterns = {}
-            raw_cat_patterns = cat_block.get("patterns")
-            if isinstance(raw_cat_patterns, Mapping):
-                cat_patterns = {
-                    f"{super_slug}.{cat_slug}.{_slugify(slot_name)}": list(patterns)
-                    for slot_name, patterns in raw_cat_patterns.items()
-                    if isinstance(slot_name, str)
-                }
-
-            # Merge inherited structures first, then the category-specific ones.
-            slots: Dict[str, Any] = {}
-            slots.update(global_slots)
-            slots.update(cat_slots)
-            schema["slots"] = slots
-
-            if global_patterns or cat_patterns:
-                patterns: Dict[str, Any] = {}
-                patterns.update(global_patterns)
-                patterns.update(cat_patterns)
-                schema["patterns"] = patterns
-
-            for key, value in global_meta.items():
-                schema[key] = value
-
-            for key, value in cat_block.items():
-                if key in {"slots", "patterns"}:
-                    continue
-                schema[key] = value
-
-            metadata = dict(schema.get("metadata", {}))
-            metadata.setdefault("super_name", super_name)
-            metadata.setdefault("category_name", cat_name)
-            metadata.setdefault("super_id", super_slug)
-            metadata.setdefault("category_id", cat_slug)
-            schema["metadata"] = metadata
-
-            result[f"{super_name}|{cat_name}"] = schema
-
-    return result
-
-
-def _normalize_registry_payload(payload: Any) -> Optional[Dict[str, Dict[str, object]]]:
-    """Translate various registry layouts into a flat mapping."""
-
-    def _build_from_entries(entries: Iterable[Mapping[str, Any]]) -> Dict[str, Dict[str, object]]:
-        result: Dict[str, Dict[str, object]] = {}
-        for entry in entries:
-            if not isinstance(entry, Mapping):
-                continue
-            key = entry.get("key")
-            if isinstance(key, str) and key:
-                result[key] = dict(entry)
-        return result
-
-    if isinstance(payload, Mapping):
-        if "registry" in payload:
-            candidate = payload["registry"]
-            normalized = _normalize_registry_payload(candidate)
-            if normalized is not None:
-                return normalized
-        if "mappings" in payload and isinstance(payload["mappings"], Iterable):
-            return _build_from_entries(payload["mappings"])
-        if "files" in payload:
-            return None
-        if any(
-            isinstance(value, Mapping) and ("categories" in value or "_global" in value)
-            for key, value in payload.items()
-            if isinstance(key, str) and not key.startswith("_") and key != "metadata"
-        ):
-            flattened = _flatten_registry_v4(payload)
-            if flattened:
-                return flattened
-        if all(isinstance(key, str) for key in payload.keys()):
-            return {str(key): dict(value) if isinstance(value, Mapping) else value for key, value in payload.items()}
-    elif isinstance(payload, list):
-        return _build_from_entries(payload)
-    return None
-
-
-def _load_property_registry(path: Path) -> Optional[Dict[str, Dict[str, object]]]:
-    """Load a property registry from either a raw JSON or a knowledge pack."""
-
+    path = Path(path)
     if path.is_dir():
-        for name in (
-            "registry.json",
-            "properties_registry_extended.json",
-            "properties_registry.json",
-        ):
+        for name in ("registry.json", "properties_registry_extended.json", "properties_registry.json"):
             candidate = path / name
             if candidate.exists():
                 path = candidate
                 break
 
-    path = _resolve_pack_json(path)
     try:
         payload = _load_json(path)
     except OSError:
-        return None
-
-    registry = _normalize_registry_payload(payload)
-    if registry is not None:
-        return registry
+        payload = None
 
     if isinstance(payload, Mapping) and "files" in payload:
         files = payload.get("files", {})
@@ -220,16 +52,19 @@ def _load_property_registry(path: Path) -> Optional[Dict[str, Dict[str, object]]
             if isinstance(registry_ref, str):
                 registry_path = (path.parent / registry_ref).resolve()
                 if registry_path.exists():
-                    nested_payload = _load_json(registry_path)
-                    normalized = _normalize_registry_payload(nested_payload)
-                    if normalized is not None:
-                        return normalized
+                    return _load_property_registry(registry_path)
 
     try:
-        pack = load_pack(str(path))
+        loader = RegistryLoader(path)
+    except FileNotFoundError:
+        return None
     except Exception:  # pragma: no cover - defensive fallback
         return None
-    return pack.registry or None
+
+    try:
+        return loader.load_registry()
+    except Exception:  # pragma: no cover - defensive fallback
+        return None
 
 
 def _normalize_extractors_payload(payload: Any) -> Optional[Dict[str, Any]]:
@@ -305,27 +140,25 @@ def _infer_slot_normalizers(slot: Mapping[str, Any]) -> List[str]:
 
 
 def _build_registry_extractors(
-    registry: Mapping[str, Mapping[str, Any]]
+    registry: Mapping[str, CategoryDefinition]
 ) -> Optional[Dict[str, Any]]:
     patterns: List[Dict[str, Any]] = []
-    for key, schema in registry.items():
-        if not isinstance(schema, Mapping):
+    for key, category in registry.items():
+        if not isinstance(category, CategoryDefinition):
             continue
-        schema_patterns = schema.get("patterns")
-        if not isinstance(schema_patterns, Mapping):
+        schema_patterns = category.patterns
+        if not schema_patterns:
             continue
-        slots = schema.get("slots") if isinstance(schema.get("slots"), Mapping) else {}
+        slots = category.slots
         tags: List[str] = []
-        if isinstance(key, str) and "|" in key:
-            super_name, cat_name = [part.strip() for part in key.split("|", 1)]
-            if super_name:
-                tags.append(f"category:{super_name}")
-            if cat_name:
-                tags.append(f"subcategory:{cat_name}")
+        if category.super_label:
+            tags.append(f"category:{category.super_label}")
+        if category.category_label:
+            tags.append(f"subcategory:{category.category_label}")
         for prop_id, regexes in schema_patterns.items():
             if not isinstance(prop_id, str):
                 continue
-            if not isinstance(regexes, (list, tuple)):
+            if not isinstance(regexes, (list, tuple, set)):
                 continue
             cleaned = [str(rx) for rx in regexes if isinstance(rx, str) and rx]
             if not cleaned:
@@ -334,8 +167,9 @@ def _build_registry_extractors(
             if tags:
                 pattern_spec["tags"] = list(tags)
             slot_info = slots.get(prop_id) if isinstance(slots, Mapping) else None
-            if isinstance(slot_info, Mapping):
-                normals = _infer_slot_normalizers(slot_info)
+            if slot_info is not None:
+                slot_payload = slot_info if isinstance(slot_info, Mapping) else slot_info.model_dump()
+                normals = _infer_slot_normalizers(slot_payload)
                 if normals:
                     pattern_spec["normalizers"] = normals
             patterns.append(pattern_spec)
@@ -500,7 +334,7 @@ def prepare_classification_dataset(
 
     train_df = load_jsonl_to_df(train_path)
 
-    property_registry: Optional[Dict[str, Dict[str, object]]] = None
+    property_registry: Optional[Dict[str, CategoryDefinition]] = None
     if properties_registry_path is not None:
         property_registry = _load_property_registry(Path(properties_registry_path))
 
@@ -521,22 +355,18 @@ def prepare_classification_dataset(
         extractors_pack = registry_extractors
         use_registry_tags = registry_extractors is not None
 
-    def _resolve_schema(super_name: str, cat_name: str) -> Dict[str, object]:
+    def _resolve_category(super_name: str, cat_name: str) -> Optional[CategoryDefinition]:
         if property_registry is None:
-            return {}
-        key = f"{super_name}|{cat_name}"
-        if key in property_registry and isinstance(property_registry[key], dict):
-            return property_registry[key]
+            return None
+        key = build_category_key(super_name, cat_name)
+        category = property_registry.get(key)
+        if category is not None:
+            return category
         lowered = key.lower()
-        for candidate, value in property_registry.items():
-            if (
-                isinstance(candidate, str)
-                and "|" in candidate
-                and candidate.lower() == lowered
-                and isinstance(value, dict)
-            ):
-                return value
-        return {}
+        for candidate_key, candidate in property_registry.items():
+            if isinstance(candidate_key, str) and candidate_key.lower() == lowered:
+                return candidate
+        return None
 
     def _extract_props(
         text_value: str,
@@ -590,10 +420,11 @@ def prepare_classification_dataset(
         s_idx, c_idx, super_name, cat_name = mapping
         mapped_super.append(s_idx)
         mapped_cat.append(c_idx)
-        schema = _resolve_schema(super_name, cat_name)
+        category_schema = _resolve_category(super_name, cat_name)
+        schema = category_schema.json_schema() if category_schema is not None else {}
         property_schemas.append(schema)
         text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
-        allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
+        allowed = tuple(category_schema.property_ids()) if category_schema is not None else None
         target_tags: Optional[Tuple[str, ...]] = None
         if use_registry_tags:
             tags = []
@@ -633,10 +464,11 @@ def prepare_classification_dataset(
             s_idx, c_idx, super_name, cat_name = mapping
             mapped_super_val.append(s_idx)
             mapped_cat_val.append(c_idx)
-            schema = _resolve_schema(super_name, cat_name)
+            category_schema = _resolve_category(super_name, cat_name)
+            schema = category_schema.json_schema() if category_schema is not None else {}
             property_schemas_val.append(schema)
             text_value = str(row.get(text_field, "")) if text_field in row else str(row.get("text", ""))
-            allowed = tuple((schema or {}).get("slots", {}).keys()) if schema else None
+            allowed = tuple(category_schema.property_ids()) if category_schema is not None else None
             target_tags: Optional[Tuple[str, ...]] = None
             if use_registry_tags:
                 tags = []
