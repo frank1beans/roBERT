@@ -4,16 +4,9 @@ from typing import Dict, Any, Optional
 import json, os
 from ..inference.predict_category import load_classifier, predict_topk, _load_id2label
 from ..inference.calibration import TemperatureCalibrator
-from ..registry import validate
 from ..templates.render import render
+from ..extraction import ExtractionRouter
 from . import predict_properties as _properties_module
-
-def find_cat_entry(pack, cat_label: str):
-    # look into catmap mappings
-    for m in pack.catmap.get("mappings", []):
-        if m.get("cat_label","").lower() == (cat_label or "").lower():
-            return m
-    return None
 
 
 def predict_properties(text: str, pack, categories: Any) -> Dict[str, Any]:
@@ -31,12 +24,11 @@ def run_pipeline(text: str, pack, model_name_or_path: str, label_index_path: str
     # 1) Category
     top, topk_list, probs, logits = predict_topk(text, model, tokenizer, id2label, topk=topk, calibrator=calibrator)
 
-    # 2) Properties (regex extractors from pack)
-    props = predict_properties(text, pack, top["label"])
-
-    # 3) Validation (rules from pack), pass cat entry to rules if needed
-    cat_entry = find_cat_entry(pack, top["label"])
-    issues = validate(top["label"], props, context={}, rules_pack=pack.validators, cat_entry=cat_entry)
+    # 2) Properties
+    router = ExtractionRouter(pack)
+    router_output = router.extract(text, categories=top["label"])
+    props = router_output.postprocess.values
+    issues = router_output.postprocess.issues or []
 
     # 4) Description render (templates from pack)
     descr = render(top["label"], props, pack.templates)

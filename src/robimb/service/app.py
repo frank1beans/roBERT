@@ -6,8 +6,8 @@ from typing import Any, Dict, Optional, List
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from ..registry import load_pack, validate
-from ..inference.pipeline import find_cat_entry, predict_properties
+from ..registry import load_pack
+from ..extraction import ExtractionRouter
 from ..inference.predict_category import load_classifier, _load_id2label
 from ..inference.calibration import TemperatureCalibrator
 
@@ -106,11 +106,11 @@ def predict(payload: PredictIn):
     from ..templates.render import render
 
     top, topk_list, probs, logits = _predict_topk(payload.text, model, tokenizer, id2label, topk=payload.topk, calibrator=calibrator)
-    props = predict_properties(payload.text, pack, top["label"])
-    # Prepare cat entry and validation
-    cat_entry = find_cat_entry(pack, top["label"])
     ctx = payload.context.dict() if payload.context else {}
-    issues = validate(top["label"], props, ctx, rules_pack=pack.validators, cat_entry=cat_entry)
+    router = ExtractionRouter(pack)
+    router_output = router.extract(payload.text, categories=top["label"], context=ctx)
+    props = router_output.postprocess.values
+    issues = router_output.postprocess.issues or []
     descr = render(top["label"], props, pack.templates)
 
     return PredictOut(

@@ -1,4 +1,7 @@
-from robimb.extraction.normalizers import BUILTIN_NORMALIZERS
+import pytest
+
+from robimb.extraction import BUILTIN_NORMALIZERS, apply_postprocess
+from robimb.registry.schemas import CategoryDefinition, PropertySlot
 
 
 _truncate = BUILTIN_NORMALIZERS["truncate_model_value"]
@@ -32,3 +35,24 @@ def test_truncate_model_value_keeps_short_codes():
     value = "PX"
     context = "modello PX"
     assert _truncate(value, context) == "PX"
+
+
+def test_apply_postprocess_coerces_values():
+    category = CategoryDefinition(
+        key="demo|demo",
+        super="Demo",
+        category="Demo",
+        slots={
+            "demo.number": PropertySlot(property_id="demo.number", name="Number", type="float"),
+            "demo.flag": PropertySlot(property_id="demo.flag", name="Flag", type="bool"),
+        },
+    )
+    result = apply_postprocess(
+        {"demo.number": "1,5", "demo.flag": "SI"},
+        category=category,
+        validators=None,
+        category_label="Demo",
+    )
+    assert result.values["demo.number"] == pytest.approx(1.5)
+    assert result.values["demo.flag"] is True
+
