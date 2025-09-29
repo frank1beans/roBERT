@@ -1,4 +1,4 @@
-"""Smoke tests for the consolidated Typer CLI."""
+"""Smoke tests for the Typer CLI router."""
 import json
 
 from typer.testing import CliRunner
@@ -11,16 +11,20 @@ runner = CliRunner()
 def test_help_shows_commands() -> None:
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
-    assert "convert" in result.stdout
-    assert "train" in result.stdout
-    assert "validate" in result.stdout
-    assert "tapt" in result.stdout
+    for command in ("convert", "extract", "evaluate", "pack"):
+        assert command in result.stdout
 
 
 def test_version_option() -> None:
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
     assert "robimb" in result.stdout
+
+
+def test_convert_extract_evaluate_pack_help() -> None:
+    for cmd in ("convert", "extract", "evaluate", "pack"):
+        result = runner.invoke(app, [cmd, "--help"])
+        assert result.exit_code == 0, f"help for {cmd} should be accessible"
 
 
 def test_sample_categories_command(tmp_path) -> None:
