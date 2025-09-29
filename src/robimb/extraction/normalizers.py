@@ -20,6 +20,128 @@ NormalizerFactory = Callable[[Any, str], Any]
 """Backward compatible alias for callables implementing :class:`Normalizer`."""
 
 
+
+_MODEL_STOPWORDS: Set[str] = {
+    "a",
+    "ai",
+    "al",
+    "alla",
+    "alle",
+    "allo",
+    "all'",
+    "coi",
+    "col",
+    "con",
+    "da",
+    "dal",
+    "dalla",
+    "dalle",
+    "dallo",
+    "dei",
+    "degli",
+    "del",
+    "della",
+    "delle",
+    "dello",
+    "di",
+    "e",
+    "ed",
+    "fra",
+    "gli",
+    "i",
+    "il",
+    "in",
+    "la",
+    "le",
+    "lo",
+    "nei",
+    "negli",
+    "nel",
+    "nella",
+    "nelle",
+    "nello",
+    "per",
+    "su",
+    "sui",
+    "sul",
+    "sulla",
+    "sulle",
+    "sullo",
+    "tra",
+    "verso",
+    "ello",
+    "so",
+    "l",
+}
+
+_MODEL_FOLLOWUP_STOPWORDS: Set[str] = {
+    "approvazione",
+    "apertura",
+    "assistenze",
+    "bagno",
+    "bagni",
+    "campionare",
+    "campionatura",
+    "coordinare",
+    "coordinamento",
+    "compensati",
+    "compensato",
+    "completo",
+    "completa",
+    "completi",
+    "complete",
+    "comprende",
+    "comprendono",
+    "compreso",
+    "compresa",
+    "compresi",
+    "compresse",
+    "dimensione",
+    "dimensioni",
+    "dotato",
+    "dotata",
+    "dotati",
+    "dotate",
+    "dotazione",
+    "finitura",
+    "finiture",
+    "fornita",
+    "fornite",
+    "forniti",
+    "fornito",
+    "fornitura",
+    "forniture",
+    "inclusa",
+    "inclusi",
+    "incluso",
+    "installazione",
+    "installazioni",
+    "marcatura",
+    "materiale",
+    "materiali",
+    "posa",
+    "pose",
+    "profondità",
+    "scarico",
+    "servizi",
+    "trasporto",
+}
+
+_MODEL_INVALID_PATTERNS: Sequence[str] = (
+    "da definire",
+    "da campionare",
+    "da sottoporre",
+    "da verificare",
+    "da approvare",
+    "da approvazione",
+    "da coordinare",
+    "da determinare",
+)
+
+
+_MODEL_TRIM_CHARS = ".,;:()[]{}\"'“”‘’"
+
+
 # ---------------------------------------------------------------------------
 # Basic string utilities
 # ---------------------------------------------------------------------------
@@ -80,6 +202,62 @@ def _strip(v: Any, m: str) -> Any:
 def _strip_trailing_punct(v: Any, m: str) -> Any:
     if isinstance(v, str):
         return v.rstrip(" .,;:\u2026")
+    return v
+
+
+
+
+
+def _truncate_model_value(v: Any, m: str) -> Any:
+    def _normalize(text: str, context: str) -> str | None:
+        if not text:
+            return None
+        collapsed = re.sub(r"\s+", " ", text.strip())
+        if not collapsed:
+            return None
+        lowered = collapsed.lower()
+        normalized_context = re.sub(r"\s+", " ", context.strip().lower())
+        for phrase in _MODEL_INVALID_PATTERNS:
+            if phrase in lowered or phrase in normalized_context:
+                return None
+        tokens = collapsed.split()
+        cleaned: list[str] = []
+        for token in tokens:
+            stripped = token.strip(_MODEL_TRIM_CHARS + "-")
+            if not stripped:
+                continue
+            lowered_token = stripped.lower()
+            if lowered_token in _MODEL_STOPWORDS:
+                if not cleaned:
+                    continue
+                break
+            if (
+                lowered_token in _MODEL_FOLLOWUP_STOPWORDS
+                or lowered_token.startswith("cod")
+                or lowered_token.startswith("art")
+            ):
+                break
+            cleaned.append(stripped)
+            if len(cleaned) >= 6:
+                break
+        candidate = " ".join(cleaned).strip(_MODEL_TRIM_CHARS + "-")
+        if not candidate:
+            return None
+        return candidate
+
+    if isinstance(v, list):
+        normalized_items: list[Any] = []
+        for item in v:
+            if isinstance(item, str):
+                candidate = _normalize(item, m)
+                if candidate:
+                    normalized_items.append(candidate)
+            elif item not in (None, ""):
+                normalized_items.append(item)
+        return normalized_items
+    if isinstance(v, str):
+        candidate = _normalize(v, m)
+        return candidate if candidate is not None else None
     return v
 
 
@@ -907,6 +1085,7 @@ BUILTIN_NORMALIZERS: Dict[str, Normalizer] = {
     "upper": _upper,
     "strip": _strip,
     "strip_trailing_punct": _strip_trailing_punct,
+    "truncate_model_value": _truncate_model_value,
     "collapse_plus_sequences": _collapse_plus_sequences,
     "as_string": _as_string,
     "to_number": _to_number,

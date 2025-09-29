@@ -1235,6 +1235,7 @@
       "normalizers": [
         "strip",
         "normalize_model_format",
+        "truncate_model_value",
         "comma_to_dot"
       ],
       "tags": [
@@ -11606,19 +11607,15 @@
     {
       "property_id": "apparecchi_sanitari_e_accessori.__global__.modello",
       "regex": [
-        "(?i)\\b(?:mod\\.?|modelo|modello|mdl\\.?)\\s*[:=\\-]?\\s*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,80})\\b",
-        "(?i)\\b(?:serie|series|ser\\.?)\\s*[:=\\-]?\\s*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,80})\\b",
-        "(?i)\\b(?:collezione|collection|col\\.|linea|line)\\s*[:=\\-]?\\s*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,80})\\b",
-        "(?i)\\b(?:tipo|type|tp\\.?)\\s*[:=\\-]?\\s*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,80})\\b",
-        "(?i)\\b(?:versione|version|ver\\.?|v\\.)\\s*[:=\\-]?\\s*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,40})\\b",
-        "(?i)\\b(?:generazione|generation|gen\\.?)\\s*[:=\\-]?\\s*(?P<val>[IVX0-9]+|[A-Za-z0-9]+)\\b",
-        "(?i)\\bmodello\\b[^:\\n]{0,25}[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
-        "(?i)\\bmodello[ \\t]*[:=\\-·•]?[ \\t]*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-/\\._\\s]{2,160})",
-        "(?i)\\b(?:mod\\.?|model(?:lo)?|serie|collezione|linea|tipo|equivalente\\s+a|eq\\.?\\s*a)\\s*[:=\\-]?\\s*(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,120})\\b"
+        "(?i)\\b(?:mod(?:ello|el)?|modelo|mdl\\.?)\\b(?:\\s*(?:n(?:o|°|º)\\.?|num(?:ero)?\\.?|#))?(?:\\s*[:=\\-]\\s*|\\s+)(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,80})",
+        "(?i)\\b(?:serie|series|ser\\.?|collezione|collection|col\\.|linea|line)\\b(?:\\s*(?:n(?:o|°|º)\\.?|num(?:ero)?\\.?|#))?(?:\\s*[:=\\-]\\s*|\\s+)(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,80})",
+        "(?i)\\b(?:tipo|type|tp\\.?|versione|version|ver\\.?|v\\.|generazione|generation|gen\\.?)\\b(?:\\s*(?:n(?:o|°|º)\\.?|num(?:ero)?\\.?|#))?(?:\\s*[:=\\-]\\s*|\\s+)(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,80})",
+        "(?i)\\b(?:equivalente\\s+a|eq\\.?\\s*a)\\b(?:\\s*[:=\\-]\\s*|\\s+)(?P<val>[A-Za-z0-9][A-Za-z0-9\\-\\./_\\s]{1,120})"
       ],
       "normalizers": [
         "strip",
         "normalize_model_format",
+        "truncate_model_value",
         "comma_to_dot"
       ],
       "tags": [

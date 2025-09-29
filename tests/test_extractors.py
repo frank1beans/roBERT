@@ -72,3 +72,45 @@ def test_empty_groups_are_filtered():
     props = extract_properties(text, extractors_pack)
 
     assert props["safety.classe"] == "e"
+
+
+def test_whitespace_captures_are_ignored():
+    extractors_pack = {
+        "version": "0.0.1",
+        "patterns": [
+            {
+                "property_id": "debug.blank",
+                "regex": [r"\bblank\b\s*(?P<val>\s+)"],
+                "normalizers": ["strip"],
+            }
+        ],
+    }
+    text = "blank     END"
+
+    props = extract_properties(text, extractors_pack)
+
+    assert "debug.blank" not in props
+
+
+def test_empty_lists_are_dropped():
+    extractors_pack = {
+        "version": "0.0.1",
+        "patterns": [
+            {
+                "property_id": "debug.size",
+                "regex": [
+                    r"\bsize\b\s*(?P<val>\d+)\s*(?P<unit>mm)\b",
+                    r"\bsize\b(?P<val>\s*)(?P<unit>\s*)",
+                ],
+                "normalizers": [],
+            }
+        ],
+    }
+
+    text_with_value = "size 120 mm"
+    props = extract_properties(text_with_value, extractors_pack)
+    assert props["debug.size"] == ["120", "mm"]
+
+    text_without_value = "size     "
+    props_empty = extract_properties(text_without_value, extractors_pack)
+    assert "debug.size" not in props_empty

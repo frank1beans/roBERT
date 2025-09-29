@@ -186,6 +186,25 @@ def extract_properties(
     property_modes: Dict[str, str] = {}
     collect_properties: Set[str] = set()
 
+
+    def _clean_scalar(value: Any) -> Any | None:
+        if value is None:
+            return None
+        if isinstance(value, str):
+            cleaned = value.strip()
+            return cleaned if cleaned else None
+        return value
+
+    def _clean_value(value: Any) -> Any | None:
+        if isinstance(value, list):
+            cleaned_list: list[Any] = []
+            for item in value:
+                cleaned_item = _clean_scalar(item)
+                if cleaned_item is not None:
+                    cleaned_list.append(cleaned_item)
+            return cleaned_list if cleaned_list else None
+        return _clean_scalar(value)
+
     for pat in pats:
         property_id = pat.property_id
         combined_normalizers = list(default_normalizers) + list(pat.normalizers)
@@ -219,16 +238,26 @@ def extract_properties(
                     bucket = out.setdefault(property_id, [])
                     if isinstance(value, list):
                         for item in value:
+                            cleaned_item = _clean_scalar(item)
+                            if cleaned_item is None:
+                                continue
                             if pat.max_matches is not None and matched_count >= pat.max_matches:
                                 break
-                            bucket.append(item)
+                            bucket.append(cleaned_item)
                             matched_count += 1
                     else:
-                        bucket.append(value)
+                        cleaned_item = _clean_scalar(value)
+                        if cleaned_item is None:
+                            continue
+                        bucket.append(cleaned_item)
                         matched_count += 1
                     if pat.max_matches is not None and matched_count >= pat.max_matches:
                         break
                 else:
+                    cleaned_value = _clean_value(value)
+                    if cleaned_value is None:
+                        continue
+                    value = cleaned_value
                     confidence = pat.confidence if pat.confidence is not None else 0.0
                     if selection_mode == "best_confidence":
                         previous = confidences.get(property_id, float("-inf"))
