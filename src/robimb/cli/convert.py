@@ -1,8 +1,9 @@
-"""CLI command to prepare datasets, label maps and ontology masks (ONLY using data/properties)."""
+"""CLI command to prepare datasets, label maps and ontology masks using bundled packs."""
 from __future__ import annotations
 
 import argparse
 import json
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, List, Mapping, Optional, Sequence, Tuple
@@ -29,11 +30,12 @@ __all__ = [
 ]
 
 # ---------------------------------------------------------------------
-# Defaults: we ONLY look under data/properties (repo-local)
+# Defaults: prefer the versioned pack/ bundle (with fallback to legacy data/properties)
 # ---------------------------------------------------------------------
 
 # repo_root/src/robimb/cli/convert.py -> parents[3] = repo_root
 _REPO_ROOT = Path(__file__).resolve().parents[3]
+_PACK_ROOT = _REPO_ROOT / "pack"
 _DATA_PROPERTIES_DIR = _REPO_ROOT / "data" / "properties"
 
 _REQUIRED_REGISTRY_CANDIDATES = (
@@ -46,6 +48,7 @@ _REQUIRED_EXTRACTORS_CANDIDATES = (
     "extractors.json",
 )
 
+
 def _find_first_existing(base: Path, candidates: Sequence[str]) -> Optional[Path]:
     for name in candidates:
         p = base / name
@@ -53,23 +56,56 @@ def _find_first_existing(base: Path, candidates: Sequence[str]) -> Optional[Path
             return p
     return None
 
+
+def _iter_pack_bases() -> Iterable[Path]:
+    env_current = os.getenv("ROBIMB_PACK_CURRENT")
+    if env_current:
+        yield Path(env_current)
+    current = _PACK_ROOT / "current"
+    if current.exists():
+        yield current
+    if _PACK_ROOT.exists():
+        for version_dir in sorted(_PACK_ROOT.glob("v*"), reverse=True):
+            yield version_dir
+    yield _DATA_PROPERTIES_DIR
+
+
 def _resolve_registry_path() -> Path:
-    p = _find_first_existing(_DATA_PROPERTIES_DIR, _REQUIRED_REGISTRY_CANDIDATES)
-    if p is None:
-        raise FileNotFoundError(
-            f"Registry non trovato. Attesi uno tra: {', '.join(_REQUIRED_REGISTRY_CANDIDATES)} "
-            f"all’interno di: {str(_DATA_PROPERTIES_DIR)}"
-        )
-    return p
+    for base in _iter_pack_bases():
+        if base.is_file() and base.name.endswith(".json"):
+            if base.name == "pack.json":
+                # Inline bundle, let RegistryLoader handle it later.
+                return base
+            if base.name in _REQUIRED_REGISTRY_CANDIDATES:
+                return base
+            if base.name == "registry.json":
+                return base
+        if base.is_dir():
+            candidate = _find_first_existing(base, _REQUIRED_REGISTRY_CANDIDATES)
+            if candidate is not None:
+                return candidate
+            generic = base / "registry.json"
+            if generic.exists():
+                return generic
+    raise FileNotFoundError(
+        "Impossibile individuare un registry JSON nel pack distribuito o in data/properties."
+    )
+
 
 def _resolve_extractors_path() -> Path:
-    p = _find_first_existing(_DATA_PROPERTIES_DIR, _REQUIRED_EXTRACTORS_CANDIDATES)
-    if p is None:
-        raise FileNotFoundError(
-            f"Extractors non trovati. Attesi uno tra: {', '.join(_REQUIRED_EXTRACTORS_CANDIDATES)} "
-            f"all’interno di: {str(_DATA_PROPERTIES_DIR)}"
-        )
-    return p
+    for base in _iter_pack_bases():
+        if base.is_file() and base.name in ("extractors.json", "extractors_extended.json", "pack.json"):
+            return base
+        if base.is_dir():
+            candidate = _find_first_existing(base, _REQUIRED_EXTRACTORS_CANDIDATES)
+            if candidate is not None:
+                return candidate
+            pack_json = base / "pack.json"
+            if pack_json.exists():
+                return pack_json
+    raise FileNotFoundError(
+        "Impossibile individuare un extractors JSON nel pack distribuito o in data/properties."
+    )
 
 DEFAULT_PROPERTIES_REGISTRY: Path = _resolve_registry_path()
 DEFAULT_EXTRACTORS_PACK: Path = _resolve_extractors_path()
@@ -81,7 +117,7 @@ DEFAULT_EXTRACTORS_PACK: Path = _resolve_extractors_path()
 
 @dataclass(frozen=True)
 class ConversionConfig:
-    """Configuration for dataset conversion (hard-wired to data/properties)."""
+    """Configuration for dataset conversion leveraging the distributed pack."""
 
     train_file: Path
     val_file: Optional[Path]
@@ -98,7 +134,7 @@ class ConversionConfig:
     extra_mlm: Sequence[Path] = ()
     reports_dir: Optional[Path] = None
 
-    # Properties / Extractors: **always** under data/properties
+    # Properties / Extractors: resolved from the bundled pack (with legacy fallback)
     properties_registry: Path = DEFAULT_PROPERTIES_REGISTRY
     extractors_pack: Path = DEFAULT_EXTRACTORS_PACK
 
@@ -165,7 +201,7 @@ def _validate_inputs_exist(config: ConversionConfig) -> None:
         raise FileNotFoundError(f"I seguenti path non esistono:\n{lines}")
 
 def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
-    """Execute the conversion pipeline using ONLY data/properties for extraction."""
+    """Execute the conversion pipeline using the bundled pack for extraction."""
 
     _validate_inputs_exist(config)
     config.out_dir.mkdir(parents=True, exist_ok=True)
@@ -181,7 +217,7 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
     )
 
     # 2) Dataset prep (classification + property extraction)
-    #    Enforce usage of data/properties registry + extractors
+    #    Enforce usage of the pack-provided registry + extractors
     train_df, val_df, _, _ = prepare_classification_dataset(
         config.train_file,
         config.val_file,
@@ -256,7 +292,7 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
 
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Convert raw AEC/BIM data using ONLY data/properties for property extraction."
+        description="Convert raw AEC/BIM data relying on the bundled knowledge pack for property extraction."
     )
     parser.add_argument("--train-file", required=True, help="Path to the raw training jsonl file")
     parser.add_argument("--val-file", default=None, help="Optional validation jsonl file")
@@ -290,16 +326,16 @@ def build_arg_parser() -> argparse.ArgumentParser:
         help="Directory where dataset reports and visualizations will be stored",
     )
 
-    # Hard-wired defaults (still overridable, but MUST reside in data/properties)
+    # Hard-wired defaults (still overridable, resolved from the bundled pack)
     parser.add_argument(
         "--properties-registry",
         default=str(DEFAULT_PROPERTIES_REGISTRY),
-        help="Registry JSON in data/properties (default auto-resolved)",
+        help="Registry JSON resolved from the distributed pack (auto-resolved)",
     )
     parser.add_argument(
         "--extractors-pack",
         default=str(DEFAULT_EXTRACTORS_PACK),
-        help="Extractors JSON in data/properties (default auto-resolved)",
+        help="Extractors JSON resolved from the distributed pack (auto-resolved)",
     )
 
     parser.add_argument("--text-field", default="text", help="Column name for the textual description")

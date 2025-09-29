@@ -1,20 +1,28 @@
 
 from __future__ import annotations
-import os, json, threading
-from functools import lru_cache
-from typing import Any, Dict, Optional, List
+
+import json
+import os
+import threading
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from ..registry import load_pack
 from ..extraction import ExtractionRouter
-from ..inference.predict_category import load_classifier, _load_id2label
 from ..inference.calibration import TemperatureCalibrator
+from ..inference.predict_category import _load_id2label, load_classifier
+from ..registry import load_pack
 
 APP_VERSION = "0.1.0"
 
 # ---- Env config ----
-ENV_PACK = os.getenv("ROBIMB_PACK", "data/properties")
+_DEFAULT_PACK_PATH = Path(__file__).resolve().parents[2] / "pack" / "current"
+ENV_PACK = os.getenv(
+    "ROBIMB_PACK",
+    os.getenv("ROBIMB_PACK_CURRENT", str(_DEFAULT_PACK_PATH)),
+)
 ENV_MODEL = os.getenv("ROBIMB_MODEL", "runs/label")
 ENV_LABEL_INDEX = os.getenv("ROBIMB_LABEL_INDEX", "data/wbs/label_maps.json")
 ENV_CALIBRATOR = os.getenv("ROBIMB_CALIBRATOR")  # opzionale

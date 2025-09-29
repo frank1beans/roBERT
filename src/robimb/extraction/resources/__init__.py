@@ -2,28 +2,74 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
-from typing import Any, Dict, Mapping
+from typing import Any, Dict, Mapping, Optional
 
-_DATA_DIR = Path(__file__).resolve().parents[4] / "data" / "properties"
-_EXTRACTORS_BASENAME = "extractors.json"
+_REPO_ROOT = Path(__file__).resolve().parents[4]
+_LEGACY_DATA_DIR = _REPO_ROOT / "data" / "properties"
+_DEFAULT_PACK_ROOT = _REPO_ROOT / "pack"
+_EXTRACTORS_FILENAMES = (
+    "extractors.json",
+    "extractors_extended.json",
+)
+
+
+def _resolve_from_directory(base: Path) -> Optional[Path]:
+    for name in _EXTRACTORS_FILENAMES:
+        candidate = base / name
+        if candidate.exists():
+            return candidate
+    pack_json = base / "pack.json"
+    if pack_json.exists():
+        return pack_json
+    return None
 
 
 def _detect_default_path() -> Path:
     """Return the most suitable bundled extractors JSON file."""
 
-    candidates = [
-        _DATA_DIR / "extractors_extended.json",
-        _DATA_DIR / _EXTRACTORS_BASENAME,
-    ]
-    for candidate in candidates:
+    env_override = os.getenv("ROBIMB_EXTRACTORS_PACK")
+    if env_override:
+        candidate = Path(env_override)
         if candidate.exists():
             return candidate
-    # Fallback to historical location for backwards compatibility
-    legacy = Path(__file__).resolve().parents[4] / "pack" / "current" / "pack.json"
-    if legacy.exists():
-        return legacy
-    return candidates[-1]
+
+    env_current = os.getenv("ROBIMB_PACK_CURRENT")
+    if env_current:
+        candidate = Path(env_current)
+        if candidate.is_dir():
+            resolved = _resolve_from_directory(candidate)
+            if resolved is not None:
+                return resolved
+        if candidate.exists():
+            return candidate
+
+    current_dir = _DEFAULT_PACK_ROOT / "current"
+    if current_dir.exists():
+        if current_dir.is_dir():
+            resolved = _resolve_from_directory(current_dir)
+            if resolved is not None:
+                return resolved
+        else:
+            return current_dir
+
+    if _DEFAULT_PACK_ROOT.exists():
+        versioned = sorted(_DEFAULT_PACK_ROOT.glob("v*/extractors.json"), reverse=True)
+        for candidate in versioned:
+            if candidate.exists():
+                return candidate
+
+    legacy_candidates = [
+        _LEGACY_DATA_DIR / "extractors_extended.json",
+        _LEGACY_DATA_DIR / "extractors.json",
+    ]
+    for candidate in legacy_candidates:
+        if candidate.exists():
+            return candidate
+
+    # As a last resort, point to the last legacy candidate (which may not exist)
+    return legacy_candidates[-1]
 
 
 _PACK_PATH = _detect_default_path()

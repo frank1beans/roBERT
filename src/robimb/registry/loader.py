@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 import json
+import os
 import pathlib
 from typing import Any, Dict, Mapping, MutableMapping, Optional, Tuple
 
@@ -329,18 +330,29 @@ def load_pack(pack_json_path: str | pathlib.Path) -> RegistryBundle:
 
 
 def _discover_default_pack() -> pathlib.Path:
-    root = pathlib.Path(__file__).resolve().parents[2]
+    env_current = os.getenv("ROBIMB_PACK_CURRENT")
+    if env_current:
+        candidate = pathlib.Path(env_current)
+        if candidate.exists():
+            return candidate
+
+    root = pathlib.Path(__file__).resolve().parents[3]
     pack_dir = root / "pack"
+
+    current = pack_dir / "current"
+    if current.exists():
+        return current
+
     if not pack_dir.exists():
         raise FileNotFoundError(
             "Directory 'pack' non trovato: specificare esplicitamente il path del registry."
         )
     candidates = sorted(pack_dir.glob("v*/registry.json"), reverse=True)
-    if not candidates:
-        raise FileNotFoundError(
-            "Nessun registry trovato sotto pack/: atteso un file 'v*/registry.json'."
-        )
-    return candidates[0]
+    if candidates:
+        return candidates[0]
+    raise FileNotFoundError(
+        "Nessun registry trovato sotto pack/: atteso un file 'v*/registry.json'."
+    )
 
 
 class RegistryLoader:

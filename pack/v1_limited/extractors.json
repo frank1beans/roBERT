@@ -1,0 +1,225 @@
+{
+  "schema": "extractors/v1",
+  "metadata": {
+    "version": "2024-11-20T000000",
+    "description": "Pattern essenziali per il pacchetto limitato",
+    "registry_source": "registry.json"
+  },
+  "patterns": [
+    {
+      "property_id": "opere_da_cartongessista.__global__.marchio",
+      "regex": [
+        "(?i)\\b(?:marca|marchio)\\b[:=\\s]+(?P<val>[A-Za-z0-9\\-\\s]{2,60})"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.produttore",
+      "regex": [
+        "(?i)\\b(?:produttore|brand|fornitore)\\b[:=\\s]+(?P<val>[A-Za-z0-9\\-\\s]{2,80})"
+      ],
+      "normalizers": [
+        "strip"
+      ],
+      "tags": [
+        "identificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.tipologia_lastra",
+      "regex": [
+        "(?i)\\blastra\\b[^\\n]*?(?P<val>standard|idrofuga|ignifuga|alta\\s+densi(?:tà|ta))"
+      ],
+      "normalizers": [
+        "strip",
+        "lower"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "controsoffitti.controsoffitto_modulare.tipo_pannello",
+      "regex": [
+        "(?i)\\b(pannello)\\b[^\\n]*?(?P<val>gesso\\s+rivestito|metallo|fibra\\s+minerale|legno)"
+      ],
+      "normalizers": [
+        "strip",
+        "lower"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimento_in_piastrelle.materiale",
+      "regex": [
+        "(?i)\\bmateriale\\b[:=\\s]+(?P<val>gres(?:\\s+porcellanato)?|ceramica|legno|pietra)"
+      ],
+      "normalizers": [
+        "strip",
+        "lower"
+      ],
+      "tags": [
+        "materiale"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimento_in_piastrelle.formato",
+      "regex": [
+        "(?i)\\bformato\\b[:=\\s]+(?P<val1>\\d{2,3})\\s*[x×]\\s*(?P<val2>\\d{2,3})(?:\\s*cm)?"
+      ],
+      "normalizers": [],
+      "tags": [
+        "dimensione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_pavimentazione.pavimento_in_piastrelle.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "if_cm_to_mm"
+      ],
+      "tags": [
+        "dimensione"
+      ],
+      "unit": "mm",
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_serramentista.serramento_esterno.trasmittanza_termica",
+      "regex": [
+        "(?i)\\bUw\\b[:=\\s≤]*(?P<val>\\d(?:[.,]\\d)?)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "W/m²K",
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_serramentista.serramento_esterno.isolamento_acustico",
+      "regex": [
+        "(?i)\\bRw\\b[:=\\s]*(?P<val>\\d{1,2})\\s*dB"
+      ],
+      "normalizers": [
+        "to_float"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "dB",
+      "confidence": 0.6
+    },
+    {
+      "property_id": "apparecchi_sanitari_e_accessori.apparecchio_sanitario.tipologia",
+      "regex": [
+        "(?i)\\b(?P<val>wc|bidet|lavabo|piatto\\s+doccia|accessorio)\\b"
+      ],
+      "normalizers": [
+        "strip",
+        "lower"
+      ],
+      "tags": [
+        "classificazione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_di_rivestimento.rivestimento_ceramico.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "if_cm_to_mm"
+      ],
+      "tags": [
+        "dimensione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.spessore_mm",
+      "regex": [
+        "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float",
+        "if_cm_to_mm"
+      ],
+      "tags": [
+        "dimensione"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.classe_ei",
+      "regex": [
+        "(?i)\\b(?:rei|ei)\\s*(?P<val>15|30|45|60|90|120|180|240)\\b"
+      ],
+      "normalizers": [
+        "to_ei_class"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.rw_db",
+      "regex": [
+        "(?i)\\bRw\\s*(?P<val>\\d{2})\\s*dB"
+      ],
+      "normalizers": [
+        "to_int"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "confidence": 0.6
+    }
+  ],
+  "normalizers": {
+    "strip": {
+      "type": "text",
+      "action": "strip"
+    },
+    "lower": {
+      "type": "text",
+      "action": "lower"
+    },
+    "comma_to_dot": {
+      "type": "numeric",
+      "action": "comma_to_dot"
+    },
+    "to_float": {
+      "type": "numeric",
+      "action": "to_float"
+    }
+  },
+  "defaults": {
+    "confidence": 0.5
+  }
+}
