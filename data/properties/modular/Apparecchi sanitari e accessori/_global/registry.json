@@ -1,74 +1,59 @@
 {
+  "version": "1.0.0",
+  "domain": "Apparecchi sanitari e accessori",
+  "supercats": ["Apparecchi sanitari e accessori"],
+  "enums": {
+    "sanitary_type": [
+      "lavabo",
+      "piano_lavabo",
+      "vaso",
+      "vaso_disabili",
+      "bidet",
+      "specchio",
+      "accessorio"
+    ]
+  },
   "slots": {
+    "tipologia_oggetto": {
+      "type": "enum",
+      "enum": "sanitary_type",
+      "priority": 11,
+      "tags": ["categoria", "ontologia"],
+      "expected_atoms": ["atom_sanitary_types_it_v1"]
+    },
     "produttore": {
       "type": "text",
       "priority": 10,
-      "tags": [
-        "brand"
-      ],
-      "expected_atoms": [
-        "atom_brand_generic_v2"
-      ]
+      "tags": ["brand"],
+      "expected_atoms": ["atom_brand_generic_v2"]
     },
     "modello": {
       "type": "text",
       "priority": 9,
-      "tags": [
-        "brand",
-        "collezione"
-      ],
-      "expected_atoms": [
-        "atom_model_variants_it_v2"
-      ]
-    },
-    "norme_riferimento": {
-      "type": "text",
-      "priority": 6,
-      "tags": [
-        "normativa"
-      ],
-      "expected_atoms": [
-        "atom_std_generic_v2",
-        "atom_dm_date_v2",
-        "atom_dpr_v2",
-        "atom_dlgs_v2",
-        "atom_en_13501_1_v2",
-        "atom_uni_en_1279_v2"
-      ]
+      "tags": ["brand", "collezione"],
+      "expected_atoms": ["atom_model_variants_it_v2"]
     },
     "dimensioni_lxh_mm": {
       "type": "text",
-      "priority": 6,
-      "tags": [
-        "geometria"
-      ],
-      "unit": "mm×mm",
-      "expected_atoms": [
-        "atom_formati_dims_v2",
-        "atom_dimensione_LxHxP_v2"
-      ]
-    },
-    "superficie_m2": {
-      "type": "float",
-      "priority": 5,
-      "tags": [
-        "quantita"
-      ],
-      "unit": "m²",
-      "expected_atoms": [
-        "atom_surface_m2_v2"
-      ]
-    },
-    "volume_m3": {
-      "type": "float",
-      "priority": 5,
-      "tags": [
-        "quantita"
-      ],
-      "unit": "m³",
-      "expected_atoms": [
-        "atom_volume_m3_v2"
-      ]
+      "priority": 8,
+      "tags": ["geometria"],
+      "unit": "mm×mm[×mm]",
+      "expected_atoms": ["atom_formati_dims_v2", "atom_dimensione_LxHxP_v2"]
     }
+  },
+  "units": {
+    "mm": { "factor_to_mm": 1.0 },
+    "cm": { "factor_to_mm": 10.0 },
+    "m":  { "factor_to_mm": 1000.0 }
+  },
+  "normalizers": {
+    "normalize_dimensions_to_mm": "Converte pattern 2D/3D (mm/cm/m) in mm e restituisce stringa canonica 'LxP' o 'LxPxH' in mm.",
+    "normalize_model_format": "Ripulisce prefissi come 'mod.', 'serie', 'col.' e normalizza spazi e separatori.",
+    "normalize_sanitary_type": "Mappa sinonimi (es. 'wc','water'->'vaso'; 'top lavabo'->'piano_lavabo'; 'wc disabili'->'vaso_disabili').",
+    "strip": "Trim spazi",
+    "comma_to_dot": "Sostituisce ',' con '.' nei numeri"
+  },
+  "validators": {
+    "dimensions_reasonable": "Accetta intervalli tipici: L 300..2400 mm, P 200..800 mm, H 50..1200 mm."
   }
 }
