@@ -79,7 +79,7 @@
       }
     },
     "categories": {
-      "Pareti e contropareti in cartongesso": {
+      "Pareti in cartongesso standard e idrorepellente": {
         "slots": {
           "numero_lastre": {
             "name": "Numero lastre",
@@ -192,7 +192,7 @@
       }
     },
     "categories": {
-      "Controsoffitto modulare": {
+      "Controsoffitti in fibre minerali e acustici": {
         "slots": {
           "tipo_pannello": {
             "name": "Tipo di pannello",
@@ -234,7 +234,7 @@
       }
     },
     "categories": {
-      "Pavimento in piastrelle": {
+      "Pavimenti in gres e ceramica": {
         "slots": {
           "materiale": {
             "name": "Materiale",
@@ -312,7 +312,7 @@
       }
     },
     "categories": {
-      "Rivestimento ceramico": {
+      "Rivestimenti in gres e ceramica": {
         "slots": {
           "materiale": {
             "name": "Materiale",
@@ -371,7 +371,7 @@
       }
     },
     "categories": {
-      "Serramento esterno": {
+      "Serramenti in PVC": {
         "slots": {
           "materiale": {
             "name": "Materiale",
@@ -381,8 +381,142 @@
               "materiale"
             ],
             "values": [
-              "PVC",
-              "alluminio",
+              "PVC"
+            ]
+          },
+          "profilo": {
+            "name": "Profilo",
+            "type": "text",
+            "priority": 70,
+            "tags": [
+              "caratteristiche"
+            ]
+          },
+          "dimensione_larghezza": {
+            "name": "Larghezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 65,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "dimensione_altezza": {
+            "name": "Altezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 65,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "trasmittanza_termica": {
+            "name": "Trasmittanza termica",
+            "type": "number",
+            "unit": "W/m²K",
+            "priority": 60,
+            "tags": [
+              "prestazioni"
+            ]
+          },
+          "isolamento_acustico": {
+            "name": "Isolamento acustico",
+            "type": "number",
+            "unit": "dB",
+            "priority": 55,
+            "tags": [
+              "prestazioni"
+            ]
+          },
+          "rw_db": {
+            "name": "Isolamento acustico Rw",
+            "type": "number",
+            "unit": "dB",
+            "priority": 54,
+            "tags": [
+              "prestazioni"
+            ]
+          }
+        }
+      },
+      "Serramenti in alluminio": {
+        "slots": {
+          "materiale": {
+            "name": "Materiale",
+            "type": "text",
+            "priority": 85,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
+              "alluminio"
+            ]
+          },
+          "profilo": {
+            "name": "Profilo",
+            "type": "text",
+            "priority": 70,
+            "tags": [
+              "caratteristiche"
+            ]
+          },
+          "dimensione_larghezza": {
+            "name": "Larghezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 65,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "dimensione_altezza": {
+            "name": "Altezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 65,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "trasmittanza_termica": {
+            "name": "Trasmittanza termica",
+            "type": "number",
+            "unit": "W/m²K",
+            "priority": 60,
+            "tags": [
+              "prestazioni"
+            ]
+          },
+          "isolamento_acustico": {
+            "name": "Isolamento acustico",
+            "type": "number",
+            "unit": "dB",
+            "priority": 55,
+            "tags": [
+              "prestazioni"
+            ]
+          },
+          "rw_db": {
+            "name": "Isolamento acustico Rw",
+            "type": "number",
+            "unit": "dB",
+            "priority": 54,
+            "tags": [
+              "prestazioni"
+            ]
+          }
+        }
+      },
+      "Serramenti in legno": {
+        "slots": {
+          "materiale": {
+            "name": "Materiale",
+            "type": "text",
+            "priority": 85,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
               "legno",
               "legno-alluminio"
             ]
@@ -466,7 +600,7 @@
       }
     },
     "categories": {
-      "Porta in legno": {
+      "Porte in legno": {
         "slots": {
           "materiale": {
             "name": "Essenza legno",
@@ -548,7 +682,7 @@
       }
     },
     "categories": {
-      "Apparecchio sanitario": {
+      "Apparecchi sanitari": {
         "slots": {
           "tipologia": {
             "name": "Tipologia",

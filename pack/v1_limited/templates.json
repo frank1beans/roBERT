@@ -4,11 +4,11 @@
     {
       "id": "scheda_cartongesso",
       "label": "Scheda pareti in cartongesso",
-      "category": "Opere da cartongessista|Pareti e contropareti in cartongesso",
+      "category": "Opere da cartongessista|Pareti in cartongesso standard e idrorepellente",
       "fields": [
         "opere_da_cartongessista.__global__.marchio",
         "opere_da_cartongessista.__global__.produttore",
-        "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.tipologia_lastra"
+        "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.tipologia_lastra"
       ]
     }
   ]
