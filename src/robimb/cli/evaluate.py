@@ -5,9 +5,10 @@ import argparse
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import List, Mapping, Optional
+from typing import Dict, List, Mapping, Optional
 
 import numpy as np
+import typer
 
 from datasets import Dataset
 from transformers import AutoConfig, AutoTokenizer, DataCollatorWithPadding
@@ -20,11 +21,20 @@ from ..reporting import generate_prediction_reports
 from ..utils.data_utils import load_jsonl_to_df
 from ..utils.metrics_utils import make_compute_metrics
 from ..utils.ontology_utils import load_label_maps
-__all__ = ["ValidationConfig", "validate_model", "build_arg_parser", "main"]
+
+__all__ = [
+    "EvaluationConfig",
+    "evaluate_model",
+    "evaluate_command",
+    "build_arg_parser",
+    "main",
+    "ValidationConfig",
+    "validate_model",
+]
 
 
 @dataclass(frozen=True)
-class ValidationConfig:
+class EvaluationConfig:
     model_dir: Path
     test_file: Path
     label_maps: Path
@@ -34,6 +44,10 @@ class ValidationConfig:
     output: Optional[Path] = None
     predictions: Optional[Path] = None
     report_dir: Optional[Path] = None
+
+
+# Backwards compatibility aliases -------------------------------------------------
+ValidationConfig = EvaluationConfig
 
 
 def _build_dataset(path: Path, max_length: int, tokenizer) -> Dataset:
@@ -55,7 +69,8 @@ def _build_dataset(path: Path, max_length: int, tokenizer) -> Dataset:
     dataset = Dataset.from_pandas(df, preserve_index=False)
     return dataset.map(_tokenize, batched=True, remove_columns=df.columns.tolist())
 
-def validate_model(config: ValidationConfig) -> Mapping[str, float]:
+
+def evaluate_model(config: EvaluationConfig) -> Mapping[str, float]:
     import torch
     from torch.utils.data import DataLoader
 
@@ -147,7 +162,7 @@ def validate_model(config: ValidationConfig) -> Mapping[str, float]:
             super_id_to_name=s_id2name,
             cat_id_to_name=c_id2name,
             output_dir=config.report_dir,
-            prefix="validation",
+            prefix="evaluation",
         )
     if config.predictions:
         preds = []
@@ -167,12 +182,52 @@ def validate_model(config: ValidationConfig) -> Mapping[str, float]:
     return metrics
 
 
+def validate_model(config: EvaluationConfig) -> Mapping[str, float]:
+    """Compatibility wrapper for the legacy name used by external scripts."""
+
+    return evaluate_model(config)
+
+
+def evaluate_command(
+    model_dir: Path = typer.Option(..., "--model-dir", exists=True, file_okay=True, dir_okay=True),
+    test_file: Path = typer.Option(..., "--test-file", exists=True, dir_okay=False),
+    label_maps: Path = typer.Option(..., "--label-maps", exists=True, dir_okay=False),
+    ontology: Optional[Path] = typer.Option(None, "--ontology", dir_okay=False, help="Optional ontology for reporting"),
+    batch_size: int = typer.Option(64, "--batch-size", help="Batch size for evaluation"),
+    max_length: int = typer.Option(256, "--max-length", help="Tokenizer max length"),
+    output: Optional[Path] = typer.Option(None, "--output", help="Path where metrics JSON should be saved"),
+    predictions: Optional[Path] = typer.Option(None, "--predictions", help="Optional JSONL with detailed predictions"),
+    report_dir: Optional[Path] = typer.Option(
+        None,
+        "--report-dir",
+        help="Directory that will host confusion matrices and analytics",
+    ),
+) -> None:
+    """Typer entrypoint delegating to :func:`evaluate_model`."""
+
+    metrics = evaluate_model(
+        EvaluationConfig(
+            model_dir=model_dir,
+            test_file=test_file,
+            label_maps=label_maps,
+            ontology=ontology,
+            batch_size=batch_size,
+            max_length=max_length,
+            output=output,
+            predictions=predictions,
+            report_dir=report_dir,
+        )
+    )
+    if output is None:
+        typer.echo(json.dumps(metrics, indent=2, ensure_ascii=False))
+
+
 def main(argv: List[str] | None = None) -> None:
     parser = build_arg_parser()
     args = parser.parse_args(argv)
 
-    metrics = validate_model(
-        ValidationConfig(
+    metrics = evaluate_model(
+        EvaluationConfig(
             model_dir=Path(args.model_dir),
             test_file=Path(args.test_file),
             label_maps=Path(args.label_maps),
@@ -190,7 +245,7 @@ def main(argv: List[str] | None = None) -> None:
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Validate a trained BIM model")
+    parser = argparse.ArgumentParser(description="Evaluate a trained BIM model")
     parser.add_argument("--model-dir", required=True)
     parser.add_argument("--test-file", required=True)
     parser.add_argument("--label-maps", required=True)
@@ -201,6 +256,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--predictions", default=None, help="Optional path to save predictions")
     parser.add_argument("--report-dir", default=None, help="Directory for plots and evaluation reports")
     return parser
+
 
 if __name__ == "__main__":
     main()

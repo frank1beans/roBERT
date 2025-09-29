@@ -98,75 +98,34 @@ robimb convert \
 Il comando genera i dataset preprocessati, salva la maschera ontologica e, se
 richiesto, costruisce un corpus testuale per TAPT/MLM.
 
-### 2. Training TAPT (Masked Language Modeling)
+### 2. Estrazione del knowledge pack
 
 ```bash
-robimb tapt data/mlm_corpus.txt \
-  --model atipiqal/BOB \
-  --output_dir runs/mlm_tapt
+robimb extract \
+  --registry pack/current/registry.json \
+  --extractors pack/current/extractors.json \
+  --out-dir data/properties
 ```
 
-Il comando esegue TAPT con opzioni per whole-word masking, LLRD, congelamento e
-sblocco progressivo dei layer.
+Espande un knowledge pack monolitico nella struttura a cartelle (`registry/` ed
+`extractors/`) utilizzata dal progetto.
 
-> Suggerimento: `atipiqal/BOB` è il checkpoint TAPT di riferimento per il
-> dominio AEC. È possibile usarlo direttamente oppure come base model per
-> riaddestramenti mirati.
-
-### 3. Training del classificatore a label embedding
+### 3. Creazione del knowledge pack
 
 ```bash
-robimb train label \
-  --base_model atipiqal/roBERTino \
-  --train_jsonl outputs/train_processed.jsonl \
-  --val_jsonl outputs/val_processed.jsonl \
-  --label_maps outputs/label_maps.json \
-  --ontology data/ontology.json \
-  --label_texts_super data/label_texts_super.jsonl \
-  --label_texts_cat data/label_texts_cat.jsonl \
-  --out_dir runs/label_model
+robimb pack \
+  --properties-root data/properties \
+  --out-registry pack/out/registry.json \
+  --out-extractors pack/out/extractors.json
 ```
 
-Il comando utilizza `LabelEmbedModel`, inizializza i prototipi delle classi dai
-rispettivi testi e salva un pacchetto di export (`export/`) contenente pesi
-`safetensors`, tokenizer, mapping e ontologia.
+Ricompone le cartelle delle proprietà in due file JSON pronti per la
+distribuzione o la pubblicazione.
 
-Quando il dataset fornisce le colonne aggiuntive `properties` e
-`property_schema`, il trainer abilita automaticamente una testa secondaria che
-predice la presenza degli slot e i valori numerici associati. Il contributo
-delle due componenti può essere bilanciato tramite:
-
-* `--property_presence_weight` per la loss multi-label di presenza (default `1.0`).
-* `--property_regression_weight` per la loss di regressione sugli slot numerici
-  (default `1.0`).
-
-> Suggerimento: `atipiqal/roBERTino` fornisce un backbone già specializzato per
-> la classificazione BIM e rappresenta il punto di partenza ideale per il label
-> model. In alternativa è possibile riutilizzare qualsiasi checkpoint Hugging
-> Face compatibile.
-
-### 4. Training del modello gerarchico con maschera
+### 4. Valutazione del modello
 
 ```bash
-robimb train hier \
-  --base_model runs/mlm_tapt \
-  --train_jsonl outputs/train_processed.jsonl \
-  --val_jsonl outputs/val_processed.jsonl \
-  --label_maps outputs/label_maps.json \
-  --ontology data/ontology.json \
-  --out_dir runs/hier_model
-```
-
-Viene addestrato `MultiTaskBERTMasked` con maschera ontologica, ArcFace
-opzionale e pesi di classe. Anche in questo caso il comando crea `export/` con il
-modello pronto all'uso. La testata sulle proprietà è condivisa con il trainer a
-label embedding e usa gli stessi argomenti facoltativi `--property_presence_weight`
-e `--property_regression_weight` per regolare le nuove perdite.
-
-### 5. Validazione
-
-```bash
-robimb validate \
+robimb evaluate \
   --model-dir runs/label_model/export \
   --test-file outputs/val_processed.jsonl \
   --label-maps outputs/label_maps.json \
@@ -178,7 +137,20 @@ Il comando carica automaticamente il tipo corretto di modello (label o
 mask-based), calcola le metriche gerarchiche e, se richiesto, esporta le
 predizioni.
 
-### 6. Reportistica e visualizzazioni
+### Script di training e TAPT
+
+I flussi di addestramento rimangono disponibili come script dedicati:
+
+```bash
+python -m robimb.cli.train label ...
+python -m robimb.cli.train hier ...
+python -m robimb.training.tapt_mlm ...
+```
+
+Questa modalità preserva tutti gli argomenti avanzati dei tool originali senza
+appesantire il router Typer principale.
+
+### 5. Reportistica e visualizzazioni
 
 La pipeline genera automaticamente una reportistica visuale pensata per analizzare
 sia i dataset in ingresso sia le prestazioni in uscita:
@@ -189,10 +161,10 @@ sia i dataset in ingresso sia le prestazioni in uscita:
   * distribuzioni delle classi *super* e *cat* (grafici a barre ordinati);
   * un file `dataset_summary.json` con statistiche descrittive (conteggi, medie,
     percentile 95) utili per monitorare sbilanciamenti e anomalie.
-* Con `robimb validate` si possono produrre artefatti diagnostici passando
+* Con `robimb evaluate` si possono produrre artefatti diagnostici passando
   `--report-dir outputs/eval_reports`:
   * matrici di confusione normalizzate (super e cat) renderizzate con seaborn;
-  * `validation_prediction_report.json` con classification report dettagliati e
+  * `evaluation_prediction_report.json` con classification report dettagliati e
     l'elenco delle principali coppie confuse.
 
 I grafici sono realizzati con `matplotlib`/`seaborn` in modalità headless (backend

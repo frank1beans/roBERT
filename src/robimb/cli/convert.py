@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
+import typer
 
 from ..reporting import generate_dataset_reports
 from ..utils.data_utils import (
@@ -22,6 +23,7 @@ __all__ = [
     "ConversionConfig",
     "ConversionArtifacts",
     "run_conversion",
+    "convert_command",
     "build_arg_parser",
     "main",
 ]
@@ -302,6 +304,72 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
     parser.add_argument("--text-field", default="text", help="Column name for the textual description")
     return parser
+
+
+def convert_command(
+    train_file: Path = typer.Option(..., "--train-file", exists=True, dir_okay=False, help="Path to raw training JSONL"),
+    val_file: Optional[Path] = typer.Option(None, "--val-file", exists=True, dir_okay=False, help="Optional validation JSONL"),
+    ontology: Optional[Path] = typer.Option(None, "--ontology", exists=True, dir_okay=False, help="Ontology JSON mapping"),
+    label_maps: Path = typer.Option(..., "--label-maps", dir_okay=False, help="Output path for generated label maps"),
+    out_dir: Path = typer.Option(..., "--out-dir", help="Directory that will receive processed data"),
+    done_uids: Optional[Path] = typer.Option(None, "--done-uids", exists=True, dir_okay=False, help="Text file listing UIDs to skip"),
+    val_split: float = typer.Option(0.2, "--val-split", min=0.0, max=0.5, help="Validation ratio when --val-file is missing"),
+    random_state: int = typer.Option(42, "--random-state", help="Random seed used for deterministic splits"),
+    make_mlm_corpus: bool = typer.Option(False, "--make-mlm-corpus", help="Produce MLM/TAPT corpus"),
+    mlm_output: Optional[Path] = typer.Option(None, "--mlm-output", help="Corpus output path when --make-mlm-corpus is set"),
+    extra_mlm: Optional[List[Path]] = typer.Option(
+        None,
+        "--extra-mlm",
+        help="Additional JSONL files contributing text to the MLM corpus",
+        metavar="PATH",
+        show_default=False,
+    ),
+    reports_dir: Optional[Path] = typer.Option(
+        None,
+        "--reports-dir",
+        help="Directory where dataset plots and summary files will be saved",
+    ),
+    properties_registry: Optional[Path] = typer.Option(
+        DEFAULT_PROPERTIES_REGISTRY,
+        "--properties-registry",
+        exists=True,
+        dir_okay=False,
+        help="Optional registry JSON or knowledge pack containing property schemas",
+    ),
+    extractors_pack: Optional[Path] = typer.Option(
+        DEFAULT_EXTRACTORS_PACK,
+        "--extractors-pack",
+        exists=True,
+        dir_okay=False,
+        help="Knowledge pack or extractors JSON used to auto-populate property values",
+    ),
+    text_field: str = typer.Option(
+        "text",
+        "--text-field",
+        help="Column containing the textual description analysed for property extraction",
+    ),
+) -> None:
+    """Typer entrypoint that proxies to :func:`run_conversion`."""
+
+    config = ConversionConfig(
+        train_file=train_file,
+        val_file=val_file,
+        ontology=ontology,
+        label_maps=label_maps,
+        out_dir=out_dir,
+        done_uids=done_uids,
+        val_split=val_split,
+        random_state=random_state,
+        make_mlm_corpus=make_mlm_corpus,
+        mlm_output=mlm_output,
+        extra_mlm=tuple(extra_mlm or ()),
+        reports_dir=reports_dir,
+        properties_registry=properties_registry or DEFAULT_PROPERTIES_REGISTRY,
+        extractors_pack=extractors_pack or DEFAULT_EXTRACTORS_PACK,
+        text_field=text_field,
+    )
+    artifacts = run_conversion(config)
+    typer.echo(json.dumps(artifacts.as_dict(), indent=2, ensure_ascii=False))
 
 
 def main(argv: List[str] | None = None) -> None:

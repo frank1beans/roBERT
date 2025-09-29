@@ -1,5 +1,9 @@
-# Comando `robimb train`
+# Script di training
 
-Il gruppo di comandi `train` in `cli/main.py` funge da proxy verso gli script di addestramento specializzati. Typer definisce due sottocomandi: `robimb train label` e `robimb train hier`. Entrambi inoltrano gli argomenti direttamente a `cli/train.py`, che a sua volta richiama le funzioni `training.label_trainer.main` o `training.hier_trainer.main` basate su `argparse`.
+I comandi legacy di training non sono più esposti direttamente dalla console `robimb`. Rimangono comunque disponibili come script dedicati basati su `argparse`:
 
-Questo design preserva la CLI avanzata originale (inclusi file di configurazione, override da terminale e pubblicazione su Hub) evitando duplicazioni di logica. Se non vengono forniti argomenti, ciascun sottocomando mostra l'help dettagliato generato da `argparse`, mentre eventuali errori vengono convertiti in `typer.Exit` per mantenere il comportamento coerente con gli altri comandi Typer.
+- `python -m robimb.cli.train label ...` per il label model;
+- `python -m robimb.cli.train hier ...` per il modello gerarchico multi-task;
+- `python -m robimb.training.tapt_mlm ...` per l'eventuale TAPT/MLM.
+
+L'esecuzione via `python -m ...` preserva tutti gli argomenti avanzati delle utility originali (file di configurazione, override da terminale, pubblicazione su Hugging Face Hub) mantenendo al contempo il router Typer focalizzato sui flussi operativi principali (convert, extract, pack, evaluate).
