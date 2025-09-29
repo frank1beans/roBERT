@@ -5,13 +5,15 @@
       "id": "default_cantiere",
       "label": "Impostazione standard di progetto",
       "categories": [
-        "Opere da cartongessista|Pareti e contropareti in cartongesso",
-        "Controsoffitti|Controsoffitto modulare",
-        "Opere di pavimentazione|Pavimento in piastrelle",
-        "Opere di rivestimento|Rivestimento ceramico",
-        "Opere da serramentista|Serramento esterno",
-        "Opere da falegname|Porta in legno",
-        "Apparecchi sanitari e accessori|Apparecchio sanitario"
+        "Opere da cartongessista|Pareti in cartongesso standard e idrorepellente",
+        "Controsoffitti|Controsoffitti in fibre minerali e acustici",
+        "Opere di pavimentazione|Pavimenti in gres e ceramica",
+        "Opere di rivestimento|Rivestimenti in gres e ceramica",
+        "Opere da serramentista|Serramenti in PVC",
+        "Opere da serramentista|Serramenti in alluminio",
+        "Opere da serramentista|Serramenti in legno",
+        "Opere da falegname|Porte in legno",
+        "Apparecchi sanitari e accessori|Apparecchi sanitari"
       ]
     }
   ]

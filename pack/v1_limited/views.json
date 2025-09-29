@@ -5,10 +5,12 @@
       "id": "panoramica_finiture",
       "label": "Panoramica finiture",
       "categories": [
-        "Opere di pavimentazione|Pavimento in piastrelle",
-        "Opere di rivestimento|Rivestimento ceramico",
-        "Opere da falegname|Porta in legno",
-        "Opere da serramentista|Serramento esterno"
+        "Opere di pavimentazione|Pavimenti in gres e ceramica",
+        "Opere di rivestimento|Rivestimenti in gres e ceramica",
+        "Opere da falegname|Porte in legno",
+        "Opere da serramentista|Serramenti in PVC",
+        "Opere da serramentista|Serramenti in alluminio",
+        "Opere da serramentista|Serramenti in legno"
       ]
     }
   ]

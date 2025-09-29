@@ -4,11 +4,11 @@
     {
       "id": "pavimenti_superficie",
       "description": "Calcola la superficie totale del pavimento a partire dalle dimensioni.",
-      "category": "Opere di pavimentazione|Pavimento in piastrelle",
+      "category": "Opere di pavimentazione|Pavimenti in gres e ceramica",
       "expression": "lunghezza * larghezza",
       "variables": {
-        "lunghezza": "opere_di_pavimentazione.pavimento_in_piastrelle.dimensione_lunghezza",
-        "larghezza": "opere_di_pavimentazione.pavimento_in_piastrelle.dimensione_larghezza"
+        "lunghezza": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.dimensione_lunghezza",
+        "larghezza": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.dimensione_larghezza"
       }
     }
   ]

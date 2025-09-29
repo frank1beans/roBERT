@@ -33,7 +33,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.tipologia_lastra",
+      "property_id": "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.tipologia_lastra",
       "regex": [
         "(?i)\\blastra\\b[^\\n]*?(?P<val>standard|idrofuga|ignifuga|alta\\s+densi(?:tà|ta))"
       ],
@@ -47,7 +47,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "controsoffitti.controsoffitto_modulare.tipo_pannello",
+      "property_id": "controsoffitti.controsoffitti_in_fibre_minerali_e_acustici.tipo_pannello",
       "regex": [
         "(?i)\\b(pannello)\\b[^\\n]*?(?P<val>gesso\\s+rivestito|metallo|fibra\\s+minerale|legno)"
       ],
@@ -61,7 +61,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_di_pavimentazione.pavimento_in_piastrelle.materiale",
+      "property_id": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.materiale",
       "regex": [
         "(?i)\\bmateriale\\b[:=\\s]+(?P<val>gres(?:\\s+porcellanato)?|ceramica|legno|pietra)"
       ],
@@ -75,7 +75,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_di_pavimentazione.pavimento_in_piastrelle.formato",
+      "property_id": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.formato",
       "regex": [
         "(?i)\\bformato\\b[:=\\s]+(?P<val1>\\d{2,3})\\s*[x×]\\s*(?P<val2>\\d{2,3})(?:\\s*cm)?"
       ],
@@ -86,7 +86,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_di_pavimentazione.pavimento_in_piastrelle.spessore_mm",
+      "property_id": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.spessore_mm",
       "regex": [
         "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
       ],
@@ -102,7 +102,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_da_serramentista.serramento_esterno.trasmittanza_termica",
+      "property_id": "opere_da_serramentista.serramenti_in_pvc.trasmittanza_termica",
       "regex": [
         "(?i)\\bUw\\b[:=\\s≤]*(?P<val>\\d(?:[.,]\\d)?)"
       ],
@@ -117,7 +117,37 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_da_serramentista.serramento_esterno.isolamento_acustico",
+      "property_id": "opere_da_serramentista.serramenti_in_alluminio.trasmittanza_termica",
+      "regex": [
+        "(?i)\\bUw\\b[:=\\s≤]*(?P<val>\\d(?:[.,]\\d)?)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "W/m²K",
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_legno.trasmittanza_termica",
+      "regex": [
+        "(?i)\\bUw\\b[:=\\s≤]*(?P<val>\\d(?:[.,]\\d)?)"
+      ],
+      "normalizers": [
+        "comma_to_dot",
+        "to_float"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "W/m²K",
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_pvc.isolamento_acustico",
       "regex": [
         "(?i)\\bRw\\b[:=\\s]*(?P<val>\\d{1,2})\\s*dB"
       ],
@@ -131,7 +161,35 @@
       "confidence": 0.6
     },
     {
-      "property_id": "apparecchi_sanitari_e_accessori.apparecchio_sanitario.tipologia",
+      "property_id": "opere_da_serramentista.serramenti_in_alluminio.isolamento_acustico",
+      "regex": [
+        "(?i)\\bRw\\b[:=\\s]*(?P<val>\\d{1,2})\\s*dB"
+      ],
+      "normalizers": [
+        "to_float"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "dB",
+      "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_legno.isolamento_acustico",
+      "regex": [
+        "(?i)\\bRw\\b[:=\\s]*(?P<val>\\d{1,2})\\s*dB"
+      ],
+      "normalizers": [
+        "to_float"
+      ],
+      "tags": [
+        "prestazioni"
+      ],
+      "unit": "dB",
+      "confidence": 0.6
+    },
+    {
+      "property_id": "apparecchi_sanitari_e_accessori.apparecchi_sanitari.tipologia",
       "regex": [
         "(?i)\\b(?P<val>wc|bidet|lavabo|piatto\\s+doccia|accessorio)\\b"
       ],
@@ -145,7 +203,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_di_rivestimento.rivestimento_ceramico.spessore_mm",
+      "property_id": "opere_di_rivestimento.rivestimenti_in_gres_e_ceramica.spessore_mm",
       "regex": [
         "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
       ],
@@ -160,7 +218,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.spessore_mm",
+      "property_id": "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.spessore_mm",
       "regex": [
         "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
       ],
@@ -175,7 +233,7 @@
       "confidence": 0.6
     },
     {
-      "property_id": "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.classe_ei",
+      "property_id": "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.classe_ei",
       "regex": [
         "(?i)\\b(?:rei|ei)\\s*(?P<val>15|30|45|60|90|120|180|240)\\b"
       ],
