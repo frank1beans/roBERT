@@ -1,0 +1,599 @@
+{
+  "_schema": "v4",
+  "metadata": {
+    "version": "2024-11-20T000000",
+    "description": "Registry limitato per categorie di finitura",
+    "generated_at": "2024-11-20T00:00:00Z"
+  },
+  "Opere da cartongessista": {
+    "_global": {
+      "slots": {
+        "marchio": {
+          "name": "Marchio",
+          "type": "text",
+          "priority": 100,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "produttore": {
+          "name": "Produttore",
+          "type": "text",
+          "priority": 90,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "orditura": {
+          "name": "Orditura",
+          "type": "text",
+          "priority": 70,
+          "tags": [
+            "stratigrafia"
+          ],
+          "values": [
+            "singola",
+            "doppia"
+          ],
+          "default": "singola"
+        },
+        "classe_reazione_al_fuoco": {
+          "name": "Classe di reazione al fuoco",
+          "type": "text",
+          "priority": 65,
+          "tags": [
+            "prestazioni"
+          ],
+          "values": [
+            "A1",
+            "A2",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ]
+        },
+        "presenza_isolante": {
+          "name": "Isolante",
+          "type": "boolean",
+          "priority": 60,
+          "tags": [
+            "stratigrafia"
+          ],
+          "values": [
+            "si",
+            "no"
+          ],
+          "default": "no"
+        },
+        "rw_db": {
+          "name": "Isolamento acustico Rw",
+          "type": "number",
+          "unit": "dB",
+          "priority": 58,
+          "tags": [
+            "prestazioni"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Pareti e contropareti in cartongesso": {
+        "slots": {
+          "numero_lastre": {
+            "name": "Numero lastre",
+            "type": "integer",
+            "priority": 55,
+            "tags": [
+              "quantita"
+            ]
+          },
+          "tipologia_lastra": {
+            "name": "Tipo di lastra",
+            "type": "text",
+            "priority": 55,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
+              "standard",
+              "idrofuga",
+              "ignifuga",
+              "alta densità"
+            ]
+          },
+          "classe_ei": {
+            "name": "Classe EI",
+            "type": "text",
+            "priority": 62,
+            "tags": [
+              "prestazioni"
+            ],
+            "values": [
+              "EI30",
+              "EI60",
+              "EI90",
+              "EI120"
+            ]
+          },
+          "spessore_mm": {
+            "name": "Spessore parete",
+            "type": "number",
+            "unit": "mm",
+            "priority": 58,
+            "tags": [
+              "dimensione"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Controsoffitti": {
+    "_global": {
+      "slots": {
+        "marchio": {
+          "name": "Marchio",
+          "type": "text",
+          "priority": 100,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "produttore": {
+          "name": "Produttore",
+          "type": "text",
+          "priority": 90,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "orditura": {
+          "name": "Orditura",
+          "type": "text",
+          "priority": 70,
+          "tags": [
+            "stratigrafia"
+          ],
+          "values": [
+            "primaria",
+            "secondaria"
+          ]
+        },
+        "classe_reazione_al_fuoco": {
+          "name": "Classe di reazione al fuoco",
+          "type": "text",
+          "priority": 65,
+          "tags": [
+            "prestazioni"
+          ],
+          "values": [
+            "A1",
+            "A2",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        "presenza_isolante": {
+          "name": "Isolante",
+          "type": "boolean",
+          "priority": 60,
+          "tags": [
+            "stratigrafia"
+          ],
+          "values": [
+            "si",
+            "no"
+          ],
+          "default": "no"
+        }
+      }
+    },
+    "categories": {
+      "Controsoffitto modulare": {
+        "slots": {
+          "tipo_pannello": {
+            "name": "Tipo di pannello",
+            "type": "text",
+            "priority": 55,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
+              "gesso rivestito",
+              "metallo",
+              "fibra minerale",
+              "legno"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Opere di pavimentazione": {
+    "_global": {
+      "slots": {
+        "marchio": {
+          "name": "Marchio",
+          "type": "text",
+          "priority": 100,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "produttore": {
+          "name": "Produttore",
+          "type": "text",
+          "priority": 90,
+          "tags": [
+            "identificazione"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Pavimento in piastrelle": {
+        "slots": {
+          "materiale": {
+            "name": "Materiale",
+            "type": "text",
+            "priority": 80,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
+              "gres porcellanato",
+              "ceramica",
+              "legno",
+              "pietra"
+            ]
+          },
+          "formato": {
+            "name": "Formato",
+            "type": "text",
+            "priority": 75,
+            "tags": [
+              "dimensione"
+            ],
+            "example": "60x60 cm"
+          },
+          "dimensione_lunghezza": {
+            "name": "Lunghezza stanza",
+            "type": "number",
+            "unit": "m",
+            "priority": 40,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "dimensione_larghezza": {
+            "name": "Larghezza stanza",
+            "type": "number",
+            "unit": "m",
+            "priority": 40,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "spessore_mm": {
+            "name": "Spessore",
+            "type": "number",
+            "unit": "mm",
+            "priority": 70,
+            "tags": [
+              "dimensione"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Opere di rivestimento": {
+    "_global": {
+      "slots": {
+        "marchio": {
+          "name": "Marchio",
+          "type": "text",
+          "priority": 100,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "produttore": {
+          "name": "Produttore",
+          "type": "text",
+          "priority": 90,
+          "tags": [
+            "identificazione"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Rivestimento ceramico": {
+        "slots": {
+          "materiale": {
+            "name": "Materiale",
+            "type": "text",
+            "priority": 80,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
+              "ceramica smaltata",
+              "gres sottile",
+              "mosaico",
+              "pietra"
+            ]
+          },
+          "formato": {
+            "name": "Formato",
+            "type": "text",
+            "priority": 75,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "spessore_mm": {
+            "name": "Spessore",
+            "type": "number",
+            "unit": "mm",
+            "priority": 70,
+            "tags": [
+              "dimensione"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Opere da serramentista": {
+    "_global": {
+      "slots": {
+        "marchio": {
+          "name": "Marchio",
+          "type": "text",
+          "priority": 100,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "produttore": {
+          "name": "Produttore",
+          "type": "text",
+          "priority": 90,
+          "tags": [
+            "identificazione"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Serramento esterno": {
+        "slots": {
+          "materiale": {
+            "name": "Materiale",
+            "type": "text",
+            "priority": 85,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
+              "PVC",
+              "alluminio",
+              "legno",
+              "legno-alluminio"
+            ]
+          },
+          "profilo": {
+            "name": "Profilo",
+            "type": "text",
+            "priority": 70,
+            "tags": [
+              "caratteristiche"
+            ]
+          },
+          "dimensione_larghezza": {
+            "name": "Larghezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 65,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "dimensione_altezza": {
+            "name": "Altezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 65,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "trasmittanza_termica": {
+            "name": "Trasmittanza termica",
+            "type": "number",
+            "unit": "W/m²K",
+            "priority": 60,
+            "tags": [
+              "prestazioni"
+            ]
+          },
+          "isolamento_acustico": {
+            "name": "Isolamento acustico",
+            "type": "number",
+            "unit": "dB",
+            "priority": 55,
+            "tags": [
+              "prestazioni"
+            ]
+          },
+          "rw_db": {
+            "name": "Isolamento acustico Rw",
+            "type": "number",
+            "unit": "dB",
+            "priority": 54,
+            "tags": [
+              "prestazioni"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Opere da falegname": {
+    "_global": {
+      "slots": {
+        "marchio": {
+          "name": "Marchio",
+          "type": "text",
+          "priority": 100,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "produttore": {
+          "name": "Produttore",
+          "type": "text",
+          "priority": 90,
+          "tags": [
+            "identificazione"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Porta in legno": {
+        "slots": {
+          "materiale": {
+            "name": "Essenza legno",
+            "type": "text",
+            "priority": 85,
+            "tags": [
+              "materiale"
+            ],
+            "values": [
+              "rovere",
+              "noce",
+              "frassino",
+              "laminato"
+            ]
+          },
+          "dimensione_larghezza": {
+            "name": "Larghezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 70,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "dimensione_altezza": {
+            "name": "Altezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 70,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "spessore_anta": {
+            "name": "Spessore anta",
+            "type": "number",
+            "unit": "mm",
+            "priority": 65,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "prestazione_fuoco": {
+            "name": "Resistenza al fuoco",
+            "type": "text",
+            "priority": 60,
+            "tags": [
+              "prestazioni"
+            ],
+            "values": [
+              "REI 30",
+              "REI 60",
+              "REI 90"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Apparecchi sanitari e accessori": {
+    "_global": {
+      "slots": {
+        "marchio": {
+          "name": "Marchio",
+          "type": "text",
+          "priority": 100,
+          "tags": [
+            "identificazione"
+          ]
+        },
+        "produttore": {
+          "name": "Produttore",
+          "type": "text",
+          "priority": 90,
+          "tags": [
+            "identificazione"
+          ]
+        }
+      }
+    },
+    "categories": {
+      "Apparecchio sanitario": {
+        "slots": {
+          "tipologia": {
+            "name": "Tipologia",
+            "type": "text",
+            "priority": 80,
+            "tags": [
+              "classificazione"
+            ],
+            "values": [
+              "wc",
+              "bidet",
+              "lavabo",
+              "piatto doccia",
+              "accessorio"
+            ]
+          },
+          "dimensione_lunghezza": {
+            "name": "Lunghezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 70,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "dimensione_larghezza": {
+            "name": "Larghezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 70,
+            "tags": [
+              "dimensione"
+            ]
+          },
+          "dimensione_altezza": {
+            "name": "Altezza",
+            "type": "number",
+            "unit": "mm",
+            "priority": 70,
+            "tags": [
+              "dimensione"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

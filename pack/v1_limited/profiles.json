@@ -1,0 +1,13 @@
+{
+  "schema": "profiles/v1",
+  "profiles": [
+    {
+      "id": "essenziale",
+      "label": "Profilo essenziale",
+      "description": "Set minimo di categorie per validare le finiture di un progetto",
+      "contexts": ["default_cantiere"],
+      "views": ["panoramica_finiture"],
+      "templates": ["scheda_cartongesso"]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "templates/v1",
+  "templates": [
+    {
+      "id": "scheda_cartongesso",
+      "label": "Scheda pareti in cartongesso",
+      "category": "Opere da cartongessista|Pareti e contropareti in cartongesso",
+      "fields": [
+        "opere_da_cartongessista.__global__.marchio",
+        "opere_da_cartongessista.__global__.produttore",
+        "opere_da_cartongessista.pareti_e_contropareti_in_cartongesso.tipologia_lastra"
+      ]
+    }
+  ]
+}

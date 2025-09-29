@@ -40,9 +40,11 @@ I file seguenti devono essere forniti (alcuni sono opzionali ma consigliati):
 
 ### Asset di estrazione proprietà
 
-Gli asset per l'estrazione automatica delle proprietà, insieme a registry, mappe di categoria, validatori e template descrittivi, sono raccolti in un unico knowledge pack distribuito in `pack/current/pack.json`. La funzione `robimb.extraction.resources.load_default()` restituisce direttamente la sezione `extractors` presente nel pack, mentre `robimb.registry.load_pack()` carica l'intero bundle quando serve accedere anche a registry e template.
+Gli asset per l'estrazione automatica delle proprietà – registry, catmap, validatori, template descrittivi e profili contestuali – sono versionati nella cartella `pack/`. Ogni sottodirectory `vX/` contiene i file `registry.json`, `extractors.json`, `validators.json`, `formulas.json`, `views.json`, `templates.json`, `profiles.json`, `contexts.json` e il relativo `manifest.json`. Il symlink `pack/current/` punta sempre alla versione attiva del bundle.
 
-Gli script `robimb convert` e la pipeline di inferenza utilizzano questo stesso file come punto di ingresso predefinito. È comunque possibile fornire un pack alternativo via CLI (`--extractors-pack` o `--properties-registry`) indicando un JSON con struttura analoga oppure un knowledge pack completo contenente la chiave `extractors`.
+Per impostazione predefinita `pack/current/` rimanda a `pack/v1_limited/`, un bundle alleggerito che raccoglie solo le categorie di finitura più richieste (cartongesso, controsoffitti, pavimentazioni, rivestimenti, opere da serramentista e falegname, apparecchi sanitari) con slot mirati su marchio, produttore, materiali, spessori/orditure, prestazioni EI e Rw, dimensioni e accessori. Il bundle completo precedentemente distribuito resta disponibile in `pack/v1/` per test di regressione o per esigenze più estese.
+
+La funzione `robimb.extraction.resources.load_default()` risolve automaticamente `pack/current/extractors.json` (con fallback ai percorsi legacy), mentre `robimb.registry.load_pack()` carica l'intero bundle a partire da `pack/current/`. Gli script `robimb convert` e la pipeline di inferenza condividono la stessa convenzione; è comunque possibile fornire un pack alternativo via CLI (`--extractors-pack` o `--properties-registry`) indicando un JSON compatibile oppure un'altra directory versionata con la stessa struttura.
 
 Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 
@@ -115,12 +117,11 @@ Espande un knowledge pack monolitico nella struttura a cartelle (`registry/` ed
 ```bash
 robimb pack \
   --properties-root data/properties \
-  --out-registry pack/out/registry.json \
-  --out-extractors pack/out/extractors.json
+  --pack-root pack/ \
+  --version v2
 ```
 
-Ricompone le cartelle delle proprietà in due file JSON pronti per la
-distribuzione o la pubblicazione.
+Ricompone le cartelle delle proprietà generando un nuovo bundle versionato (`pack/v2/…`) e, salvo diversa indicazione, aggiorna il symlink `pack/current/`.
 
 ### 4. Valutazione del modello
 

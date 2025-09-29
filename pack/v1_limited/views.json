@@ -1,0 +1,15 @@
+{
+  "schema": "views/v1",
+  "views": [
+    {
+      "id": "panoramica_finiture",
+      "label": "Panoramica finiture",
+      "categories": [
+        "Opere di pavimentazione|Pavimento in piastrelle",
+        "Opere di rivestimento|Rivestimento ceramico",
+        "Opere da falegname|Porta in legno",
+        "Opere da serramentista|Serramento esterno"
+      ]
+    }
+  ]
+}

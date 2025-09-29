@@ -1,0 +1,15 @@
+{
+  "schema": "formulas/v1",
+  "formulas": [
+    {
+      "id": "pavimenti_superficie",
+      "description": "Calcola la superficie totale del pavimento a partire dalle dimensioni.",
+      "category": "Opere di pavimentazione|Pavimento in piastrelle",
+      "expression": "lunghezza * larghezza",
+      "variables": {
+        "lunghezza": "opere_di_pavimentazione.pavimento_in_piastrelle.dimensione_lunghezza",
+        "larghezza": "opere_di_pavimentazione.pavimento_in_piastrelle.dimensione_larghezza"
+      }
+    }
+  ]
+}
