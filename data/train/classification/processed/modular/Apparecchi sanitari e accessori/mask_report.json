@@ -1,6 +1,6 @@
 {
-  "note": "no ontology provided, using full mask",
+  "note": "mask built from ontology",
   "missing_super": 0,
   "missing_cat": 0,
-  "coverage": 7093.0
+  "coverage": 172.0
 }
