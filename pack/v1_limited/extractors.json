@@ -343,7 +343,8 @@
     {
       "property_id": "opere_da_cartongessista.accessori_per_cartongessi.tipologia_accessorio",
       "regex": [
-        "(?ix)\\\\baccessori?\\\\b[^:\\\\n]{0,20}(?P<val>maniglione|doccetta|dispenser|specchio|box\\\\s+doccia|griglia|canalina|seggiolino|piletta|porta\\\\s+sapone|porta\\\\s+rotolo)"
+        "(?ix)\\\\b(?:accessor[io]|component[ei]|element[oi]|profil[oi]|montant[ei]|guide?|staffe?|pendin(?:atura|i|o)|ganc[ioi]|clip|omega|cappell[oi]|travers[oi]|listell[oi]|sospension[ei]|fissagg[io]|viti|tassell[oi]|nastr[oi]|bandell[ae]|paraspigol[oi]|giunt[oi]|stucc[oi]|rasant[ei]|collant[ei])\\\\b[^\\\\n]{0,40}?(?P<val>(?:profil[oi]|montant[ei]|guide?|staffe?|pendin(?:atura|i|o|aggi)|ganc[ioi]|clip|omega|cappell[oi]|travers[oi]|listell[oi]|sospension[ei]|viti?|vite(?:\\\\s+autoperforanti?|\\\\s+autofilettanti?)|tassell[oi]|nastr[oi]|bandell[ae]|paraspigol[oi]|giunt[oi]|stucc[oi]|rasant[ei]|collant[ei])(?:\\\\s+[A-Za-z0-9À-ÖØ-öø-ÿ°'\\\"/-]+){0,3})",
+        "(?ix)(?P<val>(?:profil[oi]|montant[ei]|guide?|staffe?|pendin(?:atura|i|o|aggi)|ganc[ioi]|clip|omega|cappell[oi]|travers[oi]|listell[oi]|sospension[ei]|viti?|vite(?:\\\\s+autoperforanti?|\\\\s+autofilettanti?)|tassell[oi]|nastr[oi]|bandell[ae]|paraspigol[oi]|giunt[oi]|stucc[oi]|rasant[ei]|collant[ei]))(?:\\\\s+[A-Za-z0-9À-ÖØ-öø-ÿ°'\\\"/-]+){0,3})"
       ],
       "normalizers": [
         "strip",
