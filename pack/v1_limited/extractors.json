@@ -25,7 +25,7 @@
       "regex": [
         "(?ix)(?<![A-Za-z0-9])(?:marca|marchio|brand|linea|serie|gamma|prodotto|produttore|azienda|ditta|mod(?:ello|\\.)|articolo|art\\.?|cod(?:ice)?|ref\\.?|rif\\.?|programma|famiglia)(?:\\s+(?:ufficiale|principale|di)?)*\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120})(?:[A-Za-z0-9&'®™./-]+\\s?){1,6})(?=\\s*(?:[,;.)]|$))",
         "(?ix)\\bby\\s+(?P<val>(?=.{2,120})(?:[A-Za-z0-9&'®™./-]+\\s?){1,6})(?=\\s*(?:[,;.)]|$))",
-        "(?ix)(?P<val>\\b(?:fassa(?:\\s+bortolo)?|kerakoll(?:\\s+design)?|mapei|saint[-\\s]?gobain\\s+weber|azichem|baumit|r(?:ö|o)fix|kimia|malvin|san\\s+marco|premix|tradimalt|fornaci\\s+calce\\s+grigolin|boero|sikkens|max\\s*meyer|novacolor|cap\\s+arreghini|diasen|molteni\\s+vernici|index|litokol|laticrete|ilpa\\s+adesivi)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b",
+        "(?ix)(?P<val>\\b(?:fassa(?:\\s+bortolo)?|kerakoll(?:\\s+design)?|mapei|saint[-\\s]?gobain\\s+weber|azichem|baumit|r(?:ö|o)fix|kimia|malvin|san\\s+marco|premix|tradimalt|fornaci\\s+calce\\s+grigolin|boero|sikkens|max\\s*meyer|novacolor|cap\\s+arreghini|diasen|molteni\\s+vernici|index|litokol|laticrete|ilpa\\s+adesivi|isolmant|isol\\s*kappa|fibran|rockwool(?:\\s+italia)?|saint[-\\s]?gobain\\s+isover|knauf\\s+insulation|stiferite)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b",
         "(?ix)(?P<val>\\b(?:marazzi|atlas\\s+concorde|ceramic[ae]\\s+keope|mirage|refin|casalgrande\\s+padana|ceramic[ae]\\s+fondovalle|ceramic[ae]\\s+del\\s+conca|ceramic[ae]\\s+sant['’]?agostino|ceramic[ae]\\s+caesar|cotto\\s+d['’]?este|ariostea|fiandre|ceramic[ae]\\s+rondine|ceramic[ae]\\s+bardelli|ceramic[ae]\\s+vogue|abk|iris\\s+ceramica|imola\\s+ceramica|fap\\s+ceramic[he]|ragno|rex|emilceramica|41zero42|bauwerk\\s+parkett|listone\\s+giordano|cp\\s+parquet)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b"
       ],
       "normalizers": [
@@ -42,7 +42,7 @@
         "(?ix)(?<![A-Za-z0-9])(?:marca|marchio|brand|linea|serie|gamma|prodotto|produttore|azienda|ditta|mod(?:ello|\\.)|articolo|art\\.?|cod(?:ice)?|ref\\.?|rif\\.?|programma|famiglia)(?:\\s+(?:ufficiale|principale|di)?)*\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120})(?:[A-Za-z0-9&'®™./-]+\\s?){1,6})(?=\\s*(?:[,;.)]|$))",
         "(?ix)\\bby\\s+(?P<val>(?=.{2,120})(?:[A-Za-z0-9&'®™./-]+\\s?){1,6})(?=\\s*(?:[,;.)]|$))",
         "(?ix)(?P<val>\\b(?:marazzi|atlas\\s+concorde|ceramic[ae]\\s+keope|mirage|refin|casalgrande\\s+padana|ceramic[ae]\\s+fondovalle|ceramic[ae]\\s+del\\s+conca|ceramic[ae]\\s+sant['’]?agostino|ceramic[ae]\\s+caesar|cotto\\s+d['’]?este|ariostea|fiandre|ceramic[ae]\\s+rondine|ceramic[ae]\\s+bardelli|ceramic[ae]\\s+vogue|abk|iris\\s+ceramica|imola\\s+ceramica|fap\\s+ceramic[he]|ragno|rex|emilceramica|41zero42|bauwerk\\s+parkett|listone\\s+giordano|cp\\s+parquet)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b",
-        "(?ix)(?P<val>\\b(?:fassa(?:\\s+bortolo)?|kerakoll(?:\\s+design)?|mapei|saint[-\\s]?gobain\\s+weber|azichem|baumit|r(?:ö|o)fix|kimia|malvin|san\\s+marco|premix|tradimalt|fornaci\\s+calce\\s+grigolin|boero|sikkens|max\\s*meyer|novacolor|cap\\s+arreghini|diasen|molteni\\s+vernici|index|litokol|laticrete|ilpa\\s+adesivi)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b"
+        "(?ix)(?P<val>\\b(?:fassa(?:\\s+bortolo)?|kerakoll(?:\\s+design)?|mapei|saint[-\\s]?gobain\\s+weber|azichem|baumit|r(?:ö|o)fix|kimia|malvin|san\\s+marco|premix|tradimalt|fornaci\\s+calce\\s+grigolin|boero|sikkens|max\\s*meyer|novacolor|cap\\s+arreghini|diasen|molteni\\s+vernici|index|litokol|laticrete|ilpa\\s+adesivi|isolmant|isol\\s*kappa|fibran|rockwool(?:\\s+italia)?|saint[-\\s]?gobain\\s+isover|knauf\\s+insulation|stiferite)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b"
       ],
       "normalizers": [
         "strip"
@@ -102,7 +102,7 @@
       "regex": [
         "(?ix)(?<![A-Za-z0-9])(?:marca|marchio|brand|linea|serie|gamma|prodotto|produttore|azienda|ditta|mod(?:ello|\\.)|articolo|art\\.?|cod(?:ice)?|ref\\.?|rif\\.?|programma|famiglia)(?:\\s+(?:ufficiale|principale|di)?)*\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120})(?:[A-Za-z0-9&'®™./-]+\\s?){1,6})(?=\\s*(?:[,;.)]|$))",
         "(?ix)\\bby\\s+(?P<val>(?=.{2,120})(?:[A-Za-z0-9&'®™./-]+\\s?){1,6})(?=\\s*(?:[,;.)]|$))",
-        "(?ix)(?P<val>\\b(?:internorm(?:\\s+italia)?|finstral|oknoplast|sch(?:ü|u)co|rehau|gealan|veka|nurith|nusco|alphacan|schulz(?:\\s+italia)?|vetrex(?:\\s+italia)?|dqg|diquigiovanni|belle\\s+finestre|piva\\s+group|wnd|cocif|gc\\s+infissi|k-line|jansen)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b"
+        "(?ix)(?P<val>\\b(?:internorm(?:\\s+italia)?|finstral|oknoplast|sch(?:ü|u)co|rehau|gealan|veka|nurith|nusco|alphacan|schulz(?:\\s+italia)?|vetrex(?:\\s+italia)?|dqg|diquigiovanni|belle\\s+finestre|piva\\s+group|wnd|cocif|gc\\s+infissi|k-line|jansen|garofoli|bertolotto(?:\\s+porte)?|ferrero\\s*legno|scrigno|eclisse|bauwerk\\s+parkett|listone\\s+giordano|cp\\s+parquet)(?:\\s+(?:italia|group|s\\.p\\.a\\.|spa|srl))?)\\b"
       ],
       "normalizers": [
         "strip"
