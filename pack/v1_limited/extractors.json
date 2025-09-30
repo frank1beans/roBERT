@@ -9,8 +9,9 @@
     {
       "property_id": "opere_da_cartongessista.__global__.marchio",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -23,8 +24,9 @@
     {
       "property_id": "opere_da_cartongessista.__global__.produttore",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -37,8 +39,9 @@
     {
       "property_id": "controsoffitti.__global__.marchio",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -51,8 +54,9 @@
     {
       "property_id": "controsoffitti.__global__.produttore",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -65,8 +69,9 @@
     {
       "property_id": "opere_di_pavimentazione.__global__.marchio",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -79,8 +84,9 @@
     {
       "property_id": "opere_di_pavimentazione.__global__.produttore",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -93,8 +99,9 @@
     {
       "property_id": "opere_di_rivestimento.__global__.marchio",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -107,8 +114,9 @@
     {
       "property_id": "opere_di_rivestimento.__global__.produttore",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -121,8 +129,9 @@
     {
       "property_id": "opere_da_serramentista.__global__.marchio",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -135,8 +144,9 @@
     {
       "property_id": "opere_da_serramentista.__global__.produttore",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -149,8 +159,9 @@
     {
       "property_id": "opere_da_falegname.__global__.marchio",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -163,8 +174,9 @@
     {
       "property_id": "opere_da_falegname.__global__.produttore",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -177,8 +189,9 @@
     {
       "property_id": "apparecchi_sanitari_e_accessori.__global__.marchio",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -191,8 +204,9 @@
     {
       "property_id": "apparecchi_sanitari_e_accessori.__global__.produttore",
       "regex": [
-        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
-        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))"
+        "(?ix)(?<![A-Za-zÀ-ÖØ-öø-ÿ0-9])(?:(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia)(?:\\s+(?:marca|marchio|brand|linea|prodotto|produttore|produttrice|produttrici|produtt\\.?|prod\\.?|azienda|societ(?:à|a)|soc\\.?|ditta|tipo|mod(?:ello|\\.)|serie|collezione|col\\.?|gamma|sistema|programma|famiglia))*)(?=\\s|[:=]|[-–])\\s*(?:[:=]|[-–])?\\s*(?:by\\s+)?(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\bby\\b\\s+(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?\\.?){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b))",
+        "(?ix)\\btipo\\b(?:\\s+(?:di|del|della|dello|dei|degli|delle))?\\s*(?:[:=]|[-–])?\\s*(?P<val>(?=.{2,120}(?:$|\\b))[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™](?:[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™])?(?:\\s+(?!(?:(?:e|ed|di|del|della|dello|dei|degli|delle|per|con|da|dal|dalla|sul|sulla|su|nei|nelle|nel|the|una|un|uno|lo|la|il|le|gli|i|cod(?:ice)?|art(?:icolo|\\.)|mod(?:ello|\\.)|serie|linea|collezione|gamma|sistema|tipologia|classe|finitura|colore|dimensioni|dim\\.?|misura|misure|spessore|tipo))\\b)[A-Za-zÀ-ÖØ-öø-ÿ0-9&'®™./-]*){0,7})(?=\\s*(?:[,;:()\\[\\]]|[-–]\\s+|/\\s+|$|\\bmod(?:ello|\\.)\\b|\\bserie\\b|\\bcollezione\\b|\\bcol\\.?\\b|\\blinea\\b|\\btipo\\b|\\barticolo\\b|\\bart\\.?\\b|\\bcod(?:ice)?\\b|\\brif\\.?\\b|\\bref\\.?\\b|\\bfinitura\\b|\\bcolore\\b|\\bdim(?:\\.|ensioni)?\\b|\\bsp(?:essore)?\\b))"
       ],
       "normalizers": [
         "strip"
@@ -205,7 +219,7 @@
     {
       "property_id": "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.tipologia_lastra",
       "regex": [
-        "(?i)\\blastra\\b[^\\n]*?(?P<val>standard|idrofuga|ignifuga|alta\\s+densi(?:tà|ta))"
+        "(?i)\\blastra\\b[^\\n]*?(?P<val>standard|idrofuga|idrorepellente|idrolastra|ignifuga|incombustibile|incombustile|antincendio|alta\\s+densi(?:tà|ta)|fibrogesso|acustica)"
       ],
       "normalizers": [
         "strip",
@@ -219,7 +233,7 @@
     {
       "property_id": "controsoffitti.controsoffitti_in_fibre_minerali_e_acustici.tipo_pannello",
       "regex": [
-        "(?i)\\b(pannello)\\b[^\\n]*?(?P<val>gesso\\s+rivestito|metallo|fibra\\s+minerale|legno)"
+        "(?i)\\b(pannello|controsoffitto|lamella|doghe)\\b[^\\n]*?(?P<val>fibra\\s+minerale|fibre\\s+minerali|gesso\\s+rivestito|lamiera|metallo|legno|lamelle|doghe|microforato|cartongesso|gesso\\s+alginato|lana\\s+di\\s+roccia|knauf\\s+amf|rigitone|rockfon|armstrong|ignifughi?)"
       ],
       "normalizers": [
         "strip",
@@ -233,7 +247,8 @@
     {
       "property_id": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.materiale",
       "regex": [
-        "(?i)\\bmateriale\\b[:=\\s]+(?P<val>gres(?:\\s+porcellanato)?|ceramica|legno|pietra)"
+        "(?ix)\\bmateriale\\b[:=\\s]+(?P<val>gr[ée]s(?:\\s+(?:fine|porcellanato|smaltato|levigato|laminato|effetto\\s+[A-Za-zÀ-ÖØ-öø-ÿ]+|rettificato|tecnologico))*|ceramica(?:\\s+(?:smaltata|monocottura|bicottura|porcellanata))?|legno|pietra(?:\\s+(?:naturale|ricostruita|ricomposta|ricostituita))?|klinker(?:\\s+ceramicato)?|pvc)\\b",
+        "(?ix)\\b(?:in|di)\\s+(?P<val>gr[ée]s(?:\\s+(?:fine|porcellanato|smaltato|levigato|laminato|rettificato|laminato\\s+stoneware|laminato\\s+porcellanato))*|ceramica(?:\\s+(?:smaltata|monocottura|bicottura|porcellanata))?|legno|pietra(?:\\s+(?:naturale|ricostruita|ricomposta|ricostituita))?|klinker(?:\\s+ceramicato)?|pvc)\\b"
       ],
       "normalizers": [
         "strip",
@@ -247,7 +262,8 @@
     {
       "property_id": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.formato",
       "regex": [
-        "(?i)\\bformato\\b[:=\\s]+(?P<val1>\\d{2,3})\\s*[x×]\\s*(?P<val2>\\d{2,3})(?:\\s*cm)?"
+        "(?i)\\bformato\\b[:=\\s]+(?P<val1>\\d{2,3})\\s*[x×]\\s*(?P<val2>\\d{2,3})(?:\\s*(?:cm|mm))?",
+        "(?i)\\bdim(?:\\.|ensioni)?\\b[:=\\s]+(?P<val1>\\d{2,3})\\s*[x×]\\s*(?P<val2>\\d{2,3})(?:\\s*(?:cm|mm))?"
       ],
       "normalizers": [],
       "tags": [
@@ -258,7 +274,7 @@
     {
       "property_id": "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.spessore_mm",
       "regex": [
-        "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
+        "(?ix)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm|millimetri|centimetri)"
       ],
       "normalizers": [
         "comma_to_dot",
@@ -274,7 +290,7 @@
     {
       "property_id": "opere_da_serramentista.serramenti_in_pvc.trasmittanza_termica",
       "regex": [
-        "(?i)\\bUw\\b[:=\\s≤]*(?P<val>\\d(?:[.,]\\d)?)"
+        "(?ix)\\bU[wf]?\\b[:=\\s≤≥]*(?P<val>\\d+(?:[.,]\\d+)?)"
       ],
       "normalizers": [
         "comma_to_dot",
@@ -289,7 +305,7 @@
     {
       "property_id": "opere_da_serramentista.serramenti_in_alluminio.trasmittanza_termica",
       "regex": [
-        "(?i)\\bUw\\b[:=\\s≤]*(?P<val>\\d(?:[.,]\\d)?)"
+        "(?ix)\\bU[wf]?\\b[:=\\s≤≥]*(?P<val>\\d+(?:[.,]\\d+)?)"
       ],
       "normalizers": [
         "comma_to_dot",
@@ -304,7 +320,7 @@
     {
       "property_id": "opere_da_serramentista.serramenti_in_legno.trasmittanza_termica",
       "regex": [
-        "(?i)\\bUw\\b[:=\\s≤]*(?P<val>\\d(?:[.,]\\d)?)"
+        "(?ix)\\bU[wf]?\\b[:=\\s≤≥]*(?P<val>\\d+(?:[.,]\\d+)?)"
       ],
       "normalizers": [
         "comma_to_dot",
@@ -319,7 +335,7 @@
     {
       "property_id": "opere_da_serramentista.serramenti_in_pvc.isolamento_acustico",
       "regex": [
-        "(?i)\\bRw\\b[:=\\s]*(?P<val>\\d{1,2})\\s*dB"
+        "(?ix)\\bRw\\b[:=\\s≤≥]*(?P<val>\\d{1,2})\\s*dB"
       ],
       "normalizers": [
         "to_float"
@@ -333,7 +349,7 @@
     {
       "property_id": "opere_da_serramentista.serramenti_in_alluminio.isolamento_acustico",
       "regex": [
-        "(?i)\\bRw\\b[:=\\s]*(?P<val>\\d{1,2})\\s*dB"
+        "(?ix)\\bRw\\b[:=\\s≤≥]*(?P<val>\\d{1,2})\\s*dB"
       ],
       "normalizers": [
         "to_float"
@@ -347,7 +363,7 @@
     {
       "property_id": "opere_da_serramentista.serramenti_in_legno.isolamento_acustico",
       "regex": [
-        "(?i)\\bRw\\b[:=\\s]*(?P<val>\\d{1,2})\\s*dB"
+        "(?ix)\\bRw\\b[:=\\s≤≥]*(?P<val>\\d{1,2})\\s*dB"
       ],
       "normalizers": [
         "to_float"
@@ -361,7 +377,7 @@
     {
       "property_id": "apparecchi_sanitari_e_accessori.apparecchi_sanitari.tipologia",
       "regex": [
-        "(?i)\\b(?P<val>wc|bidet|lavabo|piatto\\s+doccia|accessorio)\\b"
+        "(?i)\\b(?P<val>wc|water|vaso|bidet|lavabo|lavandino|piatto\\s+doccia|doccia|box\\s+doccia|accessorio|cassetta(?:\\s+di\\s+scarico)?|placca|orinatoio|doccetta|soffione|miscelatore|manopola|colonna\\s+doccia|vano\\s+a\\s+giorno|specchio|mobile\\s+bagno|vasca|sedile\\s+wc|copriwater|canalina|piletta|dispenser|porta\\s+asciugamani|portasapone|maniglione|maniglioni|set\\s+maniglioni|locker(?:s)?|armadietto|arredo|mobile)\\b"
       ],
       "normalizers": [
         "strip",
@@ -390,7 +406,7 @@
     {
       "property_id": "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.spessore_mm",
       "regex": [
-        "(?i)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm)"
+        "(?ix)\\bsp(?:essore)?\\b[^\\d]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:cm|mm|millimetri|centimetri)"
       ],
       "normalizers": [
         "comma_to_dot",
@@ -418,7 +434,7 @@
     {
       "property_id": "opere_da_cartongessista.__global__.rw_db",
       "regex": [
-        "(?i)\\bRw\\s*(?P<val>\\d{2})\\s*dB"
+        "(?ix)\\bRw\\b[:=\\s≤≥]*(?P<val>\\d{1,2})\\s*dB"
       ],
       "normalizers": [
         "to_int"
@@ -427,6 +443,181 @@
         "prestazioni"
       ],
       "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_falegname.porte_in_legno.materiale",
+      "regex": [
+        "(?ix)\\b(?:materiale|essenza|finitura)\\b[^A-Za-zÀ-ÖØ-öø-ÿ0-9]{0,5}(?P<val>legno(?:\\s+[A-Za-zÀ-ÖØ-öø-ÿ]+)*|laminato(?:\\s+plastico)?|hpl|mdf|impiallacciato|truciolare|compensato|multistrato|vetro|acciaio|lamiera|tamburata|rasomuro|filomuro)\\b",
+        "(?ix)\\b(?:in|con)\\s+(?P<val>legno(?:\\s+[A-Za-zÀ-ÖØ-öø-ÿ]+)*|laminato(?:\\s+plastico)?|hpl|mdf|impiallacciato|truciolare|compensato|multistrato|vetro|acciaio|lamiera|tamburata|rasomuro|filomuro)\\b",
+        "(?ix)\\b(?:porta|sportello)\\b[^\\n]{0,15}(?P<val>tamburata|rasomuro|filomuro|laminata|laccata|vetrata|cieca|intelaiata)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_falegname.porte_in_legno.dimensione_larghezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}(?P<val>\\d{2,3})(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*\\d{2,3}(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:larghezza|largh\\.?|l\\.)\\b[^0-9]{0,12}(?P<val>\\d{2,3})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_falegname.porte_in_legno.dimensione_altezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}\\d{2,3}(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*(?P<val>\\d{2,3})(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:altezza|h\\.?|h\\s*=)\\b[^0-9]{0,12}(?P<val>\\d{2,3})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_falegname.porte_in_legno.spessore_anta",
+      "regex": [
+        "(?ix)\\bsp(?:essore)?(?:\\s+anta)?\\b[^0-9]*(?P<val>\\d+(?:[.,]\\d+)?)\\s*(?:mm|cm|millimetri|centimetri)"
+      ]
+    },
+    {
+      "property_id": "opere_da_falegname.porte_in_legno.prestazione_fuoco",
+      "regex": [
+        "(?ix)\\b(?:rei|ei|ei2)\\s*(?:2\\s*)?(?P<val>15|30|45|60|90|120|180|240)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.orditura",
+      "regex": [
+        "(?ix)\\b(?P<val>mono\\s+orditura|doppia\\s+orditura|orditura\\s+singola|orditura\\s+doppia|orditura\\s+tripla|struttura\\s+monostrato|struttura\\s+doppia)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
+      "regex": [
+        "(?ix)\\bclasse\\s*(?:di\\s+reazione\\s+al\\s+fuoco)?\\s*(?P<val>A?\\d(?:-s\\d,d\\d)?)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.presenza_isolante",
+      "regex": [
+        "(?ix)\\b(?P<val>isolata|senza\\s+isolante|con\\s+isolante|con\\s+isolamento)\\b",
+        "(?ix)\\bisolament[oa]\\b[^\\n]{0,25}?(?P<val>lana\\s+minerale|lana\\s+di\\s+roccia|lana\\s+di\\s+vetro|lana\\s+di\\s+pietra|fibra\\s+di\\s+vetro|fibra\\s+di\\s+legno|polistirene\\s+espanso|polistirene\\s+estruso|poliuretano|polistirolo|poliestere)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.numero_lastre",
+      "regex": [
+        "(?ix)\\b(?:n\\.?|num(?:ero)?\\.?|numero)\\s*(?P<val>\\d{1,2})\\s+lastre\\b",
+        "(?ix)\\b(?P<val>singola|doppia|tripla)\\s+lastra\\b",
+        "(?ix)\\b(?P<val>una|due|tre|quattro)\\s+lastre\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_pvc.materiale",
+      "regex": [
+        "(?ix)\\b(?:materiale|materiali|realizzat[oa]e?\\s+in|realizzat[oa]i?\\s+con|profil[oi]\\s+in)\\b[^\\n]{0,25}?(?P<val>pvc|alluminio|legno(?:\\s+lamellare)?|legno-?alluminio|acciaio|acciaio\\s+inox|bronzo|metallo|fibra\\s+di\\s+vetro|composito)\\b",
+        "(?ix)\\b(?:in|con)\\s+(?P<val>pvc|alluminio|legno(?:\\s+lamellare)?|legno-?alluminio|acciaio|acciaio\\s+inox|bronzo|metallo|fibra\\s+di\\s+vetro|composito)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_pvc.profilo",
+      "regex": [
+        "(?ix)\\bprofil[oi]\\b[^\\n]{0,50}?(?P<val>\\d+\\s+camere\\s+interne|serie\\s+[A-Za-z0-9.+/-]+|en\\s*aw-?\\d{3,4}|aws\\s*\\d{2,3}|aoc\\s*\\d{2,3}|fws\\s*\\d{2,3}|fw\\s*\\d{2,3}|aoc\\s*50\\s*st\\s*sg)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_pvc.dimensione_larghezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*\\d{2,4}(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:larghezza|largh\\.?|l\\.)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_pvc.dimensione_altezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}\\d{2,4}(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:altezza|h\\.?|h\\s*=)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_pvc.rw_db",
+      "regex": [
+        "(?ix)\\bRw\\b[:=\\s≤≥]*(?P<val>\\d{1,2})\\s*dB"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_alluminio.materiale",
+      "regex": [
+        "(?ix)\\b(?:materiale|materiali|realizzat[oa]e?\\s+in|realizzat[oa]i?\\s+con|profil[oi]\\s+in)\\b[^\\n]{0,25}?(?P<val>pvc|alluminio|legno(?:\\s+lamellare)?|legno-?alluminio|acciaio|acciaio\\s+inox|bronzo|metallo|fibra\\s+di\\s+vetro|composito)\\b",
+        "(?ix)\\b(?:in|con)\\s+(?P<val>pvc|alluminio|legno(?:\\s+lamellare)?|legno-?alluminio|acciaio|acciaio\\s+inox|bronzo|metallo|fibra\\s+di\\s+vetro|composito)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_alluminio.profilo",
+      "regex": [
+        "(?ix)\\bprofil[oi]\\b[^\\n]{0,50}?(?P<val>\\d+\\s+camere\\s+interne|serie\\s+[A-Za-z0-9.+/-]+|en\\s*aw-?\\d{3,4}|aws\\s*\\d{2,3}|aoc\\s*\\d{2,3}|fws\\s*\\d{2,3}|fw\\s*\\d{2,3}|aoc\\s*50\\s*st\\s*sg)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_alluminio.dimensione_larghezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*\\d{2,4}(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:larghezza|largh\\.?|l\\.)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_alluminio.dimensione_altezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}\\d{2,4}(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:altezza|h\\.?|h\\s*=)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_alluminio.rw_db",
+      "regex": [
+        "(?ix)\\bRw\\b[:=\\s≤≥]*(?P<val>\\d{1,2})\\s*dB"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_legno.materiale",
+      "regex": [
+        "(?ix)\\b(?:materiale|materiali|realizzat[oa]e?\\s+in|realizzat[oa]i?\\s+con|profil[oi]\\s+in)\\b[^\\n]{0,25}?(?P<val>pvc|alluminio|legno(?:\\s+lamellare)?|legno-?alluminio|acciaio|acciaio\\s+inox|bronzo|metallo|fibra\\s+di\\s+vetro|composito)\\b",
+        "(?ix)\\b(?:in|con)\\s+(?P<val>pvc|alluminio|legno(?:\\s+lamellare)?|legno-?alluminio|acciaio|acciaio\\s+inox|bronzo|metallo|fibra\\s+di\\s+vetro|composito)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_legno.profilo",
+      "regex": [
+        "(?ix)\\bprofil[oi]\\b[^\\n]{0,50}?(?P<val>\\d+\\s+camere\\s+interne|serie\\s+[A-Za-z0-9.+/-]+|en\\s*aw-?\\d{3,4}|aws\\s*\\d{2,3}|aoc\\s*\\d{2,3}|fws\\s*\\d{2,3}|fw\\s*\\d{2,3}|aoc\\s*50\\s*st\\s*sg)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_legno.dimensione_larghezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*\\d{2,4}(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:larghezza|largh\\.?|l\\.)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_legno.dimensione_altezza",
+      "regex": [
+        "(?ix)\\b(?:dim(?:\\.|ensioni)?|dimensioni|dim)\\b[^0-9]{0,12}\\d{2,4}(?:\\s*\\([^)]*\\))?\\s*[x×]\\s*(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))?",
+        "(?ix)\\b(?:altezza|h\\.?|h\\s*=)\\b[^0-9]{0,12}(?P<val>\\d{2,4})(?:\\s*(?:cm|mm))"
+      ]
+    },
+    {
+      "property_id": "opere_da_serramentista.serramenti_in_legno.rw_db",
+      "regex": [
+        "(?ix)\\bRw\\b[:=\\s≤≥]*(?P<val>\\d{1,2})\\s*dB"
+      ]
+    },
+    {
+      "property_id": "opere_di_rivestimento.rivestimenti_in_gres_e_ceramica.materiale",
+      "regex": [
+        "(?ix)\\bmateriale\\b[:=\\s]+(?P<val>gr[ée]s(?:\\s+(?:fine|porcellanato|smaltato|levigato|laminato|effetto\\s+[A-Za-zÀ-ÖØ-öø-ÿ]+|rettificato|tecnologico))*|ceramica(?:\\s+(?:smaltata|monocottura|bicottura|porcellanata))?|legno|pietra(?:\\s+(?:naturale|ricostruita|ricomposta|ricostituita))?|pvc|cloruro\\s+di\\s+polivinile|resina|intonaco\\s+acrilico|rivestimento\\s+plastico|rivestimento\\s+murale|klinker(?:\\s+ceramicato)?)\\b",
+        "(?ix)\\b(?:in|di)\\s+(?P<val>gr[ée]s(?:\\s+(?:fine|porcellanato|smaltato|levigato|laminato|rettificato|tecnologico))*|ceramica(?:\\s+(?:smaltata|monocottura|bicottura|porcellanata))?|legno|pietra(?:\\s+(?:naturale|ricostruita|ricomposta|ricostituita))?|pvc|cloruro\\s+di\\s+polivinile|resina|intonaco\\s+acrilico|rivestimento\\s+plastico|rivestimento\\s+murale|klinker(?:\\s+ceramicato)?)\\b",
+        "(?ix)\\brivestiment[oi]\\b[^\\n]{0,20}(?P<val>plastico\\s+acrilico|cloruro\\s+di\\s+polivinile|pvc|gres\\s+porcellanato|piastrelle\\s+ceramiche|piastrelle\\s+in\\s+gres\\s+porcellanato)\\b"
+      ]
+    },
+    {
+      "property_id": "opere_di_rivestimento.rivestimenti_in_gres_e_ceramica.formato",
+      "regex": [
+        "(?ix)\\bformato\\b[:=\\s]+(?P<val1>\\d{2,3})\\s*[x×]\\s*(?P<val2>\\d{2,3})(?:\\s*(?:cm|mm))?",
+        "(?ix)\\bdim(?:\\.|ensioni)?\\b[:=\\s]+(?P<val1>\\d{2,3})\\s*[x×]\\s*(?P<val2>\\d{2,3})(?:\\s*(?:cm|mm))?"
+      ]
     }
   ],
   "normalizers": {
