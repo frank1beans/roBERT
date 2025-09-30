@@ -7,6 +7,9 @@ from typing import Optional
 
 import typer
 
+from ..extraction.fuse import Fuser, FusePolicy
+from ..extraction.orchestrator import Orchestrator, OrchestratorConfig
+from ..extraction.qa_llm import HttpLLM, MockLLM, QALLMConfig
 from ..extraction.schema_registry import load_registry
 
 __all__ = ["app"]
@@ -48,8 +51,6 @@ def extract_properties(
     fail_fast: bool = typer.Option(False, "--fail-fast/--no-fail-fast", help="Abort on validation errors"),
     dry_run: bool = typer.Option(False, "--dry-run", help="Validate configuration without running the pipeline"),
 ) -> None:
-    """Run the property extraction pipeline (placeholder)."""
-
     config = {
         "input": str(input_path),
         "output": str(output_path),
@@ -67,11 +68,43 @@ def extract_properties(
         "fail_fast": fail_fast,
         "dry_run": dry_run,
     }
-    typer.echo(json.dumps({"status": "pipeline_not_implemented", "config": config}, indent=2, ensure_ascii=False))
-    if not dry_run:
-        typer.echo(
-            "Orchestrator skeleton ready. Implement `robimb.extraction.orchestrator` and integrate it here."
-        )
+    if dry_run:
+        typer.echo(json.dumps({"status": "dry_run", "config": config}, indent=2, ensure_ascii=False))
+        return
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    llm_cfg = QALLMConfig(
+        endpoint=llm_endpoint,
+        model=llm_model,
+        timeout=llm_timeout,
+        max_retries=llm_max_retries,
+    )
+    llm = HttpLLM(llm_cfg) if llm_endpoint else MockLLM()
+
+    orchestrator_cfg = OrchestratorConfig(
+        source_priority=["parser", "matcher", "qa_llm"],
+        enable_matcher=True,
+        enable_llm=bool(llm_endpoint),
+        registry_path=str(schema_registry_path),
+    )
+    fuse = Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=orchestrator_cfg.source_priority)
+    orchestrator = Orchestrator(fuse=fuse, llm=llm, cfg=orchestrator_cfg)
+
+    processed = 0
+    with input_path.open("r", encoding="utf-8") as src, output_path.open("w", encoding="utf-8") as dst:
+        for line in src:
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            if category_filter and record.get("categoria") != category_filter:
+                continue
+            result = orchestrator.extract_document(record)
+            json.dump(result, dst, ensure_ascii=False)
+            dst.write("\n")
+            processed += 1
+
+    typer.echo(json.dumps({"status": "completed", "documents": processed}, ensure_ascii=False))
 
 
 @app.command("schemas")

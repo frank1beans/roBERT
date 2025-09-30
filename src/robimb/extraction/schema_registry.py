@@ -12,6 +12,7 @@ __all__ = [
     "CategorySchema",
     "SchemaRegistry",
     "load_registry",
+    "load_category_schema",
 ]
 
 
@@ -100,3 +101,39 @@ def load_registry(registry_path: Path | str) -> SchemaRegistry:
     """Load and cache the registry located at ``registry_path``."""
 
     return SchemaRegistry(Path(registry_path))
+
+
+def load_category_schema(
+    category_id: str,
+    *,
+    registry_path: Path | str = Path("data/properties/registry.json"),
+) -> tuple[CategorySchema, Dict[str, Any]]:
+    """Return the :class:`CategorySchema` metadata and JSON schema body.
+
+    Parameters
+    ----------
+    category_id:
+        Identifier of the category to load.
+    registry_path:
+        Path to the registry JSON file. Defaults to the project-wide registry.
+
+    Returns
+    -------
+    tuple[CategorySchema, Dict[str, Any]]
+        The dataclass describing the category together with the parsed JSON
+        schema document.
+
+    Raises
+    ------
+    ValueError
+        If the requested category is not present in the registry or the schema
+        file cannot be read.
+    """
+
+    registry = load_registry(Path(registry_path))
+    category = registry.get(category_id)
+    if category is None:
+        raise ValueError(f"Categoria '{category_id}' non presente nel registry")
+    schema_path = category.schema_path
+    payload = json.loads(schema_path.read_text(encoding="utf-8"))
+    return category, payload
