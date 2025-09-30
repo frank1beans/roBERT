@@ -1,232 +1,472 @@
 {
   "$schema": "https://raw.githubusercontent.com/frank1beans/roBERT/main/schemas/property-registry-v1.json",
   "metadata": {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "generated_at": "2024-12-01T00:00:00Z",
-    "categories": 3,
-    "description": "Pilot schema-first registry for property extraction"
+    "categories": 7,
+    "description": "Schema-first registry aligned with pack/v1_limited categories"
   },
   "categories": [
     {
-      "id": "porte_hpl",
-      "name": "Porte HPL",
-      "schema": "schema/porte_hpl.json",
+      "id": "opere_da_cartongessista",
+      "name": "Opere da cartongessista",
+      "schema": "schema/opere_da_cartongessista.json",
       "required": [
-        "larghezza_anta_mm",
-        "altezza_anta_mm",
-        "classe_rei"
+        "tipologia_lastra",
+        "spessore_mm",
+        "classe_reazione_al_fuoco"
       ],
       "properties": [
-        {
-          "id": "larghezza_anta_mm",
-          "title": "Larghezza anta",
-          "type": "number",
-          "unit": "mm",
-          "description": "Larghezza netta dell'anta convertita in millimetri",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "altezza_anta_mm",
-          "title": "Altezza anta",
-          "type": "number",
-          "unit": "mm",
-          "description": "Altezza netta dell'anta convertita in millimetri",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "spessore_anta_mm",
-          "title": "Spessore anta",
-          "type": "number",
-          "unit": "mm",
-          "description": "Spessore nominale dell'anta",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "classe_rei",
-          "title": "Classe REI",
-          "type": "string",
-          "description": "Classe di resistenza al fuoco",
-          "enum": ["REI30", "REI60", "REI90", "REI120"],
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "finitura_superficie",
-          "title": "Finitura superficie",
-          "type": "string",
-          "description": "Finitura superficiale (inclusi codici RAL)",
-          "sources": ["parser", "qa_llm", "matcher"]
-        },
-        {
-          "id": "materiale_telaio",
-          "title": "Materiale telaio",
-          "type": "string",
-          "description": "Materiale principale del telaio",
-          "enum": ["alluminio", "acciaio", "legno", "pvc"],
-          "sources": ["matcher", "qa_llm"]
-        },
-        {
-          "id": "dotazione_accessori",
-          "title": "Dotazione accessori",
-          "type": "array",
-          "description": "Elenco accessori forniti",
-          "sources": ["qa_llm"]
-        },
         {
           "id": "marchio",
           "title": "Marchio",
           "type": "string",
           "description": "Brand dichiarato nel testo",
-          "sources": ["matcher"]
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "tipologia_lastra",
+          "title": "Tipologia lastra",
+          "type": "string",
+          "description": "Tipologia di lastra in cartongesso",
+          "enum": [
+            "standard",
+            "idrofuga",
+            "ignifuga",
+            "acustica",
+            "fibrogesso",
+            "accoppiata_isolante"
+          ],
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "spessore_mm",
+          "title": "Spessore sistema",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore complessivo del sistema convertito in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "classe_ei",
+          "title": "Classe EI",
+          "type": "string",
+          "description": "Classe di resistenza al fuoco EI",
+          "enum": ["EI30", "EI45", "EI60", "EI90", "EI120", "EI180"],
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "title": "Classe di reazione al fuoco",
+          "type": "string",
+          "description": "Classe europea di reazione al fuoco",
+          "enum": ["A1", "A2-s1,d0", "A2-s2,d0", "B-s1,d0", "B-s2,d0"],
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "presenza_isolante",
+          "title": "Presenza isolante",
+          "type": "string",
+          "description": "Indica se è presente materiale isolante accoppiato",
+          "enum": ["si", "no"],
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "stratigrafia_lastre",
+          "title": "Stratigrafia lastre",
+          "type": "string",
+          "description": "Descrizione testuale della stratigrafia delle lastre",
+          "sources": ["qa_llm"]
         }
       ]
     },
     {
-      "id": "controsoffitti_metallici",
-      "name": "Controsoffitti metallici",
-      "schema": "schema/controsoffitti_metallici.json",
+      "id": "opere_di_rivestimento",
+      "name": "Opere di rivestimento",
+      "schema": "schema/opere_di_rivestimento.json",
       "required": [
-        "tipologia_modulo",
-        "dimensione_modulo_mm",
-        "materiale_pannello"
+        "materiale",
+        "spessore_mm",
+        "posa"
       ],
       "properties": [
-        {
-          "id": "tipologia_modulo",
-          "title": "Tipologia modulo",
-          "type": "string",
-          "enum": ["doghe", "pannelli", "grigliato"],
-          "description": "Tipologia di modulo metallico",
-          "sources": ["matcher", "qa_llm"]
-        },
-        {
-          "id": "dimensione_modulo_mm",
-          "title": "Dimensione modulo",
-          "type": "array",
-          "unit": "mm",
-          "description": "Dimensioni del modulo convertite in millimetri",
-          "sources": ["parser"]
-        },
-        {
-          "id": "materiale_pannello",
-          "title": "Materiale pannello",
-          "type": "string",
-          "enum": ["acciaio", "alluminio", "acciaio_microforato"],
-          "description": "Materiale o finitura del pannello",
-          "sources": ["matcher", "qa_llm"]
-        },
-        {
-          "id": "trattamento_superficiale",
-          "title": "Trattamento superficiale",
-          "type": "string",
-          "enum": ["verniciato", "anodizzato", "polveri_epossidiche"],
-          "description": "Trattamento protettivo o estetico",
-          "sources": ["qa_llm", "matcher"]
-        },
-        {
-          "id": "prestazione_acustica_db",
-          "title": "Prestazione acustica",
-          "type": "number",
-          "unit": "db",
-          "description": "Assorbimento o isolamento acustico dichiarato in dB",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "classe_reazione_fuoco",
-          "title": "Classe reazione fuoco",
-          "type": "string",
-          "enum": ["A1", "A2", "B-s1,d0"],
-          "description": "Classe di reazione al fuoco secondo EN 13501",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "spessore_pannello_mm",
-          "title": "Spessore pannello",
-          "type": "number",
-          "unit": "mm",
-          "description": "Spessore nominale del pannello metallico",
-          "sources": ["parser"]
-        },
-        {
-          "id": "standard_riferimento",
-          "title": "Standard di riferimento",
-          "type": "array",
-          "description": "Elenco norme tecniche citate",
-          "sources": ["parser", "qa_llm"]
-        }
-      ]
-    },
-    {
-      "id": "pavimenti_sopraelevati",
-      "name": "Pavimenti sopraelevati",
-      "schema": "schema/pavimenti_sopraelevati.json",
-      "required": [
-        "spessore_pannello_mm",
-        "carico_utile_kn_m2",
-        "rivestimento_superiore"
-      ],
-      "properties": [
-        {
-          "id": "spessore_pannello_mm",
-          "title": "Spessore pannello",
-          "type": "number",
-          "unit": "mm",
-          "description": "Spessore nominale del pannello sopraelevato",
-          "sources": ["parser"]
-        },
-        {
-          "id": "altezza_struttura_regolabile_mm",
-          "title": "Altezza struttura regolabile",
-          "type": "array",
-          "unit": "mm",
-          "description": "Range di regolazione dell'altezza strutturale",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "carico_utile_kn_m2",
-          "title": "Carico utile",
-          "type": "number",
-          "unit": "kn/m2",
-          "description": "Carico utile convertito in kN/m²",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "rivestimento_superiore",
-          "title": "Rivestimento superiore",
-          "type": "string",
-          "enum": ["gres", "laminato", "pvc", "moquette"],
-          "description": "Finitura superficiale",
-          "sources": ["matcher", "qa_llm"]
-        },
-        {
-          "id": "materiale_nucleo",
-          "title": "Materiale nucleo",
-          "type": "string",
-          "enum": ["solfato_calcio", "truciolare", "alluminio"],
-          "description": "Materiale del nucleo del pannello",
-          "sources": ["matcher", "qa_llm"]
-        },
-        {
-          "id": "classe_reazione_fuoco",
-          "title": "Classe reazione fuoco",
-          "type": "string",
-          "enum": ["Bfl-s1", "Cfl-s1"],
-          "description": "Classe di reazione al fuoco",
-          "sources": ["parser", "qa_llm"]
-        },
-        {
-          "id": "resistenza_umidita_percent",
-          "title": "Resistenza umidità",
-          "type": "number",
-          "unit": "%",
-          "description": "Percentuale di resistenza all'umidità",
-          "sources": ["parser", "qa_llm"]
-        },
         {
           "id": "marchio",
           "title": "Marchio",
           "type": "string",
-          "description": "Brand dichiarato",
-          "sources": ["matcher"]
+          "description": "Brand dichiarato nel testo",
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale del rivestimento",
+          "enum": [
+            "gres",
+            "pietra",
+            "ceramica",
+            "legno",
+            "resina",
+            "intonaco",
+            "laminato",
+            "metallo"
+          ],
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "finitura",
+          "title": "Finitura",
+          "type": "string",
+          "description": "Finitura superficiale o trattamento",
+          "sources": ["qa_llm"]
+        },
+        {
+          "id": "spessore_mm",
+          "title": "Spessore",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore del rivestimento convertito in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "posa",
+          "title": "Tipologia di posa",
+          "type": "string",
+          "description": "Modalità di posa prevista",
+          "enum": ["incollata", "flottante", "a secco", "meccanica", "su struttura"],
+          "sources": ["qa_llm"]
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "title": "Classe di reazione al fuoco",
+          "type": "string",
+          "description": "Classe europea di reazione al fuoco",
+          "enum": ["A1", "A2-s1,d0", "B-s1,d0", "C-s1,d0"],
+          "sources": ["parser", "qa_llm"]
+        }
+      ]
+    },
+    {
+      "id": "opere_di_pavimentazione",
+      "name": "Opere di pavimentazione",
+      "schema": "schema/opere_di_pavimentazione.json",
+      "required": [
+        "materiale",
+        "formato",
+        "spessore_mm"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand dichiarato nel testo",
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale del pavimento",
+          "enum": [
+            "gres",
+            "legno",
+            "laminato",
+            "resina",
+            "pietra_naturale",
+            "calcestruzzo",
+            "vinilico"
+          ],
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "formato",
+          "title": "Formato",
+          "type": "string",
+          "description": "Formato nominale delle lastre o doghe",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "spessore_mm",
+          "title": "Spessore",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore del pavimento convertito in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "classe_resistenza_usura",
+          "title": "Classe resistenza usura",
+          "type": "string",
+          "description": "Classe PEI dichiarata",
+          "enum": ["PEI I", "PEI II", "PEI III", "PEI IV", "PEI V"],
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "classe_scivolosita",
+          "title": "Classe di scivolosità",
+          "type": "string",
+          "description": "Classe antiscivolo (R)",
+          "enum": ["R9", "R10", "R11", "R12", "R13"],
+          "sources": ["parser", "qa_llm"]
+        }
+      ]
+    },
+    {
+      "id": "opere_da_serramentista",
+      "name": "Opere da serramentista",
+      "schema": "schema/opere_da_serramentista.json",
+      "required": [
+        "dimensione_larghezza",
+        "dimensione_altezza",
+        "trasmittanza_termica"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand del serramento",
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "materiale_struttura",
+          "title": "Materiale struttura",
+          "type": "string",
+          "description": "Materiale principale della struttura",
+          "enum": ["alluminio", "acciaio", "legno", "pvc", "legno_alluminio"],
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "dimensione_larghezza",
+          "title": "Larghezza luce",
+          "type": "number",
+          "unit": "mm",
+          "description": "Larghezza netta in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "dimensione_altezza",
+          "title": "Altezza luce",
+          "type": "number",
+          "unit": "mm",
+          "description": "Altezza netta in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "trasmittanza_termica",
+          "title": "Trasmittanza termica",
+          "type": "number",
+          "unit": "W/m²K",
+          "description": "Valore Uw dichiarato",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "isolamento_acustico_db",
+          "title": "Isolamento acustico Rw",
+          "type": "number",
+          "unit": "dB",
+          "description": "Valore Rw o Rw+C",
+          "sources": ["parser", "qa_llm"]
+        }
+      ]
+    },
+    {
+      "id": "controsoffitti",
+      "name": "Controsoffitti",
+      "schema": "schema/controsoffitti.json",
+      "required": [
+        "materiale",
+        "spessore_pannello_mm",
+        "coefficiente_fonoassorbimento"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand del sistema di controsoffitto",
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale del pannello",
+          "enum": [
+            "acciaio",
+            "alluminio",
+            "cartongesso",
+            "lana_minerale",
+            "fibra_minerale"
+          ],
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "spessore_pannello_mm",
+          "title": "Spessore pannello",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore del pannello convertito in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "title": "Classe di reazione al fuoco",
+          "type": "string",
+          "description": "Classe europea di reazione al fuoco",
+          "enum": ["A1", "A2-s1,d0", "B-s1,d0", "B-s2,d0"],
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "coefficiente_fonoassorbimento",
+          "title": "Coefficiente di fonoassorbimento",
+          "type": "number",
+          "description": "Valore αw (0-1)",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "stratigrafia_lastre",
+          "title": "Stratigrafia lastre",
+          "type": "string",
+          "description": "Descrizione stratigrafia o composizione",
+          "sources": ["qa_llm"]
+        }
+      ]
+    },
+    {
+      "id": "apparecchi_sanitari_accessori",
+      "name": "Apparecchi sanitari e accessori",
+      "schema": "schema/apparecchi_sanitari_accessori.json",
+      "required": [
+        "materiale",
+        "dimensione_lunghezza",
+        "dimensione_larghezza",
+        "dimensione_altezza",
+        "tipologia_installazione"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand dell'apparecchio sanitario",
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale",
+          "enum": [
+            "ceramica",
+            "acciaio_inox",
+            "resina",
+            "vetro",
+            "ghisa",
+            "porcellana"
+          ],
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "dimensione_lunghezza",
+          "title": "Lunghezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Lunghezza nominale convertita in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "dimensione_larghezza",
+          "title": "Larghezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Larghezza nominale convertita in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "dimensione_altezza",
+          "title": "Altezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Altezza nominale convertita in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "tipologia_installazione",
+          "title": "Tipologia installazione",
+          "type": "string",
+          "description": "Modalità di installazione",
+          "enum": ["a_pavimento", "a_parete", "sospesa", "incasso"],
+          "sources": ["qa_llm"]
+        },
+        {
+          "id": "portata_l_min",
+          "title": "Portata",
+          "type": "number",
+          "unit": "l/min",
+          "description": "Portata dichiarata in litri al minuto",
+          "sources": ["parser", "qa_llm"]
+        }
+      ]
+    },
+    {
+      "id": "opere_da_falegname",
+      "name": "Opere da falegname",
+      "schema": "schema/opere_da_falegname.json",
+      "required": [
+        "essenza",
+        "dimensione_larghezza",
+        "dimensione_altezza"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand del manufatto",
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "essenza",
+          "title": "Essenza",
+          "type": "string",
+          "description": "Essenza legnosa principale",
+          "enum": [
+            "rovere",
+            "faggio",
+            "pino",
+            "abete",
+            "larice",
+            "noce",
+            "castagno"
+          ],
+          "sources": ["matcher", "qa_llm"]
+        },
+        {
+          "id": "dimensione_larghezza",
+          "title": "Larghezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Larghezza finita in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "dimensione_altezza",
+          "title": "Altezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Altezza finita in millimetri",
+          "sources": ["parser", "qa_llm"]
+        },
+        {
+          "id": "tipologia_apertura",
+          "title": "Tipologia apertura",
+          "type": "string",
+          "description": "Sistema di apertura del serramento",
+          "enum": ["battente", "scorrevole", "a_ribalta", "a_scomparsa", "anta_ribalta"],
+          "sources": ["qa_llm"]
         }
       ]
     }

@@ -1,99 +1,82 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Schema proprietà — Pavimenti sopraelevati",
+  "title": "Schema proprietà — Opere da cartongessista",
   "type": "object",
   "required": ["category", "properties"],
   "properties": {
-    "category": {"const": "pavimenti_sopraelevati"},
+    "category": {"const": "opere_da_cartongessista"},
     "properties": {
       "type": "object",
-      "required": ["spessore_pannello_mm", "carico_utile_kn_m2", "rivestimento_superiore"],
+      "required": ["tipologia_lastra", "spessore_mm", "classe_reazione_al_fuoco"],
       "properties": {
-        "spessore_pannello_mm": {
-          "allOf": [
-            {"$ref": "#/$defs/measurement"},
-            {
-              "properties": {
-                "value": {"type": "number", "minimum": 25, "maximum": 60},
-                "unit": {"const": "mm"}
-              }
-            }
-          ]
-        },
-        "altezza_struttura_regolabile_mm": {
-          "allOf": [
-            {"$ref": "#/$defs/list_value"},
-            {
-              "properties": {
-                "value": {
-                  "type": "array",
-                  "items": {"type": "number", "minimum": 0, "maximum": 2000},
-                  "minItems": 2,
-                  "maxItems": 2
-                },
-                "unit": {"const": "mm"}
-              }
-            }
-          ]
-        },
-        "carico_utile_kn_m2": {
-          "allOf": [
-            {"$ref": "#/$defs/measurement"},
-            {
-              "properties": {
-                "value": {"type": "number", "minimum": 2.0, "maximum": 10.0},
-                "unit": {"const": "kn/m2"}
-              }
-            }
-          ]
-        },
-        "rivestimento_superiore": {
-          "allOf": [
-            {"$ref": "#/$defs/value"},
-            {
-              "properties": {
-                "value": {"type": "string", "enum": ["gres", "laminato", "pvc", "moquette"]}
-              }
-            }
-          ]
-        },
-        "materiale_nucleo": {
-          "allOf": [
-            {"$ref": "#/$defs/value"},
-            {
-              "properties": {
-                "value": {"type": "string", "enum": ["solfato_calcio", "truciolare", "alluminio"]}
-              }
-            }
-          ]
-        },
-        "classe_reazione_fuoco": {
-          "allOf": [
-            {"$ref": "#/$defs/value"},
-            {
-              "properties": {
-                "value": {"type": "string", "enum": ["Bfl-s1", "Cfl-s1"]}
-              }
-            }
-          ]
-        },
-        "resistenza_umidita_percent": {
-          "allOf": [
-            {"$ref": "#/$defs/measurement"},
-            {
-              "properties": {
-                "value": {"type": "number", "minimum": 0, "maximum": 100},
-                "unit": {"const": "%"}
-              }
-            }
-          ]
-        },
         "marchio": {
           "allOf": [
             {"$ref": "#/$defs/value"},
+            {"properties": {"value": {"type": "string", "minLength": 2, "maxLength": 80}}}
+          ]
+        },
+        "tipologia_lastra": {
+          "allOf": [
+            {"$ref": "#/$defs/value"},
             {
               "properties": {
-                "value": {"type": "string", "minLength": 2, "maxLength": 80}
+                "value": {
+                  "type": "string",
+                  "enum": ["standard", "idrofuga", "ignifuga", "acustica", "fibrogesso", "accoppiata_isolante"]
+                }
+              }
+            }
+          ]
+        },
+        "spessore_mm": {
+          "allOf": [
+            {"$ref": "#/$defs/measurement"},
+            {
+              "properties": {
+                "value": {"type": "number", "minimum": 6, "maximum": 100},
+                "unit": {"const": "mm"}
+              }
+            }
+          ]
+        },
+        "classe_ei": {
+          "allOf": [
+            {"$ref": "#/$defs/value"},
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["EI30", "EI45", "EI60", "EI90", "EI120", "EI180"]
+                }
+              }
+            }
+          ]
+        },
+        "classe_reazione_al_fuoco": {
+          "allOf": [
+            {"$ref": "#/$defs/value"},
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["A1", "A2-s1,d0", "A2-s2,d0", "B-s1,d0", "B-s2,d0"]
+                }
+              }
+            }
+          ]
+        },
+        "presenza_isolante": {
+          "allOf": [
+            {"$ref": "#/$defs/value"},
+            {"properties": {"value": {"type": "string", "enum": ["si", "no"]}}}
+          ]
+        },
+        "stratigrafia_lastre": {
+          "allOf": [
+            {"$ref": "#/$defs/value"},
+            {
+              "properties": {
+                "value": {"type": "string", "minLength": 5, "maxLength": 400}
               }
             }
           ]
@@ -133,13 +116,7 @@
     "value": {
       "allOf": [
         {"$ref": "#/$defs/base"},
-        {"properties": {"value": {"type": "string", "minLength": 1}}}
-      ]
-    },
-    "list_value": {
-      "allOf": [
-        {"$ref": "#/$defs/base"},
-        {"properties": {"value": {"type": "array"}}}
+        {"properties": {"value": {"type": ["string", "number", "boolean"]}}}
       ]
     }
   }

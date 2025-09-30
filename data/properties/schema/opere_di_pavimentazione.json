@@ -1,98 +1,89 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Schema proprietà — Porte HPL",
+  "title": "Schema proprietà — Opere di pavimentazione",
   "type": "object",
   "required": ["category", "properties"],
   "properties": {
-    "category": {"const": "porte_hpl"},
+    "category": {"const": "opere_di_pavimentazione"},
     "properties": {
       "type": "object",
-      "required": ["larghezza_anta_mm", "altezza_anta_mm", "classe_rei"],
+      "required": ["materiale", "formato", "spessore_mm"],
       "properties": {
-        "larghezza_anta_mm": {
-          "allOf": [
-            {"$ref": "#/$defs/measurement"},
-            {
-              "properties": {
-                "value": {"type": "number", "minimum": 600, "maximum": 1600},
-                "unit": {"const": "mm"}
-              }
-            }
-          ]
-        },
-        "altezza_anta_mm": {
-          "allOf": [
-            {"$ref": "#/$defs/measurement"},
-            {
-              "properties": {
-                "value": {"type": "number", "minimum": 1800, "maximum": 3000},
-                "unit": {"const": "mm"}
-              }
-            }
-          ]
-        },
-        "spessore_anta_mm": {
-          "allOf": [
-            {"$ref": "#/$defs/measurement"},
-            {
-              "properties": {
-                "value": {"type": "number", "minimum": 30, "maximum": 80},
-                "unit": {"const": "mm"}
-              }
-            }
-          ]
-        },
-        "classe_rei": {
+        "marchio": {
           "allOf": [
             {"$ref": "#/$defs/value"},
-            {
-              "properties": {
-                "value": {"type": "string", "enum": ["REI30", "REI60", "REI90", "REI120"]}
-              }
-            }
+            {"properties": {"value": {"type": "string", "minLength": 2, "maxLength": 80}}}
           ]
         },
-        "finitura_superficie": {
+        "materiale": {
           "allOf": [
             {"$ref": "#/$defs/value"},
-            {
-              "properties": {
-                "value": {"type": "string", "minLength": 3, "maxLength": 40}
-              }
-            }
-          ]
-        },
-        "materiale_telaio": {
-          "allOf": [
-            {"$ref": "#/$defs/value"},
-            {
-              "properties": {
-                "value": {"type": "string", "enum": ["alluminio", "acciaio", "legno", "pvc"]}
-              }
-            }
-          ]
-        },
-        "dotazione_accessori": {
-          "allOf": [
-            {"$ref": "#/$defs/list_value"},
             {
               "properties": {
                 "value": {
-                  "type": "array",
-                  "items": {"type": "string", "minLength": 2, "maxLength": 80},
-                  "minItems": 1,
-                  "maxItems": 5
+                  "type": "string",
+                  "enum": [
+                    "gres",
+                    "legno",
+                    "laminato",
+                    "resina",
+                    "pietra_naturale",
+                    "calcestruzzo",
+                    "vinilico"
+                  ]
                 }
               }
             }
           ]
         },
-        "marchio": {
+        "formato": {
           "allOf": [
             {"$ref": "#/$defs/value"},
             {
               "properties": {
-                "value": {"type": "string", "minLength": 2, "maxLength": 80}
+                "value": {
+                  "type": "string",
+                  "pattern": "^\\d{2,4}(x|×|\u00D7)\\d{2,4}(x|×|\u00D7)?\\d{0,4}? ?(mm|cm|m)?$",
+                  "minLength": 3,
+                  "maxLength": 40
+                }
+              }
+            }
+          ]
+        },
+        "spessore_mm": {
+          "allOf": [
+            {"$ref": "#/$defs/measurement"},
+            {
+              "properties": {
+                "value": {"type": "number", "minimum": 4, "maximum": 50},
+                "unit": {"const": "mm"}
+              }
+            }
+          ]
+        },
+        "classe_resistenza_usura": {
+          "allOf": [
+            {"$ref": "#/$defs/value"},
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["PEI I", "PEI II", "PEI III", "PEI IV", "PEI V"]
+                }
+              }
+            }
+          ]
+        },
+        "classe_scivolosita": {
+          "allOf": [
+            {"$ref": "#/$defs/value"},
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["R9", "R10", "R11", "R12", "R13"]
+                }
               }
             }
           ]
@@ -132,13 +123,7 @@
     "value": {
       "allOf": [
         {"$ref": "#/$defs/base"},
-        {"properties": {"value": {"type": "string", "minLength": 1}}}
-      ]
-    },
-    "list_value": {
-      "allOf": [
-        {"$ref": "#/$defs/base"},
-        {"properties": {"value": {"type": "array"}}}
+        {"properties": {"value": {"type": ["string", "number", "boolean"]}}}
       ]
     }
   }
