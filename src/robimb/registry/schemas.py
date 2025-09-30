@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 import re
 import unicodedata
@@ -68,8 +68,7 @@ class PropertySlot(BaseModel):
     default: Optional[Any] = Field(default=None, description="Optional default value")
     inherited: bool = Field(default=False, description="Whether the property comes from the _global block")
 
-    class Config:
-        extra = "allow"
+    model_config = ConfigDict(extra="allow")
 
 
 class CategoryDefinition(BaseModel):
@@ -87,9 +86,7 @@ class CategoryDefinition(BaseModel):
     plugins: MutableMapping[str, List[str]] = Field(default_factory=dict)
     metadata: MutableMapping[str, Any] = Field(default_factory=dict)
 
-    class Config:
-        populate_by_name = True
-        extra = "allow"
+    model_config = ConfigDict(populate_by_name=True, extra="allow")
 
     # ------------------------------------------------------------------
     # Public helpers

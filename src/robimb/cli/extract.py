@@ -1,21 +1,140 @@
-"""Utilities to unpack knowledge packs into property folders."""
+"""CLI entrypoints for the property extraction pipeline."""
 from __future__ import annotations
 
+import json
 from pathlib import Path
+from typing import Optional
 
 import typer
 
+from ..extraction.schema_registry import load_registry
 from ..props.unpack import convert_monolith_to_folders
 
-__all__ = ["extract_command"]
+__all__ = ["app"]
+
+app = typer.Typer(help="Property extraction utilities", add_completion=False)
 
 
-def extract_command(
+@app.command("properties")
+def extract_properties(
+    input_path: Path = typer.Option(..., "--input", exists=True, dir_okay=False, help="JSONL with input records"),
+    output_path: Path = typer.Option(..., "--output", dir_okay=False, help="Destination JSONL for extracted properties"),
+    pack_path: Path = typer.Option(
+        Path("pack/current"),
+        "--pack",
+        exists=True,
+        file_okay=False,
+        help="Knowledge pack directory providing prompts and lexicons",
+    ),
+    schema_registry_path: Path = typer.Option(
+        Path("data/properties/registry.json"),
+        "--schema",
+        exists=True,
+        dir_okay=False,
+        help="Path to the schema registry JSON file",
+    ),
+    llm_endpoint: Optional[str] = typer.Option(None, "--llm-endpoint", help="LLM endpoint for QA extraction"),
+    llm_model: Optional[str] = typer.Option(None, "--llm-model", help="LLM model identifier"),
+    llm_timeout: float = typer.Option(30.0, "--llm-timeout", help="Timeout for LLM calls in seconds"),
+    llm_max_retries: int = typer.Option(2, "--llm-max-retries", min=0, help="Maximum retries for LLM calls"),
+    category_filter: Optional[str] = typer.Option(
+        None, "--category-filter", help="Limit extraction to a single category (ID or name)"
+    ),
+    confidence_threshold: float = typer.Option(
+        0.6, "--confidence-threshold", min=0.0, max=1.0, help="Minimum confidence accepted in the output"
+    ),
+    batch_size: int = typer.Option(16, "--batch-size", min=1, help="Number of records processed per batch"),
+    max_workers: int = typer.Option(4, "--max-workers", min=1, help="Parallel workers for the pipeline"),
+    log_file: Optional[Path] = typer.Option(None, "--log-file", dir_okay=False, help="Optional JSONL log path"),
+    fail_fast: bool = typer.Option(False, "--fail-fast/--no-fail-fast", help="Abort on validation errors"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Validate configuration without running the pipeline"),
+) -> None:
+    """Run the property extraction pipeline (placeholder)."""
+
+    config = {
+        "input": str(input_path),
+        "output": str(output_path),
+        "pack": str(pack_path),
+        "schema": str(schema_registry_path),
+        "llm_endpoint": llm_endpoint,
+        "llm_model": llm_model,
+        "llm_timeout": llm_timeout,
+        "llm_max_retries": llm_max_retries,
+        "category_filter": category_filter,
+        "confidence_threshold": confidence_threshold,
+        "batch_size": batch_size,
+        "max_workers": max_workers,
+        "log_file": str(log_file) if log_file else None,
+        "fail_fast": fail_fast,
+        "dry_run": dry_run,
+    }
+    typer.echo(json.dumps({"status": "pipeline_not_implemented", "config": config}, indent=2, ensure_ascii=False))
+    if not dry_run:
+        typer.echo(
+            "Orchestrator skeleton ready. Implement `robimb.extraction.orchestrator` and integrate it here."
+        )
+
+
+@app.command("schemas")
+def schemas_command(
+    registry_path: Path = typer.Option(
+        Path("data/properties/registry.json"),
+        "--registry",
+        exists=True,
+        dir_okay=False,
+        help="Schema registry JSON file",
+    ),
+    list_only: bool = typer.Option(False, "--list", help="List available categories"),
+    show: Optional[str] = typer.Option(None, "--show", help="Show details for the provided category ID or name"),
+    print_schema: bool = typer.Option(False, "--print-schema/--no-print-schema", help="Print the JSON schema body"),
+) -> None:
+    """Inspect the available category schemas."""
+
+    registry = load_registry(registry_path)
+    categories = list(registry.list())
+    if list_only or not show:
+        typer.echo("Categorie disponibili:")
+        for category in categories:
+            typer.echo(f"- {category.id}: {category.name} (schema: {category.schema_path})")
+        if not show:
+            return
+    category = registry.get(show)
+    if category is None:
+        raise typer.BadParameter(f"Categoria '{show}' non trovata")
+    typer.echo(json.dumps(
+        {
+            "id": category.id,
+            "name": category.name,
+            "schema_path": str(category.schema_path),
+            "required": list(category.required),
+            "properties": [
+                {
+                    "id": prop.id,
+                    "title": prop.title,
+                    "type": prop.type,
+                    "unit": prop.unit,
+                    "required": prop.required,
+                    "enum": list(prop.enum) if prop.enum else None,
+                    "sources": list(prop.sources) if prop.sources else None,
+                }
+                for prop in category.properties
+            ],
+        },
+        indent=2,
+        ensure_ascii=False,
+    ))
+    if print_schema:
+        schema_text = Path(category.schema_path).read_text(encoding="utf-8")
+        typer.echo(schema_text)
+
+
+@app.command("pack")
+def extract_pack(
     in_registry: Path = typer.Option(..., "--registry", exists=True, dir_okay=False),
     in_extractors: Path = typer.Option(..., "--extractors", exists=True, dir_okay=False),
     out_dir: Path = typer.Option(..., "--out-dir"),
 ) -> None:
-    """Expand registry/extractors bundle into the properties folder structure."""
+    """Expand a legacy knowledge pack bundle into property folders."""
 
     convert_monolith_to_folders(in_registry, in_extractors, out_dir)
     typer.echo(f"Pack estratto in: {out_dir}")

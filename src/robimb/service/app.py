@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from ..extraction import ExtractionRouter
+from ..extraction.legacy import ExtractionRouter
 from ..inference.calibration import TemperatureCalibrator
 from ..inference.predict_category import _load_id2label, load_classifier
 from ..registry import load_pack

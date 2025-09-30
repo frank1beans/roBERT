@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Dict, Mapping, MutableMapping, Optional
 
-from ..registry import CategoryDefinition, validate
+from robimb.registry import CategoryDefinition, validate
 
 __all__ = ["PostProcessResult", "apply_postprocess"]
 

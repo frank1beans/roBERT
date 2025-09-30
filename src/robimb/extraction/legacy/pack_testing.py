@@ -8,8 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional
 
-from ..registry import RegistryLoader
-from ..registry.schemas import build_category_key
+from robimb.registry import RegistryLoader
+from robimb.registry.schemas import build_category_key
 
 from .engine import dry_run
 

@@ -44,7 +44,7 @@ Gli asset per l'estrazione automatica delle proprietà – registry, catmap, val
 
 Per impostazione predefinita `pack/current/` rimanda a `pack/v1_limited/`, un bundle alleggerito che raccoglie solo le categorie di finitura più richieste (cartongesso, controsoffitti, pavimentazioni, rivestimenti, opere da serramentista e falegname, apparecchi sanitari) con slot mirati su marchio, produttore, materiali, spessori/orditure, prestazioni EI e Rw, dimensioni e accessori. Il bundle completo precedentemente distribuito resta disponibile in `pack/v1/` per test di regressione o per esigenze più estese.
 
-La funzione `robimb.extraction.resources.load_default()` risolve automaticamente `pack/current/extractors.json` (con fallback ai percorsi legacy), mentre `robimb.registry.load_pack()` carica l'intero bundle a partire da `pack/current/`. Gli script `robimb convert` e la pipeline di inferenza condividono la stessa convenzione; è comunque possibile fornire un pack alternativo via CLI (`--extractors-pack` o `--properties-registry`) indicando un JSON compatibile oppure un'altra directory versionata con la stessa struttura.
+Il motore regex storico rimane disponibile via `robimb.extraction.legacy`, che espone `validate_extractors_pack` e `run_pack_dataset_evaluation` per validare rapidamente un bundle. Tutti gli script CLI accettano esplicitamente il percorso del pack (`--pack`/`--extractors-pack`/`--properties-registry`) e, in assenza di override, utilizzano `pack/current/` come riferimento.
 
 Durante la conversione vengono generati, all'interno di `outputs/`, i file:
 

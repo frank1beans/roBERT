@@ -7,7 +7,17 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from . import resources as extraction_resources  # default loader
+
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+_PACK_ROOT = _REPO_ROOT / "pack"
+_LEGACY_DATA = _REPO_ROOT / "data" / "properties"
+_DEFAULT_PACK_CANDIDATES = (
+    _PACK_ROOT / "current" / "extractors.json",
+    _PACK_ROOT / "current" / "extractors_extended.json",
+    _PACK_ROOT / "v1" / "extractors.json",
+    _LEGACY_DATA / "extractors_extended.json",
+    _LEGACY_DATA / "extractors.json",
+)
 
 __all__ = ["PatternSpec", "PatternSpecs", "ExtractorsPack"]
 
@@ -41,6 +51,17 @@ def _load_json_if_exists(path: Optional[Path]) -> Optional[Dict[str, Any]]:
         with p.open("r", encoding="utf-8") as f:
             return json.load(f)
     return None
+
+
+def _load_default_extractors() -> Dict[str, Any]:
+    """Best-effort loader for the bundled regex extractors."""
+
+    for candidate in _DEFAULT_PACK_CANDIDATES:
+        if candidate.exists():
+            payload = _load_json_if_exists(candidate)
+            if isinstance(payload, dict):
+                return payload
+    return {"patterns": []}
 
 def _rules_to_patterns(rules: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Converte form legacy 'rules' in items compatibili con engine.py (patterns[].regex, normalizers...)."""
@@ -158,7 +179,7 @@ class ExtractorsPack(Mapping[str, Any]):
         payload = _load_json_if_exists(extractors_path)
         if payload is None:
             # fallback al default (già puntato a data/properties dal tuo resources.py)
-            payload = extraction_resources.load_default()
+            payload = _load_default_extractors()
         base = _normalize_pack(payload or {})
 
         # 2) registry → aggiungi patterns
