@@ -7,8 +7,56 @@
       "category": "Opere da cartongessista|Pareti in cartongesso standard e idrorepellente",
       "fields": [
         "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.produttore",
-        "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.tipologia_lastra"
+        "opere_da_cartongessista.__global__.tipologia_lastra",
+        "opere_da_cartongessista.__global__.spessore_mm",
+        "opere_da_cartongessista.__global__.classe_ei"
+      ]
+    },
+    {
+      "id": "scheda_cassette_scarico",
+      "label": "Scheda cassette di scarico",
+      "category": "Apparecchi sanitari e accessori|Cassette di scarico",
+      "fields": [
+        "apparecchi_sanitari_e_accessori.__global__.marchio",
+        "apparecchi_sanitari_e_accessori.__global__.materiale",
+        "apparecchi_sanitari_e_accessori.cassette_di_scarico.tipologia_cassetta",
+        "apparecchi_sanitari_e_accessori.cassette_di_scarico.capacita_serbatoio_l"
+      ]
+    },
+    {
+      "id": "scheda_pav_autobloccanti",
+      "label": "Scheda pavimentazione in autobloccanti",
+      "category": "Opere di pavimentazione|Pavimentazione in autobloccanti o masselli",
+      "fields": [
+        "opere_di_pavimentazione.__global__.materiale",
+        "opere_di_pavimentazione.__global__.formato",
+        "opere_di_pavimentazione.__global__.spessore_mm",
+        "opere_di_pavimentazione.pavimentazione_in_autobloccanti_o_masselli.tipologia_blocco",
+        "opere_di_pavimentazione.pavimentazione_in_autobloccanti_o_masselli.classe_resistenza_carico"
+      ]
+    },
+    {
+      "id": "scheda_boiserie",
+      "label": "Scheda boiserie in legno",
+      "category": "Opere da falegname|Boiserie in legno",
+      "fields": [
+        "opere_da_falegname.__global__.marchio",
+        "opere_da_falegname.__global__.essenza",
+        "opere_da_falegname.__global__.dimensione_larghezza",
+        "opere_da_falegname.__global__.dimensione_altezza"
+      ]
+    },
+    {
+      "id": "scheda_serramento_pvc",
+      "label": "Scheda serramento in PVC",
+      "category": "Opere da serramentista|Serramenti in PVC",
+      "fields": [
+        "opere_da_serramentista.__global__.marchio",
+        "opere_da_serramentista.__global__.materiale_struttura",
+        "opere_da_serramentista.__global__.dimensione_larghezza",
+        "opere_da_serramentista.__global__.dimensione_altezza",
+        "opere_da_serramentista.serramenti_in_pvc.numero_camere",
+        "opere_da_serramentista.__global__.trasmittanza_termica"
       ]
     }
   ]

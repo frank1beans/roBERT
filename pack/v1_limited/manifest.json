@@ -2,8 +2,8 @@
   "schema": "manifest/v1",
   "metadata": {
     "version": "v1_limited",
-    "generated_at": "2024-11-20T00:00:00Z",
-    "description": "Pacchetto conoscenza limitato alle categorie principali per le finiture"
+    "generated_at": "2024-12-05T00:00:00Z",
+    "description": "Pacchetto conoscenza limitato aggiornato al perimetro di dataset_lim"
   },
   "sources": {
     "registry": "registry.json",

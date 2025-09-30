@@ -1,24 +1,259 @@
 {
   "schema": "validators/v1",
   "validators": {
-    "Opere da cartongessista|Pareti in cartongesso standard e idrorepellente": {
+    "Opere da cartongessista|Accessori per cartongessi": {
       "required": [
-        "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.produttore",
-        "opere_da_cartongessista.pareti_in_cartongesso_standard_e_idrorepellente.tipologia_lastra"
+        "opere_da_cartongessista.accessori_per_cartongessi.tipologia_accessorio"
       ]
     },
-    "Opere di pavimentazione|Pavimenti in gres e ceramica": {
+    "Opere da cartongessista|Contropareti in cartongesso resistente al fuoco": {
       "required": [
-        "opere_di_pavimentazione.__global__.marchio",
-        "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.materiale",
-        "opere_di_pavimentazione.pavimenti_in_gres_e_ceramica.formato"
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere da cartongessista|Contropareti in cartongesso standard e idrorepellente": {
+      "required": [
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere da cartongessista|Contropareti in lastre di fibrocemento": {
+      "required": [
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere da cartongessista|Pareti in cartongesso resistente al fuoco": {
+      "required": [
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere da cartongessista|Pareti in cartongesso standard e idrorepellente": {
+      "required": [
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere da cartongessista|Pareti in lastre di fibrocemento": {
+      "required": [
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere da cartongessista|Setto autoportante cartongesso resistente al fuoco": {
+      "required": [
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere da cartongessista|Setto autoportante in cartongesso standard e idrorepellente": {
+      "required": [
+        "opere_da_cartongessista.__global__.tipologia_lastra"
+      ]
+    },
+    "Opere di rivestimento|Altri rivestimenti": {
+      "required": [
+        "opere_di_rivestimento.__global__.materiale"
+      ]
+    },
+    "Opere di rivestimento|Rivestimenti in gomma o PVC": {
+      "required": [
+        "opere_di_rivestimento.rivestimenti_in_gomma_o_pvc.classe_antisdrucciolo"
       ]
     },
     "Opere di rivestimento|Rivestimenti in gres e ceramica": {
       "required": [
-        "opere_di_rivestimento.__global__.marchio",
-        "opere_di_rivestimento.rivestimenti_in_gres_e_ceramica.materiale"
+        "opere_di_rivestimento.__global__.materiale"
+      ]
+    },
+    "Opere di rivestimento|Rivestimenti in legno": {
+      "required": [
+        "opere_di_rivestimento.rivestimenti_in_legno.essenza"
+      ]
+    },
+    "Opere di rivestimento|Rivestimenti in pietra": {
+      "required": [
+        "opere_di_rivestimento.rivestimenti_in_pietra.tipo_pietra"
+      ]
+    },
+    "Opere di pavimentazione|Noli": {
+      "required": [
+        "opere_di_pavimentazione.noli.attrezzatura_nolo"
+      ]
+    },
+    "Opere di pavimentazione|Pavimentazione in autobloccanti o masselli": {
+      "required": [
+        "opere_di_pavimentazione.pavimentazione_in_autobloccanti_o_masselli.tipologia_blocco"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti in altri materiali": {
+      "required": [
+        "opere_di_pavimentazione.__global__.materiale"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti in gomma o PVC": {
+      "required": [
+        "opere_di_pavimentazione.pavimenti_in_gomma_o_pvc.classe_emissione"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti in gres e ceramica": {
+      "required": [
+        "opere_di_pavimentazione.__global__.materiale"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti in legno e laminato": {
+      "required": [
+        "opere_di_pavimentazione.pavimenti_in_legno_e_laminato.essenza"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti in moquette e zerbini": {
+      "required": [
+        "opere_di_pavimentazione.pavimenti_in_moquette_e_zerbini.tipologia_fibra"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti in pietra": {
+      "required": [
+        "opere_di_pavimentazione.pavimenti_in_pietra.tipo_pietra"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti industriali": {
+      "required": [
+        "opere_di_pavimentazione.__global__.materiale"
+      ]
+    },
+    "Opere di pavimentazione|Pavimenti sopraelevati e flottanti": {
+      "required": [
+        "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.tipologia_struttura"
+      ]
+    },
+    "Opere di pavimentazione|Scavi e trasporti a discarica": {
+      "required": [
+        "opere_di_pavimentazione.scavi_e_trasporti_a_discarica.profondita_scavo_cm"
+      ]
+    },
+    "Opere di pavimentazione|Zoccolini e accessori per pavimentazioni": {
+      "required": [
+        "opere_di_pavimentazione.zoccolini_e_accessori_per_pavimentazioni.tipologia_zoccolino"
+      ]
+    },
+    "Opere da serramentista|Avvolgibili, controtelai, cassonetti e persiane": {
+      "required": [
+        "opere_da_serramentista.avvolgibili_controtelai_cassonetti_e_persiane.tipologia_avvolgibile"
+      ]
+    },
+    "Opere da serramentista|Porte blindate, portoni e bussole": {
+      "required": [
+        "opere_da_serramentista.porte_blindate_portoni_e_bussole.classe_antieffrazione"
+      ]
+    },
+    "Opere da serramentista|Porte metalliche": {
+      "required": [
+        "opere_da_serramentista.__global__.materiale_struttura"
+      ]
+    },
+    "Opere da serramentista|Porte tagliafuoco": {
+      "required": [
+        "opere_da_serramentista.porte_tagliafuoco.maniglione_antipanico"
+      ]
+    },
+    "Opere da serramentista|Serramenti in PVC": {
+      "required": [
+        "opere_da_serramentista.serramenti_in_pvc.numero_camere"
+      ]
+    },
+    "Opere da serramentista|Serramenti in legno": {
+      "required": [
+        "opere_da_serramentista.serramenti_in_legno.essenza"
+      ]
+    },
+    "Opere da serramentista|Serramenti in legno e alluminio": {
+      "required": [
+        "opere_da_serramentista.serramenti_in_legno_e_alluminio.materiale_rivestimento_esterno"
+      ]
+    },
+    "Opere da serramentista|Serramenti metallici": {
+      "required": [
+        "opere_da_serramentista.serramenti_metallici.lega_metallo"
+      ]
+    },
+    "Opere da serramentista|Sistemi di partizione trasparenti, porte e parapetti vetrati": {
+      "required": [
+        "opere_da_serramentista.sistemi_di_partizione_trasparenti_porte_e_parapetti_vetrati.tipologia_vetrata"
+      ]
+    },
+    "Controsoffitti|Botole d'ispezione e accessori": {
+      "required": [
+        "controsoffitti.botole_d_ispezione_e_accessori.dimensione_botola_mm"
+      ]
+    },
+    "Controsoffitti|Controsoffitti a Baffles e ispezionabili": {
+      "required": [
+        "controsoffitti.controsoffitti_a_baffles_e_ispezionabili.passo_baffles_mm"
+      ]
+    },
+    "Controsoffitti|Controsoffitti a doghe in legno": {
+      "required": [
+        "controsoffitti.__global__.materiale"
+      ]
+    },
+    "Controsoffitti|Controsoffitti in PVC o materiali plastici": {
+      "required": [
+        "controsoffitti.controsoffitti_in_pvc_o_materiali_plastici.resistenza_umidita"
+      ]
+    },
+    "Controsoffitti|Controsoffitti in altri materiali": {
+      "required": [
+        "controsoffitti.__global__.materiale"
+      ]
+    },
+    "Controsoffitti|Controsoffitti in cartongesso": {
+      "required": [
+        "controsoffitti.__global__.materiale"
+      ]
+    },
+    "Controsoffitti|Controsoffitti in fibre minerali e acustici": {
+      "required": [
+        "controsoffitti.__global__.coefficiente_fonoassorbimento"
+      ]
+    },
+    "Controsoffitti|Controsoffitti metallici": {
+      "required": [
+        "controsoffitti.__global__.materiale"
+      ]
+    },
+    "Controsoffitti|Velette di raccordo": {
+      "required": [
+        "controsoffitti.__global__.materiale"
+      ]
+    },
+    "Apparecchi sanitari e accessori|Accessori per l'allestimento di servizi igienici": {
+      "required": [
+        "apparecchi_sanitari_e_accessori.accessori_per_l_allestimento_di_servizi_igienici.tipologia_accessorio"
+      ]
+    },
+    "Apparecchi sanitari e accessori|Apparecchi sanitari": {
+      "required": [
+        "apparecchi_sanitari_e_accessori.apparecchi_sanitari.tipologia_apparecchio"
+      ]
+    },
+    "Apparecchi sanitari e accessori|Cassette di scarico": {
+      "required": [
+        "apparecchi_sanitari_e_accessori.cassette_di_scarico.tipologia_cassetta"
+      ]
+    },
+    "Opere da falegname|Boiserie in legno": {
+      "required": [
+        "opere_da_falegname.__global__.essenza"
+      ]
+    },
+    "Opere da falegname|Opere in legno custom": {
+      "required": [
+        "opere_da_falegname.opere_in_legno_custom.descrizione_custom"
+      ]
+    },
+    "Opere da falegname|Persiane e scuri in legno": {
+      "required": [
+        "opere_da_falegname.persiane_e_scuri_in_legno.numero_ante"
+      ]
+    },
+    "Opere da falegname|Porte in legno": {
+      "required": [
+        "opere_da_falegname.porte_in_legno.tipologia_porta"
       ]
     }
   }
