@@ -1,0 +1,150 @@
+"""Deterministic parsers for dimensional expressions."""
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass
+from itertools import zip_longest
+from typing import Iterable, Iterator, List, Sequence, Tuple
+
+from .numbers import parse_number_it
+from .units import normalize_unit
+
+__all__ = ["DimensionMatch", "parse_dimensions"]
+
+_UNIT_FACTORS = {
+    "mm": 1.0,
+    "millimetri": 1.0,
+    "millimetro": 1.0,
+    "cm": 10.0,
+    "centimetri": 10.0,
+    "centimetro": 10.0,
+    "m": 1000.0,
+    "metro": 1000.0,
+    "metri": 1000.0,
+}
+
+_CROSS_PATTERN = re.compile(
+    r"""
+    (?P<first>[\d.,]+)\s*(?P<first_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?
+    \s*[x×X]\s*
+    (?P<second>[\d.,]+)\s*(?P<second_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?
+    (?:\s*[x×X]\s*(?P<third>[\d.,]+)\s*(?P<third_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?)?
+    \s*(?P<global_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?
+    """,
+    re.IGNORECASE | re.VERBOSE,
+)
+
+_LABELLED_PATTERN = re.compile(
+    r"""
+    (?:(?:[LHP]\s*[:=]?)?\s*[\d.,]+\s*(?:mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?\s*){2,3}
+    """,
+    re.IGNORECASE | re.VERBOSE,
+)
+
+
+@dataclass(frozen=True)
+class DimensionMatch:
+    """Normalized dimension parsed from text."""
+
+    values_mm: Tuple[float, ...]
+    raw: str
+    span: Tuple[int, int]
+    unit: str = "mm"
+
+
+def _convert_unitless_value(value: float, raw: str, sequence_max: float) -> float:
+    if value <= 10 and ("," in raw or "." in raw):
+        return value * _UNIT_FACTORS["m"]
+    if sequence_max <= 400:
+        return value * _UNIT_FACTORS["cm"]
+    return value * _UNIT_FACTORS["mm"]
+
+
+def _convert(values: Sequence[str], units: Sequence[str | None], fallback_unit: str, explicit_unit: bool) -> Tuple[float, ...]:
+    numeric_values = [parse_number_it(raw_value) for raw_value in values]
+    sequence_max = max(numeric_values) if numeric_values else 0.0
+    units_list = list(units) + [None] * (len(values) - len(units))
+    results: List[float] = []
+    for numeric, raw_unit, raw_value in zip(numeric_values, units_list, values):
+        if raw_unit:
+            normalized = normalize_unit(raw_unit) or raw_unit
+            multiplier = _UNIT_FACTORS.get(normalized)
+            if multiplier is None:
+                raise ValueError(f"Unsupported unit: {raw_unit}")
+            results.append(numeric * multiplier)
+            continue
+        if explicit_unit:
+            normalized = normalize_unit(fallback_unit) or fallback_unit
+            multiplier = _UNIT_FACTORS.get(normalized, 1.0)
+            results.append(numeric * multiplier)
+            continue
+        results.append(_convert_unitless_value(numeric, raw_value, sequence_max))
+    return tuple(results)
+
+
+def _fallback_unit(global_unit: str | None, *units: str | None) -> str:
+    for candidate in (*units, global_unit):
+        if not candidate:
+            continue
+        normalized = normalize_unit(candidate)
+        if normalized:
+            return normalized
+    return "mm"
+
+
+def _iter_cross(text: str) -> Iterator[DimensionMatch]:
+    for match in _CROSS_PATTERN.finditer(text):
+        groups = match.groupdict()
+        values = [groups["first"], groups["second"]]
+        units = [groups.get("first_unit"), groups.get("second_unit")]
+        if groups.get("third"):
+            values.append(groups["third"])
+            units.append(groups.get("third_unit"))
+        base_unit = _fallback_unit(groups.get("global_unit"), *units)
+        explicit_unit = bool(groups.get("global_unit")) or any(units)
+        converted = _convert(values, units, base_unit, explicit_unit)
+        yield DimensionMatch(values_mm=converted, raw=match.group(0), span=(match.start(), match.end()))
+
+
+def _extract_numbers_from_labelled(raw: str) -> Tuple[List[str], List[str | None]]:
+    tokens = re.findall(
+        r"([\d.,]+)\s*(mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?",
+        raw,
+        flags=re.IGNORECASE,
+    )
+    values: List[str] = []
+    units: List[str | None] = []
+    for value, unit in tokens:
+        if not any(char.isdigit() for char in value):
+            continue
+        values.append(value)
+        units.append(unit)
+    return values, units
+
+
+def _iter_labelled(text: str) -> Iterator[DimensionMatch]:
+    for match in _LABELLED_PATTERN.finditer(text):
+        raw = match.group(0)
+        values, units = _extract_numbers_from_labelled(raw)
+        if len(values) < 2:
+            continue
+        base_unit = _fallback_unit(None, *units)
+        explicit_unit = any(units)
+        converted = _convert(values, units, base_unit, explicit_unit)
+        yield DimensionMatch(values_mm=converted, raw=raw, span=(match.start(), match.end()))
+
+
+def parse_dimensions(text: str) -> Iterable[DimensionMatch]:
+    """Yield normalized dimensions (values in millimetres)."""
+
+    seen: set[Tuple[int, int]] = set()
+    for match in _iter_cross(text):
+        if match.span in seen:
+            continue
+        seen.add(match.span)
+        yield match
+    for match in _iter_labelled(text):
+        if match.span in seen:
+            continue
+        seen.add(match.span)
+        yield match

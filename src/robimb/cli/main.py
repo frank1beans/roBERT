@@ -1,17 +1,13 @@
-"""Central Typer application that routes to the individual CLI modules."""
-from __future__ import annotations
-
-import json
 from pathlib import Path
 
+import json
 import typer
 
 from .._version import __version__
 from ..utils.data_utils import sample_one_record_per_category
-
 from .convert import convert_command
 from .evaluate import evaluate_command
-from .extract import extract_command
+from .extract import app as extract_app
 from .pack import pack_command
 from .pack_test import pack_test_command
 
@@ -37,7 +33,7 @@ def version_callback(
 
 
 app.command("convert", help="Prepara dataset, label map e maschere ontologiche.")(convert_command)
-app.command("extract", help="Estrae registry/extractors da un knowledge pack.")(extract_command)
+app.add_typer(extract_app, name="extract")
 app.command("evaluate", help="Valuta un modello esportato su un dataset etichettato.")(evaluate_command)
 app.command("pack", help="Impacchetta le cartelle delle proprietà in registry/extractors.")(pack_command)
 app.command("pack-test", help="Esegue un dry-run delle regex del pack su un dataset.")(pack_test_command)
