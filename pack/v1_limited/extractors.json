@@ -313,6 +313,23 @@
       "confidence": 0.6
     },
     {
+      "property_id": "controsoffitti.__global__.stratigrafia_lastre",
+      "regex": [
+        "(?im)^[\\\t >]*[-–—•*]?\\s*(?P<val>(?:lastr[ae]|pannell[oi])[^\\r\\n]*)",
+        "(?i)(?P<val>(?:lastr[ae]|pannell[oi])[^.\\r\\n:;]{0,240}?(?:cartongesso|gesso|cemento|fibro|fire|aquapanel|rigitone|activ|gkb|gki|minerale|lana|gesso\\s*fibra|idrofug|idrorepell|acustic|antincendio)[^.\\r\\n:;]{0,240})"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "collect_many"
+      ],
+      "tags": [
+        "stratigrafia"
+      ],
+      "confidence": 0.45,
+      "max_matches": 8
+    },
+    {
       "property_id": "opere_da_cartongessista.__global__.presenza_isolante",
       "regex": [
         "(?ix)\\\\bcon\\\\s+(?P<val>isolant[eo]|isolamento)\\\\b",
@@ -325,6 +342,23 @@
         "stratigrafia"
       ],
       "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.stratigrafia_lastre",
+      "regex": [
+        "(?im)^[\\\t >]*[-–—•*]?\\s*(?P<val>(?:lastr[ae]|pannell[oi])[^\\r\\n]*)",
+        "(?i)(?P<val>(?:lastr[ae]|pannell[oi])[^.\\r\\n:;]{0,240}?(?:cartongesso|gesso|cemento|fibro|fire|aquapanel|rigitone|activ|gkb|gki|minerale|lana|gesso\\s*fibra|idrofug|idrorepell|acustic|antincendio)[^.\\r\\n:;]{0,240})"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "collect_many"
+      ],
+      "tags": [
+        "stratigrafia"
+      ],
+      "confidence": 0.45,
+      "max_matches": 8
     },
     {
       "property_id": "opere_da_serramentista.porte_blindate_portoni_e_bussole.classe_antieffrazione",
