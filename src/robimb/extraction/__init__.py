@@ -11,6 +11,13 @@ from .schema_registry import CategorySchema, PropertySpec, SchemaRegistry, load_
 from .parsers.dimensions import DimensionMatch, parse_dimensions
 from .parsers.numbers import NumberSpan, extract_numbers, parse_number_it
 from .parsers.units import UnitMatch, normalize_unit, scan_units
+from .validators import (
+    ALLOWED_SOURCES,
+    PropertyPayload,
+    ValidationIssue,
+    ValidationResult,
+    validate_properties,
+)
 
 # Backwards compatible legacy engine ---------------------------------------
 from . import legacy
@@ -54,6 +61,11 @@ __all__ = [
     "normalize_unit",
     "scan_units",
     "extract_units",
+    "ALLOWED_SOURCES",
+    "PropertyPayload",
+    "ValidationIssue",
+    "ValidationResult",
+    "validate_properties",
     # Legacy exports kept for compatibility
     "legacy",
     "ExtractionRouter",
