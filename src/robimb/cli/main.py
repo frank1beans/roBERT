@@ -9,7 +9,7 @@ from .convert import convert_command
 from .evaluate import evaluate_command
 from .extract import app as extract_app
 from .pack import pack_command
-from .pack_test import pack_test_command
+
 
 __all__ = ["app", "run"]
 
@@ -36,7 +36,6 @@ app.command("convert", help="Prepara dataset, label map e maschere ontologiche."
 app.add_typer(extract_app, name="extract")
 app.command("evaluate", help="Valuta un modello esportato su un dataset etichettato.")(evaluate_command)
 app.command("pack", help="Impacchetta le cartelle delle proprietà in registry/extractors.")(pack_command)
-app.command("pack-test", help="Esegue un dry-run delle regex del pack su un dataset.")(pack_test_command)
 
 
 @app.command("sample-categories")

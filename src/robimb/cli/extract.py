@@ -8,7 +8,6 @@ from typing import Optional
 import typer
 
 from ..extraction.schema_registry import load_registry
-from ..props.unpack import convert_monolith_to_folders
 
 __all__ = ["app"]
 
@@ -126,15 +125,3 @@ def schemas_command(
     if print_schema:
         schema_text = Path(category.schema_path).read_text(encoding="utf-8")
         typer.echo(schema_text)
-
-
-@app.command("pack")
-def extract_pack(
-    in_registry: Path = typer.Option(..., "--registry", exists=True, dir_okay=False),
-    in_extractors: Path = typer.Option(..., "--extractors", exists=True, dir_okay=False),
-    out_dir: Path = typer.Option(..., "--out-dir"),
-) -> None:
-    """Expand a legacy knowledge pack bundle into property folders."""
-
-    convert_monolith_to_folders(in_registry, in_extractors, out_dir)
-    typer.echo(f"Pack estratto in: {out_dir}")
