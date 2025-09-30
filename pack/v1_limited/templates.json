@@ -8,14 +8,10 @@
       "fields": [
         "apparecchi_sanitari_e_accessori.__global__.marchio",
         "apparecchi_sanitari_e_accessori.__global__.materiale",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_lunghezza",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_larghezza",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_altezza",
-        "apparecchi_sanitari_e_accessori.__global__.tipologia_installazione",
-        "apparecchi_sanitari_e_accessori.__global__.portata_l_min",
-        "apparecchi_sanitari_e_accessori.accessori_per_l_allestimento_di_servizi_igienici.tipologia_accessorio",
         "apparecchi_sanitari_e_accessori.accessori_per_l_allestimento_di_servizi_igienici.modalita_fissaggio",
-        "apparecchi_sanitari_e_accessori.accessori_per_l_allestimento_di_servizi_igienici.portata_massima_kg"
+        "apparecchi_sanitari_e_accessori.__global__.dimensione_lunghezza",
+        "apparecchi_sanitari_e_accessori.__global__.dimensione_altezza",
+        "apparecchi_sanitari_e_accessori.__global__.dimensione_larghezza"
       ]
     },
     {
@@ -25,13 +21,10 @@
       "fields": [
         "apparecchi_sanitari_e_accessori.__global__.marchio",
         "apparecchi_sanitari_e_accessori.__global__.materiale",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_lunghezza",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_larghezza",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_altezza",
-        "apparecchi_sanitari_e_accessori.__global__.tipologia_installazione",
-        "apparecchi_sanitari_e_accessori.__global__.portata_l_min",
         "apparecchi_sanitari_e_accessori.apparecchi_sanitari.tipologia_apparecchio",
-        "apparecchi_sanitari_e_accessori.apparecchi_sanitari.scarico"
+        "apparecchi_sanitari_e_accessori.__global__.tipologia_installazione",
+        "apparecchi_sanitari_e_accessori.apparecchi_sanitari.scarico",
+        "apparecchi_sanitari_e_accessori.__global__.dimensione_altezza"
       ]
     },
     {
@@ -41,13 +34,7 @@
       "fields": [
         "apparecchi_sanitari_e_accessori.__global__.marchio",
         "apparecchi_sanitari_e_accessori.__global__.materiale",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_lunghezza",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_larghezza",
-        "apparecchi_sanitari_e_accessori.__global__.dimensione_altezza",
-        "apparecchi_sanitari_e_accessori.__global__.tipologia_installazione",
-        "apparecchi_sanitari_e_accessori.__global__.portata_l_min",
-        "apparecchi_sanitari_e_accessori.cassette_di_scarico.tipologia_cassetta",
-        "apparecchi_sanitari_e_accessori.cassette_di_scarico.capacita_serbatoio_l"
+        "apparecchi_sanitari_e_accessori.cassette_di_scarico.tipologia_cassetta"
       ]
     },
     {
@@ -55,8 +42,10 @@
       "label": "Scheda Accessori per cartongessi",
       "category": "Opere da cartongessista|Accessori per cartongessi",
       "fields": [
-        "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.accessori_per_cartongessi.tipologia_accessorio"
+        "opere_da_cartongessista.__global__.spessore_mm",
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
+        "opere_da_cartongessista.accessori_per_cartongessi.tipologia_accessorio",
+        "opere_da_cartongessista.__global__.marchio"
       ]
     },
     {
@@ -64,13 +53,12 @@
       "label": "Scheda Contropareti in cartongesso resistente al fuoco",
       "category": "Opere da cartongessista|Contropareti in cartongesso resistente al fuoco",
       "fields": [
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
         "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.spessore_mm",
+        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.classe_ei",
-        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -78,13 +66,12 @@
       "label": "Scheda Contropareti in cartongesso standard e idrorepellente",
       "category": "Opere da cartongessista|Contropareti in cartongesso standard e idrorepellente",
       "fields": [
-        "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.spessore_mm",
-        "opere_da_cartongessista.__global__.classe_ei",
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
+        "opere_da_cartongessista.__global__.tipologia_lastra",
+        "opere_da_cartongessista.__global__.marchio",
         "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.classe_ei"
       ]
     },
     {
@@ -93,12 +80,10 @@
       "category": "Opere da cartongessista|Contropareti in lastre di fibrocemento",
       "fields": [
         "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.spessore_mm",
-        "opere_da_cartongessista.__global__.classe_ei",
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
         "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.tipologia_lastra"
       ]
     },
     {
@@ -107,12 +92,11 @@
       "category": "Opere da cartongessista|Pareti in cartongesso resistente al fuoco",
       "fields": [
         "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.tipologia_lastra",
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
         "opere_da_cartongessista.__global__.spessore_mm",
+        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.classe_ei",
-        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -120,13 +104,12 @@
       "label": "Scheda Pareti in cartongesso standard e idrorepellente",
       "category": "Opere da cartongessista|Pareti in cartongesso standard e idrorepellente",
       "fields": [
-        "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.spessore_mm",
-        "opere_da_cartongessista.__global__.classe_ei",
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
+        "opere_da_cartongessista.__global__.tipologia_lastra",
+        "opere_da_cartongessista.__global__.marchio",
         "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.classe_ei"
       ]
     },
     {
@@ -135,12 +118,9 @@
       "category": "Opere da cartongessista|Pareti in lastre di fibrocemento",
       "fields": [
         "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.spessore_mm",
-        "opere_da_cartongessista.__global__.classe_ei",
-        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
+        "opere_da_cartongessista.__global__.tipologia_lastra"
       ]
     },
     {
@@ -149,12 +129,10 @@
       "category": "Opere da cartongessista|Setto autoportante cartongesso resistente al fuoco",
       "fields": [
         "opere_da_cartongessista.__global__.marchio",
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
         "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.spessore_mm",
-        "opere_da_cartongessista.__global__.classe_ei",
-        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -163,12 +141,11 @@
       "category": "Opere da cartongessista|Setto autoportante in cartongesso standard e idrorepellente",
       "fields": [
         "opere_da_cartongessista.__global__.marchio",
-        "opere_da_cartongessista.__global__.tipologia_lastra",
         "opere_da_cartongessista.__global__.spessore_mm",
+        "opere_da_cartongessista.__global__.tipologia_lastra",
+        "opere_da_cartongessista.__global__.stratigrafia_lastre",
         "opere_da_cartongessista.__global__.classe_ei",
-        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco",
-        "opere_da_cartongessista.__global__.presenza_isolante",
-        "opere_da_cartongessista.__global__.stratigrafia_lastre"
+        "opere_da_cartongessista.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -176,13 +153,10 @@
       "label": "Scheda Botole d'ispezione e accessori",
       "category": "Controsoffitti|Botole d'ispezione e accessori",
       "fields": [
-        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
+        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento",
-        "controsoffitti.botole_d_ispezione_e_accessori.dimensione_botola_mm",
-        "controsoffitti.botole_d_ispezione_e_accessori.tipologia_apertura"
+        "controsoffitti.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -190,12 +164,9 @@
       "label": "Scheda Controsoffitti a Baffles e ispezionabili",
       "category": "Controsoffitti|Controsoffitti a Baffles e ispezionabili",
       "fields": [
-        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
-        "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento",
-        "controsoffitti.controsoffitti_a_baffles_e_ispezionabili.passo_baffles_mm"
+        "controsoffitti.__global__.marchio",
+        "controsoffitti.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -204,10 +175,7 @@
       "category": "Controsoffitti|Controsoffitti a doghe in legno",
       "fields": [
         "controsoffitti.__global__.marchio",
-        "controsoffitti.__global__.materiale",
-        "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento"
+        "controsoffitti.__global__.materiale"
       ]
     },
     {
@@ -215,12 +183,8 @@
       "label": "Scheda Controsoffitti in PVC o materiali plastici",
       "category": "Controsoffitti|Controsoffitti in PVC o materiali plastici",
       "fields": [
-        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
-        "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento",
-        "controsoffitti.controsoffitti_in_pvc_o_materiali_plastici.resistenza_umidita"
+        "controsoffitti.__global__.marchio"
       ]
     },
     {
@@ -231,8 +195,7 @@
         "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
         "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento"
+        "controsoffitti.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -240,12 +203,11 @@
       "label": "Scheda Controsoffitti in cartongesso",
       "category": "Controsoffitti|Controsoffitti in cartongesso",
       "fields": [
-        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
+        "controsoffitti.__global__.stratigrafia_lastre",
+        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento",
-        "controsoffitti.__global__.stratigrafia_lastre"
+        "controsoffitti.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -253,8 +215,8 @@
       "label": "Scheda Controsoffitti in fibre minerali e acustici",
       "category": "Controsoffitti|Controsoffitti in fibre minerali e acustici",
       "fields": [
-        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
+        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.spessore_pannello_mm",
         "controsoffitti.__global__.classe_reazione_al_fuoco",
         "controsoffitti.__global__.coefficiente_fonoassorbimento"
@@ -265,11 +227,10 @@
       "label": "Scheda Controsoffitti metallici",
       "category": "Controsoffitti|Controsoffitti metallici",
       "fields": [
-        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
+        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento"
+        "controsoffitti.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -277,12 +238,11 @@
       "label": "Scheda Velette di raccordo",
       "category": "Controsoffitti|Velette di raccordo",
       "fields": [
-        "controsoffitti.__global__.marchio",
         "controsoffitti.__global__.materiale",
+        "controsoffitti.__global__.marchio",
+        "controsoffitti.__global__.stratigrafia_lastre",
         "controsoffitti.__global__.spessore_pannello_mm",
-        "controsoffitti.__global__.classe_reazione_al_fuoco",
-        "controsoffitti.__global__.coefficiente_fonoassorbimento",
-        "controsoffitti.__global__.stratigrafia_lastre"
+        "controsoffitti.__global__.classe_reazione_al_fuoco"
       ]
     },
     {
@@ -290,14 +250,10 @@
       "label": "Scheda Pavimentazione in autobloccanti o masselli",
       "category": "Opere di pavimentazione|Pavimentazione in autobloccanti o masselli",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
-        "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita",
+        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.pavimentazione_in_autobloccanti_o_masselli.tipologia_blocco",
-        "opere_di_pavimentazione.pavimentazione_in_autobloccanti_o_masselli.classe_resistenza_carico"
+        "opere_di_pavimentazione.__global__.spessore_mm"
       ]
     },
     {
@@ -305,12 +261,9 @@
       "label": "Scheda Pavimenti in altri materiali",
       "category": "Opere di pavimentazione|Pavimenti in altri materiali",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
-        "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita"
+        "opere_di_pavimentazione.__global__.marchio",
+        "opere_di_pavimentazione.__global__.spessore_mm"
       ]
     },
     {
@@ -318,13 +271,9 @@
       "label": "Scheda Pavimenti in gomma o PVC",
       "category": "Opere di pavimentazione|Pavimenti in gomma o PVC",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita",
-        "opere_di_pavimentazione.pavimenti_in_gomma_o_pvc.classe_emissione"
+        "opere_di_pavimentazione.__global__.marchio"
       ]
     },
     {
@@ -332,12 +281,10 @@
       "label": "Scheda Pavimenti in gres e ceramica",
       "category": "Opere di pavimentazione|Pavimenti in gres e ceramica",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
+        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita"
+        "opere_di_pavimentazione.__global__.formato"
       ]
     },
     {
@@ -345,13 +292,9 @@
       "label": "Scheda Pavimenti in legno e laminato",
       "category": "Opere di pavimentazione|Pavimenti in legno e laminato",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita",
-        "opere_di_pavimentazione.pavimenti_in_legno_e_laminato.essenza"
+        "opere_di_pavimentazione.__global__.marchio"
       ]
     },
     {
@@ -359,12 +302,9 @@
       "label": "Scheda Pavimenti in moquette e zerbini",
       "category": "Opere di pavimentazione|Pavimenti in moquette e zerbini",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
+        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita",
         "opere_di_pavimentazione.pavimenti_in_moquette_e_zerbini.tipologia_fibra"
       ]
     },
@@ -373,13 +313,11 @@
       "label": "Scheda Pavimenti in pietra",
       "category": "Opere di pavimentazione|Pavimenti in pietra",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita",
-        "opere_di_pavimentazione.pavimenti_in_pietra.tipo_pietra"
+        "opere_di_pavimentazione.pavimenti_in_pietra.tipo_pietra",
+        "opere_di_pavimentazione.__global__.marchio",
+        "opere_di_pavimentazione.__global__.formato"
       ]
     },
     {
@@ -387,12 +325,10 @@
       "label": "Scheda Pavimenti industriali",
       "category": "Opere di pavimentazione|Pavimenti industriali",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
+        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita"
+        "opere_di_pavimentazione.__global__.formato"
       ]
     },
     {
@@ -400,13 +336,11 @@
       "label": "Scheda Pavimenti sopraelevati e flottanti",
       "category": "Opere di pavimentazione|Pavimenti sopraelevati e flottanti",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
+        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita",
-        "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.tipologia_struttura"
+        "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.tipologia_struttura",
+        "opere_di_pavimentazione.__global__.formato"
       ]
     },
     {
@@ -414,12 +348,9 @@
       "label": "Scheda Zoccolini e accessori per pavimentazioni",
       "category": "Opere di pavimentazione|Zoccolini e accessori per pavimentazioni",
       "fields": [
-        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.materiale",
-        "opere_di_pavimentazione.__global__.formato",
+        "opere_di_pavimentazione.__global__.marchio",
         "opere_di_pavimentazione.__global__.spessore_mm",
-        "opere_di_pavimentazione.__global__.classe_resistenza_usura",
-        "opere_di_pavimentazione.__global__.classe_scivolosita",
         "opere_di_pavimentazione.zoccolini_e_accessori_per_pavimentazioni.tipologia_zoccolino"
       ]
     },
@@ -432,7 +363,6 @@
         "opere_di_rivestimento.__global__.materiale",
         "opere_di_rivestimento.__global__.finitura",
         "opere_di_rivestimento.__global__.spessore_mm",
-        "opere_di_rivestimento.__global__.posa",
         "opere_di_rivestimento.__global__.classe_reazione_al_fuoco"
       ]
     },
@@ -441,13 +371,8 @@
       "label": "Scheda Rivestimenti in gomma o PVC",
       "category": "Opere di rivestimento|Rivestimenti in gomma o PVC",
       "fields": [
-        "opere_di_rivestimento.__global__.marchio",
         "opere_di_rivestimento.__global__.materiale",
-        "opere_di_rivestimento.__global__.finitura",
-        "opere_di_rivestimento.__global__.spessore_mm",
-        "opere_di_rivestimento.__global__.posa",
-        "opere_di_rivestimento.__global__.classe_reazione_al_fuoco",
-        "opere_di_rivestimento.rivestimenti_in_gomma_o_pvc.classe_antisdrucciolo"
+        "opere_di_rivestimento.__global__.spessore_mm"
       ]
     },
     {
@@ -455,12 +380,10 @@
       "label": "Scheda Rivestimenti in gres e ceramica",
       "category": "Opere di rivestimento|Rivestimenti in gres e ceramica",
       "fields": [
-        "opere_di_rivestimento.__global__.marchio",
         "opere_di_rivestimento.__global__.materiale",
-        "opere_di_rivestimento.__global__.finitura",
+        "opere_di_rivestimento.__global__.marchio",
         "opere_di_rivestimento.__global__.spessore_mm",
-        "opere_di_rivestimento.__global__.posa",
-        "opere_di_rivestimento.__global__.classe_reazione_al_fuoco"
+        "opere_di_rivestimento.__global__.finitura"
       ]
     },
     {
@@ -470,11 +393,7 @@
       "fields": [
         "opere_di_rivestimento.__global__.marchio",
         "opere_di_rivestimento.__global__.materiale",
-        "opere_di_rivestimento.__global__.finitura",
-        "opere_di_rivestimento.__global__.spessore_mm",
-        "opere_di_rivestimento.__global__.posa",
-        "opere_di_rivestimento.__global__.classe_reazione_al_fuoco",
-        "opere_di_rivestimento.rivestimenti_in_legno.essenza"
+        "opere_di_rivestimento.__global__.spessore_mm"
       ]
     },
     {
@@ -482,12 +401,9 @@
       "label": "Scheda Rivestimenti in pietra",
       "category": "Opere di rivestimento|Rivestimenti in pietra",
       "fields": [
-        "opere_di_rivestimento.__global__.marchio",
         "opere_di_rivestimento.__global__.materiale",
-        "opere_di_rivestimento.__global__.finitura",
         "opere_di_rivestimento.__global__.spessore_mm",
-        "opere_di_rivestimento.__global__.posa",
-        "opere_di_rivestimento.__global__.classe_reazione_al_fuoco",
+        "opere_di_rivestimento.__global__.marchio",
         "opere_di_rivestimento.rivestimenti_in_pietra.tipo_pietra"
       ]
     },
@@ -496,14 +412,7 @@
       "label": "Scheda Avvolgibili, controtelai, cassonetti e persiane",
       "category": "Opere da serramentista|Avvolgibili, controtelai, cassonetti e persiane",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
-        "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
-        "opere_da_serramentista.__global__.dimensione_altezza",
-        "opere_da_serramentista.__global__.trasmittanza_termica",
-        "opere_da_serramentista.__global__.isolamento_acustico_db",
-        "opere_da_serramentista.avvolgibili_controtelai_cassonetti_e_persiane.tipologia_avvolgibile",
-        "opere_da_serramentista.avvolgibili_controtelai_cassonetti_e_persiane.motorizzazione"
+        "opere_da_serramentista.__global__.materiale_struttura"
       ]
     },
     {
@@ -511,13 +420,8 @@
       "label": "Scheda Porte blindate, portoni e bussole",
       "category": "Opere da serramentista|Porte blindate, portoni e bussole",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
-        "opere_da_serramentista.__global__.dimensione_altezza",
-        "opere_da_serramentista.__global__.trasmittanza_termica",
-        "opere_da_serramentista.__global__.isolamento_acustico_db",
-        "opere_da_serramentista.porte_blindate_portoni_e_bussole.classe_antieffrazione"
+        "opere_da_serramentista.__global__.marchio"
       ]
     },
     {
@@ -525,12 +429,9 @@
       "label": "Scheda Porte metalliche",
       "category": "Opere da serramentista|Porte metalliche",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
-        "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
         "opere_da_serramentista.__global__.dimensione_altezza",
-        "opere_da_serramentista.__global__.trasmittanza_termica",
-        "opere_da_serramentista.__global__.isolamento_acustico_db"
+        "opere_da_serramentista.__global__.marchio",
+        "opere_da_serramentista.__global__.materiale_struttura"
       ]
     },
     {
@@ -538,13 +439,13 @@
       "label": "Scheda Porte tagliafuoco",
       "category": "Opere da serramentista|Porte tagliafuoco",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
+        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.dimensione_altezza",
         "opere_da_serramentista.__global__.trasmittanza_termica",
+        "opere_da_serramentista.porte_tagliafuoco.maniglione_antipanico",
         "opere_da_serramentista.__global__.isolamento_acustico_db",
-        "opere_da_serramentista.porte_tagliafuoco.maniglione_antipanico"
+        "opere_da_serramentista.__global__.dimensione_larghezza"
       ]
     },
     {
@@ -552,12 +453,9 @@
       "label": "Scheda Serramenti in PVC",
       "category": "Opere da serramentista|Serramenti in PVC",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
-        "opere_da_serramentista.__global__.dimensione_altezza",
+        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.trasmittanza_termica",
-        "opere_da_serramentista.__global__.isolamento_acustico_db",
         "opere_da_serramentista.serramenti_in_pvc.numero_camere"
       ]
     },
@@ -566,13 +464,8 @@
       "label": "Scheda Serramenti in legno",
       "category": "Opere da serramentista|Serramenti in legno",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
-        "opere_da_serramentista.__global__.dimensione_altezza",
-        "opere_da_serramentista.__global__.trasmittanza_termica",
-        "opere_da_serramentista.__global__.isolamento_acustico_db",
-        "opere_da_serramentista.serramenti_in_legno.essenza"
+        "opere_da_serramentista.__global__.marchio"
       ]
     },
     {
@@ -580,13 +473,12 @@
       "label": "Scheda Serramenti in legno e alluminio",
       "category": "Opere da serramentista|Serramenti in legno e alluminio",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
-        "opere_da_serramentista.__global__.dimensione_altezza",
-        "opere_da_serramentista.__global__.trasmittanza_termica",
+        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.isolamento_acustico_db",
-        "opere_da_serramentista.serramenti_in_legno_e_alluminio.materiale_rivestimento_esterno"
+        "opere_da_serramentista.__global__.trasmittanza_termica",
+        "opere_da_serramentista.__global__.dimensione_altezza",
+        "opere_da_serramentista.__global__.dimensione_larghezza"
       ]
     },
     {
@@ -594,13 +486,13 @@
       "label": "Scheda Serramenti metallici",
       "category": "Opere da serramentista|Serramenti metallici",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
-        "opere_da_serramentista.__global__.dimensione_altezza",
+        "opere_da_serramentista.__global__.marchio",
+        "opere_da_serramentista.serramenti_metallici.lega_metallo",
         "opere_da_serramentista.__global__.trasmittanza_termica",
         "opere_da_serramentista.__global__.isolamento_acustico_db",
-        "opere_da_serramentista.serramenti_metallici.lega_metallo"
+        "opere_da_serramentista.__global__.dimensione_altezza",
+        "opere_da_serramentista.__global__.dimensione_larghezza"
       ]
     },
     {
@@ -608,14 +500,12 @@
       "label": "Scheda Sistemi di partizione trasparenti, porte e parapetti vetrati",
       "category": "Opere da serramentista|Sistemi di partizione trasparenti, porte e parapetti vetrati",
       "fields": [
-        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.materiale_struttura",
-        "opere_da_serramentista.__global__.dimensione_larghezza",
+        "opere_da_serramentista.__global__.marchio",
         "opere_da_serramentista.__global__.dimensione_altezza",
-        "opere_da_serramentista.__global__.trasmittanza_termica",
         "opere_da_serramentista.__global__.isolamento_acustico_db",
         "opere_da_serramentista.sistemi_di_partizione_trasparenti_porte_e_parapetti_vetrati.tipologia_vetrata",
-        "opere_da_serramentista.sistemi_di_partizione_trasparenti_porte_e_parapetti_vetrati.classe_sicurezza_vetro"
+        "opere_da_serramentista.__global__.trasmittanza_termica"
       ]
     },
     {
@@ -624,10 +514,7 @@
       "category": "Opere da falegname|Boiserie in legno",
       "fields": [
         "opere_da_falegname.__global__.marchio",
-        "opere_da_falegname.__global__.essenza",
-        "opere_da_falegname.__global__.dimensione_larghezza",
-        "opere_da_falegname.__global__.dimensione_altezza",
-        "opere_da_falegname.__global__.tipologia_apertura"
+        "opere_da_falegname.__global__.dimensione_larghezza"
       ]
     },
     {
@@ -636,12 +523,7 @@
       "category": "Opere da falegname|Opere in legno custom",
       "fields": [
         "opere_da_falegname.__global__.marchio",
-        "opere_da_falegname.__global__.essenza",
-        "opere_da_falegname.__global__.dimensione_larghezza",
-        "opere_da_falegname.__global__.dimensione_altezza",
-        "opere_da_falegname.__global__.tipologia_apertura",
-        "opere_da_falegname.opere_in_legno_custom.descrizione_custom",
-        "opere_da_falegname.opere_in_legno_custom.destinazione_uso"
+        "opere_da_falegname.__global__.dimensione_altezza"
       ]
     },
     {
@@ -650,12 +532,7 @@
       "category": "Opere da falegname|Persiane e scuri in legno",
       "fields": [
         "opere_da_falegname.__global__.marchio",
-        "opere_da_falegname.__global__.essenza",
-        "opere_da_falegname.__global__.dimensione_larghezza",
-        "opere_da_falegname.__global__.dimensione_altezza",
-        "opere_da_falegname.__global__.tipologia_apertura",
-        "opere_da_falegname.persiane_e_scuri_in_legno.numero_ante",
-        "opere_da_falegname.persiane_e_scuri_in_legno.tipologia_lamelle"
+        "opere_da_falegname.__global__.dimensione_altezza"
       ]
     },
     {
@@ -664,11 +541,9 @@
       "category": "Opere da falegname|Porte in legno",
       "fields": [
         "opere_da_falegname.__global__.marchio",
-        "opere_da_falegname.__global__.essenza",
-        "opere_da_falegname.__global__.dimensione_larghezza",
+        "opere_da_falegname.porte_in_legno.tipologia_porta",
         "opere_da_falegname.__global__.dimensione_altezza",
-        "opere_da_falegname.__global__.tipologia_apertura",
-        "opere_da_falegname.porte_in_legno.tipologia_porta"
+        "opere_da_falegname.__global__.tipologia_apertura"
       ]
     }
   ]
