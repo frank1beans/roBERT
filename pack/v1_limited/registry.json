@@ -257,27 +257,6 @@
       }
     },
     "categories": {
-      "Noli": {
-        "slots": {
-          "attrezzatura_nolo": {
-            "name": "Attrezzatura a nolo",
-            "type": "text",
-            "priority": 80,
-            "tags": [
-              "logistica"
-            ]
-          },
-          "durata_nolo_giorni": {
-            "name": "Durata nolo",
-            "type": "integer",
-            "priority": 75,
-            "tags": [
-              "logistica"
-            ],
-            "unit": "giorni"
-          }
-        }
-      },
       "Pavimentazione in autobloccanti o masselli": {
         "slots": {
           "tipologia_blocco": {
@@ -364,19 +343,6 @@
             "tags": [
               "posa"
             ]
-          }
-        }
-      },
-      "Scavi e trasporti a discarica": {
-        "slots": {
-          "profondita_scavo_cm": {
-            "name": "Profondità scavo",
-            "type": "number",
-            "priority": 80,
-            "tags": [
-              "dimensione"
-            ],
-            "unit": "cm"
           }
         }
       },

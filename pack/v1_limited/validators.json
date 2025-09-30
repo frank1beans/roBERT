@@ -71,11 +71,6 @@
         "opere_di_rivestimento.rivestimenti_in_pietra.tipo_pietra"
       ]
     },
-    "Opere di pavimentazione|Noli": {
-      "required": [
-        "opere_di_pavimentazione.noli.attrezzatura_nolo"
-      ]
-    },
     "Opere di pavimentazione|Pavimentazione in autobloccanti o masselli": {
       "required": [
         "opere_di_pavimentazione.pavimentazione_in_autobloccanti_o_masselli.tipologia_blocco"
@@ -119,11 +114,6 @@
     "Opere di pavimentazione|Pavimenti sopraelevati e flottanti": {
       "required": [
         "opere_di_pavimentazione.pavimenti_sopraelevati_e_flottanti.tipologia_struttura"
-      ]
-    },
-    "Opere di pavimentazione|Scavi e trasporti a discarica": {
-      "required": [
-        "opere_di_pavimentazione.scavi_e_trasporti_a_discarica.profondita_scavo_cm"
       ]
     },
     "Opere di pavimentazione|Zoccolini e accessori per pavimentazioni": {
