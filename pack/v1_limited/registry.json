@@ -61,6 +61,14 @@
             "no"
           ],
           "default": "no"
+        },
+        "stratigrafia_lastre": {
+          "name": "Stratigrafia lastre",
+          "type": "text",
+          "priority": 65,
+          "tags": [
+            "stratigrafia"
+          ]
         }
       }
     },
@@ -577,6 +585,14 @@
           "priority": 75,
           "tags": [
             "prestazioni"
+          ]
+        },
+        "stratigrafia_lastre": {
+          "name": "Stratigrafia lastre",
+          "type": "text",
+          "priority": 70,
+          "tags": [
+            "stratigrafia"
           ]
         }
       }

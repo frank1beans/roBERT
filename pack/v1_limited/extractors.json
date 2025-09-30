@@ -313,6 +313,24 @@
       "confidence": 0.6
     },
     {
+      "property_id": "controsoffitti.__global__.stratigrafia_lastre",
+      "regex": [
+        "(?im)^[\\\t >]*[-–—•*]?\\s*(?P<val>(?:lastr[ae]|pannell[oi])[^\\r\\n]*)",
+        "(?i)(?P<val>\\b(?:lastr[ae]|pannell[oi])[^.\\r\\n:;]{0,240}?(?:cartongesso|gesso|cemento|fibro|fire|aquapanel|rigitone|activ|gkb|gki|minerale|lana|gesso\\s*fibra|idrofug|idrorepell|acustic|antincendio)[^.\\r\\n:;]{0,240})",
+        "(?im)^[\\\t >]*[-–—•*]?\\s*(?P<val>(?:knauf\\s+)?(?:gkb(?:\\s+advanced)?|diamant|idrolastra|gki|ignilastra|fireboard|aquapanel(?:\\s+outdoor)?|kasa|vidiwall|vidiophonic|cleaneo|silentboard)(?:[^\\r\\n:;]{0,80})?)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "collect_many"
+      ],
+      "tags": [
+        "stratigrafia"
+      ],
+      "confidence": 0.45,
+      "max_matches": 16
+    },
+    {
       "property_id": "opere_da_cartongessista.__global__.presenza_isolante",
       "regex": [
         "(?ix)\\\\bcon\\\\s+(?P<val>isolant[eo]|isolamento)\\\\b",
@@ -325,6 +343,24 @@
         "stratigrafia"
       ],
       "confidence": 0.6
+    },
+    {
+      "property_id": "opere_da_cartongessista.__global__.stratigrafia_lastre",
+      "regex": [
+        "(?im)^[\\\t >]*[-–—•*]?\\s*(?P<val>(?:lastr[ae]|pannell[oi])[^\\r\\n]*)",
+        "(?i)(?P<val>\\b(?:lastr[ae]|pannell[oi])[^.\\r\\n:;]{0,240}?(?:cartongesso|gesso|cemento|fibro|fire|aquapanel|rigitone|activ|gkb|gki|minerale|lana|gesso\\s*fibra|idrofug|idrorepell|acustic|antincendio)[^.\\r\\n:;]{0,240})",
+        "(?im)^[\\\t >]*[-–—•*]?\\s*(?P<val>(?:knauf\\s+)?(?:gkb(?:\\s+advanced)?|diamant|idrolastra|gki|ignilastra|fireboard|aquapanel(?:\\s+outdoor)?|kasa|vidiwall|vidiophonic|cleaneo|silentboard)(?:[^\\r\\n:;]{0,80})?)"
+      ],
+      "normalizers": [
+        "strip",
+        "strip_trailing_punct",
+        "collect_many"
+      ],
+      "tags": [
+        "stratigrafia"
+      ],
+      "confidence": 0.45,
+      "max_matches": 16
     },
     {
       "property_id": "opere_da_serramentista.porte_blindate_portoni_e_bussole.classe_antieffrazione",
@@ -343,7 +379,8 @@
     {
       "property_id": "opere_da_cartongessista.accessori_per_cartongessi.tipologia_accessorio",
       "regex": [
-        "(?ix)\\\\baccessori?\\\\b[^:\\\\n]{0,20}(?P<val>maniglione|doccetta|dispenser|specchio|box\\\\s+doccia|griglia|canalina|seggiolino|piletta|porta\\\\s+sapone|porta\\\\s+rotolo)"
+        "(?ix)\\\\b(?:accessor[io]|component[ei]|element[oi]|profil[oi]|montant[ei]|guide?|staffe?|pendin(?:atura|i|o)|ganc[ioi]|clip|omega|cappell[oi]|travers[oi]|listell[oi]|sospension[ei]|fissagg[io]|viti|tassell[oi]|nastr[oi]|bandell[ae]|paraspigol[oi]|giunt[oi]|stucc[oi]|rasant[ei]|collant[ei])\\\\b[^\\\\n]{0,40}?(?P<val>(?:profil[oi]|montant[ei]|guide?|staffe?|pendin(?:atura|i|o|aggi)|ganc[ioi]|clip|omega|cappell[oi]|travers[oi]|listell[oi]|sospension[ei]|viti?|vite(?:\\\\s+autoperforanti?|\\\\s+autofilettanti?)|tassell[oi]|nastr[oi]|bandell[ae]|paraspigol[oi]|giunt[oi]|stucc[oi]|rasant[ei]|collant[ei])(?:\\\\s+[A-Za-z0-9À-ÖØ-öø-ÿ°'\\\"/-]+){0,3})",
+        "(?ix)(?P<val>(?:profil[oi]|montant[ei]|guide?|staffe?|pendin(?:atura|i|o|aggi)|ganc[ioi]|clip|omega|cappell[oi]|travers[oi]|listell[oi]|sospension[ei]|viti?|vite(?:\\\\s+autoperforanti?|\\\\s+autofilettanti?)|tassell[oi]|nastr[oi]|bandell[ae]|paraspigol[oi]|giunt[oi]|stucc[oi]|rasant[ei]|collant[ei])(?:\\\\s+[A-Za-z0-9À-ÖØ-öø-ÿ°'\\\"/-]+){0,3})"
       ],
       "normalizers": [
         "strip",
