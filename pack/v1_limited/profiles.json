@@ -4,10 +4,23 @@
     {
       "id": "essenziale",
       "label": "Profilo essenziale",
-      "description": "Set minimo di categorie per validare le finiture di un progetto",
-      "contexts": ["default_cantiere"],
-      "views": ["panoramica_finiture"],
-      "templates": ["scheda_cartongesso"]
+      "description": "Copertura completa del dataset limitato con viste e template aggiornati",
+      "contexts": [
+        "default_cantiere"
+      ],
+      "views": [
+        "vista_sanitari",
+        "vista_sistemi_a_secco",
+        "vista_superfici",
+        "vista_infissi_e_falegnameria"
+      ],
+      "templates": [
+        "scheda_cartongesso",
+        "scheda_cassette_scarico",
+        "scheda_pav_autobloccanti",
+        "scheda_boiserie",
+        "scheda_serramento_pvc"
+      ]
     }
   ]
 }
