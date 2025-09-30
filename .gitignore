@@ -1,4 +1,19 @@
-.gitignore
-.vscode
-outputs
+# Project ignores
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment files
+*.env
+.venv/
+
+# Editor configuration
+.vscode/
+.idea/
+
+# Generated outputs
+outputs/
+
+# Miscellaneous
 commands.txt
