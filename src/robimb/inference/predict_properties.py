@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
-from ..extraction import ExtractionRouter
+from ..extraction.legacy import ExtractionRouter
 
 __all__ = ["predict_properties"]
 

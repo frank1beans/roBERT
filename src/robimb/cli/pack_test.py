@@ -8,7 +8,7 @@ from typing import Optional
 
 import typer
 
-from ..extraction.pack_testing import run_pack_dataset_evaluation
+from ..extraction.legacy import run_pack_dataset_evaluation
 
 __all__ = ["pack_test_command"]
 

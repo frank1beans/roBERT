@@ -5,7 +5,7 @@ import json, os
 from ..inference.predict_category import load_classifier, predict_topk, _load_id2label
 from ..inference.calibration import TemperatureCalibrator
 from ..templates.render import render
-from ..extraction import ExtractionRouter
+from ..extraction.legacy import ExtractionRouter
 from . import predict_properties as _properties_module
 
 
