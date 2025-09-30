@@ -5,7 +5,7 @@ from ._version import __version__
 __all__ = [
     "__version__",
     "core",
-    "features",
+    "extraction",
     "inference",
     "models",
     "registry",

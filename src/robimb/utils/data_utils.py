@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 
 from .ontology_utils import Ontology, build_mask_from_ontology, load_label_maps, load_ontology, save_label_maps
-from ..extraction import extract_properties
+from ..extraction.legacy import extract_properties
 from ..registry import RegistryLoader, load_pack
 from ..registry.schemas import build_category_key, CategoryDefinition
 
