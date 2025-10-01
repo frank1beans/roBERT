@@ -124,3 +124,26 @@ def test_orchestrator_uses_super_category_as_fallback(tmp_path: Path) -> None:
     # Without an explicit identifier the orchestrator should keep the field empty
     assert result["text_id"] is None
 
+
+def test_parser_candidates_extract_length_value() -> None:
+    cfg = OrchestratorConfig(
+        source_priority=["parser"],
+        enable_matcher=False,
+        enable_llm=False,
+        registry_path="",
+    )
+    orchestrator = Orchestrator(
+        fuse=Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=cfg.source_priority),
+        llm=None,
+        cfg=cfg,
+    )
+
+    text = "Lavabo formato 20x20 cm con finitura opaca."
+    candidates = list(orchestrator._parser_candidates("dimensione_lunghezza", None, text))
+
+    assert candidates, "expected at least one candidate for lunghezza"
+    candidate = candidates[0]
+    assert candidate["source"] == "parser"
+    assert candidate["unit"] == "mm"
+    assert pytest.approx(candidate["value"], rel=1e-3) == 200.0
+

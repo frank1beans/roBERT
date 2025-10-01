@@ -334,12 +334,26 @@ class Orchestrator:
         if any(token in lowered for token in ("dimension", "formato")):
             for match in dimensions.parse_dimensions(text):
                 values = match.values_mm
-                if "larghezza" in lowered or "width" in lowered:
-                    selected = values[0] if values else None
+                if not values:
+                    continue
+                if "lunghezza" in lowered or "length" in lowered:
+                    selected = values[0]
+                elif "larghezza" in lowered or "width" in lowered:
+                    selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
-                    selected = values[1] if len(values) > 1 else (values[0] if values else None)
+                    if len(values) > 2:
+                        selected = values[2]
+                    elif len(values) > 1:
+                        selected = values[1]
+                    else:
+                        selected = values[0]
                 elif "profond" in lowered or "depth" in lowered:
-                    selected = values[2] if len(values) > 2 else None
+                    if len(values) > 2:
+                        selected = values[2]
+                    elif len(values) > 1:
+                        selected = values[1]
+                    else:
+                        selected = None
                 else:
                     keys = ["width_mm", "height_mm", "depth_mm"]
                     selected = {key: values[idx] for idx, key in enumerate(keys) if idx < len(values)}
