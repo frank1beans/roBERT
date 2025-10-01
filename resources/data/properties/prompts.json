@@ -1,0 +1,10 @@
+{
+  "document_summary": {
+    "description": "Prompt template used to summarise the input document before extraction.",
+    "template": "Riassumi in una frase le caratteristiche principali del seguente testo tecnico:\n{{text}}"
+  },
+  "property_question": {
+    "description": "Question template instructing the LLM to return a JSON object with a value and optional confidence.",
+    "template": "Estrai le informazioni rispondendo esclusivamente con JSON valido.\nTesto:\n{{text}}\nDomanda:\n{{question}}\nSchema:\n{{schema}}"
+  }
+}

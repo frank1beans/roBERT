@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, Optional
 
+from ...config import get_settings
+
 __all__ = ["RALColor", "load_ral_lexicon", "parse_ral_colors"]
 
 _RAL_PATTERN = re.compile(r"RAL\s?(\d{4})", re.IGNORECASE)
@@ -20,7 +22,7 @@ class RALColor:
 
 
 def load_ral_lexicon(path: str | Path | None = None) -> Dict[str, str]:
-    lexicon_path = Path(path or "data/properties/lexicon/colors_ral.json")
+    lexicon_path = Path(path) if path is not None else get_settings().colors_ral
     if not lexicon_path.exists():
         return {}
     data = json.loads(lexicon_path.read_text(encoding="utf-8"))

@@ -2,11 +2,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
+from .fuse import CandidateSource
 from .schema_registry import CategorySchema, PropertySpec, load_registry
+from ..config import get_settings
 
 __all__ = [
     "ALLOWED_SOURCES",
@@ -16,7 +19,7 @@ __all__ = [
     "validate_properties",
 ]
 
-ALLOWED_SOURCES: frozenset[str] = frozenset({"parser", "matcher", "qa_llm", "fuse", "manual"})
+ALLOWED_SOURCES: frozenset[str] = frozenset(source.value for source in CandidateSource)
 
 
 class PropertyPayload(BaseModel):
@@ -24,7 +27,7 @@ class PropertyPayload(BaseModel):
 
     value: Any
     unit: str | None = None
-    source: str = Field(..., description="Origin of the extracted value")
+    source: CandidateSource = Field(..., description="Origin of the extracted value")
     raw: str | None = None
     span: tuple[int, int] | None = None
     confidence: float | None = Field(None, ge=0.0, le=1.0)
@@ -35,10 +38,12 @@ class PropertyPayload(BaseModel):
 
     @field_validator("source")
     @classmethod
-    def _source_allowed(cls, value: str) -> str:
-        if value not in ALLOWED_SOURCES:
-            raise ValueError(f"source '{value}' is not supported")
-        return value
+    def _source_allowed(cls, value: CandidateSource | str) -> CandidateSource:
+        try:
+            resolved = CandidateSource(value)
+        except ValueError as exc:  # pragma: no cover - handled via explicit tests
+            raise ValueError(f"source '{value}' is not supported") from exc
+        return resolved
 
     @field_validator("span")
     @classmethod
@@ -174,11 +179,12 @@ def validate_properties(
     category_id: str,
     properties: Mapping[str, Mapping[str, Any]],
     *,
-    registry_path: str | None = None,
+    registry_path: str | Path | None = None,
 ) -> ValidationResult:
     """Validate a property payload against the category schema."""
 
-    registry = load_registry(registry_path or "data/properties/registry.json")
+    effective_registry = registry_path or get_settings().registry_path
+    registry = load_registry(effective_registry)
     category = registry.get(category_id)
     if category is None:
         raise ValueError(f"Categoria '{category_id}' non presente nel registry")

@@ -1,0 +1,428 @@
+{
+  "metadata": {
+    "version": "0.2.0",
+    "description": "Deterministic and hybrid extractors aligned with pack/v1_limited categories",
+    "registry": "resources/data/properties/registry.json"
+  },
+  "categories": [
+    {
+      "id": "opere_da_cartongessista",
+      "properties": [
+        {
+          "id": "marchio",
+          "strategies": [
+            "matcher.brand"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "tipologia_lastra",
+          "strategies": [
+            "matcher.material",
+            "qa.slot"
+          ],
+          "confidence_default": 0.8
+        },
+        {
+          "id": "spessore_mm",
+          "strategies": [
+            "parser.dimension_thickness",
+            "qa.slot"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "classe_ei",
+          "strategies": [
+            "parser.fire_rating",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "strategies": [
+            "parser.fire_reaction",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "presenza_isolante",
+          "strategies": [
+            "parser.boolean",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        },
+        {
+          "id": "stratigrafia_lastre",
+          "strategies": [
+            "qa.summary"
+          ],
+          "confidence_default": 0.7
+        },
+        {
+          "id": "normativa_riferimento",
+          "strategies": [
+            "matcher.standard",
+            "parser.standard",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        }
+      ]
+    },
+    {
+      "id": "opere_di_rivestimento",
+      "properties": [
+        {
+          "id": "marchio",
+          "strategies": [
+            "matcher.brand"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "materiale",
+          "strategies": [
+            "matcher.material",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "finitura",
+          "strategies": [
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        },
+        {
+          "id": "spessore_mm",
+          "strategies": [
+            "parser.dimension_thickness"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "posa",
+          "strategies": [
+            "qa.slot"
+          ],
+          "confidence_default": 0.8
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "strategies": [
+            "parser.fire_reaction",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "normativa_riferimento",
+          "strategies": [
+            "matcher.standard",
+            "parser.standard",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        }
+      ]
+    },
+    {
+      "id": "opere_di_pavimentazione",
+      "properties": [
+        {
+          "id": "marchio",
+          "strategies": [
+            "matcher.brand"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "materiale",
+          "strategies": [
+            "matcher.material",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "formato",
+          "strategies": [
+            "parser.dimension_format",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "spessore_mm",
+          "strategies": [
+            "parser.dimension_thickness"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "classe_resistenza_usura",
+          "strategies": [
+            "parser.performance_class",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "classe_scivolosita",
+          "strategies": [
+            "parser.performance_class",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "normativa_riferimento",
+          "strategies": [
+            "matcher.standard",
+            "parser.standard",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        }
+      ]
+    },
+    {
+      "id": "opere_da_serramentista",
+      "properties": [
+        {
+          "id": "marchio",
+          "strategies": [
+            "matcher.brand"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "materiale_struttura",
+          "strategies": [
+            "matcher.material",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "dimensione_larghezza",
+          "strategies": [
+            "parser.dimension_linear"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "dimensione_altezza",
+          "strategies": [
+            "parser.dimension_linear"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "trasmittanza_termica",
+          "strategies": [
+            "parser.thermal_transmittance",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "isolamento_acustico_db",
+          "strategies": [
+            "parser.sound_insulation",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "normativa_riferimento",
+          "strategies": [
+            "matcher.standard",
+            "parser.standard",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        }
+      ]
+    },
+    {
+      "id": "controsoffitti",
+      "properties": [
+        {
+          "id": "marchio",
+          "strategies": [
+            "matcher.brand"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "materiale",
+          "strategies": [
+            "matcher.material",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "spessore_pannello_mm",
+          "strategies": [
+            "parser.dimension_thickness"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "strategies": [
+            "parser.fire_reaction",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "coefficiente_fonoassorbimento",
+          "strategies": [
+            "parser.numeric_ratio",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "stratigrafia_lastre",
+          "strategies": [
+            "qa.summary"
+          ],
+          "confidence_default": 0.7
+        },
+        {
+          "id": "normativa_riferimento",
+          "strategies": [
+            "matcher.standard",
+            "parser.standard",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        }
+      ]
+    },
+    {
+      "id": "apparecchi_sanitari_accessori",
+      "properties": [
+        {
+          "id": "marchio",
+          "strategies": [
+            "matcher.brand"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "materiale",
+          "strategies": [
+            "matcher.material",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "dimensione_lunghezza",
+          "strategies": [
+            "parser.dimension_linear"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "dimensione_larghezza",
+          "strategies": [
+            "parser.dimension_linear"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "dimensione_altezza",
+          "strategies": [
+            "parser.dimension_linear"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "tipologia_installazione",
+          "strategies": [
+            "qa.slot"
+          ],
+          "confidence_default": 0.8
+        },
+        {
+          "id": "portata_l_min",
+          "strategies": [
+            "parser.flow_rate",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "normativa_riferimento",
+          "strategies": [
+            "matcher.standard",
+            "parser.standard",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        }
+      ]
+    },
+    {
+      "id": "opere_da_falegname",
+      "properties": [
+        {
+          "id": "marchio",
+          "strategies": [
+            "matcher.brand"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "essenza",
+          "strategies": [
+            "matcher.material",
+            "qa.slot"
+          ],
+          "confidence_default": 0.85
+        },
+        {
+          "id": "dimensione_larghezza",
+          "strategies": [
+            "parser.dimension_linear"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "dimensione_altezza",
+          "strategies": [
+            "parser.dimension_linear"
+          ],
+          "confidence_default": 0.9
+        },
+        {
+          "id": "tipologia_apertura",
+          "strategies": [
+            "qa.slot"
+          ],
+          "confidence_default": 0.8
+        },
+        {
+          "id": "normativa_riferimento",
+          "strategies": [
+            "matcher.standard",
+            "parser.standard",
+            "qa.slot"
+          ],
+          "confidence_default": 0.75
+        }
+      ]
+    }
+  ]
+}

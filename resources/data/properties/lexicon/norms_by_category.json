@@ -1,0 +1,133 @@
+{
+  "opere_da_cartongessista": {
+    "uni": [
+      {"code": "UNI 11424:2011", "title": "Sistemi di lastre di gesso rivestito e accessori"},
+      {"code": "UNI EN 520", "title": "Lastre di gesso rivestito - Definizioni, requisiti e metodi di prova"},
+      {"code": "UNI EN 14190", "title": "Prodotti di gesso - Lastre di gesso da intonaco"},
+      {"code": "UNI 11424-1:2017", "title": "Sistemi di pareti in lastre di gesso rivestito"}
+    ],
+    "ce_marking": [
+      {"code": "EN 13964", "title": "Controsoffitti - Requisiti e metodi di prova"}
+    ]
+  },
+  "controsoffitti": {
+    "uni": [
+      {"code": "UNI EN 13964:2014", "title": "Controsoffitti - Requisiti e metodi di prova"},
+      {"code": "UNI 11437:2012", "title": "Controsoffitti - Progettazione, installazione, manutenzione"},
+      {"code": "UNI EN 14190", "title": "Lastre di gesso da intonaco per controsoffitti"},
+      {"code": "UNI 11518", "title": "Controsoffitti rimovibili ad elementi modulari"}
+    ],
+    "antincendio": [
+      {"code": "DM 3/8/2015", "title": "Codice di prevenzione incendi (classificazione REI)"}
+    ]
+  },
+  "opere_di_pavimentazione": {
+    "uni": [
+      {"code": "UNI 11493:2013", "title": "Pavimentazioni di legno - Criteri di posa"},
+      {"code": "UNI EN 13318", "title": "Massetti e materiali per massetti"},
+      {"code": "UNI 11714:2018", "title": "Piastrelle di ceramica - Posa in opera"},
+      {"code": "UNI EN 1307", "title": "Rivestimenti tessili per pavimenti"},
+      {"code": "UNI EN 14904", "title": "Superfici per aree sportive"},
+      {"code": "UNI 7999", "title": "Pavimenti di legno - Terminologia"},
+      {"code": "UNI 10329", "title": "Pavimenti di legno massiccio - Classificazione"},
+      {"code": "UNI 11515", "title": "Pavimenti di legno - Pavimenti sopraelevati"},
+      {"code": "UNI EN 12825", "title": "Pavimenti sopraelevati"},
+      {"code": "UNI EN 1815", "title": "Pavimenti resilienti e tessili - Propensità elettrostatica"}
+    ],
+    "piastrelle_ceramiche": [
+      {"code": "UNI EN ISO 10545", "title": "Piastrelle di ceramica (parti 1-17)"},
+      {"code": "UNI EN 14411", "title": "Piastrelle di ceramica - Definizioni, classificazione"}
+    ],
+    "pietre_naturali": [
+      {"code": "UNI EN 1469", "title": "Prodotti di pietra naturale - Lastre per pavimentazione"},
+      {"code": "UNI 11714-1:2018", "title": "Rivestimenti lapidei - Posa in opera"}
+    ]
+  },
+  "opere_di_rivestimento": {
+    "uni": [
+      {"code": "UNI 11714:2018", "title": "Rivestimenti lapidei di superfici verticali e orizzontali"},
+      {"code": "UNI 11493-1:2017", "title": "Rivestimenti di legno"},
+      {"code": "UNI EN 13914-1", "title": "Intonaci esterni - Progettazione, preparazione e applicazione"},
+      {"code": "UNI EN 13914-2", "title": "Intonaci interni - Progettazione, preparazione e applicazione"},
+      {"code": "UNI EN 15824", "title": "Specifiche per intonaci esterni ed interni"},
+      {"code": "UNI 10827", "title": "Rivestimenti e sistemi di ancoraggio per facciate ventilate"},
+      {"code": "UNI 11018", "title": "Sistemi di ancoraggio per facciate ventilate"}
+    ],
+    "piastrelle": [
+      {"code": "UNI 11493-1:2013", "title": "Rivestimenti ceramici - Posa in opera"}
+    ]
+  },
+  "opere_da_serramentista": {
+    "uni": [
+      {"code": "UNI EN 14351-1", "title": "Finestre e porte - Norme di prodotto"},
+      {"code": "UNI 11173-1:2005", "title": "Finestre, porte e schermi - Linee guida per la posa in opera"},
+      {"code": "UNI EN 12207", "title": "Finestre e porte - Permeabilità all'aria"},
+      {"code": "UNI EN 12208", "title": "Finestre e porte - Tenuta all'acqua"},
+      {"code": "UNI EN 12210", "title": "Finestre e porte - Resistenza al carico del vento"},
+      {"code": "UNI EN 13115", "title": "Finestre - Classificazione delle proprietà meccaniche"},
+      {"code": "UNI 7697", "title": "Criteri di sicurezza nelle applicazioni vetrarie"},
+      {"code": "UNI 11173-2:2015", "title": "Finestre, porte, chiusure oscuranti - Posa in opera"}
+    ],
+    "sicurezza": [
+      {"code": "UNI EN 356", "title": "Vetrate antivandalismo e antieffrazione"},
+      {"code": "UNI EN 1627-1630", "title": "Resistenza all'effrazione"}
+    ],
+    "prestazioni_energetiche": [
+      {"code": "UNI EN ISO 10077", "title": "Trasmittanza termica (parti 1 e 2)"},
+      {"code": "UNI EN 673", "title": "Determinazione della trasmittanza termica del vetro"}
+    ],
+    "decreti": [
+      {"code": "DM 26/6/2015", "title": "Requisiti minimi prestazioni energetiche edifici"}
+    ]
+  },
+  "opere_da_falegname": {
+    "uni": [
+      {"code": "UNI EN 14351-1", "title": "Porte per interni ed esterni in legno"},
+      {"code": "UNI 10818", "title": "Porte interne - Terminologia e classificazione"},
+      {"code": "UNI 10820", "title": "Porte interne - Requisiti"},
+      {"code": "UNI 10819", "title": "Porte interne - Metodi di prova"},
+      {"code": "UNI 11035", "title": "Mobili - Letti - Dimensioni"},
+      {"code": "UNI 10966", "title": "Arredamento - Sicurezza e prove per mobili fissi"},
+      {"code": "UNI 11116", "title": "Mobili per cucina - Coordinamento dimensionale"}
+    ],
+    "legno_e_pannelli": [
+      {"code": "UNI EN 13986", "title": "Pannelli a base di legno per utilizzo nelle costruzioni"},
+      {"code": "UNI EN 14080", "title": "Strutture di legno - Legno lamellare e massiccio incollato"}
+    ],
+    "antincendio": [
+      {"code": "DM 16/2/2007", "title": "Classificazione di resistenza al fuoco (porte tagliafuoco)"}
+    ]
+  },
+  "apparecchi_sanitari_e_accessori": {
+    "uni": [
+      {"code": "UNI EN 997", "title": "Vasi WC con cassetta"},
+      {"code": "UNI EN 111", "title": "Lavabi - Dimensioni di raccordo"},
+      {"code": "UNI EN 695", "title": "Lavabi - Dimensioni"},
+      {"code": "UNI EN 251", "title": "Bidet - Dimensioni di raccordo"},
+      {"code": "UNI EN 198", "title": "Vasche da bagno - Dimensioni"},
+      {"code": "UNI EN 14528", "title": "Piatti doccia per uso domestico"},
+      {"code": "UNI 9182", "title": "Apparecchi sanitari - Studi di progettazione"},
+      {"code": "UNI EN 200", "title": "Vasche da bagno di acciaio smaltato"},
+      {"code": "UNI 4542", "title": "Apparecchi sanitari - Requisiti"}
+    ],
+    "accessibilita": [
+      {"code": "DM 236/1989", "title": "Prescrizioni tecniche per l'eliminazione delle barriere architettoniche"},
+      {"code": "DPR 503/1996", "title": "Regolamento barriere architettoniche"}
+    ],
+    "rubinetteria": [
+      {"code": "UNI EN 817", "title": "Rubinetti sanitari meccanici a comando manuale"},
+      {"code": "UNI EN 1286-1287", "title": "Rubinetti sanitari termostatici"},
+      {"code": "UNI EN 200", "title": "Miscelatori meccanici"}
+    ],
+    "impianti_idraulici": [
+      {"code": "UNI 9182:2014", "title": "Impianti di alimentazione e distribuzione acqua"},
+      {"code": "DM 37/2008", "title": "Sicurezza impianti"}
+    ]
+  },
+  "normative_trasversali": [
+    {"code": "D.Lgs. 81/2008", "title": "Sicurezza sui luoghi di lavoro"},
+    {"code": "D.Lgs. 106/2017", "title": "Marcatura CE prodotti da costruzione (CPR)"},
+    {"code": "DM 3/8/2015", "title": "Codice Prevenzione Incendi"},
+    {"code": "Regolamento UE 305/2011", "title": "Construction Products Regulation"}
+  ]
+}

@@ -9,6 +9,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
+from ...config import get_settings
+
 LOGGER = logging.getLogger(__name__)
 
 __all__ = [
@@ -40,8 +42,8 @@ class MaterialDefinition:
 
 
 def _default_lexicon_paths() -> Tuple[Path, Path]:
-    base = Path("data/properties/lexicon")
-    return base / "materials.json", base / "materials.txt"
+    settings = get_settings()
+    return settings.materials_lexicon, settings.materials_lexicon_legacy
 
 
 def _normalize_token(token: str) -> str:

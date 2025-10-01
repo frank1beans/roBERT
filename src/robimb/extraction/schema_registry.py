@@ -7,6 +7,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence
 
+from ..config import get_settings
+
 __all__ = [
     "PropertySpec",
     "CategorySchema",
@@ -97,16 +99,18 @@ class SchemaRegistry:
 
 
 @lru_cache(maxsize=8)
-def load_registry(registry_path: Path | str) -> SchemaRegistry:
+def load_registry(registry_path: Path | str | None = None) -> SchemaRegistry:
     """Load and cache the registry located at ``registry_path``."""
 
-    return SchemaRegistry(Path(registry_path))
+    settings = get_settings()
+    path = Path(registry_path) if registry_path is not None else settings.registry_path
+    return SchemaRegistry(Path(path))
 
 
 def load_category_schema(
     category_id: str,
     *,
-    registry_path: Path | str = Path("data/properties/registry.json"),
+    registry_path: Path | str | None = None,
 ) -> tuple[CategorySchema, Dict[str, Any]]:
     """Return the :class:`CategorySchema` metadata and JSON schema body.
 
@@ -130,7 +134,7 @@ def load_category_schema(
         file cannot be read.
     """
 
-    registry = load_registry(Path(registry_path))
+    registry = load_registry(registry_path)
     category = registry.get(category_id)
     if category is None:
         raise ValueError(f"Categoria '{category_id}' non presente nel registry")

@@ -1,0 +1,453 @@
+{
+  "version": "1.0",
+  "notes": "Pacchetto sinonimi/materiali per estrazione AEC ITA. Ogni voce contiene 'canonical', lista 'synonyms' e una 'regex' robusta (case-insensitive suggerito in engine).",
+  "materials": [
+    {
+      "id": "gres_porcellanato",
+      "canonical": "grès porcellanato",
+      "synonyms": [
+        "grès porcellanato",
+        "gres porcellanato",
+        "grès",
+        "gres",
+        "porcellanato",
+        "grès tecnico",
+        "gres tecnico",
+        "grès fine porcellanato",
+        "gres fine porcellanato",
+        "grès a tutta massa",
+        "gres a tutta massa",
+        "grès smaltato",
+        "gres smaltato",
+        "grès levigato",
+        "gres levigato",
+        "grès lappato",
+        "gres lappato",
+        "grès strutturato",
+        "gres strutturato",
+        "grès rettificato",
+        "gres rettificato",
+        "grès laminato",
+        "gres laminato",
+        "grès sottile",
+        "gres sottile",
+        "lastra in grès",
+        "lastre in grès",
+        "lastra in gres",
+        "lastre in gres",
+        "piastrella in grès",
+        "piastrelle in grès",
+        "piastrella in gres",
+        "piastrelle in gres",
+        "mattonella in gres",
+        "mattonelle in gres",
+        "piastrella grès porcellanato",
+        "piastrella gres porcellanato",
+        "pavimento in grès",
+        "rivestimento in grès"
+      ],
+      "regex": "\\b(?:gr[eè]s)(?:\\s*(?:porcellanat[oi]|tecnic[oi]|fine\\s*porcellanat[oi]|a\\s*tutta\\s*massa|smaltat[oi]|levigat[oi]|lappat[oi]|struttur(?:at[oi])?|rettificat[oi]|laminat[oi]|sottil[ei]))?\\b|\\bpiastrell[ae]\\s+in\\s+gr[eè]s\\b|\\blastre?\\s+in\\s+gr[eè]s\\b"
+    },
+    {
+      "id": "pietra_naturale",
+      "canonical": "pietra naturale",
+      "synonyms": [
+        "pietra naturale",
+        "pietra",
+        "marmo",
+        "granito",
+        "travertino",
+        "ardesia",
+        "pietra serena",
+        "beola",
+        "luserna",
+        "porfido",
+        "quarzite",
+        "basalto",
+        "basaltina",
+        "peperino",
+        "trani",
+        "botticino",
+        "cardoso",
+        "ceppo di gré",
+        "ceppo",
+        "ceppo lombardo",
+        "onice",
+        "arenaria",
+        "calcare",
+        "calcarenite",
+        "dolomia",
+        "pietra di prun",
+        "pietra di vicenza",
+        "serizzo",
+        "verde alpi",
+        "rosso verona",
+        "perlato",
+        "pietra lavica",
+        "lavica",
+        "tufo"
+      ],
+      "regex": "\\b(?:pietra\\s+naturale|pietra\\s+serena|pietra|marmo|granito|travertino|ardesia|beola|luserna|porfido|quarzite|basalt[oa]|basaltina|peperino|trani|botticino|cardoso|ceppo(?:\\s+di\\s+gr[eè])?|ceppo\\s+lombardo|onice|arenaria|calcare|calcarenite?|dolomia|serizzo|verde\\s+alpi|rosso\\s+verona|perlato|pietra\\s+lavica|lavica|tufo)\\b"
+    },
+    {
+      "id": "ceramica",
+      "canonical": "ceramica",
+      "synonyms": [
+        "ceramica",
+        "ceramiche",
+        "ceramici",
+        "ceramico",
+        "piastrella ceramica",
+        "piastrelle ceramiche",
+        "mattonella ceramica",
+        "dischi ceramici",
+        "disco ceramico",
+        "klinker",
+        "cotto",
+        "cotto smaltato",
+        "terracotta",
+        "maiolica",
+        "monocottura",
+        "bicottura",
+        "monoporosa",
+        "faenza",
+        "porcellana"
+      ],
+      "regex": "\\b(?:ceramic[aeioh]|piastrell[ae]\\s+ceramic[he]|mattonell[ae]\\s+ceramic[he]|disc[hi]\\s+ceramic[hi]|klinker|cotto(?:\\s+smaltato)?|terracotta|maiolica|monocottura|bicottura|monoporosa|faenza|porcellana)\\b"
+    },
+    {
+      "id": "legno",
+      "canonical": "legno",
+      "synonyms": [
+        "legno",
+        "essenze lignee",
+        "essenza lignea",
+        "parquet",
+        "parquet prefinito",
+        "legno massello",
+        "massello",
+        "lamellare",
+        "legno lamellare",
+        "multistrato",
+        "compensato",
+        "listellare",
+        "truciolare",
+        "OSB",
+        "MDF",
+        "HDF",
+        "listone",
+        "listoncino",
+        "tavolato",
+        "rovere",
+        "noce",
+        "teak",
+        "iroko",
+        "doussié",
+        "faggio",
+        "betulla",
+        "acero",
+        "larice",
+        "abete",
+        "castagno",
+        "wengé",
+        "bamboo",
+        "bambù",
+        "ebano"
+      ],
+      "regex": "\\b(?:legno|essenz[ae]\\s+ligne[ae]|parquet(?:\\s+prefinit[oi])?|legno\\s+massello|massello|lamellare|legno\\s+lamellare|multistrato|compensato|listellare|truciolare|OSB|MDF|HDF|liston[ei]|listoncino|tavolat[oi]|rovere|noce|teak|iroko|doussi[éè]|faggio|betulla|acero|larice|abete|castagno|weng[éè]|bamb(?:oo|ù)|ebano)\\b"
+    },
+    {
+      "id": "resina",
+      "canonical": "resina",
+      "synonyms": [
+        "resina",
+        "resine",
+        "resina epossidica",
+        "epossidica",
+        "resina poliuretanica",
+        "poliuretanica",
+        "resina acrilica",
+        "acrilica",
+        "resina metacrilica",
+        "metacrilica",
+        "MMA",
+        "PMMA",
+        "vinilestere",
+        "poliestere",
+        "autolivellante",
+        "spatolata",
+        "multistrato epossidico",
+        "film sottile"
+      ],
+      "regex": "\\b(?:resin[ae]|epossidic[ae]|poliuretan(?:ic[ae])|acrilic[ae]|metacrilic[ae]|MMA|PMMA|vinilestere|poliestere)(?:\\s+(?:autolivellante|spatolat[ae]|multistrato|film\\s+sottile))?\\b"
+    },
+    {
+      "id": "lana_minerale",
+      "canonical": "lana minerale",
+      "synonyms": [
+        "lana minerale",
+        "lana di roccia",
+        "lana di vetro",
+        "fibra minerale",
+        "fibre minerali",
+        "rockwool",
+        "glasswool"
+      ],
+      "regex": "\\b(?:lana\\s+(?:minerale|di\\s+roccia|di\\s+vetro)|fibr[ae]\\s+mineral[ie]|rockwool|glasswool)\\b"
+    },
+    {
+      "id": "intonaco",
+      "canonical": "intonaco",
+      "synonyms": [
+        "intonaco",
+        "intonaci",
+        "intonachino",
+        "rasatura",
+        "rasante",
+        "rinzaffo",
+        "stucco",
+        "intonaco di calce",
+        "intonaco a calce",
+        "calce aerea",
+        "calce idraulica naturale",
+        "NHL",
+        "intonaco cementizio",
+        "intonaco premiscelato",
+        "intonaco deumidificante",
+        "intonaco macroporoso",
+        "termointonaco",
+        "fibrorinforzato"
+      ],
+      "regex": "\\b(?:intonac[oi]|intonachino|rasatur[ae]|rasant[ei]|rinzaffo|stucco|intonaco\\s+(?:di|a)\\s+calce|calce\\s+aerea|calce\\s+idraulica(?:\\s+naturale)?|NHL|intonaco\\s+cementizio|intonaco\\s+premiscelato|intonaco\\s+deumidificante|intonaco\\s+macroporoso|termointonaco|fibrorinforzat[oi])\\b"
+    },
+    {
+      "id": "laminato",
+      "canonical": "laminato",
+      "synonyms": [
+        "laminato",
+        "laminati",
+        "laminato HPL",
+        "HPL",
+        "laminato CPL",
+        "CPL",
+        "melaminico",
+        "laminato melaminico",
+        "stratificato HPL",
+        "laminato stratificato",
+        "laminato compattato",
+        "laminato plastico",
+        "stratificato compatto",
+        "rivestito in laminato",
+        "rivestiti in laminato"
+      ],
+      "regex": "\\b(?:laminat[oi]|HPL|CPL|melaminic[oi]|(?:rivestit[oi]\\s+in\\s+)?laminato(?:\\s+(?:HPL|CPL|melaminico|stratificato|compattato|plastico))?|stratificato\\s+(?:HPL|compatto))\\b"
+    },
+    {
+      "id": "metallo",
+      "canonical": "metallo",
+      "synonyms": [
+        "metallo",
+        "metallico",
+        "lega metallica",
+        "ferro",
+        "acciaio",
+        "acciaio al carbonio",
+        "acciaio zincato",
+        "acciaio corten",
+        "alluminio",
+        "alluminio anodizzato",
+        "alluminio verniciato",
+        "rame",
+        "ottone",
+        "bronzo",
+        "zinco",
+        "zinco titanio",
+        "piombo",
+        "titanio"
+      ],
+      "regex": "\\b(?:metall(?:o|ic[oa])|lega\\s+metallica|ferro|acciaio(?:\\s+(?:al\\s+carbonio|zincato|corten))?|alluminio(?:\\s+(?:anodizzato|verniciato))?|rame|ottone|bronzo|zinco(?:\\s+titanio)?|piombo|titanio)\\b"
+    },
+    {
+      "id": "vetro",
+      "canonical": "vetro",
+      "synonyms": [
+        "vetro",
+        "cristallo",
+        "vetro float",
+        "vetro temperato",
+        "vetro stratificato",
+        "vetro temprato",
+        "vetro extrachiaro",
+        "vetro satinato",
+        "vetro acidato",
+        "vetrocamera",
+        "doppio vetro",
+        "triplo vetro",
+        "basso emissivo",
+        "vetro acustico",
+        "specchio"
+      ],
+      "regex": "\\b(?:vetro|cristallo|vetro\\s+float|vetro\\s+temperato|vetro\\s+temprato|vetro\\s+stratificato|vetro\\s+extrachiaro|vetro\\s+satinato|vetro\\s+acidato|vetrocamera|doppio\\s+vetro|triplo\\s+vetro|basso\\s+emissivo|vetro\\s+acustico|specchio)\\b"
+    },
+    {
+      "id": "acciaio",
+      "canonical": "acciaio",
+      "synonyms": [
+        "acciaio",
+        "acciaio al carbonio",
+        "ferro",
+        "acciaio zincato",
+        "zincato",
+        "elettrozincato",
+        "acciaio verniciato",
+        "acciaio brunito",
+        "acciaio corten",
+        "S235",
+        "S275",
+        "S355"
+      ],
+      "regex": "\\b(?:acciaio(?:\\s+(?:al\\s+carbonio|zincato|verniciato|brunito|corten))?|elettrozincato|zincato|S(?:235|275|355)|ferro)\\b"
+    },
+    {
+      "id": "acciaio_inox",
+      "canonical": "acciaio inox",
+      "synonyms": [
+        "acciaio inox",
+        "inox",
+        "acciaio inossidabile",
+        "AISI 304",
+        "AISI304",
+        "AISI 304L",
+        "AISI304L",
+        "AISI 316",
+        "AISI316",
+        "AISI 316L",
+        "AISI316L",
+        "AISI 430",
+        "AISI430",
+        "1.4301",
+        "1.4307",
+        "1.4401",
+        "1.4404",
+        "X5CrNi18-10",
+        "X2CrNiMo17-12-2",
+        "inox satinato",
+        "inox lucido"
+      ],
+      "regex": "\\b(?:acciaio\\s+(?:inox|inossidabile)|inox|AISI\\s*(?:304L?|316L?|430)|1\\.(?:4301|4307|4401|4404)|X(?:5CrNi18-10|2CrNiMo17-12-2))(?:\\s+(?:satinato|lucido))?\\b"
+    },
+    {
+      "id": "acrilico",
+      "canonical": "acrilico",
+      "synonyms": [
+        "acrilico",
+        "acrilico sanitario",
+        "resina acrilica",
+        "PMMA",
+        "polimetilmetacrilato"
+      ],
+      "regex": "\\b(?:acrilic[oi](?:\\s+sanitari[oi])?|resina\\s+acrilica|PMMA|polimetilmetacrilato)\\b"
+    },
+    {
+      "id": "mdf",
+      "canonical": "MDF",
+      "synonyms": [
+        "MDF",
+        "mdf",
+        "MDF idrofugo",
+        "MDF idrorepellente",
+        "medium density fiberboard",
+        "fibra di legno"
+      ],
+      "regex": "\\b(?:MDF(?:\\s+(?:idrofug[oi]|idrorepellent[ei]))?|medium\\s+density\\s+fiberboard|fibr[ae]\\s+di\\s+legno)\\b"
+    },
+    {
+      "id": "plastica",
+      "canonical": "plastica",
+      "synonyms": [
+        "plastica",
+        "plastico",
+        "materie plastiche",
+        "materiale plastico",
+        "polimero",
+        "polimeri",
+        "tecnopolimero",
+        "termoplastica",
+        "materiale termoplastico"
+      ],
+      "regex": "\\b(?:plastic[aoh]|mater(?:ie|iale)\\s+plastic[aoh]|polimer[oi]|tecnopolimer[oi]|termoplastic[aoh])\\b"
+    },
+    {
+      "id": "pvc",
+      "canonical": "PVC",
+      "synonyms": [
+        "PVC",
+        "pvc",
+        "polivinilcloruro",
+        "polivinil cloruro",
+        "cloruro di polivinile",
+        "PVC rigido",
+        "PVC flessibile"
+      ],
+      "regex": "\\b(?:PVC|pvc|polivinil(?:cloruro|\\s+cloruro)|cloruro\\s+di\\s+polivinile)(?:\\s+(?:rigido|flessibile))?\\b"
+    },
+    {
+      "id": "polietilene",
+      "canonical": "polietilene",
+      "synonyms": [
+        "polietilene",
+        "HDPE",
+        "LDPE",
+        "polietilene alta densità",
+        "polietilene bassa densità",
+        "PE-HD",
+        "PE-LD"
+      ],
+      "regex": "\\b(?:polietilene|(?:HDPE|LDPE|PE-HD|PE-LD|PE)(?![a-zàèéìòù]))(?:\\s+(?:alta|bassa)\\s+densità)?\\b"
+    },
+    {
+      "id": "polipropilene",
+      "canonical": "polipropilene",
+      "synonyms": [
+        "polipropilene",
+        "polipropilene isotattico",
+        "polipropilene atattico"
+      ],
+      "regex": "\\b(?:polipropilene|PP(?![a-zàèéìòù]))(?:\\s+(?:isotattico|atattico))?\\b"
+    },
+    {
+      "id": "abs",
+      "canonical": "ABS",
+      "synonyms": [
+        "ABS",
+        "abs",
+        "acrilonitrile butadiene stirene"
+      ],
+      "regex": "\\b(?:ABS|abs|acrilonitrile\\s+butadiene\\s+stirene)\\b"
+    },
+    {
+      "id": "policarbonato",
+      "canonical": "policarbonato",
+      "synonyms": [
+        "policarbonato",
+        "PC",
+        "lexan",
+        "makrolon"
+      ],
+      "regex": "\\b(?:policarbonato|PC|lexan|makrolon)\\b"
+    },
+    {
+      "id": "nylon",
+      "canonical": "nylon",
+      "synonyms": [
+        "nylon",
+        "poliammide",
+        "PA6",
+        "PA66",
+        "nylon 6",
+        "nylon 66"
+      ],
+      "regex": "\\b(?:nylon|poliammide|PA(?:6|66)?(?![a-zàèéìòù]))(?:\\s+(?:6|66))?\\b"
+    }
+  ]
+}

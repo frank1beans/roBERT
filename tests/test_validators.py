@@ -2,6 +2,7 @@
 
 import pytest
 
+from robimb.extraction.fuse import CandidateSource
 from robimb.extraction.validators import validate_properties
 
 
@@ -10,20 +11,20 @@ def sample_payload() -> dict[str, dict[str, object]]:
     return {
         "tipologia_lastra": {
             "value": "ignifuga",
-            "source": "qa_llm",
+            "source": CandidateSource.QA_LLM,
             "span": [12, 20],
             "confidence": 0.91,
         },
         "spessore_mm": {
             "value": "125",
             "unit": "mm",
-            "source": "parser",
+            "source": CandidateSource.PARSER,
             "span": [30, 36],
             "confidence": 0.88,
         },
         "classe_reazione_al_fuoco": {
             "value": "A2-s1,d0",
-            "source": "parser",
+            "source": CandidateSource.PARSER,
             "span": [40, 49],
             "confidence": 0.92,
         },
@@ -39,6 +40,21 @@ def test_validate_properties_success(sample_payload: dict[str, dict[str, object]
     assert result.normalized["spessore_mm"].value == pytest.approx(125.0)
 
 
+def test_validate_accepts_matcher_fallback_source(sample_payload: dict[str, dict[str, object]]) -> None:
+    payload = dict(sample_payload)
+    payload["tipologia_lastra"] = {
+        "value": "ignifuga",
+        "source": CandidateSource.MATCHER_FALLBACK,
+        "span": [12, 20],
+        "confidence": 0.75,
+    }
+
+    result = validate_properties("Opere da cartongessista", payload)
+
+    assert result.ok is True
+    assert not result.errors
+
+
 def test_missing_required_property(sample_payload: dict[str, dict[str, object]]) -> None:
     payload = {key: value for key, value in sample_payload.items() if key != "spessore_mm"}
 
@@ -52,7 +68,7 @@ def test_enum_mismatch_triggers_error(sample_payload: dict[str, dict[str, object
     payload = dict(sample_payload)
     payload["classe_reazione_al_fuoco"] = {
         "value": "C-s3,d2",
-        "source": "qa_llm",
+        "source": CandidateSource.QA_LLM,
         "span": [5, 10],
         "confidence": 0.5,
     }
@@ -68,7 +84,7 @@ def test_type_conversion_error_recorded(sample_payload: dict[str, dict[str, obje
     payload["spessore_mm"] = {
         "value": "cento",
         "unit": "mm",
-        "source": "parser",
+        "source": CandidateSource.PARSER,
         "span": [1, 5],
         "confidence": 0.7,
     }

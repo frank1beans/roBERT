@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema proprietà — Opere da falegname",
+  "type": "object",
+  "required": [
+    "category",
+    "properties"
+  ],
+  "properties": {
+    "category": {
+      "const": "opere_da_falegname"
+    },
+    "properties": {
+      "type": "object",
+      "required": [
+        "essenza",
+        "dimensione_larghezza",
+        "dimensione_altezza"
+      ],
+      "properties": {
+        "marchio": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 80
+                }
+              }
+            }
+          ]
+        },
+        "essenza": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "rovere",
+                    "faggio",
+                    "pino",
+                    "abete",
+                    "larice",
+                    "noce",
+                    "castagno"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "dimensione_larghezza": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/measurement"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 300,
+                  "maximum": 3000
+                },
+                "unit": {
+                  "const": "mm"
+                }
+              }
+            }
+          ]
+        },
+        "dimensione_altezza": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/measurement"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 400,
+                  "maximum": 3200
+                },
+                "unit": {
+                  "const": "mm"
+                }
+              }
+            }
+          ]
+        },
+        "tipologia_apertura": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "battente",
+                    "scorrevole",
+                    "a_ribalta",
+                    "a_scomparsa",
+                    "anta_ribalta"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "normativa_riferimento": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 120
+                }
+              }
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": [
+        "value",
+        "source",
+        "span",
+        "confidence"
+      ],
+      "properties": {
+        "value": {},
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "parser",
+            "matcher",
+            "qa_llm",
+            "fuse"
+          ]
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    },
+    "value": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

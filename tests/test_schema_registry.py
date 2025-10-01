@@ -1,10 +1,11 @@
 from pathlib import Path
 
+from robimb.config import get_settings
 from robimb.extraction.schema_registry import load_registry
 
 
 def test_load_registry_categories(tmp_path: Path) -> None:
-    registry_path = Path("data/properties/registry.json")
+    registry_path = get_settings().registry_path
     registry = load_registry(registry_path)
     category = registry.get("Opere da cartongessista")
     assert category is not None
@@ -18,7 +19,7 @@ def test_load_registry_categories(tmp_path: Path) -> None:
 
 
 def test_list_all_categories() -> None:
-    registry = load_registry(Path("data/properties/registry.json"))
+    registry = load_registry(get_settings().registry_path)
     categories = list(registry.list())
     assert {category.id for category in categories} == {
         "opere_da_cartongessista",

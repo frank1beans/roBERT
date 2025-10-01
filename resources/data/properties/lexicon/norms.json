@@ -1,0 +1,1362 @@
+{
+  "version": "1.0",
+  "notes": "Canonical standards and regulations with generated synonyms and category coverage.",
+  "standards": [
+    {
+      "id": "d_lgs_106_2017",
+      "canonical": "D.Lgs. 106/2017",
+      "title": "Marcatura CE prodotti da costruzione (CPR)",
+      "synonyms": [
+        "D Lgs 106/2017",
+        "D Lgs106/2017",
+        "D.Lgs. 106 2017",
+        "D.Lgs. 106/2017",
+        "D.Lgs. 1062017",
+        "D.Lgs. 106:2017",
+        "D.Lgs.106/2017",
+        "DLgs 106/2017",
+        "DLgs106/2017",
+        "Decreto Legislativo 106/2017",
+        "Decreto Legislativo106/2017"
+      ],
+      "categories": [
+        "trasversale"
+      ],
+      "families": [
+        "trasversale"
+      ]
+    },
+    {
+      "id": "d_lgs_81_2008",
+      "canonical": "D.Lgs. 81/2008",
+      "title": "Sicurezza sui luoghi di lavoro",
+      "synonyms": [
+        "D Lgs 81/2008",
+        "D Lgs81/2008",
+        "D.Lgs. 81 2008",
+        "D.Lgs. 81/2008",
+        "D.Lgs. 812008",
+        "D.Lgs. 81:2008",
+        "D.Lgs.81/2008",
+        "DLgs 81/2008",
+        "DLgs81/2008",
+        "Decreto Legislativo 81/2008",
+        "Decreto Legislativo81/2008"
+      ],
+      "categories": [
+        "trasversale"
+      ],
+      "families": [
+        "trasversale"
+      ]
+    },
+    {
+      "id": "dm_16_2_2007",
+      "canonical": "DM 16/2/2007",
+      "title": "Classificazione di resistenza al fuoco (porte tagliafuoco)",
+      "synonyms": [
+        "D.M. 16/2/2007",
+        "D.M.16/2/2007",
+        "DM 16 2 2007",
+        "DM 16/2/2007",
+        "DM 1622007",
+        "DM 16:2:2007",
+        "DM16/2/2007",
+        "Decreto Ministeriale 16/2/2007",
+        "Decreto Ministeriale16/2/2007"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "antincendio"
+      ]
+    },
+    {
+      "id": "dm_236_1989",
+      "canonical": "DM 236/1989",
+      "title": "Prescrizioni tecniche per l'eliminazione delle barriere architettoniche",
+      "synonyms": [
+        "D.M. 236/1989",
+        "D.M.236/1989",
+        "DM 236 1989",
+        "DM 236/1989",
+        "DM 2361989",
+        "DM 236:1989",
+        "DM236/1989",
+        "Decreto Ministeriale 236/1989",
+        "Decreto Ministeriale236/1989"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "accessibilita"
+      ]
+    },
+    {
+      "id": "dm_26_6_2015",
+      "canonical": "DM 26/6/2015",
+      "title": "Requisiti minimi prestazioni energetiche edifici",
+      "synonyms": [
+        "D.M. 26/6/2015",
+        "D.M.26/6/2015",
+        "DM 26 6 2015",
+        "DM 26/6/2015",
+        "DM 2662015",
+        "DM 26:6:2015",
+        "DM26/6/2015",
+        "Decreto Ministeriale 26/6/2015",
+        "Decreto Ministeriale26/6/2015"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "decreti"
+      ]
+    },
+    {
+      "id": "dm_3_8_2015",
+      "canonical": "DM 3/8/2015",
+      "title": "Codice di prevenzione incendi (classificazione REI)",
+      "synonyms": [
+        "D.M. 3/8/2015",
+        "D.M.3/8/2015",
+        "DM 3 8 2015",
+        "DM 3/8/2015",
+        "DM 382015",
+        "DM 3:8:2015",
+        "DM3/8/2015",
+        "Decreto Ministeriale 3/8/2015",
+        "Decreto Ministeriale3/8/2015"
+      ],
+      "categories": [
+        "controsoffitti",
+        "trasversale"
+      ],
+      "families": [
+        "antincendio",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "dm_37_2008",
+      "canonical": "DM 37/2008",
+      "title": "Sicurezza impianti",
+      "synonyms": [
+        "D.M. 37/2008",
+        "D.M.37/2008",
+        "DM 37 2008",
+        "DM 37/2008",
+        "DM 372008",
+        "DM 37:2008",
+        "DM37/2008",
+        "Decreto Ministeriale 37/2008",
+        "Decreto Ministeriale37/2008"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "impianti_idraulici"
+      ]
+    },
+    {
+      "id": "dpr_503_1996",
+      "canonical": "DPR 503/1996",
+      "title": "Regolamento barriere architettoniche",
+      "synonyms": [
+        "D.P.R. 503/1996",
+        "D.P.R.503/1996",
+        "DPR 503 1996",
+        "DPR 503/1996",
+        "DPR 5031996",
+        "DPR 503:1996",
+        "DPR503/1996",
+        "Decreto del Presidente della Repubblica 503/1996",
+        "Decreto del Presidente della Repubblica503/1996"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "accessibilita"
+      ]
+    },
+    {
+      "id": "en_13964",
+      "canonical": "EN 13964",
+      "title": "Controsoffitti - Requisiti e metodi di prova",
+      "synonyms": [
+        "EN 13964",
+        "EN13964"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ],
+      "families": [
+        "ce_marking"
+      ]
+    },
+    {
+      "id": "regolamento_ue_305_2011",
+      "canonical": "Regolamento UE 305/2011",
+      "title": "Construction Products Regulation",
+      "synonyms": [
+        "Regolamento (UE) 305/2011",
+        "Regolamento (UE)305/2011",
+        "Regolamento Europeo 305/2011",
+        "Regolamento Europeo305/2011",
+        "Regolamento UE 305 2011",
+        "Regolamento UE 305/2011",
+        "Regolamento UE 3052011",
+        "Regolamento UE 305:2011",
+        "Regolamento UE305/2011",
+        "RegolamentoUE305/2011"
+      ],
+      "categories": [
+        "trasversale"
+      ],
+      "families": [
+        "trasversale"
+      ]
+    },
+    {
+      "id": "uni_10329",
+      "canonical": "UNI 10329",
+      "title": "Pavimenti di legno massiccio - Classificazione",
+      "synonyms": [
+        "UNI 10329",
+        "UNI10329"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_10818",
+      "canonical": "UNI 10818",
+      "title": "Porte interne - Terminologia e classificazione",
+      "synonyms": [
+        "UNI 10818",
+        "UNI10818"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_10819",
+      "canonical": "UNI 10819",
+      "title": "Porte interne - Metodi di prova",
+      "synonyms": [
+        "UNI 10819",
+        "UNI10819"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_10820",
+      "canonical": "UNI 10820",
+      "title": "Porte interne - Requisiti",
+      "synonyms": [
+        "UNI 10820",
+        "UNI10820"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_10827",
+      "canonical": "UNI 10827",
+      "title": "Rivestimenti e sistemi di ancoraggio per facciate ventilate",
+      "synonyms": [
+        "UNI 10827",
+        "UNI10827"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_10966",
+      "canonical": "UNI 10966",
+      "title": "Arredamento - Sicurezza e prove per mobili fissi",
+      "synonyms": [
+        "UNI 10966",
+        "UNI10966"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11018",
+      "canonical": "UNI 11018",
+      "title": "Sistemi di ancoraggio per facciate ventilate",
+      "synonyms": [
+        "UNI 11018",
+        "UNI11018"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11035",
+      "canonical": "UNI 11035",
+      "title": "Mobili - Letti - Dimensioni",
+      "synonyms": [
+        "UNI 11035",
+        "UNI11035"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11116",
+      "canonical": "UNI 11116",
+      "title": "Mobili per cucina - Coordinamento dimensionale",
+      "synonyms": [
+        "UNI 11116",
+        "UNI11116"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11173_1_2005",
+      "canonical": "UNI 11173-1:2005",
+      "title": "Finestre, porte e schermi - Linee guida per la posa in opera",
+      "synonyms": [
+        "UNI 11173 1:2005",
+        "UNI 11173-1 2005",
+        "UNI 11173-1/2005",
+        "UNI 11173-12005",
+        "UNI 11173-1:2005",
+        "UNI 111731:2005",
+        "UNI11173-1:2005"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11173_2_2015",
+      "canonical": "UNI 11173-2:2015",
+      "title": "Finestre, porte, chiusure oscuranti - Posa in opera",
+      "synonyms": [
+        "UNI 11173 2:2015",
+        "UNI 11173-2 2015",
+        "UNI 11173-2/2015",
+        "UNI 11173-22015",
+        "UNI 11173-2:2015",
+        "UNI 111732:2015",
+        "UNI11173-2:2015"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11424_1_2017",
+      "canonical": "UNI 11424-1:2017",
+      "title": "Sistemi di pareti in lastre di gesso rivestito",
+      "synonyms": [
+        "UNI 11424 1:2017",
+        "UNI 11424-1 2017",
+        "UNI 11424-1/2017",
+        "UNI 11424-12017",
+        "UNI 11424-1:2017",
+        "UNI 114241:2017",
+        "UNI11424-1:2017"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11424_2011",
+      "canonical": "UNI 11424:2011",
+      "title": "Sistemi di lastre di gesso rivestito e accessori",
+      "synonyms": [
+        "UNI 11424 2011",
+        "UNI 11424/2011",
+        "UNI 114242011",
+        "UNI 11424:2011",
+        "UNI11424:2011"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11437_2012",
+      "canonical": "UNI 11437:2012",
+      "title": "Controsoffitti - Progettazione, installazione, manutenzione",
+      "synonyms": [
+        "UNI 11437 2012",
+        "UNI 11437/2012",
+        "UNI 114372012",
+        "UNI 11437:2012",
+        "UNI11437:2012"
+      ],
+      "categories": [
+        "controsoffitti"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11493_1_2013",
+      "canonical": "UNI 11493-1:2013",
+      "title": "Rivestimenti ceramici - Posa in opera",
+      "synonyms": [
+        "UNI 11493 1:2013",
+        "UNI 11493-1 2013",
+        "UNI 11493-1/2013",
+        "UNI 11493-12013",
+        "UNI 11493-1:2013",
+        "UNI 114931:2013",
+        "UNI11493-1:2013"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "piastrelle"
+      ]
+    },
+    {
+      "id": "uni_11493_1_2017",
+      "canonical": "UNI 11493-1:2017",
+      "title": "Rivestimenti di legno",
+      "synonyms": [
+        "UNI 11493 1:2017",
+        "UNI 11493-1 2017",
+        "UNI 11493-1/2017",
+        "UNI 11493-12017",
+        "UNI 11493-1:2017",
+        "UNI 114931:2017",
+        "UNI11493-1:2017"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11493_2013",
+      "canonical": "UNI 11493:2013",
+      "title": "Pavimentazioni di legno - Criteri di posa",
+      "synonyms": [
+        "UNI 11493 2013",
+        "UNI 11493/2013",
+        "UNI 114932013",
+        "UNI 11493:2013",
+        "UNI11493:2013"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11515",
+      "canonical": "UNI 11515",
+      "title": "Pavimenti di legno - Pavimenti sopraelevati",
+      "synonyms": [
+        "UNI 11515",
+        "UNI11515"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11518",
+      "canonical": "UNI 11518",
+      "title": "Controsoffitti rimovibili ad elementi modulari",
+      "synonyms": [
+        "UNI 11518",
+        "UNI11518"
+      ],
+      "categories": [
+        "controsoffitti"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_11714_1_2018",
+      "canonical": "UNI 11714-1:2018",
+      "title": "Rivestimenti lapidei - Posa in opera",
+      "synonyms": [
+        "UNI 11714 1:2018",
+        "UNI 11714-1 2018",
+        "UNI 11714-1/2018",
+        "UNI 11714-12018",
+        "UNI 11714-1:2018",
+        "UNI 117141:2018",
+        "UNI11714-1:2018"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "pietre_naturali"
+      ]
+    },
+    {
+      "id": "uni_11714_2018",
+      "canonical": "UNI 11714:2018",
+      "title": "Piastrelle di ceramica - Posa in opera",
+      "synonyms": [
+        "UNI 11714 2018",
+        "UNI 11714/2018",
+        "UNI 117142018",
+        "UNI 11714:2018",
+        "UNI11714:2018"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_4542",
+      "canonical": "UNI 4542",
+      "title": "Apparecchi sanitari - Requisiti",
+      "synonyms": [
+        "UNI 4542",
+        "UNI4542"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_7697",
+      "canonical": "UNI 7697",
+      "title": "Criteri di sicurezza nelle applicazioni vetrarie",
+      "synonyms": [
+        "UNI 7697",
+        "UNI7697"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_7999",
+      "canonical": "UNI 7999",
+      "title": "Pavimenti di legno - Terminologia",
+      "synonyms": [
+        "UNI 7999",
+        "UNI7999"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_9182",
+      "canonical": "UNI 9182",
+      "title": "Apparecchi sanitari - Studi di progettazione",
+      "synonyms": [
+        "UNI 9182",
+        "UNI9182"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_9182_2014",
+      "canonical": "UNI 9182:2014",
+      "title": "Impianti di alimentazione e distribuzione acqua",
+      "synonyms": [
+        "UNI 9182 2014",
+        "UNI 9182/2014",
+        "UNI 91822014",
+        "UNI 9182:2014",
+        "UNI9182:2014"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "impianti_idraulici"
+      ]
+    },
+    {
+      "id": "uni_en_111",
+      "canonical": "UNI EN 111",
+      "title": "Lavabi - Dimensioni di raccordo",
+      "synonyms": [
+        "EN 111",
+        "EN111",
+        "UNI 111",
+        "UNI EN 111",
+        "UNI EN111",
+        "UNI111",
+        "UNIEN111"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_12207",
+      "canonical": "UNI EN 12207",
+      "title": "Finestre e porte - Permeabilità all'aria",
+      "synonyms": [
+        "EN 12207",
+        "EN12207",
+        "UNI 12207",
+        "UNI EN 12207",
+        "UNI EN12207",
+        "UNI12207",
+        "UNIEN12207"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_12208",
+      "canonical": "UNI EN 12208",
+      "title": "Finestre e porte - Tenuta all'acqua",
+      "synonyms": [
+        "EN 12208",
+        "EN12208",
+        "UNI 12208",
+        "UNI EN 12208",
+        "UNI EN12208",
+        "UNI12208",
+        "UNIEN12208"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_12210",
+      "canonical": "UNI EN 12210",
+      "title": "Finestre e porte - Resistenza al carico del vento",
+      "synonyms": [
+        "EN 12210",
+        "EN12210",
+        "UNI 12210",
+        "UNI EN 12210",
+        "UNI EN12210",
+        "UNI12210",
+        "UNIEN12210"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_12825",
+      "canonical": "UNI EN 12825",
+      "title": "Pavimenti sopraelevati",
+      "synonyms": [
+        "EN 12825",
+        "EN12825",
+        "UNI 12825",
+        "UNI EN 12825",
+        "UNI EN12825",
+        "UNI12825",
+        "UNIEN12825"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_1286_1287",
+      "canonical": "UNI EN 1286-1287",
+      "title": "Rubinetti sanitari termostatici",
+      "synonyms": [
+        "EN 1286-1287",
+        "EN1286-1287",
+        "UNI 1286-1287",
+        "UNI EN 1286 1287",
+        "UNI EN 1286-1287",
+        "UNI EN 12861287",
+        "UNI EN1286-1287",
+        "UNI1286-1287",
+        "UNIEN1286-1287"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "rubinetteria"
+      ]
+    },
+    {
+      "id": "uni_en_1307",
+      "canonical": "UNI EN 1307",
+      "title": "Rivestimenti tessili per pavimenti",
+      "synonyms": [
+        "EN 1307",
+        "EN1307",
+        "UNI 1307",
+        "UNI EN 1307",
+        "UNI EN1307",
+        "UNI1307",
+        "UNIEN1307"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_13115",
+      "canonical": "UNI EN 13115",
+      "title": "Finestre - Classificazione delle proprietà meccaniche",
+      "synonyms": [
+        "EN 13115",
+        "EN13115",
+        "UNI 13115",
+        "UNI EN 13115",
+        "UNI EN13115",
+        "UNI13115",
+        "UNIEN13115"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_13318",
+      "canonical": "UNI EN 13318",
+      "title": "Massetti e materiali per massetti",
+      "synonyms": [
+        "EN 13318",
+        "EN13318",
+        "UNI 13318",
+        "UNI EN 13318",
+        "UNI EN13318",
+        "UNI13318",
+        "UNIEN13318"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_13914_1",
+      "canonical": "UNI EN 13914-1",
+      "title": "Intonaci esterni - Progettazione, preparazione e applicazione",
+      "synonyms": [
+        "EN 13914-1",
+        "EN13914-1",
+        "UNI 13914-1",
+        "UNI EN 13914 1",
+        "UNI EN 13914-1",
+        "UNI EN 139141",
+        "UNI EN13914-1",
+        "UNI13914-1",
+        "UNIEN13914-1"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_13914_2",
+      "canonical": "UNI EN 13914-2",
+      "title": "Intonaci interni - Progettazione, preparazione e applicazione",
+      "synonyms": [
+        "EN 13914-2",
+        "EN13914-2",
+        "UNI 13914-2",
+        "UNI EN 13914 2",
+        "UNI EN 13914-2",
+        "UNI EN 139142",
+        "UNI EN13914-2",
+        "UNI13914-2",
+        "UNIEN13914-2"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_13964_2014",
+      "canonical": "UNI EN 13964:2014",
+      "title": "Controsoffitti - Requisiti e metodi di prova",
+      "synonyms": [
+        "EN 13964:2014",
+        "EN13964:2014",
+        "UNI 13964:2014",
+        "UNI EN 13964 2014",
+        "UNI EN 13964/2014",
+        "UNI EN 139642014",
+        "UNI EN 13964:2014",
+        "UNI EN13964:2014",
+        "UNI13964:2014",
+        "UNIEN13964:2014"
+      ],
+      "categories": [
+        "controsoffitti"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_13986",
+      "canonical": "UNI EN 13986",
+      "title": "Pannelli a base di legno per utilizzo nelle costruzioni",
+      "synonyms": [
+        "EN 13986",
+        "EN13986",
+        "UNI 13986",
+        "UNI EN 13986",
+        "UNI EN13986",
+        "UNI13986",
+        "UNIEN13986"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "legno_e_pannelli"
+      ]
+    },
+    {
+      "id": "uni_en_14080",
+      "canonical": "UNI EN 14080",
+      "title": "Strutture di legno - Legno lamellare e massiccio incollato",
+      "synonyms": [
+        "EN 14080",
+        "EN14080",
+        "UNI 14080",
+        "UNI EN 14080",
+        "UNI EN14080",
+        "UNI14080",
+        "UNIEN14080"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ],
+      "families": [
+        "legno_e_pannelli"
+      ]
+    },
+    {
+      "id": "uni_en_14190",
+      "canonical": "UNI EN 14190",
+      "title": "Prodotti di gesso - Lastre di gesso da intonaco",
+      "synonyms": [
+        "EN 14190",
+        "EN14190",
+        "UNI 14190",
+        "UNI EN 14190",
+        "UNI EN14190",
+        "UNI14190",
+        "UNIEN14190"
+      ],
+      "categories": [
+        "controsoffitti",
+        "opere_da_cartongessista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_14351_1",
+      "canonical": "UNI EN 14351-1",
+      "title": "Finestre e porte - Norme di prodotto",
+      "synonyms": [
+        "EN 14351-1",
+        "EN14351-1",
+        "UNI 14351-1",
+        "UNI EN 14351 1",
+        "UNI EN 14351-1",
+        "UNI EN 143511",
+        "UNI EN14351-1",
+        "UNI14351-1",
+        "UNIEN14351-1"
+      ],
+      "categories": [
+        "opere_da_falegname",
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_14411",
+      "canonical": "UNI EN 14411",
+      "title": "Piastrelle di ceramica - Definizioni, classificazione",
+      "synonyms": [
+        "EN 14411",
+        "EN14411",
+        "UNI 14411",
+        "UNI EN 14411",
+        "UNI EN14411",
+        "UNI14411",
+        "UNIEN14411"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "piastrelle_ceramiche"
+      ]
+    },
+    {
+      "id": "uni_en_14528",
+      "canonical": "UNI EN 14528",
+      "title": "Piatti doccia per uso domestico",
+      "synonyms": [
+        "EN 14528",
+        "EN14528",
+        "UNI 14528",
+        "UNI EN 14528",
+        "UNI EN14528",
+        "UNI14528",
+        "UNIEN14528"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_1469",
+      "canonical": "UNI EN 1469",
+      "title": "Prodotti di pietra naturale - Lastre per pavimentazione",
+      "synonyms": [
+        "EN 1469",
+        "EN1469",
+        "UNI 1469",
+        "UNI EN 1469",
+        "UNI EN1469",
+        "UNI1469",
+        "UNIEN1469"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "pietre_naturali"
+      ]
+    },
+    {
+      "id": "uni_en_14904",
+      "canonical": "UNI EN 14904",
+      "title": "Superfici per aree sportive",
+      "synonyms": [
+        "EN 14904",
+        "EN14904",
+        "UNI 14904",
+        "UNI EN 14904",
+        "UNI EN14904",
+        "UNI14904",
+        "UNIEN14904"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_15824",
+      "canonical": "UNI EN 15824",
+      "title": "Specifiche per intonaci esterni ed interni",
+      "synonyms": [
+        "EN 15824",
+        "EN15824",
+        "UNI 15824",
+        "UNI EN 15824",
+        "UNI EN15824",
+        "UNI15824",
+        "UNIEN15824"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_1627_1630",
+      "canonical": "UNI EN 1627-1630",
+      "title": "Resistenza all'effrazione",
+      "synonyms": [
+        "EN 1627-1630",
+        "EN1627-1630",
+        "UNI 1627-1630",
+        "UNI EN 1627 1630",
+        "UNI EN 1627-1630",
+        "UNI EN 16271630",
+        "UNI EN1627-1630",
+        "UNI1627-1630",
+        "UNIEN1627-1630"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "sicurezza"
+      ]
+    },
+    {
+      "id": "uni_en_1815",
+      "canonical": "UNI EN 1815",
+      "title": "Pavimenti resilienti e tessili - Propensità elettrostatica",
+      "synonyms": [
+        "EN 1815",
+        "EN1815",
+        "UNI 1815",
+        "UNI EN 1815",
+        "UNI EN1815",
+        "UNI1815",
+        "UNIEN1815"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_198",
+      "canonical": "UNI EN 198",
+      "title": "Vasche da bagno - Dimensioni",
+      "synonyms": [
+        "EN 198",
+        "EN198",
+        "UNI 198",
+        "UNI EN 198",
+        "UNI EN198",
+        "UNI198",
+        "UNIEN198"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_200",
+      "canonical": "UNI EN 200",
+      "title": "Vasche da bagno di acciaio smaltato",
+      "synonyms": [
+        "EN 200",
+        "EN200",
+        "UNI 200",
+        "UNI EN 200",
+        "UNI EN200",
+        "UNI200",
+        "UNIEN200"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "rubinetteria",
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_251",
+      "canonical": "UNI EN 251",
+      "title": "Bidet - Dimensioni di raccordo",
+      "synonyms": [
+        "EN 251",
+        "EN251",
+        "UNI 251",
+        "UNI EN 251",
+        "UNI EN251",
+        "UNI251",
+        "UNIEN251"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_356",
+      "canonical": "UNI EN 356",
+      "title": "Vetrate antivandalismo e antieffrazione",
+      "synonyms": [
+        "EN 356",
+        "EN356",
+        "UNI 356",
+        "UNI EN 356",
+        "UNI EN356",
+        "UNI356",
+        "UNIEN356"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "sicurezza"
+      ]
+    },
+    {
+      "id": "uni_en_520",
+      "canonical": "UNI EN 520",
+      "title": "Lastre di gesso rivestito - Definizioni, requisiti e metodi di prova",
+      "synonyms": [
+        "EN 520",
+        "EN520",
+        "UNI 520",
+        "UNI EN 520",
+        "UNI EN520",
+        "UNI520",
+        "UNIEN520"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_673",
+      "canonical": "UNI EN 673",
+      "title": "Determinazione della trasmittanza termica del vetro",
+      "synonyms": [
+        "EN 673",
+        "EN673",
+        "UNI 673",
+        "UNI EN 673",
+        "UNI EN673",
+        "UNI673",
+        "UNIEN673"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "prestazioni_energetiche"
+      ]
+    },
+    {
+      "id": "uni_en_695",
+      "canonical": "UNI EN 695",
+      "title": "Lavabi - Dimensioni",
+      "synonyms": [
+        "EN 695",
+        "EN695",
+        "UNI 695",
+        "UNI EN 695",
+        "UNI EN695",
+        "UNI695",
+        "UNIEN695"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_817",
+      "canonical": "UNI EN 817",
+      "title": "Rubinetti sanitari meccanici a comando manuale",
+      "synonyms": [
+        "EN 817",
+        "EN817",
+        "UNI 817",
+        "UNI EN 817",
+        "UNI EN817",
+        "UNI817",
+        "UNIEN817"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "rubinetteria"
+      ]
+    },
+    {
+      "id": "uni_en_997",
+      "canonical": "UNI EN 997",
+      "title": "Vasi WC con cassetta",
+      "synonyms": [
+        "EN 997",
+        "EN997",
+        "UNI 997",
+        "UNI EN 997",
+        "UNI EN997",
+        "UNI997",
+        "UNIEN997"
+      ],
+      "categories": [
+        "apparecchi_sanitari_e_accessori"
+      ],
+      "families": [
+        "uni"
+      ]
+    },
+    {
+      "id": "uni_en_iso_10077",
+      "canonical": "UNI EN ISO 10077",
+      "title": "Trasmittanza termica (parti 1 e 2)",
+      "synonyms": [
+        "EN ISO 10077",
+        "EN ISO10077",
+        "ISO 10077",
+        "ISO10077",
+        "UNI EN ISO 10077",
+        "UNI EN ISO10077",
+        "UNI ISO 10077",
+        "UNI ISO10077",
+        "UNIENISO10077"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ],
+      "families": [
+        "prestazioni_energetiche"
+      ]
+    },
+    {
+      "id": "uni_en_iso_10545",
+      "canonical": "UNI EN ISO 10545",
+      "title": "Piastrelle di ceramica (parti 1-17)",
+      "synonyms": [
+        "EN ISO 10545",
+        "EN ISO10545",
+        "ISO 10545",
+        "ISO10545",
+        "UNI EN ISO 10545",
+        "UNI EN ISO10545",
+        "UNI ISO 10545",
+        "UNI ISO10545",
+        "UNIENISO10545"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ],
+      "families": [
+        "piastrelle_ceramiche"
+      ]
+    }
+  ]
+}
