@@ -2,9 +2,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, Iterable, List, Optional, Sequence
-
-from pydantic import BaseModel, Field
+from typing import Any, Dict, Optional
 
 from .fuse import Candidate, CandidateSource, Fuser
 from .matchers.brands import BrandMatcher
@@ -13,10 +11,14 @@ from .matchers.norms import StandardMatcher
 from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
+
 from .qa_llm import QALLM
+
+from ..config import get_settings
 from ..registry.schemas import slugify
 from .schema_registry import PropertySpec, load_category_schema, load_registry
 from .validators import validate_properties
+
 
 LOGGER = logging.getLogger(__name__)
 
@@ -35,44 +37,25 @@ class OrchestratorConfig(BaseModel):
     )
     enable_matcher: bool = True
     enable_llm: bool = True
-    registry_path: str = "data/properties/registry.json"
+    registry_path: str = Field(default_factory=lambda: str(get_settings().registry_path))
 
 
 class Orchestrator:
+
     """Coordinate deterministic parsers, matchers and LLM fallbacks."""
 
     def __init__(self, fuse: Fuser, llm: Optional[QALLM], cfg: OrchestratorConfig) -> None:
-        self._fuse = fuse
+        super().__init__(fuse=fuse, cfg=cfg)
         if llm is not None and not cfg.enable_llm:
             LOGGER.info(
                 "llm_disabled", extra={"reason": "config_disabled", "llm_type": llm.__class__.__name__}
             )
         self._llm = llm if cfg.enable_llm else None
-        self._cfg = cfg
-        self._brand_matcher = BrandMatcher()
-        self._material_matcher = MaterialMatcher()
-        self._standard_matcher = StandardMatcher()
 
     def extract_document(self, doc: Dict[str, Any]) -> Dict[str, Any]:
         """Extract properties for a single document."""
 
-        text_id = self._resolve_text_id(doc)
-        category_id = self._resolve_category_id(doc)
-        text = doc.get("text", "") or ""
-
-        if not category_id:
-            raise ValueError("Input document is missing category information")
-
-        try:
-            category, schema = load_category_schema(category_id, registry_path=self._cfg.registry_path)
-        except ValueError:
-            alias = self._resolve_category_alias(doc, category_id)
-            if not alias:
-                raise
-            category_id = alias
-            category, schema = load_category_schema(category_id, registry_path=self._cfg.registry_path)
-        property_specs = {prop.id: prop for prop in category.properties}
-        schema_properties = self._resolve_schema_properties(schema)
+        text_id, category_id, text, property_specs, schema_properties = self._prepare_document(doc)
 
         properties_payload: Dict[str, Dict[str, Any]] = {}
         for prop_id, prop_schema in schema_properties.items():
@@ -80,75 +63,9 @@ class Orchestrator:
             result = self._extract_property(text, category_id, prop_id, prop_schema, spec)
             properties_payload[prop_id] = result
 
-        validation_input = {
-            prop_id: {
-                "value": payload["value"],
-                "unit": payload.get("unit"),
-                "source": payload["source"],
-                "raw": payload.get("raw"),
-                "span": payload.get("span"),
-                "confidence": payload.get("confidence"),
-            }
-            for prop_id, payload in properties_payload.items()
-            if payload.get("source")
-        }
+        validation = self._validate_payload(category_id, properties_payload)
 
-        validation = validate_properties(
-            category_id,
-            validation_input,
-            registry_path=self._cfg.registry_path,
-        )
-        for issue in validation.errors:
-            result = properties_payload.setdefault(
-                issue.property_id,
-                {
-                    "value": None,
-                    "source": None,
-                    "unit": None,
-                    "raw": None,
-                    "span": None,
-                    "confidence": 0.0,
-                    "errors": [],
-                },
-            )
-            result.setdefault("errors", []).append(issue.message)
-
-        confidence_values = [
-            float(payload.get("confidence") or 0.0)
-            for payload in properties_payload.values()
-            if payload.get("value") is not None
-        ]
-        confidence_overall = sum(confidence_values) / len(confidence_values) if confidence_values else 0.0
-
-        LOGGER.info(
-            "document_processed",
-            extra={
-                "text_id": text_id,
-                "category": category_id,
-                "confidence_overall": confidence_overall,
-                "validation_status": "ok" if validation.ok else "failed",
-            },
-        )
-
-        result = {
-            **doc,  # Include all original fields
-            "text_id": text_id,
-            "categoria": category_id,
-            "properties": properties_payload,
-            "validation": {
-                "status": "ok" if validation.ok else "failed",
-                "errors": [
-                    {
-                        "property_id": issue.property_id,
-                        "code": issue.code,
-                        "message": issue.message,
-                    }
-                    for issue in validation.errors
-                ],
-            },
-            "confidence_overall": confidence_overall,
-        }
-        return result
+        return self._finalise_document(doc, text_id, category_id, properties_payload, validation)
 
     def _extract_property(
         self,
@@ -158,14 +75,7 @@ class Orchestrator:
         prop_schema: Dict[str, Any],
         prop_spec: Optional[PropertySpec] = None,
     ) -> Dict[str, Any]:
-        allowed_sources = self._determine_sources(prop_spec)
-        candidates: List[Candidate] = []
-
-        if "parser" in allowed_sources:
-            candidates.extend(self._parser_candidates(prop, prop_spec, text))
-
-        if self._cfg.enable_matcher and "matcher" in allowed_sources:
-            candidates.extend(self._matcher_candidates(cat, prop, text))
+        allowed_sources, candidates = self._deterministic_candidates(cat, prop, prop_spec, text)
 
         if self._llm and "qa_llm" in allowed_sources:
             llm_candidate = self._llm_candidate(prop, text, prop_schema)
@@ -175,103 +85,10 @@ class Orchestrator:
         validator = self._build_validator(prop_spec)
         fused = self._fuse.fuse(candidates, validator)
 
-        span = self._normalize_span(fused.get("span"))
-        unit = fused.get("unit")
-        errors = list(fused.get("errors", []))
-        confidence = float(fused.get("confidence") or 0.0)
-        source = fused.get("source")
-        value = fused.get("value")
-        raw = fused.get("raw")
+        return self._build_property_payload(cat, prop, candidates, fused)
 
-        result: Dict[str, Any] = {
-            "value": value,
-            "source": source,
-            "raw": raw,
-            "span": span,
-            "confidence": confidence,
-            "unit": unit,
-            "errors": errors,
-        }
-
-        LOGGER.info(
-            "property_fused",
-            extra={
-                "category": cat,
-                "property": prop,
-                "candidates": candidates,
-                "selected": result,
-            },
-        )
-
-        return result
-
-    def _determine_sources(self, spec: Optional[PropertySpec]) -> Sequence[str]:
-        if spec and spec.sources:
-            return [source for source in spec.sources if source in self._cfg.source_priority]
-        return list(self._cfg.source_priority)
-
-    def _normalize_span(self, span: Any) -> Optional[List[int]]:
-        if span is None:
-            return None
-        if isinstance(span, list):
-            return [int(span[0]), int(span[1])]
-        if isinstance(span, tuple):
-            return [int(span[0]), int(span[1])]
-        raise TypeError(f"Unsupported span type: {type(span)!r}")
-
-    def _resolve_text_id(self, doc: Dict[str, Any]) -> Optional[str]:
-        for key in ("text_id", "id", "document_id", "doc_id", "uuid"):
-            value = doc.get(key)
-            if isinstance(value, str) and value:
-                return value
-            if isinstance(value, (int, float)):
-                return str(value)
-        return None
-
-    def _resolve_category_id(self, doc: Dict[str, Any]) -> Optional[str]:
-
-        registry = load_registry(self._cfg.registry_path)
-        for key in (
-            "categoria",
-            "cat",
-            "category",
-            "category_id",
-            "categoria_id",
-            "categoria_label",
-            "cat_label",
-        ):
-            value = doc.get(key)
-            resolved = self._match_category_value(value, registry)
-            if resolved:
-                return resolved
-
-        for key in (
-            "super",
-            "supercategoria",
-            "macro_categoria",
-            "macrocategory",
-            "macro",
-        ):
-            value = doc.get(key)
-            resolved = self._match_category_value(value, registry)
-            if resolved:
-                return resolved
-
-        schema_hint = self._resolve_category_from_schema(doc, registry)
-        if schema_hint:
-            return schema_hint
-
-        return None
-
-    def _match_category_value(self, value: Any, registry) -> Optional[str]:
-        if value is None:
-            return None
-        if isinstance(value, (int, float)):
-            value = str(int(value)) if float(value).is_integer() else str(value)
-        if not isinstance(value, str):
-            return None
-        candidate = value.strip()
-        if not candidate:
+    def _llm_candidate(self, prop_id: str, text: str, prop_schema: Dict[str, Any]) -> Optional[Candidate]:
+        if not self._llm:
             return None
 
         if candidate in registry.categories:
@@ -376,8 +193,6 @@ class Orchestrator:
                             selected = first
                     else:
                         selected = values[0]
-                    else:
-                        selected = None
                 elif "altezza" in lowered or "height" in lowered:
                     # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or largest if door-like
                     if len(values) == 2:
@@ -582,49 +397,3 @@ class Orchestrator:
             errors=list(response.get("errors", [])) if isinstance(response.get("errors"), list) else [],
         )
         return candidate
-
-    def _build_validator(self, spec: Optional[PropertySpec]):
-        def _validator(candidate: Candidate) -> tuple[bool, List[str]]:
-            errors: List[str] = []
-            if spec is None:
-                return True, errors
-            value = candidate.get("value")
-            if value is None:
-                errors.append("value_missing")
-                return False, errors
-            expected = (spec.type or "string").lower()
-            if expected in {"number", "float"} and not isinstance(value, (int, float)):
-                errors.append("expected_number")
-            elif expected == "integer" and not isinstance(value, int):
-                errors.append("expected_integer")
-            elif expected == "boolean" and not isinstance(value, bool):
-                errors.append("expected_boolean")
-            elif expected in {"array", "list"} and not isinstance(value, (list, tuple)):
-                errors.append("expected_array")
-            elif expected in {"object", "dict"} and not isinstance(value, dict):
-                errors.append("expected_object")
-            elif expected in {"string", "text"} and not isinstance(value, str):
-                errors.append("expected_string")
-
-            if spec.enum and value not in spec.enum:
-                errors.append("enum_mismatch")
-
-            if spec.unit and candidate.get("unit") not in {spec.unit, None}:
-                errors.append("unit_mismatch")
-
-            return (not errors), errors
-
-        return _validator
-
-    def _resolve_schema_properties(self, schema: Dict[str, Any]) -> Dict[str, Any]:
-        props = schema.get("properties", {})
-        return props.get("properties", {}).get("properties", {})
-
-    def _extract_value_schema(self, prop_schema: Dict[str, Any]) -> Dict[str, Any]:
-        if "properties" in prop_schema and "value" in prop_schema["properties"]:
-            return prop_schema["properties"]["value"]
-        all_of = prop_schema.get("allOf", [])
-        for entry in all_of:
-            if isinstance(entry, dict) and "properties" in entry and "value" in entry["properties"]:
-                return entry["properties"]["value"]
-        return {"type": ["string", "number", "boolean", "null", "object", "array"]}

@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
+from ...config import get_settings
+
 __all__ = [
     "BrandDefinition",
     "BrandDataset",
@@ -64,7 +66,17 @@ def _is_word_boundary(text: str, start: int, end: int) -> bool:
 def load_brand_dataset(path: str | Path | None = None) -> BrandDataset:
     """Load the structured brand dataset from disk."""
 
-    dataset_path = Path(path or "data/properties/lexicon/brands.json")
+    if path is None:
+        settings = get_settings()
+        dataset_path = settings.brand_lexicon
+        legacy_path = settings.brand_lexicon_legacy
+    else:
+        dataset_path = Path(path)
+        if dataset_path.suffix == ".txt":
+            legacy_path = dataset_path
+            dataset_path = dataset_path.with_suffix(".json")
+        else:
+            legacy_path = dataset_path.with_suffix(".txt")
     if dataset_path.exists():
         payload = json.loads(dataset_path.read_text(encoding="utf-8"))
         fallback = str(payload.get("fallback", "Generico"))
@@ -86,7 +98,6 @@ def load_brand_dataset(path: str | Path | None = None) -> BrandDataset:
             )
         return BrandDataset(fallback=fallback, brands=tuple(definitions))
 
-    legacy_path = dataset_path.with_suffix(".txt")
     if legacy_path.exists():
         entries = [
             line.strip()

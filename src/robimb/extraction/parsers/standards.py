@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, Optional
 
+from ...config import get_settings
+
 __all__ = ["StandardMatch", "load_standard_prefixes", "parse_standards"]
 
 _STANDARD_PATTERN = re.compile(
@@ -24,7 +26,7 @@ class StandardMatch:
 
 
 def load_standard_prefixes(path: str | Path | None = None) -> Dict[str, str]:
-    lexicon_path = Path(path or "data/properties/lexicon/standards_prefixes.json")
+    lexicon_path = Path(path) if path is not None else get_settings().standards_prefixes
     if not lexicon_path.exists():
         return {}
     data = json.loads(lexicon_path.read_text(encoding="utf-8"))

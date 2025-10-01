@@ -11,10 +11,11 @@ from typing import Mapping, Optional
 import typer
 
 from ..registry import pack_folders_to_monolith
+from ..config import get_settings
 
 __all__ = ["pack_command"]
 
-_DEFAULT_PACK_ROOT = Path(__file__).resolve().parents[3] / "pack"
+_DEFAULT_PACK_ROOT = get_settings().pack_dir
 _EMPTY_COMPONENTS: Mapping[str, Mapping[str, object]] = {
     "validators.json": {"schema": "validators/v1", "rules": []},
     "formulas.json": {"schema": "formulas/v1", "formulas": []},

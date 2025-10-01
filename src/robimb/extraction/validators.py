@@ -2,12 +2,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Dict, Iterable, Mapping
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from .fuse import CandidateSource
 from .schema_registry import CategorySchema, PropertySpec, load_registry
+from ..config import get_settings
 
 __all__ = [
     "ALLOWED_SOURCES",
@@ -177,11 +179,12 @@ def validate_properties(
     category_id: str,
     properties: Mapping[str, Mapping[str, Any]],
     *,
-    registry_path: str | None = None,
+    registry_path: str | Path | None = None,
 ) -> ValidationResult:
     """Validate a property payload against the category schema."""
 
-    registry = load_registry(registry_path or "data/properties/registry.json")
+    effective_registry = registry_path or get_settings().registry_path
+    registry = load_registry(effective_registry)
     category = registry.get(category_id)
     if category is None:
         raise ValueError(f"Categoria '{category_id}' non presente nel registry")
