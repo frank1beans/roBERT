@@ -13,7 +13,8 @@ from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
 from .qa_llm import QALLM
-from .schema_registry import PropertySpec, load_category_schema
+from ..registry.schemas import slugify
+from .schema_registry import PropertySpec, load_category_schema, load_registry
 from .validators import validate_properties
 
 LOGGER = logging.getLogger(__name__)
@@ -50,7 +51,14 @@ class Orchestrator:
         if not category_id:
             raise ValueError("Input document is missing category information")
 
-        category, schema = load_category_schema(category_id, registry_path=self._cfg.registry_path)
+        try:
+            category, schema = load_category_schema(category_id, registry_path=self._cfg.registry_path)
+        except ValueError:
+            alias = self._resolve_category_alias(doc, category_id)
+            if not alias:
+                raise
+            category_id = alias
+            category, schema = load_category_schema(category_id, registry_path=self._cfg.registry_path)
         property_specs = {prop.id: prop for prop in category.properties}
         schema_properties = self._resolve_schema_properties(schema)
 
@@ -207,11 +215,115 @@ class Orchestrator:
         return None
 
     def _resolve_category_id(self, doc: Dict[str, Any]) -> Optional[str]:
-        for key in ("categoria", "cat", "category", "category_id", "categoria_id"):
+
+        registry = load_registry(self._cfg.registry_path)
+        for key in (
+            "categoria",
+            "cat",
+            "category",
+            "category_id",
+            "categoria_id",
+            "categoria_label",
+            "cat_label",
+        ):
             value = doc.get(key)
-            if isinstance(value, str) and value:
-                return value
+            resolved = self._match_category_value(value, registry)
+            if resolved:
+                return resolved
+
+        for key in (
+            "super",
+            "supercategoria",
+            "macro_categoria",
+            "macrocategory",
+            "macro",
+        ):
+            value = doc.get(key)
+            resolved = self._match_category_value(value, registry)
+            if resolved:
+                return resolved
+
+        schema_hint = self._resolve_category_from_schema(doc, registry)
+        if schema_hint:
+            return schema_hint
+
         return None
+
+    def _match_category_value(self, value: Any, registry) -> Optional[str]:
+        if value is None:
+            return None
+        if isinstance(value, (int, float)):
+            value = str(int(value)) if float(value).is_integer() else str(value)
+        if not isinstance(value, str):
+            return None
+        candidate = value.strip()
+        if not candidate:
+            return None
+
+        if candidate in registry.categories:
+            return candidate
+
+        lowered = candidate.lower()
+        for schema in registry.list():
+            if schema.id.lower() == lowered or schema.name.lower() == lowered:
+                return schema.id
+
+        slug = slugify(candidate)
+        for schema in registry.list():
+            if slugify(schema.id) == slug or slugify(schema.name) == slug:
+                return schema.id
+
+        return None
+
+    def _resolve_category_from_schema(self, doc: Dict[str, Any], registry) -> Optional[str]:
+        hints: List[str] = []
+        for key in ("property_schema", "properties"):
+            value = doc.get(key)
+            if not isinstance(value, dict):
+                continue
+            hints.extend([k for k in value.keys() if isinstance(k, str)])
+            if key == "property_schema":
+                slots = value.get("slots")
+                if isinstance(slots, dict):
+                    hints.extend([k for k in slots.keys() if isinstance(k, str)])
+                metadata = value.get("metadata")
+                if isinstance(metadata, dict):
+                    slot_meta = metadata.get("slots")
+                    if isinstance(slot_meta, dict):
+                        hints.extend([k for k in slot_meta.keys() if isinstance(k, str)])
+        for hint in hints:
+            prefix = hint.split(".", 1)[0]
+            resolved = self._match_category_value(prefix, registry)
+            if resolved:
+                return resolved
+        return None
+
+    def _resolve_category_alias(self, doc: Dict[str, Any], original: Optional[str]) -> Optional[str]:
+        registry = load_registry(self._cfg.registry_path)
+        candidates: List[Any] = []
+        if original:
+            candidates.append(original)
+        candidates.extend(
+            doc.get(key)
+            for key in (
+                "categoria",
+                "cat",
+                "category",
+                "category_id",
+                "categoria_id",
+                "super",
+                "supercategoria",
+                "macro_categoria",
+                "macrocategory",
+                "macro",
+            )
+        )
+        for candidate in candidates:
+            resolved = self._match_category_value(candidate, registry)
+            if resolved:
+                return resolved
+        return self._resolve_category_from_schema(doc, registry)
+
 
     def _parser_candidates(
         self, prop_id: str, spec: Optional[PropertySpec], text: str
