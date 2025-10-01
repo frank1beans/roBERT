@@ -1,11 +1,22 @@
 """Lexical matcher for materials and finishes."""
 from __future__ import annotations
 
+import json
+import logging
+import re
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
-__all__ = ["MaterialMatch", "MaterialMatcher", "load_material_lexicon"]
+LOGGER = logging.getLogger(__name__)
+
+__all__ = [
+    "MaterialDefinition",
+    "MaterialMatch",
+    "MaterialMatcher",
+    "load_material_lexicon",
+]
 
 
 @dataclass(frozen=True)
@@ -18,52 +29,186 @@ class MaterialMatch:
     score: float
 
 
-def load_material_lexicon(path: str | Path | None = None) -> Dict[str, Sequence[str]]:
-    """Load materials and optional synonyms from a lexicon file."""
+@dataclass(frozen=True)
+class MaterialDefinition:
+    """Material entry enriched with synonyms and optional regex."""
 
-    lexicon_path = Path(path or "data/properties/lexicon/materials.txt")
-    if not lexicon_path.exists():
-        return {}
-    mapping: Dict[str, Sequence[str]] = {}
-    for line in lexicon_path.read_text(encoding="utf-8").splitlines():
-        normalized = line.strip()
-        if not normalized or normalized.startswith("#"):
-            continue
-        tokens = [token.strip() for token in normalized.split(";") if token.strip()]
-        if not tokens:
-            continue
-        canonical, *synonyms = tokens
-        mapping[canonical] = [canonical, *synonyms]
-    return mapping
+    id: str
+    canonical: str
+    synonyms: Tuple[str, ...]
+    regex: Optional[str] = None
+
+
+def _default_lexicon_paths() -> Tuple[Path, Path]:
+    base = Path("data/properties/lexicon")
+    return base / "materials.json", base / "materials.txt"
+
+
+def _normalize_token(token: str) -> str:
+    normalized = unicodedata.normalize("NFKD", token)
+    return "".join(ch for ch in normalized if not unicodedata.combining(ch)).lower()
+
+
+def _normalize_text_with_mapping(text: str) -> Tuple[str, List[int]]:
+    normalized_chars: List[str] = []
+    mapping: List[int] = []
+    for index, char in enumerate(text):
+        decomposed = unicodedata.normalize("NFKD", char)
+        for item in decomposed:
+            if unicodedata.combining(item):
+                continue
+            normalized_chars.append(item.lower())
+            mapping.append(index)
+    return "".join(normalized_chars), mapping
+
+
+def load_material_lexicon(path: str | Path | None = None) -> List[MaterialDefinition]:
+    """Load materials, synonyms and regex patterns from disk."""
+
+    json_path, legacy_path = _default_lexicon_paths()
+    if path:
+        candidate = Path(path)
+        if candidate.suffix == ".json":
+            json_path = candidate
+            legacy_path = candidate
+        else:
+            legacy_path = candidate
+            json_path = candidate.with_suffix(".json")
+
+    definitions: List[MaterialDefinition] = []
+
+    if json_path.exists():
+        payload = json.loads(json_path.read_text(encoding="utf-8"))
+        for entry in payload.get("materials", []):
+            canonical = entry.get("canonical")
+            if not canonical:
+                continue
+            synonyms = entry.get("synonyms", []) or []
+            surfaces = tuple(dict.fromkeys([canonical, *synonyms]))
+            definitions.append(
+                MaterialDefinition(
+                    id=entry.get("id", canonical),
+                    canonical=canonical,
+                    synonyms=surfaces,
+                    regex=entry.get("regex"),
+                )
+            )
+        return definitions
+
+    if legacy_path.exists():
+        mapping: Dict[str, List[str]] = {}
+        for line in legacy_path.read_text(encoding="utf-8").splitlines():
+            normalized = line.strip()
+            if not normalized or normalized.startswith("#"):
+                continue
+            tokens = [token.strip() for token in normalized.split(";") if token.strip()]
+            if not tokens:
+                continue
+            canonical, *synonyms = tokens
+            mapping[canonical] = [canonical, *synonyms]
+        for canonical, surfaces in mapping.items():
+            definitions.append(
+                MaterialDefinition(
+                    id=canonical,
+                    canonical=canonical,
+                    synonyms=tuple(dict.fromkeys(surfaces)),
+                    regex=None,
+                )
+            )
+    return definitions
 
 
 class MaterialMatcher:
-    """Detect mentions of known materials using substring search."""
+    """Detect mentions of known materials using lexical and regex cues."""
 
-    def __init__(self, lexicon: Optional[Dict[str, Sequence[str]]] = None) -> None:
-        self._lexicon = lexicon or load_material_lexicon()
-        self._lookup: Dict[str, str] = {}
-        for canonical, surfaces in self._lexicon.items():
-            for surface in surfaces:
-                self._lookup[surface.lower()] = canonical
+    def __init__(
+        self,
+        lexicon: Optional[Sequence[MaterialDefinition] | Dict[str, Sequence[str]]] = None,
+    ) -> None:
+        if lexicon is None:
+            self._definitions = load_material_lexicon()
+        elif isinstance(lexicon, dict):
+            self._definitions = [
+                MaterialDefinition(
+                    id=canonical,
+                    canonical=canonical,
+                    synonyms=tuple(dict.fromkeys(surfaces)),
+                    regex=None,
+                )
+                for canonical, surfaces in lexicon.items()
+            ]
+        else:
+            self._definitions = list(lexicon)
+
+        self._synonym_index: List[Tuple[str, str, MaterialDefinition]] = []
+        self._regex_patterns: List[Tuple[re.Pattern[str], MaterialDefinition]] = []
+
+        for definition in self._definitions:
+            for surface in definition.synonyms:
+                normalized_surface = _normalize_token(surface)
+                if not normalized_surface:
+                    continue
+                self._synonym_index.append((normalized_surface, surface, definition))
+
+            if definition.regex:
+                try:
+                    pattern = re.compile(definition.regex, re.IGNORECASE | re.UNICODE)
+                except re.error as exc:  # pragma: no cover - defensive
+                    LOGGER.warning("invalid material regex", extra={"id": definition.id, "error": str(exc)})
+                    continue
+                self._regex_patterns.append((pattern, definition))
+
+        # Sort longer surfaces first to favour specific matches when spans overlap
+        self._synonym_index.sort(key=lambda item: len(item[0]), reverse=True)
+
+    def _merge_match(
+        self,
+        accumulator: Dict[Tuple[str, int, int], MaterialMatch],
+        definition: MaterialDefinition,
+        span: Tuple[int, int],
+        surface: str,
+        score: float,
+    ) -> None:
+        key = (definition.canonical, span[0], span[1])
+        existing = accumulator.get(key)
+        if existing is None or existing.score < score:
+            accumulator[key] = MaterialMatch(
+                value=definition.canonical,
+                surface=surface,
+                span=span,
+                score=score,
+            )
 
     def find(self, text: str) -> List[MaterialMatch]:
-        lowered = text.lower()
-        matches: List[MaterialMatch] = []
-        for surface, canonical in self._lookup.items():
-            start = lowered.find(surface)
-            if start == -1:
-                continue
-            end = start + len(surface)
-            matches.append(
-                MaterialMatch(
-                    value=canonical,
-                    surface=text[start:end],
-                    span=(start, end),
-                    score=1.0 if surface == canonical.lower() else 0.8,
-                )
-            )
-        return matches
+        normalized_text, index_map = _normalize_text_with_mapping(text)
+        matches: Dict[Tuple[str, int, int], MaterialMatch] = {}
+
+        for normalized_surface, original_surface, definition in self._synonym_index:
+            start = normalized_text.find(normalized_surface)
+            while start != -1:
+                end = start + len(normalized_surface)
+                if start >= len(index_map) or end - 1 >= len(index_map):
+                    break
+                span = (index_map[start], index_map[end - 1] + 1)
+                surface_text = text[span[0] : span[1]]
+                canonical_normalized = _normalize_token(definition.canonical)
+                surface_normalized = _normalize_token(surface_text)
+                score = 1.0 if surface_normalized == canonical_normalized else 0.95
+                self._merge_match(matches, definition, span, surface_text, score)
+                start = normalized_text.find(normalized_surface, start + 1)
+
+        for pattern, definition in self._regex_patterns:
+            for match in pattern.finditer(text):
+                span = match.span()
+                surface_text = match.group(0)
+                self._merge_match(matches, definition, span, surface_text, 0.9)
+
+        return list(matches.values())
 
 
-__all__ = ["MaterialMatch", "MaterialMatcher", "load_material_lexicon"]
+__all__ = [
+    "MaterialDefinition",
+    "MaterialMatch",
+    "MaterialMatcher",
+    "load_material_lexicon",
+]
