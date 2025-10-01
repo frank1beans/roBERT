@@ -1,22 +1,103 @@
 """CLI entrypoints for the property extraction pipeline."""
 from __future__ import annotations
 
+import asyncio
 import json
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Optional
+from typing import Any, Dict, Optional
 
 import typer
+from tqdm import tqdm
 
 from ..extraction.fuse import Fuser, FusePolicy
 from ..extraction.orchestrator import Orchestrator, OrchestratorConfig
-from ..extraction.qa_llm import HttpLLM, MockLLM, QALLMConfig
+from ..extraction.qa_llm import AsyncHttpLLM, HttpLLM, MockLLM, QALLMConfig
 from ..extraction.schema_registry import load_registry
 from ..utils.logging import configure_json_logger, flush_handlers, generate_trace_id, log_event
 
 __all__ = ["app"]
 
 app = typer.Typer(help="Property extraction utilities", add_completion=False)
+
+
+async def _extract_async(
+    records: list,
+    llm_endpoint: Optional[str],
+    llm_model: Optional[str],
+    llm_timeout: float,
+    llm_max_retries: int,
+    schema_registry_path: Path,
+    max_workers: int,
+    fail_fast: bool,
+    logger,
+    trace_id: str,
+) -> list:
+    """Async extraction with concurrent processing."""
+    from ..extraction.orchestrator_async import AsyncOrchestrator
+
+    llm_cfg = QALLMConfig(
+        endpoint=llm_endpoint,
+        model=llm_model,
+        timeout=llm_timeout,
+        max_retries=llm_max_retries,
+    )
+
+    orchestrator_cfg = OrchestratorConfig(
+        source_priority=["parser", "matcher", "qa_llm"],
+        enable_matcher=True,
+        enable_llm=bool(llm_endpoint),
+        registry_path=str(schema_registry_path),
+    )
+
+    results = []
+
+    if llm_endpoint:
+        async with AsyncHttpLLM(llm_cfg) as llm:
+            fuse = Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=orchestrator_cfg.source_priority)
+            orchestrator = AsyncOrchestrator(fuse=fuse, llm=llm, cfg=orchestrator_cfg)
+
+            # Create semaphore to limit concurrent requests
+            semaphore = asyncio.Semaphore(max_workers)
+
+            async def process_with_semaphore(idx: int, record: Dict[str, Any]):
+                async with semaphore:
+                    try:
+                        result = await orchestrator.extract_document(record)
+                        return (idx, result)
+                    except Exception as exc:
+                        if fail_fast:
+                            raise
+                        typer.echo(f"Error processing record {idx}: {exc}", err=True)
+                        log_event(logger, "extract.properties.error", trace_id=trace_id, record_idx=idx, error=str(exc))
+                        return (idx, None)
+
+            # Process all records with progress bar
+            tasks = [process_with_semaphore(idx, record) for idx, record in enumerate(records)]
+            with tqdm(total=len(records), desc="Extracting properties", unit="doc") as pbar:
+                for coro in asyncio.as_completed(tasks):
+                    result = await coro
+                    results.append(result)
+                    pbar.update(1)
+    else:
+        # Mock LLM - use sync processing
+        llm = MockLLM()
+        fuse = Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=orchestrator_cfg.source_priority)
+        orchestrator = Orchestrator(fuse=fuse, llm=llm, cfg=orchestrator_cfg)
+
+        with tqdm(total=len(records), desc="Extracting properties", unit="doc") as pbar:
+            for idx, record in enumerate(records):
+                try:
+                    result = orchestrator.extract_document(record)
+                    results.append((idx, result))
+                except Exception as exc:
+                    if fail_fast:
+                        raise
+                    typer.echo(f"Error processing record {idx}: {exc}", err=True)
+                    log_event(logger, "extract.properties.error", trace_id=trace_id, record_idx=idx, error=str(exc))
+                    results.append((idx, None))
+                pbar.update(1)
+
+    return results
 
 
 @app.command("properties")
@@ -49,6 +130,7 @@ def extract_properties(
     ),
     batch_size: int = typer.Option(16, "--batch-size", min=1, help="Number of records processed per batch"),
     max_workers: int = typer.Option(4, "--max-workers", min=1, help="Parallel workers for the pipeline"),
+    sample: Optional[int] = typer.Option(None, "--sample", min=1, help="Process only first N records for testing"),
     log_file: Optional[Path] = typer.Option(None, "--log-file", dir_okay=False, help="Optional JSONL log path"),
     fail_fast: bool = typer.Option(False, "--fail-fast/--no-fail-fast", help="Abort on validation errors"),
     dry_run: bool = typer.Option(False, "--dry-run", help="Validate configuration without running the pipeline"),
@@ -91,23 +173,6 @@ def extract_properties(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    llm_cfg = QALLMConfig(
-        endpoint=llm_endpoint,
-        model=llm_model,
-        timeout=llm_timeout,
-        max_retries=llm_max_retries,
-    )
-    llm = HttpLLM(llm_cfg) if llm_endpoint else MockLLM()
-
-    orchestrator_cfg = OrchestratorConfig(
-        source_priority=["parser", "matcher", "qa_llm"],
-        enable_matcher=True,
-        enable_llm=bool(llm_endpoint),
-        registry_path=str(schema_registry_path),
-    )
-    fuse = Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=orchestrator_cfg.source_priority)
-    orchestrator = Orchestrator(fuse=fuse, llm=llm, cfg=orchestrator_cfg)
-
     # Load all records first
     records = []
     with input_path.open("r", encoding="utf-8") as src:
@@ -118,51 +183,33 @@ def extract_properties(
             if category_filter and record.get("categoria") != category_filter:
                 continue
             records.append(record)
+            if sample and len(records) >= sample:
+                break
 
-    # Process records in parallel
-    processed = 0
-    results = []
-
-    if max_workers > 1:
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            future_to_record = {
-                executor.submit(orchestrator.extract_document, record): idx
-                for idx, record in enumerate(records)
-            }
-            for future in as_completed(future_to_record):
-                idx = future_to_record[future]
-                try:
-                    result = future.result()
-                    results.append((idx, result))
-                    processed += 1
-                    if processed % 100 == 0:
-                        typer.echo(f"Processed {processed}/{len(records)} documents...", err=True)
-                except Exception as exc:
-                    if fail_fast:
-                        raise
-                    typer.echo(f"Error processing record {idx}: {exc}", err=True)
-                    log_event(logger, "extract.properties.error", trace_id=trace_id, record_idx=idx, error=str(exc))
-    else:
-        # Sequential processing (for debugging or single-threaded mode)
-        for idx, record in enumerate(records):
-            try:
-                result = orchestrator.extract_document(record)
-                results.append((idx, result))
-                processed += 1
-                if processed % 100 == 0:
-                    typer.echo(f"Processed {processed}/{len(records)} documents...", err=True)
-            except Exception as exc:
-                if fail_fast:
-                    raise
-                typer.echo(f"Error processing record {idx}: {exc}", err=True)
-                log_event(logger, "extract.properties.error", trace_id=trace_id, record_idx=idx, error=str(exc))
+    # Run async processing
+    results = asyncio.run(
+        _extract_async(
+            records=records,
+            llm_endpoint=llm_endpoint,
+            llm_model=llm_model,
+            llm_timeout=llm_timeout,
+            llm_max_retries=llm_max_retries,
+            schema_registry_path=schema_registry_path,
+            max_workers=max_workers,
+            fail_fast=fail_fast,
+            logger=logger,
+            trace_id=trace_id,
+        )
+    )
 
     # Sort results by original order and write to output
     results.sort(key=lambda x: x[0])
+    processed = len([r for r in results if r[1] is not None])
     with output_path.open("w", encoding="utf-8") as dst:
         for _, result in results:
-            json.dump(result, dst, ensure_ascii=False)
-            dst.write("\n")
+            if result is not None:
+                json.dump(result, dst, ensure_ascii=False)
+                dst.write("\n")
 
     typer.echo(json.dumps({"status": "completed", "documents": processed}, ensure_ascii=False))
     log_event(

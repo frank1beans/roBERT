@@ -1,6 +1,7 @@
 """Adapters for question-answering large language models."""
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
 import time
@@ -8,11 +9,12 @@ import urllib.error
 import urllib.request
 from typing import Any, Dict, Optional, Protocol
 
+import aiohttp
 from pydantic import BaseModel, Field
 
 from .prompts import load_prompt_library
 
-__all__ = ["QALLM", "QALLMConfig", "HttpLLM", "MockLLM", "build_prompt"]
+__all__ = ["QALLM", "QALLMConfig", "HttpLLM", "MockLLM", "AsyncHttpLLM", "build_prompt"]
 
 
 LOGGER = logging.getLogger(__name__)
@@ -100,3 +102,58 @@ class MockLLM(QALLM):
 
     def ask(self, text: str, question: str, json_schema: Dict[str, Any]) -> Dict[str, Any]:
         return {"value": None, "confidence": 0.0}
+
+
+class AsyncHttpLLM:
+    """Async HTTP client for parallel LLM requests."""
+
+    def __init__(self, config: QALLMConfig):
+        if not config.endpoint:
+            raise ValueError("AsyncHttpLLM requires a non-empty endpoint")
+        self._config = config
+        self._session: Optional[aiohttp.ClientSession] = None
+
+    async def __aenter__(self):
+        timeout = aiohttp.ClientTimeout(total=self._config.timeout)
+        self._session = aiohttp.ClientSession(timeout=timeout)
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        if self._session:
+            await self._session.close()
+            self._session = None
+
+    async def ask(self, text: str, question: str, json_schema: Dict[str, Any]) -> Dict[str, Any]:
+        if not self._session:
+            raise RuntimeError("AsyncHttpLLM must be used as async context manager")
+
+        payload = {
+            "model": self._config.model,
+            "prompt": build_prompt(text, question, json_schema),
+            "schema": json_schema,
+        }
+        attempts = self._config.max_retries + 1
+
+        for attempt in range(attempts):
+            try:
+                async with self._session.post(
+                    self._config.endpoint,
+                    json=payload,
+                    headers={"Content-Type": "application/json", "Accept": "application/json"},
+                ) as response:
+                    response.raise_for_status()
+                    data = await response.json()
+                    if not isinstance(data, dict):
+                        raise ValueError("LLM response must be a JSON object")
+                    return data
+            except (aiohttp.ClientError, asyncio.TimeoutError, ValueError) as exc:
+                LOGGER.warning(
+                    "async_llm_call_failed",
+                    extra={"attempt": attempt + 1, "max_attempts": attempts, "error": str(exc)},
+                )
+                if attempt + 1 >= attempts:
+                    raise
+                delay = 2 ** attempt
+                await asyncio.sleep(delay)
+
+        raise RuntimeError("Async LLM call failed after retries")

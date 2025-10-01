@@ -26,6 +26,8 @@ dependencies = [
   "uvicorn[standard]>=0.29",
   "pydantic>=2.6",
   "jsonschema>=4.21",
+  "aiohttp>=3.9",
+  "tqdm>=4.66",
 ]
 
 [project.optional-dependencies]

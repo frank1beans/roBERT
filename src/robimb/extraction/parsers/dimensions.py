@@ -101,6 +101,12 @@ def _fallback_unit(global_unit: str | None, *units: str | None) -> str:
 
 def _iter_cross(text: str) -> Iterator[DimensionMatch]:
     for match in _CROSS_PATTERN.finditer(text):
+        # Skip if preceded by a letter (likely a product code like X811)
+        if match.start() > 0:
+            prev_char = text[match.start() - 1]
+            if prev_char.isalpha() or prev_char.isdigit():
+                continue
+
         groups = match.groupdict()
         values = [groups["first"], groups["second"]]
         units = [groups.get("first_unit"), groups.get("second_unit")]

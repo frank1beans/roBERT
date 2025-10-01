@@ -118,7 +118,8 @@ class Orchestrator:
             },
         )
 
-        return {
+        result = {
+            **doc,  # Include all original fields
             "text_id": text_id,
             "categoria": category_id,
             "properties": properties_payload,
@@ -135,6 +136,7 @@ class Orchestrator:
             },
             "confidence_overall": confidence_overall,
         }
+        return result
 
     def _extract_property(
         self,
@@ -339,13 +341,19 @@ class Orchestrator:
 
                 # Improved dimension assignment heuristics
                 if "lunghezza" in lowered or "length" in lowered:
-                    # For length: prefer the largest value (typically the first in WxHxD format)
-                    selected = max(values) if len(values) > 1 else values[0]
+                    # For length: first value in 2D/3D (WxHxD), or largest if significantly bigger
+                    if len(values) >= 2 and max(values) > 1500 and max(values) / min(values) > 2:
+                        selected = max(values)
+                    else:
+                        selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
-                    # For width: first value in 2D (WxH), or first in 3D (WxHxD)
-                    selected = values[0]
+                    # For width: second value in 2D (WxD), first in 3D (WxHxD)
+                    if len(values) == 2:
+                        selected = values[1]
+                    else:
+                        selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
-                    # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or second in typical 3D
+                    # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or largest if door-like
                     if len(values) == 2:
                         selected = values[1]
                     elif len(values) >= 3:
@@ -469,8 +477,10 @@ class Orchestrator:
                         errors=[],
                     )
                 )
-        if "material" in lowered:
-            for match in self._material_matcher.find(text):
+        if "material" in lowered or "materiale" in lowered:
+            matches = list(self._material_matcher.find(text))
+            LOGGER.info(f"Material matcher for property '{prop_id}': found {len(matches)} matches in text")
+            for match in matches:
                 results.append(
                     Candidate(
                         value=match.value,

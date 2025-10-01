@@ -1,11 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python:*)",
-      "Bash(python3:*)",
-      "Bash(where python)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" analyze_dataset.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" analyze_dataset_detailed.py)"
+      "Bash(dir dataextracted_properties*.jsonl /OD /TC)",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -c \"import json; records = [json.loads(line) for line in open(''data/test_with_fix.jsonl'', encoding=''utf-8'')]; print(''First 3 records:\\n''); [print(f''{i+1}. Text: {r[\"\"text\"\"][:80]}...\\n   Materiale: {r[\"\"properties\"\"][\"\"materiale\"\"][\"\"value\"\"]} (source: {r[\"\"properties\"\"][\"\"materiale\"\"][\"\"source\"\"]})\\n   Dimensioni: L={r[\"\"properties\"\"][\"\"dimensione_lunghezza\"\"][\"\"value\"\"]}, W={r[\"\"properties\"\"][\"\"dimensione_larghezza\"\"][\"\"value\"\"]}, H={r[\"\"properties\"\"][\"\"dimensione_altezza\"\"][\"\"value\"\"]}\\n   Tipologia: {r[\"\"properties\"\"][\"\"tipologia_installazione\"\"][\"\"value\"\"]}\\n   Validation: {r[\"\"validation\"\"][\"\"status\"\"]}\\n'') for i, r in enumerate(records[:3])]\")",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -c \"from robimb.extraction.orchestrator import Orchestrator; import inspect; src = inspect.getsource(Orchestrator._matcher_candidates); print(''materiale'' in src if ''materiale'' in src else ''FIX NOT IN LOADED CODE'')\")",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -c \"\nfrom robimb.extraction.orchestrator import Orchestrator, OrchestratorConfig\nfrom robimb.extraction.fuse import Fuser, FusePolicy\nfrom robimb.extraction.qa_llm import MockLLM\nfrom robimb.extraction.schema_registry import load_category_schema\n\ncfg = OrchestratorConfig(source_priority=[''parser'', ''matcher'', ''qa_llm''], enable_matcher=True, enable_llm=False, registry_path=''data/properties/registry.json'')\nfuse = Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=cfg.source_priority)\norch = Orchestrator(fuse=fuse, llm=MockLLM(), cfg=cfg)\n\ndoc = {''text'': ''PX15 - Fornitura e posa in opera di griglia in acciaio per scarico a pavimento tipo AISI 304, dim. 20x20 cm'', ''categoria'': ''apparecchi_sanitari_accessori''}\nresult = orch.extract_document(doc)\nprint(''Materiale:'', result[''properties''][''materiale''])\n\")"
     ],
     "deny": [],
     "ask": []
