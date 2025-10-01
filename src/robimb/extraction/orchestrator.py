@@ -13,6 +13,12 @@ from .matchers.norms import StandardMatcher
 from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
+from .parsers.flow_rate import parse_flow_rate
+from .parsers.labeled_dimensions import parse_labeled_dimensions
+from .parsers.acoustic import parse_acoustic_coefficient
+from .parsers.fire_class import parse_fire_class
+from .parsers.thickness import parse_thickness
+from .parsers.installation_type import parse_installation_type
 from .qa_llm import QALLM
 from ..registry.schemas import slugify
 from .schema_registry import PropertySpec, load_category_schema, load_registry
@@ -353,10 +359,9 @@ class Orchestrator:
                     else:
                         selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
-
-                    # For width keep the first value when only two dimensions are present.
+                    # For width: second value in 2D/3D, unless first is very large (door format)
                     if len(values) == 2:
-                        selected = values[0]
+                        selected = values[1]
                     elif len(values) >= 3:
                         # Heuristic for three dimensions: prefer the most plausible width
                         # among the remaining values when the first value resembles a height
@@ -365,24 +370,23 @@ class Orchestrator:
                         if first > 1500:
                             # Choose the largest candidate below the typical door height
                             candidates = [v for v in values[1:] if v <= 1500]
-                            selected = max(candidates) if candidates else first
+                            selected = max(candidates) if candidates else values[1]
                         else:
-                            selected = first
+                            selected = values[1]
                     else:
                         selected = values[0]
-                    else:
-                        selected = None
                 elif "altezza" in lowered or "height" in lowered:
-                    # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or largest if door-like
+                    # For height: only extract if we have 3 dimensions; skip if only 2 (likely WxL not WxH)
                     if len(values) == 2:
-                        selected = values[1]
+                        # Skip 2D dimensions for height - likely length x width, not width x height
+                        selected = None
                     elif len(values) >= 3:
                         # If one value is significantly larger (e.g., door height 2100mm vs 800mm width),
                         # that's likely the height
                         if max(values) > 1500 and max(values) / min(values) > 2:
                             selected = max(values)
                         else:
-                            selected = values[1]
+                            selected = values[2]
                     else:
                         selected = values[0]
                 elif "profond" in lowered or "depth" in lowered:
@@ -413,18 +417,36 @@ class Orchestrator:
                 )
 
         elif any(token in lowered for token in ("spessore", "spessori")):
-            for match in numbers.extract_numbers(text):
+            # First try to find explicitly labeled thickness (e.g., "sp. 20 mm")
+            labeled_found = False
+            for match in parse_thickness(text):
                 results.append(
                     Candidate(
-                        value=match.value,
+                        value=match.value_mm,
                         source="parser",
                         raw=match.raw,
-                        span=(match.start, match.end),
-                        confidence=0.90,
+                        span=match.span,
+                        confidence=0.92,
                         unit="mm",
                         errors=[],
                     )
                 )
+                labeled_found = True
+
+            # Fallback to generic numbers only if no labeled thickness found
+            if not labeled_found:
+                for match in numbers.extract_numbers(text):
+                    results.append(
+                        Candidate(
+                            value=match.value,
+                            source="parser",
+                            raw=match.raw,
+                            span=(match.start, match.end),
+                            confidence=0.70,
+                            unit="mm",
+                            errors=[],
+                        )
+                    )
 
         elif "ral" in lowered or "colore" in lowered:
             for match in parse_ral_colors(text):
@@ -479,6 +501,79 @@ class Orchestrator:
                     )
                 )
 
+        elif "portata" in lowered or "flow" in lowered or "l/min" in lowered or "l_min" in lowered:
+            for match in parse_flow_rate(text):
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="parser",
+                        raw=match.raw,
+                        span=match.span,
+                        confidence=0.90,
+                        unit=match.unit,
+                        errors=[],
+                    )
+                )
+
+        elif "fonoassorbimento" in lowered or "assorbimento" in lowered or "acoustic" in lowered:
+            for match in parse_acoustic_coefficient(text):
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="parser",
+                        raw=match.raw,
+                        span=match.span,
+                        confidence=0.88,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+
+        elif "fuoco" in lowered or "classe" in lowered and "reazione" in lowered:
+            for match in parse_fire_class(text):
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="parser",
+                        raw=match.raw,
+                        span=match.span,
+                        confidence=0.85,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+
+        elif "installazione" in lowered or "tipologia" in lowered:
+            for match in parse_installation_type(text):
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="parser",
+                        raw=match.raw,
+                        span=match.span,
+                        confidence=0.88,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+
+        # Check for explicitly labeled dimensions (e.g., "lunghezza 60 cm")
+        if any(token in lowered for token in ("lunghezza", "larghezza", "altezza", "profondità", "profondita")):
+            for match in parse_labeled_dimensions(text):
+                # Match the label to the property
+                if match.label in lowered:
+                    results.append(
+                        Candidate(
+                            value=match.value_mm,
+                            source="parser",
+                            raw=match.raw,
+                            span=match.span,
+                            confidence=0.92,
+                            unit="mm",
+                            errors=[],
+                        )
+                    )
+
         return results
 
     def _matcher_candidates(self, category: str, prop_id: str, text: str) -> Iterable[Candidate]:
@@ -502,7 +597,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=self._brand_matcher.fallback_value,
-                        source="fallback",
+                        source="matcher",
                         raw=None,
                         span=None,
                         confidence=0.05,

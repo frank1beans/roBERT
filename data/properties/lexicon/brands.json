@@ -699,7 +699,8 @@
       "id": "idealstandard",
       "canonical": "Ideal Standard",
       "synonyms": [
-        "Ideal Standard"
+        "Ideal Standard",
+        "IdealStandard"
       ],
       "categories": [
         "apparecchi_sanitari_accessori"
@@ -1182,6 +1183,18 @@
       "canonical": "Rockfon",
       "synonyms": [
         "Rockfon"
+      ],
+      "categories": [
+        "controsoffitti"
+      ]
+    },
+    {
+      "id": "hunterdouglas",
+      "canonical": "Hunter Douglas",
+      "synonyms": [
+        "Hunter Douglas",
+        "Hunter&Douglas",
+        "HunterDouglas"
       ],
       "categories": [
         "controsoffitti"

@@ -29,6 +29,7 @@ _CROSS_PATTERN = re.compile(
     \s*[x×X]\s*
     (?P<second>[\d.,]+)\s*(?P<second_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?
     (?:\s*[x×X]\s*(?P<third>[\d.,]+)\s*(?P<third_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?)?
+    (?:\s*[hH]\s*(?P<height>[\d.,]+)\s*(?P<height_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?)?
     \s*(?P<global_unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?
     """,
     re.IGNORECASE | re.VERBOSE,
@@ -101,18 +102,49 @@ def _fallback_unit(global_unit: str | None, *units: str | None) -> str:
 
 def _iter_cross(text: str) -> Iterator[DimensionMatch]:
     for match in _CROSS_PATTERN.finditer(text):
-        # Skip if preceded by a letter (likely a product code like X811)
+        raw_match = match.group(0)
+
+        # Skip if the pattern looks like a product code (numbers without proper separators)
+        # e.g., ". 23 326 " should be rejected (spaces instead of 'x')
+        if 'x' not in raw_match.lower():
+            # No 'x' separator found - likely not a dimension
+            continue
+
+        # Skip if preceded by a letter, digit, or punctuation (likely a product code)
         if match.start() > 0:
+            # Look back up to 10 chars to check for "cod", "art", "cat", etc.
+            lookback_start = max(0, match.start() - 10)
+            lookback = text[lookback_start:match.start()].lower()
+            # Check for product code indicators
+            if re.search(r'\b(?:cod(?:ice)?|art|cat|rif|ref)\.?\s*$', lookback):
+                continue
+            # Check immediate previous character
             prev_char = text[match.start() - 1]
             if prev_char.isalpha() or prev_char.isdigit():
+                continue
+
+        # Skip if followed by more digits (likely a product code like 23 326 000)
+        if match.end() < len(text):
+            # Look ahead up to 10 characters for more digits
+            lookahead = text[match.end():match.end() + 10]
+            # If we find digits after whitespace, it's likely a code
+            if re.search(r'^\s*\d', lookahead):
                 continue
 
         groups = match.groupdict()
         values = [groups["first"], groups["second"]]
         units = [groups.get("first_unit"), groups.get("second_unit")]
-        if groups.get("third"):
+
+        # Handle height parameter (h190)
+        if groups.get("height"):
+            # If we have "WxL h H" format, the height replaces or becomes the third dimension
+            values.append(groups["height"])
+            units.append(groups.get("height_unit"))
+        elif groups.get("third"):
+            # Standard "WxLxH" format
             values.append(groups["third"])
             units.append(groups.get("third_unit"))
+
         base_unit = _fallback_unit(groups.get("global_unit"), *units)
         explicit_unit = bool(groups.get("global_unit")) or any(units)
         try:
@@ -141,6 +173,20 @@ def _extract_numbers_from_labelled(raw: str) -> Tuple[List[str], List[str | None
 def _iter_labelled(text: str) -> Iterator[DimensionMatch]:
     for match in _LABELLED_PATTERN.finditer(text):
         raw = match.group(0)
+
+        # Skip if preceded by product code indicators
+        if match.start() > 0:
+            lookback_start = max(0, match.start() - 10)
+            lookback = text[lookback_start:match.start()].lower()
+            if re.search(r'\b(?:cod(?:ice)?|art|cat|rif|ref)\.?\s*$', lookback):
+                continue
+
+        # Skip if followed by more digits (likely continuation of a product code)
+        if match.end() < len(text):
+            lookahead = text[match.end():match.end() + 10]
+            if re.search(r'^\s*\d', lookahead):
+                continue
+
         values, units = _extract_numbers_from_labelled(raw)
         if len(values) < 2:
             continue

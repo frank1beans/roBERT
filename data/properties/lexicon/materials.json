@@ -95,9 +95,13 @@
       "synonyms": [
         "ceramica",
         "ceramiche",
+        "ceramici",
+        "ceramico",
         "piastrella ceramica",
         "piastrelle ceramiche",
         "mattonella ceramica",
+        "dischi ceramici",
+        "disco ceramico",
         "klinker",
         "cotto",
         "cotto smaltato",
@@ -109,7 +113,7 @@
         "faenza",
         "porcellana"
       ],
-      "regex": "\\b(?:ceramic[ae]|piastrell[ae]\\s+ceramic[he]|mattonell[ae]\\s+ceramic[he]|klinker|cotto(?:\\s+smaltato)?|terracotta|maiolica|monocottura|bicottura|monoporosa|faenza|porcellana)\\b"
+      "regex": "\\b(?:ceramic[aeioh]|piastrell[ae]\\s+ceramic[he]|mattonell[ae]\\s+ceramic[he]|disc[hi]\\s+ceramic[hi]|klinker|cotto(?:\\s+smaltato)?|terracotta|maiolica|monocottura|bicottura|monoporosa|faenza|porcellana)\\b"
     },
     {
       "id": "legno",
@@ -178,6 +182,20 @@
       "regex": "\\b(?:resin[ae]|epossidic[ae]|poliuretan(?:ic[ae])|acrilic[ae]|metacrilic[ae]|MMA|PMMA|vinilestere|poliestere)(?:\\s+(?:autolivellante|spatolat[ae]|multistrato|film\\s+sottile))?\\b"
     },
     {
+      "id": "lana_minerale",
+      "canonical": "lana minerale",
+      "synonyms": [
+        "lana minerale",
+        "lana di roccia",
+        "lana di vetro",
+        "fibra minerale",
+        "fibre minerali",
+        "rockwool",
+        "glasswool"
+      ],
+      "regex": "\\b(?:lana\\s+(?:minerale|di\\s+roccia|di\\s+vetro)|fibr[ae]\\s+mineral[ie]|rockwool|glasswool)\\b"
+    },
+    {
       "id": "intonaco",
       "canonical": "intonaco",
       "synonyms": [
@@ -218,9 +236,11 @@
         "laminato stratificato",
         "laminato compattato",
         "laminato plastico",
-        "stratificato compatto"
+        "stratificato compatto",
+        "rivestito in laminato",
+        "rivestiti in laminato"
       ],
-      "regex": "\\b(?:laminat[oi]|HPL|CPL|melaminic[oi]|laminato\\s+(?:HPL|CPL|melaminico|stratificato|compattato|plastico)|stratificato\\s+HPL|stratificato\\s+compatto)\\b"
+      "regex": "\\b(?:laminat[oi]|HPL|CPL|melaminic[oi]|(?:rivestit[oi]\\s+in\\s+)?laminato(?:\\s+(?:HPL|CPL|melaminico|stratificato|compattato|plastico))?|stratificato\\s+(?:HPL|compatto))\\b"
     },
     {
       "id": "metallo",
@@ -315,6 +335,119 @@
         "inox lucido"
       ],
       "regex": "\\b(?:acciaio\\s+(?:inox|inossidabile)|inox|AISI\\s*(?:304L?|316L?|430)|1\\.(?:4301|4307|4401|4404)|X(?:5CrNi18-10|2CrNiMo17-12-2))(?:\\s+(?:satinato|lucido))?\\b"
+    },
+    {
+      "id": "acrilico",
+      "canonical": "acrilico",
+      "synonyms": [
+        "acrilico",
+        "acrilico sanitario",
+        "resina acrilica",
+        "PMMA",
+        "polimetilmetacrilato"
+      ],
+      "regex": "\\b(?:acrilic[oi](?:\\s+sanitari[oi])?|resina\\s+acrilica|PMMA|polimetilmetacrilato)\\b"
+    },
+    {
+      "id": "mdf",
+      "canonical": "MDF",
+      "synonyms": [
+        "MDF",
+        "mdf",
+        "MDF idrofugo",
+        "MDF idrorepellente",
+        "medium density fiberboard",
+        "fibra di legno"
+      ],
+      "regex": "\\b(?:MDF(?:\\s+(?:idrofug[oi]|idrorepellent[ei]))?|medium\\s+density\\s+fiberboard|fibr[ae]\\s+di\\s+legno)\\b"
+    },
+    {
+      "id": "plastica",
+      "canonical": "plastica",
+      "synonyms": [
+        "plastica",
+        "plastico",
+        "materie plastiche",
+        "materiale plastico",
+        "polimero",
+        "polimeri",
+        "tecnopolimero",
+        "termoplastica",
+        "materiale termoplastico"
+      ],
+      "regex": "\\b(?:plastic[aoh]|mater(?:ie|iale)\\s+plastic[aoh]|polimer[oi]|tecnopolimer[oi]|termoplastic[aoh])\\b"
+    },
+    {
+      "id": "pvc",
+      "canonical": "PVC",
+      "synonyms": [
+        "PVC",
+        "pvc",
+        "polivinilcloruro",
+        "polivinil cloruro",
+        "cloruro di polivinile",
+        "PVC rigido",
+        "PVC flessibile"
+      ],
+      "regex": "\\b(?:PVC|pvc|polivinil(?:cloruro|\\s+cloruro)|cloruro\\s+di\\s+polivinile)(?:\\s+(?:rigido|flessibile))?\\b"
+    },
+    {
+      "id": "polietilene",
+      "canonical": "polietilene",
+      "synonyms": [
+        "polietilene",
+        "HDPE",
+        "LDPE",
+        "polietilene alta densità",
+        "polietilene bassa densità",
+        "PE-HD",
+        "PE-LD"
+      ],
+      "regex": "\\b(?:polietilene|(?:HDPE|LDPE|PE-HD|PE-LD|PE)(?![a-zàèéìòù]))(?:\\s+(?:alta|bassa)\\s+densità)?\\b"
+    },
+    {
+      "id": "polipropilene",
+      "canonical": "polipropilene",
+      "synonyms": [
+        "polipropilene",
+        "polipropilene isotattico",
+        "polipropilene atattico"
+      ],
+      "regex": "\\b(?:polipropilene|PP(?![a-zàèéìòù]))(?:\\s+(?:isotattico|atattico))?\\b"
+    },
+    {
+      "id": "abs",
+      "canonical": "ABS",
+      "synonyms": [
+        "ABS",
+        "abs",
+        "acrilonitrile butadiene stirene"
+      ],
+      "regex": "\\b(?:ABS|abs|acrilonitrile\\s+butadiene\\s+stirene)\\b"
+    },
+    {
+      "id": "policarbonato",
+      "canonical": "policarbonato",
+      "synonyms": [
+        "policarbonato",
+        "PC",
+        "lexan",
+        "makrolon"
+      ],
+      "regex": "\\b(?:policarbonato|PC|lexan|makrolon)\\b"
+    },
+    {
+      "id": "nylon",
+      "canonical": "nylon",
+      "synonyms": [
+        "nylon",
+        "poliammide",
+        "PA6",
+        "PA66",
+        "nylon 6",
+        "nylon 66"
+      ],
+      "regex": "\\b(?:nylon|poliammide|PA(?:6|66)?(?![a-zàèéìòù]))(?:\\s+(?:6|66))?\\b"
     }
   ]
 }

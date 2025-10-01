@@ -37,5 +37,22 @@ def parse_standards(text: str, lexicon: Optional[Dict[str, str]] = None) -> Iter
         prefix = match.group(1).upper()
         code = match.group(2)
         year = match.group(3)
+
+        # Skip if this looks like a BIM/product code (e.g., "PX06", "LA009", "K8227FR")
+        # These are typically preceded by "cod", "art", "modello" or at the start of text
+        start_pos = match.start()
+        if start_pos > 0:
+            lookback_start = max(0, start_pos - 20)
+            lookback = text[lookback_start:start_pos].lower()
+            # Check for product code indicators
+            if re.search(r'\b(?:cod(?:ice)?|art(?:icolo)?|modello|tipo|mod|riferimento|rif)\.?\s*$', lookback):
+                continue
+
+        # Skip if at the very beginning of text (likely a BIM code)
+        if start_pos < 10 and not re.search(r'\b(?:norma|standard|uni|en|iso|din)\b', text[:start_pos].lower()):
+            continue
+
+        # Only yield if prefix is a known standard or contains keywords
         description = prefixes.get(prefix)
-        yield StandardMatch(prefix=prefix, code=code, year=year, span=(match.start(), match.end()), description=description)
+        if description or prefix in {'UNI', 'EN', 'ISO', 'DIN', 'ASTM', 'BS', 'ANSI'}:
+            yield StandardMatch(prefix=prefix, code=code, year=year, span=(match.start(), match.end()), description=description)
