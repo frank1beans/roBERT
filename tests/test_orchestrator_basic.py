@@ -149,6 +149,7 @@ def test_parser_candidates_extract_length_value() -> None:
 
 
 def test_parser_candidates_keep_first_value_for_width_two_dimensions() -> None:
+
     cfg = OrchestratorConfig(
         source_priority=["parser"],
         enable_matcher=False,
@@ -162,7 +163,6 @@ def test_parser_candidates_keep_first_value_for_width_two_dimensions() -> None:
     )
 
     text = "Porta con dimensioni 70x210 cm in legno massello."
-
     width_candidates = list(
         orchestrator._parser_candidates("dimensione_larghezza", None, text)
     )

@@ -347,6 +347,7 @@ class Orchestrator:
                     else:
                         selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
+
                     # For width keep the first value when only two dimensions are present.
                     if len(values) == 2:
                         selected = values[0]
@@ -363,6 +364,8 @@ class Orchestrator:
                             selected = first
                     else:
                         selected = values[0]
+                    else:
+                        selected = None
                 elif "altezza" in lowered or "height" in lowered:
                     # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or largest if door-like
                     if len(values) == 2:
