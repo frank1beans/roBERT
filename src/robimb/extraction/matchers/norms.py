@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
+from ...config import get_settings
+
 __all__ = [
     "StandardDefinition",
     "StandardMatch",
@@ -58,7 +60,7 @@ def _normalize_text_with_mapping(text: str) -> Tuple[str, List[int]]:
 def load_standard_dataset(path: str | Path | None = None) -> Sequence[StandardDefinition]:
     """Load the curated standards dataset from disk."""
 
-    dataset_path = Path(path or "data/properties/lexicon/norms.json")
+    dataset_path = Path(path) if path is not None else get_settings().standards_lexicon
     if not dataset_path.exists():
         return ()
 

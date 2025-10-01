@@ -1,0 +1,735 @@
+{
+  "$schema": "https://raw.githubusercontent.com/frank1beans/roBERT/main/schemas/property-registry-v1.json",
+  "metadata": {
+    "version": "0.2.0",
+    "generated_at": "2024-12-01T00:00:00Z",
+    "categories": 7,
+    "description": "Schema-first registry aligned with pack/v1_limited categories"
+  },
+  "categories": [
+    {
+      "id": "opere_da_cartongessista",
+      "name": "Opere da cartongessista",
+      "schema": "schema/opere_da_cartongessista.json",
+      "required": [
+        "tipologia_lastra",
+        "spessore_mm",
+        "classe_reazione_al_fuoco"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand dichiarato nel testo",
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "tipologia_lastra",
+          "title": "Tipologia lastra",
+          "type": "string",
+          "description": "Tipologia di lastra in cartongesso",
+          "enum": [
+            "standard",
+            "idrofuga",
+            "ignifuga",
+            "acustica",
+            "fibrogesso",
+            "accoppiata_isolante"
+          ],
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "spessore_mm",
+          "title": "Spessore sistema",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore complessivo del sistema convertito in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "classe_ei",
+          "title": "Classe EI",
+          "type": "string",
+          "description": "Classe di resistenza al fuoco EI",
+          "enum": [
+            "EI30",
+            "EI45",
+            "EI60",
+            "EI90",
+            "EI120",
+            "EI180"
+          ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "title": "Classe di reazione al fuoco",
+          "type": "string",
+          "description": "Classe europea di reazione al fuoco",
+          "enum": [
+            "A1",
+            "A2-s1,d0",
+            "A2-s2,d0",
+            "B-s1,d0",
+            "B-s2,d0"
+          ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "presenza_isolante",
+          "title": "Presenza isolante",
+          "type": "string",
+          "description": "Indica se è presente materiale isolante accoppiato",
+          "enum": [
+            "si",
+            "no"
+          ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "stratigrafia_lastre",
+          "title": "Stratigrafia lastre",
+          "type": "string",
+          "description": "Descrizione testuale della stratigrafia delle lastre",
+          "sources": [
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "normativa_riferimento",
+          "title": "Normativa di riferimento",
+          "type": "string",
+          "description": "Standard tecnico o regolamento citato nel testo",
+          "sources": [
+            "matcher",
+            "parser",
+            "qa_llm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opere_di_rivestimento",
+      "name": "Opere di rivestimento",
+      "schema": "schema/opere_di_rivestimento.json",
+      "required": [
+        "materiale",
+        "spessore_mm",
+        "posa"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand dichiarato nel testo",
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale del rivestimento",
+          "enum": [
+            "gres",
+            "pietra",
+            "ceramica",
+            "legno",
+            "resina",
+            "intonaco",
+            "laminato",
+            "metallo"
+          ],
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "finitura",
+          "title": "Finitura",
+          "type": "string",
+          "description": "Finitura superficiale o trattamento",
+          "sources": [
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "spessore_mm",
+          "title": "Spessore",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore del rivestimento convertito in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "posa",
+          "title": "Tipologia di posa",
+          "type": "string",
+          "description": "Modalità di posa prevista",
+          "enum": [
+            "incollata",
+            "flottante",
+            "a secco",
+            "meccanica",
+            "su struttura"
+          ],
+          "sources": [
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "title": "Classe di reazione al fuoco",
+          "type": "string",
+          "description": "Classe europea di reazione al fuoco",
+          "enum": [
+            "A1",
+            "A2-s1,d0",
+            "B-s1,d0",
+            "C-s1,d0"
+          ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "normativa_riferimento",
+          "title": "Normativa di riferimento",
+          "type": "string",
+          "description": "Standard tecnico o regolamento citato nel testo",
+          "sources": [
+            "matcher",
+            "parser",
+            "qa_llm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opere_di_pavimentazione",
+      "name": "Opere di pavimentazione",
+      "schema": "schema/opere_di_pavimentazione.json",
+      "required": [
+        "materiale",
+        "formato",
+        "spessore_mm"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand dichiarato nel testo",
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale del pavimento",
+          "enum": [
+            "gres",
+            "legno",
+            "laminato",
+            "resina",
+            "pietra_naturale",
+            "calcestruzzo",
+            "vinilico"
+          ],
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "formato",
+          "title": "Formato",
+          "type": "string",
+          "description": "Formato nominale delle lastre o doghe",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "spessore_mm",
+          "title": "Spessore",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore del pavimento convertito in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "classe_resistenza_usura",
+          "title": "Classe resistenza usura",
+          "type": "string",
+          "description": "Classe PEI dichiarata",
+          "enum": [
+            "PEI I",
+            "PEI II",
+            "PEI III",
+            "PEI IV",
+            "PEI V"
+          ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "classe_scivolosita",
+          "title": "Classe di scivolosità",
+          "type": "string",
+          "description": "Classe antiscivolo (R)",
+          "enum": [
+            "R9",
+            "R10",
+            "R11",
+            "R12",
+            "R13"
+          ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "normativa_riferimento",
+          "title": "Normativa di riferimento",
+          "type": "string",
+          "description": "Standard tecnico o regolamento citato nel testo",
+          "sources": [
+            "matcher",
+            "parser",
+            "qa_llm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opere_da_serramentista",
+      "name": "Opere da serramentista",
+      "schema": "schema/opere_da_serramentista.json",
+      "required": [
+        "dimensione_larghezza",
+        "dimensione_altezza",
+        "trasmittanza_termica"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand del serramento",
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "materiale_struttura",
+          "title": "Materiale struttura",
+          "type": "string",
+          "description": "Materiale principale della struttura",
+          "enum": [
+            "alluminio",
+            "acciaio",
+            "legno",
+            "pvc",
+            "legno_alluminio"
+          ],
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "dimensione_larghezza",
+          "title": "Larghezza luce",
+          "type": "number",
+          "unit": "mm",
+          "description": "Larghezza netta in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "dimensione_altezza",
+          "title": "Altezza luce",
+          "type": "number",
+          "unit": "mm",
+          "description": "Altezza netta in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "trasmittanza_termica",
+          "title": "Trasmittanza termica",
+          "type": "number",
+          "unit": "W/m²K",
+          "description": "Valore Uw dichiarato",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "isolamento_acustico_db",
+          "title": "Isolamento acustico Rw",
+          "type": "number",
+          "unit": "dB",
+          "description": "Valore Rw o Rw+C",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "normativa_riferimento",
+          "title": "Normativa di riferimento",
+          "type": "string",
+          "description": "Standard tecnico o regolamento citato nel testo",
+          "sources": [
+            "matcher",
+            "parser",
+            "qa_llm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controsoffitti",
+      "name": "Controsoffitti",
+      "schema": "schema/controsoffitti.json",
+      "required": [
+        "materiale",
+        "spessore_pannello_mm",
+        "coefficiente_fonoassorbimento"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand del sistema di controsoffitto",
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale del pannello",
+          "enum": [
+            "acciaio",
+            "alluminio",
+            "cartongesso",
+            "lana_minerale",
+            "fibra_minerale"
+          ],
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "spessore_pannello_mm",
+          "title": "Spessore pannello",
+          "type": "number",
+          "unit": "mm",
+          "description": "Spessore del pannello convertito in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "classe_reazione_al_fuoco",
+          "title": "Classe di reazione al fuoco",
+          "type": "string",
+          "description": "Classe europea di reazione al fuoco",
+          "enum": [
+            "A1",
+            "A2-s1,d0",
+            "B-s1,d0",
+            "B-s2,d0"
+          ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "coefficiente_fonoassorbimento",
+          "title": "Coefficiente di fonoassorbimento",
+          "type": "number",
+          "description": "Valore αw (0-1)",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "stratigrafia_lastre",
+          "title": "Stratigrafia lastre",
+          "type": "string",
+          "description": "Descrizione stratigrafia o composizione",
+          "sources": [
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "normativa_riferimento",
+          "title": "Normativa di riferimento",
+          "type": "string",
+          "description": "Standard tecnico o regolamento citato nel testo",
+          "sources": [
+            "matcher",
+            "parser",
+            "qa_llm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apparecchi_sanitari_accessori",
+      "name": "Apparecchi sanitari e accessori",
+      "schema": "schema/apparecchi_sanitari_accessori.json",
+      "required": [
+        "materiale",
+        "dimensione_lunghezza",
+        "dimensione_larghezza",
+        "dimensione_altezza",
+        "tipologia_installazione"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand dell'apparecchio sanitario",
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "materiale",
+          "title": "Materiale",
+          "type": "string",
+          "description": "Materiale principale",
+          "enum": [
+            "ceramica",
+            "acciaio_inox",
+            "resina",
+            "vetro",
+            "ghisa",
+            "porcellana"
+          ],
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "dimensione_lunghezza",
+          "title": "Lunghezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Lunghezza nominale convertita in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "dimensione_larghezza",
+          "title": "Larghezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Larghezza nominale convertita in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "dimensione_altezza",
+          "title": "Altezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Altezza nominale convertita in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "tipologia_installazione",
+          "title": "Tipologia installazione",
+          "type": "string",
+          "description": "Modalità di installazione",
+          "enum": [
+            "a_pavimento",
+            "a_parete",
+            "sospesa",
+            "incasso"
+          ],
+          "sources": [
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "portata_l_min",
+          "title": "Portata",
+          "type": "number",
+          "unit": "l/min",
+          "description": "Portata dichiarata in litri al minuto",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "normativa_riferimento",
+          "title": "Normativa di riferimento",
+          "type": "string",
+          "description": "Standard tecnico o regolamento citato nel testo",
+          "sources": [
+            "matcher",
+            "parser",
+            "qa_llm"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opere_da_falegname",
+      "name": "Opere da falegname",
+      "schema": "schema/opere_da_falegname.json",
+      "required": [
+        "essenza",
+        "dimensione_larghezza",
+        "dimensione_altezza"
+      ],
+      "properties": [
+        {
+          "id": "marchio",
+          "title": "Marchio",
+          "type": "string",
+          "description": "Brand del manufatto",
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "essenza",
+          "title": "Essenza",
+          "type": "string",
+          "description": "Essenza legnosa principale",
+          "enum": [
+            "rovere",
+            "faggio",
+            "pino",
+            "abete",
+            "larice",
+            "noce",
+            "castagno"
+          ],
+          "sources": [
+            "matcher",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "dimensione_larghezza",
+          "title": "Larghezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Larghezza finita in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "dimensione_altezza",
+          "title": "Altezza",
+          "type": "number",
+          "unit": "mm",
+          "description": "Altezza finita in millimetri",
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "tipologia_apertura",
+          "title": "Tipologia apertura",
+          "type": "string",
+          "description": "Sistema di apertura del serramento",
+          "enum": [
+            "battente",
+            "scorrevole",
+            "a_ribalta",
+            "a_scomparsa",
+            "anta_ribalta"
+          ],
+          "sources": [
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "normativa_riferimento",
+          "title": "Normativa di riferimento",
+          "type": "string",
+          "description": "Standard tecnico o regolamento citato nel testo",
+          "sources": [
+            "matcher",
+            "parser",
+            "qa_llm"
+          ]
+        }
+      ]
+    }
+  ]
+}

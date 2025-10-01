@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema proprietà — Opere di rivestimento",
+  "type": "object",
+  "required": [
+    "category",
+    "properties"
+  ],
+  "properties": {
+    "category": {
+      "const": "opere_di_rivestimento"
+    },
+    "properties": {
+      "type": "object",
+      "required": [
+        "materiale",
+        "spessore_mm",
+        "posa"
+      ],
+      "properties": {
+        "marchio": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 80
+                }
+              }
+            }
+          ]
+        },
+        "materiale": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "gres",
+                    "pietra",
+                    "ceramica",
+                    "legno",
+                    "resina",
+                    "intonaco",
+                    "laminato",
+                    "metallo"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "finitura": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 80
+                }
+              }
+            }
+          ]
+        },
+        "spessore_mm": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/measurement"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 2,
+                  "maximum": 80
+                },
+                "unit": {
+                  "const": "mm"
+                }
+              }
+            }
+          ]
+        },
+        "posa": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "incollata",
+                    "flottante",
+                    "a secco",
+                    "meccanica",
+                    "su struttura"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "classe_reazione_al_fuoco": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "A1",
+                    "A2-s1,d0",
+                    "B-s1,d0",
+                    "C-s1,d0"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "normativa_riferimento": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 120
+                }
+              }
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": [
+        "value",
+        "source",
+        "span",
+        "confidence"
+      ],
+      "properties": {
+        "value": {},
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "parser",
+            "matcher",
+            "qa_llm",
+            "fuse"
+          ]
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    },
+    "value": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

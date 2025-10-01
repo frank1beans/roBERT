@@ -1,10 +1,10 @@
 # Sintesi esecutiva
-- Completato l'audit del bundle `pack/v1_limited`: identificate sette categorie operative (cartongesso, rivestimenti, pavimentazioni, serramenti, controsoffitti, apparecchi sanitari, falegnameria) con slot condivisi e prevalenza di pattern regex focalizzati su marchi e pochi valori dimensionali.
-- Definito un registro schema-first (`data/properties/registry.json`) allineato alle categorie legacy con metadati strutturati (tipi, unità, enum, required, fonti) e sette JSON Schema validabili in `data/properties/schema/` per garantire tracciabilità e validazione, formalizzato nell'[ADR 0001](ADR/0001-schema-first.md).
-- Istituito un piano incrementale A→D che combina parser deterministici, QA LLM vincolato, matcher lessicali e validazione Pydantic per evolvere dal pack limitato all'estrattore ibrido pronto per il bundle `pack/v1`.
+- Completato l'audit del bundle `resources/pack/v1_limited`: identificate sette categorie operative (cartongesso, rivestimenti, pavimentazioni, serramenti, controsoffitti, apparecchi sanitari, falegnameria) con slot condivisi e prevalenza di pattern regex focalizzati su marchi e pochi valori dimensionali.
+- Definito un registro schema-first (`resources/data/properties/registry.json`) allineato alle categorie legacy con metadati strutturati (tipi, unità, enum, required, fonti) e sette JSON Schema validabili in `resources/data/properties/schema/` per garantire tracciabilità e validazione, formalizzato nell'[ADR 0001](ADR/0001-schema-first.md).
+- Istituito un piano incrementale A→D che combina parser deterministici, QA LLM vincolato, matcher lessicali e validazione Pydantic per evolvere dal pack limitato all'estrattore ibrido pronto per il bundle `resources/pack/v1`.
 
 ## Assunzioni
-- Dataset interno disponibile con almeno 80 descrizioni etichettate per ciascuna delle sette categorie di `pack/v1_limited`.
+- Dataset interno disponibile con almeno 80 descrizioni etichettate per ciascuna delle sette categorie di `resources/pack/v1_limited`.
 - Accesso a un LLM compatto (GPT-4o-mini o equivalente) con supporto JSON-constrained e latenza <1s.
 - Glossari di brand, materiali, trattamenti e standard forniti dagli esperti dominio entro la fine della Fase A.
 - Stack tecnologico aggiornabile a Python ≥3.11 con disponibilità di pytest, jsonschema, Typer, Pydantic v2, ruff e black in CI.
@@ -13,15 +13,15 @@
 ## Roadmap
 ### Fase A — Foundations (settimane 1-3)
 - **Obiettivi**
-  - Inventariare `pack/v1_limited` e documentare mapping slot→proprietà.
+  - Inventariare `resources/pack/v1_limited` e documentare mapping slot→proprietà.
   - Produrre registry e JSON Schema per le sette categorie legacy.
   - Implementare parser deterministici numeri/unità/dimensioni e skeleton CLI Typer.
 - **Attività principali**
-  - Audit pack, ADR schema-first, definizione `data/properties/registry.json`.
-  - Creazione JSON Schema in `data/properties/schema/*.json` e caricatore `schema_registry.py`.
+  - Audit pack, ADR schema-first, definizione `resources/data/properties/registry.json`.
+  - Creazione JSON Schema in `resources/data/properties/schema/*.json` e caricatore `schema_registry.py`.
   - Parser deterministici (`numbers.py`, `units.py`, `dimensions.py`) con suite pytest ≥60 casi.
   - Nuovo comando `robimb extract` con sottocomandi `properties`, `schemas`, `pack` e logging strutturato.
-- **Dipendenze**: accesso completo a `pack/v1_limited`, conferma dei glossari iniziali, disponibilità esperto dominio per review schemi.
+- **Dipendenze**: accesso completo a `resources/pack/v1_limited`, conferma dei glossari iniziali, disponibilità esperto dominio per review schemi.
 - **Rischi/Mitigazioni**
   - Schemi incompleti → workshop con dominio + ADR vincolanti.
   - Parser dimensioni incompleti → raccolta esempi reali, generazione casi sintetici.
@@ -34,7 +34,7 @@
   - Introdurre QA estrattivo JSON-constrained, matchers lessicali e fusione candidati.
   - Implementare orchestrator, normalizzatori, validazione Pydantic e logging span-level.
 - **Attività principali**
-  - `prompts.py`, `qa_llm.py`, `normalize.py`, lessici in `data/properties/lexicon/`.
+  - `prompts.py`, `qa_llm.py`, `normalize.py`, lessici in `resources/data/properties/lexicon/`.
   - Matchers brand/materiali/standard/colore e parser aggiuntivi (colori RAL, norme UNI/EN).
   - `fuse.py`, `validators.py`, `orchestrator.py` con test integrazione su batch multi-categoria.
 - **Dipendenze**: completamento Fase A, API LLM disponibile, lexicon iniziali.
@@ -50,7 +50,7 @@
   - Generare dataset validazione (≥350 record) bilanciato sulle sette categorie.
   - Implementare metriche unit-aware, report automatici, soglie di confidenza e CI dedicata.
 - **Attività principali**
-  - `data/properties/validation/pilota.jsonl`, `src/robimb/utils/metrics.py`, reporting Markdown/HTML.
+  - `resources/data/properties/validation/pilota.jsonl`, `src/robimb/utils/metrics.py`, reporting Markdown/HTML.
   - CLI `robimb extract evaluate` con generazione report, soglie, grafici coverage.
 - **Dipendenze**: pipeline ibrida stabile, dataset etichettato.
 - **Rischi/Mitigazioni**
@@ -62,7 +62,7 @@
 
 ### Fase D — Hardening (settimane 11-14)
 - **Obiettivi**
-  - Gestire edge case (range, ≥, simboli), normalizzazione avanzata, performance e packaging `pack/v1`.
+  - Gestire edge case (range, ≥, simboli), normalizzazione avanzata, performance e packaging `resources/pack/v1`.
   - Documentazione finale, packaging PyPI e knowledge transfer.
 - **Attività principali**
   - Estensione parser range/comparatori, normalizzatori RAL/UNI, caching orchestrator.
@@ -70,16 +70,16 @@
 - **Dipendenze**: metriche consolidate Fase C, dataset completo.
 - **Rischi/Mitigazioni**
   - Performance < target → parallel Typer + batching LLM + caching lexicon.
-  - Divergenza pack/codice → CI con checksum e validazione pack.
+  - Divergenza resources/pack/codice → CI con checksum e validazione pack.
 - **Deliverable/DoD**
-  - `pack/v1/` completo con manifest, registry, prompts, lexicon aggiornati.
+  - `resources/pack/v1/` completo con manifest, registry, prompts, lexicon aggiornati.
   - Benchmark ≤45s/1000 record e documentazione aggiornata (`docs/cli_extract.md`, `docs/property_extraction.md`).
 
 ## Backlog
-- **A1. Audit pack v1_limited** — File: `pack/v1_limited/*`, `docs/ROADMAP.md`. DoD: tabella slot→categoria in Appendice; review TL. Stima: 6h.
+- **A1. Audit pack v1_limited** — File: `resources/pack/v1_limited/*`, `docs/ROADMAP.md`. DoD: tabella slot→categoria in Appendice; review TL. Stima: 6h.
 - **A2. ADR schema-first** — File: `docs/ADR/0001-schema-first.md`. DoD: decisione approvata con pro/contro, linkata dalla roadmap. Stima: 5h.
-- **A3. Registry completo** — File: `data/properties/registry.json`. DoD: validazione jsonschema, 7 categorie con metadata completi. Stima: 8h.
-- **A4. JSON Schema categorie** — File: `data/properties/schema/*.json`. DoD: validazione `jsonschema` + smoke test caricamento. Stima: 12h.
+- **A3. Registry completo** — File: `resources/data/properties/registry.json`. DoD: validazione jsonschema, 7 categorie con metadata completi. Stima: 8h.
+- **A4. JSON Schema categorie** — File: `resources/data/properties/schema/*.json`. DoD: validazione `jsonschema` + smoke test caricamento. Stima: 12h.
 - **A5. Schema registry loader** — File: `src/robimb/extraction/schema_registry.py`. DoD: API `load_registry` con cache + test `tests/test_schema_registry.py`. Stima: 8h.
 - **A6. Validators Pydantic** — File: `src/robimb/extraction/validators.py`. DoD: `validate_properties` restituisce errori strutturati; coverage ≥90%. Stima: 9h.
 - **A7. Parser numerici** — File: `src/robimb/extraction/parsers/numbers.py`. DoD: funzioni `parse_number_it`/`extract_numbers`, pytest ≥50 casi. Stima: 8h.
@@ -88,23 +88,23 @@
 - **A10. CLI skeleton** — File: `src/robimb/cli/extract.py`, `src/robimb/cli/main.py`. DoD: `robimb extract properties --help` e `--dry-run` attivi, snapshot help. Stima: 6h.
 - **A11. Logging strutturato base** — File: `src/robimb/utils/logging.py`. DoD: log JSONL con trace-id testato via snapshot. Stima: 5h.
 - **A12. Coverage tests schema** — File: `tests/test_schema_registry.py`. DoD: assert categorie/required match registry. Stima: 4h.
-- **B1. Prompt library** — File: `src/robimb/extraction/prompts.py`, `data/properties/prompts.json`. DoD: template LLM con test rendering. Stima: 7h.
+- **B1. Prompt library** — File: `src/robimb/extraction/prompts.py`, `resources/data/properties/prompts.json`. DoD: template LLM con test rendering. Stima: 7h.
 - **B2. QA LLM adapter** — File: `src/robimb/extraction/qa_llm.py`. DoD: retry/backoff + mock tests error handling. Stima: 10h.
-- **B3. Lexicon brand/materiali** — File: `data/properties/lexicon/brands.json`, `materials.json`. DoD: ≥250 voci, script dedup. Stima: 6h.
+- **B3. Lexicon brand/materiali** — File: `resources/data/properties/lexicon/brands.json`, `materials.json`. DoD: ≥250 voci, script dedup. Stima: 6h.
 - **B4. Matcher marchi** — File: `src/robimb/extraction/matchers/brands.py`. DoD: precision ≥0.9 su 200 esempi. Stima: 8h.
 - **B5. Matcher materiali** — File: `src/robimb/extraction/matchers/materials.py`. DoD: sinonimi/lemmatizzazione, EM ≥0.8. Stima: 8h.
-- **B6. Parser colori RAL** — File: `src/robimb/extraction/parsers/colors.py`, `data/properties/lexicon/colors_ral.json`. DoD: mapping completo, test 30 codici. Stima: 7h.
-- **B7. Parser standard UNI/EN** — File: `src/robimb/extraction/parsers/standards.py`, `data/properties/lexicon/standards_prefixes.json`. DoD: recall ≥0.95 su 50 esempi. Stima: 9h.
+- **B6. Parser colori RAL** — File: `src/robimb/extraction/parsers/colors.py`, `resources/data/properties/lexicon/colors_ral.json`. DoD: mapping completo, test 30 codici. Stima: 7h.
+- **B7. Parser standard UNI/EN** — File: `src/robimb/extraction/parsers/standards.py`, `resources/data/properties/lexicon/standards_prefixes.json`. DoD: recall ≥0.95 su 50 esempi. Stima: 9h.
 - **B8. Normalizzatori proprietà** — File: `src/robimb/extraction/normalize.py`. DoD: funzioni per formati, classi prestazionali, booleani. Stima: 7h.
 - **B9. Fusione candidati** — File: `src/robimb/extraction/fuse.py`. DoD: policy configurabile + test conflitti. Stima: 12h.
 - **B10. Orchestrator pipeline** — File: `src/robimb/extraction/orchestrator.py`. DoD: pipeline completa multi-categoria, integrazione CLI. Stima: 10h.
 - **B11. Logging span-level** — File: `src/robimb/extraction/fuse.py`, `orchestrator.py`. DoD: output include `source/span/confidence`, snapshot 10 record. Stima: 6h.
-- **B12. Pack prompts/manifest** — File: `pack/v1/*`. DoD: manifest validato via jsonschema. Stima: 5h.
-- **C1. Dataset validazione** — File: `data/properties/validation/pilota.jsonl`. DoD: ≥350 record, bilanciamento ±10% categoria. Stima: 12h.
+- **B12. Pack prompts/manifest** — File: `resources/pack/v1/*`. DoD: manifest validato via jsonschema. Stima: 5h.
+- **C1. Dataset validazione** — File: `resources/data/properties/validation/pilota.jsonl`. DoD: ≥350 record, bilanciamento ±10% categoria. Stima: 12h.
 - **C2. Metriche unit-aware** — File: `src/robimb/utils/metrics.py`. DoD: `exact_match`, `unit_aware_mae`, test numerici. Stima: 9h.
 - **C3. Report qualità** — File: `src/robimb/reporting/properties_report.py`, `docs/property_extraction_report_template.md`. DoD: report Markdown/HTML rigenerabile. Stima: 10h.
 - **C4. CLI evaluate** — File: `src/robimb/cli/extract.py`. DoD: sottocomando `evaluate` con test CLI. Stima: 7h.
-- **C5. Confidence calibration** — File: `src/robimb/extraction/fuse.py`, `data/properties/calibration.json`. DoD: curva precision-recall, soglie per categoria. Stima: 8h.
+- **C5. Confidence calibration** — File: `src/robimb/extraction/fuse.py`, `resources/data/properties/calibration.json`. DoD: curva precision-recall, soglie per categoria. Stima: 8h.
 - **C6. Coverage analytics** — File: `src/robimb/reporting/coverage.py`. DoD: grafico coverage property/category. Stima: 6h.
 - **C7. CI metrics** — File: `.github/workflows/qa_properties.yml`. DoD: workflow che esegue eval e pubblica badge. Stima: 8h.
 - **C8. Alerting QA** — File: `docs/ADR/0003-quality-guardrails.md`. DoD: ADR su soglie e alert. Stima: 5h.
@@ -114,7 +114,7 @@
 - **D4. Performance benchmark** — File: `tests/perf/test_throughput.py`. DoD: ≤45s/1000 record, profilo allegato. Stima: 9h.
 - **D5. Packaging** — File: `pyproject.toml`, `src/robimb/__init__.py`. DoD: wheel installabile, CLI disponibile. Stima: 6h.
 - **D6. Documentazione finale** — File: `docs/cli_extract.md`, `docs/property_extraction.md`, `docs/ROADMAP.md`. DoD: guide aggiornate, review tech writer. Stima: 7h.
-- **D7. Pack v1** — File: `pack/v1/*`. DoD: registry, schema, prompts, lexicon aggiornati con checksum. Stima: 8h.
+- **D7. Pack v1** — File: `resources/pack/v1/*`. DoD: registry, schema, prompts, lexicon aggiornati con checksum. Stima: 8h.
 - **D8. Knowledge transfer** — File: `docs/KT/property_extraction_slides.pdf`. DoD: sessione registrata, feedback ≥4/5. Stima: 5h.
 
 ## Matrice Proprietà×Categoria
@@ -204,7 +204,7 @@
 **Esempio testo**: “Porta interna Garofoli in rovere, dimensioni 900x2100 mm, apertura scorrevole.”
 
 ## Contratti I/O
-- **Input JSONL (`data/properties/input_schema.json`)**
+- **Input JSONL (`resources/data/properties/input_schema.json`)**
   ```json
   {
     "type": "object",
@@ -218,7 +218,7 @@
     "additionalProperties": false
   }
   ```
-- **Output JSONL (`data/properties/output_schema.json`)**
+- **Output JSONL (`resources/data/properties/output_schema.json`)**
   ```json
   {
     "type": "object",
@@ -268,13 +268,13 @@
 ## CLI Spec
 - **Comando principale**: `robimb extract`
 - **Sottocomandi**
-  - `robimb extract properties --input INPUT.jsonl --output OUTPUT.jsonl --pack pack/v1 --schema data/properties/registry.json --batch-size 32 --max-workers 4 --confidence-threshold 0.6 --category-filter "Opere da cartongessista"`
+  - `robimb extract properties --input INPUT.jsonl --output OUTPUT.jsonl --pack resources/pack/v1 --schema resources/data/properties/registry.json --batch-size 32 --max-workers 4 --confidence-threshold 0.6 --category-filter "Opere da cartongessista"`
   - `robimb extract schemas --list` / `robimb extract schemas --show "Opere di pavimentazione" --print-schema`
-  - `robimb extract pack --registry pack/v1/registry.json --extractors pack/v1/extractors.json --out-dir data/properties`
-  - `robimb extract evaluate --pred outputs/pred.jsonl --gold data/properties/validation/pilota.jsonl --report reports/pilota.md --metrics em,f1,unit-mae`
+  - `robimb extract pack --registry resources/pack/v1/registry.json --extractors resources/pack/v1/extractors.json --out-dir resources/data/properties`
+  - `robimb extract evaluate --pred outputs/pred.jsonl --gold resources/data/properties/validation/pilota.jsonl --report reports/pilota.md --metrics em,f1,unit-mae`
 - **Parametri chiave**
-  - `--pack`: directory bundle (default `pack/current`).
-  - `--schema`: override del registry (default `data/properties/registry.json`).
+  - `--pack`: directory bundle (default `resources/pack/current`).
+  - `--schema`: override del registry (default `resources/data/properties/registry.json`).
   - `--llm-endpoint`, `--llm-model`, `--llm-timeout`, `--llm-max-retries`.
   - `--log-file`: log JSONL (per record `text_id`, step, durata, warnings).
   - `--fail-fast`: interrompe la pipeline al primo errore bloccante.
@@ -286,9 +286,9 @@
   - `4`: errori parziali (output con warnings / fallback).
 - **Esempi uso**
   ```bash
-  robimb extract properties --input data/raw/pilota.jsonl --output outputs/pilota_props.jsonl --pack pack/v1 --llm-endpoint https://llm.internal --llm-model gpt-mini --confidence-threshold 0.7
+  robimb extract properties --input data/raw/pilota.jsonl --output outputs/pilota_props.jsonl --pack resources/pack/v1 --llm-endpoint https://llm.internal --llm-model gpt-mini --confidence-threshold 0.7
   robimb extract schemas --show "Opere da serramentista" --print-schema
-  robimb extract evaluate --pred outputs/pilota_props.jsonl --gold data/properties/validation/pilota.jsonl --report reports/pilota.md --metrics em,f1,unit-mae
+  robimb extract evaluate --pred outputs/pilota_props.jsonl --gold resources/data/properties/validation/pilota.jsonl --report reports/pilota.md --metrics em,f1,unit-mae
   ```
 
 ## Rischi & Mitigazioni
@@ -334,7 +334,7 @@ src/robimb/extraction/
   fuse.py
   orchestrator.py
 
-data/properties/
+resources/data/properties/
   registry.json
   schema/
     apparecchi_sanitari_accessori.json
@@ -354,7 +354,7 @@ data/properties/
     pilota.jsonl
   calibration.json
 
-pack/
+resources/pack/
   v1_limited/
   v1/
     manifest.json

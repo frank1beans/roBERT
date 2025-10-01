@@ -7,6 +7,8 @@ from pathlib import Path
 from typing import Dict, Mapping
 import re
 
+from ..config import get_settings
+
 __all__ = ["PromptTemplate", "PromptLibrary", "load_prompt_library"]
 
 _PLACEHOLDER_PATTERN = re.compile(r"{{\s*([a-zA-Z0-9_]+)\s*}}")
@@ -64,9 +66,9 @@ class PromptLibrary:
 
     @classmethod
     def default(cls) -> "PromptLibrary":
-        path = Path("data/properties/prompts.json")
+        path = get_settings().prompts_path
         if not path.exists():
-            raise FileNotFoundError("Prompt file 'data/properties/prompts.json' is missing")
+            raise FileNotFoundError(f"Prompt file '{path}' is missing")
         return cls.from_path(path)
 
 

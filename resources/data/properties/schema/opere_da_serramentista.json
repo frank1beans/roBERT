@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema proprietà — Opere da serramentista",
+  "type": "object",
+  "required": [
+    "category",
+    "properties"
+  ],
+  "properties": {
+    "category": {
+      "const": "opere_da_serramentista"
+    },
+    "properties": {
+      "type": "object",
+      "required": [
+        "dimensione_larghezza",
+        "dimensione_altezza",
+        "trasmittanza_termica"
+      ],
+      "properties": {
+        "marchio": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 80
+                }
+              }
+            }
+          ]
+        },
+        "materiale_struttura": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "alluminio",
+                    "acciaio",
+                    "legno",
+                    "pvc",
+                    "legno_alluminio"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "dimensione_larghezza": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/measurement"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 400,
+                  "maximum": 4000
+                },
+                "unit": {
+                  "const": "mm"
+                }
+              }
+            }
+          ]
+        },
+        "dimensione_altezza": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/measurement"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 500,
+                  "maximum": 3500
+                },
+                "unit": {
+                  "const": "mm"
+                }
+              }
+            }
+          ]
+        },
+        "trasmittanza_termica": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/measurement"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 0.5,
+                  "maximum": 3.5
+                },
+                "unit": {
+                  "const": "W/m²K"
+                }
+              }
+            }
+          ]
+        },
+        "isolamento_acustico_db": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/measurement"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "minimum": 20,
+                  "maximum": 55
+                },
+                "unit": {
+                  "const": "dB"
+                }
+              }
+            }
+          ]
+        },
+        "normativa_riferimento": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 120
+                }
+              }
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "base": {
+      "type": "object",
+      "required": [
+        "value",
+        "source",
+        "span",
+        "confidence"
+      ],
+      "properties": {
+        "value": {},
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "parser",
+            "matcher",
+            "qa_llm",
+            "fuse"
+          ]
+        },
+        "span": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": "number"
+            }
+          }
+        }
+      ]
+    },
+    "value": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

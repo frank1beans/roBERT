@@ -9,6 +9,7 @@ from typing import Any, Dict, Optional
 import typer
 from tqdm import tqdm
 
+from ..config import get_settings
 from ..extraction.fuse import Fuser, FusePolicy
 from ..extraction.orchestrator import Orchestrator, OrchestratorConfig
 from ..extraction.qa_llm import AsyncHttpLLM, HttpLLM, MockLLM, QALLMConfig
@@ -18,6 +19,8 @@ from ..utils.logging import configure_json_logger, flush_handlers, generate_trac
 __all__ = ["app"]
 
 app = typer.Typer(help="Property extraction utilities", add_completion=False)
+
+_SETTINGS = get_settings()
 
 
 async def _extract_async(
@@ -105,14 +108,14 @@ def extract_properties(
     input_path: Path = typer.Option(..., "--input", exists=True, dir_okay=False, help="JSONL with input records"),
     output_path: Path = typer.Option(..., "--output", dir_okay=False, help="Destination JSONL for extracted properties"),
     pack_path: Path = typer.Option(
-        Path("pack/current"),
+        (_SETTINGS.pack_dir / "current"),
         "--pack",
         exists=True,
         file_okay=False,
         help="Knowledge pack directory providing prompts and lexicons",
     ),
     schema_registry_path: Path = typer.Option(
-        Path("data/properties/registry.json"),
+        _SETTINGS.registry_path,
         "--schema",
         exists=True,
         dir_okay=False,
@@ -224,7 +227,7 @@ def extract_properties(
 @app.command("schemas")
 def schemas_command(
     registry_path: Path = typer.Option(
-        Path("data/properties/registry.json"),
+        _SETTINGS.registry_path,
         "--registry",
         exists=True,
         dir_okay=False,

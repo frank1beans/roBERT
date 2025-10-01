@@ -6,7 +6,7 @@
 
 ## Contesto
 
-Il bundle `pack/v1_limited` fornito dal team dominio conteneva un monolite `registry.json` privo di tipizzazione formale e con
+Il bundle `resources/pack/v1_limited` fornito dal team dominio conteneva un monolite `registry.json` privo di tipizzazione formale e con
 slot ripetuti in categorie diverse. La fase A della roadmap richiede di costruire fondamenta affidabili per la pipeline ibrida,
 garantendo validazione consistente, tracciabilità delle proprietà e strumenti CLI per l'ispezione degli schemi. Le alternative
 valutate includevano:
@@ -17,18 +17,18 @@ valutate includevano:
 
 ## Decisione
 
-Adottiamo un registry schema-first versionato in `data/properties/registry.json` accompagnato da sette JSON Schema dedicati in
-`data/properties/schema/*.json`. Ogni categoria del pack definisce ID canonico, percorso schema, proprietà con tipologia,
+Adottiamo un registry schema-first versionato in `resources/data/properties/registry.json` accompagnato da sette JSON Schema dedicati in
+`resources/data/properties/schema/*.json`. Ogni categoria del pack definisce ID canonico, percorso schema, proprietà con tipologia,
 unità, enum, required e fonti. Le CLI (`robimb extract schemas`, `robimb extract properties`) si appoggiano a questo registry e
 alle validazioni Pydantic, mentre `src/robimb/extraction/schema_registry.py` fornisce caching e interrogazione tipizzata.
-Il registry è inoltre replicato nel bundle distribuito (`pack/current/registry.json`) per garantire coerenza tra codice e pack.
+Il registry è inoltre replicato nel bundle distribuito (`resources/pack/current/registry.json`) per garantire coerenza tra codice e pack.
 
 ## Conseguenze
 
 - **Positive**
   - Validazione preventiva con `jsonschema` e Pydantic, riducendo errori runtime.
   - Documentazione automatica delle proprietà tramite CLI e roadmap (appendice proprietà×categoria).
-  - Evoluzione facilitata a `pack/v1` aggiungendo versioni e metadati senza toccare il codice.
+  - Evoluzione facilitata a `resources/pack/v1` aggiungendo versioni e metadati senza toccare il codice.
 - **Negative/Trade-off**
   - Maggior onere iniziale nel mantenere sette schemi sincronizzati con il registry.
   - Tooling aggiuntivo per generare migrazioni quando il dominio introduce nuove proprietà.
@@ -39,5 +39,5 @@ Il registry è inoltre replicato nel bundle distribuito (`pack/current/registry.
 ## Riferimenti
 
 - Roadmap fase A con matrice proprietà×categoria (`docs/ROADMAP.md`).
-- Registry consolidato (`data/properties/registry.json`).
+- Registry consolidato (`resources/data/properties/registry.json`).
 - Loader schema-first (`src/robimb/extraction/schema_registry.py`).

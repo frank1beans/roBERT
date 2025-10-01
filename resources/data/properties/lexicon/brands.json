@@ -1,0 +1,1451 @@
+{
+  "version": "1.0",
+  "notes": "Marchi raggruppati per categoria verticale con sinonimi standardizzati per l'estrazione del campo \"marchio\".",
+  "fallback": "Generico",
+  "brands": [
+    {
+      "id": "41zero42",
+      "canonical": "41zero42",
+      "synonyms": [
+        "41zero42"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "abk",
+      "canonical": "ABK",
+      "synonyms": [
+        "A B K",
+        "ABK"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "aliceceramica",
+      "canonical": "Alice Ceramica",
+      "synonyms": [
+        "Alice Ceramica"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "alphacan",
+      "canonical": "Alphacan",
+      "synonyms": [
+        "Alphacan"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "ariostea",
+      "canonical": "Ariostea",
+      "synonyms": [
+        "Ariostea"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "artceram",
+      "canonical": "Artceram",
+      "synonyms": [
+        "Artceram"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "atlasconcorde",
+      "canonical": "Atlas Concorde",
+      "synonyms": [
+        "Atlas Concorde"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "axor",
+      "canonical": "Axor",
+      "synonyms": [
+        "Axor"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "azichem",
+      "canonical": "Azichem",
+      "synonyms": [
+        "Azichem"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "azzurraceramica",
+      "canonical": "Azzurra Ceramica",
+      "synonyms": [
+        "Azzurra Ceramica"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "baumit",
+      "canonical": "Baumit",
+      "synonyms": [
+        "Baumit"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "bauwerkparkett",
+      "canonical": "Bauwerk Parkett",
+      "synonyms": [
+        "Bauwerk Parkett"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "bellefinestre",
+      "canonical": "Belle Finestre",
+      "synonyms": [
+        "Belle Finestre"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "bertolottoporte",
+      "canonical": "Bertolotto Porte",
+      "synonyms": [
+        "Bertolotto Porte"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ]
+    },
+    {
+      "id": "biemme",
+      "canonical": "Biemme",
+      "synonyms": [
+        "Biemme"
+      ],
+      "categories": [
+        "controsoffitti"
+      ]
+    },
+    {
+      "id": "boero",
+      "canonical": "Boero",
+      "synonyms": [
+        "Boero"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "boffi",
+      "canonical": "Boffi",
+      "synonyms": [
+        "Boffi"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "bossini",
+      "canonical": "Bossini",
+      "synonyms": [
+        "Bossini"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "caparreghini",
+      "canonical": "CAP ARREGHINI",
+      "synonyms": [
+        "C A P A R R E G H I N I",
+        "CAP ARREGHINI"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "casalgrandepadana",
+      "canonical": "Casalgrande Padana",
+      "synonyms": [
+        "Casalgrande Padana"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramicabardelli",
+      "canonical": "Ceramica Bardelli",
+      "synonyms": [
+        "Ceramica Bardelli"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramicacatalano",
+      "canonical": "Ceramica Catalano",
+      "synonyms": [
+        "Ceramica Catalano"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "ceramicacielo",
+      "canonical": "Ceramica Cielo",
+      "synonyms": [
+        "Ceramica Cielo"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "ceramicadelconca",
+      "canonical": "Ceramica Del Conca",
+      "synonyms": [
+        "Ceramica Del Conca"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramicadolomite",
+      "canonical": "Ceramica Dolomite",
+      "synonyms": [
+        "Ceramica Dolomite"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "ceramicaflaminia",
+      "canonical": "Ceramica Flaminia",
+      "synonyms": [
+        "Ceramica Flaminia"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "ceramicafondovalle",
+      "canonical": "Ceramica Fondovalle",
+      "synonyms": [
+        "Ceramica Fondovalle"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramicasantagostino",
+      "canonical": "Ceramica Sant'Agostino",
+      "synonyms": [
+        "Ceramica Sant'Agostino",
+        "Ceramica Sant’Agostino"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramicavogue",
+      "canonical": "Ceramica Vogue",
+      "synonyms": [
+        "Ceramica Vogue"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramichecaesar",
+      "canonical": "Ceramiche Caesar",
+      "synonyms": [
+        "Ceramiche Caesar"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramichekeope",
+      "canonical": "Ceramiche Keope",
+      "synonyms": [
+        "Ceramiche Keope"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ceramicherondine",
+      "canonical": "Ceramiche Rondine",
+      "synonyms": [
+        "Ceramiche Rondine"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "cocif",
+      "canonical": "Cocif",
+      "synonyms": [
+        "Cocif"
+      ],
+      "categories": [
+        "opere_da_falegname",
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "cottodeste",
+      "canonical": "Cotto d'Este",
+      "synonyms": [
+        "Cotto d'Este",
+        "Cotto d’Este"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "cpparquet",
+      "canonical": "CP Parquet",
+      "synonyms": [
+        "C P Parquet",
+        "CP Parquet"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "cristinarubinetterie",
+      "canonical": "Cristina Rubinetterie",
+      "synonyms": [
+        "Cristina Rubinetterie"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "dakota",
+      "canonical": "Dakota",
+      "synonyms": [
+        "Dakota"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "diasen",
+      "canonical": "Diasen",
+      "synonyms": [
+        "Diasen"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "dornbracht",
+      "canonical": "Dornbracht",
+      "synonyms": [
+        "Dornbracht"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "dqg",
+      "canonical": "DQG",
+      "synonyms": [
+        "D Q G",
+        "DQG"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "duravit",
+      "canonical": "Duravit",
+      "synonyms": [
+        "Duravit"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "eclisse",
+      "canonical": "Eclisse",
+      "synonyms": [
+        "Eclisse"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ]
+    },
+    {
+      "id": "emilceramica",
+      "canonical": "Emilceramica",
+      "synonyms": [
+        "Emil Ceramica",
+        "Emilceramica"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "fantinirubinetti",
+      "canonical": "Fantini Rubinetti",
+      "synonyms": [
+        "Fantini Rubinetti"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "fapceramiche",
+      "canonical": "Fap Ceramiche",
+      "synonyms": [
+        "Fap Ceramiche"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "fassabortolo",
+      "canonical": "Fassa Bortolo",
+      "synonyms": [
+        "Fassa Bortolo"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "ferrerolegno",
+      "canonical": "FerreroLegno",
+      "synonyms": [
+        "Ferrero Legno",
+        "FerreroLegno"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ]
+    },
+    {
+      "id": "ffsystems",
+      "canonical": "FF Systems",
+      "synonyms": [
+        "F F Systems",
+        "FF Systems"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "fiandre",
+      "canonical": "Fiandre",
+      "synonyms": [
+        "Fiandre"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "fibran",
+      "canonical": "Fibran",
+      "synonyms": [
+        "Fibran"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "finstral",
+      "canonical": "Finstral",
+      "synonyms": [
+        "Finstral"
+      ],
+      "categories": [
+        "opere_da_falegname",
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "fornacicalcegrigolin",
+      "canonical": "Fornaci Calce Grigolin",
+      "synonyms": [
+        "Fornaci Calce Grigolin"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "galassia",
+      "canonical": "Galassia",
+      "synonyms": [
+        "Galassia"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "garofoli",
+      "canonical": "Garofoli",
+      "synonyms": [
+        "Garofoli"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ]
+    },
+    {
+      "id": "gattoni",
+      "canonical": "Gattoni",
+      "synonyms": [
+        "Gattoni"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "gcinfissi",
+      "canonical": "GC Infissi",
+      "synonyms": [
+        "G C Infissi",
+        "GC Infissi"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "gealan",
+      "canonical": "Gealan",
+      "synonyms": [
+        "Gealan"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "geberit",
+      "canonical": "Geberit",
+      "synonyms": [
+        "Geberit"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "gessi",
+      "canonical": "Gessi",
+      "synonyms": [
+        "Gessi"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "globo",
+      "canonical": "Globo",
+      "synonyms": [
+        "Globo"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "graff",
+      "canonical": "Graff",
+      "synonyms": [
+        "Graff"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "grohe",
+      "canonical": "Grohe",
+      "synonyms": [
+        "Grohe"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "gsiceramica",
+      "canonical": "GSI Ceramica",
+      "synonyms": [
+        "G S I Ceramica",
+        "GSI Ceramica"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "gyps",
+      "canonical": "Gyps",
+      "synonyms": [
+        "Gyps"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "hansgrohe",
+      "canonical": "Hansgrohe",
+      "synonyms": [
+        "Hansgrohe"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "hatria",
+      "canonical": "Hatria",
+      "synonyms": [
+        "Hatria"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "idealstandard",
+      "canonical": "Ideal Standard",
+      "synonyms": [
+        "Ideal Standard"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "ilpaadesivi",
+      "canonical": "ILPA Adesivi",
+      "synonyms": [
+        "I L P A Adesivi",
+        "ILPA Adesivi"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "imolaceramica",
+      "canonical": "Imola Ceramica",
+      "synonyms": [
+        "Imola Ceramica"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "index",
+      "canonical": "Index",
+      "synonyms": [
+        "Index"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "internormitalia",
+      "canonical": "Internorm Italia",
+      "synonyms": [
+        "Internorm Italia"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "irisceramica",
+      "canonical": "Iris Ceramica",
+      "synonyms": [
+        "Iris Ceramica"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "isolkappa",
+      "canonical": "ISOLKAPPA",
+      "synonyms": [
+        "I S O L K A P P A",
+        "ISOLKAPPA"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "isolmant",
+      "canonical": "Isolmant",
+      "synonyms": [
+        "Isolmant"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "jameshardie",
+      "canonical": "James Hardie",
+      "synonyms": [
+        "James Hardie"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "jansen",
+      "canonical": "Jansen",
+      "synonyms": [
+        "Jansen"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "kerakoll",
+      "canonical": "Kerakoll",
+      "synonyms": [
+        "Kerakoll"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "kerakolldesign",
+      "canonical": "Kerakoll Design",
+      "synonyms": [
+        "Kerakoll Design"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "kerasan",
+      "canonical": "Kerasan",
+      "synonyms": [
+        "Kerasan"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "kimia",
+      "canonical": "Kimia",
+      "synonyms": [
+        "Kimia"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "kline",
+      "canonical": "K-Line",
+      "synonyms": [
+        "K Line",
+        "K-Line",
+        "KLine"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "knauf",
+      "canonical": "Knauf",
+      "synonyms": [
+        "Knauf"
+      ],
+      "categories": [
+        "trasversale"
+      ]
+    },
+    {
+      "id": "knaufinsulation",
+      "canonical": "Knauf Insulation",
+      "synonyms": [
+        "Knauf Insulation"
+      ],
+      "categories": [
+        "opere_di_rivestimento",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "knaufitalia",
+      "canonical": "Knauf Italia",
+      "synonyms": [
+        "Knauf",
+        "Knauf Italia"
+      ],
+      "categories": [
+        "controsoffitti",
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "laticrete",
+      "canonical": "Laticrete",
+      "synonyms": [
+        "Laticrete"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "listonegiordano",
+      "canonical": "Listone Giordano",
+      "synonyms": [
+        "Listone Giordano"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "litokol",
+      "canonical": "Litokol",
+      "synonyms": [
+        "Litokol"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "malvin",
+      "canonical": "Malvin",
+      "synonyms": [
+        "Malvin"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "mapei",
+      "canonical": "MAPEI",
+      "synonyms": [
+        "M A P E I",
+        "MAPEI",
+        "Mapei"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "marazzi",
+      "canonical": "Marazzi",
+      "synonyms": [
+        "Marazzi"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "maxmeyer",
+      "canonical": "MaxMeyer",
+      "synonyms": [
+        "Max Meyer",
+        "MaxMeyer"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "mirage",
+      "canonical": "Mirage",
+      "synonyms": [
+        "Mirage"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "moltenivernici",
+      "canonical": "Molteni Vernici",
+      "synonyms": [
+        "Molteni Vernici"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "newform",
+      "canonical": "Newform",
+      "synonyms": [
+        "Newform"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "nobili",
+      "canonical": "Nobili",
+      "synonyms": [
+        "Nobili"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "novacolor",
+      "canonical": "Novacolor",
+      "synonyms": [
+        "Novacolor"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "nurith",
+      "canonical": "Nurith",
+      "synonyms": [
+        "Nurith"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "nusco",
+      "canonical": "Nusco",
+      "synonyms": [
+        "Nusco"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "officinanicolazzi",
+      "canonical": "Officina Nicolazzi",
+      "synonyms": [
+        "Officina Nicolazzi"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "oknoplast",
+      "canonical": "Oknoplast",
+      "synonyms": [
+        "Oknoplast"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "olympiaceramica",
+      "canonical": "Olympia Ceramica",
+      "synonyms": [
+        "Olympia Ceramica"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "pivagroup",
+      "canonical": "Piva Group",
+      "synonyms": [
+        "Piva Group"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "pozziginori",
+      "canonical": "Pozzi Ginori",
+      "synonyms": [
+        "Pozzi Ginori"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "premix",
+      "canonical": "Premix",
+      "synonyms": [
+        "Premix"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "profilgessi",
+      "canonical": "Profilgessi",
+      "synonyms": [
+        "Profilgessi"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "ragno",
+      "canonical": "Ragno",
+      "synonyms": [
+        "Ragno"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "rakceramics",
+      "canonical": "RAK Ceramics",
+      "synonyms": [
+        "R A K Ceramics",
+        "RAK Ceramics"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "refin",
+      "canonical": "Refin",
+      "synonyms": [
+        "Refin"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "rehau",
+      "canonical": "Rehau",
+      "synonyms": [
+        "Rehau"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "rex",
+      "canonical": "Rex",
+      "synonyms": [
+        "Rex"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "ritmonio",
+      "canonical": "Ritmonio",
+      "synonyms": [
+        "Ritmonio"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "roca",
+      "canonical": "Roca",
+      "synonyms": [
+        "Roca"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "rockfon",
+      "canonical": "Rockfon",
+      "synonyms": [
+        "Rockfon"
+      ],
+      "categories": [
+        "controsoffitti"
+      ]
+    },
+    {
+      "id": "rockwoolitalia",
+      "canonical": "Rockwool Italia",
+      "synonyms": [
+        "Rockwool Italia"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "rofix",
+      "canonical": "Röfix",
+      "synonyms": [
+        "Rofix",
+        "Röfix"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "rubinetteriagiulini",
+      "canonical": "Rubinetteria Giulini",
+      "synonyms": [
+        "Rubinetteria Giulini"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "rubinetteriefrattini",
+      "canonical": "Rubinetterie Frattini",
+      "synonyms": [
+        "Rubinetterie Frattini"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "rubinetterietreemme",
+      "canonical": "Rubinetterie Treemme",
+      "synonyms": [
+        "Rubinetterie Treemme"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "saintgobainecophon",
+      "canonical": "Saint-Gobain ECOPHON",
+      "synonyms": [
+        "Saint Gobain E C O P H O N",
+        "Saint Gobain ECOPHON",
+        "Saint-Gobain ECOPHON",
+        "SaintGobain ECOPHON"
+      ],
+      "categories": [
+        "controsoffitti",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "saintgobaingyproc",
+      "canonical": "Saint-Gobain Gyproc",
+      "synonyms": [
+        "Saint Gobain Gyproc",
+        "Saint-Gobain Gyproc",
+        "SaintGobain Gyproc"
+      ],
+      "categories": [
+        "controsoffitti",
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "saintgobainisover",
+      "canonical": "Saint-Gobain ISOVER",
+      "synonyms": [
+        "Saint Gobain I S O V E R",
+        "Saint Gobain ISOVER",
+        "Saint-Gobain ISOVER",
+        "SaintGobain ISOVER"
+      ],
+      "categories": [
+        "opere_di_rivestimento",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "saintgobainweber",
+      "canonical": "Saint-Gobain Weber",
+      "synonyms": [
+        "Saint Gobain Weber",
+        "Saint-Gobain Weber",
+        "SaintGobain Weber"
+      ],
+      "categories": [
+        "opere_di_rivestimento",
+        "trasversale"
+      ]
+    },
+    {
+      "id": "sanmarco",
+      "canonical": "San Marco",
+      "synonyms": [
+        "San Marco"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "scarabeoceramiche",
+      "canonical": "Scarabeo Ceramiche",
+      "synonyms": [
+        "Scarabeo Ceramiche"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "schuco",
+      "canonical": "Schüco",
+      "synonyms": [
+        "Schuco",
+        "Schüco"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "schulzitalia",
+      "canonical": "Schulz Italia",
+      "synonyms": [
+        "Schulz Italia"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "scrigno",
+      "canonical": "Scrigno",
+      "synonyms": [
+        "Scrigno"
+      ],
+      "categories": [
+        "opere_da_falegname"
+      ]
+    },
+    {
+      "id": "sikkens",
+      "canonical": "Sikkens",
+      "synonyms": [
+        "Sikkens"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "siniat",
+      "canonical": "Siniat",
+      "synonyms": [
+        "Siniat"
+      ],
+      "categories": [
+        "opere_da_cartongessista"
+      ]
+    },
+    {
+      "id": "stiferite",
+      "canonical": "Stiferite",
+      "synonyms": [
+        "Stiferite"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "tradimalt",
+      "canonical": "Tradimalt",
+      "synonyms": [
+        "Tradimalt"
+      ],
+      "categories": [
+        "opere_di_rivestimento"
+      ]
+    },
+    {
+      "id": "veka",
+      "canonical": "Veka",
+      "synonyms": [
+        "Veka"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "vetrexitalia",
+      "canonical": "Vetrex Italia",
+      "synonyms": [
+        "Vetrex Italia"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "villeroyboch",
+      "canonical": "Villeroy & Boch",
+      "synonyms": [
+        "Villeroy & Boch",
+        "Villeroy and Boch",
+        "Villeroy e Boch"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "vitrabathrooms",
+      "canonical": "VitrA Bathrooms",
+      "synonyms": [
+        "Vitr A Bathrooms",
+        "VitrA Bathrooms"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "wnd",
+      "canonical": "WnD",
+      "synonyms": [
+        "Wn D",
+        "WnD"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "zucchetti",
+      "canonical": "Zucchetti",
+      "synonyms": [
+        "Zucchetti"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    }
+  ]
+}
