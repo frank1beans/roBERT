@@ -61,11 +61,18 @@ def _convert_unitless_value(value: float, raw: str, sequence_max: float) -> floa
 
 
 def _convert(values: Sequence[str], units: Sequence[str | None], fallback_unit: str, explicit_unit: bool) -> Tuple[float, ...]:
-    numeric_values = [parse_number_it(raw_value) for raw_value in values]
+    # Filter out values without digits before parsing
+    filtered_pairs = [(v, u) for v, u in zip_longest(values, units) if any(ch.isdigit() for ch in v)]
+    if not filtered_pairs:
+        raise ValueError("No valid numeric values found")
+    filtered_values = [v for v, _ in filtered_pairs]
+    filtered_units = [u for _, u in filtered_pairs]
+
+    numeric_values = [parse_number_it(raw_value) for raw_value in filtered_values]
     sequence_max = max(numeric_values) if numeric_values else 0.0
-    units_list = list(units) + [None] * (len(values) - len(units))
+    units_list = list(filtered_units) + [None] * (len(filtered_values) - len(filtered_units))
     results: List[float] = []
-    for numeric, raw_unit, raw_value in zip(numeric_values, units_list, values):
+    for numeric, raw_unit, raw_value in zip(numeric_values, units_list, filtered_values):
         if raw_unit:
             normalized = normalize_unit(raw_unit) or raw_unit
             multiplier = _UNIT_FACTORS.get(normalized)
@@ -102,7 +109,10 @@ def _iter_cross(text: str) -> Iterator[DimensionMatch]:
             units.append(groups.get("third_unit"))
         base_unit = _fallback_unit(groups.get("global_unit"), *units)
         explicit_unit = bool(groups.get("global_unit")) or any(units)
-        converted = _convert(values, units, base_unit, explicit_unit)
+        try:
+            converted = _convert(values, units, base_unit, explicit_unit)
+        except ValueError:
+            continue
         yield DimensionMatch(values_mm=converted, raw=match.group(0), span=(match.start(), match.end()))
 
 
@@ -130,7 +140,10 @@ def _iter_labelled(text: str) -> Iterator[DimensionMatch]:
             continue
         base_unit = _fallback_unit(None, *units)
         explicit_unit = any(units)
-        converted = _convert(values, units, base_unit, explicit_unit)
+        try:
+            converted = _convert(values, units, base_unit, explicit_unit)
+        except ValueError:
+            continue
         yield DimensionMatch(values_mm=converted, raw=raw, span=(match.start(), match.end()))
 
 
