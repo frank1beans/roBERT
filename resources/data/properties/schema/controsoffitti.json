@@ -55,6 +55,22 @@
             }
           ]
         },
+        "colore_ral": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 40
+                }
+              }
+            }
+          ]
+        },
         "spessore_pannello_mm": {
           "allOf": [
             {

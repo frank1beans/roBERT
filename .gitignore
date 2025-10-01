@@ -19,3 +19,20 @@ outputs/
 commands.txt
 .claude/settings.local.json
 .claude/
+.pytest_cache
+.env
+# Environment files
+.env
+.env.*
+*.env
+
+# LLM cache
+.llm_cache/
+
+# Temporary files
+temp_*.jsonl
+batch_*.jsonl
+
+# Outputs (keep folder but ignore content)
+outputs/*.jsonl
+!outputs/.gitkeep

@@ -7,7 +7,8 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence
 
 from pydantic import BaseModel, Field
 
-from .fuse import Candidate, Fuser
+from .fuse import Candidate, CandidateSource, Fuser
+from .fusion_policy import FusionThresholds, fuse_property_candidates
 from .matchers.brands import BrandMatcher
 from .matchers.materials import MaterialMatcher
 from .matchers.norms import StandardMatcher
@@ -29,6 +30,64 @@ LOGGER = logging.getLogger(__name__)
 
 __all__ = ["Orchestrator", "OrchestratorConfig"]
 
+PROPERTY_EXTRA_HINTS = {
+    "trasmittanza_termica": "Cerca valori di trasmittanza (Uw, Uf, Ug) espressi in W/m²K.",
+    "isolamento_acustico_db": "Cerca valori di isolamento acustico (Rw, Ra) espressi in dB.",
+}
+
+_SKIRTING_PATTERN = re.compile(
+    r"(?P<label>h|altezza)[\s\.:=]*?(?P<value>\d+(?:[\.,]\d+)?)\s*(?P<unit>mm|cm|m)",
+    re.IGNORECASE,
+)
+
+_WIDTH_RANGE_PATTERN = re.compile(
+    r"(?P<v1>\d+(?:[\.,]\d+)?)\s*(?:÷|-|–)\s*(?P<v2>\d+(?:[\.,]\d+)?)(?:\s*(?P<unit>mm|cm|m))?\s*(?:di\s+)?larghezza",
+    re.IGNORECASE,
+)
+
+_LENGTH_RANGE_PATTERN = re.compile(
+    r"(?P<v1>\d+(?:[\.,]\d+)?)\s*(?:÷|-|–)\s*(?P<v2>\d+(?:[\.,]\d+)?)(?:\s*(?P<unit>mm|cm|m))?\s*(?:di\s+)?lunghezza",
+    re.IGNORECASE,
+)
+
+_TIPOLOGIA_KEYWORDS = [
+    (
+        "ignifuga",
+        [r"ignifug", r"gkfi", r"fire", r"rei\s*\d+", r"classe\s*ei", r"ei\s*\d+"],
+    ),
+    (
+        "idrofuga",
+        [r"idrolastra", r"idrof", r"idrorep", r"gki", r"lastra\s+hidro"],
+    ),
+    (
+        "acustica",
+        [
+            r"4akustik",
+            r"lastra[^\n]{0,40}acust",
+            r"lastra[^\n]{0,40}fono",
+            r"pannell[^\n]{0,40}acust",
+            r"fireboard\s+akust",
+        ],
+    ),
+    (
+        "fibrogesso",
+        [r"fibrogesso", r"fibro-?gesso", r"fermacell", r"fibre\s+di\s+gesso"],
+    ),
+    (
+        "accoppiata_isolante",
+        [r"accoppiat", r"lastra\s+coibentata", r"lastra\s+isolante", r"sandwich"],
+    ),
+]
+
+_TOTAL_THICKNESS_PATTERN = re.compile(
+    r"sp(?:essore)?\s*(?:totale|complessivo|tot\.?)?\s*[:=]?\s*(\d+(?:[\.,]\d+)?)\s*(mm|cm|m)",
+    re.IGNORECASE,
+)
+
+_ISOLANTE_PATTERN = re.compile(r"isolant|lana\s+minerale|naturboard|mineral\s+wool", re.IGNORECASE)
+
+_ORDITURA_PATTERN = re.compile(r"orditura[^\n]{0,40}?(\d+(?:[\.,]\d+)?)\s*(mm|cm|m)", re.IGNORECASE)
+
 
 class OrchestratorConfig(BaseModel):
     """Configuration for the property extraction orchestrator."""
@@ -37,6 +96,10 @@ class OrchestratorConfig(BaseModel):
     enable_matcher: bool = True
     enable_llm: bool = True
     registry_path: str = "data/properties/registry.json"
+    use_qa: bool = True
+    fusion_mode: str = "fuse"
+    qa_null_threshold: float = 0.25
+    qa_confident_threshold: float = 0.60
 
 
 class Orchestrator:
@@ -54,7 +117,11 @@ class Orchestrator:
         self._material_matcher = MaterialMatcher()
         self._standard_matcher = StandardMatcher()
 
-    def extract_document(self, doc: Dict[str, Any]) -> Dict[str, Any]:
+    def extract_document(
+        self,
+        doc: Dict[str, Any],
+        qa_predictions: Optional[Dict[str, Dict[str, Any]]] = None,
+    ) -> Dict[str, Any]:
         """Extract properties for a single document."""
 
         text_id = self._resolve_text_id(doc)
@@ -75,10 +142,20 @@ class Orchestrator:
         property_specs = {prop.id: prop for prop in category.properties}
         schema_properties = self._resolve_schema_properties(schema)
 
+        qa_map = qa_predictions or doc.get("_qa_predictions") or {}
+
         properties_payload: Dict[str, Dict[str, Any]] = {}
         for prop_id, prop_schema in schema_properties.items():
             spec = property_specs.get(prop_id)
-            result = self._extract_property(text, category_id, prop_id, prop_schema, spec)
+            qa_candidate = qa_map.get(prop_id) if self._cfg.use_qa else None
+            result = self._extract_property(
+                text,
+                category_id,
+                prop_id,
+                prop_schema,
+                spec,
+                qa_candidate,
+            )
             properties_payload[prop_id] = result
 
         validation_input = {
@@ -114,6 +191,11 @@ class Orchestrator:
             )
             result.setdefault("errors", []).append(issue.message)
 
+        for prop_id, payload in validation.normalized.items():
+            target = properties_payload.get(prop_id)
+            if target is not None:
+                target["normalized"] = payload.value
+
         confidence_values = [
             float(payload.get("confidence") or 0.0)
             for payload in properties_payload.values()
@@ -131,8 +213,9 @@ class Orchestrator:
             },
         )
 
+        base_doc = {k: v for k, v in doc.items() if k != "_qa_predictions"}
         result = {
-            **doc,  # Include all original fields
+            **base_doc,  # Include all original fields
             "text_id": text_id,
             "categoria": category_id,
             "properties": properties_payload,
@@ -158,53 +241,235 @@ class Orchestrator:
         prop: str,
         prop_schema: Dict[str, Any],
         prop_spec: Optional[PropertySpec] = None,
+        qa_prediction: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         allowed_sources = self._determine_sources(prop_spec)
-        candidates: List[Candidate] = []
+        rule_candidates: List[Candidate] = []
 
         if "parser" in allowed_sources:
-            candidates.extend(self._parser_candidates(prop, prop_spec, text))
+            rule_candidates.extend(self._parser_candidates(prop, prop_spec, text))
 
         if self._cfg.enable_matcher and "matcher" in allowed_sources:
-            candidates.extend(self._matcher_candidates(cat, prop, text))
+            rule_candidates.extend(self._matcher_candidates(cat, prop, text))
 
         if self._llm and "qa_llm" in allowed_sources:
-            llm_candidate = self._llm_candidate(prop, text, prop_schema)
+            llm_candidate = self._llm_candidate(prop, text, prop_schema, prop_spec)
             if llm_candidate:
-                candidates.append(llm_candidate)
+                rule_candidates.append(llm_candidate)
 
         validator = self._build_validator(prop_spec)
-        fused = self._fuse.fuse(candidates, validator)
+        rules_fused = self._fuse.fuse(rule_candidates, validator)
+        rules_candidate = self._candidate_from_rules(rules_fused)
+        qa_candidate = self._candidate_from_qa(qa_prediction)
 
-        span = self._normalize_span(fused.get("span"))
-        unit = fused.get("unit")
-        errors = list(fused.get("errors", []))
-        confidence = float(fused.get("confidence") or 0.0)
-        source = fused.get("source")
-        value = fused.get("value")
-        raw = fused.get("raw")
+        selected_candidate, reason = fuse_property_candidates(
+            rules_candidate,
+            qa_candidate,
+            fusion_mode=self._cfg.fusion_mode,
+            thresholds=FusionThresholds(
+                qa_min=self._cfg.qa_null_threshold,
+                qa_confident=self._cfg.qa_confident_threshold,
+            ),
+        )
 
-        result: Dict[str, Any] = {
-            "value": value,
-            "source": source,
-            "raw": raw,
-            "span": span,
-            "confidence": confidence,
-            "unit": unit,
-            "errors": errors,
-        }
+        if selected_candidate is None:
+            selected_candidate = {
+                "value": None,
+                "source": None,
+                "raw": None,
+                "span": None,
+                "confidence": 0.0,
+                "unit": None,
+                "errors": ["no_valid_candidate"],
+            }
+        else:
+            span = self._normalize_span(selected_candidate.get("span"))
+            selected_candidate["span"] = span
+            if span:
+                selected_candidate["start"], selected_candidate["end"] = span
+            else:
+                selected_candidate.setdefault("start", None)
+                selected_candidate.setdefault("end", None)
+            selected_candidate.setdefault("errors", [])
+            is_valid, messages = validator(selected_candidate)
+            if not is_valid and messages:
+                selected_candidate["errors"].extend(messages)
+
+        selected_candidate.setdefault("start", None)
+        selected_candidate.setdefault("end", None)
+        selected_candidate.setdefault("normalized", None)
+        selected_candidate["confidence"] = float(selected_candidate.get("confidence") or 0.0)
+        if selected_candidate.get("source") is None:
+            if qa_candidate and selected_candidate is qa_candidate:
+                selected_candidate["source"] = "qa"
+            elif rules_candidate and selected_candidate is rules_candidate:
+                selected_candidate["source"] = rules_candidate.get("source", "rules")
+            else:
+                selected_candidate["source"] = None
 
         LOGGER.info(
             "property_fused",
             extra={
                 "category": cat,
                 "property": prop,
-                "candidates": candidates,
-                "selected": result,
+                "reason": reason,
+                "qa": qa_prediction,
+                "selected": selected_candidate,
             },
         )
 
-        return result
+        return selected_candidate
+
+    def _candidate_from_rules(self, fused: Candidate) -> Optional[Candidate]:
+        value = fused.get("value")
+        span = self._normalize_span(fused.get("span")) if fused.get("span") else None
+        if value is None and span is None:
+            return None
+        source = fused.get("source")
+        if isinstance(source, CandidateSource):
+            source_value = source.value
+        elif source == "fallback":
+            source_value = CandidateSource.MATCHER_FALLBACK.value
+        else:
+            source_value = source or "rules"
+        candidate = Candidate(
+            value=value,
+            source=source_value,
+            raw=fused.get("raw"),
+            span=span,
+            confidence=float(fused.get("confidence") or 0.0),
+            unit=fused.get("unit"),
+            errors=list(fused.get("errors", [])),
+        )
+        if span:
+            candidate["start"], candidate["end"] = span
+        else:
+            candidate["start"] = candidate["end"] = None
+        return candidate
+
+    def _candidate_from_qa(self, qa_prediction: Optional[Dict[str, Any]]) -> Optional[Candidate]:
+        if not qa_prediction:
+            return None
+        start = qa_prediction.get("start")
+        end = qa_prediction.get("end")
+        if start is None or end is None:
+            return None
+        value = qa_prediction.get("span")
+        candidate = Candidate(
+            value=value,
+            source="qa",
+            raw=value,
+            span=[int(start), int(end)],
+            confidence=float(qa_prediction.get("score", 0.0)),
+            unit=None,
+            errors=[],
+        )
+        candidate["start"], candidate["end"] = int(start), int(end)
+        return candidate
+
+    def _skirting_format_candidate(self, text: str) -> Optional[Candidate]:
+        match = _SKIRTING_PATTERN.search(text)
+        if not match:
+            return None
+        raw_value = match.group("value")
+        unit = match.group("unit").lower()
+        start, end = match.span()
+
+        if unit == "m":
+            value_cm = float(raw_value.replace(",", ".")) * 100
+            formatted = f"{value_cm:.0f} cm"
+        elif unit == "cm":
+            formatted = f"{raw_value.replace('.', ',')} cm" if "," in raw_value else f"{raw_value} cm"
+        else:  # mm
+            formatted = f"{raw_value} mm"
+
+        return Candidate(
+            value=formatted,
+            source="parser",
+            raw=text[start:end],
+            span=[start, end],
+            confidence=0.92,
+            unit=None,
+            errors=[],
+        )
+
+    def _format_range_candidate(self, text: str) -> Optional[Candidate]:
+        width_match = _WIDTH_RANGE_PATTERN.search(text)
+        length_match = _LENGTH_RANGE_PATTERN.search(text)
+        if not width_match and not length_match:
+            return None
+
+        def _format_part(match_obj):
+            if not match_obj:
+                return None, None
+            v1 = match_obj.group("v1").replace(",", ".")
+            v2 = match_obj.group("v2").replace(",", ".")
+            unit = match_obj.group("unit") or "cm"
+            def _fmt(value: str) -> str:
+                return value.rstrip("0").rstrip(".") if "." in value else value
+            return f"{_fmt(v1)}-{_fmt(v2)}", unit
+
+        width_str, width_unit = _format_part(width_match)
+        length_str, length_unit = _format_part(length_match)
+        if not width_str and not length_str:
+            return None
+
+        unit = width_unit or length_unit or "cm"
+        if width_str and length_str:
+            value = f"{width_str}x{length_str} {unit}"
+            start = width_match.start()
+            end = length_match.end()
+        elif width_str:
+            value = f"{width_str} {unit}"
+            start, end = width_match.span()
+        else:
+            value = f"{length_str} {unit}"
+            start, end = length_match.span()
+
+        return Candidate(
+            value=value,
+            source="parser",
+            raw=text[start:end],
+            span=[start, end],
+            confidence=0.88,
+            unit=None,
+            errors=[],
+        )
+
+    def _tipologia_candidate(self, text: str) -> Optional[Candidate]:
+        for tipologia, patterns in _TIPOLOGIA_KEYWORDS:
+            for pattern in patterns:
+                match = re.search(pattern, text, re.IGNORECASE)
+                if match:
+                    span = [match.start(), match.end()]
+                    candidate = Candidate(
+                        value=tipologia,
+                        source="matcher",
+                        raw=text[span[0] : span[1]],
+                        span=span,
+                        confidence=0.75,
+                        unit=None,
+                        errors=[],
+                    )
+                    candidate["start"], candidate["end"] = span
+                    return candidate
+
+        match = re.search(r"\b(gkb|standard)\b", text, re.IGNORECASE)
+        if match:
+            span = [match.start(), match.end()]
+            candidate = Candidate(
+                value="standard",
+                source="matcher",
+                raw=text[span[0] : span[1]],
+                span=span,
+                confidence=0.6,
+                unit=None,
+                errors=[],
+            )
+            candidate["start"], candidate["end"] = span
+            return candidate
+
+        return None
 
     def _determine_sources(self, spec: Optional[PropertySpec]) -> Sequence[str]:
         if spec and spec.sources:
@@ -346,6 +611,15 @@ class Orchestrator:
         results: List[Candidate] = []
         lowered = prop_id.lower()
 
+        if "formato" in lowered:
+            if re.search(r"zoccol|battiscop", text, re.IGNORECASE):
+                skirting_candidate = self._skirting_format_candidate(text)
+                if skirting_candidate:
+                    results.append(skirting_candidate)
+            range_candidate = self._format_range_candidate(text)
+            if range_candidate:
+                results.append(range_candidate)
+
         if any(token in lowered for token in ("dimension", "formato")):
             for match in dimensions.parse_dimensions(text):
                 values = match.values_mm
@@ -360,9 +634,9 @@ class Orchestrator:
                     else:
                         selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
-                    # For width: second value in 2D/3D, unless first is very large (door format)
+                    # When only two dimensions are present (WxH), assume the first token is the width
                     if len(values) == 2:
-                        selected = values[1]
+                        selected = values[0]
                     elif len(values) >= 3:
                         # Heuristic for three dimensions: prefer the most plausible width
                         # among the remaining values when the first value resembles a height
@@ -377,10 +651,9 @@ class Orchestrator:
                     else:
                         selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
-                    # For height: only extract if we have 3 dimensions; skip if only 2 (likely WxL not WxH)
+                    # For height: in two-value tuples interpret the second token as height (WxH)
                     if len(values) == 2:
-                        # Skip 2D dimensions for height - likely length x width, not width x height
-                        selected = None
+                        selected = values[1]
                     elif len(values) >= 3:
                         # If one value is significantly larger (e.g., door height 2100mm vs 800mm width),
                         # that's likely the height
@@ -400,18 +673,19 @@ class Orchestrator:
                         selected = None
                 else:
                     # Generic dimension property (e.g., "formato")
-                    # Return as formatted string for schema compatibility
                     if "formato" in lowered:
-                        # Format as string: "40x40 mm" or "600x600x20 mm"
-                        # Convert to cm if values are large (>= 100mm)
-                        if all(v >= 100 for v in values):
-                            # Convert to cm for readability
+                        if re.search(r"zoccol|battiscop", text, re.IGNORECASE) and values:
+                            height_mm = max(values)
+                            if height_mm >= 100:
+                                selected = f"{int(height_mm / 10)} cm"
+                            else:
+                                selected = f"{int(height_mm)} mm"
+                        elif all(v >= 100 for v in values):
                             cm_values = [int(v / 10) for v in values]
                             selected = "x".join(str(v) for v in cm_values) + " cm"
                         else:
                             selected = "x".join(str(int(v)) for v in values) + " mm"
                     else:
-                        # Other dimension properties: return as structured dict
                         keys = ["width_mm", "height_mm", "depth_mm"]
                         selected = {key: values[idx] for idx, key in enumerate(keys) if idx < len(values)}
 
@@ -451,12 +725,14 @@ class Orchestrator:
                 for match in numbers.extract_numbers(text):
                     # Skip numbers that are part of product codes (preceded by letters)
                     if match.start > 0:
-                        prev_chars = text[max(0, match.start - 3):match.start]
+                        prev_chars = text[max(0, match.start - 8):match.start]
                         # Skip if immediately preceded by letter(s) (e.g., "PS01", "A12")
                         if prev_chars and prev_chars[-1].isalpha():
                             continue
                         # Skip if looks like a code pattern (letters + numbers)
                         if re.search(r'[A-Z]{1,3}\d*$', prev_chars, re.IGNORECASE):
+                            continue
+                        if re.search(r'(ral|uni)\s*$', prev_chars, re.IGNORECASE):
                             continue
 
                     results.append(
@@ -643,6 +919,10 @@ class Orchestrator:
                         errors=[],
                     )
                 )
+        if lowered == "tipologia_lastra":
+            candidate = self._tipologia_candidate(text)
+            if candidate:
+                results.append(candidate)
         if any(token in lowered for token in ("norma", "standard")):
             matches = list(self._standard_matcher.find(text, category=category))
             for match in matches:
@@ -659,7 +939,13 @@ class Orchestrator:
                 )
         return results
 
-    def _llm_candidate(self, prop_id: str, text: str, prop_schema: Dict[str, Any]) -> Optional[Candidate]:
+    def _llm_candidate(
+        self,
+        prop_id: str,
+        text: str,
+        prop_schema: Dict[str, Any],
+        prop_spec: Optional[PropertySpec],
+    ) -> Optional[Candidate]:
         value_schema = self._extract_value_schema(prop_schema)
         llm_schema = {
             "type": "object",
@@ -670,11 +956,43 @@ class Orchestrator:
                     "minimum": 0.0,
                     "maximum": 1.0,
                 },
+                "raw": {"type": ["string", "null"]},
+                "span": {
+                    "type": ["array", "null"],
+                    "items": {"type": "integer"},
+                    "minItems": 2,
+                    "maxItems": 2,
+                },
+                "unit": {"type": ["string", "null"]},
+                "errors": {
+                    "type": ["array", "null"],
+                    "items": {"type": "string"},
+                },
             },
             "required": ["value"],
             "additionalProperties": False,
         }
-        question = f"Estrai il valore della proprietà '{prop_id}'."
+        display_name = prop_spec.title if prop_spec and getattr(prop_spec, 'title', None) else prop_id
+        hints: list[str] = []
+        if prop_spec and getattr(prop_spec, 'description', None):
+            hints.append(prop_spec.description.strip())
+        if prop_spec and getattr(prop_spec, 'aliases', None):
+            alias_text = ", ".join(prop_spec.aliases)
+            hints.append(f"Nel testo potrebbe essere indicata come: {alias_text}.")
+        extra_hint = PROPERTY_EXTRA_HINTS.get(prop_id)
+        if extra_hint:
+            hints.append(extra_hint)
+        if prop_spec and prop_spec.enum:
+            choices = ", ".join(prop_spec.enum)
+            hints.append(f"Scegli esclusivamente tra: {choices}.")
+        if prop_spec and prop_spec.unit:
+            hints.append(
+                f"Se il valore è numerico restituiscilo in {prop_spec.unit} e imposta il campo 'unit' su {prop_spec.unit}."
+            )
+        question = f"Estrai il valore della proprietà '{display_name}'."
+        if hints:
+            question = question + " " + " ".join(hints)
+        question += " Se l'informazione non è presente e lo schema lo consente restituisci null."
         try:
             response = self._llm.ask(text, question, llm_schema)
         except Exception as exc:  # pragma: no cover - defensive
@@ -684,14 +1002,30 @@ class Orchestrator:
         confidence = response.get("confidence")
         confidence_value = float(confidence) if isinstance(confidence, (int, float)) else 0.60
         span = response.get("span")
+        unit = response.get("unit")
+        if isinstance(unit, str):
+            unit = unit.strip() or None
+        if prop_spec and prop_spec.unit:
+            expected_unit = prop_spec.unit
+            if isinstance(value, (int, float)) and (not unit or unit.lower() != expected_unit.lower()):
+                unit = expected_unit
+        errors_raw = response.get("errors")
+        if errors_raw is None:
+            errors_list = []
+        elif isinstance(errors_raw, list):
+            errors_list = list(errors_raw)
+        else:
+            errors_list = [str(errors_raw)]
+        if unit and "unit_missing" in errors_list:
+            errors_list = [err for err in errors_list if err != "unit_missing"]
         candidate: Candidate = Candidate(
             value=value,
             source="qa_llm",
             raw=response.get("raw"),
             span=span if isinstance(span, (list, tuple)) else None,
             confidence=confidence_value,
-            unit=response.get("unit"),
-            errors=list(response.get("errors", [])) if isinstance(response.get("errors"), list) else [],
+            unit=unit,
+            errors=errors_list,
         )
         return candidate
 

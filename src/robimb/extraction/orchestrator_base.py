@@ -11,6 +11,7 @@ the same core behaviour while customising the execution model.
 from __future__ import annotations
 
 import logging
+import re
 from abc import ABC
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -28,6 +29,59 @@ LOGGER = logging.getLogger(__name__)
 
 __all__ = ["OrchestratorBase", "OrchestratorConfig"]
 
+_SKIRTING_PATTERN = re.compile(
+    r"(?P<label>h|altezza)[\s\.:=]*?(?P<value>\d+(?:[\.,]\d+)?)\s*(?P<unit>mm|cm|m)",
+    re.IGNORECASE,
+)
+
+_WIDTH_RANGE_PATTERN = re.compile(
+    r"(?P<v1>\d+(?:[\.,]\d+)?)\s*(?:÷|-|–)\s*(?P<v2>\d+(?:[\.,]\d+)?)(?:\s*(?P<unit>mm|cm|m))?\s*(?:di\s+)?larghezza",
+    re.IGNORECASE,
+)
+
+_LENGTH_RANGE_PATTERN = re.compile(
+    r"(?P<v1>\d+(?:[\.,]\d+)?)\s*(?:÷|-|–)\s*(?P<v2>\d+(?:[\.,]\d+)?)(?:\s*(?P<unit>mm|cm|m))?\s*(?:di\s+)?lunghezza",
+    re.IGNORECASE,
+)
+
+_TIPOLOGIA_KEYWORDS = [
+    (
+        "ignifuga",
+        [r"ignifug", r"gkfi", r"fire", r"rei\s*\d+", r"classe\s*ei", r"ei\s*\d+"],
+    ),
+    (
+        "idrofuga",
+        [r"idrolastra", r"idrof", r"idrorep", r"gki", r"lastra\s+hidro"],
+    ),
+    (
+        "acustica",
+        [
+            r"4akustik",
+            r"lastra[^\n]{0,40}acust",
+            r"lastra[^\n]{0,40}fono",
+            r"pannell[^\n]{0,40}acust",
+            r"fireboard\s+akust",
+        ],
+    ),
+    (
+        "fibrogesso",
+        [r"fibrogesso", r"fibro-?gesso", r"fermacell", r"fibre\s+di\s+gesso"],
+    ),
+    (
+        "accoppiata_isolante",
+        [r"accoppiat", r"lastra\s+coibentata", r"lastra\s+isolante", r"sandwich"],
+    ),
+]
+
+_TOTAL_THICKNESS_PATTERN = re.compile(
+    r"sp(?:essore)?\s*(?:totale|complessivo|tot\.?)?\s*[:=]?\s*(\d+(?:[\.,]\d+)?)\s*(mm|cm|m)",
+    re.IGNORECASE,
+)
+
+_ISOLANTE_PATTERN = re.compile(r"isolant|lana\s+minerale|naturboard|mineral\s+wool", re.IGNORECASE)
+
+_ORDITURA_PATTERN = re.compile(r"orditura[^\n]{0,40}?(\d+(?:[\.,]\d+)?)\s*(mm|cm|m)", re.IGNORECASE)
+
 
 class OrchestratorConfig(BaseModel):
     """Configuration for the property extraction orchestrators."""
@@ -36,6 +90,10 @@ class OrchestratorConfig(BaseModel):
     enable_matcher: bool = True
     enable_llm: bool = True
     registry_path: str = "data/properties/registry.json"
+    use_qa: bool = True
+    fusion_mode: str = "fuse"
+    qa_null_threshold: float = 0.25
+    qa_confident_threshold: float = 0.60
 
 
 class OrchestratorBase(ABC):
@@ -123,7 +181,7 @@ class OrchestratorBase(ABC):
                     "confidence": 0.0,
                     "errors": [],
                 },
-            )
+                    )
             result.setdefault("errors", []).append(issue.message)
         return validation
 
@@ -375,14 +433,32 @@ class OrchestratorBase(ABC):
         from .parsers import dimensions, numbers
         from .parsers.colors import parse_ral_colors
         from .parsers.standards import parse_standards
+        from .parsers.thickness import parse_thickness
+        from .parsers.thermal import parse_thermal_transmittance
+        from .parsers.sound_insulation import parse_sound_insulation
 
         results: List[Candidate] = []
         lowered = prop_id.lower()
+
+        if "formato" in lowered:
+            if re.search(r"zoccol|battiscop", text, re.IGNORECASE):
+                candidate = self._skirting_format_candidate(text)
+                if candidate:
+                    results.append(candidate)
+            range_candidate = self._format_range_candidate(text)
+            if range_candidate:
+                results.append(range_candidate)
 
         if any(token in lowered for token in ("dimension", "formato")):
             for match in dimensions.parse_dimensions(text):
                 values = match.values_mm
                 if not values:
+                    continue
+
+                max_dimension = max(values)
+                start, end = match.span
+                context_window = text[max(0, start - 40): min(len(text), end + 40)].lower()
+                if max_dimension <= 150 and any(keyword in context_window for keyword in _SECTION_PROFILE_KEYWORDS):
                     continue
 
                 if "lunghezza" in lowered or "length" in lowered:
@@ -397,9 +473,9 @@ class OrchestratorBase(ABC):
                         first = values[0]
                         if first > 1500:
                             candidates = [v for v in values[1:] if v <= 1500]
-                            selected = max(candidates) if candidates else first
+                            selected = max(candidates) if candidates else values[1]
                         else:
-                            selected = first
+                            selected = values[1]
                     else:
                         selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
@@ -420,9 +496,27 @@ class OrchestratorBase(ABC):
                     else:
                         selected = None
                 else:
-                    keys = ["width_mm", "height_mm", "depth_mm"]
-                    selected = {key: values[idx] for idx, key in enumerate(keys) if idx < len(values)}
+                    if "formato" in lowered:
+                        if re.search(r"zoccol|battiscop", text, re.IGNORECASE) and values:
+                            height_mm = max(values)
+                            if height_mm >= 100:
+                                selected = f"{int(height_mm / 10)} cm"
+                            else:
+                                selected = f"{int(height_mm)} mm"
+                        elif all(v >= 100 for v in values):
+                            cm_values = [int(v / 10) for v in values]
+                            selected = "x".join(str(v) for v in cm_values) + " cm"
+                        else:
+                            selected = "x".join(str(int(v)) for v in values) + " mm"
+                    else:
+                        keys = ["width_mm", "height_mm", "depth_mm"]
+                        selected = {key: values[idx] for idx, key in enumerate(keys) if idx < len(values)}
 
+                if isinstance(selected, (int, float)):
+                    if lowered == "dimensione_larghezza" and selected < 150:
+                        continue
+                    if lowered == "dimensione_altezza" and selected < 150:
+                        continue
                 if selected is None:
                     continue
                 results.append(
@@ -438,20 +532,126 @@ class OrchestratorBase(ABC):
                 )
 
         elif any(token in lowered for token in ("spessore", "spessori")):
-            for match in numbers.extract_numbers(text):
+            labeled_found = False
+            for match in parse_thickness(text):
+                results.append(
+                    Candidate(
+                        value=match.value_mm,
+                        source="parser",
+                        raw=match.raw,
+                        span=match.span,
+                        confidence=0.92,
+                        unit="mm",
+                        errors=[],
+                    )
+                )
+                labeled_found = True
+
+            if not labeled_found:
+                for match in numbers.extract_numbers(text):
+                    if match.start > 0:
+                        prev_chars = text[max(0, match.start - 8):match.start]
+                        if prev_chars and prev_chars[-1].isalpha():
+                            continue
+                        if re.search(r'[A-Z]{1,3}\d*$', prev_chars, re.IGNORECASE):
+                            continue
+                        if re.search(r'(ral|uni)\s*$', prev_chars, re.IGNORECASE):
+                            continue
+
+                    results.append(
+                        Candidate(
+                            value=match.value,
+                            source="parser",
+                            raw=match.raw,
+                            span=(match.start, match.end),
+                            confidence=0.70,
+                            unit="mm",
+                            errors=[],
+                        )
+                    )
+
+
+        if lowered.startswith("dimensione_") and not any(c.get("source") == "parser" and c.get("unit") == "mm" for c in results):
+            special = re.search(r'dim\.?\s*(\d+)(?:\([^\)]*\))?\s*x\s*(\d+)(?:\s*x\s*(\d+))?', text, re.IGNORECASE)
+            if special:
+                def _to_mm(value: str | None) -> float | None:
+                    if not value:
+                        return None
+                    try:
+                        return float(value.replace(',', '.')) * 10
+                    except ValueError:
+                        return None
+
+                width_cm = _to_mm(special.group(1))
+                height_cm = _to_mm(special.group(2))
+                depth_cm = _to_mm(special.group(3))
+                if lowered == "dimensione_larghezza" and width_cm is not None and width_cm >= 150:
+                    results.append(
+                        Candidate(
+                            value=width_cm,
+                            source="parser",
+                            raw=special.group(0),
+                            span=(special.start(), special.end()),
+                            confidence=0.85,
+                            unit="mm",
+                            errors=[],
+                        )
+                    )
+                if lowered == "dimensione_altezza" and height_cm is not None and height_cm >= 150:
+                    results.append(
+                        Candidate(
+                            value=height_cm,
+                            source="parser",
+                            raw=special.group(0),
+                            span=(special.start(), special.end()),
+                            confidence=0.85,
+                            unit="mm",
+                            errors=[],
+                        )
+                    )
+                if lowered == "dimensione_profondita" and depth_cm is not None:
+                    results.append(
+                        Candidate(
+                            value=depth_cm,
+                            source="parser",
+                            raw=special.group(0),
+                            span=(special.start(), special.end()),
+                            confidence=0.85,
+                            unit="mm",
+                            errors=[],
+                        )
+                    )
+
+
+        if "trasmittanza" in lowered or "uw" in lowered or "uf" in lowered or "ug" in lowered:
+            for match in parse_thermal_transmittance(text):
                 results.append(
                     Candidate(
                         value=match.value,
                         source="parser",
                         raw=match.raw,
-                        span=(match.start, match.end),
-                        confidence=0.90,
-                        unit="mm",
+                        span=match.span,
+                        confidence=0.9,
+                        unit="W/m²K",
                         errors=[],
                     )
                 )
 
-        elif "ral" in lowered or "colore" in lowered:
+        if "isolamento_acustico" in lowered or lowered.endswith("_acustico_db") or lowered.endswith("_db"):
+            for match in parse_sound_insulation(text):
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="parser",
+                        raw=match.raw,
+                        span=match.span,
+                        confidence=0.88,
+                        unit="dB",
+                        errors=[],
+                    )
+                )
+
+        if "ral" in lowered or "colore" in lowered:
             for match in parse_ral_colors(text):
                 raw = text[match.span[0] : match.span[1]]
                 results.append(
@@ -466,7 +666,7 @@ class OrchestratorBase(ABC):
                     )
                 )
 
-        elif "norma" in lowered or "standard" in lowered:
+        if "norma" in lowered or "standard" in lowered:
             for match in parse_standards(text):
                 raw = text[match.span[0] : match.span[1]]
                 label = match.prefix
@@ -486,7 +686,7 @@ class OrchestratorBase(ABC):
                     )
                 )
 
-        elif "db" in lowered or "decibel" in lowered:
+        if "db" in lowered or "decibel" in lowered:
             for match in numbers.extract_numbers(text):
                 window = text[match.end : min(len(text), match.end + 5)].lower()
                 previous = text[max(0, match.start - 5) : match.start].lower()
@@ -499,12 +699,116 @@ class OrchestratorBase(ABC):
                         raw=match.raw,
                         span=(match.start, match.end),
                         confidence=0.90,
-                        unit="db",
+                        unit="dB",
                         errors=[],
                     )
                 )
 
         return results
+
+    def _skirting_format_candidate(self, text: str) -> Optional[Candidate]:
+        match = _SKIRTING_PATTERN.search(text)
+        if not match:
+            return None
+        raw_value = match.group("value")
+        unit = match.group("unit").lower()
+        start, end = match.span()
+
+        value = raw_value.replace(",", ".")
+        if unit == "m":
+            formatted = f"{float(value) * 100:.0f} cm"
+        elif unit == "cm":
+            formatted = raw_value.replace(".", ",") + " cm" if "," in raw_value else f"{raw_value} cm"
+        else:
+            formatted = f"{raw_value} mm"
+
+        return Candidate(
+            value=formatted,
+            source="parser",
+            raw=text[start:end],
+            span=[start, end],
+            confidence=0.92,
+            unit=None,
+            errors=[],
+        )
+
+    def _format_range_candidate(self, text: str) -> Optional[Candidate]:
+        width_match = _WIDTH_RANGE_PATTERN.search(text)
+        length_match = _LENGTH_RANGE_PATTERN.search(text)
+        if not width_match and not length_match:
+            return None
+
+        def _format_part(match_obj):
+            if not match_obj:
+                return None, None
+            v1 = match_obj.group("v1").replace(",", ".")
+            v2 = match_obj.group("v2").replace(",", ".")
+            unit = match_obj.group("unit") or "cm"
+            def _fmt(value: str) -> str:
+                return value.rstrip("0").rstrip(".") if "." in value else value
+            return f"{_fmt(v1)}-{_fmt(v2)}", unit
+
+        width_str, width_unit = _format_part(width_match)
+        length_str, length_unit = _format_part(length_match)
+        if not width_str and not length_str:
+            return None
+
+        unit = width_unit or length_unit or "cm"
+        if width_str and length_str:
+            value = f"{width_str}x{length_str} {unit}"
+            start = width_match.start()
+            end = length_match.end()
+        elif width_str:
+            value = f"{width_str} {unit}"
+            start, end = width_match.span()
+        else:
+            value = f"{length_str} {unit}"
+            start, end = length_match.span()
+
+        return Candidate(
+            value=value,
+            source="parser",
+            raw=text[start:end],
+            span=[start, end],
+            confidence=0.88,
+            unit=None,
+            errors=[],
+        )
+
+    def _tipologia_candidate(self, text: str) -> Optional[Candidate]:
+        for tipologia, patterns in _TIPOLOGIA_KEYWORDS:
+            for pattern in patterns:
+                match = re.search(pattern, text, re.IGNORECASE)
+                if match:
+                    span = [match.start(), match.end()]
+                    candidate = Candidate(
+                        value=tipologia,
+                        source="matcher",
+                        raw=text[span[0] : span[1]],
+                        span=span,
+                        confidence=0.75,
+                        unit=None,
+                        errors=[],
+                    )
+                    candidate["start"], candidate["end"] = span
+                    return candidate
+
+        match = re.search(r"\b(gkb|standard)\b", text, re.IGNORECASE)
+        if match:
+            span = [match.start(), match.end()]
+            candidate = Candidate(
+                value="standard",
+                source="matcher",
+                raw=text[span[0] : span[1]],
+                span=span,
+                confidence=0.6,
+                unit=None,
+                errors=[],
+            )
+            candidate["start"], candidate["end"] = span
+            return candidate
+
+        return None
 
     def _matcher_candidates(self, category: str, prop_id: str, text: str) -> Iterable[Candidate]:
         results: List[Candidate] = []
@@ -527,7 +831,7 @@ class OrchestratorBase(ABC):
                 results.append(
                     Candidate(
                         value=self._brand_matcher.fallback_value,
-                        source="fallback",
+                        source="matcher_fallback",
                         raw=None,
                         span=None,
                         confidence=0.05,
@@ -551,6 +855,10 @@ class OrchestratorBase(ABC):
                         errors=[],
                     )
                 )
+        if lowered == "tipologia_lastra":
+            candidate = self._tipologia_candidate(text)
+            if candidate:
+                results.append(candidate)
 
         if any(token in lowered for token in ("norma", "standard")):
             matches = list(self._standard_matcher.find(text, category=category))

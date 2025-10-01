@@ -1,96 +1,33 @@
-# roBERT
+# roBERT Documentation Hub
 
-Sistema di classificazione ed estrazione di proprietà tecniche da descrizioni di materiali edilizi.
+roBERT è una toolkit Python per l'estrazione di proprietà e la classificazione di descrizioni BIM. Il progetto fornisce una CLI completa per preparare dataset, addestrare modelli, impacchettare risorse e orchestrare pipeline di inference con regole, QA encoder e LLM.
 
-## Struttura del progetto
+## Per iniziare rapidamente
 
-```
-roBERT/
-├── src/robimb/              # Codice sorgente principale
-│   ├── cli/                 # Command-line interface
-│   ├── models/              # Modelli BERT (label_model, masked_model)
-│   ├── training/            # Training pipeline (hier_trainer, tapt_mlm)
-│   ├── inference/           # Inferenza e calibrazione
-│   ├── extraction/          # Estrazione proprietà (parsers, matchers, QA-LLM)
-│   │   ├── parsers/         # Parser specializzati (units, colors, standards, etc.)
-│   │   └── matchers/        # Matcher per materiali, brand, norme
-│   ├── registry/            # Registry delle proprietà e validatori
-│   ├── reporting/           # Generazione report dataset/predizioni
-│   └── utils/               # Utility (data, metrics, ontology, logging)
-│
-├── data/                    # Dataset (raw, processed, train/test splits)
-├── outputs/                 # Output di training e inferenza
-├── pack/                    # Knowledge pack (registry e extractors JSON)
-│   └── current/             # Pack corrente in uso
-│
-├── scripts/                 # Script di utilità
-│   ├── analysis/            # Script di analisi dataset
-│   └── sanity_check.py      # Controlli di validità
-│
-├── docs/                    # Documentazione
-│   ├── reports/             # Report di analisi
-│   ├── ADR/                 # Architecture Decision Records
-│   └── *.md                 # Guide CLI, overview, roadmap
-│
-├── tests/                   # Test suite
-├── pyproject.toml           # Configurazione progetto e dipendenze
-└── README.md                # Questo file
-```
+1. **Clona il repository e installa le dipendenze**
+   
 
-## Componenti principali
+2. **Verifica l'installazione**
+   
 
-### CLI
-- **train**: Training del modello di classificazione
-- **extract**: Estrazione proprietà da testo
-- **convert**: Conversione formato dataset
-- **evaluate**: Valutazione modello
-- **pack**: Gestione knowledge pack
+3. **Configura i percorsi dei knowledge pack** (opzionale): le opzioni CLI usano valori predefiniti letti da . Imposta le variabili d'ambiente oppure modifica il file  se necessario.
 
-### Extraction Pipeline
-Sistema multi-stage per estrazione proprietà:
-1. **Parser**: Pattern regex per valori numerici, colori, unità di misura
-2. **Matcher**: Ricerca lessicale per marchi, materiali, norme tecniche
-3. **QA-LLM**: Estrazione via LLM per campi complessi
-4. **Fusion**: Aggregazione e normalizzazione risultati
+## Indice della documentazione
 
-### Registry
-Schema delle proprietà per categoria con:
-- Definizione tipi e vincoli
-- Enum per valori ammessi
-- Normalizzatori e validatori
-- Configurazione sorgenti estrazione
+| Argomento | Descrizione |
+|-----------|-------------|
+| **Panoramica CLI** | [Guida ai comandi principali di robimb](docs/commands/overview.md) |
+| **Dataset e conversione** | [Convertire dataset e generare label map](docs/commands/convert.md) |
+| **Estrazione proprietà** | [Pipeline  con tutte le sotto-funzioni](docs/commands/extract.md) |
+| **Valutazione modelli** | [Comando ](docs/commands/evaluate.md) |
+| **Knowledge pack** | [Comando ](docs/commands/pack.md) |
+| **Sampling categorie** | [Comando ](docs/commands/sample-categories.md) |
+| **Training avanzato** | [Script  (label e gerarchico)](docs/commands/train.md) |
 
-## Installazione
+## Risorse correlate
 
-```bash
-pip install -e .
-```
+- : contiene server di esempio per l'integrazione LLM.
+- : script di supporto per analisi ed automazioni.
+- : suite di regression per assicurare qualità.
 
-## Uso rapido
-
-```bash
-# Training modello classificazione
-robimb train --config configs/train_config.yaml
-
-# Estrazione proprietà
-robimb extract --input data/raw/descriptions.jsonl --output results.jsonl
-
-# Valutazione modello
-robimb evaluate --test-data data/test.jsonl --model-path outputs/model/
-```
-
-## Documentazione
-
-Vedi [docs/index.md](docs/index.md) per la documentazione completa.
-
-## Knowledge Pack
-
-La cartella `pack/current/` contiene i file JSON con:
-- **registry.json**: Schema proprietà per categoria
-- **extractors.json**: Pattern regex e normalizzatori per parser
-
-Questi file configurano il comportamento dell'extraction pipeline.
-
-## Licenza
-
-[Da specificare]
+Per ulteriori dubbi o proposte apri una issue o unisci una pull request con i tuoi miglioramenti.

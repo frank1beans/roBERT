@@ -23,9 +23,16 @@ __all__ = [
 
 @dataclass(frozen=True)
 class MaterialMatch:
-    """Structure describing a material match within a text."""
+    """Structure describing a material match within a text.
+
+    ``value`` intentionally exposes the normalised identifier defined in the
+    lexicon (e.g. ``acciaio_inox``) so that downstream consumers can map the
+    match directly to schema enums. ``canonical`` preserves the human readable
+    label for logging or UI needs.
+    """
 
     value: str
+    canonical: str
     surface: str
     span: Tuple[int, int]
     score: float
@@ -175,7 +182,8 @@ class MaterialMatcher:
         existing = accumulator.get(key)
         if existing is None or existing.score < score:
             accumulator[key] = MaterialMatch(
-                value=definition.canonical,
+                value=definition.id,
+                canonical=definition.canonical,
                 surface=surface,
                 span=span,
                 score=score,

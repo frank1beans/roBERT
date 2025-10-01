@@ -66,8 +66,8 @@
               "properties": {
                 "value": {
                   "type": "string",
-                  "pattern": "^\\d{2,4}(x|×|×)\\d{2,4}(x|×|×)?\\d{0,4}? ?(mm|cm|m)?$",
-                  "minLength": 3,
+                  "pattern": "^\\d{1,4}(?:[x×]\\d{1,4}(?:[x×]\\d{1,4})?)? ?(mm|cm|m)?$",
+                  "minLength": 2,
                   "maxLength": 40
                 }
               }

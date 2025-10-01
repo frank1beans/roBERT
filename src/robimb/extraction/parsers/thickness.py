@@ -39,6 +39,7 @@ _THICKNESS_PATTERN = re.compile(
     (?P<label>
         sp\.?|spessore|spessori|thickness|thick\.?
     )\s*
+    (?:(?P<unit_before>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)\s*)?
     (?P<value>[\d.,]+)\s*
     (?P<unit>mm|cm|m|millimetri|millimetro|centimetri|centimetro|metri|metro)?
     """,
@@ -51,11 +52,13 @@ def parse_thickness(text: str) -> Iterator[ThicknessMatch]:
     for match in _THICKNESS_PATTERN.finditer(text):
         try:
             raw_value = match.group("value")
-            unit = match.group("unit")
+            unit_after = match.group("unit")
+            unit_before = match.group("unit_before")
 
             numeric_value = parse_number_it(raw_value)
 
             # Convert to mm
+            unit = unit_after or unit_before
             if unit:
                 multiplier = _UNIT_TO_MM.get(unit.lower(), 1.0)
                 value_mm = numeric_value * multiplier

@@ -23,8 +23,7 @@
           "type": "string",
           "description": "Brand dichiarato nel testo",
           "sources": [
-            "matcher",
-            "qa_llm"
+            "matcher"
           ]
         },
         {
@@ -143,8 +142,7 @@
           "type": "string",
           "description": "Brand dichiarato nel testo",
           "sources": [
-            "matcher",
-            "qa_llm"
+            "matcher"
           ]
         },
         {
@@ -248,8 +246,7 @@
           "type": "string",
           "description": "Brand dichiarato nel testo",
           "sources": [
-            "matcher",
-            "qa_llm"
+            "matcher"
           ]
         },
         {
@@ -279,7 +276,8 @@
           "sources": [
             "parser",
             "qa_llm"
-          ]
+          ],
+          "pattern": "^\\d{1,4}(?:[x×]\\d{1,4}(?:[x×]\\d{1,4})?)? ?(mm|cm|m)?$"
         },
         {
           "id": "spessore_mm",
@@ -355,8 +353,7 @@
           "type": "string",
           "description": "Brand del serramento",
           "sources": [
-            "matcher",
-            "qa_llm"
+            "matcher"
           ]
         },
         {
@@ -407,6 +404,14 @@
           "sources": [
             "parser",
             "qa_llm"
+          ],
+          "aliases": [
+            "Uw",
+            "Uf",
+            "Ug",
+            "trasmittanza Uw",
+            "trasmittanza Uf",
+            "trasmittanza Ug"
           ]
         },
         {
@@ -418,6 +423,13 @@
           "sources": [
             "parser",
             "qa_llm"
+          ],
+          "aliases": [
+            "Rw",
+            "R'w",
+            "Ra",
+            "Rw (C;Ctr)",
+            "Rw in dB"
           ]
         },
         {
@@ -449,8 +461,7 @@
           "type": "string",
           "description": "Brand del sistema di controsoffitto",
           "sources": [
-            "matcher",
-            "qa_llm"
+            "matcher"
           ]
         },
         {
@@ -492,6 +503,16 @@
             "B-s1,d0",
             "B-s2,d0"
           ],
+          "sources": [
+            "parser",
+            "qa_llm"
+          ]
+        },
+        {
+          "id": "colore_ral",
+          "title": "Colore (RAL)",
+          "type": "string",
+          "description": "Codice colore (RAL) o descrizione principale",
           "sources": [
             "parser",
             "qa_llm"
@@ -547,8 +568,7 @@
           "type": "string",
           "description": "Brand dell'apparecchio sanitario",
           "sources": [
-            "matcher",
-            "qa_llm"
+            "matcher"
           ]
         },
         {
@@ -657,8 +677,7 @@
           "type": "string",
           "description": "Brand del manufatto",
           "sources": [
-            "matcher",
-            "qa_llm"
+            "matcher"
           ]
         },
         {

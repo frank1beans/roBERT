@@ -27,6 +27,16 @@
       ]
     },
     {
+      "id": "albertoni",
+      "canonical": "Albertoni",
+      "synonyms": [
+        "Albertoni"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
       "id": "aliceceramica",
       "canonical": "Alice Ceramica",
       "synonyms": [
@@ -1468,6 +1478,84 @@
       ],
       "categories": [
         "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "goman",
+      "canonical": "GOMAN",
+      "synonyms": [
+        "GOMAN",
+        "Goman"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "dmpelectronics",
+      "canonical": "DMP ELECTRONICS",
+      "synonyms": [
+        "DMP ELECTRONICS",
+        "DMP Electronics",
+        "DMP"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "artica",
+      "canonical": "ARTICA",
+      "synonyms": [
+        "ARTICA",
+        "Artica"
+      ],
+      "categories": [
+        "apparecchi_sanitari_accessori"
+      ]
+    },
+    {
+      "id": "cometa",
+      "canonical": "COMETA",
+      "synonyms": [
+        "COMETA",
+        "Cometa"
+      ],
+      "categories": [
+        "trasversale"
+      ]
+    },
+    {
+      "id": "interface",
+      "canonical": "INTERFACE",
+      "synonyms": [
+        "INTERFACE",
+        "Interface"
+      ],
+      "categories": [
+        "opere_di_pavimentazione"
+      ]
+    },
+    {
+      "id": "gkb",
+      "canonical": "GKB",
+      "synonyms": [
+        "GKB",
+        "G K B"
+      ],
+      "categories": [
+        "opere_da_serramentista"
+      ]
+    },
+    {
+      "id": "faac",
+      "canonical": "FAAC",
+      "synonyms": [
+        "FAAC",
+        "Faac"
+      ],
+      "categories": [
+        "opere_da_serramentista"
       ]
     }
   ]

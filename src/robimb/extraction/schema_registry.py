@@ -30,6 +30,7 @@ class PropertySpec:
     description: Optional[str] = None
     enum: Sequence[str] | None = None
     sources: Sequence[str] | None = None
+    aliases: Sequence[str] | None = None
 
 
 @dataclass(frozen=True)
@@ -67,6 +68,7 @@ class SchemaRegistry:
                     description=prop.get("description"),
                     enum=tuple(prop.get("enum", [])) or None,
                     sources=tuple(prop.get("sources", [])) or None,
+                    aliases=tuple(prop.get("aliases", [])) or None,
                 )
                 for prop in entry.get("properties", [])
             ]

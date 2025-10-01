@@ -1,30 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git mv:*)",
-      "Bash(git rm:*)",
-      "Bash(git add:*)",
-      "Bash(python -m py_compile:*)",
-      "Bash(python3:*)",
-      "Bash(where python)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator.py src/robimb/extraction/parsers/flow_rate.py src/robimb/extraction/parsers/labeled_dimensions.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_extraction_fixes.py)",
-      "Bash(del test_extraction_fixes.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator.py src/robimb/extraction/parsers/dimensions.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" debug_pattern.py)",
-      "Bash(del debug_pattern.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/parsers/acoustic.py src/robimb/extraction/parsers/fire_class.py src/robimb/extraction/parsers/thickness.py src/robimb/extraction/orchestrator.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_controsoffitti.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/parsers/installation_type.py src/robimb/extraction/parsers/labeled_dimensions.py src/robimb/extraction/parsers/standards.py src/robimb/extraction/orchestrator.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_sanitari_fixes.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator.py)",
-      "Bash(git checkout:*)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator_async.py)",
-      "Bash(cat:*)",
-      "Bash(xargs cat:*)",
-      "Bash(python:*)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m json.tool resources/data/properties/registry.json)",
-      "Bash(del:*)"
+      "Bash(C:Usersf.biggiAppDataLocalminiconda3python.exe -c \"import sys, json; lines = open(r''c:\\Users\\f.biggi\\Scripts\\roBERT\\resources\\data\\train\\classification\\processed\\dataset_lim.jsonl'', ''r'', encoding=''utf-8'').readlines()[:20]; [print(f''Record {i+1}: sources = {set(p.get(\"\"source\"\") for p in json.loads(line).get(\"\"properties\"\", {}).values() if p.get(\"\"source\"\"))}'') for i, line in enumerate(lines)]\")"
     ],
     "deny": [],
     "ask": []

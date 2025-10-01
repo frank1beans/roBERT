@@ -4,14 +4,22 @@ from __future__ import annotations
 import asyncio
 import json
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional, Literal
 
 import typer
 from tqdm import tqdm
+from transformers import AutoModelForQuestionAnswering, AutoTokenizer
 
 from ..config import get_settings
 from ..extraction.fuse import Fuser, FusePolicy
 from ..extraction.orchestrator import Orchestrator, OrchestratorConfig
+from ..extraction.property_qa import (
+    QAExample,
+    answer_properties,
+    build_properties_for_category,
+    predict_with_encoder,
+    train_property_qa,
+)
 from ..extraction.qa_llm import AsyncHttpLLM, HttpLLM, MockLLM, QALLMConfig
 from ..extraction.schema_registry import load_registry
 from ..utils.logging import configure_json_logger, flush_handlers, generate_trace_id, log_event
@@ -34,6 +42,11 @@ async def _extract_async(
     fail_fast: bool,
     logger,
     trace_id: str,
+    *,
+    use_qa: bool,
+    fusion_mode: str,
+    qa_null_threshold: float,
+    qa_confident_threshold: float,
 ) -> list:
     """Async extraction with concurrent processing."""
     from ..extraction.orchestrator_async import AsyncOrchestrator
@@ -50,6 +63,10 @@ async def _extract_async(
         enable_matcher=True,
         enable_llm=True,
         registry_path=str(schema_registry_path),
+        use_qa=use_qa,
+        fusion_mode=fusion_mode,
+        qa_null_threshold=qa_null_threshold,
+        qa_confident_threshold=qa_confident_threshold,
     )
 
     results = []
@@ -137,7 +154,26 @@ def extract_properties(
     log_file: Optional[Path] = typer.Option(None, "--log-file", dir_okay=False, help="Optional JSONL log path"),
     fail_fast: bool = typer.Option(False, "--fail-fast/--no-fail-fast", help="Abort on validation errors"),
     dry_run: bool = typer.Option(False, "--dry-run", help="Validate configuration without running the pipeline"),
+    use_qa: bool = typer.Option(True, "--use-qa/--no-qa", help="Enable the QA encoder for property spans"),
+    qa_model_dir: Optional[Path] = typer.Option(
+        None,
+        "--qa-model-dir",
+        exists=True,
+        file_okay=False,
+        help="Directory containing the fine-tuned QA model",
+    ),
+    qa_null_th: float = typer.Option(0.25, "--qa-null-th", min=0.0, max=2.0, help="QA no-answer threshold"),
+    fusion: Literal["rules_only", "qa_only", "fuse"] = typer.Option(
+        "fuse",
+        "--fusion",
+        case_sensitive=False,
+        help="Fusion strategy between rules and QA",
+    ),
+    qa_max_length: int = typer.Option(384, "--qa-max-length", min=32, help="Maximum QA sequence length"),
+    qa_doc_stride: int = typer.Option(128, "--qa-doc-stride", min=16, help="QA sliding window stride"),
+    qa_max_answer_length: int = typer.Option(64, "--qa-max-answer-length", min=1, help="Maximum QA answer length"),
 ) -> None:
+    qa_confident_threshold = 0.60
     config = {
         "input": str(input_path),
         "output": str(output_path),
@@ -154,6 +190,14 @@ def extract_properties(
         "log_file": str(log_file) if log_file else None,
         "fail_fast": fail_fast,
         "dry_run": dry_run,
+        "use_qa": use_qa,
+        "qa_model_dir": str(qa_model_dir) if qa_model_dir else None,
+        "qa_null_th": qa_null_th,
+        "fusion": fusion,
+        "qa_max_length": qa_max_length,
+        "qa_doc_stride": qa_doc_stride,
+        "qa_max_answer_length": qa_max_answer_length,
+        "qa_confident_threshold": qa_confident_threshold,
     }
     logger = configure_json_logger(log_file)
     trace_id = generate_trace_id()
@@ -189,6 +233,57 @@ def extract_properties(
             if sample and len(records) >= sample:
                 break
 
+    fusion_mode = fusion.lower()
+
+    if use_qa:
+        if qa_model_dir is None:
+            raise typer.BadParameter("--qa-model-dir è obbligatorio quando si abilita --use-qa")
+        qa_model = AutoModelForQuestionAnswering.from_pretrained(qa_model_dir)
+        qa_tokenizer = AutoTokenizer.from_pretrained(qa_model_dir)
+        prompt_cache: Dict[str, List[tuple[str, str]]] = {}
+        for record in records:
+            category_id = (
+                record.get("categoria")
+                or record.get("category")
+                or record.get("cat")
+            )
+            if not category_id:
+                continue
+            if category_id not in prompt_cache:
+                try:
+                    prompt_cache[category_id] = build_properties_for_category(category_id, schema_registry_path)
+                except ValueError:
+                    prompt_cache[category_id] = []
+            prompts = prompt_cache.get(category_id) or []
+            if not prompts:
+                continue
+            text_value = record.get("text") or ""
+            if not text_value:
+                continue
+            examples = [
+                QAExample(
+                    qid=f"{category_id}:{prop_id}",
+                    context=text_value,
+                    question=prompt,
+                    answers=[],
+                    answer_starts=[],
+                    property_id=prop_id,
+                )
+                for prop_id, prompt in prompts
+            ]
+            predictions = predict_with_encoder(
+                qa_model,
+                qa_tokenizer,
+                examples,
+                null_threshold=qa_null_th,
+                max_length=qa_max_length,
+                doc_stride=qa_doc_stride,
+                max_answer_length=qa_max_answer_length,
+                batch_size=8,
+            )
+            if predictions:
+                record["_qa_predictions"] = predictions
+
     # Run async processing
     results = asyncio.run(
         _extract_async(
@@ -202,6 +297,10 @@ def extract_properties(
             fail_fast=fail_fast,
             logger=logger,
             trace_id=trace_id,
+            use_qa=use_qa,
+            fusion_mode=fusion_mode,
+            qa_null_threshold=qa_null_th,
+            qa_confident_threshold=qa_confident_threshold,
         )
     )
 
@@ -222,6 +321,61 @@ def extract_properties(
         documents=processed,
     )
     flush_handlers(logger)
+
+
+@app.command("train-qa")
+def train_qa_encoder(
+    model: str = typer.Option(..., "--model", help="Base encoder name or local path"),
+    train_jsonl: Path = typer.Option(..., "--train-jsonl", exists=True, dir_okay=False, help="Training QA JSONL"),
+    eval_jsonl: Optional[Path] = typer.Option(None, "--eval-jsonl", exists=True, dir_okay=False, help="Optional evaluation QA JSONL"),
+    out_dir: Path = typer.Option(..., "--out-dir", help="Directory where the fine-tuned model will be stored"),
+    epochs: int = typer.Option(3, "--epochs", min=1, help="Number of fine-tuning epochs"),
+    batch: int = typer.Option(8, "--batch", min=1, help="Per-device batch size"),
+    lr: float = typer.Option(5e-5, "--lr", min=1e-6, help="Learning rate"),
+    max_length: int = typer.Option(384, "--max-length", min=32, help="Maximum sequence length"),
+    doc_stride: int = typer.Option(128, "--doc-stride", min=16, help="Sliding window stride"),
+    seed: int = typer.Option(42, "--seed", help="Random seed"),
+) -> None:
+    """Fine-tune the extractive QA encoder for property spans."""
+
+    train_property_qa(
+        model_name=model,
+        train_jsonl=train_jsonl,
+        eval_jsonl=eval_jsonl,
+        out_dir=out_dir,
+        epochs=epochs,
+        batch_size=batch,
+        learning_rate=lr,
+        max_length=max_length,
+        doc_stride=doc_stride,
+        seed=seed,
+    )
+
+
+@app.command("predict-qa")
+def predict_qa_spans(
+    model_dir: Path = typer.Option(..., "--model-dir", exists=True, file_okay=False, help="Directory containing the fine-tuned QA model"),
+    text: str = typer.Option(..., "--text", help="Text to analyse"),
+    category: str = typer.Option(..., "--category", help="Category identifier"),
+    registry: Path = typer.Option(..., "--registry", exists=True, dir_okay=False, help="Schema registry path"),
+    null_th: float = typer.Option(0.25, "--null-th", min=0.0, max=2.0, help="No-answer threshold"),
+    max_length: int = typer.Option(384, "--max-length", min=32, help="Maximum sequence length"),
+    doc_stride: int = typer.Option(128, "--doc-stride", min=16, help="Sliding window stride"),
+    max_answer_length: int = typer.Option(64, "--max-answer-length", min=1, help="Maximum answer token length"),
+) -> None:
+    """Predict property spans for a single text using a QA encoder."""
+
+    predictions = answer_properties(
+        model_dir=model_dir,
+        text=text,
+        category_id=category,
+        registry_path=registry,
+        null_threshold=null_th,
+        max_length=max_length,
+        doc_stride=doc_stride,
+        max_answer_length=max_answer_length,
+    )
+    typer.echo(json.dumps(predictions, ensure_ascii=False, indent=2))
 
 
 @app.command("schemas")
