@@ -147,3 +147,37 @@ def test_parser_candidates_extract_length_value() -> None:
     assert candidate["unit"] == "mm"
     assert pytest.approx(candidate["value"], rel=1e-3) == 200.0
 
+
+def test_parser_candidates_preserve_width_first_value() -> None:
+    cfg = OrchestratorConfig(
+        source_priority=["parser"],
+        enable_matcher=False,
+        enable_llm=False,
+        registry_path="",
+    )
+    orchestrator = Orchestrator(
+        fuse=Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=cfg.source_priority),
+        llm=None,
+        cfg=cfg,
+    )
+
+    text = "Porta 70x210 cm con finitura bianca."
+
+    width_candidates = list(
+        orchestrator._parser_candidates("dimensione_larghezza", None, text)
+    )
+    assert width_candidates, "expected at least one candidate for larghezza"
+    width_candidate = width_candidates[0]
+    assert width_candidate["source"] == "parser"
+    assert width_candidate["unit"] == "mm"
+    assert pytest.approx(width_candidate["value"], rel=1e-3) == 700.0
+
+    height_candidates = list(
+        orchestrator._parser_candidates("dimensione_altezza", None, text)
+    )
+    assert height_candidates, "expected at least one candidate for altezza"
+    height_candidate = height_candidates[0]
+    assert height_candidate["source"] == "parser"
+    assert height_candidate["unit"] == "mm"
+    assert pytest.approx(height_candidate["value"], rel=1e-3) == 2100.0
+
