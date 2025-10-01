@@ -170,3 +170,51 @@ def test_extract_cli_structured_logging(tmp_path: Path) -> None:
     assert len(trace_ids) == 1
     completed = next(entry for entry in logs if entry["event"] == "extract.properties.completed")
     assert completed["documents"] == 1
+
+
+def test_extract_cli_invokes_mock_llm(monkeypatch, tmp_path: Path) -> None:
+    registry_path = _prepare_registry(tmp_path)
+    pack_dir = tmp_path / "pack"
+    pack_dir.mkdir()
+
+    input_path = tmp_path / "input.jsonl"
+    output_path = tmp_path / "output.jsonl"
+
+    docs = [
+        {"text_id": "doc-1", "categoria": "categoria_cli", "text": "Scheda senza dati espliciti."},
+        {"text_id": "doc-2", "categoria": "categoria_cli", "text": "Ancora nessuna informazione."},
+    ]
+    with input_path.open("w", encoding="utf-8") as fh:
+        for doc in docs:
+            fh.write(json.dumps(doc, ensure_ascii=False) + "\n")
+
+    calls: list[tuple[str, str]] = []
+
+    class RecordingMockLLM:
+        def ask(self, text: str, question: str, json_schema: dict) -> dict:
+            calls.append((text, question))
+            return {"value": None, "confidence": 0.0}
+
+    monkeypatch.setattr("robimb.cli.extract.MockLLM", RecordingMockLLM)
+
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        [
+            "properties",
+            "--input",
+            str(input_path),
+            "--output",
+            str(output_path),
+            "--pack",
+            str(pack_dir),
+            "--schema",
+            str(registry_path),
+        ],
+    )
+
+    assert result.exit_code == 0
+    assert calls, "expected the Mock LLM to be invoked at least once"
+    # Each document contains a property with qa_llm in its source list
+    assert len(calls) == len(docs)
+    assert all(question.startswith("Estrai il valore") for _, question in calls)

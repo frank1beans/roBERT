@@ -2,27 +2,55 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Schema proprietà — Opere da cartongessista",
   "type": "object",
-  "required": ["category", "properties"],
+  "required": [
+    "category",
+    "properties"
+  ],
   "properties": {
-    "category": {"const": "opere_da_cartongessista"},
+    "category": {
+      "const": "opere_da_cartongessista"
+    },
     "properties": {
       "type": "object",
-      "required": ["tipologia_lastra", "spessore_mm", "classe_reazione_al_fuoco"],
+      "required": [
+        "tipologia_lastra",
+        "spessore_mm",
+        "classe_reazione_al_fuoco"
+      ],
       "properties": {
         "marchio": {
           "allOf": [
-            {"$ref": "#/$defs/value"},
-            {"properties": {"value": {"type": "string", "minLength": 2, "maxLength": 80}}}
-          ]
-        },
-        "tipologia_lastra": {
-          "allOf": [
-            {"$ref": "#/$defs/value"},
+            {
+              "$ref": "#/$defs/value"
+            },
             {
               "properties": {
                 "value": {
                   "type": "string",
-                  "enum": ["standard", "idrofuga", "ignifuga", "acustica", "fibrogesso", "accoppiata_isolante"]
+                  "minLength": 2,
+                  "maxLength": 80
+                }
+              }
+            }
+          ]
+        },
+        "tipologia_lastra": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "standard",
+                    "idrofuga",
+                    "ignifuga",
+                    "acustica",
+                    "fibrogesso",
+                    "accoppiata_isolante"
+                  ]
                 }
               }
             }
@@ -30,23 +58,40 @@
         },
         "spessore_mm": {
           "allOf": [
-            {"$ref": "#/$defs/measurement"},
+            {
+              "$ref": "#/$defs/measurement"
+            },
             {
               "properties": {
-                "value": {"type": "number", "minimum": 6, "maximum": 100},
-                "unit": {"const": "mm"}
+                "value": {
+                  "type": "number",
+                  "minimum": 6,
+                  "maximum": 100
+                },
+                "unit": {
+                  "const": "mm"
+                }
               }
             }
           ]
         },
         "classe_ei": {
           "allOf": [
-            {"$ref": "#/$defs/value"},
+            {
+              "$ref": "#/$defs/value"
+            },
             {
               "properties": {
                 "value": {
                   "type": "string",
-                  "enum": ["EI30", "EI45", "EI60", "EI90", "EI120", "EI180"]
+                  "enum": [
+                    "EI30",
+                    "EI45",
+                    "EI60",
+                    "EI90",
+                    "EI120",
+                    "EI180"
+                  ]
                 }
               }
             }
@@ -54,12 +99,20 @@
         },
         "classe_reazione_al_fuoco": {
           "allOf": [
-            {"$ref": "#/$defs/value"},
+            {
+              "$ref": "#/$defs/value"
+            },
             {
               "properties": {
                 "value": {
                   "type": "string",
-                  "enum": ["A1", "A2-s1,d0", "A2-s2,d0", "B-s1,d0", "B-s2,d0"]
+                  "enum": [
+                    "A1",
+                    "A2-s1,d0",
+                    "A2-s2,d0",
+                    "B-s1,d0",
+                    "B-s2,d0"
+                  ]
                 }
               }
             }
@@ -67,16 +120,50 @@
         },
         "presenza_isolante": {
           "allOf": [
-            {"$ref": "#/$defs/value"},
-            {"properties": {"value": {"type": "string", "enum": ["si", "no"]}}}
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": [
+                    "si",
+                    "no"
+                  ]
+                }
+              }
+            }
           ]
         },
         "stratigrafia_lastre": {
           "allOf": [
-            {"$ref": "#/$defs/value"},
+            {
+              "$ref": "#/$defs/value"
+            },
             {
               "properties": {
-                "value": {"type": "string", "minLength": 5, "maxLength": 400}
+                "value": {
+                  "type": "string",
+                  "minLength": 5,
+                  "maxLength": 400
+                }
+              }
+            }
+          ]
+        },
+        "normativa_riferimento": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/value"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 120
+                }
               }
             }
           ]
@@ -89,34 +176,90 @@
   "$defs": {
     "base": {
       "type": "object",
-      "required": ["value", "source", "span", "confidence"],
+      "required": [
+        "value",
+        "source",
+        "span",
+        "confidence"
+      ],
       "properties": {
         "value": {},
-        "unit": {"type": ["string", "null"]},
-        "raw": {"type": ["string", "null"]},
-        "source": {"type": "string", "enum": ["parser", "matcher", "qa_llm", "fuse"]},
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "parser",
+            "matcher",
+            "qa_llm",
+            "fuse"
+          ]
+        },
         "span": {
           "type": "array",
-          "items": {"type": "integer"},
+          "items": {
+            "type": "integer"
+          },
           "minItems": 2,
           "maxItems": 2
         },
-        "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
-        "evidence": {"type": ["string", "null"]},
-        "validation": {"type": "object"}
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation": {
+          "type": "object"
+        }
       },
       "additionalProperties": false
     },
     "measurement": {
       "allOf": [
-        {"$ref": "#/$defs/base"},
-        {"properties": {"value": {"type": "number"}}}
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": "number"
+            }
+          }
+        }
       ]
     },
     "value": {
       "allOf": [
-        {"$ref": "#/$defs/base"},
-        {"properties": {"value": {"type": ["string", "number", "boolean"]}}}
+        {
+          "$ref": "#/$defs/base"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "number",
+                "boolean"
+              ]
+            }
+          }
+        }
       ]
     }
   }

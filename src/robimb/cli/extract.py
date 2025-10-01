@@ -45,7 +45,7 @@ async def _extract_async(
     orchestrator_cfg = OrchestratorConfig(
         source_priority=["parser", "matcher", "qa_llm"],
         enable_matcher=True,
-        enable_llm=bool(llm_endpoint),
+        enable_llm=True,
         registry_path=str(schema_registry_path),
     )
 

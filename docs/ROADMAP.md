@@ -90,7 +90,7 @@
 - **A12. Coverage tests schema** — File: `tests/test_schema_registry.py`. DoD: assert categorie/required match registry. Stima: 4h.
 - **B1. Prompt library** — File: `src/robimb/extraction/prompts.py`, `data/properties/prompts.json`. DoD: template LLM con test rendering. Stima: 7h.
 - **B2. QA LLM adapter** — File: `src/robimb/extraction/qa_llm.py`. DoD: retry/backoff + mock tests error handling. Stima: 10h.
-- **B3. Lexicon brand/materiali** — File: `data/properties/lexicon/brands.txt`, `materials.txt`. DoD: ≥250 voci, script dedup. Stima: 6h.
+- **B3. Lexicon brand/materiali** — File: `data/properties/lexicon/brands.json`, `materials.json`. DoD: ≥250 voci, script dedup. Stima: 6h.
 - **B4. Matcher marchi** — File: `src/robimb/extraction/matchers/brands.py`. DoD: precision ≥0.9 su 200 esempi. Stima: 8h.
 - **B5. Matcher materiali** — File: `src/robimb/extraction/matchers/materials.py`. DoD: sinonimi/lemmatizzazione, EM ≥0.8. Stima: 8h.
 - **B6. Parser colori RAL** — File: `src/robimb/extraction/parsers/colors.py`, `data/properties/lexicon/colors_ral.json`. DoD: mapping completo, test 30 codici. Stima: 7h.
@@ -346,7 +346,7 @@ data/properties/
     opere_di_rivestimento.json
   prompts.json
   lexicon/
-    brands.txt
+    brands.json
     materials.txt
     colors_ral.json
     standards_prefixes.json
