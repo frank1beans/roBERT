@@ -81,3 +81,46 @@ def test_orchestrator_basic(tmp_path: Path) -> None:
     assert pytest.approx(properties["value"]["width_mm"], rel=1e-3) == 900.0
     assert pytest.approx(properties["value"]["height_mm"], rel=1e-3) == 2100.0
     assert result["validation"]["status"] == "ok"
+
+
+def test_orchestrator_accepts_category_alias(tmp_path: Path) -> None:
+    registry_path = _write_registry(tmp_path)
+    cfg = OrchestratorConfig(registry_path=str(registry_path))
+    orchestrator = Orchestrator(
+        fuse=Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=cfg.source_priority),
+        llm=MockLLM(),
+        cfg=cfg,
+    )
+
+    doc = {
+        "id": 42,
+        "cat": "categoria_test",
+        "text": "Pannello in cartongesso 60x60 cm spessore 12 mm.",
+    }
+
+    result = orchestrator.extract_document(doc)
+
+    assert result["categoria"] == "categoria_test"
+    assert result["text_id"] == "42"
+
+
+def test_orchestrator_uses_super_category_as_fallback(tmp_path: Path) -> None:
+    registry_path = _write_registry(tmp_path)
+    cfg = OrchestratorConfig(registry_path=str(registry_path))
+    orchestrator = Orchestrator(
+        fuse=Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=cfg.source_priority),
+        llm=MockLLM(),
+        cfg=cfg,
+    )
+
+    doc = {
+        "text": "Specchio rettangolare 70x50 cm incluso fissaggio.",
+        "super": "Categoria test",
+        "cat": "Accessori per l'allestimento di servizi igienici",
+    }
+
+    result = orchestrator.extract_document(doc)
+
+    assert result["categoria"] == "categoria_test"
+    # Without an explicit identifier the orchestrator should keep the field empty
+    assert result["text_id"] is None
