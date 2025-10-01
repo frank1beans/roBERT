@@ -347,9 +347,20 @@ class Orchestrator:
                     else:
                         selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
-                    # For width: second value in 2D (WxD), first in 3D (WxHxD)
+                    # For width keep the first value when only two dimensions are present.
                     if len(values) == 2:
-                        selected = values[1]
+                        selected = values[0]
+                    elif len(values) >= 3:
+                        # Heuristic for three dimensions: prefer the most plausible width
+                        # among the remaining values when the first value resembles a height
+                        # (e.g. door formats like 70x210x4 cm).
+                        first = values[0]
+                        if first > 1500:
+                            # Choose the largest candidate below the typical door height
+                            candidates = [v for v in values[1:] if v <= 1500]
+                            selected = max(candidates) if candidates else first
+                        else:
+                            selected = first
                     else:
                         selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
