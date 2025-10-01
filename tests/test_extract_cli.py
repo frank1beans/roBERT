@@ -126,3 +126,47 @@ def test_extract_cli_end_to_end(tmp_path: Path) -> None:
     assert second["properties"]["dimensioni"]["value"] is None
     assert second["properties"]["isolamento_db"]["value"] is None
     assert second["confidence_overall"] == 0.0
+
+
+def test_extract_cli_structured_logging(tmp_path: Path) -> None:
+    registry_path = _prepare_registry(tmp_path)
+    pack_dir = tmp_path / "pack"
+    pack_dir.mkdir()
+
+    input_path = tmp_path / "input.jsonl"
+    output_path = tmp_path / "output.jsonl"
+    log_path = tmp_path / "logs.jsonl"
+
+    docs = [
+        {"text_id": "doc-1", "categoria": "categoria_cli", "text": "Nessuna info."},
+    ]
+    with input_path.open("w", encoding="utf-8") as fh:
+        for doc in docs:
+            fh.write(json.dumps(doc, ensure_ascii=False) + "\n")
+
+    runner = CliRunner()
+    result = runner.invoke(
+        app,
+        [
+            "properties",
+            "--input",
+            str(input_path),
+            "--output",
+            str(output_path),
+            "--pack",
+            str(pack_dir),
+            "--schema",
+            str(registry_path),
+            "--log-file",
+            str(log_path),
+        ],
+    )
+
+    assert result.exit_code == 0
+    logs = [json.loads(line) for line in log_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    events = {entry["event"] for entry in logs}
+    assert {"extract.properties.start", "extract.properties.completed"}.issubset(events)
+    trace_ids = {entry.get("trace_id") for entry in logs if entry.get("trace_id")}
+    assert len(trace_ids) == 1
+    completed = next(entry for entry in logs if entry["event"] == "extract.properties.completed")
+    assert completed["documents"] == 1

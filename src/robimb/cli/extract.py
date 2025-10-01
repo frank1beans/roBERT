@@ -11,6 +11,7 @@ from ..extraction.fuse import Fuser, FusePolicy
 from ..extraction.orchestrator import Orchestrator, OrchestratorConfig
 from ..extraction.qa_llm import HttpLLM, MockLLM, QALLMConfig
 from ..extraction.schema_registry import load_registry
+from ..utils.logging import configure_json_logger, flush_handlers, generate_trace_id, log_event
 
 __all__ = ["app"]
 
@@ -68,8 +69,23 @@ def extract_properties(
         "fail_fast": fail_fast,
         "dry_run": dry_run,
     }
+    logger = configure_json_logger(log_file)
+    trace_id = generate_trace_id()
+    log_event(
+        logger,
+        "extract.properties.start",
+        trace_id=trace_id,
+        input=str(input_path),
+        output=str(output_path),
+        schema=str(schema_registry_path),
+        dry_run=dry_run,
+        batch_size=batch_size,
+    )
+    flush_handlers(logger)
     if dry_run:
         typer.echo(json.dumps({"status": "dry_run", "config": config}, indent=2, ensure_ascii=False))
+        log_event(logger, "extract.properties.dry_run", trace_id=trace_id, status="ack")
+        flush_handlers(logger)
         return
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -105,6 +121,13 @@ def extract_properties(
             processed += 1
 
     typer.echo(json.dumps({"status": "completed", "documents": processed}, ensure_ascii=False))
+    log_event(
+        logger,
+        "extract.properties.completed",
+        trace_id=trace_id,
+        documents=processed,
+    )
+    flush_handlers(logger)
 
 
 @app.command("schemas")

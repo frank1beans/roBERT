@@ -8,7 +8,10 @@ from pydantic import BaseModel, Field
 
 from .fuse import Candidate, Fuser
 from .matchers.brands import BrandMatcher
+from .matchers.materials import MaterialMatcher
 from .parsers import dimensions, numbers
+from .parsers.colors import parse_ral_colors
+from .parsers.standards import parse_standards
 from .qa_llm import QALLM
 from .schema_registry import PropertySpec, load_category_schema
 from .validators import validate_properties
@@ -35,6 +38,7 @@ class Orchestrator:
         self._llm = llm if cfg.enable_llm else None
         self._cfg = cfg
         self._brand_matcher = BrandMatcher()
+        self._material_matcher = MaterialMatcher()
 
     def extract_document(self, doc: Dict[str, Any]) -> Dict[str, Any]:
         """Extract properties for a single document."""
@@ -239,6 +243,41 @@ class Orchestrator:
                     )
                 )
 
+        elif "ral" in lowered or "colore" in lowered:
+            for match in parse_ral_colors(text):
+                raw = text[match.span[0] : match.span[1]]
+                results.append(
+                    Candidate(
+                        value=match.code,
+                        source="parser",
+                        raw=raw,
+                        span=match.span,
+                        confidence=0.85,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+
+        elif "norma" in lowered or "standard" in lowered:
+            for match in parse_standards(text):
+                raw = text[match.span[0] : match.span[1]]
+                label = match.prefix
+                if match.code:
+                    label += f" {match.code}"
+                if match.year:
+                    label += f":{match.year}"
+                results.append(
+                    Candidate(
+                        value=label,
+                        source="parser",
+                        raw=raw,
+                        span=match.span,
+                        confidence=0.80,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+
         elif "db" in lowered or "decibel" in lowered:
             for match in numbers.extract_numbers(text):
                 window = text[match.end : min(len(text), match.end + 5)].lower()
@@ -260,21 +299,34 @@ class Orchestrator:
         return results
 
     def _matcher_candidates(self, prop_id: str, text: str) -> Iterable[Candidate]:
-        if prop_id.lower() != "marchio":
-            return []
+        lowered = prop_id.lower()
         results: List[Candidate] = []
-        for brand, span, score in self._brand_matcher.find(text):
-            results.append(
-                Candidate(
-                    value=brand,
-                    source="matcher",
-                    raw=text[span[0] : span[1]],
-                    span=span,
-                    confidence=0.70 * float(score),
-                    unit=None,
-                    errors=[],
+        if lowered == "marchio":
+            for brand, span, score in self._brand_matcher.find(text):
+                results.append(
+                    Candidate(
+                        value=brand,
+                        source="matcher",
+                        raw=text[span[0] : span[1]],
+                        span=span,
+                        confidence=0.70 * float(score),
+                        unit=None,
+                        errors=[],
+                    )
                 )
-            )
+        if "material" in lowered:
+            for match in self._material_matcher.find(text):
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="matcher",
+                        raw=match.surface,
+                        span=match.span,
+                        confidence=0.65 * float(match.score),
+                        unit=None,
+                        errors=[],
+                    )
+                )
         return results
 
     def _llm_candidate(self, prop_id: str, text: str, prop_schema: Dict[str, Any]) -> Optional[Candidate]:
