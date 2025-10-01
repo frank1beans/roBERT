@@ -31,6 +31,9 @@ def _normalize_numeric_string(raw: str) -> str:
     if not candidate:
         raise ValueError(f"Cannot parse numeric value from '{raw}'")
 
+    if not any(ch.isdigit() for ch in candidate):
+        raise ValueError(f"Cannot parse numeric value from '{raw}'")
+
     last_comma = candidate.rfind(",")
     last_dot = candidate.rfind(".")
 
