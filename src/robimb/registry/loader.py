@@ -7,6 +7,8 @@ import os
 import pathlib
 from typing import Any, Dict, Mapping, MutableMapping, Optional, Tuple
 
+from ..config import get_settings
+
 from .normalizers import register_plugins
 from .schemas import (
     CategoryDefinition,
@@ -336,8 +338,7 @@ def _discover_default_pack() -> pathlib.Path:
         if candidate.exists():
             return candidate
 
-    root = pathlib.Path(__file__).resolve().parents[3]
-    pack_dir = root / "pack"
+    pack_dir = get_settings().pack_dir
 
     current = pack_dir / "current"
     if current.exists():
@@ -345,13 +346,13 @@ def _discover_default_pack() -> pathlib.Path:
 
     if not pack_dir.exists():
         raise FileNotFoundError(
-            "Directory 'pack' non trovato: specificare esplicitamente il path del registry."
+            "Directory 'pack' non trovata: verificare la configurazione ROBIMB_PACK_DIR."
         )
     candidates = sorted(pack_dir.glob("v*/registry.json"), reverse=True)
     if candidates:
         return candidates[0]
     raise FileNotFoundError(
-        "Nessun registry trovato sotto pack/: atteso un file 'v*/registry.json'."
+        "Nessun registry trovato sotto la directory del pack configurata; atteso un file 'v*/registry.json'."
     )
 
 

@@ -14,6 +14,7 @@ from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
 from .qa_llm import QALLM
+from ..config import get_settings
 from ..registry.schemas import slugify
 from .schema_registry import PropertySpec, load_category_schema, load_registry
 from .validators import validate_properties
@@ -29,7 +30,7 @@ class OrchestratorConfig(BaseModel):
     source_priority: List[str] = Field(default_factory=lambda: ["parser", "matcher", "qa_llm"])
     enable_matcher: bool = True
     enable_llm: bool = True
-    registry_path: str = "data/properties/registry.json"
+    registry_path: str = Field(default_factory=lambda: str(get_settings().registry_path))
 
 
 class Orchestrator:
@@ -370,8 +371,6 @@ class Orchestrator:
                             selected = first
                     else:
                         selected = values[0]
-                    else:
-                        selected = None
                 elif "altezza" in lowered or "height" in lowered:
                     # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or largest if door-like
                     if len(values) == 2:

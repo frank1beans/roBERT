@@ -2,7 +2,7 @@
   "metadata": {
     "version": "0.2.0",
     "description": "Deterministic and hybrid extractors aligned with pack/v1_limited categories",
-    "registry": "data/properties/registry.json"
+    "registry": "resources/data/properties/registry.json"
   },
   "categories": [
     {

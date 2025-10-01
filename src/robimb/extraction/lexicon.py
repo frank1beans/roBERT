@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
+from ..config import get_settings
+
 __all__ = [
     "CategoryNorms",
     "CategoryProducers",
@@ -65,7 +67,8 @@ def _group_standards_by_category(entries: Iterable[Dict[str, Any]]) -> Dict[str,
 def load_norms_by_category(path: str | Path | None = None) -> Dict[str, Any]:
     """Return the catalogue of reference standards grouped by category."""
 
-    default_new = Path("data/properties/lexicon/norms.json")
+    settings = get_settings()
+    default_new = settings.standards_lexicon
     candidate = Path(path) if path else default_new
 
     if candidate.exists():
@@ -75,12 +78,13 @@ def load_norms_by_category(path: str | Path | None = None) -> Dict[str, Any]:
         if isinstance(payload, dict):
             return payload
 
-    legacy_path = Path("data/properties/lexicon/norms_by_category.json")
+    legacy_path = settings.standards_by_category
     return _load_json_resource(str(legacy_path), None)
 
 
 def load_producers_by_category(path: str | Path | None = None) -> Dict[str, Iterable[str]]:
     """Return the curated list of producers grouped by category."""
 
-    data = _load_json_resource("data/properties/lexicon/producers_by_category.json", path)
+    settings = get_settings()
+    data = _load_json_resource(str(settings.producers_by_category), path)
     return {key: list(map(str, values)) for key, values in data.items()}

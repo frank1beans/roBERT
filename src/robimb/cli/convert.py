@@ -19,6 +19,7 @@ from ..utils.data_utils import (
     prepare_mlm_corpus,
     save_datasets,
 )
+from ..config import get_settings
 
 __all__ = [
     "ConversionConfig",
@@ -30,13 +31,12 @@ __all__ = [
 ]
 
 # ---------------------------------------------------------------------
-# Defaults: prefer the versioned pack/ bundle (with fallback to legacy data/properties)
+# Defaults: prefer the versioned pack/ bundle (with fallback to the configured data directory)
 # ---------------------------------------------------------------------
 
-# repo_root/src/robimb/cli/convert.py -> parents[3] = repo_root
-_REPO_ROOT = Path(__file__).resolve().parents[3]
-_PACK_ROOT = _REPO_ROOT / "pack"
-_DATA_PROPERTIES_DIR = _REPO_ROOT / "data" / "properties"
+_SETTINGS = get_settings()
+_PACK_ROOT = _SETTINGS.pack_dir
+_DATA_PROPERTIES_DIR = (_SETTINGS.data_dir / "properties").resolve()
 
 _REQUIRED_REGISTRY_CANDIDATES = (
     "properties_registry_extended.json",
@@ -88,7 +88,7 @@ def _resolve_registry_path() -> Path:
             if generic.exists():
                 return generic
     raise FileNotFoundError(
-        "Impossibile individuare un registry JSON nel pack distribuito o in data/properties."
+        "Impossibile individuare un registry JSON nel pack distribuito o nella directory dati configurata."
     )
 
 
@@ -104,7 +104,7 @@ def _resolve_extractors_path() -> Path:
             if pack_json.exists():
                 return pack_json
     raise FileNotFoundError(
-        "Impossibile individuare un extractors JSON nel pack distribuito o in data/properties."
+        "Impossibile individuare un extractors JSON nel pack distribuito o nella directory dati configurata."
     )
 
 DEFAULT_PROPERTIES_REGISTRY: Path = _resolve_registry_path()
