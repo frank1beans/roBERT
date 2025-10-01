@@ -16,7 +16,8 @@
       "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/parsers/acoustic.py src/robimb/extraction/parsers/fire_class.py src/robimb/extraction/parsers/thickness.py src/robimb/extraction/orchestrator.py)",
       "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_controsoffitti.py)",
       "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/parsers/installation_type.py src/robimb/extraction/parsers/labeled_dimensions.py src/robimb/extraction/parsers/standards.py src/robimb/extraction/orchestrator.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_sanitari_fixes.py)"
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_sanitari_fixes.py)",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator.py)"
     ],
     "deny": [],
     "ask": []

@@ -7,7 +7,7 @@ from typing import Any, Dict, Optional
 from .fuse import Candidate, CandidateSource, Fuser
 from .matchers.brands import BrandMatcher
 from .matchers.materials import MaterialMatcher
-from .orchestrator import OrchestratorConfig
+from .orchestrator_base import OrchestratorBase
 from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
