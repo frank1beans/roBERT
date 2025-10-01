@@ -12,7 +12,7 @@ import numpy as np
 import typer
 
 from ..reporting import generate_dataset_reports
-from ..utils.data_utils import (
+from ..utils.dataset_prep import (
     build_mask_and_report,
     create_or_load_label_maps,
     prepare_classification_dataset,
@@ -212,13 +212,13 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
     if not label_maps_path.exists() and ontology_path is None:
         raise ValueError("Manca l'ontologia: è necessaria per costruire le label maps ex novo.")
 
-    super_name_to_id, cat_name_to_id, super_id_to_name, cat_id_to_name = create_or_load_label_maps(
+    label_maps = create_or_load_label_maps(
         label_maps_path, ontology_path=ontology_path
     )
 
     # 2) Dataset prep (classification + property extraction)
     #    Enforce usage of the pack-provided registry + extractors
-    train_df, val_df, _, _ = prepare_classification_dataset(
+    train_df, val_df, label_maps = prepare_classification_dataset(
         config.train_file,
         config.val_file,
         label_maps_path=label_maps_path,
@@ -234,7 +234,7 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
     save_datasets(train_df, val_df, config.out_dir)
 
     # 3) Ontology masks
-    mask_matrix, mask_report = build_mask_and_report(ontology_path, super_name_to_id, cat_name_to_id)
+    mask_matrix, mask_report = build_mask_and_report(ontology_path, label_maps)
     mask_matrix_path = config.out_dir / "mask_matrix.npy"
     mask_report_path = config.out_dir / "mask_report.json"
     np.save(mask_matrix_path, mask_matrix)
@@ -246,10 +246,10 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
     with open(label_maps_dump, "w", encoding="utf-8") as handle:
         json.dump(
             {
-                "super2id": super_name_to_id,
-                "cat2id": cat_name_to_id,
-                "id2super": super_id_to_name,
-                "id2cat": cat_id_to_name,
+                "super2id": label_maps.super_name_to_id,
+                "cat2id": label_maps.cat_name_to_id,
+                "id2super": label_maps.super_id_to_name,
+                "id2cat": label_maps.cat_id_to_name,
             },
             handle,
             indent=2,
@@ -261,8 +261,8 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
     generate_dataset_reports(
         train_df,
         val_df,
-        super_id_to_name=super_id_to_name,
-        cat_id_to_name=cat_id_to_name,
+        super_id_to_name=label_maps.super_id_to_name,
+        cat_id_to_name=label_maps.cat_id_to_name,
         output_dir=reports_dir,
     )
 

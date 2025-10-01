@@ -18,7 +18,7 @@ from ..models.masked_model import load_masked_model
 
 from ..reporting import generate_prediction_reports
 
-from ..utils.data_utils import load_jsonl_to_df
+from ..utils.sampling import load_jsonl_to_df
 from ..utils.metrics_utils import make_compute_metrics
 from ..utils.ontology_utils import load_label_maps
 

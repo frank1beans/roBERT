@@ -29,9 +29,10 @@ from ..training.property_utils import (
     build_property_metadata,
     build_property_targets,
 )
-from ..utils.data_utils import build_mask_and_report, load_jsonl_to_df
+from ..utils.dataset_prep import LabelMaps, build_mask_and_report
 from ..utils.metrics_utils import make_compute_metrics
 from ..utils.ontology_utils import load_label_maps
+from ..utils.sampling import load_jsonl_to_df
 
 __all__ = ["HierTrainingArgs", "train_hier_model", "main"]
 
@@ -150,12 +151,18 @@ def train_hier_model(args: HierTrainingArgs) -> Tuple[Trainer, Dict[str, float]]
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    s_name2id, c_name2id, _, _ = load_label_maps(args.label_maps)
+    s_name2id, c_name2id, s_id2name, c_id2name = load_label_maps(args.label_maps)
+    label_maps = LabelMaps(
+        super_name_to_id=s_name2id,
+        cat_name_to_id=c_name2id,
+        super_id_to_name=s_id2name,
+        cat_id_to_name=c_id2name,
+    )
     num_super = max(s_name2id.values()) + 1
     num_cat = max(c_name2id.values()) + 1
     nd_id = c_name2id.get("#N/D")
 
-    mask_matrix, mask_report = build_mask_and_report(args.ontology, s_name2id, c_name2id)
+    mask_matrix, mask_report = build_mask_and_report(args.ontology, label_maps)
 
     tokenizer_src = args.tokenizer_src or args.base_model
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_src)
