@@ -4,8 +4,14 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, Optional
 
-from .fuse import Candidate, Fuser
-from .orchestrator_base import OrchestratorBase, OrchestratorConfig
+from .fuse import Candidate, CandidateSource, Fuser
+from .matchers.brands import BrandMatcher
+from .matchers.materials import MaterialMatcher
+from .orchestrator import OrchestratorConfig
+from .parsers import dimensions, numbers
+from .parsers.colors import parse_ral_colors
+from .parsers.standards import parse_standards
+
 from .qa_llm import AsyncHttpLLM
 from .schema_registry import PropertySpec
 
@@ -93,7 +99,7 @@ class AsyncOrchestrator(OrchestratorBase):
         span = response.get("span")
         candidate: Candidate = Candidate(
             value=value,
-            source="qa_llm",
+            source=CandidateSource.QA_LLM,
             raw=response.get("raw"),
             span=span if isinstance(span, (list, tuple)) else None,
             confidence=confidence_value,

@@ -3,9 +3,9 @@ from __future__ import annotations
 
 import logging
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional, Sequence, TypedDict
+from typing import Any, Callable, Dict, List, Optional, Sequence, TypedDict, Union
 
-__all__ = ["FusePolicy", "Candidate", "Fuser"]
+__all__ = ["FusePolicy", "CandidateSource", "Candidate", "Fuser"]
 
 
 LOGGER = logging.getLogger(__name__)
@@ -17,11 +17,22 @@ class FusePolicy(str, Enum):
     VALIDATE_THEN_MAX_CONF = "validate_then_max_conf"
 
 
+class CandidateSource(str, Enum):
+    """Possible origins for an extracted candidate."""
+
+    PARSER = "parser"
+    MATCHER = "matcher"
+    QA_LLM = "qa_llm"
+    FUSE = "fuse"
+    MANUAL = "manual"
+    MATCHER_FALLBACK = "matcher_fallback"
+
+
 class Candidate(TypedDict, total=False):
     """Representation of a candidate produced by an extractor."""
 
     value: Any
-    source: Optional[str]
+    source: Optional[CandidateSource]
     raw: Optional[str]
     span: Optional[tuple[int, int] | list[int]]
     confidence: float
@@ -36,10 +47,24 @@ class Fuser:
         self,
         policy: FusePolicy = FusePolicy.VALIDATE_THEN_MAX_CONF,
         *,
-        source_priority: Sequence[str] | None = None,
+        source_priority: Sequence[Union[CandidateSource, str]] | None = None,
     ) -> None:
         self._policy = policy
-        self._source_priority = list(source_priority or ("parser", "matcher", "qa_llm", "fuse", "manual"))
+        default_priority: Sequence[CandidateSource] = (
+            CandidateSource.PARSER,
+            CandidateSource.MATCHER,
+            CandidateSource.QA_LLM,
+            CandidateSource.FUSE,
+            CandidateSource.MANUAL,
+            CandidateSource.MATCHER_FALLBACK,
+        )
+        if source_priority is None:
+            resolved_priority = [source.value if isinstance(source, CandidateSource) else source for source in default_priority]
+        else:
+            resolved_priority = [
+                source.value if isinstance(source, CandidateSource) else source for source in source_priority
+            ]
+        self._source_priority = resolved_priority
         self._priority_index: Dict[str, int] = {name: idx for idx, name in enumerate(self._source_priority)}
 
     def fuse(
@@ -101,7 +126,11 @@ class Fuser:
         def _sort_key(item: Candidate) -> tuple[float, int, int]:
             confidence = float(item.get("confidence") or 0.0)
             source = item.get("source")
-            priority = self._priority_index.get(source or "", len(self._priority_index))
+            if isinstance(source, CandidateSource):
+                source_key = source.value
+            else:
+                source_key = source or ""
+            priority = self._priority_index.get(source_key, len(self._priority_index))
             original_index = candidates.index(item)
             return (-confidence, priority, original_index)
 

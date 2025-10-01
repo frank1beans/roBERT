@@ -4,8 +4,14 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, Optional
 
-from .fuse import Candidate, Fuser
-from .orchestrator_base import OrchestratorBase, OrchestratorConfig
+from .fuse import Candidate, CandidateSource, Fuser
+from .matchers.brands import BrandMatcher
+from .matchers.materials import MaterialMatcher
+from .matchers.norms import StandardMatcher
+from .parsers import dimensions, numbers
+from .parsers.colors import parse_ral_colors
+from .parsers.standards import parse_standards
+
 from .qa_llm import QALLM
 
 from ..config import get_settings
@@ -22,7 +28,13 @@ __all__ = ["Orchestrator", "OrchestratorConfig"]
 class OrchestratorConfig(BaseModel):
     """Configuration for the property extraction orchestrator."""
 
-    source_priority: List[str] = Field(default_factory=lambda: ["parser", "matcher", "qa_llm"])
+    source_priority: List[str] = Field(
+        default_factory=lambda: [
+            CandidateSource.PARSER.value,
+            CandidateSource.MATCHER.value,
+            CandidateSource.QA_LLM.value,
+        ]
+    )
     enable_matcher: bool = True
     enable_llm: bool = True
     registry_path: str = Field(default_factory=lambda: str(get_settings().registry_path))
@@ -212,7 +224,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=selected,
-                        source="parser",
+                        source=CandidateSource.PARSER,
                         raw=match.raw,
                         span=match.span,
                         confidence=0.90,
@@ -226,7 +238,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=match.value,
-                        source="parser",
+                        source=CandidateSource.PARSER,
                         raw=match.raw,
                         span=(match.start, match.end),
                         confidence=0.90,
@@ -241,7 +253,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=match.code,
-                        source="parser",
+                        source=CandidateSource.PARSER,
                         raw=raw,
                         span=match.span,
                         confidence=0.85,
@@ -261,7 +273,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=label,
-                        source="parser",
+                        source=CandidateSource.PARSER,
                         raw=raw,
                         span=match.span,
                         confidence=0.80,
@@ -279,7 +291,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=match.value,
-                        source="parser",
+                        source=CandidateSource.PARSER,
                         raw=match.raw,
                         span=(match.start, match.end),
                         confidence=0.90,
@@ -299,7 +311,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=brand,
-                        source="matcher",
+                        source=CandidateSource.MATCHER,
                         raw=text[span[0] : span[1]],
                         span=span,
                         confidence=0.70 * float(score),
@@ -311,7 +323,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=self._brand_matcher.fallback_value,
-                        source="fallback",
+                        source=CandidateSource.MATCHER_FALLBACK,
                         raw=None,
                         span=None,
                         confidence=0.05,
@@ -326,7 +338,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=match.value,
-                        source="matcher",
+                        source=CandidateSource.MATCHER,
                         raw=match.surface,
                         span=match.span,
                         confidence=0.65 * float(match.score),
@@ -340,7 +352,7 @@ class Orchestrator:
                 results.append(
                     Candidate(
                         value=match.value,
-                        source="matcher",
+                        source=CandidateSource.MATCHER,
                         raw=match.surface,
                         span=match.span,
                         confidence=0.75 * float(match.score),
@@ -377,7 +389,7 @@ class Orchestrator:
         span = response.get("span")
         candidate: Candidate = Candidate(
             value=value,
-            source="qa_llm",
+            source=CandidateSource.QA_LLM,
             raw=response.get("raw"),
             span=span if isinstance(span, (list, tuple)) else None,
             confidence=confidence_value,

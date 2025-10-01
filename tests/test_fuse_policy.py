@@ -1,4 +1,4 @@
-from robimb.extraction.fuse import Candidate, Fuser, FusePolicy
+from robimb.extraction.fuse import Candidate, CandidateSource, Fuser, FusePolicy
 
 
 def _accept(candidate: Candidate):
@@ -10,7 +10,7 @@ def test_fuser_prefers_highest_confidence() -> None:
     candidates: list[Candidate] = [
         {
             "value": 42,
-            "source": "parser",
+            "source": CandidateSource.PARSER,
             "raw": "42",
             "span": (0, 2),
             "confidence": 0.88,
@@ -18,7 +18,7 @@ def test_fuser_prefers_highest_confidence() -> None:
         },
         {
             "value": 42,
-            "source": "qa_llm",
+            "source": CandidateSource.QA_LLM,
             "raw": "42",
             "span": (0, 2),
             "confidence": 0.92,
@@ -26,7 +26,7 @@ def test_fuser_prefers_highest_confidence() -> None:
         },
     ]
     winner = fuser.fuse(candidates, _accept)
-    assert winner["source"] == "qa_llm"
+    assert winner["source"] == CandidateSource.QA_LLM
 
 
 def test_fuser_uses_source_priority_on_ties() -> None:
@@ -34,7 +34,7 @@ def test_fuser_uses_source_priority_on_ties() -> None:
     candidates: list[Candidate] = [
         {
             "value": "A",
-            "source": "parser",
+            "source": CandidateSource.PARSER,
             "raw": "A",
             "span": (0, 1),
             "confidence": 0.9,
@@ -42,7 +42,7 @@ def test_fuser_uses_source_priority_on_ties() -> None:
         },
         {
             "value": "A",
-            "source": "qa_llm",
+            "source": CandidateSource.QA_LLM,
             "raw": "A",
             "span": (0, 1),
             "confidence": 0.9,
@@ -50,4 +50,28 @@ def test_fuser_uses_source_priority_on_ties() -> None:
         },
     ]
     winner = fuser.fuse(candidates, _accept)
-    assert winner["source"] == "parser"
+    assert winner["source"] == CandidateSource.PARSER
+
+
+def test_fuser_handles_matcher_fallback_source() -> None:
+    fuser = Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF)
+    candidates: list[Candidate] = [
+        {
+            "value": "Brand",
+            "source": CandidateSource.MATCHER_FALLBACK,
+            "raw": None,
+            "span": None,
+            "confidence": 0.4,
+            "errors": [],
+        },
+        {
+            "value": "Manual Brand",
+            "source": CandidateSource.MANUAL,
+            "raw": None,
+            "span": None,
+            "confidence": 0.4,
+            "errors": [],
+        },
+    ]
+    winner = fuser.fuse(candidates, _accept)
+    assert winner["source"] == CandidateSource.MANUAL
