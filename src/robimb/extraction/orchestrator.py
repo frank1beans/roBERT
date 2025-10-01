@@ -43,12 +43,12 @@ class Orchestrator:
     def extract_document(self, doc: Dict[str, Any]) -> Dict[str, Any]:
         """Extract properties for a single document."""
 
-        text_id = doc.get("text_id")
-        category_id = doc.get("categoria")
+        text_id = self._resolve_text_id(doc)
+        category_id = self._resolve_category_id(doc)
         text = doc.get("text", "") or ""
 
         if not category_id:
-            raise ValueError("Input document is missing 'categoria'")
+            raise ValueError("Input document is missing category information")
 
         category, schema = load_category_schema(category_id, registry_path=self._cfg.registry_path)
         property_specs = {prop.id: prop for prop in category.properties}
@@ -196,6 +196,22 @@ class Orchestrator:
         if isinstance(span, tuple):
             return [int(span[0]), int(span[1])]
         raise TypeError(f"Unsupported span type: {type(span)!r}")
+
+    def _resolve_text_id(self, doc: Dict[str, Any]) -> Optional[str]:
+        for key in ("text_id", "id", "document_id", "doc_id", "uuid"):
+            value = doc.get(key)
+            if isinstance(value, str) and value:
+                return value
+            if isinstance(value, (int, float)):
+                return str(value)
+        return None
+
+    def _resolve_category_id(self, doc: Dict[str, Any]) -> Optional[str]:
+        for key in ("categoria", "cat", "category", "category_id", "categoria_id"):
+            value = doc.get(key)
+            if isinstance(value, str) and value:
+                return value
+        return None
 
     def _parser_candidates(
         self, prop_id: str, spec: Optional[PropertySpec], text: str
