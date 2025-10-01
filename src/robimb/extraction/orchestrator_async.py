@@ -147,7 +147,7 @@ class AsyncOrchestrator:
             candidates.extend(self._parser_candidates(prop, prop_spec, text))
 
         if self._cfg.enable_matcher and "matcher" in allowed_sources:
-            candidates.extend(self._matcher_candidates(prop, text))
+            candidates.extend(self._matcher_candidates(cat, prop, text))
 
         if self._llm and "qa_llm" in allowed_sources:
             llm_candidate = await self._llm_candidate(prop, text, prop_schema)
@@ -245,9 +245,9 @@ class AsyncOrchestrator:
         from .orchestrator import Orchestrator
         return Orchestrator._parser_candidates(self, prop_id, spec, text)
 
-    def _matcher_candidates(self, prop_id: str, text: str) -> Iterable[Candidate]:
+    def _matcher_candidates(self, category: str, prop_id: str, text: str) -> Iterable[Candidate]:
         from .orchestrator import Orchestrator
-        return Orchestrator._matcher_candidates(self, prop_id, text)
+        return Orchestrator._matcher_candidates(self, category, prop_id, text)
 
     def _build_validator(self, spec: Optional[PropertySpec]):
         from .orchestrator import Orchestrator

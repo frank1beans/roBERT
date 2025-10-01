@@ -153,7 +153,7 @@ class Orchestrator:
             candidates.extend(self._parser_candidates(prop, prop_spec, text))
 
         if self._cfg.enable_matcher and "matcher" in allowed_sources:
-            candidates.extend(self._matcher_candidates(prop, text))
+            candidates.extend(self._matcher_candidates(cat, prop, text))
 
         if self._llm and "qa_llm" in allowed_sources:
             llm_candidate = self._llm_candidate(prop, text, prop_schema)
@@ -461,11 +461,12 @@ class Orchestrator:
 
         return results
 
-    def _matcher_candidates(self, prop_id: str, text: str) -> Iterable[Candidate]:
+    def _matcher_candidates(self, category: str, prop_id: str, text: str) -> Iterable[Candidate]:
         lowered = prop_id.lower()
         results: List[Candidate] = []
         if lowered == "marchio":
-            for brand, span, score in self._brand_matcher.find(text):
+            matches = list(self._brand_matcher.find(text, category=category))
+            for brand, span, score in matches:
                 results.append(
                     Candidate(
                         value=brand,
@@ -473,6 +474,18 @@ class Orchestrator:
                         raw=text[span[0] : span[1]],
                         span=span,
                         confidence=0.70 * float(score),
+                        unit=None,
+                        errors=[],
+                    )
+                )
+            if not matches:
+                results.append(
+                    Candidate(
+                        value=self._brand_matcher.fallback_value,
+                        source="fallback",
+                        raw=None,
+                        span=None,
+                        confidence=0.05,
                         unit=None,
                         errors=[],
                     )
