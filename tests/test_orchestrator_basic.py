@@ -175,3 +175,23 @@ def test_parser_candidates_preserve_width_and_height_values() -> None:
     assert height_candidate["unit"] == "mm"
     assert pytest.approx(height_candidate["value"], rel=1e-3) == 2100.0
 
+
+def test_orchestrator_extracts_normativa_riferimento() -> None:
+    cfg = OrchestratorConfig()
+    orchestrator = Orchestrator(
+        fuse=Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=cfg.source_priority),
+        llm=None,
+        cfg=cfg,
+    )
+
+    doc = {
+        "categoria": "opere_da_serramentista",
+        "text": "Serramento conforme al Regolamento (UE) 305/2011 sulla marcatura CE.",
+    }
+
+    result = orchestrator.extract_document(doc)
+    normative = result["properties"].get("normativa_riferimento", {})
+
+    assert normative.get("value") == "Regolamento UE 305/2011"
+    assert normative.get("source") == "matcher"
+

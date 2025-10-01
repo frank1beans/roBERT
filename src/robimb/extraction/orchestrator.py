@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 from .fuse import Candidate, Fuser
 from .matchers.brands import BrandMatcher
 from .matchers.materials import MaterialMatcher
+from .matchers.norms import StandardMatcher
 from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
@@ -40,6 +41,7 @@ class Orchestrator:
         self._cfg = cfg
         self._brand_matcher = BrandMatcher()
         self._material_matcher = MaterialMatcher()
+        self._standard_matcher = StandardMatcher()
 
     def extract_document(self, doc: Dict[str, Any]) -> Dict[str, Any]:
         """Extract properties for a single document."""
@@ -498,6 +500,20 @@ class Orchestrator:
                         raw=match.surface,
                         span=match.span,
                         confidence=0.65 * float(match.score),
+                        unit=None,
+                        errors=[],
+                    )
+                )
+        if any(token in lowered for token in ("norma", "standard")):
+            matches = list(self._standard_matcher.find(text, category=category))
+            for match in matches:
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="matcher",
+                        raw=match.surface,
+                        span=match.span,
+                        confidence=0.75 * float(match.score),
                         unit=None,
                         errors=[],
                     )
