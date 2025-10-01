@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(where python)",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" analyze_dataset.py)",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" analyze_dataset_detailed.py)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

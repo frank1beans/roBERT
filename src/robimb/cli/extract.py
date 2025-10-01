@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Optional
 
@@ -107,18 +108,61 @@ def extract_properties(
     fuse = Fuser(policy=FusePolicy.VALIDATE_THEN_MAX_CONF, source_priority=orchestrator_cfg.source_priority)
     orchestrator = Orchestrator(fuse=fuse, llm=llm, cfg=orchestrator_cfg)
 
-    processed = 0
-    with input_path.open("r", encoding="utf-8") as src, output_path.open("w", encoding="utf-8") as dst:
+    # Load all records first
+    records = []
+    with input_path.open("r", encoding="utf-8") as src:
         for line in src:
             if not line.strip():
                 continue
             record = json.loads(line)
             if category_filter and record.get("categoria") != category_filter:
                 continue
-            result = orchestrator.extract_document(record)
+            records.append(record)
+
+    # Process records in parallel
+    processed = 0
+    results = []
+
+    if max_workers > 1:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_record = {
+                executor.submit(orchestrator.extract_document, record): idx
+                for idx, record in enumerate(records)
+            }
+            for future in as_completed(future_to_record):
+                idx = future_to_record[future]
+                try:
+                    result = future.result()
+                    results.append((idx, result))
+                    processed += 1
+                    if processed % 100 == 0:
+                        typer.echo(f"Processed {processed}/{len(records)} documents...", err=True)
+                except Exception as exc:
+                    if fail_fast:
+                        raise
+                    typer.echo(f"Error processing record {idx}: {exc}", err=True)
+                    log_event(logger, "extract.properties.error", trace_id=trace_id, record_idx=idx, error=str(exc))
+    else:
+        # Sequential processing (for debugging or single-threaded mode)
+        for idx, record in enumerate(records):
+            try:
+                result = orchestrator.extract_document(record)
+                results.append((idx, result))
+                processed += 1
+                if processed % 100 == 0:
+                    typer.echo(f"Processed {processed}/{len(records)} documents...", err=True)
+            except Exception as exc:
+                if fail_fast:
+                    raise
+                typer.echo(f"Error processing record {idx}: {exc}", err=True)
+                log_event(logger, "extract.properties.error", trace_id=trace_id, record_idx=idx, error=str(exc))
+
+    # Sort results by original order and write to output
+    results.sort(key=lambda x: x[0])
+    with output_path.open("w", encoding="utf-8") as dst:
+        for _, result in results:
             json.dump(result, dst, ensure_ascii=False)
             dst.write("\n")
-            processed += 1
 
     typer.echo(json.dumps({"status": "completed", "documents": processed}, ensure_ascii=False))
     log_event(

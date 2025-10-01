@@ -8,9 +8,11 @@ Atlas Concorde
 Axor
 Azichem
 Azzurra Ceramica
+Bassanetti
 Baumit
 Bauwerk Parkett
 Belle Finestre
+Bertolotto
 Bertolotto Porte
 Biemme
 Boero
@@ -37,12 +39,19 @@ Cristina Rubinetterie
 DQG
 Dakota
 Diasen
+DMP Electronics
+DormaKaba
 Dornbracht
 Duravit
+Dyson
+EcoContract
 Eclisse
+Emil
+Emil Ceramica
 Emilceramica
 FF Systems
 Fantini Rubinetti
+Fantoni
 Fap Ceramiche
 Fassa Bortolo
 FerreroLegno
@@ -61,6 +70,7 @@ Gealan
 Geberit
 Gessi
 Globo
+Goman
 Graff
 Grohe
 Gyps
@@ -73,6 +83,7 @@ Imola Ceramica
 Index
 Internorm Italia
 Iris Ceramica
+Iseo
 Isolmant
 James Hardie
 Jansen
@@ -87,15 +98,19 @@ Knauf Italia
 Laticrete
 Listone Giordano
 Litokol
+Living Ceramics
 MAPEI
 Malvin
+Mapei
 Marazzi
+Metalscreen
 MaxMeyer
 Mirage
 Molteni Vernici
 Newform
 Nobili
 Novacolor
+Novoferm
 Nurith
 Nusco
 Officina Nicolazzi
@@ -106,6 +121,8 @@ Porcelanosa
 Pozzi Ginori
 Premix
 Profilgessi
+Profilsystem
+ProfilSystem
 RAK Ceramics
 Ragno
 Refin
@@ -126,6 +143,7 @@ Saint-Gobain Weber
 San Marco
 Scarabeo Ceramiche
 Schulz Italia
+Schöck
 Schüco
 Scrigno
 Sikkens
@@ -139,4 +157,5 @@ Villeroy & Boch
 VitrA Bathrooms
 Vitra
 WnD
+Yale
 Zucchetti

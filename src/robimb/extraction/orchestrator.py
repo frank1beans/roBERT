@@ -336,27 +336,40 @@ class Orchestrator:
                 values = match.values_mm
                 if not values:
                     continue
+
+                # Improved dimension assignment heuristics
                 if "lunghezza" in lowered or "length" in lowered:
-                    selected = values[0]
+                    # For length: prefer the largest value (typically the first in WxHxD format)
+                    selected = max(values) if len(values) > 1 else values[0]
                 elif "larghezza" in lowered or "width" in lowered:
+                    # For width: first value in 2D (WxH), or first in 3D (WxHxD)
                     selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
-                    if len(values) > 2:
-                        selected = values[2]
-                    elif len(values) > 1:
+                    # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or second in typical 3D
+                    if len(values) == 2:
                         selected = values[1]
+                    elif len(values) >= 3:
+                        # If one value is significantly larger (e.g., door height 2100mm vs 800mm width),
+                        # that's likely the height
+                        if max(values) > 1500 and max(values) / min(values) > 2:
+                            selected = max(values)
+                        else:
+                            selected = values[1]
                     else:
                         selected = values[0]
                 elif "profond" in lowered or "depth" in lowered:
-                    if len(values) > 2:
+                    # For depth: third value in 3D, or smallest in set
+                    if len(values) >= 3:
                         selected = values[2]
-                    elif len(values) > 1:
-                        selected = values[1]
+                    elif len(values) == 2:
+                        selected = min(values)
                     else:
                         selected = None
                 else:
+                    # Generic dimension property: return all values as structured dict
                     keys = ["width_mm", "height_mm", "depth_mm"]
                     selected = {key: values[idx] for idx, key in enumerate(keys) if idx < len(values)}
+
                 if selected is None:
                     continue
                 results.append(

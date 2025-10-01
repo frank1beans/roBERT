@@ -1,6 +1,7 @@
 """Lexical matchers for brand mentions."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Iterable, List, Optional, Set, Tuple
 
@@ -22,20 +23,33 @@ def load_brand_lexicon(path: str | Path | None = None) -> Set[str]:
 
 
 class BrandMatcher:
-    """Naïve case-insensitive matcher for known brand names."""
+    """Optimized case-insensitive matcher for known brand names using compiled regex."""
 
     def __init__(self, lexicon: Optional[Iterable[str]] = None) -> None:
-        self._lexicon = {item.lower(): item for item in (lexicon or load_brand_lexicon())}
+        brands = list(lexicon or load_brand_lexicon())
+        # Sort by length descending to match longer brands first (e.g., "Knauf Italia" before "Knauf")
+        brands.sort(key=len, reverse=True)
+        self._brand_map = {brand.lower(): brand for brand in brands}
+        # Build a single regex pattern with word boundaries
+        escaped_brands = [re.escape(brand) for brand in brands]
+        pattern = r'\b(' + '|'.join(escaped_brands) + r')\b'
+        self._pattern = re.compile(pattern, re.IGNORECASE)
 
     def find(self, text: str) -> List[Tuple[str, Tuple[int, int], float]]:
         """Return matches as ``(brand, span, score)`` tuples."""
 
-        lowered = text.lower()
         results: List[Tuple[str, Tuple[int, int], float]] = []
-        for key, surface in self._lexicon.items():
-            start = lowered.find(key)
-            if start == -1:
+        seen_spans: Set[Tuple[int, int]] = set()
+
+        for match in self._pattern.finditer(text):
+            span = (match.start(), match.end())
+            if span in seen_spans:
                 continue
-            end = start + len(key)
-            results.append((surface, (start, end), 1.0))
+            seen_spans.add(span)
+
+            matched_text = match.group(0)
+            # Preserve original casing from lexicon
+            canonical_brand = self._brand_map.get(matched_text.lower(), matched_text)
+            results.append((canonical_brand, span, 1.0))
+
         return results
