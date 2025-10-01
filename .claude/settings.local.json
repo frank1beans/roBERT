@@ -17,7 +17,14 @@
       "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_controsoffitti.py)",
       "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/parsers/installation_type.py src/robimb/extraction/parsers/labeled_dimensions.py src/robimb/extraction/parsers/standards.py src/robimb/extraction/orchestrator.py)",
       "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" test_sanitari_fixes.py)",
-      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator.py)"
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator.py)",
+      "Bash(git checkout:*)",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m py_compile src/robimb/extraction/orchestrator_async.py)",
+      "Bash(cat:*)",
+      "Bash(xargs cat:*)",
+      "Bash(python:*)",
+      "Bash(\"C:\\Users\\f.biggi\\AppData\\Local\\miniconda3\\python.exe\" -m json.tool resources/data/properties/registry.json)",
+      "Bash(del:*)"
     ],
     "deny": [],
     "ask": []

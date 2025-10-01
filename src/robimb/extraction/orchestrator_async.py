@@ -11,6 +11,12 @@ from .orchestrator_base import OrchestratorBase
 from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
+from .parsers.flow_rate import parse_flow_rate
+from .parsers.labeled_dimensions import parse_labeled_dimensions
+from .parsers.acoustic import parse_acoustic_coefficient
+from .parsers.fire_class import parse_fire_class
+from .parsers.thickness import parse_thickness
+from .parsers.installation_type import parse_installation_type
 
 from .qa_llm import AsyncHttpLLM
 from .schema_registry import PropertySpec
@@ -23,7 +29,7 @@ __all__ = ["AsyncOrchestrator"]
 class AsyncOrchestrator(OrchestratorBase):
     """Async orchestrator for parallel LLM-based property extraction."""
 
-    def __init__(self, fuse: Fuser, llm: AsyncHttpLLM, cfg: OrchestratorConfig) -> None:
+    def __init__(self, fuse: Fuser, llm: AsyncHttpLLM, cfg: OrchestratorBase) -> None:
         super().__init__(fuse=fuse, cfg=cfg)
         self._llm = llm
 
