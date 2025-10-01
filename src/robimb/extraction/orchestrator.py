@@ -153,7 +153,7 @@ class Orchestrator:
             candidates.extend(self._parser_candidates(prop, prop_spec, text))
 
         if self._cfg.enable_matcher and "matcher" in allowed_sources:
-            candidates.extend(self._matcher_candidates(prop, text))
+            candidates.extend(self._matcher_candidates(cat, prop, text))
 
         if self._llm and "qa_llm" in allowed_sources:
             llm_candidate = self._llm_candidate(prop, text, prop_schema)
@@ -347,11 +347,25 @@ class Orchestrator:
                     else:
                         selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
-                    # For width: second value in 2D (WxD), first in 3D (WxHxD)
+
+                    # For width keep the first value when only two dimensions are present.
                     if len(values) == 2:
-                        selected = values[1]
+                        selected = values[0]
+                    elif len(values) >= 3:
+                        # Heuristic for three dimensions: prefer the most plausible width
+                        # among the remaining values when the first value resembles a height
+                        # (e.g. door formats like 70x210x4 cm).
+                        first = values[0]
+                        if first > 1500:
+                            # Choose the largest candidate below the typical door height
+                            candidates = [v for v in values[1:] if v <= 1500]
+                            selected = max(candidates) if candidates else first
+                        else:
+                            selected = first
                     else:
                         selected = values[0]
+                    else:
+                        selected = None
                 elif "altezza" in lowered or "height" in lowered:
                     # For height: second value in 2D (WxH), third in 3D door format (WxHxD), or largest if door-like
                     if len(values) == 2:
@@ -461,11 +475,12 @@ class Orchestrator:
 
         return results
 
-    def _matcher_candidates(self, prop_id: str, text: str) -> Iterable[Candidate]:
+    def _matcher_candidates(self, category: str, prop_id: str, text: str) -> Iterable[Candidate]:
         lowered = prop_id.lower()
         results: List[Candidate] = []
         if lowered == "marchio":
-            for brand, span, score in self._brand_matcher.find(text):
+            matches = list(self._brand_matcher.find(text, category=category))
+            for brand, span, score in matches:
                 results.append(
                     Candidate(
                         value=brand,
@@ -473,6 +488,18 @@ class Orchestrator:
                         raw=text[span[0] : span[1]],
                         span=span,
                         confidence=0.70 * float(score),
+                        unit=None,
+                        errors=[],
+                    )
+                )
+            if not matches:
+                results.append(
+                    Candidate(
+                        value=self._brand_matcher.fallback_value,
+                        source="fallback",
+                        raw=None,
+                        span=None,
+                        confidence=0.05,
                         unit=None,
                         errors=[],
                     )
