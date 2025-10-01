@@ -37,6 +37,10 @@ class Orchestrator:
 
     def __init__(self, fuse: Fuser, llm: Optional[QALLM], cfg: OrchestratorConfig) -> None:
         self._fuse = fuse
+        if llm is not None and not cfg.enable_llm:
+            LOGGER.info(
+                "llm_disabled", extra={"reason": "config_disabled", "llm_type": llm.__class__.__name__}
+            )
         self._llm = llm if cfg.enable_llm else None
         self._cfg = cfg
         self._brand_matcher = BrandMatcher()
