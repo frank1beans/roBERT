@@ -1,6 +1,6 @@
 # Sintesi esecutiva
 - Completato l'audit del bundle `pack/v1_limited`: identificate sette categorie operative (cartongesso, rivestimenti, pavimentazioni, serramenti, controsoffitti, apparecchi sanitari, falegnameria) con slot condivisi e prevalenza di pattern regex focalizzati su marchi e pochi valori dimensionali.
-- Definito un registro schema-first (`data/properties/registry.json`) allineato alle categorie legacy con metadati strutturati (tipi, unità, enum, required, fonti) e sette JSON Schema validabili in `data/properties/schema/` per garantire tracciabilità e validazione.
+- Definito un registro schema-first (`data/properties/registry.json`) allineato alle categorie legacy con metadati strutturati (tipi, unità, enum, required, fonti) e sette JSON Schema validabili in `data/properties/schema/` per garantire tracciabilità e validazione, formalizzato nell'[ADR 0001](ADR/0001-schema-first.md).
 - Istituito un piano incrementale A→D che combina parser deterministici, QA LLM vincolato, matcher lessicali e validazione Pydantic per evolvere dal pack limitato all'estrattore ibrido pronto per il bundle `pack/v1`.
 
 ## Assunzioni

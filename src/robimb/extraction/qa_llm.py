@@ -10,6 +10,8 @@ from typing import Any, Dict, Optional, Protocol
 
 from pydantic import BaseModel, Field
 
+from .prompts import load_prompt_library
+
 __all__ = ["QALLM", "QALLMConfig", "HttpLLM", "MockLLM", "build_prompt"]
 
 
@@ -41,19 +43,13 @@ def build_prompt(text: str, question: str, schema: Dict[str, Any]) -> str:
     """Construct a deterministic prompt instructing the model to output JSON."""
 
     schema_json = json.dumps(schema, ensure_ascii=False, indent=2)
-    prompt_lines = [
-        "Sei un assistente specializzato nell'estrazione di proprietà da descrizioni tecniche.",
-        "Lavora SOLO sul testo fornito. Se l'informazione non è presente, restituisci null.",
-        "Copia verbatim i valori testuali, senza aggiungere spiegazioni.",
-        "Rispondi esclusivamente con JSON valido conforme allo schema fornito.",
-        "Testo da analizzare:",
-        text.strip() or "<vuoto>",
-        "Domanda:",
-        question,
-        "Schema JSON della risposta:",
-        schema_json,
-    ]
-    return "\n".join(prompt_lines)
+    library = load_prompt_library()
+    return library.render(
+        "property_question",
+        text=text.strip() or "<vuoto>",
+        question=question,
+        schema=schema_json,
+    )
 
 
 class HttpLLM(QALLM):
