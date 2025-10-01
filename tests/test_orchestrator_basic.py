@@ -103,7 +103,6 @@ def test_orchestrator_accepts_category_alias(tmp_path: Path) -> None:
     assert result["categoria"] == "categoria_test"
     assert result["text_id"] == "42"
 
-
 def test_orchestrator_uses_super_category_as_fallback(tmp_path: Path) -> None:
     registry_path = _write_registry(tmp_path)
     cfg = OrchestratorConfig(registry_path=str(registry_path))
@@ -124,3 +123,4 @@ def test_orchestrator_uses_super_category_as_fallback(tmp_path: Path) -> None:
     assert result["categoria"] == "categoria_test"
     # Without an explicit identifier the orchestrator should keep the field empty
     assert result["text_id"] is None
+

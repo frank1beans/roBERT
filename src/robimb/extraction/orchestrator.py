@@ -215,6 +215,7 @@ class Orchestrator:
         return None
 
     def _resolve_category_id(self, doc: Dict[str, Any]) -> Optional[str]:
+
         registry = load_registry(self._cfg.registry_path)
         for key in (
             "categoria",
@@ -322,6 +323,7 @@ class Orchestrator:
             if resolved:
                 return resolved
         return self._resolve_category_from_schema(doc, registry)
+
 
     def _parser_candidates(
         self, prop_id: str, spec: Optional[PropertySpec], text: str
