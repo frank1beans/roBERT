@@ -4,7 +4,7 @@ import json
 import typer
 
 from .._version import __version__
-from ..utils.data_utils import sample_one_record_per_category
+from ..utils.sampling import sample_one_record_per_category
 from .convert import convert_command
 from .evaluate import evaluate_command
 from .extract import app as extract_app
