@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, Iterable, List, Optional, Sequence
 
-from .fuse import Candidate, Fuser
+from .fuse import Candidate, CandidateSource, Fuser
 from .matchers.brands import BrandMatcher
 from .matchers.materials import MaterialMatcher
 from .orchestrator import OrchestratorConfig
@@ -224,7 +224,7 @@ class AsyncOrchestrator:
         span = response.get("span")
         candidate: Candidate = Candidate(
             value=value,
-            source="qa_llm",
+            source=CandidateSource.QA_LLM,
             raw=response.get("raw"),
             span=span if isinstance(span, (list, tuple)) else None,
             confidence=confidence_value,
