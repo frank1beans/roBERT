@@ -7,6 +7,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence
 
 from pydantic import BaseModel, Field
 
+from ..config import get_settings
 from .fuse import Candidate, CandidateSource, Fuser
 from .fusion_policy import FusionThresholds, fuse_property_candidates
 from .matchers.brands import BrandMatcher
@@ -21,6 +22,8 @@ from .parsers.acoustic import parse_acoustic_coefficient
 from .parsers.fire_class import parse_fire_class
 from .parsers.thickness import parse_thickness
 from .parsers.installation_type import parse_installation_type
+from .parsers.sound_insulation import parse_sound_insulation
+from .parsers.thermal import parse_thermal_transmittance
 from .qa_llm import QALLM
 from ..registry.schemas import slugify
 from .schema_registry import PropertySpec, load_category_schema, load_registry
@@ -85,6 +88,11 @@ _TOTAL_THICKNESS_PATTERN = re.compile(
 )
 
 _ISOLANTE_PATTERN = re.compile(r"isolant|lana\s+minerale|naturboard|mineral\s+wool", re.IGNORECASE)
+_ISOLANTE_NEGATIVE_PATTERN = re.compile(
+    r"\b(?:senza|privo|priva|sprovvist[oa])\s+(?:di\s+)?isolant",
+    re.IGNORECASE,
+)
+_EI_CLASS_PATTERN = re.compile(r"\bEI\s*(\d{2,3})\b", re.IGNORECASE)
 
 _ORDITURA_PATTERN = re.compile(r"orditura[^\n]{0,40}?(\d+(?:[\.,]\d+)?)\s*(mm|cm|m)", re.IGNORECASE)
 
@@ -95,7 +103,7 @@ class OrchestratorConfig(BaseModel):
     source_priority: List[str] = Field(default_factory=lambda: ["parser", "matcher", "qa_llm"])
     enable_matcher: bool = True
     enable_llm: bool = True
-    registry_path: str = "data/properties/registry.json"
+    registry_path: str = Field(default_factory=lambda: str(get_settings().registry_path))
     use_qa: bool = True
     fusion_mode: str = "fuse"
     qa_null_threshold: float = 0.25
@@ -622,57 +630,39 @@ class Orchestrator:
 
         if any(token in lowered for token in ("dimension", "formato")):
             for match in dimensions.parse_dimensions(text):
-                values = match.values_mm
+                values = list(match.values_mm)
                 if not values:
                     continue
 
-                # Improved dimension assignment heuristics
+                raw_lower = match.raw.lower()
+                has_height_marker = bool(re.search(r"\bh\s*\d", raw_lower))
+                selected: Any
+
                 if "lunghezza" in lowered or "length" in lowered:
-                    # For length: first value in 2D/3D (WxHxD), or largest if significantly bigger
-                    if len(values) >= 2 and max(values) > 1500 and max(values) / min(values) > 2:
-                        selected = max(values)
+                    if len(values) >= 2:
+                        selected = max(values[:2])
                     else:
                         selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
-                    # When only two dimensions are present (WxH), assume the first token is the width
-                    if len(values) == 2:
-                        selected = values[0]
-                    elif len(values) >= 3:
-                        # Heuristic for three dimensions: prefer the most plausible width
-                        # among the remaining values when the first value resembles a height
-                        # (e.g. door formats like 70x210x4 cm).
-                        first = values[0]
-                        if first > 1500:
-                            # Choose the largest candidate below the typical door height
-                            candidates = [v for v in values[1:] if v <= 1500]
-                            selected = max(candidates) if candidates else values[1]
-                        else:
-                            selected = values[1]
+                    if len(values) >= 2:
+                        selected = min(values[:2])
                     else:
                         selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
-                    # For height: in two-value tuples interpret the second token as height (WxH)
-                    if len(values) == 2:
-                        selected = values[1]
-                    elif len(values) >= 3:
-                        # If one value is significantly larger (e.g., door height 2100mm vs 800mm width),
-                        # that's likely the height
-                        if max(values) > 1500 and max(values) / min(values) > 2:
-                            selected = max(values)
-                        else:
-                            selected = values[2]
-                    else:
-                        selected = values[0]
-                elif "profond" in lowered or "depth" in lowered:
-                    # For depth: third value in 3D, or smallest in set
                     if len(values) >= 3:
                         selected = values[2]
-                    elif len(values) == 2:
-                        selected = min(values)
+                    elif has_height_marker and len(values) >= 2:
+                        selected = values[-1]
                     else:
-                        selected = None
+                        continue
+                elif "profond" in lowered or "depth" in lowered:
+                    if len(values) >= 3:
+                        selected = values[2]
+                    elif len(values) == 2 and not has_height_marker:
+                        selected = values[-1]
+                    else:
+                        continue
                 else:
-                    # Generic dimension property (e.g., "formato")
                     if "formato" in lowered:
                         if re.search(r"zoccol|battiscop", text, re.IGNORECASE) and values:
                             height_mm = max(values)
@@ -723,16 +713,24 @@ class Orchestrator:
             # Fallback to generic numbers only if no labeled thickness found
             if not labeled_found:
                 for match in numbers.extract_numbers(text):
-                    # Skip numbers that are part of product codes (preceded by letters)
+                    before = text[max(0, match.start - 25) : match.start].lower()
+                    after = text[match.end : min(len(text), match.end + 20)].lower()
+
+                    if not re.search(r"sp(?:\.|ess)", before):
+                        continue
+
+                    if re.search(r"\b(?:iso|uni|en)\s*(?:en\s*)?\d", after):
+                        continue
+                    if re.search(r"\b(?:iso|uni|en)\s*$", before):
+                        continue
+
                     if match.start > 0:
-                        prev_chars = text[max(0, match.start - 8):match.start]
-                        # Skip if immediately preceded by letter(s) (e.g., "PS01", "A12")
+                        prev_chars = text[max(0, match.start - 8) : match.start]
                         if prev_chars and prev_chars[-1].isalpha():
                             continue
-                        # Skip if looks like a code pattern (letters + numbers)
-                        if re.search(r'[A-Z]{1,3}\d*$', prev_chars, re.IGNORECASE):
+                        if re.search(r"[A-Z]{1,3}\d*$", prev_chars, re.IGNORECASE):
                             continue
-                        if re.search(r'(ral|uni)\s*$', prev_chars, re.IGNORECASE):
+                        if re.search(r"(ral|uni)\s*$", prev_chars, re.IGNORECASE):
                             continue
 
                     results.append(
@@ -782,20 +780,35 @@ class Orchestrator:
                     )
                 )
 
-        elif "db" in lowered or "decibel" in lowered:
-            for match in numbers.extract_numbers(text):
-                window = text[match.end : min(len(text), match.end + 5)].lower()
-                previous = text[max(0, match.start - 5) : match.start].lower()
-                if "db" not in window and "db" not in previous:
-                    continue
+        elif "trasmittanza" in lowered or "uw" in lowered or "uf" in lowered or "ug" in lowered:
+            for match in parse_thermal_transmittance(text):
                 results.append(
                     Candidate(
                         value=match.value,
                         source="parser",
                         raw=match.raw,
-                        span=(match.start, match.end),
+                        span=match.span,
                         confidence=0.90,
-                        unit="db",
+                        unit="W/m²K",
+                        errors=[],
+                    )
+                )
+
+        elif (
+            "isolamento_acustico" in lowered
+            or lowered.endswith("_acustico_db")
+            or lowered.endswith("_db")
+            or "decibel" in lowered
+        ):
+            for match in parse_sound_insulation(text):
+                results.append(
+                    Candidate(
+                        value=match.value,
+                        source="parser",
+                        raw=match.raw,
+                        span=match.span,
+                        confidence=0.88,
+                        unit="dB",
                         errors=[],
                     )
                 )
@@ -855,6 +868,53 @@ class Orchestrator:
                         errors=[],
                     )
                 )
+
+        elif lowered == "classe_ei":
+            allowed = set(spec.enum) if spec and spec.enum else None
+            for match in _EI_CLASS_PATTERN.finditer(text):
+                value = f"EI{match.group(1)}"
+                if allowed and value not in allowed:
+                    continue
+                results.append(
+                    Candidate(
+                        value=value,
+                        source="parser",
+                        raw=match.group(0),
+                        span=(match.start(), match.end()),
+                        confidence=0.88,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+
+        elif lowered == "presenza_isolante":
+            negative = _ISOLANTE_NEGATIVE_PATTERN.search(text)
+            if negative:
+                results.append(
+                    Candidate(
+                        value="no",
+                        source="parser",
+                        raw=text[negative.start() : negative.end()],
+                        span=(negative.start(), negative.end()),
+                        confidence=0.85,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+            else:
+                positive = _ISOLANTE_PATTERN.search(text)
+                if positive:
+                    results.append(
+                        Candidate(
+                            value="si",
+                            source="parser",
+                            raw=text[positive.start() : positive.end()],
+                            span=(positive.start(), positive.end()),
+                            confidence=0.85,
+                            unit=None,
+                            errors=[],
+                        )
+                    )
 
         # Check for explicitly labeled dimensions (e.g., "lunghezza 60 cm")
         if any(token in lowered for token in ("lunghezza", "larghezza", "altezza", "profondità", "profondita")):

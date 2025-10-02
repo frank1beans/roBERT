@@ -17,6 +17,7 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 from pydantic import BaseModel, Field
 
+from ..config import get_settings
 from ..registry.schemas import slugify
 from .fuse import Candidate, Fuser
 from .matchers.brands import BrandMatcher
@@ -78,9 +79,21 @@ _TOTAL_THICKNESS_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+_SECTION_PROFILE_KEYWORDS = (
+    "profilo",
+    "profilati",
+    "sezione",
+    "angolare",
+)
+
 _ISOLANTE_PATTERN = re.compile(r"isolant|lana\s+minerale|naturboard|mineral\s+wool", re.IGNORECASE)
+_ISOLANTE_NEGATIVE_PATTERN = re.compile(
+    r"\b(?:senza|privo|priva|sprovvist[oa])\s+(?:di\s+)?isolant",
+    re.IGNORECASE,
+)
 
 _ORDITURA_PATTERN = re.compile(r"orditura[^\n]{0,40}?(\d+(?:[\.,]\d+)?)\s*(mm|cm|m)", re.IGNORECASE)
+_EI_CLASS_PATTERN = re.compile(r"\bEI\s*(\d{2,3})\b", re.IGNORECASE)
 
 
 class OrchestratorConfig(BaseModel):
@@ -89,7 +102,7 @@ class OrchestratorConfig(BaseModel):
     source_priority: List[str] = Field(default_factory=lambda: ["parser", "matcher", "qa_llm"])
     enable_matcher: bool = True
     enable_llm: bool = True
-    registry_path: str = "data/properties/registry.json"
+    registry_path: str = Field(default_factory=lambda: str(get_settings().registry_path))
     use_qa: bool = True
     fusion_mode: str = "fuse"
     qa_null_threshold: float = 0.25
@@ -451,7 +464,7 @@ class OrchestratorBase(ABC):
 
         if any(token in lowered for token in ("dimension", "formato")):
             for match in dimensions.parse_dimensions(text):
-                values = match.values_mm
+                values = list(match.values_mm)
                 if not values:
                     continue
 
@@ -461,40 +474,33 @@ class OrchestratorBase(ABC):
                 if max_dimension <= 150 and any(keyword in context_window for keyword in _SECTION_PROFILE_KEYWORDS):
                     continue
 
+                raw_lower = match.raw.lower()
+                has_height_marker = bool(re.search(r"\bh\s*\d", raw_lower))
+
                 if "lunghezza" in lowered or "length" in lowered:
-                    if len(values) >= 2 and max(values) > 1500 and max(values) / min(values) > 2:
-                        selected = max(values)
+                    if len(values) >= 2:
+                        selected: Any = max(values[:2])
                     else:
                         selected = values[0]
                 elif "larghezza" in lowered or "width" in lowered:
-                    if len(values) == 2:
-                        selected = values[0]
-                    elif len(values) >= 3:
-                        first = values[0]
-                        if first > 1500:
-                            candidates = [v for v in values[1:] if v <= 1500]
-                            selected = max(candidates) if candidates else values[1]
-                        else:
-                            selected = values[1]
+                    if len(values) >= 2:
+                        selected = min(values[:2])
                     else:
                         selected = values[0]
                 elif "altezza" in lowered or "height" in lowered:
-                    if len(values) == 2:
-                        selected = values[1]
-                    elif len(values) >= 3:
-                        if max(values) > 1500 and max(values) / min(values) > 2:
-                            selected = max(values)
-                        else:
-                            selected = values[1]
+                    if len(values) >= 3:
+                        selected = values[2]
+                    elif has_height_marker and len(values) >= 2:
+                        selected = values[-1]
                     else:
-                        selected = values[0]
+                        continue
                 elif "profond" in lowered or "depth" in lowered:
                     if len(values) >= 3:
                         selected = values[2]
-                    elif len(values) == 2:
-                        selected = min(values)
+                    elif len(values) == 2 and not has_height_marker:
+                        selected = values[-1]
                     else:
-                        selected = None
+                        continue
                 else:
                     if "formato" in lowered:
                         if re.search(r"zoccol|battiscop", text, re.IGNORECASE) and values:
@@ -549,6 +555,17 @@ class OrchestratorBase(ABC):
 
             if not labeled_found:
                 for match in numbers.extract_numbers(text):
+                    before = text[max(0, match.start - 25):match.start].lower()
+                    after = text[match.end: min(len(text), match.end + 20)].lower()
+
+                    if not re.search(r"sp(?:\.|ess)", before):
+                        continue
+
+                    if re.search(r"\b(?:iso|uni|en)\s*(?:en\s*)?\d", after):
+                        continue
+                    if re.search(r"\b(?:iso|uni|en)\s*$", before):
+                        continue
+
                     if match.start > 0:
                         prev_chars = text[max(0, match.start - 8):match.start]
                         if prev_chars and prev_chars[-1].isalpha():
@@ -618,6 +635,54 @@ class OrchestratorBase(ABC):
                             span=(special.start(), special.end()),
                             confidence=0.85,
                             unit="mm",
+                            errors=[],
+                        )
+                    )
+
+
+        if lowered == "classe_ei":
+            allowed = set(spec.enum) if spec and spec.enum else None
+            for match in _EI_CLASS_PATTERN.finditer(text):
+                value = f"EI{match.group(1)}"
+                if allowed and value not in allowed:
+                    continue
+                results.append(
+                    Candidate(
+                        value=value,
+                        source="parser",
+                        raw=match.group(0),
+                        span=(match.start(), match.end()),
+                        confidence=0.88,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+
+        if lowered == "presenza_isolante":
+            negative = _ISOLANTE_NEGATIVE_PATTERN.search(text)
+            if negative:
+                results.append(
+                    Candidate(
+                        value="no",
+                        source="parser",
+                        raw=text[negative.start() : negative.end()],
+                        span=(negative.start(), negative.end()),
+                        confidence=0.85,
+                        unit=None,
+                        errors=[],
+                    )
+                )
+            else:
+                positive = _ISOLANTE_PATTERN.search(text)
+                if positive:
+                    results.append(
+                        Candidate(
+                            value="si",
+                            source="parser",
+                            raw=text[positive.start() : positive.end()],
+                            span=(positive.start(), positive.end()),
+                            confidence=0.85,
+                            unit=None,
                             errors=[],
                         )
                     )

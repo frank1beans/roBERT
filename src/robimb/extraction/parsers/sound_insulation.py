@@ -21,9 +21,15 @@ class SoundInsulationMatch:
 #   Rw 40dB, Rw = 39 dB, isolamento acustico Rw ≥ 39 dB
 _SOUND_PATTERN = re.compile(
     r"""
-    (?:isolamento\s+acustico\s+)?(?:rw|ra|r'w)\s*
-    (?:\([^\)]+\)\s*)?
-    (?:[:=]|[<>]=?|≥|≤)?\s*
+    (
+        (?:isolamento|abbattimento)\s+acustico
+        |potere\s+fonoisolante
+        |abbattimento\s+fonoisolante
+        |abbattimento\s+fonoacustico
+        |(?:rw|ra|r'w)
+    )
+    \s*(?:\([^\)]+\)\s*)?
+    (?:[:=]|[<>]=?|≥|≤|pari\s+a|di)?\s*
     (?P<value>\d+(?:[\.,]\d+)?)
     (?:\s*\([^\)]+\))?
     \s*(?:d\s?b)
