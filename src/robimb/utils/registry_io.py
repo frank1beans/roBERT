@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 from ..registry import RegistryLoader, load_pack
-from ..registry.schemas import CategoryDefinition
+from ..registry.schemas import CategoryDefinition, PropertySlot
 
 __all__ = [
     "ExtractorsPack",
@@ -79,6 +79,7 @@ def load_property_registry(path: Path) -> Optional[Dict[str, CategoryDefinition]
     """Load a property registry returning :class:`CategoryDefinition` objects."""
 
     path = Path(path)
+    original_path = path
     if path.is_dir():
         for name in (
             "registry.json",
@@ -104,17 +105,148 @@ def load_property_registry(path: Path) -> Optional[Dict[str, CategoryDefinition]
                 if registry_path.exists():
                     return load_property_registry(registry_path)
 
+    registry: Dict[str, CategoryDefinition] = {}
     try:
         loader = RegistryLoader(path)
     except FileNotFoundError:
-        return None
+        loader = None
     except Exception:  # pragma: no cover - defensive fallback
-        return None
+        loader = None
+    if loader is not None:
+        try:
+            registry = loader.load_registry()
+        except Exception:  # pragma: no cover - defensive fallback
+            registry = {}
+        if registry:
+            return registry
+
+    fallback = _load_flat_registry(path)
+    if fallback:
+        return fallback
+
+    if original_path != path:
+        return load_property_registry(original_path)
+    return None
+
+
+def _load_flat_registry(path: Path) -> Dict[str, CategoryDefinition]:
+    """Build a registry from the simplified schema-first resources."""
+
+    if not path.exists():
+        return {}
 
     try:
-        return loader.load_registry()
-    except Exception:  # pragma: no cover - defensive fallback
-        return None
+        payload = _load_json(path)
+    except OSError:
+        return {}
+
+    categories_payload = payload.get("categories") if isinstance(payload, Mapping) else None
+    if not isinstance(categories_payload, list):
+        return {}
+
+    base_dir = path.parent
+    patterns_map = _load_flat_patterns(base_dir)
+
+    registry: Dict[str, CategoryDefinition] = {}
+    for entry in categories_payload:
+        if not isinstance(entry, Mapping):
+            continue
+        cat_id = str(entry.get("id") or "")
+        if not cat_id:
+            continue
+        cat_name = str(entry.get("name") or cat_id)
+        key = f"{cat_name}|{cat_name}"
+
+        slots: Dict[str, PropertySlot] = {}
+        properties = entry.get("properties")
+        if isinstance(properties, list):
+            for prop in properties:
+                if not isinstance(prop, Mapping):
+                    continue
+                prop_id = str(prop.get("id") or "")
+                if not prop_id:
+                    continue
+                slot_kwargs: Dict[str, Any] = {
+                    "property_id": prop_id,
+                    "name": str(prop.get("title") or prop_id),
+                }
+                prop_type = prop.get("type")
+                if isinstance(prop_type, str):
+                    slot_kwargs["type"] = prop_type
+                unit = prop.get("unit")
+                if isinstance(unit, str):
+                    slot_kwargs["unit"] = unit
+                enum_values = prop.get("enum")
+                if isinstance(enum_values, list):
+                    slot_kwargs["values"] = list(enum_values)
+                default = prop.get("default")
+                if default is not None:
+                    slot_kwargs["default"] = default
+                tags = prop.get("tags")
+                if isinstance(tags, list):
+                    slot_kwargs["tags"] = [str(tag) for tag in tags if isinstance(tag, str)]
+                description = prop.get("description")
+                if isinstance(description, str):
+                    slot_kwargs["description"] = description
+                sources = prop.get("sources")
+                if isinstance(sources, list):
+                    slot_kwargs["sources"] = [str(src) for src in sources if isinstance(src, str)]
+                slots[prop_id] = PropertySlot(**slot_kwargs)
+
+        definition = CategoryDefinition(
+            key=key,
+            super=cat_name,
+            category=cat_name,
+            slots=slots,
+            patterns={},
+            metadata={"required": list(entry.get("required", []))},
+        )
+        registry[key] = definition
+
+    if not registry:
+        return {}
+
+    for prop_id, regexes in patterns_map.items():
+        for definition in registry.values():
+            if prop_id in definition.slots:
+                definition.patterns[prop_id] = list(regexes)
+
+    return registry
+
+
+def _load_flat_patterns(base_dir: Path) -> Dict[str, List[str]]:
+    """Load regex patterns from the schema-first extractors pack."""
+
+    candidates = [
+        base_dir / "extractors.json",
+        base_dir.parent / "extractors.json",
+        base_dir.parent / "pack" / "current" / "extractors.json",
+        base_dir.parent.parent / "pack" / "current" / "extractors.json",
+    ]
+    for candidate in candidates:
+        if not candidate.exists():
+            continue
+        try:
+            payload = _load_json(candidate)
+        except OSError:
+            continue
+        patterns = payload.get("patterns") if isinstance(payload, Mapping) else None
+        if not isinstance(patterns, list):
+            continue
+        mapping: Dict[str, List[str]] = {}
+        for entry in patterns:
+            if not isinstance(entry, Mapping):
+                continue
+            prop_id = entry.get("property_id")
+            regexes = entry.get("regex")
+            if not isinstance(prop_id, str) or not isinstance(regexes, list):
+                continue
+            cleaned = [str(rx) for rx in regexes if isinstance(rx, str) and rx]
+            if cleaned:
+                mapping[prop_id] = cleaned
+        if mapping:
+            return mapping
+    return {}
 
 
 def _normalize_extractors_payload(payload: Any) -> Optional[ExtractorsPack]:

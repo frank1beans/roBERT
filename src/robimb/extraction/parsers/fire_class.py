@@ -23,12 +23,12 @@ _FIRE_CLASS_PATTERN = re.compile(
     r"""
     (?:
         # Match with prefix and word boundary after class
-        (?:euroclasse|classe)\s+(?P<class1>A1|A2|B|C|D|E|F)\b
+        (?:euroclasse|classe)(?!\s+energetica)\s+(?P<class1>A1|A2|B|C|D|E|F)\b
         |
         # Match without prefix but with smoke/droplet suffix
         \b(?P<class2>A1|A2|B|C|D|E|F)(?P<smoke>-s[1-3])
     )
-    (?P<droplets>,[dD][0-2])?
+    (?P<droplets>,\s*[dD][0-2])?
     """,
     re.IGNORECASE | re.VERBOSE,
 )
@@ -48,7 +48,7 @@ def parse_fire_class(text: str) -> Iterator[FireClassMatch]:
             if smoke:
                 value += smoke.lower()
             if droplets:
-                value += droplets.lower()
+                value += droplets.lower().replace(" ", "")
 
             yield FireClassMatch(
                 value=value,

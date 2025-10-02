@@ -25,10 +25,22 @@ class ThermalTransmittanceMatch:
 _TRANS_PATTERN = re.compile(
     r"""
     (?P<label>u[wfg]|trasmittanza\s+termica(?:\s+u[wfg])?)  # label
-    [^0-9a-zA-Z]{0,10}
+    [^0-9]{0,40}
     (?P<value>\d+(?:[\.,]\d+)?)
     \s*
-    (?P<unit>w\s*/?\s*\(m²k\)|w\s*/?\s*m²k)?
+    (?P<unit>
+        w
+        \s*/?\s*
+        (?:
+            \(\s*m(?:²|2)\s*k\s*\)
+            |
+            m(?:²|2)\s*k
+            |
+            \(\s*m(?:²|2)\s*/\s*k\s*\)
+            |
+            /\s*m(?:²|2)\s*k
+        )
+    )?
     """,
     re.IGNORECASE | re.VERBOSE,
 )

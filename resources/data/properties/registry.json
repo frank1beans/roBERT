@@ -634,6 +634,7 @@
             "incasso"
           ],
           "sources": [
+            "parser",
             "qa_llm"
           ]
         },

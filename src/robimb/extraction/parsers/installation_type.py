@@ -17,23 +17,28 @@ class InstallationTypeMatch:
     span: Tuple[int, int]
 
 
-# Mapping of recognized patterns to normalized values
+# Mapping of recognized patterns to normalized enum values
 _INSTALLATION_PATTERNS = [
-    (r'\ba\s+terra\b', 'a terra'),
-    (r'\bda\s+terra\b', 'a terra'),
-    (r'\ba\s+parete\b', 'a parete'),
-    (r'\bda\s+parete\b', 'a parete'),
-    (r'\bfilo\s+parete\b', 'filo parete'),
-    (r'\bsospeso\b', 'sospeso'),
-    (r'\bsospesa\b', 'sospeso'),
-    (r'\bda\s+appoggio\b', 'da appoggio'),
-    (r'\bdi\s+appoggio\b', 'da appoggio'),
-    (r'\bsoprapiano\b', 'soprapiano'),
-    (r'\bsotto\s+piano\b', 'sottopiano'),
-    (r'\bsottopiano\b', 'sottopiano'),
-    (r'\bda\s+incasso\b', 'da incasso'),
-    (r'\bincassato\b', 'da incasso'),
-    (r'\bincassata\b', 'da incasso'),
+    (r'\b(?:a|da|su)\s+pavimento\b', 'a_pavimento'),
+    (r'\b(?:scarico|scarichi)\s+a\s+pavimento\b', 'a_pavimento'),
+    (r'\bpavimento\s+ribassat[oa]\b', 'a_pavimento'),
+    (r'\ba\s+terra\b', 'a_pavimento'),
+    (r'\bda\s+terra\b', 'a_pavimento'),
+    (r'\bda\s+appoggio\b', 'a_pavimento'),
+    (r'\bdi\s+appoggio\b', 'a_pavimento'),
+    (r'\ba\s+parete\b', 'a_parete'),
+    (r'\bda\s+parete\b', 'a_parete'),
+    (r'\bfilo\s+parete\b', 'a_parete'),
+    (r'\ba\s+muro\b', 'a_parete'),
+    (r'\bda\s+fissare(?:\s+(?:a|su)\s+(?:parete|muro|porta))?\b', 'a_parete'),
+    (r'\bsu\s+porta\b', 'a_parete'),
+    (r'\bsospes[oa]\b', 'sospesa'),
+    (r'\ba\s+soffitt[oa]\b', 'sospesa'),
+    (r'\bda\s+incasso\b', 'incasso'),
+    (r'\bincassat[oa]\b', 'incasso'),
+    (r'\bsotto\s+piano\b', 'incasso'),
+    (r'\bsottopiano\b', 'incasso'),
+    (r'\bsoprapiano\b', 'incasso'),
 ]
 
 

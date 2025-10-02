@@ -8,10 +8,11 @@ from robimb.utils.registry_io import (
     load_property_registry,
     merge_extractors_pack,
 )
+from robimb.config import get_settings
 
 
 def test_load_property_registry_and_build_extractors() -> None:
-    registry_path = Path("data/properties/registry.json")
+    registry_path = get_settings().registry_path
     registry = load_property_registry(registry_path)
     assert registry is not None
     assert registry  # not empty
