@@ -5,6 +5,7 @@ import typer
 
 from .._version import __version__
 from ..utils.sampling import sample_one_record_per_category
+from .config import app as config_app
 from .convert import convert_command
 from .evaluate import evaluate_command
 from .extract import app as extract_app
@@ -34,6 +35,7 @@ def version_callback(
 
 app.command("convert", help="Prepara dataset, label map e maschere ontologiche.")(convert_command)
 app.add_typer(extract_app, name="extract")
+app.add_typer(config_app, name="config")
 app.command("evaluate", help="Valuta un modello esportato su un dataset etichettato.")(evaluate_command)
 app.command("pack", help="Impacchetta le cartelle delle proprietà in registry/extractors.")(pack_command)
 
