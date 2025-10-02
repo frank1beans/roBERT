@@ -1,0 +1,18 @@
+[paths]
+resources = "../resources"
+data = "../resources/data"
+pack = "../resources/pack"
+registry = "../resources/data/properties/registry.json"
+lexicon = "../resources/data/properties/lexicon"
+prompts = "../resources/data/properties/prompts.json"
+
+[paths.lexicon]
+brands = "../resources/data/properties/lexicon/brands.json"
+brands_legacy = "../resources/data/properties/lexicon/brands.txt"
+materials = "../resources/data/properties/lexicon/materials.json"
+materials_legacy = "../resources/data/properties/lexicon/materials.txt"
+standards = "../resources/data/properties/lexicon/norms.json"
+standards_by_category = "../resources/data/properties/lexicon/norms_by_category.json"
+producers = "../resources/data/properties/lexicon/producers_by_category.json"
+colors_ral = "../resources/data/properties/lexicon/colors_ral.json"
+standards_prefixes = "../resources/data/properties/lexicon/standards_prefixes.json"
