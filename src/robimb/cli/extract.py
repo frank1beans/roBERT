@@ -163,16 +163,22 @@ def extract_properties(
         help="Directory containing the fine-tuned QA model",
     ),
     qa_null_th: float = typer.Option(0.25, "--qa-null-th", min=0.0, max=2.0, help="QA no-answer threshold"),
-    fusion: Literal["rules_only", "qa_only", "fuse"] = typer.Option(
+    fusion: str = typer.Option(
         "fuse",
         "--fusion",
         case_sensitive=False,
-        help="Fusion strategy between rules and QA",
+        help="Fusion strategy between rules and QA (choices: rules_only, qa_only, fuse)",
     ),
     qa_max_length: int = typer.Option(384, "--qa-max-length", min=32, help="Maximum QA sequence length"),
     qa_doc_stride: int = typer.Option(128, "--qa-doc-stride", min=16, help="QA sliding window stride"),
     qa_max_answer_length: int = typer.Option(64, "--qa-max-answer-length", min=1, help="Maximum QA answer length"),
 ) -> None:
+    # Validate fusion parameter
+    valid_fusion_values = ["rules_only", "qa_only", "fuse"]
+    if fusion not in valid_fusion_values:
+        typer.echo(f"Error: --fusion must be one of: {', '.join(valid_fusion_values)}", err=True)
+        raise typer.Exit(1)
+
     qa_confident_threshold = 0.60
     config = {
         "input": str(input_path),

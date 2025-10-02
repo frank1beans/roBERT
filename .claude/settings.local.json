@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(C:Usersf.biggiAppDataLocalminiconda3python.exe -c \"import sys, json; lines = open(r''c:\\Users\\f.biggi\\Scripts\\roBERT\\resources\\data\\train\\classification\\processed\\dataset_lim.jsonl'', ''r'', encoding=''utf-8'').readlines()[:20]; [print(f''Record {i+1}: sources = {set(p.get(\"\"source\"\") for p in json.loads(line).get(\"\"properties\"\", {}).values() if p.get(\"\"source\"\"))}'') for i, line in enumerate(lines)]\")"
+      "Bash(tree:*)",
+      "Bash(make:*)",
+      "Bash(robimb:*)",
+      "Bash(python scripts/testing/test_domain_heuristics.py:*)",
+      "Bash(python scripts/testing/test_real_examples.py:*)"
     ],
     "deny": [],
     "ask": []

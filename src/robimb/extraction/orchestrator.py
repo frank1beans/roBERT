@@ -13,6 +13,7 @@ from .fusion_policy import FusionThresholds, fuse_property_candidates
 from .matchers.brands import BrandMatcher
 from .matchers.materials import MaterialMatcher
 from .matchers.norms import StandardMatcher
+from .domain_heuristics import apply_domain_heuristics, validate_material_consistency
 from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
@@ -165,6 +166,59 @@ class Orchestrator:
                 qa_candidate,
             )
             properties_payload[prop_id] = result
+
+        # Apply domain heuristics to fill missing properties
+        heuristic_properties = apply_domain_heuristics(text, category_id, properties_payload)
+        for prop_id, heuristic_result in heuristic_properties.items():
+            if prop_id in properties_payload:
+                existing = properties_payload[prop_id]
+                # Only apply heuristic if existing value is null or has very low confidence
+                if existing.get("value") is None or existing.get("confidence", 0.0) < 0.3:
+                    properties_payload[prop_id] = {
+                        "value": heuristic_result["value"],
+                        "source": heuristic_result["source"],
+                        "raw": heuristic_result.get("raw"),
+                        "span": None,
+                        "confidence": heuristic_result["confidence"],
+                        "unit": None,
+                        "errors": [],
+                    }
+                    LOGGER.info(
+                        "heuristic_applied",
+                        extra={
+                            "property": prop_id,
+                            "value": heuristic_result["value"],
+                            "source": heuristic_result["source"],
+                            "confidence": heuristic_result["confidence"],
+                        },
+                    )
+
+        # Validate material consistency and adjust confidence if needed
+        material_prop = properties_payload.get("materiale")
+        if material_prop and material_prop.get("value") is not None:
+            validation_result = validate_material_consistency(
+                material_prop["value"], text, category_id
+            )
+            if not validation_result["is_valid"]:
+                # Adjust confidence based on validation
+                original_confidence = material_prop.get("confidence", 0.0)
+                adjustment = validation_result["confidence_adjustment"]
+                new_confidence = max(0.0, min(1.0, original_confidence + adjustment))
+                material_prop["confidence"] = new_confidence
+
+                # Add warnings to errors
+                if validation_result["warnings"]:
+                    material_prop.setdefault("errors", []).extend(validation_result["warnings"])
+
+                LOGGER.warning(
+                    "material_validation_warning",
+                    extra={
+                        "value": material_prop["value"],
+                        "original_confidence": original_confidence,
+                        "adjusted_confidence": new_confidence,
+                        "warnings": validation_result["warnings"],
+                    },
+                )
 
         validation_input = {
             prop_id: {

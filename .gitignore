@@ -1,38 +1,68 @@
-# Project ignores
+# Python artifacts
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
 
-# Environment files
-*.env
+# Virtual environments
 .venv/
+venv/
+env/
+ENV/
 
-# Editor configuration
-.vscode/
-.idea/
-
-# Generated outputs
-outputs/
-
-# Miscellaneous
-commands.txt
-.claude/settings.local.json
-.claude/
-.pytest_cache
-.env
 # Environment files
 .env
 .env.*
 *.env
 
-# LLM cache
-.llm_cache/
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
 
-# Temporary files
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.cover
+
+# Generated outputs
+outputs/*.jsonl
+outputs/*.json
+outputs/*.csv
+outputs/*.txt
+!outputs/.gitkeep
+
+# Models (large files)
+outputs/models/**/*.bin
+outputs/models/**/*.safetensors
+outputs/qa_models/**/*.bin
+
+# LLM cache and temporary files
+.llm_cache/
 temp_*.jsonl
 batch_*.jsonl
 
-# Outputs (keep folder but ignore content)
-outputs/*.jsonl
-!outputs/.gitkeep
+# Logs
+*.log
+logs/
+
+# Documentation builds
+docs/_build/
+site/
+
+# Miscellaneous
+commands.txt
+.claude/settings.local.json
+.DS_Store
+Thumbs.db

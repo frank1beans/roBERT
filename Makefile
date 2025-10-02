@@ -71,7 +71,7 @@ llm-test:  ## Test LLM server connection
 		python -m json.tool || echo "ERROR: LLM server not responding"
 
 llm-integration-test:  ## Run full LLM integration test
-	@bash scripts/test_llm_integration.sh
+	@bash scripts/testing/test_llm_integration.sh
 
 # =============================================================================
 # Extraction Commands
@@ -111,7 +111,7 @@ extract-full:  ## Extract properties using rules + QA + LLM
 
 analyze:  ## Analyze extraction results
 	@echo "Analyzing results from $(OUTPUT)..."
-	@python scripts/analyze_extraction.py $(OUTPUT)
+	@python scripts/analysis/extraction_results.py $(OUTPUT)
 
 # =============================================================================
 # Comparison Commands
@@ -127,10 +127,10 @@ compare-llm:  ## Compare rules-only vs with-LLM extraction
 	@echo "========================================="
 	@echo ""
 	@echo "--- RULES ONLY ---"
-	@python scripts/analyze_extraction.py outputs/rules_only.jsonl | head -20
+	@python scripts/analysis/extraction_results.py outputs/rules_only.jsonl | head -20
 	@echo ""
 	@echo "--- WITH LLM ---"
-	@python scripts/analyze_extraction.py outputs/with_llm.jsonl | head -20
+	@python scripts/analysis/extraction_results.py outputs/with_llm.jsonl | head -20
 
 # =============================================================================
 # Setup and Maintenance
