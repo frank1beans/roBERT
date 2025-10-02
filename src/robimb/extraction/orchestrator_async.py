@@ -7,7 +7,8 @@ from typing import Any, Dict, Optional
 from .fuse import Candidate, CandidateSource, Fuser
 from .matchers.brands import BrandMatcher
 from .matchers.materials import MaterialMatcher
-from .orchestrator_base import OrchestratorBase
+from .domain_heuristics import post_process_properties
+from .orchestrator_base import OrchestratorBase, OrchestratorConfig
 from .parsers import dimensions, numbers
 from .parsers.colors import parse_ral_colors
 from .parsers.standards import parse_standards
@@ -34,7 +35,7 @@ PROPERTY_EXTRA_HINTS = {
 class AsyncOrchestrator(OrchestratorBase):
     """Async orchestrator for parallel LLM-based property extraction."""
 
-    def __init__(self, fuse: Fuser, llm: AsyncHttpLLM, cfg: OrchestratorBase) -> None:
+    def __init__(self, fuse: Fuser, llm: AsyncHttpLLM, cfg: OrchestratorConfig) -> None:
         super().__init__(fuse=fuse, cfg=cfg)
         self._llm = llm
 
@@ -48,6 +49,8 @@ class AsyncOrchestrator(OrchestratorBase):
             spec = property_specs.get(prop_id)
             result = await self._extract_property(text, category_id, prop_id, prop_schema, spec)
             properties_payload[prop_id] = result
+
+        post_process_properties(text, category_id, properties_payload, logger=LOGGER)
 
         validation = self._validate_payload(category_id, properties_payload)
 

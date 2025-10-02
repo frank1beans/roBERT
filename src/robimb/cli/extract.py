@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+from enum import Enum
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Literal
 
@@ -27,6 +28,16 @@ from ..utils.logging import configure_json_logger, flush_handlers, generate_trac
 __all__ = ["app"]
 
 app = typer.Typer(help="Property extraction utilities", add_completion=False)
+
+
+
+class FusionMode(str, Enum):
+    """Fusion strategies available for candidate selection."""
+
+    RULES_ONLY = "rules_only"
+    QA_ONLY = "qa_only"
+    FUSE = "fuse"
+
 
 _SETTINGS = get_settings()
 
@@ -163,8 +174,8 @@ def extract_properties(
         help="Directory containing the fine-tuned QA model",
     ),
     qa_null_th: float = typer.Option(0.25, "--qa-null-th", min=0.0, max=2.0, help="QA no-answer threshold"),
-    fusion: str = typer.Option(
-        "fuse",
+    fusion: FusionMode = typer.Option(
+        FusionMode.FUSE,
         "--fusion",
         case_sensitive=False,
         help="Fusion strategy between rules and QA (choices: rules_only, qa_only, fuse)",
@@ -173,12 +184,6 @@ def extract_properties(
     qa_doc_stride: int = typer.Option(128, "--qa-doc-stride", min=16, help="QA sliding window stride"),
     qa_max_answer_length: int = typer.Option(64, "--qa-max-answer-length", min=1, help="Maximum QA answer length"),
 ) -> None:
-    # Validate fusion parameter
-    valid_fusion_values = ["rules_only", "qa_only", "fuse"]
-    if fusion not in valid_fusion_values:
-        typer.echo(f"Error: --fusion must be one of: {', '.join(valid_fusion_values)}", err=True)
-        raise typer.Exit(1)
-
     qa_confident_threshold = 0.60
     config = {
         "input": str(input_path),
@@ -199,7 +204,7 @@ def extract_properties(
         "use_qa": use_qa,
         "qa_model_dir": str(qa_model_dir) if qa_model_dir else None,
         "qa_null_th": qa_null_th,
-        "fusion": fusion,
+        "fusion": fusion.value,
         "qa_max_length": qa_max_length,
         "qa_doc_stride": qa_doc_stride,
         "qa_max_answer_length": qa_max_answer_length,
@@ -239,7 +244,7 @@ def extract_properties(
             if sample and len(records) >= sample:
                 break
 
-    fusion_mode = fusion.lower()
+    fusion_mode = fusion.value
 
     if use_qa:
         if qa_model_dir is None:
