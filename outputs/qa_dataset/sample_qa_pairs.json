@@ -1,0 +1,162 @@
+[
+  {
+    "context": "PX15 - Fornitura e posa in opera di griglia in acciaio per scarico a pavimento tipo AISI 304, dim. 20x20 cm. Nel prezzo si intende compreso e compensato ogni onere ed accessorio necessario per la posa, inclusi l'innesto alla tubazione posata, questa computata a parete, eventuali accessori e quanto altro per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è la lunghezza?",
+    "property_id": "dimensione_lunghezza",
+    "answers": {
+      "text": [
+        "20x20 cm"
+      ],
+      "answer_start": [
+        99
+      ]
+    },
+    "value": 200,
+    "confidence": 0.9,
+    "source": "parser"
+  },
+  {
+    "context": "PX15 - Fornitura e posa in opera di griglia in acciaio per scarico a pavimento tipo AISI 304, dim. 20x20 cm. Nel prezzo si intende compreso e compensato ogni onere ed accessorio necessario per la posa, inclusi l'innesto alla tubazione posata, questa computata a parete, eventuali accessori e quanto altro per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è la larghezza?",
+    "property_id": "dimensione_larghezza",
+    "answers": {
+      "text": [
+        "20x20 cm"
+      ],
+      "answer_start": [
+        99
+      ]
+    },
+    "value": 200,
+    "confidence": 0.9,
+    "source": "parser"
+  },
+  {
+    "context": "PX15 - Fornitura e posa in opera di griglia in acciaio per scarico a pavimento tipo AISI 304, dim. 20x20 cm. Nel prezzo si intende compreso e compensato ogni onere ed accessorio necessario per la posa, inclusi l'innesto alla tubazione posata, questa computata a parete, eventuali accessori e quanto altro per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è il tipo di installazione?",
+    "property_id": "tipologia_installazione",
+    "answers": {
+      "text": [
+        "a pavimento"
+      ],
+      "answer_start": [
+        67
+      ]
+    },
+    "value": "a_pavimento",
+    "confidence": 0.88,
+    "source": "parser"
+  },
+  {
+    "context": "PX18 - Fornitura e posa in opera di seggiolino a doghe ribaltabile a parete bianco Tipo GOMAN Art. X811/01 per bagno disabili.\r\nNel prezzo si intende compreso e compensato ogni onere ed accessorio necessario per la posa dell'apparecchio sanitario e quanto altro per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è il marchio?",
+    "property_id": "marchio",
+    "answers": {
+      "text": [
+        "GOMAN"
+      ],
+      "answer_start": [
+        88
+      ]
+    },
+    "value": "GOMAN",
+    "confidence": 0.7,
+    "source": "matcher"
+  },
+  {
+    "context": "PX18 - Fornitura e posa in opera di seggiolino a doghe ribaltabile a parete bianco Tipo GOMAN Art. X811/01 per bagno disabili.\r\nNel prezzo si intende compreso e compensato ogni onere ed accessorio necessario per la posa dell'apparecchio sanitario e quanto altro per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è il tipo di installazione?",
+    "property_id": "tipologia_installazione",
+    "answers": {
+      "text": [
+        "a parete"
+      ],
+      "answer_start": [
+        67
+      ]
+    },
+    "value": "a_parete",
+    "confidence": 0.88,
+    "source": "parser"
+  },
+  {
+    "context": "PX09 - Miscelatore monocomando per lavabo tipo Grohe, serie Essence, taglia S\r\nFornitura e posa di miscelatore monocomando per lavabo tipo Grohe Essence Taglia S cod. 34294001, provvisto di cartuccia a dischi ceramici da 28 mm con tecnologia Grohe SilkMove per risparmio energetico, dotato di serie di limitatore di temperatura; mousseur dotato di tecnologia Grohe Water Saving (portata limitata a 5,7 l/min); sistema di installazione Grohe FastFixation Plus; senza scarico a saltarello; con raccordi flessibili. Finitura cromata.\r\nNel prezzo si intende compreso e compensato la campionatura del manufatto, il trasportò, il tiro al piano, ogni onere ed accessorio necessario per la posa, le assistenze specialistiche e quanto altro necessario per dare il lavoro finito a regola d'arte",
+    "question": "Qual è il marchio?",
+    "property_id": "marchio",
+    "answers": {
+      "text": [
+        "Grohe"
+      ],
+      "answer_start": [
+        47
+      ]
+    },
+    "value": "Grohe",
+    "confidence": 0.7,
+    "source": "matcher"
+  },
+  {
+    "context": "PX09 - Miscelatore monocomando per lavabo tipo Grohe, serie Essence, taglia S\r\nFornitura e posa di miscelatore monocomando per lavabo tipo Grohe Essence Taglia S cod. 34294001, provvisto di cartuccia a dischi ceramici da 28 mm con tecnologia Grohe SilkMove per risparmio energetico, dotato di serie di limitatore di temperatura; mousseur dotato di tecnologia Grohe Water Saving (portata limitata a 5,7 l/min); sistema di installazione Grohe FastFixation Plus; senza scarico a saltarello; con raccordi flessibili. Finitura cromata.\r\nNel prezzo si intende compreso e compensato la campionatura del manufatto, il trasportò, il tiro al piano, ogni onere ed accessorio necessario per la posa, le assistenze specialistiche e quanto altro necessario per dare il lavoro finito a regola d'arte",
+    "question": "Qual è la portata?",
+    "property_id": "portata_l_min",
+    "answers": {
+      "text": [
+        "5,7 l/min"
+      ],
+      "answer_start": [
+        398
+      ]
+    },
+    "value": 5.7,
+    "confidence": 0.9,
+    "source": "parser"
+  },
+  {
+    "context": "PX06b- Fornitura e posa in opera di maniglione lineare di sostegno, marca e modello da definire, lunghezza 60 cm. Nel prezzo si intendono compresi e compensati il rispetto della marcatura CE, la Dichiarazione di Produzione di Prodotto DOP e ogni onere ed accessorio necessario per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è la lunghezza?",
+    "property_id": "dimensione_lunghezza",
+    "answers": {
+      "text": [
+        "lunghezza 60 cm"
+      ],
+      "answer_start": [
+        97
+      ]
+    },
+    "value": 600,
+    "confidence": 0.92,
+    "source": "parser"
+  },
+  {
+    "context": "Fornitura e posa in opera di Box doccia in cristallo, Tipo ARTICA apertura angolare scorrevole. Box 90x70 h190 sp.6mm.\r\n- B0024ULUTR - LATO ANGOLO 87-89 ULU TR (mezzo lato)\r\n- B0022ULUTR - LATO ANGOLO 67-69 ULU TR (mezzo lato)\r\nNel prezzo si intende compreso e compensato ogni onere ed accessorio necessario per la posa dell'apparecchio sanitario e quanto altro per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è il marchio?",
+    "property_id": "marchio",
+    "answers": {
+      "text": [
+        "ARTICA"
+      ],
+      "answer_start": [
+        59
+      ]
+    },
+    "value": "ARTICA",
+    "confidence": 0.7,
+    "source": "matcher"
+  },
+  {
+    "context": "Fornitura e posa in opera di Box doccia in cristallo, Tipo ARTICA apertura angolare scorrevole. Box 90x70 h190 sp.6mm.\r\n- B0024ULUTR - LATO ANGOLO 87-89 ULU TR (mezzo lato)\r\n- B0022ULUTR - LATO ANGOLO 67-69 ULU TR (mezzo lato)\r\nNel prezzo si intende compreso e compensato ogni onere ed accessorio necessario per la posa dell'apparecchio sanitario e quanto altro per dare il lavoro finito a regola d'arte.",
+    "question": "Qual è la lunghezza?",
+    "property_id": "dimensione_lunghezza",
+    "answers": {
+      "text": [
+        "90x70 h190 "
+      ],
+      "answer_start": [
+        100
+      ]
+    },
+    "value": 900,
+    "confidence": 0.9,
+    "source": "parser"
+  }
+]

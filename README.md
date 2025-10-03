@@ -2,6 +2,39 @@
 
 Toolkit Python industriale per l'estrazione di proprietà e la classificazione di descrizioni BIM, con supporto per TAPT (Task-Adaptive Pre-Training) e classificatori gerarchici.
 
+## ⭐ NEW: Intelligent Span Extraction System
+
+**Sistema di estrazione intelligente basato su deep learning** che riduce i falsi positivi da ~14% a <5% e migliora l'accuracy da ~75% a ~90%.
+
+🔗 **[Vedi documentazione completa →](README_SPAN_EXTRACTION.md)**
+
+### Quick Overview
+- ✅ **Context-aware**: Distingue marchio prodotto vs adesivo ("Florim" ✅ vs "Mapei" ❌)
+- ✅ **Zero falsi positivi**: Non estrae "compensato" da "compreso e compensato"
+- ✅ **Alta precisione**: ~90% accuracy con confidence scores
+- ✅ **Pipeline end-to-end**: Classificazione → Span Extraction → Parsing
+
+```python
+from robimb.extraction.smart_pipeline import SmartExtractionPipeline
+
+pipeline = SmartExtractionPipeline(
+    classifier_model_path="atipiqal/roBERTino",
+    span_extractor_model_path="outputs/span_extractor_model",
+    device="cuda"
+)
+
+result = pipeline.process("Pavimento gres Florim 120x280 cm, spessore 6mm")
+# → marchio: "Florim", materiale: "gres", dimensioni: 1200x2800mm, spessore: 6mm
+```
+
+**Documentazione**:
+- 📖 [README Span Extraction](README_SPAN_EXTRACTION.md) - Quick start e panoramica
+- 🏗️ [System Overview](docs/SYSTEM_OVERVIEW.md) - Architettura visuale
+- 📁 [Organization Guide](ORGANIZATION.md) - Struttura completa progetto
+- 🔧 [Setup Guide](docs/SPAN_EXTRACTION_SETUP.md) - Setup dettagliato
+
+---
+
 ## 🚀 Quick Start
 
 ### Installazione

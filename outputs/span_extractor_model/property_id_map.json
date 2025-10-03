@@ -1,0 +1,22 @@
+{
+  "marchio": 0,
+  "materiale": 1,
+  "dimensione_lunghezza": 2,
+  "dimensione_larghezza": 3,
+  "dimensione_altezza": 4,
+  "tipologia_installazione": 5,
+  "portata_l_min": 6,
+  "normativa_riferimento": 7,
+  "classe_ei": 8,
+  "classe_reazione_al_fuoco": 9,
+  "presenza_isolante": 10,
+  "stratigrafia_lastre": 11,
+  "spessore_mm": 12,
+  "materiale_struttura": 13,
+  "formato": 14,
+  "spessore_pannello_mm": 15,
+  "trasmittanza_termica": 16,
+  "isolamento_acustico_db": 17,
+  "colore_ral": 18,
+  "coefficiente_fonoassorbimento": 19
+}
