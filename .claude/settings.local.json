@@ -5,7 +5,8 @@
       "Bash(make:*)",
       "Bash(robimb:*)",
       "Bash(python scripts/testing/test_domain_heuristics.py:*)",
-      "Bash(python scripts/testing/test_real_examples.py:*)"
+      "Bash(python scripts/testing/test_real_examples.py:*)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []

@@ -13,9 +13,7 @@
     "properties": {
       "type": "object",
       "required": [
-        "tipologia_lastra",
-        "spessore_mm",
-        "classe_reazione_al_fuoco"
+        "stratigrafia_lastre"
       ],
       "properties": {
         "marchio": {
@@ -34,42 +32,55 @@
             }
           ]
         },
-        "tipologia_lastra": {
+        "stratigrafia_lastre": {
           "allOf": [
             {
-              "$ref": "#/$defs/value"
+              "$ref": "#/$defs/base"
             },
             {
               "properties": {
                 "value": {
-                  "type": "string",
-                  "enum": [
-                    "standard",
-                    "idrofuga",
-                    "ignifuga",
-                    "acustica",
-                    "fibrogesso",
-                    "accoppiata_isolante"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "spessore_mm": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/measurement"
-            },
-            {
-              "properties": {
-                "value": {
-                  "type": "number",
-                  "minimum": 6,
-                  "maximum": 100
-                },
-                "unit": {
-                  "const": "mm"
+                  "type": "object",
+                  "required": ["lastre", "orditure", "isolanti", "sequenza"],
+                  "properties": {
+                    "lastre": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["id", "spessore_mm", "tipologia"],
+                        "properties": {
+                          "id": {"type": "string"},
+                          "spessore_mm": {"type": "number"},
+                          "tipologia": {"type": "string", "enum": ["standard", "idrofuga", "ignifuga", "fonoisolante", "fibrogesso", "accoppiata_isolante"]}
+                        }
+                      }
+                    },
+                    "orditure": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["id", "larghezza_mm"],
+                        "properties": {
+                          "id": {"type": "string"},
+                          "larghezza_mm": {"type": "number"}
+                        }
+                      }
+                    },
+                    "isolanti": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["id", "spessore_mm"],
+                        "properties": {
+                          "id": {"type": "string"},
+                          "spessore_mm": {"type": "number"},
+                          "materiale": {"type": "string"},
+                          "densita_kg_m3": {"type": "number"}
+                        }
+                      }
+                    },
+                    "sequenza": {"type": "string"}
+                  }
                 }
               }
             }
@@ -131,22 +142,6 @@
                     "si",
                     "no"
                   ]
-                }
-              }
-            }
-          ]
-        },
-        "stratigrafia_lastre": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/value"
-            },
-            {
-              "properties": {
-                "value": {
-                  "type": "string",
-                  "minLength": 5,
-                  "maxLength": 400
                 }
               }
             }

@@ -16,58 +16,38 @@
           "confidence_default": 0.85
         },
         {
-          "id": "tipologia_lastra",
+          "id": "stratigrafia_lastre",
           "strategies": [
-            "matcher.material",
-            "qa.slot"
+            "parser.cartongesso_stratigrafia"
           ],
           "confidence_default": 0.8
         },
         {
-          "id": "spessore_mm",
-          "strategies": [
-            "parser.dimension_thickness",
-            "qa.slot"
-          ],
-          "confidence_default": 0.9
-        },
-        {
           "id": "classe_ei",
           "strategies": [
-            "parser.fire_rating",
-            "qa.slot"
+            "parser.fire_rating"
           ],
           "confidence_default": 0.85
         },
         {
           "id": "classe_reazione_al_fuoco",
           "strategies": [
-            "parser.fire_reaction",
-            "qa.slot"
+            "parser.fire_reaction"
           ],
           "confidence_default": 0.85
         },
         {
           "id": "presenza_isolante",
           "strategies": [
-            "parser.boolean",
-            "qa.slot"
+            "parser.boolean"
           ],
           "confidence_default": 0.75
-        },
-        {
-          "id": "stratigrafia_lastre",
-          "strategies": [
-            "qa.summary"
-          ],
-          "confidence_default": 0.7
         },
         {
           "id": "normativa_riferimento",
           "strategies": [
             "matcher.standard",
-            "parser.standard",
-            "qa.slot"
+            "parser.standard"
           ],
           "confidence_default": 0.75
         }

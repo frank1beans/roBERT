@@ -1,0 +1,1428 @@
+ID;Codice;Configurazione;Tipo_Parete;Montante;Guida;Tipologia_Lastra;Spessore_Lastra_mm;Numero_Lati;Numero_Strati;Spessore_Totale_mm;Peso_kg_mq;Isolamento_Acustico_Rw_dB;Resistenza_Fuoco
+1;p_singola-c50-std-6;Parete Singola;Parete;C 50/50;U 50/40;Standard;6;1;1;56;7.5;42;REI 30
+2;p_singola-c50-std-9.5;Parete Singola;Parete;C 50/50;U 50/40;Standard;9.5;1;1;59.5;10.1;45;REI 30
+3;p_singola-c50-std-12.5;Parete Singola;Parete;C 50/50;U 50/40;Standard;12.5;1;1;62.5;12.4;48;REI 30
+4;p_singola-c50-std-15;Parete Singola;Parete;C 50/50;U 50/40;Standard;15;1;1;65;14.3;50;REI 30
+5;p_singola-c50-std-18;Parete Singola;Parete;C 50/50;U 50/40;Standard;18;1;1;68;16.5;52;REI 30
+6;p_singola-c50-std-25;Parete Singola;Parete;C 50/50;U 50/40;Standard;25;1;1;75;21.8;58;REI 30
+7;p_singola-c50-h2o-6;Parete Singola;Parete;C 50/50;U 50/40;Idrofuga;6;1;1;56;7.5;42;REI 30
+8;p_singola-c50-h2o-9.5;Parete Singola;Parete;C 50/50;U 50/40;Idrofuga;9.5;1;1;59.5;10.1;45;REI 30
+9;p_singola-c50-h2o-12.5;Parete Singola;Parete;C 50/50;U 50/40;Idrofuga;12.5;1;1;62.5;12.4;48;REI 30
+10;p_singola-c50-h2o-15;Parete Singola;Parete;C 50/50;U 50/40;Idrofuga;15;1;1;65;14.3;50;REI 30
+11;p_singola-c50-h2o-18;Parete Singola;Parete;C 50/50;U 50/40;Idrofuga;18;1;1;68;16.5;52;REI 30
+12;p_singola-c50-h2o-25;Parete Singola;Parete;C 50/50;U 50/40;Idrofuga;25;1;1;75;21.8;58;REI 30
+13;p_singola-c50-fono-6;Parete Singola;Parete;C 50/50;U 50/40;Fonoisolante;6;1;1;56;7.5;47;REI 30
+14;p_singola-c50-fono-9.5;Parete Singola;Parete;C 50/50;U 50/40;Fonoisolante;9.5;1;1;59.5;10.1;50;REI 30
+15;p_singola-c50-fono-12.5;Parete Singola;Parete;C 50/50;U 50/40;Fonoisolante;12.5;1;1;62.5;12.4;53;REI 30
+16;p_singola-c50-fono-15;Parete Singola;Parete;C 50/50;U 50/40;Fonoisolante;15;1;1;65;14.3;55;REI 30
+17;p_singola-c50-fono-18;Parete Singola;Parete;C 50/50;U 50/40;Fonoisolante;18;1;1;68;16.5;57;REI 30
+18;p_singola-c50-fono-25;Parete Singola;Parete;C 50/50;U 50/40;Fonoisolante;25;1;1;75;21.8;63;REI 30
+19;p_singola-c50-fuoco-6;Parete Singola;Parete;C 50/50;U 50/40;Antifuoco;6;1;1;56;7.5;42;REI 45
+20;p_singola-c50-fuoco-9.5;Parete Singola;Parete;C 50/50;U 50/40;Antifuoco;9.5;1;1;59.5;10.1;45;REI 45
+21;p_singola-c50-fuoco-12.5;Parete Singola;Parete;C 50/50;U 50/40;Antifuoco;12.5;1;1;62.5;12.4;48;REI 45
+22;p_singola-c50-fuoco-15;Parete Singola;Parete;C 50/50;U 50/40;Antifuoco;15;1;1;65;14.3;50;REI 60
+23;p_singola-c50-fuoco-18;Parete Singola;Parete;C 50/50;U 50/40;Antifuoco;18;1;1;68;16.5;52;REI 60
+24;p_singola-c50-fuoco-25;Parete Singola;Parete;C 50/50;U 50/40;Antifuoco;25;1;1;75;21.8;58;REI 60
+25;p_singola-c50-flex-6;Parete Singola;Parete;C 50/50;U 50/40;Flessibile;6;1;1;56;7.5;42;REI 30
+26;p_singola-c50-impatto-6;Parete Singola;Parete;C 50/50;U 50/40;Alta resistenza;6;1;1;56;7.5;42;REI 30
+27;p_singola-c50-impatto-9.5;Parete Singola;Parete;C 50/50;U 50/40;Alta resistenza;9.5;1;1;59.5;10.1;45;REI 30
+28;p_singola-c50-impatto-12.5;Parete Singola;Parete;C 50/50;U 50/40;Alta resistenza;12.5;1;1;62.5;12.4;48;REI 30
+29;p_singola-c50-impatto-15;Parete Singola;Parete;C 50/50;U 50/40;Alta resistenza;15;1;1;65;14.3;50;REI 30
+30;p_singola-c50-impatto-18;Parete Singola;Parete;C 50/50;U 50/40;Alta resistenza;18;1;1;68;16.5;52;REI 30
+31;p_singola-c50-impatto-25;Parete Singola;Parete;C 50/50;U 50/40;Alta resistenza;25;1;1;75;21.8;58;REI 30
+32;p_singola-c50-fibra-6;Parete Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;6;1;1;56;7.5;42;REI 30
+33;p_singola-c50-fibra-9.5;Parete Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;9.5;1;1;59.5;10.1;45;REI 30
+34;p_singola-c50-fibra-12.5;Parete Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;12.5;1;1;62.5;12.4;48;REI 30
+35;p_singola-c50-fibra-15;Parete Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;15;1;1;65;14.3;50;REI 30
+36;p_singola-c50-fibra-18;Parete Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;18;1;1;68;16.5;52;REI 30
+37;p_singola-c50-fibra-25;Parete Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;25;1;1;75;21.8;58;REI 30
+38;p_singola-c50-combi-6;Parete Singola;Parete;C 50/50;U 50/40;Combinata;6;1;1;56;7.5;42;REI 45
+39;p_singola-c50-combi-9.5;Parete Singola;Parete;C 50/50;U 50/40;Combinata;9.5;1;1;59.5;10.1;45;REI 45
+40;p_singola-c50-combi-12.5;Parete Singola;Parete;C 50/50;U 50/40;Combinata;12.5;1;1;62.5;12.4;48;REI 45
+41;p_singola-c50-combi-15;Parete Singola;Parete;C 50/50;U 50/40;Combinata;15;1;1;65;14.3;50;REI 60
+42;p_singola-c50-combi-18;Parete Singola;Parete;C 50/50;U 50/40;Combinata;18;1;1;68;16.5;52;REI 60
+43;p_singola-c50-combi-25;Parete Singola;Parete;C 50/50;U 50/40;Combinata;25;1;1;75;21.8;58;REI 60
+44;p_singola-c75-std-6;Parete Singola;Parete;C 75/50;U 75/40;Standard;6;1;1;81;7.5;46;REI 30
+45;p_singola-c75-std-9.5;Parete Singola;Parete;C 75/50;U 75/40;Standard;9.5;1;1;84.5;10.1;49;REI 30
+46;p_singola-c75-std-12.5;Parete Singola;Parete;C 75/50;U 75/40;Standard;12.5;1;1;87.5;12.4;51;REI 30
+47;p_singola-c75-std-15;Parete Singola;Parete;C 75/50;U 75/40;Standard;15;1;1;90;14.3;53;REI 30
+48;p_singola-c75-std-18;Parete Singola;Parete;C 75/50;U 75/40;Standard;18;1;1;93;16.5;56;REI 30
+49;p_singola-c75-std-25;Parete Singola;Parete;C 75/50;U 75/40;Standard;25;1;1;100;21.8;61;REI 30
+50;p_singola-c75-h2o-6;Parete Singola;Parete;C 75/50;U 75/40;Idrofuga;6;1;1;81;7.5;46;REI 30
+51;p_singola-c75-h2o-9.5;Parete Singola;Parete;C 75/50;U 75/40;Idrofuga;9.5;1;1;84.5;10.1;49;REI 30
+52;p_singola-c75-h2o-12.5;Parete Singola;Parete;C 75/50;U 75/40;Idrofuga;12.5;1;1;87.5;12.4;51;REI 30
+53;p_singola-c75-h2o-15;Parete Singola;Parete;C 75/50;U 75/40;Idrofuga;15;1;1;90;14.3;53;REI 30
+54;p_singola-c75-h2o-18;Parete Singola;Parete;C 75/50;U 75/40;Idrofuga;18;1;1;93;16.5;56;REI 30
+55;p_singola-c75-h2o-25;Parete Singola;Parete;C 75/50;U 75/40;Idrofuga;25;1;1;100;21.8;61;REI 30
+56;p_singola-c75-fono-6;Parete Singola;Parete;C 75/50;U 75/40;Fonoisolante;6;1;1;81;7.5;51;REI 30
+57;p_singola-c75-fono-9.5;Parete Singola;Parete;C 75/50;U 75/40;Fonoisolante;9.5;1;1;84.5;10.1;54;REI 30
+58;p_singola-c75-fono-12.5;Parete Singola;Parete;C 75/50;U 75/40;Fonoisolante;12.5;1;1;87.5;12.4;56;REI 30
+59;p_singola-c75-fono-15;Parete Singola;Parete;C 75/50;U 75/40;Fonoisolante;15;1;1;90;14.3;58;REI 30
+60;p_singola-c75-fono-18;Parete Singola;Parete;C 75/50;U 75/40;Fonoisolante;18;1;1;93;16.5;61;REI 30
+61;p_singola-c75-fono-25;Parete Singola;Parete;C 75/50;U 75/40;Fonoisolante;25;1;1;100;21.8;66;REI 30
+62;p_singola-c75-fuoco-6;Parete Singola;Parete;C 75/50;U 75/40;Antifuoco;6;1;1;81;7.5;46;REI 45
+63;p_singola-c75-fuoco-9.5;Parete Singola;Parete;C 75/50;U 75/40;Antifuoco;9.5;1;1;84.5;10.1;49;REI 45
+64;p_singola-c75-fuoco-12.5;Parete Singola;Parete;C 75/50;U 75/40;Antifuoco;12.5;1;1;87.5;12.4;51;REI 45
+65;p_singola-c75-fuoco-15;Parete Singola;Parete;C 75/50;U 75/40;Antifuoco;15;1;1;90;14.3;53;REI 60
+66;p_singola-c75-fuoco-18;Parete Singola;Parete;C 75/50;U 75/40;Antifuoco;18;1;1;93;16.5;56;REI 60
+67;p_singola-c75-fuoco-25;Parete Singola;Parete;C 75/50;U 75/40;Antifuoco;25;1;1;100;21.8;61;REI 60
+68;p_singola-c75-flex-6;Parete Singola;Parete;C 75/50;U 75/40;Flessibile;6;1;1;81;7.5;46;REI 30
+69;p_singola-c75-impatto-6;Parete Singola;Parete;C 75/50;U 75/40;Alta resistenza;6;1;1;81;7.5;46;REI 30
+70;p_singola-c75-impatto-9.5;Parete Singola;Parete;C 75/50;U 75/40;Alta resistenza;9.5;1;1;84.5;10.1;49;REI 30
+71;p_singola-c75-impatto-12.5;Parete Singola;Parete;C 75/50;U 75/40;Alta resistenza;12.5;1;1;87.5;12.4;51;REI 30
+72;p_singola-c75-impatto-15;Parete Singola;Parete;C 75/50;U 75/40;Alta resistenza;15;1;1;90;14.3;53;REI 30
+73;p_singola-c75-impatto-18;Parete Singola;Parete;C 75/50;U 75/40;Alta resistenza;18;1;1;93;16.5;56;REI 30
+74;p_singola-c75-impatto-25;Parete Singola;Parete;C 75/50;U 75/40;Alta resistenza;25;1;1;100;21.8;61;REI 30
+75;p_singola-c75-fibra-6;Parete Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;6;1;1;81;7.5;46;REI 30
+76;p_singola-c75-fibra-9.5;Parete Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;9.5;1;1;84.5;10.1;49;REI 30
+77;p_singola-c75-fibra-12.5;Parete Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;12.5;1;1;87.5;12.4;51;REI 30
+78;p_singola-c75-fibra-15;Parete Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;15;1;1;90;14.3;53;REI 30
+79;p_singola-c75-fibra-18;Parete Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;18;1;1;93;16.5;56;REI 30
+80;p_singola-c75-fibra-25;Parete Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;25;1;1;100;21.8;61;REI 30
+81;p_singola-c75-combi-6;Parete Singola;Parete;C 75/50;U 75/40;Combinata;6;1;1;81;7.5;46;REI 45
+82;p_singola-c75-combi-9.5;Parete Singola;Parete;C 75/50;U 75/40;Combinata;9.5;1;1;84.5;10.1;49;REI 45
+83;p_singola-c75-combi-12.5;Parete Singola;Parete;C 75/50;U 75/40;Combinata;12.5;1;1;87.5;12.4;51;REI 45
+84;p_singola-c75-combi-15;Parete Singola;Parete;C 75/50;U 75/40;Combinata;15;1;1;90;14.3;53;REI 60
+85;p_singola-c75-combi-18;Parete Singola;Parete;C 75/50;U 75/40;Combinata;18;1;1;93;16.5;56;REI 60
+86;p_singola-c75-combi-25;Parete Singola;Parete;C 75/50;U 75/40;Combinata;25;1;1;100;21.8;61;REI 60
+87;p_singola-c100-std-6;Parete Singola;Parete;C 100/50;U 100/40;Standard;6;1;1;106;7.5;50;REI 30
+88;p_singola-c100-std-9.5;Parete Singola;Parete;C 100/50;U 100/40;Standard;9.5;1;1;109.5;10.1;53;REI 30
+89;p_singola-c100-std-12.5;Parete Singola;Parete;C 100/50;U 100/40;Standard;12.5;1;1;112.5;12.4;55;REI 30
+90;p_singola-c100-std-15;Parete Singola;Parete;C 100/50;U 100/40;Standard;15;1;1;115;14.3;57;REI 30
+91;p_singola-c100-std-18;Parete Singola;Parete;C 100/50;U 100/40;Standard;18;1;1;118;16.5;59;REI 30
+92;p_singola-c100-std-25;Parete Singola;Parete;C 100/50;U 100/40;Standard;25;1;1;125;21.8;65;REI 30
+93;p_singola-c100-h2o-6;Parete Singola;Parete;C 100/50;U 100/40;Idrofuga;6;1;1;106;7.5;50;REI 30
+94;p_singola-c100-h2o-9.5;Parete Singola;Parete;C 100/50;U 100/40;Idrofuga;9.5;1;1;109.5;10.1;53;REI 30
+95;p_singola-c100-h2o-12.5;Parete Singola;Parete;C 100/50;U 100/40;Idrofuga;12.5;1;1;112.5;12.4;55;REI 30
+96;p_singola-c100-h2o-15;Parete Singola;Parete;C 100/50;U 100/40;Idrofuga;15;1;1;115;14.3;57;REI 30
+97;p_singola-c100-h2o-18;Parete Singola;Parete;C 100/50;U 100/40;Idrofuga;18;1;1;118;16.5;59;REI 30
+98;p_singola-c100-h2o-25;Parete Singola;Parete;C 100/50;U 100/40;Idrofuga;25;1;1;125;21.8;65;REI 30
+99;p_singola-c100-fono-6;Parete Singola;Parete;C 100/50;U 100/40;Fonoisolante;6;1;1;106;7.5;55;REI 30
+100;p_singola-c100-fono-9.5;Parete Singola;Parete;C 100/50;U 100/40;Fonoisolante;9.5;1;1;109.5;10.1;58;REI 30
+101;p_singola-c100-fono-12.5;Parete Singola;Parete;C 100/50;U 100/40;Fonoisolante;12.5;1;1;112.5;12.4;60;REI 30
+102;p_singola-c100-fono-15;Parete Singola;Parete;C 100/50;U 100/40;Fonoisolante;15;1;1;115;14.3;62;REI 30
+103;p_singola-c100-fono-18;Parete Singola;Parete;C 100/50;U 100/40;Fonoisolante;18;1;1;118;16.5;64;REI 30
+104;p_singola-c100-fono-25;Parete Singola;Parete;C 100/50;U 100/40;Fonoisolante;25;1;1;125;21.8;70;REI 30
+105;p_singola-c100-fuoco-6;Parete Singola;Parete;C 100/50;U 100/40;Antifuoco;6;1;1;106;7.5;50;REI 45
+106;p_singola-c100-fuoco-9.5;Parete Singola;Parete;C 100/50;U 100/40;Antifuoco;9.5;1;1;109.5;10.1;53;REI 45
+107;p_singola-c100-fuoco-12.5;Parete Singola;Parete;C 100/50;U 100/40;Antifuoco;12.5;1;1;112.5;12.4;55;REI 45
+108;p_singola-c100-fuoco-15;Parete Singola;Parete;C 100/50;U 100/40;Antifuoco;15;1;1;115;14.3;57;REI 60
+109;p_singola-c100-fuoco-18;Parete Singola;Parete;C 100/50;U 100/40;Antifuoco;18;1;1;118;16.5;59;REI 60
+110;p_singola-c100-fuoco-25;Parete Singola;Parete;C 100/50;U 100/40;Antifuoco;25;1;1;125;21.8;65;REI 60
+111;p_singola-c100-flex-6;Parete Singola;Parete;C 100/50;U 100/40;Flessibile;6;1;1;106;7.5;50;REI 30
+112;p_singola-c100-impatto-6;Parete Singola;Parete;C 100/50;U 100/40;Alta resistenza;6;1;1;106;7.5;50;REI 30
+113;p_singola-c100-impatto-9.5;Parete Singola;Parete;C 100/50;U 100/40;Alta resistenza;9.5;1;1;109.5;10.1;53;REI 30
+114;p_singola-c100-impatto-12.5;Parete Singola;Parete;C 100/50;U 100/40;Alta resistenza;12.5;1;1;112.5;12.4;55;REI 30
+115;p_singola-c100-impatto-15;Parete Singola;Parete;C 100/50;U 100/40;Alta resistenza;15;1;1;115;14.3;57;REI 30
+116;p_singola-c100-impatto-18;Parete Singola;Parete;C 100/50;U 100/40;Alta resistenza;18;1;1;118;16.5;59;REI 30
+117;p_singola-c100-impatto-25;Parete Singola;Parete;C 100/50;U 100/40;Alta resistenza;25;1;1;125;21.8;65;REI 30
+118;p_singola-c100-fibra-6;Parete Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;6;1;1;106;7.5;50;REI 30
+119;p_singola-c100-fibra-9.5;Parete Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;9.5;1;1;109.5;10.1;53;REI 30
+120;p_singola-c100-fibra-12.5;Parete Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;12.5;1;1;112.5;12.4;55;REI 30
+121;p_singola-c100-fibra-15;Parete Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;15;1;1;115;14.3;57;REI 30
+122;p_singola-c100-fibra-18;Parete Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;18;1;1;118;16.5;59;REI 30
+123;p_singola-c100-fibra-25;Parete Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;25;1;1;125;21.8;65;REI 30
+124;p_singola-c100-combi-6;Parete Singola;Parete;C 100/50;U 100/40;Combinata;6;1;1;106;7.5;50;REI 45
+125;p_singola-c100-combi-9.5;Parete Singola;Parete;C 100/50;U 100/40;Combinata;9.5;1;1;109.5;10.1;53;REI 45
+126;p_singola-c100-combi-12.5;Parete Singola;Parete;C 100/50;U 100/40;Combinata;12.5;1;1;112.5;12.4;55;REI 45
+127;p_singola-c100-combi-15;Parete Singola;Parete;C 100/50;U 100/40;Combinata;15;1;1;115;14.3;57;REI 60
+128;p_singola-c100-combi-18;Parete Singola;Parete;C 100/50;U 100/40;Combinata;18;1;1;118;16.5;59;REI 60
+129;p_singola-c100-combi-25;Parete Singola;Parete;C 100/50;U 100/40;Combinata;25;1;1;125;21.8;65;REI 60
+130;p_singola-c125-std-6;Parete Singola;Parete;C 125/50;U 125/40;Standard;6;1;1;131;7.5;54;REI 30
+131;p_singola-c125-std-9.5;Parete Singola;Parete;C 125/50;U 125/40;Standard;9.5;1;1;134.5;10.1;56;REI 30
+132;p_singola-c125-std-12.5;Parete Singola;Parete;C 125/50;U 125/40;Standard;12.5;1;1;137.5;12.4;59;REI 30
+133;p_singola-c125-std-15;Parete Singola;Parete;C 125/50;U 125/40;Standard;15;1;1;140;14.3;61;REI 30
+134;p_singola-c125-std-18;Parete Singola;Parete;C 125/50;U 125/40;Standard;18;1;1;143;16.5;63;REI 30
+135;p_singola-c125-std-25;Parete Singola;Parete;C 125/50;U 125/40;Standard;25;1;1;150;21.8;69;REI 30
+136;p_singola-c125-h2o-6;Parete Singola;Parete;C 125/50;U 125/40;Idrofuga;6;1;1;131;7.5;54;REI 30
+137;p_singola-c125-h2o-9.5;Parete Singola;Parete;C 125/50;U 125/40;Idrofuga;9.5;1;1;134.5;10.1;56;REI 30
+138;p_singola-c125-h2o-12.5;Parete Singola;Parete;C 125/50;U 125/40;Idrofuga;12.5;1;1;137.5;12.4;59;REI 30
+139;p_singola-c125-h2o-15;Parete Singola;Parete;C 125/50;U 125/40;Idrofuga;15;1;1;140;14.3;61;REI 30
+140;p_singola-c125-h2o-18;Parete Singola;Parete;C 125/50;U 125/40;Idrofuga;18;1;1;143;16.5;63;REI 30
+141;p_singola-c125-h2o-25;Parete Singola;Parete;C 125/50;U 125/40;Idrofuga;25;1;1;150;21.8;69;REI 30
+142;p_singola-c125-fono-6;Parete Singola;Parete;C 125/50;U 125/40;Fonoisolante;6;1;1;131;7.5;59;REI 30
+143;p_singola-c125-fono-9.5;Parete Singola;Parete;C 125/50;U 125/40;Fonoisolante;9.5;1;1;134.5;10.1;61;REI 30
+144;p_singola-c125-fono-12.5;Parete Singola;Parete;C 125/50;U 125/40;Fonoisolante;12.5;1;1;137.5;12.4;64;REI 30
+145;p_singola-c125-fono-15;Parete Singola;Parete;C 125/50;U 125/40;Fonoisolante;15;1;1;140;14.3;66;REI 30
+146;p_singola-c125-fono-18;Parete Singola;Parete;C 125/50;U 125/40;Fonoisolante;18;1;1;143;16.5;68;REI 30
+147;p_singola-c125-fono-25;Parete Singola;Parete;C 125/50;U 125/40;Fonoisolante;25;1;1;150;21.8;74;REI 30
+148;p_singola-c125-fuoco-6;Parete Singola;Parete;C 125/50;U 125/40;Antifuoco;6;1;1;131;7.5;54;REI 45
+149;p_singola-c125-fuoco-9.5;Parete Singola;Parete;C 125/50;U 125/40;Antifuoco;9.5;1;1;134.5;10.1;56;REI 45
+150;p_singola-c125-fuoco-12.5;Parete Singola;Parete;C 125/50;U 125/40;Antifuoco;12.5;1;1;137.5;12.4;59;REI 45
+151;p_singola-c125-fuoco-15;Parete Singola;Parete;C 125/50;U 125/40;Antifuoco;15;1;1;140;14.3;61;REI 60
+152;p_singola-c125-fuoco-18;Parete Singola;Parete;C 125/50;U 125/40;Antifuoco;18;1;1;143;16.5;63;REI 60
+153;p_singola-c125-fuoco-25;Parete Singola;Parete;C 125/50;U 125/40;Antifuoco;25;1;1;150;21.8;69;REI 60
+154;p_singola-c125-flex-6;Parete Singola;Parete;C 125/50;U 125/40;Flessibile;6;1;1;131;7.5;54;REI 30
+155;p_singola-c125-impatto-6;Parete Singola;Parete;C 125/50;U 125/40;Alta resistenza;6;1;1;131;7.5;54;REI 30
+156;p_singola-c125-impatto-9.5;Parete Singola;Parete;C 125/50;U 125/40;Alta resistenza;9.5;1;1;134.5;10.1;56;REI 30
+157;p_singola-c125-impatto-12.5;Parete Singola;Parete;C 125/50;U 125/40;Alta resistenza;12.5;1;1;137.5;12.4;59;REI 30
+158;p_singola-c125-impatto-15;Parete Singola;Parete;C 125/50;U 125/40;Alta resistenza;15;1;1;140;14.3;61;REI 30
+159;p_singola-c125-impatto-18;Parete Singola;Parete;C 125/50;U 125/40;Alta resistenza;18;1;1;143;16.5;63;REI 30
+160;p_singola-c125-impatto-25;Parete Singola;Parete;C 125/50;U 125/40;Alta resistenza;25;1;1;150;21.8;69;REI 30
+161;p_singola-c125-fibra-6;Parete Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;6;1;1;131;7.5;54;REI 30
+162;p_singola-c125-fibra-9.5;Parete Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;9.5;1;1;134.5;10.1;56;REI 30
+163;p_singola-c125-fibra-12.5;Parete Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;12.5;1;1;137.5;12.4;59;REI 30
+164;p_singola-c125-fibra-15;Parete Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;15;1;1;140;14.3;61;REI 30
+165;p_singola-c125-fibra-18;Parete Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;18;1;1;143;16.5;63;REI 30
+166;p_singola-c125-fibra-25;Parete Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;25;1;1;150;21.8;69;REI 30
+167;p_singola-c125-combi-6;Parete Singola;Parete;C 125/50;U 125/40;Combinata;6;1;1;131;7.5;54;REI 45
+168;p_singola-c125-combi-9.5;Parete Singola;Parete;C 125/50;U 125/40;Combinata;9.5;1;1;134.5;10.1;56;REI 45
+169;p_singola-c125-combi-12.5;Parete Singola;Parete;C 125/50;U 125/40;Combinata;12.5;1;1;137.5;12.4;59;REI 45
+170;p_singola-c125-combi-15;Parete Singola;Parete;C 125/50;U 125/40;Combinata;15;1;1;140;14.3;61;REI 60
+171;p_singola-c125-combi-18;Parete Singola;Parete;C 125/50;U 125/40;Combinata;18;1;1;143;16.5;63;REI 60
+172;p_singola-c125-combi-25;Parete Singola;Parete;C 125/50;U 125/40;Combinata;25;1;1;150;21.8;69;REI 60
+173;p_singola-c150-std-6;Parete Singola;Parete;C 150/50;U 150/40;Standard;6;1;1;156;7.5;57;REI 30
+174;p_singola-c150-std-9.5;Parete Singola;Parete;C 150/50;U 150/40;Standard;9.5;1;1;159.5;10.1;60;REI 30
+175;p_singola-c150-std-12.5;Parete Singola;Parete;C 150/50;U 150/40;Standard;12.5;1;1;162.5;12.4;63;REI 30
+176;p_singola-c150-std-15;Parete Singola;Parete;C 150/50;U 150/40;Standard;15;1;1;165;14.3;65;REI 30
+177;p_singola-c150-std-18;Parete Singola;Parete;C 150/50;U 150/40;Standard;18;1;1;168;16.5;67;REI 30
+178;p_singola-c150-std-25;Parete Singola;Parete;C 150/50;U 150/40;Standard;25;1;1;175;21.8;73;REI 30
+179;p_singola-c150-h2o-6;Parete Singola;Parete;C 150/50;U 150/40;Idrofuga;6;1;1;156;7.5;57;REI 30
+180;p_singola-c150-h2o-9.5;Parete Singola;Parete;C 150/50;U 150/40;Idrofuga;9.5;1;1;159.5;10.1;60;REI 30
+181;p_singola-c150-h2o-12.5;Parete Singola;Parete;C 150/50;U 150/40;Idrofuga;12.5;1;1;162.5;12.4;63;REI 30
+182;p_singola-c150-h2o-15;Parete Singola;Parete;C 150/50;U 150/40;Idrofuga;15;1;1;165;14.3;65;REI 30
+183;p_singola-c150-h2o-18;Parete Singola;Parete;C 150/50;U 150/40;Idrofuga;18;1;1;168;16.5;67;REI 30
+184;p_singola-c150-h2o-25;Parete Singola;Parete;C 150/50;U 150/40;Idrofuga;25;1;1;175;21.8;73;REI 30
+185;p_singola-c150-fono-6;Parete Singola;Parete;C 150/50;U 150/40;Fonoisolante;6;1;1;156;7.5;62;REI 30
+186;p_singola-c150-fono-9.5;Parete Singola;Parete;C 150/50;U 150/40;Fonoisolante;9.5;1;1;159.5;10.1;65;REI 30
+187;p_singola-c150-fono-12.5;Parete Singola;Parete;C 150/50;U 150/40;Fonoisolante;12.5;1;1;162.5;12.4;68;REI 30
+188;p_singola-c150-fono-15;Parete Singola;Parete;C 150/50;U 150/40;Fonoisolante;15;1;1;165;14.3;70;REI 30
+189;p_singola-c150-fono-18;Parete Singola;Parete;C 150/50;U 150/40;Fonoisolante;18;1;1;168;16.5;72;REI 30
+190;p_singola-c150-fono-25;Parete Singola;Parete;C 150/50;U 150/40;Fonoisolante;25;1;1;175;21.8;78;REI 30
+191;p_singola-c150-fuoco-6;Parete Singola;Parete;C 150/50;U 150/40;Antifuoco;6;1;1;156;7.5;57;REI 45
+192;p_singola-c150-fuoco-9.5;Parete Singola;Parete;C 150/50;U 150/40;Antifuoco;9.5;1;1;159.5;10.1;60;REI 45
+193;p_singola-c150-fuoco-12.5;Parete Singola;Parete;C 150/50;U 150/40;Antifuoco;12.5;1;1;162.5;12.4;63;REI 45
+194;p_singola-c150-fuoco-15;Parete Singola;Parete;C 150/50;U 150/40;Antifuoco;15;1;1;165;14.3;65;REI 60
+195;p_singola-c150-fuoco-18;Parete Singola;Parete;C 150/50;U 150/40;Antifuoco;18;1;1;168;16.5;67;REI 60
+196;p_singola-c150-fuoco-25;Parete Singola;Parete;C 150/50;U 150/40;Antifuoco;25;1;1;175;21.8;73;REI 60
+197;p_singola-c150-flex-6;Parete Singola;Parete;C 150/50;U 150/40;Flessibile;6;1;1;156;7.5;57;REI 30
+198;p_singola-c150-impatto-6;Parete Singola;Parete;C 150/50;U 150/40;Alta resistenza;6;1;1;156;7.5;57;REI 30
+199;p_singola-c150-impatto-9.5;Parete Singola;Parete;C 150/50;U 150/40;Alta resistenza;9.5;1;1;159.5;10.1;60;REI 30
+200;p_singola-c150-impatto-12.5;Parete Singola;Parete;C 150/50;U 150/40;Alta resistenza;12.5;1;1;162.5;12.4;63;REI 30
+201;p_singola-c150-impatto-15;Parete Singola;Parete;C 150/50;U 150/40;Alta resistenza;15;1;1;165;14.3;65;REI 30
+202;p_singola-c150-impatto-18;Parete Singola;Parete;C 150/50;U 150/40;Alta resistenza;18;1;1;168;16.5;67;REI 30
+203;p_singola-c150-impatto-25;Parete Singola;Parete;C 150/50;U 150/40;Alta resistenza;25;1;1;175;21.8;73;REI 30
+204;p_singola-c150-fibra-6;Parete Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;6;1;1;156;7.5;57;REI 30
+205;p_singola-c150-fibra-9.5;Parete Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;9.5;1;1;159.5;10.1;60;REI 30
+206;p_singola-c150-fibra-12.5;Parete Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;12.5;1;1;162.5;12.4;63;REI 30
+207;p_singola-c150-fibra-15;Parete Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;15;1;1;165;14.3;65;REI 30
+208;p_singola-c150-fibra-18;Parete Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;18;1;1;168;16.5;67;REI 30
+209;p_singola-c150-fibra-25;Parete Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;25;1;1;175;21.8;73;REI 30
+210;p_singola-c150-combi-6;Parete Singola;Parete;C 150/50;U 150/40;Combinata;6;1;1;156;7.5;57;REI 45
+211;p_singola-c150-combi-9.5;Parete Singola;Parete;C 150/50;U 150/40;Combinata;9.5;1;1;159.5;10.1;60;REI 45
+212;p_singola-c150-combi-12.5;Parete Singola;Parete;C 150/50;U 150/40;Combinata;12.5;1;1;162.5;12.4;63;REI 45
+213;p_singola-c150-combi-15;Parete Singola;Parete;C 150/50;U 150/40;Combinata;15;1;1;165;14.3;65;REI 60
+214;p_singola-c150-combi-18;Parete Singola;Parete;C 150/50;U 150/40;Combinata;18;1;1;168;16.5;67;REI 60
+215;p_singola-c150-combi-25;Parete Singola;Parete;C 150/50;U 150/40;Combinata;25;1;1;175;21.8;73;REI 60
+216;p_doppia_singola-c50-std-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Standard;6;2;1;62;12.0;42;REI 30
+217;p_doppia_singola-c50-std-9.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Standard;9.5;2;1;69;17.3;45;REI 30
+218;p_doppia_singola-c50-std-12.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Standard;12.5;2;1;75;21.8;48;REI 30
+219;p_doppia_singola-c50-std-15;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Standard;15;2;1;80;25.5;50;REI 30
+220;p_doppia_singola-c50-std-18;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Standard;18;2;1;86;30.0;52;REI 30
+221;p_doppia_singola-c50-std-25;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Standard;25;2;1;100;40.5;58;REI 30
+222;p_doppia_singola-c50-h2o-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Idrofuga;6;2;1;62;12.0;42;REI 30
+223;p_doppia_singola-c50-h2o-9.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Idrofuga;9.5;2;1;69;17.3;45;REI 30
+224;p_doppia_singola-c50-h2o-12.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Idrofuga;12.5;2;1;75;21.8;48;REI 30
+225;p_doppia_singola-c50-h2o-15;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Idrofuga;15;2;1;80;25.5;50;REI 30
+226;p_doppia_singola-c50-h2o-18;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Idrofuga;18;2;1;86;30.0;52;REI 30
+227;p_doppia_singola-c50-h2o-25;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Idrofuga;25;2;1;100;40.5;58;REI 30
+228;p_doppia_singola-c50-fono-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fonoisolante;6;2;1;62;12.0;47;REI 30
+229;p_doppia_singola-c50-fono-9.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fonoisolante;9.5;2;1;69;17.3;50;REI 30
+230;p_doppia_singola-c50-fono-12.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fonoisolante;12.5;2;1;75;21.8;53;REI 30
+231;p_doppia_singola-c50-fono-15;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fonoisolante;15;2;1;80;25.5;55;REI 30
+232;p_doppia_singola-c50-fono-18;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fonoisolante;18;2;1;86;30.0;57;REI 30
+233;p_doppia_singola-c50-fono-25;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fonoisolante;25;2;1;100;40.5;63;REI 30
+234;p_doppia_singola-c50-fuoco-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Antifuoco;6;2;1;62;12.0;42;REI 45
+235;p_doppia_singola-c50-fuoco-9.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Antifuoco;9.5;2;1;69;17.3;45;REI 45
+236;p_doppia_singola-c50-fuoco-12.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Antifuoco;12.5;2;1;75;21.8;48;REI 45
+237;p_doppia_singola-c50-fuoco-15;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Antifuoco;15;2;1;80;25.5;50;REI 60
+238;p_doppia_singola-c50-fuoco-18;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Antifuoco;18;2;1;86;30.0;52;REI 60
+239;p_doppia_singola-c50-fuoco-25;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Antifuoco;25;2;1;100;40.5;58;REI 60
+240;p_doppia_singola-c50-flex-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Flessibile;6;2;1;62;12.0;42;REI 30
+241;p_doppia_singola-c50-impatto-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Alta resistenza;6;2;1;62;12.0;42;REI 30
+242;p_doppia_singola-c50-impatto-9.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Alta resistenza;9.5;2;1;69;17.3;45;REI 30
+243;p_doppia_singola-c50-impatto-12.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Alta resistenza;12.5;2;1;75;21.8;48;REI 30
+244;p_doppia_singola-c50-impatto-15;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Alta resistenza;15;2;1;80;25.5;50;REI 30
+245;p_doppia_singola-c50-impatto-18;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Alta resistenza;18;2;1;86;30.0;52;REI 30
+246;p_doppia_singola-c50-impatto-25;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Alta resistenza;25;2;1;100;40.5;58;REI 30
+247;p_doppia_singola-c50-fibra-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;6;2;1;62;12.0;42;REI 30
+248;p_doppia_singola-c50-fibra-9.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;9.5;2;1;69;17.3;45;REI 30
+249;p_doppia_singola-c50-fibra-12.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;12.5;2;1;75;21.8;48;REI 30
+250;p_doppia_singola-c50-fibra-15;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;15;2;1;80;25.5;50;REI 30
+251;p_doppia_singola-c50-fibra-18;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;18;2;1;86;30.0;52;REI 30
+252;p_doppia_singola-c50-fibra-25;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Fibrorinforzata;25;2;1;100;40.5;58;REI 30
+253;p_doppia_singola-c50-combi-6;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Combinata;6;2;1;62;12.0;42;REI 45
+254;p_doppia_singola-c50-combi-9.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Combinata;9.5;2;1;69;17.3;45;REI 45
+255;p_doppia_singola-c50-combi-12.5;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Combinata;12.5;2;1;75;21.8;48;REI 45
+256;p_doppia_singola-c50-combi-15;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Combinata;15;2;1;80;25.5;50;REI 60
+257;p_doppia_singola-c50-combi-18;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Combinata;18;2;1;86;30.0;52;REI 60
+258;p_doppia_singola-c50-combi-25;Parete Doppia Lastra Singola;Parete;C 50/50;U 50/40;Combinata;25;2;1;100;40.5;58;REI 60
+259;p_doppia_singola-c75-std-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Standard;6;2;1;87;12.0;46;REI 30
+260;p_doppia_singola-c75-std-9.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Standard;9.5;2;1;94;17.3;49;REI 30
+261;p_doppia_singola-c75-std-12.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Standard;12.5;2;1;100;21.8;51;REI 30
+262;p_doppia_singola-c75-std-15;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Standard;15;2;1;105;25.5;53;REI 30
+263;p_doppia_singola-c75-std-18;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Standard;18;2;1;111;30.0;56;REI 30
+264;p_doppia_singola-c75-std-25;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Standard;25;2;1;125;40.5;61;REI 30
+265;p_doppia_singola-c75-h2o-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Idrofuga;6;2;1;87;12.0;46;REI 30
+266;p_doppia_singola-c75-h2o-9.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Idrofuga;9.5;2;1;94;17.3;49;REI 30
+267;p_doppia_singola-c75-h2o-12.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Idrofuga;12.5;2;1;100;21.8;51;REI 30
+268;p_doppia_singola-c75-h2o-15;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Idrofuga;15;2;1;105;25.5;53;REI 30
+269;p_doppia_singola-c75-h2o-18;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Idrofuga;18;2;1;111;30.0;56;REI 30
+270;p_doppia_singola-c75-h2o-25;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Idrofuga;25;2;1;125;40.5;61;REI 30
+271;p_doppia_singola-c75-fono-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fonoisolante;6;2;1;87;12.0;51;REI 30
+272;p_doppia_singola-c75-fono-9.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fonoisolante;9.5;2;1;94;17.3;54;REI 30
+273;p_doppia_singola-c75-fono-12.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fonoisolante;12.5;2;1;100;21.8;56;REI 30
+274;p_doppia_singola-c75-fono-15;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fonoisolante;15;2;1;105;25.5;58;REI 30
+275;p_doppia_singola-c75-fono-18;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fonoisolante;18;2;1;111;30.0;61;REI 30
+276;p_doppia_singola-c75-fono-25;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fonoisolante;25;2;1;125;40.5;66;REI 30
+277;p_doppia_singola-c75-fuoco-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Antifuoco;6;2;1;87;12.0;46;REI 45
+278;p_doppia_singola-c75-fuoco-9.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Antifuoco;9.5;2;1;94;17.3;49;REI 45
+279;p_doppia_singola-c75-fuoco-12.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Antifuoco;12.5;2;1;100;21.8;51;REI 45
+280;p_doppia_singola-c75-fuoco-15;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Antifuoco;15;2;1;105;25.5;53;REI 60
+281;p_doppia_singola-c75-fuoco-18;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Antifuoco;18;2;1;111;30.0;56;REI 60
+282;p_doppia_singola-c75-fuoco-25;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Antifuoco;25;2;1;125;40.5;61;REI 60
+283;p_doppia_singola-c75-flex-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Flessibile;6;2;1;87;12.0;46;REI 30
+284;p_doppia_singola-c75-impatto-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Alta resistenza;6;2;1;87;12.0;46;REI 30
+285;p_doppia_singola-c75-impatto-9.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Alta resistenza;9.5;2;1;94;17.3;49;REI 30
+286;p_doppia_singola-c75-impatto-12.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Alta resistenza;12.5;2;1;100;21.8;51;REI 30
+287;p_doppia_singola-c75-impatto-15;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Alta resistenza;15;2;1;105;25.5;53;REI 30
+288;p_doppia_singola-c75-impatto-18;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Alta resistenza;18;2;1;111;30.0;56;REI 30
+289;p_doppia_singola-c75-impatto-25;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Alta resistenza;25;2;1;125;40.5;61;REI 30
+290;p_doppia_singola-c75-fibra-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;6;2;1;87;12.0;46;REI 30
+291;p_doppia_singola-c75-fibra-9.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;9.5;2;1;94;17.3;49;REI 30
+292;p_doppia_singola-c75-fibra-12.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;12.5;2;1;100;21.8;51;REI 30
+293;p_doppia_singola-c75-fibra-15;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;15;2;1;105;25.5;53;REI 30
+294;p_doppia_singola-c75-fibra-18;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;18;2;1;111;30.0;56;REI 30
+295;p_doppia_singola-c75-fibra-25;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Fibrorinforzata;25;2;1;125;40.5;61;REI 30
+296;p_doppia_singola-c75-combi-6;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Combinata;6;2;1;87;12.0;46;REI 45
+297;p_doppia_singola-c75-combi-9.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Combinata;9.5;2;1;94;17.3;49;REI 45
+298;p_doppia_singola-c75-combi-12.5;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Combinata;12.5;2;1;100;21.8;51;REI 45
+299;p_doppia_singola-c75-combi-15;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Combinata;15;2;1;105;25.5;53;REI 60
+300;p_doppia_singola-c75-combi-18;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Combinata;18;2;1;111;30.0;56;REI 60
+301;p_doppia_singola-c75-combi-25;Parete Doppia Lastra Singola;Parete;C 75/50;U 75/40;Combinata;25;2;1;125;40.5;61;REI 60
+302;p_doppia_singola-c100-std-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Standard;6;2;1;112;12.0;50;REI 30
+303;p_doppia_singola-c100-std-9.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Standard;9.5;2;1;119;17.3;53;REI 30
+304;p_doppia_singola-c100-std-12.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Standard;12.5;2;1;125;21.8;55;REI 30
+305;p_doppia_singola-c100-std-15;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Standard;15;2;1;130;25.5;57;REI 30
+306;p_doppia_singola-c100-std-18;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Standard;18;2;1;136;30.0;59;REI 30
+307;p_doppia_singola-c100-std-25;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Standard;25;2;1;150;40.5;65;REI 30
+308;p_doppia_singola-c100-h2o-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Idrofuga;6;2;1;112;12.0;50;REI 30
+309;p_doppia_singola-c100-h2o-9.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Idrofuga;9.5;2;1;119;17.3;53;REI 30
+310;p_doppia_singola-c100-h2o-12.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Idrofuga;12.5;2;1;125;21.8;55;REI 30
+311;p_doppia_singola-c100-h2o-15;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Idrofuga;15;2;1;130;25.5;57;REI 30
+312;p_doppia_singola-c100-h2o-18;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Idrofuga;18;2;1;136;30.0;59;REI 30
+313;p_doppia_singola-c100-h2o-25;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Idrofuga;25;2;1;150;40.5;65;REI 30
+314;p_doppia_singola-c100-fono-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fonoisolante;6;2;1;112;12.0;55;REI 30
+315;p_doppia_singola-c100-fono-9.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fonoisolante;9.5;2;1;119;17.3;58;REI 30
+316;p_doppia_singola-c100-fono-12.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fonoisolante;12.5;2;1;125;21.8;60;REI 30
+317;p_doppia_singola-c100-fono-15;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fonoisolante;15;2;1;130;25.5;62;REI 30
+318;p_doppia_singola-c100-fono-18;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fonoisolante;18;2;1;136;30.0;64;REI 30
+319;p_doppia_singola-c100-fono-25;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fonoisolante;25;2;1;150;40.5;70;REI 30
+320;p_doppia_singola-c100-fuoco-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Antifuoco;6;2;1;112;12.0;50;REI 45
+321;p_doppia_singola-c100-fuoco-9.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Antifuoco;9.5;2;1;119;17.3;53;REI 45
+322;p_doppia_singola-c100-fuoco-12.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Antifuoco;12.5;2;1;125;21.8;55;REI 45
+323;p_doppia_singola-c100-fuoco-15;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Antifuoco;15;2;1;130;25.5;57;REI 60
+324;p_doppia_singola-c100-fuoco-18;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Antifuoco;18;2;1;136;30.0;59;REI 60
+325;p_doppia_singola-c100-fuoco-25;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Antifuoco;25;2;1;150;40.5;65;REI 60
+326;p_doppia_singola-c100-flex-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Flessibile;6;2;1;112;12.0;50;REI 30
+327;p_doppia_singola-c100-impatto-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Alta resistenza;6;2;1;112;12.0;50;REI 30
+328;p_doppia_singola-c100-impatto-9.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Alta resistenza;9.5;2;1;119;17.3;53;REI 30
+329;p_doppia_singola-c100-impatto-12.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Alta resistenza;12.5;2;1;125;21.8;55;REI 30
+330;p_doppia_singola-c100-impatto-15;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Alta resistenza;15;2;1;130;25.5;57;REI 30
+331;p_doppia_singola-c100-impatto-18;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Alta resistenza;18;2;1;136;30.0;59;REI 30
+332;p_doppia_singola-c100-impatto-25;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Alta resistenza;25;2;1;150;40.5;65;REI 30
+333;p_doppia_singola-c100-fibra-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;6;2;1;112;12.0;50;REI 30
+334;p_doppia_singola-c100-fibra-9.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;9.5;2;1;119;17.3;53;REI 30
+335;p_doppia_singola-c100-fibra-12.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;12.5;2;1;125;21.8;55;REI 30
+336;p_doppia_singola-c100-fibra-15;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;15;2;1;130;25.5;57;REI 30
+337;p_doppia_singola-c100-fibra-18;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;18;2;1;136;30.0;59;REI 30
+338;p_doppia_singola-c100-fibra-25;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Fibrorinforzata;25;2;1;150;40.5;65;REI 30
+339;p_doppia_singola-c100-combi-6;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Combinata;6;2;1;112;12.0;50;REI 45
+340;p_doppia_singola-c100-combi-9.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Combinata;9.5;2;1;119;17.3;53;REI 45
+341;p_doppia_singola-c100-combi-12.5;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Combinata;12.5;2;1;125;21.8;55;REI 45
+342;p_doppia_singola-c100-combi-15;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Combinata;15;2;1;130;25.5;57;REI 60
+343;p_doppia_singola-c100-combi-18;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Combinata;18;2;1;136;30.0;59;REI 60
+344;p_doppia_singola-c100-combi-25;Parete Doppia Lastra Singola;Parete;C 100/50;U 100/40;Combinata;25;2;1;150;40.5;65;REI 60
+345;p_doppia_singola-c125-std-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Standard;6;2;1;137;12.0;54;REI 30
+346;p_doppia_singola-c125-std-9.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Standard;9.5;2;1;144;17.3;56;REI 30
+347;p_doppia_singola-c125-std-12.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Standard;12.5;2;1;150;21.8;59;REI 30
+348;p_doppia_singola-c125-std-15;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Standard;15;2;1;155;25.5;61;REI 30
+349;p_doppia_singola-c125-std-18;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Standard;18;2;1;161;30.0;63;REI 30
+350;p_doppia_singola-c125-std-25;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Standard;25;2;1;175;40.5;69;REI 30
+351;p_doppia_singola-c125-h2o-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Idrofuga;6;2;1;137;12.0;54;REI 30
+352;p_doppia_singola-c125-h2o-9.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Idrofuga;9.5;2;1;144;17.3;56;REI 30
+353;p_doppia_singola-c125-h2o-12.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Idrofuga;12.5;2;1;150;21.8;59;REI 30
+354;p_doppia_singola-c125-h2o-15;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Idrofuga;15;2;1;155;25.5;61;REI 30
+355;p_doppia_singola-c125-h2o-18;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Idrofuga;18;2;1;161;30.0;63;REI 30
+356;p_doppia_singola-c125-h2o-25;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Idrofuga;25;2;1;175;40.5;69;REI 30
+357;p_doppia_singola-c125-fono-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fonoisolante;6;2;1;137;12.0;59;REI 30
+358;p_doppia_singola-c125-fono-9.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fonoisolante;9.5;2;1;144;17.3;61;REI 30
+359;p_doppia_singola-c125-fono-12.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fonoisolante;12.5;2;1;150;21.8;64;REI 30
+360;p_doppia_singola-c125-fono-15;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fonoisolante;15;2;1;155;25.5;66;REI 30
+361;p_doppia_singola-c125-fono-18;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fonoisolante;18;2;1;161;30.0;68;REI 30
+362;p_doppia_singola-c125-fono-25;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fonoisolante;25;2;1;175;40.5;74;REI 30
+363;p_doppia_singola-c125-fuoco-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Antifuoco;6;2;1;137;12.0;54;REI 45
+364;p_doppia_singola-c125-fuoco-9.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Antifuoco;9.5;2;1;144;17.3;56;REI 45
+365;p_doppia_singola-c125-fuoco-12.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Antifuoco;12.5;2;1;150;21.8;59;REI 45
+366;p_doppia_singola-c125-fuoco-15;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Antifuoco;15;2;1;155;25.5;61;REI 60
+367;p_doppia_singola-c125-fuoco-18;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Antifuoco;18;2;1;161;30.0;63;REI 60
+368;p_doppia_singola-c125-fuoco-25;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Antifuoco;25;2;1;175;40.5;69;REI 60
+369;p_doppia_singola-c125-flex-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Flessibile;6;2;1;137;12.0;54;REI 30
+370;p_doppia_singola-c125-impatto-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Alta resistenza;6;2;1;137;12.0;54;REI 30
+371;p_doppia_singola-c125-impatto-9.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Alta resistenza;9.5;2;1;144;17.3;56;REI 30
+372;p_doppia_singola-c125-impatto-12.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Alta resistenza;12.5;2;1;150;21.8;59;REI 30
+373;p_doppia_singola-c125-impatto-15;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Alta resistenza;15;2;1;155;25.5;61;REI 30
+374;p_doppia_singola-c125-impatto-18;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Alta resistenza;18;2;1;161;30.0;63;REI 30
+375;p_doppia_singola-c125-impatto-25;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Alta resistenza;25;2;1;175;40.5;69;REI 30
+376;p_doppia_singola-c125-fibra-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;6;2;1;137;12.0;54;REI 30
+377;p_doppia_singola-c125-fibra-9.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;9.5;2;1;144;17.3;56;REI 30
+378;p_doppia_singola-c125-fibra-12.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;12.5;2;1;150;21.8;59;REI 30
+379;p_doppia_singola-c125-fibra-15;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;15;2;1;155;25.5;61;REI 30
+380;p_doppia_singola-c125-fibra-18;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;18;2;1;161;30.0;63;REI 30
+381;p_doppia_singola-c125-fibra-25;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Fibrorinforzata;25;2;1;175;40.5;69;REI 30
+382;p_doppia_singola-c125-combi-6;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Combinata;6;2;1;137;12.0;54;REI 45
+383;p_doppia_singola-c125-combi-9.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Combinata;9.5;2;1;144;17.3;56;REI 45
+384;p_doppia_singola-c125-combi-12.5;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Combinata;12.5;2;1;150;21.8;59;REI 45
+385;p_doppia_singola-c125-combi-15;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Combinata;15;2;1;155;25.5;61;REI 60
+386;p_doppia_singola-c125-combi-18;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Combinata;18;2;1;161;30.0;63;REI 60
+387;p_doppia_singola-c125-combi-25;Parete Doppia Lastra Singola;Parete;C 125/50;U 125/40;Combinata;25;2;1;175;40.5;69;REI 60
+388;p_doppia_singola-c150-std-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Standard;6;2;1;162;12.0;57;REI 30
+389;p_doppia_singola-c150-std-9.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Standard;9.5;2;1;169;17.3;60;REI 30
+390;p_doppia_singola-c150-std-12.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Standard;12.5;2;1;175;21.8;63;REI 30
+391;p_doppia_singola-c150-std-15;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Standard;15;2;1;180;25.5;65;REI 30
+392;p_doppia_singola-c150-std-18;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Standard;18;2;1;186;30.0;67;REI 30
+393;p_doppia_singola-c150-std-25;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Standard;25;2;1;200;40.5;73;REI 30
+394;p_doppia_singola-c150-h2o-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Idrofuga;6;2;1;162;12.0;57;REI 30
+395;p_doppia_singola-c150-h2o-9.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Idrofuga;9.5;2;1;169;17.3;60;REI 30
+396;p_doppia_singola-c150-h2o-12.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Idrofuga;12.5;2;1;175;21.8;63;REI 30
+397;p_doppia_singola-c150-h2o-15;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Idrofuga;15;2;1;180;25.5;65;REI 30
+398;p_doppia_singola-c150-h2o-18;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Idrofuga;18;2;1;186;30.0;67;REI 30
+399;p_doppia_singola-c150-h2o-25;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Idrofuga;25;2;1;200;40.5;73;REI 30
+400;p_doppia_singola-c150-fono-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fonoisolante;6;2;1;162;12.0;62;REI 30
+401;p_doppia_singola-c150-fono-9.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fonoisolante;9.5;2;1;169;17.3;65;REI 30
+402;p_doppia_singola-c150-fono-12.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fonoisolante;12.5;2;1;175;21.8;68;REI 30
+403;p_doppia_singola-c150-fono-15;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fonoisolante;15;2;1;180;25.5;70;REI 30
+404;p_doppia_singola-c150-fono-18;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fonoisolante;18;2;1;186;30.0;72;REI 30
+405;p_doppia_singola-c150-fono-25;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fonoisolante;25;2;1;200;40.5;78;REI 30
+406;p_doppia_singola-c150-fuoco-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Antifuoco;6;2;1;162;12.0;57;REI 45
+407;p_doppia_singola-c150-fuoco-9.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Antifuoco;9.5;2;1;169;17.3;60;REI 45
+408;p_doppia_singola-c150-fuoco-12.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Antifuoco;12.5;2;1;175;21.8;63;REI 45
+409;p_doppia_singola-c150-fuoco-15;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Antifuoco;15;2;1;180;25.5;65;REI 60
+410;p_doppia_singola-c150-fuoco-18;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Antifuoco;18;2;1;186;30.0;67;REI 60
+411;p_doppia_singola-c150-fuoco-25;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Antifuoco;25;2;1;200;40.5;73;REI 60
+412;p_doppia_singola-c150-flex-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Flessibile;6;2;1;162;12.0;57;REI 30
+413;p_doppia_singola-c150-impatto-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Alta resistenza;6;2;1;162;12.0;57;REI 30
+414;p_doppia_singola-c150-impatto-9.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Alta resistenza;9.5;2;1;169;17.3;60;REI 30
+415;p_doppia_singola-c150-impatto-12.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Alta resistenza;12.5;2;1;175;21.8;63;REI 30
+416;p_doppia_singola-c150-impatto-15;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Alta resistenza;15;2;1;180;25.5;65;REI 30
+417;p_doppia_singola-c150-impatto-18;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Alta resistenza;18;2;1;186;30.0;67;REI 30
+418;p_doppia_singola-c150-impatto-25;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Alta resistenza;25;2;1;200;40.5;73;REI 30
+419;p_doppia_singola-c150-fibra-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;6;2;1;162;12.0;57;REI 30
+420;p_doppia_singola-c150-fibra-9.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;9.5;2;1;169;17.3;60;REI 30
+421;p_doppia_singola-c150-fibra-12.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;12.5;2;1;175;21.8;63;REI 30
+422;p_doppia_singola-c150-fibra-15;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;15;2;1;180;25.5;65;REI 30
+423;p_doppia_singola-c150-fibra-18;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;18;2;1;186;30.0;67;REI 30
+424;p_doppia_singola-c150-fibra-25;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Fibrorinforzata;25;2;1;200;40.5;73;REI 30
+425;p_doppia_singola-c150-combi-6;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Combinata;6;2;1;162;12.0;57;REI 45
+426;p_doppia_singola-c150-combi-9.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Combinata;9.5;2;1;169;17.3;60;REI 45
+427;p_doppia_singola-c150-combi-12.5;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Combinata;12.5;2;1;175;21.8;63;REI 45
+428;p_doppia_singola-c150-combi-15;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Combinata;15;2;1;180;25.5;65;REI 60
+429;p_doppia_singola-c150-combi-18;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Combinata;18;2;1;186;30.0;67;REI 60
+430;p_doppia_singola-c150-combi-25;Parete Doppia Lastra Singola;Parete;C 150/50;U 150/40;Combinata;25;2;1;200;40.5;73;REI 60
+431;p_singola_doppia-c50-std-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Standard;6;1;2;62;12.0;45;REI 30
+432;p_singola_doppia-c50-std-9.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Standard;9.5;1;2;69;17.3;48;REI 30
+433;p_singola_doppia-c50-std-12.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Standard;12.5;1;2;75;21.8;51;REI 30
+434;p_singola_doppia-c50-std-15;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Standard;15;1;2;80;25.5;53;REI 30
+435;p_singola_doppia-c50-std-18;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Standard;18;1;2;86;30.0;55;REI 30
+436;p_singola_doppia-c50-std-25;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Standard;25;1;2;100;40.5;61;REI 30
+437;p_singola_doppia-c50-h2o-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;6;1;2;62;12.0;45;REI 30
+438;p_singola_doppia-c50-h2o-9.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;9.5;1;2;69;17.3;48;REI 30
+439;p_singola_doppia-c50-h2o-12.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;12.5;1;2;75;21.8;51;REI 30
+440;p_singola_doppia-c50-h2o-15;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;15;1;2;80;25.5;53;REI 30
+441;p_singola_doppia-c50-h2o-18;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;18;1;2;86;30.0;55;REI 30
+442;p_singola_doppia-c50-h2o-25;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;25;1;2;100;40.5;61;REI 30
+443;p_singola_doppia-c50-fono-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;6;1;2;62;12.0;50;REI 30
+444;p_singola_doppia-c50-fono-9.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;9.5;1;2;69;17.3;53;REI 30
+445;p_singola_doppia-c50-fono-12.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;12.5;1;2;75;21.8;56;REI 30
+446;p_singola_doppia-c50-fono-15;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;15;1;2;80;25.5;58;REI 30
+447;p_singola_doppia-c50-fono-18;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;18;1;2;86;30.0;60;REI 30
+448;p_singola_doppia-c50-fono-25;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;25;1;2;100;40.5;66;REI 30
+449;p_singola_doppia-c50-fuoco-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;6;1;2;62;12.0;45;REI 90
+450;p_singola_doppia-c50-fuoco-9.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;9.5;1;2;69;17.3;48;REI 90
+451;p_singola_doppia-c50-fuoco-12.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;12.5;1;2;75;21.8;51;REI 90
+452;p_singola_doppia-c50-fuoco-15;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;15;1;2;80;25.5;53;REI 90
+453;p_singola_doppia-c50-fuoco-18;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;18;1;2;86;30.0;55;REI 90
+454;p_singola_doppia-c50-fuoco-25;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;25;1;2;100;40.5;61;REI 90
+455;p_singola_doppia-c50-flex-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Flessibile;6;1;2;62;12.0;45;REI 30
+456;p_singola_doppia-c50-impatto-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;6;1;2;62;12.0;45;REI 30
+457;p_singola_doppia-c50-impatto-9.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;9.5;1;2;69;17.3;48;REI 30
+458;p_singola_doppia-c50-impatto-12.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;12.5;1;2;75;21.8;51;REI 30
+459;p_singola_doppia-c50-impatto-15;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;15;1;2;80;25.5;53;REI 30
+460;p_singola_doppia-c50-impatto-18;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;18;1;2;86;30.0;55;REI 30
+461;p_singola_doppia-c50-impatto-25;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;25;1;2;100;40.5;61;REI 30
+462;p_singola_doppia-c50-fibra-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;6;1;2;62;12.0;45;REI 30
+463;p_singola_doppia-c50-fibra-9.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;9.5;1;2;69;17.3;48;REI 30
+464;p_singola_doppia-c50-fibra-12.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;12.5;1;2;75;21.8;51;REI 30
+465;p_singola_doppia-c50-fibra-15;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;15;1;2;80;25.5;53;REI 30
+466;p_singola_doppia-c50-fibra-18;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;18;1;2;86;30.0;55;REI 30
+467;p_singola_doppia-c50-fibra-25;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;25;1;2;100;40.5;61;REI 30
+468;p_singola_doppia-c50-combi-6;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;6;1;2;62;12.0;45;REI 90
+469;p_singola_doppia-c50-combi-9.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;9.5;1;2;69;17.3;48;REI 90
+470;p_singola_doppia-c50-combi-12.5;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;12.5;1;2;75;21.8;51;REI 90
+471;p_singola_doppia-c50-combi-15;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;15;1;2;80;25.5;53;REI 90
+472;p_singola_doppia-c50-combi-18;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;18;1;2;86;30.0;55;REI 90
+473;p_singola_doppia-c50-combi-25;Parete Singola Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;25;1;2;100;40.5;61;REI 90
+474;p_singola_doppia-c75-std-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Standard;6;1;2;87;12.0;49;REI 30
+475;p_singola_doppia-c75-std-9.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Standard;9.5;1;2;94;17.3;52;REI 30
+476;p_singola_doppia-c75-std-12.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Standard;12.5;1;2;100;21.8;54;REI 30
+477;p_singola_doppia-c75-std-15;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Standard;15;1;2;105;25.5;56;REI 30
+478;p_singola_doppia-c75-std-18;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Standard;18;1;2;111;30.0;59;REI 30
+479;p_singola_doppia-c75-std-25;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Standard;25;1;2;125;40.5;64;REI 30
+480;p_singola_doppia-c75-h2o-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;6;1;2;87;12.0;49;REI 30
+481;p_singola_doppia-c75-h2o-9.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;9.5;1;2;94;17.3;52;REI 30
+482;p_singola_doppia-c75-h2o-12.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;12.5;1;2;100;21.8;54;REI 30
+483;p_singola_doppia-c75-h2o-15;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;15;1;2;105;25.5;56;REI 30
+484;p_singola_doppia-c75-h2o-18;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;18;1;2;111;30.0;59;REI 30
+485;p_singola_doppia-c75-h2o-25;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;25;1;2;125;40.5;64;REI 30
+486;p_singola_doppia-c75-fono-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;6;1;2;87;12.0;54;REI 30
+487;p_singola_doppia-c75-fono-9.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;9.5;1;2;94;17.3;57;REI 30
+488;p_singola_doppia-c75-fono-12.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;12.5;1;2;100;21.8;59;REI 30
+489;p_singola_doppia-c75-fono-15;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;15;1;2;105;25.5;61;REI 30
+490;p_singola_doppia-c75-fono-18;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;18;1;2;111;30.0;64;REI 30
+491;p_singola_doppia-c75-fono-25;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;25;1;2;125;40.5;69;REI 30
+492;p_singola_doppia-c75-fuoco-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;6;1;2;87;12.0;49;REI 90
+493;p_singola_doppia-c75-fuoco-9.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;9.5;1;2;94;17.3;52;REI 90
+494;p_singola_doppia-c75-fuoco-12.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;12.5;1;2;100;21.8;54;REI 90
+495;p_singola_doppia-c75-fuoco-15;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;15;1;2;105;25.5;56;REI 90
+496;p_singola_doppia-c75-fuoco-18;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;18;1;2;111;30.0;59;REI 90
+497;p_singola_doppia-c75-fuoco-25;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;25;1;2;125;40.5;64;REI 90
+498;p_singola_doppia-c75-flex-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Flessibile;6;1;2;87;12.0;49;REI 30
+499;p_singola_doppia-c75-impatto-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;6;1;2;87;12.0;49;REI 30
+500;p_singola_doppia-c75-impatto-9.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;9.5;1;2;94;17.3;52;REI 30
+501;p_singola_doppia-c75-impatto-12.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;12.5;1;2;100;21.8;54;REI 30
+502;p_singola_doppia-c75-impatto-15;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;15;1;2;105;25.5;56;REI 30
+503;p_singola_doppia-c75-impatto-18;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;18;1;2;111;30.0;59;REI 30
+504;p_singola_doppia-c75-impatto-25;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;25;1;2;125;40.5;64;REI 30
+505;p_singola_doppia-c75-fibra-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;6;1;2;87;12.0;49;REI 30
+506;p_singola_doppia-c75-fibra-9.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;9.5;1;2;94;17.3;52;REI 30
+507;p_singola_doppia-c75-fibra-12.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;12.5;1;2;100;21.8;54;REI 30
+508;p_singola_doppia-c75-fibra-15;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;15;1;2;105;25.5;56;REI 30
+509;p_singola_doppia-c75-fibra-18;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;18;1;2;111;30.0;59;REI 30
+510;p_singola_doppia-c75-fibra-25;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;25;1;2;125;40.5;64;REI 30
+511;p_singola_doppia-c75-combi-6;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;6;1;2;87;12.0;49;REI 90
+512;p_singola_doppia-c75-combi-9.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;9.5;1;2;94;17.3;52;REI 90
+513;p_singola_doppia-c75-combi-12.5;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;12.5;1;2;100;21.8;54;REI 90
+514;p_singola_doppia-c75-combi-15;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;15;1;2;105;25.5;56;REI 90
+515;p_singola_doppia-c75-combi-18;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;18;1;2;111;30.0;59;REI 90
+516;p_singola_doppia-c75-combi-25;Parete Singola Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;25;1;2;125;40.5;64;REI 90
+517;p_singola_doppia-c100-std-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Standard;6;1;2;112;12.0;53;REI 30
+518;p_singola_doppia-c100-std-9.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Standard;9.5;1;2;119;17.3;56;REI 30
+519;p_singola_doppia-c100-std-12.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Standard;12.5;1;2;125;21.8;58;REI 30
+520;p_singola_doppia-c100-std-15;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Standard;15;1;2;130;25.5;60;REI 30
+521;p_singola_doppia-c100-std-18;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Standard;18;1;2;136;30.0;62;REI 30
+522;p_singola_doppia-c100-std-25;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Standard;25;1;2;150;40.5;68;REI 30
+523;p_singola_doppia-c100-h2o-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;6;1;2;112;12.0;53;REI 30
+524;p_singola_doppia-c100-h2o-9.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;9.5;1;2;119;17.3;56;REI 30
+525;p_singola_doppia-c100-h2o-12.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;12.5;1;2;125;21.8;58;REI 30
+526;p_singola_doppia-c100-h2o-15;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;15;1;2;130;25.5;60;REI 30
+527;p_singola_doppia-c100-h2o-18;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;18;1;2;136;30.0;62;REI 30
+528;p_singola_doppia-c100-h2o-25;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;25;1;2;150;40.5;68;REI 30
+529;p_singola_doppia-c100-fono-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;6;1;2;112;12.0;58;REI 30
+530;p_singola_doppia-c100-fono-9.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;9.5;1;2;119;17.3;61;REI 30
+531;p_singola_doppia-c100-fono-12.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;12.5;1;2;125;21.8;63;REI 30
+532;p_singola_doppia-c100-fono-15;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;15;1;2;130;25.5;65;REI 30
+533;p_singola_doppia-c100-fono-18;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;18;1;2;136;30.0;67;REI 30
+534;p_singola_doppia-c100-fono-25;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;25;1;2;150;40.5;73;REI 30
+535;p_singola_doppia-c100-fuoco-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;6;1;2;112;12.0;53;REI 90
+536;p_singola_doppia-c100-fuoco-9.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;9.5;1;2;119;17.3;56;REI 90
+537;p_singola_doppia-c100-fuoco-12.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;12.5;1;2;125;21.8;58;REI 90
+538;p_singola_doppia-c100-fuoco-15;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;15;1;2;130;25.5;60;REI 90
+539;p_singola_doppia-c100-fuoco-18;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;18;1;2;136;30.0;62;REI 90
+540;p_singola_doppia-c100-fuoco-25;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;25;1;2;150;40.5;68;REI 90
+541;p_singola_doppia-c100-flex-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Flessibile;6;1;2;112;12.0;53;REI 30
+542;p_singola_doppia-c100-impatto-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;6;1;2;112;12.0;53;REI 30
+543;p_singola_doppia-c100-impatto-9.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;9.5;1;2;119;17.3;56;REI 30
+544;p_singola_doppia-c100-impatto-12.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;12.5;1;2;125;21.8;58;REI 30
+545;p_singola_doppia-c100-impatto-15;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;15;1;2;130;25.5;60;REI 30
+546;p_singola_doppia-c100-impatto-18;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;18;1;2;136;30.0;62;REI 30
+547;p_singola_doppia-c100-impatto-25;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;25;1;2;150;40.5;68;REI 30
+548;p_singola_doppia-c100-fibra-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;6;1;2;112;12.0;53;REI 30
+549;p_singola_doppia-c100-fibra-9.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;9.5;1;2;119;17.3;56;REI 30
+550;p_singola_doppia-c100-fibra-12.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;12.5;1;2;125;21.8;58;REI 30
+551;p_singola_doppia-c100-fibra-15;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;15;1;2;130;25.5;60;REI 30
+552;p_singola_doppia-c100-fibra-18;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;18;1;2;136;30.0;62;REI 30
+553;p_singola_doppia-c100-fibra-25;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;25;1;2;150;40.5;68;REI 30
+554;p_singola_doppia-c100-combi-6;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;6;1;2;112;12.0;53;REI 90
+555;p_singola_doppia-c100-combi-9.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;9.5;1;2;119;17.3;56;REI 90
+556;p_singola_doppia-c100-combi-12.5;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;12.5;1;2;125;21.8;58;REI 90
+557;p_singola_doppia-c100-combi-15;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;15;1;2;130;25.5;60;REI 90
+558;p_singola_doppia-c100-combi-18;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;18;1;2;136;30.0;62;REI 90
+559;p_singola_doppia-c100-combi-25;Parete Singola Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;25;1;2;150;40.5;68;REI 90
+560;p_singola_doppia-c125-std-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Standard;6;1;2;137;12.0;57;REI 30
+561;p_singola_doppia-c125-std-9.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Standard;9.5;1;2;144;17.3;59;REI 30
+562;p_singola_doppia-c125-std-12.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Standard;12.5;1;2;150;21.8;62;REI 30
+563;p_singola_doppia-c125-std-15;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Standard;15;1;2;155;25.5;64;REI 30
+564;p_singola_doppia-c125-std-18;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Standard;18;1;2;161;30.0;66;REI 30
+565;p_singola_doppia-c125-std-25;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Standard;25;1;2;175;40.5;72;REI 30
+566;p_singola_doppia-c125-h2o-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;6;1;2;137;12.0;57;REI 30
+567;p_singola_doppia-c125-h2o-9.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;9.5;1;2;144;17.3;59;REI 30
+568;p_singola_doppia-c125-h2o-12.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;12.5;1;2;150;21.8;62;REI 30
+569;p_singola_doppia-c125-h2o-15;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;15;1;2;155;25.5;64;REI 30
+570;p_singola_doppia-c125-h2o-18;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;18;1;2;161;30.0;66;REI 30
+571;p_singola_doppia-c125-h2o-25;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;25;1;2;175;40.5;72;REI 30
+572;p_singola_doppia-c125-fono-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;6;1;2;137;12.0;62;REI 30
+573;p_singola_doppia-c125-fono-9.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;9.5;1;2;144;17.3;64;REI 30
+574;p_singola_doppia-c125-fono-12.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;12.5;1;2;150;21.8;67;REI 30
+575;p_singola_doppia-c125-fono-15;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;15;1;2;155;25.5;69;REI 30
+576;p_singola_doppia-c125-fono-18;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;18;1;2;161;30.0;71;REI 30
+577;p_singola_doppia-c125-fono-25;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;25;1;2;175;40.5;77;REI 30
+578;p_singola_doppia-c125-fuoco-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;6;1;2;137;12.0;57;REI 90
+579;p_singola_doppia-c125-fuoco-9.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;9.5;1;2;144;17.3;59;REI 90
+580;p_singola_doppia-c125-fuoco-12.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;12.5;1;2;150;21.8;62;REI 90
+581;p_singola_doppia-c125-fuoco-15;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;15;1;2;155;25.5;64;REI 90
+582;p_singola_doppia-c125-fuoco-18;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;18;1;2;161;30.0;66;REI 90
+583;p_singola_doppia-c125-fuoco-25;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;25;1;2;175;40.5;72;REI 90
+584;p_singola_doppia-c125-flex-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Flessibile;6;1;2;137;12.0;57;REI 30
+585;p_singola_doppia-c125-impatto-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;6;1;2;137;12.0;57;REI 30
+586;p_singola_doppia-c125-impatto-9.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;9.5;1;2;144;17.3;59;REI 30
+587;p_singola_doppia-c125-impatto-12.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;12.5;1;2;150;21.8;62;REI 30
+588;p_singola_doppia-c125-impatto-15;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;15;1;2;155;25.5;64;REI 30
+589;p_singola_doppia-c125-impatto-18;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;18;1;2;161;30.0;66;REI 30
+590;p_singola_doppia-c125-impatto-25;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;25;1;2;175;40.5;72;REI 30
+591;p_singola_doppia-c125-fibra-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;6;1;2;137;12.0;57;REI 30
+592;p_singola_doppia-c125-fibra-9.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;9.5;1;2;144;17.3;59;REI 30
+593;p_singola_doppia-c125-fibra-12.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;12.5;1;2;150;21.8;62;REI 30
+594;p_singola_doppia-c125-fibra-15;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;15;1;2;155;25.5;64;REI 30
+595;p_singola_doppia-c125-fibra-18;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;18;1;2;161;30.0;66;REI 30
+596;p_singola_doppia-c125-fibra-25;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;25;1;2;175;40.5;72;REI 30
+597;p_singola_doppia-c125-combi-6;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;6;1;2;137;12.0;57;REI 90
+598;p_singola_doppia-c125-combi-9.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;9.5;1;2;144;17.3;59;REI 90
+599;p_singola_doppia-c125-combi-12.5;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;12.5;1;2;150;21.8;62;REI 90
+600;p_singola_doppia-c125-combi-15;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;15;1;2;155;25.5;64;REI 90
+601;p_singola_doppia-c125-combi-18;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;18;1;2;161;30.0;66;REI 90
+602;p_singola_doppia-c125-combi-25;Parete Singola Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;25;1;2;175;40.5;72;REI 90
+603;p_singola_doppia-c150-std-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Standard;6;1;2;162;12.0;60;REI 30
+604;p_singola_doppia-c150-std-9.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Standard;9.5;1;2;169;17.3;63;REI 30
+605;p_singola_doppia-c150-std-12.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Standard;12.5;1;2;175;21.8;66;REI 30
+606;p_singola_doppia-c150-std-15;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Standard;15;1;2;180;25.5;68;REI 30
+607;p_singola_doppia-c150-std-18;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Standard;18;1;2;186;30.0;70;REI 30
+608;p_singola_doppia-c150-std-25;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Standard;25;1;2;200;40.5;76;REI 30
+609;p_singola_doppia-c150-h2o-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;6;1;2;162;12.0;60;REI 30
+610;p_singola_doppia-c150-h2o-9.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;9.5;1;2;169;17.3;63;REI 30
+611;p_singola_doppia-c150-h2o-12.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;12.5;1;2;175;21.8;66;REI 30
+612;p_singola_doppia-c150-h2o-15;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;15;1;2;180;25.5;68;REI 30
+613;p_singola_doppia-c150-h2o-18;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;18;1;2;186;30.0;70;REI 30
+614;p_singola_doppia-c150-h2o-25;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;25;1;2;200;40.5;76;REI 30
+615;p_singola_doppia-c150-fono-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;6;1;2;162;12.0;65;REI 30
+616;p_singola_doppia-c150-fono-9.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;9.5;1;2;169;17.3;68;REI 30
+617;p_singola_doppia-c150-fono-12.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;12.5;1;2;175;21.8;71;REI 30
+618;p_singola_doppia-c150-fono-15;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;15;1;2;180;25.5;73;REI 30
+619;p_singola_doppia-c150-fono-18;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;18;1;2;186;30.0;75;REI 30
+620;p_singola_doppia-c150-fono-25;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;25;1;2;200;40.5;81;REI 30
+621;p_singola_doppia-c150-fuoco-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;6;1;2;162;12.0;60;REI 90
+622;p_singola_doppia-c150-fuoco-9.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;9.5;1;2;169;17.3;63;REI 90
+623;p_singola_doppia-c150-fuoco-12.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;12.5;1;2;175;21.8;66;REI 90
+624;p_singola_doppia-c150-fuoco-15;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;15;1;2;180;25.5;68;REI 90
+625;p_singola_doppia-c150-fuoco-18;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;18;1;2;186;30.0;70;REI 90
+626;p_singola_doppia-c150-fuoco-25;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;25;1;2;200;40.5;76;REI 90
+627;p_singola_doppia-c150-flex-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Flessibile;6;1;2;162;12.0;60;REI 30
+628;p_singola_doppia-c150-impatto-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;6;1;2;162;12.0;60;REI 30
+629;p_singola_doppia-c150-impatto-9.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;9.5;1;2;169;17.3;63;REI 30
+630;p_singola_doppia-c150-impatto-12.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;12.5;1;2;175;21.8;66;REI 30
+631;p_singola_doppia-c150-impatto-15;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;15;1;2;180;25.5;68;REI 30
+632;p_singola_doppia-c150-impatto-18;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;18;1;2;186;30.0;70;REI 30
+633;p_singola_doppia-c150-impatto-25;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;25;1;2;200;40.5;76;REI 30
+634;p_singola_doppia-c150-fibra-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;6;1;2;162;12.0;60;REI 30
+635;p_singola_doppia-c150-fibra-9.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;9.5;1;2;169;17.3;63;REI 30
+636;p_singola_doppia-c150-fibra-12.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;12.5;1;2;175;21.8;66;REI 30
+637;p_singola_doppia-c150-fibra-15;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;15;1;2;180;25.5;68;REI 30
+638;p_singola_doppia-c150-fibra-18;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;18;1;2;186;30.0;70;REI 30
+639;p_singola_doppia-c150-fibra-25;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;25;1;2;200;40.5;76;REI 30
+640;p_singola_doppia-c150-combi-6;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;6;1;2;162;12.0;60;REI 90
+641;p_singola_doppia-c150-combi-9.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;9.5;1;2;169;17.3;63;REI 90
+642;p_singola_doppia-c150-combi-12.5;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;12.5;1;2;175;21.8;66;REI 90
+643;p_singola_doppia-c150-combi-15;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;15;1;2;180;25.5;68;REI 90
+644;p_singola_doppia-c150-combi-18;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;18;1;2;186;30.0;70;REI 90
+645;p_singola_doppia-c150-combi-25;Parete Singola Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;25;1;2;200;40.5;76;REI 90
+646;p_doppia_doppia-c50-std-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Standard;6;2;2;74;21.0;45;REI 30
+647;p_doppia_doppia-c50-std-9.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Standard;9.5;2;2;88;31.5;48;REI 30
+648;p_doppia_doppia-c50-std-12.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Standard;12.5;2;2;100;40.5;51;REI 30
+649;p_doppia_doppia-c50-std-15;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Standard;15;2;2;110;48.0;53;REI 30
+650;p_doppia_doppia-c50-std-18;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Standard;18;2;2;122;57.0;55;REI 30
+651;p_doppia_doppia-c50-std-25;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Standard;25;2;2;150;78.0;61;REI 30
+652;p_doppia_doppia-c50-h2o-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;6;2;2;74;21.0;45;REI 30
+653;p_doppia_doppia-c50-h2o-9.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;9.5;2;2;88;31.5;48;REI 30
+654;p_doppia_doppia-c50-h2o-12.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;12.5;2;2;100;40.5;51;REI 30
+655;p_doppia_doppia-c50-h2o-15;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;15;2;2;110;48.0;53;REI 30
+656;p_doppia_doppia-c50-h2o-18;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;18;2;2;122;57.0;55;REI 30
+657;p_doppia_doppia-c50-h2o-25;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Idrofuga;25;2;2;150;78.0;61;REI 30
+658;p_doppia_doppia-c50-fono-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;6;2;2;74;21.0;50;REI 30
+659;p_doppia_doppia-c50-fono-9.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;9.5;2;2;88;31.5;53;REI 30
+660;p_doppia_doppia-c50-fono-12.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;12.5;2;2;100;40.5;56;REI 30
+661;p_doppia_doppia-c50-fono-15;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;15;2;2;110;48.0;58;REI 30
+662;p_doppia_doppia-c50-fono-18;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;18;2;2;122;57.0;60;REI 30
+663;p_doppia_doppia-c50-fono-25;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fonoisolante;25;2;2;150;78.0;66;REI 30
+664;p_doppia_doppia-c50-fuoco-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;6;2;2;74;21.0;45;REI 90
+665;p_doppia_doppia-c50-fuoco-9.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;9.5;2;2;88;31.5;48;REI 90
+666;p_doppia_doppia-c50-fuoco-12.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;12.5;2;2;100;40.5;51;REI 90
+667;p_doppia_doppia-c50-fuoco-15;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;15;2;2;110;48.0;53;REI 90
+668;p_doppia_doppia-c50-fuoco-18;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;18;2;2;122;57.0;55;REI 90
+669;p_doppia_doppia-c50-fuoco-25;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Antifuoco;25;2;2;150;78.0;61;REI 90
+670;p_doppia_doppia-c50-flex-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Flessibile;6;2;2;74;21.0;45;REI 30
+671;p_doppia_doppia-c50-impatto-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;6;2;2;74;21.0;45;REI 30
+672;p_doppia_doppia-c50-impatto-9.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;9.5;2;2;88;31.5;48;REI 30
+673;p_doppia_doppia-c50-impatto-12.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;12.5;2;2;100;40.5;51;REI 30
+674;p_doppia_doppia-c50-impatto-15;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;15;2;2;110;48.0;53;REI 30
+675;p_doppia_doppia-c50-impatto-18;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;18;2;2;122;57.0;55;REI 30
+676;p_doppia_doppia-c50-impatto-25;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Alta resistenza;25;2;2;150;78.0;61;REI 30
+677;p_doppia_doppia-c50-fibra-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;6;2;2;74;21.0;45;REI 30
+678;p_doppia_doppia-c50-fibra-9.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;9.5;2;2;88;31.5;48;REI 30
+679;p_doppia_doppia-c50-fibra-12.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;12.5;2;2;100;40.5;51;REI 30
+680;p_doppia_doppia-c50-fibra-15;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;15;2;2;110;48.0;53;REI 30
+681;p_doppia_doppia-c50-fibra-18;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;18;2;2;122;57.0;55;REI 30
+682;p_doppia_doppia-c50-fibra-25;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Fibrorinforzata;25;2;2;150;78.0;61;REI 30
+683;p_doppia_doppia-c50-combi-6;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;6;2;2;74;21.0;45;REI 90
+684;p_doppia_doppia-c50-combi-9.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;9.5;2;2;88;31.5;48;REI 90
+685;p_doppia_doppia-c50-combi-12.5;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;12.5;2;2;100;40.5;51;REI 90
+686;p_doppia_doppia-c50-combi-15;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;15;2;2;110;48.0;53;REI 90
+687;p_doppia_doppia-c50-combi-18;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;18;2;2;122;57.0;55;REI 90
+688;p_doppia_doppia-c50-combi-25;Parete Doppia Lastra Doppia;Parete;C 50/50;U 50/40;Combinata;25;2;2;150;78.0;61;REI 90
+689;p_doppia_doppia-c75-std-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Standard;6;2;2;99;21.0;49;REI 30
+690;p_doppia_doppia-c75-std-9.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Standard;9.5;2;2;113;31.5;52;REI 30
+691;p_doppia_doppia-c75-std-12.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Standard;12.5;2;2;125;40.5;54;REI 30
+692;p_doppia_doppia-c75-std-15;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Standard;15;2;2;135;48.0;56;REI 30
+693;p_doppia_doppia-c75-std-18;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Standard;18;2;2;147;57.0;59;REI 30
+694;p_doppia_doppia-c75-std-25;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Standard;25;2;2;175;78.0;64;REI 30
+695;p_doppia_doppia-c75-h2o-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;6;2;2;99;21.0;49;REI 30
+696;p_doppia_doppia-c75-h2o-9.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;9.5;2;2;113;31.5;52;REI 30
+697;p_doppia_doppia-c75-h2o-12.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;12.5;2;2;125;40.5;54;REI 30
+698;p_doppia_doppia-c75-h2o-15;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;15;2;2;135;48.0;56;REI 30
+699;p_doppia_doppia-c75-h2o-18;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;18;2;2;147;57.0;59;REI 30
+700;p_doppia_doppia-c75-h2o-25;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Idrofuga;25;2;2;175;78.0;64;REI 30
+701;p_doppia_doppia-c75-fono-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;6;2;2;99;21.0;54;REI 30
+702;p_doppia_doppia-c75-fono-9.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;9.5;2;2;113;31.5;57;REI 30
+703;p_doppia_doppia-c75-fono-12.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;12.5;2;2;125;40.5;59;REI 30
+704;p_doppia_doppia-c75-fono-15;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;15;2;2;135;48.0;61;REI 30
+705;p_doppia_doppia-c75-fono-18;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;18;2;2;147;57.0;64;REI 30
+706;p_doppia_doppia-c75-fono-25;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fonoisolante;25;2;2;175;78.0;69;REI 30
+707;p_doppia_doppia-c75-fuoco-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;6;2;2;99;21.0;49;REI 90
+708;p_doppia_doppia-c75-fuoco-9.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;9.5;2;2;113;31.5;52;REI 90
+709;p_doppia_doppia-c75-fuoco-12.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;12.5;2;2;125;40.5;54;REI 90
+710;p_doppia_doppia-c75-fuoco-15;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;15;2;2;135;48.0;56;REI 90
+711;p_doppia_doppia-c75-fuoco-18;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;18;2;2;147;57.0;59;REI 90
+712;p_doppia_doppia-c75-fuoco-25;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Antifuoco;25;2;2;175;78.0;64;REI 90
+713;p_doppia_doppia-c75-flex-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Flessibile;6;2;2;99;21.0;49;REI 30
+714;p_doppia_doppia-c75-impatto-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;6;2;2;99;21.0;49;REI 30
+715;p_doppia_doppia-c75-impatto-9.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;9.5;2;2;113;31.5;52;REI 30
+716;p_doppia_doppia-c75-impatto-12.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;12.5;2;2;125;40.5;54;REI 30
+717;p_doppia_doppia-c75-impatto-15;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;15;2;2;135;48.0;56;REI 30
+718;p_doppia_doppia-c75-impatto-18;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;18;2;2;147;57.0;59;REI 30
+719;p_doppia_doppia-c75-impatto-25;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Alta resistenza;25;2;2;175;78.0;64;REI 30
+720;p_doppia_doppia-c75-fibra-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;6;2;2;99;21.0;49;REI 30
+721;p_doppia_doppia-c75-fibra-9.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;9.5;2;2;113;31.5;52;REI 30
+722;p_doppia_doppia-c75-fibra-12.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;12.5;2;2;125;40.5;54;REI 30
+723;p_doppia_doppia-c75-fibra-15;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;15;2;2;135;48.0;56;REI 30
+724;p_doppia_doppia-c75-fibra-18;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;18;2;2;147;57.0;59;REI 30
+725;p_doppia_doppia-c75-fibra-25;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Fibrorinforzata;25;2;2;175;78.0;64;REI 30
+726;p_doppia_doppia-c75-combi-6;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;6;2;2;99;21.0;49;REI 90
+727;p_doppia_doppia-c75-combi-9.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;9.5;2;2;113;31.5;52;REI 90
+728;p_doppia_doppia-c75-combi-12.5;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;12.5;2;2;125;40.5;54;REI 90
+729;p_doppia_doppia-c75-combi-15;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;15;2;2;135;48.0;56;REI 90
+730;p_doppia_doppia-c75-combi-18;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;18;2;2;147;57.0;59;REI 90
+731;p_doppia_doppia-c75-combi-25;Parete Doppia Lastra Doppia;Parete;C 75/50;U 75/40;Combinata;25;2;2;175;78.0;64;REI 90
+732;p_doppia_doppia-c100-std-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Standard;6;2;2;124;21.0;53;REI 30
+733;p_doppia_doppia-c100-std-9.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Standard;9.5;2;2;138;31.5;56;REI 30
+734;p_doppia_doppia-c100-std-12.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Standard;12.5;2;2;150;40.5;58;REI 30
+735;p_doppia_doppia-c100-std-15;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Standard;15;2;2;160;48.0;60;REI 30
+736;p_doppia_doppia-c100-std-18;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Standard;18;2;2;172;57.0;62;REI 30
+737;p_doppia_doppia-c100-std-25;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Standard;25;2;2;200;78.0;68;REI 30
+738;p_doppia_doppia-c100-h2o-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;6;2;2;124;21.0;53;REI 30
+739;p_doppia_doppia-c100-h2o-9.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;9.5;2;2;138;31.5;56;REI 30
+740;p_doppia_doppia-c100-h2o-12.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;12.5;2;2;150;40.5;58;REI 30
+741;p_doppia_doppia-c100-h2o-15;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;15;2;2;160;48.0;60;REI 30
+742;p_doppia_doppia-c100-h2o-18;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;18;2;2;172;57.0;62;REI 30
+743;p_doppia_doppia-c100-h2o-25;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Idrofuga;25;2;2;200;78.0;68;REI 30
+744;p_doppia_doppia-c100-fono-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;6;2;2;124;21.0;58;REI 30
+745;p_doppia_doppia-c100-fono-9.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;9.5;2;2;138;31.5;61;REI 30
+746;p_doppia_doppia-c100-fono-12.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;12.5;2;2;150;40.5;63;REI 30
+747;p_doppia_doppia-c100-fono-15;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;15;2;2;160;48.0;65;REI 30
+748;p_doppia_doppia-c100-fono-18;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;18;2;2;172;57.0;67;REI 30
+749;p_doppia_doppia-c100-fono-25;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fonoisolante;25;2;2;200;78.0;73;REI 30
+750;p_doppia_doppia-c100-fuoco-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;6;2;2;124;21.0;53;REI 90
+751;p_doppia_doppia-c100-fuoco-9.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;9.5;2;2;138;31.5;56;REI 90
+752;p_doppia_doppia-c100-fuoco-12.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;12.5;2;2;150;40.5;58;REI 90
+753;p_doppia_doppia-c100-fuoco-15;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;15;2;2;160;48.0;60;REI 90
+754;p_doppia_doppia-c100-fuoco-18;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;18;2;2;172;57.0;62;REI 90
+755;p_doppia_doppia-c100-fuoco-25;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Antifuoco;25;2;2;200;78.0;68;REI 90
+756;p_doppia_doppia-c100-flex-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Flessibile;6;2;2;124;21.0;53;REI 30
+757;p_doppia_doppia-c100-impatto-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;6;2;2;124;21.0;53;REI 30
+758;p_doppia_doppia-c100-impatto-9.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;9.5;2;2;138;31.5;56;REI 30
+759;p_doppia_doppia-c100-impatto-12.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;12.5;2;2;150;40.5;58;REI 30
+760;p_doppia_doppia-c100-impatto-15;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;15;2;2;160;48.0;60;REI 30
+761;p_doppia_doppia-c100-impatto-18;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;18;2;2;172;57.0;62;REI 30
+762;p_doppia_doppia-c100-impatto-25;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Alta resistenza;25;2;2;200;78.0;68;REI 30
+763;p_doppia_doppia-c100-fibra-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;6;2;2;124;21.0;53;REI 30
+764;p_doppia_doppia-c100-fibra-9.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;9.5;2;2;138;31.5;56;REI 30
+765;p_doppia_doppia-c100-fibra-12.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;12.5;2;2;150;40.5;58;REI 30
+766;p_doppia_doppia-c100-fibra-15;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;15;2;2;160;48.0;60;REI 30
+767;p_doppia_doppia-c100-fibra-18;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;18;2;2;172;57.0;62;REI 30
+768;p_doppia_doppia-c100-fibra-25;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Fibrorinforzata;25;2;2;200;78.0;68;REI 30
+769;p_doppia_doppia-c100-combi-6;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;6;2;2;124;21.0;53;REI 90
+770;p_doppia_doppia-c100-combi-9.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;9.5;2;2;138;31.5;56;REI 90
+771;p_doppia_doppia-c100-combi-12.5;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;12.5;2;2;150;40.5;58;REI 90
+772;p_doppia_doppia-c100-combi-15;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;15;2;2;160;48.0;60;REI 90
+773;p_doppia_doppia-c100-combi-18;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;18;2;2;172;57.0;62;REI 90
+774;p_doppia_doppia-c100-combi-25;Parete Doppia Lastra Doppia;Parete;C 100/50;U 100/40;Combinata;25;2;2;200;78.0;68;REI 90
+775;p_doppia_doppia-c125-std-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Standard;6;2;2;149;21.0;57;REI 30
+776;p_doppia_doppia-c125-std-9.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Standard;9.5;2;2;163;31.5;59;REI 30
+777;p_doppia_doppia-c125-std-12.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Standard;12.5;2;2;175;40.5;62;REI 30
+778;p_doppia_doppia-c125-std-15;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Standard;15;2;2;185;48.0;64;REI 30
+779;p_doppia_doppia-c125-std-18;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Standard;18;2;2;197;57.0;66;REI 30
+780;p_doppia_doppia-c125-std-25;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Standard;25;2;2;225;78.0;72;REI 30
+781;p_doppia_doppia-c125-h2o-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;6;2;2;149;21.0;57;REI 30
+782;p_doppia_doppia-c125-h2o-9.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;9.5;2;2;163;31.5;59;REI 30
+783;p_doppia_doppia-c125-h2o-12.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;12.5;2;2;175;40.5;62;REI 30
+784;p_doppia_doppia-c125-h2o-15;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;15;2;2;185;48.0;64;REI 30
+785;p_doppia_doppia-c125-h2o-18;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;18;2;2;197;57.0;66;REI 30
+786;p_doppia_doppia-c125-h2o-25;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Idrofuga;25;2;2;225;78.0;72;REI 30
+787;p_doppia_doppia-c125-fono-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;6;2;2;149;21.0;62;REI 30
+788;p_doppia_doppia-c125-fono-9.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;9.5;2;2;163;31.5;64;REI 30
+789;p_doppia_doppia-c125-fono-12.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;12.5;2;2;175;40.5;67;REI 30
+790;p_doppia_doppia-c125-fono-15;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;15;2;2;185;48.0;69;REI 30
+791;p_doppia_doppia-c125-fono-18;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;18;2;2;197;57.0;71;REI 30
+792;p_doppia_doppia-c125-fono-25;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fonoisolante;25;2;2;225;78.0;77;REI 30
+793;p_doppia_doppia-c125-fuoco-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;6;2;2;149;21.0;57;REI 90
+794;p_doppia_doppia-c125-fuoco-9.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;9.5;2;2;163;31.5;59;REI 90
+795;p_doppia_doppia-c125-fuoco-12.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;12.5;2;2;175;40.5;62;REI 90
+796;p_doppia_doppia-c125-fuoco-15;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;15;2;2;185;48.0;64;REI 90
+797;p_doppia_doppia-c125-fuoco-18;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;18;2;2;197;57.0;66;REI 90
+798;p_doppia_doppia-c125-fuoco-25;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Antifuoco;25;2;2;225;78.0;72;REI 90
+799;p_doppia_doppia-c125-flex-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Flessibile;6;2;2;149;21.0;57;REI 30
+800;p_doppia_doppia-c125-impatto-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;6;2;2;149;21.0;57;REI 30
+801;p_doppia_doppia-c125-impatto-9.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;9.5;2;2;163;31.5;59;REI 30
+802;p_doppia_doppia-c125-impatto-12.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;12.5;2;2;175;40.5;62;REI 30
+803;p_doppia_doppia-c125-impatto-15;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;15;2;2;185;48.0;64;REI 30
+804;p_doppia_doppia-c125-impatto-18;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;18;2;2;197;57.0;66;REI 30
+805;p_doppia_doppia-c125-impatto-25;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Alta resistenza;25;2;2;225;78.0;72;REI 30
+806;p_doppia_doppia-c125-fibra-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;6;2;2;149;21.0;57;REI 30
+807;p_doppia_doppia-c125-fibra-9.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;9.5;2;2;163;31.5;59;REI 30
+808;p_doppia_doppia-c125-fibra-12.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;12.5;2;2;175;40.5;62;REI 30
+809;p_doppia_doppia-c125-fibra-15;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;15;2;2;185;48.0;64;REI 30
+810;p_doppia_doppia-c125-fibra-18;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;18;2;2;197;57.0;66;REI 30
+811;p_doppia_doppia-c125-fibra-25;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Fibrorinforzata;25;2;2;225;78.0;72;REI 30
+812;p_doppia_doppia-c125-combi-6;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;6;2;2;149;21.0;57;REI 90
+813;p_doppia_doppia-c125-combi-9.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;9.5;2;2;163;31.5;59;REI 90
+814;p_doppia_doppia-c125-combi-12.5;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;12.5;2;2;175;40.5;62;REI 90
+815;p_doppia_doppia-c125-combi-15;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;15;2;2;185;48.0;64;REI 90
+816;p_doppia_doppia-c125-combi-18;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;18;2;2;197;57.0;66;REI 90
+817;p_doppia_doppia-c125-combi-25;Parete Doppia Lastra Doppia;Parete;C 125/50;U 125/40;Combinata;25;2;2;225;78.0;72;REI 90
+818;p_doppia_doppia-c150-std-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Standard;6;2;2;174;21.0;60;REI 30
+819;p_doppia_doppia-c150-std-9.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Standard;9.5;2;2;188;31.5;63;REI 30
+820;p_doppia_doppia-c150-std-12.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Standard;12.5;2;2;200;40.5;66;REI 30
+821;p_doppia_doppia-c150-std-15;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Standard;15;2;2;210;48.0;68;REI 30
+822;p_doppia_doppia-c150-std-18;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Standard;18;2;2;222;57.0;70;REI 30
+823;p_doppia_doppia-c150-std-25;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Standard;25;2;2;250;78.0;76;REI 30
+824;p_doppia_doppia-c150-h2o-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;6;2;2;174;21.0;60;REI 30
+825;p_doppia_doppia-c150-h2o-9.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;9.5;2;2;188;31.5;63;REI 30
+826;p_doppia_doppia-c150-h2o-12.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;12.5;2;2;200;40.5;66;REI 30
+827;p_doppia_doppia-c150-h2o-15;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;15;2;2;210;48.0;68;REI 30
+828;p_doppia_doppia-c150-h2o-18;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;18;2;2;222;57.0;70;REI 30
+829;p_doppia_doppia-c150-h2o-25;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Idrofuga;25;2;2;250;78.0;76;REI 30
+830;p_doppia_doppia-c150-fono-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;6;2;2;174;21.0;65;REI 30
+831;p_doppia_doppia-c150-fono-9.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;9.5;2;2;188;31.5;68;REI 30
+832;p_doppia_doppia-c150-fono-12.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;12.5;2;2;200;40.5;71;REI 30
+833;p_doppia_doppia-c150-fono-15;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;15;2;2;210;48.0;73;REI 30
+834;p_doppia_doppia-c150-fono-18;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;18;2;2;222;57.0;75;REI 30
+835;p_doppia_doppia-c150-fono-25;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fonoisolante;25;2;2;250;78.0;81;REI 30
+836;p_doppia_doppia-c150-fuoco-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;6;2;2;174;21.0;60;REI 90
+837;p_doppia_doppia-c150-fuoco-9.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;9.5;2;2;188;31.5;63;REI 90
+838;p_doppia_doppia-c150-fuoco-12.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;12.5;2;2;200;40.5;66;REI 90
+839;p_doppia_doppia-c150-fuoco-15;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;15;2;2;210;48.0;68;REI 90
+840;p_doppia_doppia-c150-fuoco-18;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;18;2;2;222;57.0;70;REI 90
+841;p_doppia_doppia-c150-fuoco-25;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Antifuoco;25;2;2;250;78.0;76;REI 90
+842;p_doppia_doppia-c150-flex-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Flessibile;6;2;2;174;21.0;60;REI 30
+843;p_doppia_doppia-c150-impatto-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;6;2;2;174;21.0;60;REI 30
+844;p_doppia_doppia-c150-impatto-9.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;9.5;2;2;188;31.5;63;REI 30
+845;p_doppia_doppia-c150-impatto-12.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;12.5;2;2;200;40.5;66;REI 30
+846;p_doppia_doppia-c150-impatto-15;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;15;2;2;210;48.0;68;REI 30
+847;p_doppia_doppia-c150-impatto-18;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;18;2;2;222;57.0;70;REI 30
+848;p_doppia_doppia-c150-impatto-25;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Alta resistenza;25;2;2;250;78.0;76;REI 30
+849;p_doppia_doppia-c150-fibra-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;6;2;2;174;21.0;60;REI 30
+850;p_doppia_doppia-c150-fibra-9.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;9.5;2;2;188;31.5;63;REI 30
+851;p_doppia_doppia-c150-fibra-12.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;12.5;2;2;200;40.5;66;REI 30
+852;p_doppia_doppia-c150-fibra-15;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;15;2;2;210;48.0;68;REI 30
+853;p_doppia_doppia-c150-fibra-18;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;18;2;2;222;57.0;70;REI 30
+854;p_doppia_doppia-c150-fibra-25;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Fibrorinforzata;25;2;2;250;78.0;76;REI 30
+855;p_doppia_doppia-c150-combi-6;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;6;2;2;174;21.0;60;REI 90
+856;p_doppia_doppia-c150-combi-9.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;9.5;2;2;188;31.5;63;REI 90
+857;p_doppia_doppia-c150-combi-12.5;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;12.5;2;2;200;40.5;66;REI 90
+858;p_doppia_doppia-c150-combi-15;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;15;2;2;210;48.0;68;REI 90
+859;p_doppia_doppia-c150-combi-18;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;18;2;2;222;57.0;70;REI 90
+860;p_doppia_doppia-c150-combi-25;Parete Doppia Lastra Doppia;Parete;C 150/50;U 150/40;Combinata;25;2;2;250;78.0;76;REI 90
+861;p_doppia_tripla-c50-std-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Standard;6;2;3;86;30.0;47;REI 30
+862;p_doppia_tripla-c50-std-9.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Standard;9.5;2;3;107;45.8;50;REI 30
+863;p_doppia_tripla-c50-std-12.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Standard;12.5;2;3;125;59.3;53;REI 30
+864;p_doppia_tripla-c50-std-15;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Standard;15;2;3;140;70.5;55;REI 30
+865;p_doppia_tripla-c50-std-18;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Standard;18;2;3;158;84.0;57;REI 30
+866;p_doppia_tripla-c50-h2o-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Idrofuga;6;2;3;86;30.0;47;REI 30
+867;p_doppia_tripla-c50-h2o-9.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Idrofuga;9.5;2;3;107;45.8;50;REI 30
+868;p_doppia_tripla-c50-h2o-12.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Idrofuga;12.5;2;3;125;59.3;53;REI 30
+869;p_doppia_tripla-c50-h2o-15;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Idrofuga;15;2;3;140;70.5;55;REI 30
+870;p_doppia_tripla-c50-h2o-18;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Idrofuga;18;2;3;158;84.0;57;REI 30
+871;p_doppia_tripla-c50-fono-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fonoisolante;6;2;3;86;30.0;52;REI 30
+872;p_doppia_tripla-c50-fono-9.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fonoisolante;9.5;2;3;107;45.8;55;REI 30
+873;p_doppia_tripla-c50-fono-12.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fonoisolante;12.5;2;3;125;59.3;58;REI 30
+874;p_doppia_tripla-c50-fono-15;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fonoisolante;15;2;3;140;70.5;60;REI 30
+875;p_doppia_tripla-c50-fono-18;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fonoisolante;18;2;3;158;84.0;62;REI 30
+876;p_doppia_tripla-c50-fuoco-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Antifuoco;6;2;3;86;30.0;47;REI 90
+877;p_doppia_tripla-c50-fuoco-9.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Antifuoco;9.5;2;3;107;45.8;50;REI 90
+878;p_doppia_tripla-c50-fuoco-12.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Antifuoco;12.5;2;3;125;59.3;53;REI 90
+879;p_doppia_tripla-c50-fuoco-15;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Antifuoco;15;2;3;140;70.5;55;REI 90
+880;p_doppia_tripla-c50-fuoco-18;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Antifuoco;18;2;3;158;84.0;57;REI 90
+881;p_doppia_tripla-c50-flex-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Flessibile;6;2;3;86;30.0;47;REI 30
+882;p_doppia_tripla-c50-impatto-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Alta resistenza;6;2;3;86;30.0;47;REI 30
+883;p_doppia_tripla-c50-impatto-9.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Alta resistenza;9.5;2;3;107;45.8;50;REI 30
+884;p_doppia_tripla-c50-impatto-12.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Alta resistenza;12.5;2;3;125;59.3;53;REI 30
+885;p_doppia_tripla-c50-impatto-15;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Alta resistenza;15;2;3;140;70.5;55;REI 30
+886;p_doppia_tripla-c50-impatto-18;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Alta resistenza;18;2;3;158;84.0;57;REI 30
+887;p_doppia_tripla-c50-fibra-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fibrorinforzata;6;2;3;86;30.0;47;REI 30
+888;p_doppia_tripla-c50-fibra-9.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fibrorinforzata;9.5;2;3;107;45.8;50;REI 30
+889;p_doppia_tripla-c50-fibra-12.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fibrorinforzata;12.5;2;3;125;59.3;53;REI 30
+890;p_doppia_tripla-c50-fibra-15;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fibrorinforzata;15;2;3;140;70.5;55;REI 30
+891;p_doppia_tripla-c50-fibra-18;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Fibrorinforzata;18;2;3;158;84.0;57;REI 30
+892;p_doppia_tripla-c50-combi-6;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Combinata;6;2;3;86;30.0;47;REI 90
+893;p_doppia_tripla-c50-combi-9.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Combinata;9.5;2;3;107;45.8;50;REI 90
+894;p_doppia_tripla-c50-combi-12.5;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Combinata;12.5;2;3;125;59.3;53;REI 90
+895;p_doppia_tripla-c50-combi-15;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Combinata;15;2;3;140;70.5;55;REI 90
+896;p_doppia_tripla-c50-combi-18;Parete Doppia Lastra Tripla;Parete;C 50/50;U 50/40;Combinata;18;2;3;158;84.0;57;REI 90
+897;p_doppia_tripla-c75-std-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Standard;6;2;3;111;30.0;51;REI 30
+898;p_doppia_tripla-c75-std-9.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Standard;9.5;2;3;132;45.8;54;REI 30
+899;p_doppia_tripla-c75-std-12.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Standard;12.5;2;3;150;59.3;56;REI 30
+900;p_doppia_tripla-c75-std-15;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Standard;15;2;3;165;70.5;58;REI 30
+901;p_doppia_tripla-c75-std-18;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Standard;18;2;3;183;84.0;61;REI 30
+902;p_doppia_tripla-c75-h2o-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Idrofuga;6;2;3;111;30.0;51;REI 30
+903;p_doppia_tripla-c75-h2o-9.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Idrofuga;9.5;2;3;132;45.8;54;REI 30
+904;p_doppia_tripla-c75-h2o-12.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Idrofuga;12.5;2;3;150;59.3;56;REI 30
+905;p_doppia_tripla-c75-h2o-15;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Idrofuga;15;2;3;165;70.5;58;REI 30
+906;p_doppia_tripla-c75-h2o-18;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Idrofuga;18;2;3;183;84.0;61;REI 30
+907;p_doppia_tripla-c75-fono-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fonoisolante;6;2;3;111;30.0;56;REI 30
+908;p_doppia_tripla-c75-fono-9.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fonoisolante;9.5;2;3;132;45.8;59;REI 30
+909;p_doppia_tripla-c75-fono-12.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fonoisolante;12.5;2;3;150;59.3;61;REI 30
+910;p_doppia_tripla-c75-fono-15;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fonoisolante;15;2;3;165;70.5;63;REI 30
+911;p_doppia_tripla-c75-fono-18;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fonoisolante;18;2;3;183;84.0;66;REI 30
+912;p_doppia_tripla-c75-fuoco-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Antifuoco;6;2;3;111;30.0;51;REI 90
+913;p_doppia_tripla-c75-fuoco-9.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Antifuoco;9.5;2;3;132;45.8;54;REI 90
+914;p_doppia_tripla-c75-fuoco-12.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Antifuoco;12.5;2;3;150;59.3;56;REI 90
+915;p_doppia_tripla-c75-fuoco-15;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Antifuoco;15;2;3;165;70.5;58;REI 90
+916;p_doppia_tripla-c75-fuoco-18;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Antifuoco;18;2;3;183;84.0;61;REI 90
+917;p_doppia_tripla-c75-flex-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Flessibile;6;2;3;111;30.0;51;REI 30
+918;p_doppia_tripla-c75-impatto-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Alta resistenza;6;2;3;111;30.0;51;REI 30
+919;p_doppia_tripla-c75-impatto-9.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Alta resistenza;9.5;2;3;132;45.8;54;REI 30
+920;p_doppia_tripla-c75-impatto-12.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Alta resistenza;12.5;2;3;150;59.3;56;REI 30
+921;p_doppia_tripla-c75-impatto-15;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Alta resistenza;15;2;3;165;70.5;58;REI 30
+922;p_doppia_tripla-c75-impatto-18;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Alta resistenza;18;2;3;183;84.0;61;REI 30
+923;p_doppia_tripla-c75-fibra-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fibrorinforzata;6;2;3;111;30.0;51;REI 30
+924;p_doppia_tripla-c75-fibra-9.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fibrorinforzata;9.5;2;3;132;45.8;54;REI 30
+925;p_doppia_tripla-c75-fibra-12.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fibrorinforzata;12.5;2;3;150;59.3;56;REI 30
+926;p_doppia_tripla-c75-fibra-15;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fibrorinforzata;15;2;3;165;70.5;58;REI 30
+927;p_doppia_tripla-c75-fibra-18;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Fibrorinforzata;18;2;3;183;84.0;61;REI 30
+928;p_doppia_tripla-c75-combi-6;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Combinata;6;2;3;111;30.0;51;REI 90
+929;p_doppia_tripla-c75-combi-9.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Combinata;9.5;2;3;132;45.8;54;REI 90
+930;p_doppia_tripla-c75-combi-12.5;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Combinata;12.5;2;3;150;59.3;56;REI 90
+931;p_doppia_tripla-c75-combi-15;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Combinata;15;2;3;165;70.5;58;REI 90
+932;p_doppia_tripla-c75-combi-18;Parete Doppia Lastra Tripla;Parete;C 75/50;U 75/40;Combinata;18;2;3;183;84.0;61;REI 90
+933;p_doppia_tripla-c100-std-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Standard;6;2;3;136;30.0;55;REI 30
+934;p_doppia_tripla-c100-std-9.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Standard;9.5;2;3;157;45.8;58;REI 30
+935;p_doppia_tripla-c100-std-12.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Standard;12.5;2;3;175;59.3;60;REI 30
+936;p_doppia_tripla-c100-std-15;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Standard;15;2;3;190;70.5;62;REI 30
+937;p_doppia_tripla-c100-std-18;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Standard;18;2;3;208;84.0;64;REI 30
+938;p_doppia_tripla-c100-h2o-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Idrofuga;6;2;3;136;30.0;55;REI 30
+939;p_doppia_tripla-c100-h2o-9.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Idrofuga;9.5;2;3;157;45.8;58;REI 30
+940;p_doppia_tripla-c100-h2o-12.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Idrofuga;12.5;2;3;175;59.3;60;REI 30
+941;p_doppia_tripla-c100-h2o-15;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Idrofuga;15;2;3;190;70.5;62;REI 30
+942;p_doppia_tripla-c100-h2o-18;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Idrofuga;18;2;3;208;84.0;64;REI 30
+943;p_doppia_tripla-c100-fono-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fonoisolante;6;2;3;136;30.0;60;REI 30
+944;p_doppia_tripla-c100-fono-9.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fonoisolante;9.5;2;3;157;45.8;63;REI 30
+945;p_doppia_tripla-c100-fono-12.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fonoisolante;12.5;2;3;175;59.3;65;REI 30
+946;p_doppia_tripla-c100-fono-15;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fonoisolante;15;2;3;190;70.5;67;REI 30
+947;p_doppia_tripla-c100-fono-18;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fonoisolante;18;2;3;208;84.0;69;REI 30
+948;p_doppia_tripla-c100-fuoco-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Antifuoco;6;2;3;136;30.0;55;REI 90
+949;p_doppia_tripla-c100-fuoco-9.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Antifuoco;9.5;2;3;157;45.8;58;REI 90
+950;p_doppia_tripla-c100-fuoco-12.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Antifuoco;12.5;2;3;175;59.3;60;REI 90
+951;p_doppia_tripla-c100-fuoco-15;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Antifuoco;15;2;3;190;70.5;62;REI 90
+952;p_doppia_tripla-c100-fuoco-18;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Antifuoco;18;2;3;208;84.0;64;REI 90
+953;p_doppia_tripla-c100-flex-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Flessibile;6;2;3;136;30.0;55;REI 30
+954;p_doppia_tripla-c100-impatto-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Alta resistenza;6;2;3;136;30.0;55;REI 30
+955;p_doppia_tripla-c100-impatto-9.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Alta resistenza;9.5;2;3;157;45.8;58;REI 30
+956;p_doppia_tripla-c100-impatto-12.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Alta resistenza;12.5;2;3;175;59.3;60;REI 30
+957;p_doppia_tripla-c100-impatto-15;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Alta resistenza;15;2;3;190;70.5;62;REI 30
+958;p_doppia_tripla-c100-impatto-18;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Alta resistenza;18;2;3;208;84.0;64;REI 30
+959;p_doppia_tripla-c100-fibra-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fibrorinforzata;6;2;3;136;30.0;55;REI 30
+960;p_doppia_tripla-c100-fibra-9.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fibrorinforzata;9.5;2;3;157;45.8;58;REI 30
+961;p_doppia_tripla-c100-fibra-12.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fibrorinforzata;12.5;2;3;175;59.3;60;REI 30
+962;p_doppia_tripla-c100-fibra-15;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fibrorinforzata;15;2;3;190;70.5;62;REI 30
+963;p_doppia_tripla-c100-fibra-18;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Fibrorinforzata;18;2;3;208;84.0;64;REI 30
+964;p_doppia_tripla-c100-combi-6;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Combinata;6;2;3;136;30.0;55;REI 90
+965;p_doppia_tripla-c100-combi-9.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Combinata;9.5;2;3;157;45.8;58;REI 90
+966;p_doppia_tripla-c100-combi-12.5;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Combinata;12.5;2;3;175;59.3;60;REI 90
+967;p_doppia_tripla-c100-combi-15;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Combinata;15;2;3;190;70.5;62;REI 90
+968;p_doppia_tripla-c100-combi-18;Parete Doppia Lastra Tripla;Parete;C 100/50;U 100/40;Combinata;18;2;3;208;84.0;64;REI 90
+969;p_doppia_tripla-c125-std-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Standard;6;2;3;161;30.0;59;REI 30
+970;p_doppia_tripla-c125-std-9.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Standard;9.5;2;3;182;45.8;61;REI 30
+971;p_doppia_tripla-c125-std-12.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Standard;12.5;2;3;200;59.3;64;REI 30
+972;p_doppia_tripla-c125-std-15;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Standard;15;2;3;215;70.5;66;REI 30
+973;p_doppia_tripla-c125-std-18;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Standard;18;2;3;233;84.0;68;REI 30
+974;p_doppia_tripla-c125-h2o-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Idrofuga;6;2;3;161;30.0;59;REI 30
+975;p_doppia_tripla-c125-h2o-9.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Idrofuga;9.5;2;3;182;45.8;61;REI 30
+976;p_doppia_tripla-c125-h2o-12.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Idrofuga;12.5;2;3;200;59.3;64;REI 30
+977;p_doppia_tripla-c125-h2o-15;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Idrofuga;15;2;3;215;70.5;66;REI 30
+978;p_doppia_tripla-c125-h2o-18;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Idrofuga;18;2;3;233;84.0;68;REI 30
+979;p_doppia_tripla-c125-fono-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fonoisolante;6;2;3;161;30.0;64;REI 30
+980;p_doppia_tripla-c125-fono-9.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fonoisolante;9.5;2;3;182;45.8;66;REI 30
+981;p_doppia_tripla-c125-fono-12.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fonoisolante;12.5;2;3;200;59.3;69;REI 30
+982;p_doppia_tripla-c125-fono-15;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fonoisolante;15;2;3;215;70.5;71;REI 30
+983;p_doppia_tripla-c125-fono-18;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fonoisolante;18;2;3;233;84.0;73;REI 30
+984;p_doppia_tripla-c125-fuoco-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Antifuoco;6;2;3;161;30.0;59;REI 90
+985;p_doppia_tripla-c125-fuoco-9.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Antifuoco;9.5;2;3;182;45.8;61;REI 90
+986;p_doppia_tripla-c125-fuoco-12.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Antifuoco;12.5;2;3;200;59.3;64;REI 90
+987;p_doppia_tripla-c125-fuoco-15;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Antifuoco;15;2;3;215;70.5;66;REI 90
+988;p_doppia_tripla-c125-fuoco-18;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Antifuoco;18;2;3;233;84.0;68;REI 90
+989;p_doppia_tripla-c125-flex-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Flessibile;6;2;3;161;30.0;59;REI 30
+990;p_doppia_tripla-c125-impatto-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Alta resistenza;6;2;3;161;30.0;59;REI 30
+991;p_doppia_tripla-c125-impatto-9.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Alta resistenza;9.5;2;3;182;45.8;61;REI 30
+992;p_doppia_tripla-c125-impatto-12.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Alta resistenza;12.5;2;3;200;59.3;64;REI 30
+993;p_doppia_tripla-c125-impatto-15;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Alta resistenza;15;2;3;215;70.5;66;REI 30
+994;p_doppia_tripla-c125-impatto-18;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Alta resistenza;18;2;3;233;84.0;68;REI 30
+995;p_doppia_tripla-c125-fibra-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fibrorinforzata;6;2;3;161;30.0;59;REI 30
+996;p_doppia_tripla-c125-fibra-9.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fibrorinforzata;9.5;2;3;182;45.8;61;REI 30
+997;p_doppia_tripla-c125-fibra-12.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fibrorinforzata;12.5;2;3;200;59.3;64;REI 30
+998;p_doppia_tripla-c125-fibra-15;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fibrorinforzata;15;2;3;215;70.5;66;REI 30
+999;p_doppia_tripla-c125-fibra-18;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Fibrorinforzata;18;2;3;233;84.0;68;REI 30
+1000;p_doppia_tripla-c125-combi-6;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Combinata;6;2;3;161;30.0;59;REI 90
+1001;p_doppia_tripla-c125-combi-9.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Combinata;9.5;2;3;182;45.8;61;REI 90
+1002;p_doppia_tripla-c125-combi-12.5;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Combinata;12.5;2;3;200;59.3;64;REI 90
+1003;p_doppia_tripla-c125-combi-15;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Combinata;15;2;3;215;70.5;66;REI 90
+1004;p_doppia_tripla-c125-combi-18;Parete Doppia Lastra Tripla;Parete;C 125/50;U 125/40;Combinata;18;2;3;233;84.0;68;REI 90
+1005;p_doppia_tripla-c150-std-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Standard;6;2;3;186;30.0;62;REI 30
+1006;p_doppia_tripla-c150-std-9.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Standard;9.5;2;3;207;45.8;65;REI 30
+1007;p_doppia_tripla-c150-std-12.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Standard;12.5;2;3;225;59.3;68;REI 30
+1008;p_doppia_tripla-c150-std-15;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Standard;15;2;3;240;70.5;70;REI 30
+1009;p_doppia_tripla-c150-std-18;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Standard;18;2;3;258;84.0;72;REI 30
+1010;p_doppia_tripla-c150-h2o-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Idrofuga;6;2;3;186;30.0;62;REI 30
+1011;p_doppia_tripla-c150-h2o-9.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Idrofuga;9.5;2;3;207;45.8;65;REI 30
+1012;p_doppia_tripla-c150-h2o-12.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Idrofuga;12.5;2;3;225;59.3;68;REI 30
+1013;p_doppia_tripla-c150-h2o-15;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Idrofuga;15;2;3;240;70.5;70;REI 30
+1014;p_doppia_tripla-c150-h2o-18;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Idrofuga;18;2;3;258;84.0;72;REI 30
+1015;p_doppia_tripla-c150-fono-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fonoisolante;6;2;3;186;30.0;67;REI 30
+1016;p_doppia_tripla-c150-fono-9.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fonoisolante;9.5;2;3;207;45.8;70;REI 30
+1017;p_doppia_tripla-c150-fono-12.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fonoisolante;12.5;2;3;225;59.3;73;REI 30
+1018;p_doppia_tripla-c150-fono-15;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fonoisolante;15;2;3;240;70.5;75;REI 30
+1019;p_doppia_tripla-c150-fono-18;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fonoisolante;18;2;3;258;84.0;77;REI 30
+1020;p_doppia_tripla-c150-fuoco-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Antifuoco;6;2;3;186;30.0;62;REI 90
+1021;p_doppia_tripla-c150-fuoco-9.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Antifuoco;9.5;2;3;207;45.8;65;REI 90
+1022;p_doppia_tripla-c150-fuoco-12.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Antifuoco;12.5;2;3;225;59.3;68;REI 90
+1023;p_doppia_tripla-c150-fuoco-15;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Antifuoco;15;2;3;240;70.5;70;REI 90
+1024;p_doppia_tripla-c150-fuoco-18;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Antifuoco;18;2;3;258;84.0;72;REI 90
+1025;p_doppia_tripla-c150-flex-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Flessibile;6;2;3;186;30.0;62;REI 30
+1026;p_doppia_tripla-c150-impatto-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Alta resistenza;6;2;3;186;30.0;62;REI 30
+1027;p_doppia_tripla-c150-impatto-9.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Alta resistenza;9.5;2;3;207;45.8;65;REI 30
+1028;p_doppia_tripla-c150-impatto-12.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Alta resistenza;12.5;2;3;225;59.3;68;REI 30
+1029;p_doppia_tripla-c150-impatto-15;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Alta resistenza;15;2;3;240;70.5;70;REI 30
+1030;p_doppia_tripla-c150-impatto-18;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Alta resistenza;18;2;3;258;84.0;72;REI 30
+1031;p_doppia_tripla-c150-fibra-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fibrorinforzata;6;2;3;186;30.0;62;REI 30
+1032;p_doppia_tripla-c150-fibra-9.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fibrorinforzata;9.5;2;3;207;45.8;65;REI 30
+1033;p_doppia_tripla-c150-fibra-12.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fibrorinforzata;12.5;2;3;225;59.3;68;REI 30
+1034;p_doppia_tripla-c150-fibra-15;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fibrorinforzata;15;2;3;240;70.5;70;REI 30
+1035;p_doppia_tripla-c150-fibra-18;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Fibrorinforzata;18;2;3;258;84.0;72;REI 30
+1036;p_doppia_tripla-c150-combi-6;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Combinata;6;2;3;186;30.0;62;REI 90
+1037;p_doppia_tripla-c150-combi-9.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Combinata;9.5;2;3;207;45.8;65;REI 90
+1038;p_doppia_tripla-c150-combi-12.5;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Combinata;12.5;2;3;225;59.3;68;REI 90
+1039;p_doppia_tripla-c150-combi-15;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Combinata;15;2;3;240;70.5;70;REI 90
+1040;p_doppia_tripla-c150-combi-18;Parete Doppia Lastra Tripla;Parete;C 150/50;U 150/40;Combinata;18;2;3;258;84.0;72;REI 90
+1041;cp_singola-c50-std-6;Controparete Singola;Controparete;C 50/50;U 50/40;Standard;6;1;1;56;7.5;42;REI 30
+1042;cp_singola-c50-std-9.5;Controparete Singola;Controparete;C 50/50;U 50/40;Standard;9.5;1;1;59.5;10.1;45;REI 30
+1043;cp_singola-c50-std-12.5;Controparete Singola;Controparete;C 50/50;U 50/40;Standard;12.5;1;1;62.5;12.4;48;REI 30
+1044;cp_singola-c50-std-15;Controparete Singola;Controparete;C 50/50;U 50/40;Standard;15;1;1;65;14.3;50;REI 30
+1045;cp_singola-c50-std-18;Controparete Singola;Controparete;C 50/50;U 50/40;Standard;18;1;1;68;16.5;52;REI 30
+1046;cp_singola-c50-std-25;Controparete Singola;Controparete;C 50/50;U 50/40;Standard;25;1;1;75;21.8;58;REI 30
+1047;cp_singola-c50-h2o-6;Controparete Singola;Controparete;C 50/50;U 50/40;Idrofuga;6;1;1;56;7.5;42;REI 30
+1048;cp_singola-c50-h2o-9.5;Controparete Singola;Controparete;C 50/50;U 50/40;Idrofuga;9.5;1;1;59.5;10.1;45;REI 30
+1049;cp_singola-c50-h2o-12.5;Controparete Singola;Controparete;C 50/50;U 50/40;Idrofuga;12.5;1;1;62.5;12.4;48;REI 30
+1050;cp_singola-c50-h2o-15;Controparete Singola;Controparete;C 50/50;U 50/40;Idrofuga;15;1;1;65;14.3;50;REI 30
+1051;cp_singola-c50-h2o-18;Controparete Singola;Controparete;C 50/50;U 50/40;Idrofuga;18;1;1;68;16.5;52;REI 30
+1052;cp_singola-c50-h2o-25;Controparete Singola;Controparete;C 50/50;U 50/40;Idrofuga;25;1;1;75;21.8;58;REI 30
+1053;cp_singola-c50-fono-6;Controparete Singola;Controparete;C 50/50;U 50/40;Fonoisolante;6;1;1;56;7.5;47;REI 30
+1054;cp_singola-c50-fono-9.5;Controparete Singola;Controparete;C 50/50;U 50/40;Fonoisolante;9.5;1;1;59.5;10.1;50;REI 30
+1055;cp_singola-c50-fono-12.5;Controparete Singola;Controparete;C 50/50;U 50/40;Fonoisolante;12.5;1;1;62.5;12.4;53;REI 30
+1056;cp_singola-c50-fono-15;Controparete Singola;Controparete;C 50/50;U 50/40;Fonoisolante;15;1;1;65;14.3;55;REI 30
+1057;cp_singola-c50-fono-18;Controparete Singola;Controparete;C 50/50;U 50/40;Fonoisolante;18;1;1;68;16.5;57;REI 30
+1058;cp_singola-c50-fono-25;Controparete Singola;Controparete;C 50/50;U 50/40;Fonoisolante;25;1;1;75;21.8;63;REI 30
+1059;cp_singola-c50-fuoco-6;Controparete Singola;Controparete;C 50/50;U 50/40;Antifuoco;6;1;1;56;7.5;42;REI 45
+1060;cp_singola-c50-fuoco-9.5;Controparete Singola;Controparete;C 50/50;U 50/40;Antifuoco;9.5;1;1;59.5;10.1;45;REI 45
+1061;cp_singola-c50-fuoco-12.5;Controparete Singola;Controparete;C 50/50;U 50/40;Antifuoco;12.5;1;1;62.5;12.4;48;REI 45
+1062;cp_singola-c50-fuoco-15;Controparete Singola;Controparete;C 50/50;U 50/40;Antifuoco;15;1;1;65;14.3;50;REI 60
+1063;cp_singola-c50-fuoco-18;Controparete Singola;Controparete;C 50/50;U 50/40;Antifuoco;18;1;1;68;16.5;52;REI 60
+1064;cp_singola-c50-fuoco-25;Controparete Singola;Controparete;C 50/50;U 50/40;Antifuoco;25;1;1;75;21.8;58;REI 60
+1065;cp_singola-c50-flex-6;Controparete Singola;Controparete;C 50/50;U 50/40;Flessibile;6;1;1;56;7.5;42;REI 30
+1066;cp_singola-c50-impatto-6;Controparete Singola;Controparete;C 50/50;U 50/40;Alta resistenza;6;1;1;56;7.5;42;REI 30
+1067;cp_singola-c50-impatto-9.5;Controparete Singola;Controparete;C 50/50;U 50/40;Alta resistenza;9.5;1;1;59.5;10.1;45;REI 30
+1068;cp_singola-c50-impatto-12.5;Controparete Singola;Controparete;C 50/50;U 50/40;Alta resistenza;12.5;1;1;62.5;12.4;48;REI 30
+1069;cp_singola-c50-impatto-15;Controparete Singola;Controparete;C 50/50;U 50/40;Alta resistenza;15;1;1;65;14.3;50;REI 30
+1070;cp_singola-c50-impatto-18;Controparete Singola;Controparete;C 50/50;U 50/40;Alta resistenza;18;1;1;68;16.5;52;REI 30
+1071;cp_singola-c50-impatto-25;Controparete Singola;Controparete;C 50/50;U 50/40;Alta resistenza;25;1;1;75;21.8;58;REI 30
+1072;cp_singola-c50-fibra-6;Controparete Singola;Controparete;C 50/50;U 50/40;Fibrorinforzata;6;1;1;56;7.5;42;REI 30
+1073;cp_singola-c50-fibra-9.5;Controparete Singola;Controparete;C 50/50;U 50/40;Fibrorinforzata;9.5;1;1;59.5;10.1;45;REI 30
+1074;cp_singola-c50-fibra-12.5;Controparete Singola;Controparete;C 50/50;U 50/40;Fibrorinforzata;12.5;1;1;62.5;12.4;48;REI 30
+1075;cp_singola-c50-fibra-15;Controparete Singola;Controparete;C 50/50;U 50/40;Fibrorinforzata;15;1;1;65;14.3;50;REI 30
+1076;cp_singola-c50-fibra-18;Controparete Singola;Controparete;C 50/50;U 50/40;Fibrorinforzata;18;1;1;68;16.5;52;REI 30
+1077;cp_singola-c50-fibra-25;Controparete Singola;Controparete;C 50/50;U 50/40;Fibrorinforzata;25;1;1;75;21.8;58;REI 30
+1078;cp_singola-c50-combi-6;Controparete Singola;Controparete;C 50/50;U 50/40;Combinata;6;1;1;56;7.5;42;REI 45
+1079;cp_singola-c50-combi-9.5;Controparete Singola;Controparete;C 50/50;U 50/40;Combinata;9.5;1;1;59.5;10.1;45;REI 45
+1080;cp_singola-c50-combi-12.5;Controparete Singola;Controparete;C 50/50;U 50/40;Combinata;12.5;1;1;62.5;12.4;48;REI 45
+1081;cp_singola-c50-combi-15;Controparete Singola;Controparete;C 50/50;U 50/40;Combinata;15;1;1;65;14.3;50;REI 60
+1082;cp_singola-c50-combi-18;Controparete Singola;Controparete;C 50/50;U 50/40;Combinata;18;1;1;68;16.5;52;REI 60
+1083;cp_singola-c50-combi-25;Controparete Singola;Controparete;C 50/50;U 50/40;Combinata;25;1;1;75;21.8;58;REI 60
+1084;cp_singola-c75-std-6;Controparete Singola;Controparete;C 75/50;U 75/40;Standard;6;1;1;81;7.5;46;REI 30
+1085;cp_singola-c75-std-9.5;Controparete Singola;Controparete;C 75/50;U 75/40;Standard;9.5;1;1;84.5;10.1;49;REI 30
+1086;cp_singola-c75-std-12.5;Controparete Singola;Controparete;C 75/50;U 75/40;Standard;12.5;1;1;87.5;12.4;51;REI 30
+1087;cp_singola-c75-std-15;Controparete Singola;Controparete;C 75/50;U 75/40;Standard;15;1;1;90;14.3;53;REI 30
+1088;cp_singola-c75-std-18;Controparete Singola;Controparete;C 75/50;U 75/40;Standard;18;1;1;93;16.5;56;REI 30
+1089;cp_singola-c75-std-25;Controparete Singola;Controparete;C 75/50;U 75/40;Standard;25;1;1;100;21.8;61;REI 30
+1090;cp_singola-c75-h2o-6;Controparete Singola;Controparete;C 75/50;U 75/40;Idrofuga;6;1;1;81;7.5;46;REI 30
+1091;cp_singola-c75-h2o-9.5;Controparete Singola;Controparete;C 75/50;U 75/40;Idrofuga;9.5;1;1;84.5;10.1;49;REI 30
+1092;cp_singola-c75-h2o-12.5;Controparete Singola;Controparete;C 75/50;U 75/40;Idrofuga;12.5;1;1;87.5;12.4;51;REI 30
+1093;cp_singola-c75-h2o-15;Controparete Singola;Controparete;C 75/50;U 75/40;Idrofuga;15;1;1;90;14.3;53;REI 30
+1094;cp_singola-c75-h2o-18;Controparete Singola;Controparete;C 75/50;U 75/40;Idrofuga;18;1;1;93;16.5;56;REI 30
+1095;cp_singola-c75-h2o-25;Controparete Singola;Controparete;C 75/50;U 75/40;Idrofuga;25;1;1;100;21.8;61;REI 30
+1096;cp_singola-c75-fono-6;Controparete Singola;Controparete;C 75/50;U 75/40;Fonoisolante;6;1;1;81;7.5;51;REI 30
+1097;cp_singola-c75-fono-9.5;Controparete Singola;Controparete;C 75/50;U 75/40;Fonoisolante;9.5;1;1;84.5;10.1;54;REI 30
+1098;cp_singola-c75-fono-12.5;Controparete Singola;Controparete;C 75/50;U 75/40;Fonoisolante;12.5;1;1;87.5;12.4;56;REI 30
+1099;cp_singola-c75-fono-15;Controparete Singola;Controparete;C 75/50;U 75/40;Fonoisolante;15;1;1;90;14.3;58;REI 30
+1100;cp_singola-c75-fono-18;Controparete Singola;Controparete;C 75/50;U 75/40;Fonoisolante;18;1;1;93;16.5;61;REI 30
+1101;cp_singola-c75-fono-25;Controparete Singola;Controparete;C 75/50;U 75/40;Fonoisolante;25;1;1;100;21.8;66;REI 30
+1102;cp_singola-c75-fuoco-6;Controparete Singola;Controparete;C 75/50;U 75/40;Antifuoco;6;1;1;81;7.5;46;REI 45
+1103;cp_singola-c75-fuoco-9.5;Controparete Singola;Controparete;C 75/50;U 75/40;Antifuoco;9.5;1;1;84.5;10.1;49;REI 45
+1104;cp_singola-c75-fuoco-12.5;Controparete Singola;Controparete;C 75/50;U 75/40;Antifuoco;12.5;1;1;87.5;12.4;51;REI 45
+1105;cp_singola-c75-fuoco-15;Controparete Singola;Controparete;C 75/50;U 75/40;Antifuoco;15;1;1;90;14.3;53;REI 60
+1106;cp_singola-c75-fuoco-18;Controparete Singola;Controparete;C 75/50;U 75/40;Antifuoco;18;1;1;93;16.5;56;REI 60
+1107;cp_singola-c75-fuoco-25;Controparete Singola;Controparete;C 75/50;U 75/40;Antifuoco;25;1;1;100;21.8;61;REI 60
+1108;cp_singola-c75-flex-6;Controparete Singola;Controparete;C 75/50;U 75/40;Flessibile;6;1;1;81;7.5;46;REI 30
+1109;cp_singola-c75-impatto-6;Controparete Singola;Controparete;C 75/50;U 75/40;Alta resistenza;6;1;1;81;7.5;46;REI 30
+1110;cp_singola-c75-impatto-9.5;Controparete Singola;Controparete;C 75/50;U 75/40;Alta resistenza;9.5;1;1;84.5;10.1;49;REI 30
+1111;cp_singola-c75-impatto-12.5;Controparete Singola;Controparete;C 75/50;U 75/40;Alta resistenza;12.5;1;1;87.5;12.4;51;REI 30
+1112;cp_singola-c75-impatto-15;Controparete Singola;Controparete;C 75/50;U 75/40;Alta resistenza;15;1;1;90;14.3;53;REI 30
+1113;cp_singola-c75-impatto-18;Controparete Singola;Controparete;C 75/50;U 75/40;Alta resistenza;18;1;1;93;16.5;56;REI 30
+1114;cp_singola-c75-impatto-25;Controparete Singola;Controparete;C 75/50;U 75/40;Alta resistenza;25;1;1;100;21.8;61;REI 30
+1115;cp_singola-c75-fibra-6;Controparete Singola;Controparete;C 75/50;U 75/40;Fibrorinforzata;6;1;1;81;7.5;46;REI 30
+1116;cp_singola-c75-fibra-9.5;Controparete Singola;Controparete;C 75/50;U 75/40;Fibrorinforzata;9.5;1;1;84.5;10.1;49;REI 30
+1117;cp_singola-c75-fibra-12.5;Controparete Singola;Controparete;C 75/50;U 75/40;Fibrorinforzata;12.5;1;1;87.5;12.4;51;REI 30
+1118;cp_singola-c75-fibra-15;Controparete Singola;Controparete;C 75/50;U 75/40;Fibrorinforzata;15;1;1;90;14.3;53;REI 30
+1119;cp_singola-c75-fibra-18;Controparete Singola;Controparete;C 75/50;U 75/40;Fibrorinforzata;18;1;1;93;16.5;56;REI 30
+1120;cp_singola-c75-fibra-25;Controparete Singola;Controparete;C 75/50;U 75/40;Fibrorinforzata;25;1;1;100;21.8;61;REI 30
+1121;cp_singola-c75-combi-6;Controparete Singola;Controparete;C 75/50;U 75/40;Combinata;6;1;1;81;7.5;46;REI 45
+1122;cp_singola-c75-combi-9.5;Controparete Singola;Controparete;C 75/50;U 75/40;Combinata;9.5;1;1;84.5;10.1;49;REI 45
+1123;cp_singola-c75-combi-12.5;Controparete Singola;Controparete;C 75/50;U 75/40;Combinata;12.5;1;1;87.5;12.4;51;REI 45
+1124;cp_singola-c75-combi-15;Controparete Singola;Controparete;C 75/50;U 75/40;Combinata;15;1;1;90;14.3;53;REI 60
+1125;cp_singola-c75-combi-18;Controparete Singola;Controparete;C 75/50;U 75/40;Combinata;18;1;1;93;16.5;56;REI 60
+1126;cp_singola-c75-combi-25;Controparete Singola;Controparete;C 75/50;U 75/40;Combinata;25;1;1;100;21.8;61;REI 60
+1127;cp_singola-c100-std-6;Controparete Singola;Controparete;C 100/50;U 100/40;Standard;6;1;1;106;7.5;50;REI 30
+1128;cp_singola-c100-std-9.5;Controparete Singola;Controparete;C 100/50;U 100/40;Standard;9.5;1;1;109.5;10.1;53;REI 30
+1129;cp_singola-c100-std-12.5;Controparete Singola;Controparete;C 100/50;U 100/40;Standard;12.5;1;1;112.5;12.4;55;REI 30
+1130;cp_singola-c100-std-15;Controparete Singola;Controparete;C 100/50;U 100/40;Standard;15;1;1;115;14.3;57;REI 30
+1131;cp_singola-c100-std-18;Controparete Singola;Controparete;C 100/50;U 100/40;Standard;18;1;1;118;16.5;59;REI 30
+1132;cp_singola-c100-std-25;Controparete Singola;Controparete;C 100/50;U 100/40;Standard;25;1;1;125;21.8;65;REI 30
+1133;cp_singola-c100-h2o-6;Controparete Singola;Controparete;C 100/50;U 100/40;Idrofuga;6;1;1;106;7.5;50;REI 30
+1134;cp_singola-c100-h2o-9.5;Controparete Singola;Controparete;C 100/50;U 100/40;Idrofuga;9.5;1;1;109.5;10.1;53;REI 30
+1135;cp_singola-c100-h2o-12.5;Controparete Singola;Controparete;C 100/50;U 100/40;Idrofuga;12.5;1;1;112.5;12.4;55;REI 30
+1136;cp_singola-c100-h2o-15;Controparete Singola;Controparete;C 100/50;U 100/40;Idrofuga;15;1;1;115;14.3;57;REI 30
+1137;cp_singola-c100-h2o-18;Controparete Singola;Controparete;C 100/50;U 100/40;Idrofuga;18;1;1;118;16.5;59;REI 30
+1138;cp_singola-c100-h2o-25;Controparete Singola;Controparete;C 100/50;U 100/40;Idrofuga;25;1;1;125;21.8;65;REI 30
+1139;cp_singola-c100-fono-6;Controparete Singola;Controparete;C 100/50;U 100/40;Fonoisolante;6;1;1;106;7.5;55;REI 30
+1140;cp_singola-c100-fono-9.5;Controparete Singola;Controparete;C 100/50;U 100/40;Fonoisolante;9.5;1;1;109.5;10.1;58;REI 30
+1141;cp_singola-c100-fono-12.5;Controparete Singola;Controparete;C 100/50;U 100/40;Fonoisolante;12.5;1;1;112.5;12.4;60;REI 30
+1142;cp_singola-c100-fono-15;Controparete Singola;Controparete;C 100/50;U 100/40;Fonoisolante;15;1;1;115;14.3;62;REI 30
+1143;cp_singola-c100-fono-18;Controparete Singola;Controparete;C 100/50;U 100/40;Fonoisolante;18;1;1;118;16.5;64;REI 30
+1144;cp_singola-c100-fono-25;Controparete Singola;Controparete;C 100/50;U 100/40;Fonoisolante;25;1;1;125;21.8;70;REI 30
+1145;cp_singola-c100-fuoco-6;Controparete Singola;Controparete;C 100/50;U 100/40;Antifuoco;6;1;1;106;7.5;50;REI 45
+1146;cp_singola-c100-fuoco-9.5;Controparete Singola;Controparete;C 100/50;U 100/40;Antifuoco;9.5;1;1;109.5;10.1;53;REI 45
+1147;cp_singola-c100-fuoco-12.5;Controparete Singola;Controparete;C 100/50;U 100/40;Antifuoco;12.5;1;1;112.5;12.4;55;REI 45
+1148;cp_singola-c100-fuoco-15;Controparete Singola;Controparete;C 100/50;U 100/40;Antifuoco;15;1;1;115;14.3;57;REI 60
+1149;cp_singola-c100-fuoco-18;Controparete Singola;Controparete;C 100/50;U 100/40;Antifuoco;18;1;1;118;16.5;59;REI 60
+1150;cp_singola-c100-fuoco-25;Controparete Singola;Controparete;C 100/50;U 100/40;Antifuoco;25;1;1;125;21.8;65;REI 60
+1151;cp_singola-c100-flex-6;Controparete Singola;Controparete;C 100/50;U 100/40;Flessibile;6;1;1;106;7.5;50;REI 30
+1152;cp_singola-c100-impatto-6;Controparete Singola;Controparete;C 100/50;U 100/40;Alta resistenza;6;1;1;106;7.5;50;REI 30
+1153;cp_singola-c100-impatto-9.5;Controparete Singola;Controparete;C 100/50;U 100/40;Alta resistenza;9.5;1;1;109.5;10.1;53;REI 30
+1154;cp_singola-c100-impatto-12.5;Controparete Singola;Controparete;C 100/50;U 100/40;Alta resistenza;12.5;1;1;112.5;12.4;55;REI 30
+1155;cp_singola-c100-impatto-15;Controparete Singola;Controparete;C 100/50;U 100/40;Alta resistenza;15;1;1;115;14.3;57;REI 30
+1156;cp_singola-c100-impatto-18;Controparete Singola;Controparete;C 100/50;U 100/40;Alta resistenza;18;1;1;118;16.5;59;REI 30
+1157;cp_singola-c100-impatto-25;Controparete Singola;Controparete;C 100/50;U 100/40;Alta resistenza;25;1;1;125;21.8;65;REI 30
+1158;cp_singola-c100-fibra-6;Controparete Singola;Controparete;C 100/50;U 100/40;Fibrorinforzata;6;1;1;106;7.5;50;REI 30
+1159;cp_singola-c100-fibra-9.5;Controparete Singola;Controparete;C 100/50;U 100/40;Fibrorinforzata;9.5;1;1;109.5;10.1;53;REI 30
+1160;cp_singola-c100-fibra-12.5;Controparete Singola;Controparete;C 100/50;U 100/40;Fibrorinforzata;12.5;1;1;112.5;12.4;55;REI 30
+1161;cp_singola-c100-fibra-15;Controparete Singola;Controparete;C 100/50;U 100/40;Fibrorinforzata;15;1;1;115;14.3;57;REI 30
+1162;cp_singola-c100-fibra-18;Controparete Singola;Controparete;C 100/50;U 100/40;Fibrorinforzata;18;1;1;118;16.5;59;REI 30
+1163;cp_singola-c100-fibra-25;Controparete Singola;Controparete;C 100/50;U 100/40;Fibrorinforzata;25;1;1;125;21.8;65;REI 30
+1164;cp_singola-c100-combi-6;Controparete Singola;Controparete;C 100/50;U 100/40;Combinata;6;1;1;106;7.5;50;REI 45
+1165;cp_singola-c100-combi-9.5;Controparete Singola;Controparete;C 100/50;U 100/40;Combinata;9.5;1;1;109.5;10.1;53;REI 45
+1166;cp_singola-c100-combi-12.5;Controparete Singola;Controparete;C 100/50;U 100/40;Combinata;12.5;1;1;112.5;12.4;55;REI 45
+1167;cp_singola-c100-combi-15;Controparete Singola;Controparete;C 100/50;U 100/40;Combinata;15;1;1;115;14.3;57;REI 60
+1168;cp_singola-c100-combi-18;Controparete Singola;Controparete;C 100/50;U 100/40;Combinata;18;1;1;118;16.5;59;REI 60
+1169;cp_singola-c100-combi-25;Controparete Singola;Controparete;C 100/50;U 100/40;Combinata;25;1;1;125;21.8;65;REI 60
+1170;cp_doppia-c50-std-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Standard;6;1;2;62;12.0;45;REI 30
+1171;cp_doppia-c50-std-9.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Standard;9.5;1;2;69;17.3;48;REI 30
+1172;cp_doppia-c50-std-12.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Standard;12.5;1;2;75;21.8;51;REI 30
+1173;cp_doppia-c50-std-15;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Standard;15;1;2;80;25.5;53;REI 30
+1174;cp_doppia-c50-std-18;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Standard;18;1;2;86;30.0;55;REI 30
+1175;cp_doppia-c50-std-25;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Standard;25;1;2;100;40.5;61;REI 30
+1176;cp_doppia-c50-h2o-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Idrofuga;6;1;2;62;12.0;45;REI 30
+1177;cp_doppia-c50-h2o-9.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Idrofuga;9.5;1;2;69;17.3;48;REI 30
+1178;cp_doppia-c50-h2o-12.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Idrofuga;12.5;1;2;75;21.8;51;REI 30
+1179;cp_doppia-c50-h2o-15;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Idrofuga;15;1;2;80;25.5;53;REI 30
+1180;cp_doppia-c50-h2o-18;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Idrofuga;18;1;2;86;30.0;55;REI 30
+1181;cp_doppia-c50-h2o-25;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Idrofuga;25;1;2;100;40.5;61;REI 30
+1182;cp_doppia-c50-fono-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fonoisolante;6;1;2;62;12.0;50;REI 30
+1183;cp_doppia-c50-fono-9.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fonoisolante;9.5;1;2;69;17.3;53;REI 30
+1184;cp_doppia-c50-fono-12.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fonoisolante;12.5;1;2;75;21.8;56;REI 30
+1185;cp_doppia-c50-fono-15;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fonoisolante;15;1;2;80;25.5;58;REI 30
+1186;cp_doppia-c50-fono-18;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fonoisolante;18;1;2;86;30.0;60;REI 30
+1187;cp_doppia-c50-fono-25;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fonoisolante;25;1;2;100;40.5;66;REI 30
+1188;cp_doppia-c50-fuoco-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Antifuoco;6;1;2;62;12.0;45;REI 90
+1189;cp_doppia-c50-fuoco-9.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Antifuoco;9.5;1;2;69;17.3;48;REI 90
+1190;cp_doppia-c50-fuoco-12.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Antifuoco;12.5;1;2;75;21.8;51;REI 90
+1191;cp_doppia-c50-fuoco-15;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Antifuoco;15;1;2;80;25.5;53;REI 90
+1192;cp_doppia-c50-fuoco-18;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Antifuoco;18;1;2;86;30.0;55;REI 90
+1193;cp_doppia-c50-fuoco-25;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Antifuoco;25;1;2;100;40.5;61;REI 90
+1194;cp_doppia-c50-flex-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Flessibile;6;1;2;62;12.0;45;REI 30
+1195;cp_doppia-c50-impatto-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Alta resistenza;6;1;2;62;12.0;45;REI 30
+1196;cp_doppia-c50-impatto-9.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Alta resistenza;9.5;1;2;69;17.3;48;REI 30
+1197;cp_doppia-c50-impatto-12.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Alta resistenza;12.5;1;2;75;21.8;51;REI 30
+1198;cp_doppia-c50-impatto-15;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Alta resistenza;15;1;2;80;25.5;53;REI 30
+1199;cp_doppia-c50-impatto-18;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Alta resistenza;18;1;2;86;30.0;55;REI 30
+1200;cp_doppia-c50-impatto-25;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Alta resistenza;25;1;2;100;40.5;61;REI 30
+1201;cp_doppia-c50-fibra-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fibrorinforzata;6;1;2;62;12.0;45;REI 30
+1202;cp_doppia-c50-fibra-9.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fibrorinforzata;9.5;1;2;69;17.3;48;REI 30
+1203;cp_doppia-c50-fibra-12.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fibrorinforzata;12.5;1;2;75;21.8;51;REI 30
+1204;cp_doppia-c50-fibra-15;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fibrorinforzata;15;1;2;80;25.5;53;REI 30
+1205;cp_doppia-c50-fibra-18;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fibrorinforzata;18;1;2;86;30.0;55;REI 30
+1206;cp_doppia-c50-fibra-25;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Fibrorinforzata;25;1;2;100;40.5;61;REI 30
+1207;cp_doppia-c50-combi-6;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Combinata;6;1;2;62;12.0;45;REI 90
+1208;cp_doppia-c50-combi-9.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Combinata;9.5;1;2;69;17.3;48;REI 90
+1209;cp_doppia-c50-combi-12.5;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Combinata;12.5;1;2;75;21.8;51;REI 90
+1210;cp_doppia-c50-combi-15;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Combinata;15;1;2;80;25.5;53;REI 90
+1211;cp_doppia-c50-combi-18;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Combinata;18;1;2;86;30.0;55;REI 90
+1212;cp_doppia-c50-combi-25;Controparete Doppia Lastra;Controparete;C 50/50;U 50/40;Combinata;25;1;2;100;40.5;61;REI 90
+1213;cp_doppia-c75-std-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Standard;6;1;2;87;12.0;49;REI 30
+1214;cp_doppia-c75-std-9.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Standard;9.5;1;2;94;17.3;52;REI 30
+1215;cp_doppia-c75-std-12.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Standard;12.5;1;2;100;21.8;54;REI 30
+1216;cp_doppia-c75-std-15;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Standard;15;1;2;105;25.5;56;REI 30
+1217;cp_doppia-c75-std-18;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Standard;18;1;2;111;30.0;59;REI 30
+1218;cp_doppia-c75-std-25;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Standard;25;1;2;125;40.5;64;REI 30
+1219;cp_doppia-c75-h2o-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Idrofuga;6;1;2;87;12.0;49;REI 30
+1220;cp_doppia-c75-h2o-9.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Idrofuga;9.5;1;2;94;17.3;52;REI 30
+1221;cp_doppia-c75-h2o-12.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Idrofuga;12.5;1;2;100;21.8;54;REI 30
+1222;cp_doppia-c75-h2o-15;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Idrofuga;15;1;2;105;25.5;56;REI 30
+1223;cp_doppia-c75-h2o-18;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Idrofuga;18;1;2;111;30.0;59;REI 30
+1224;cp_doppia-c75-h2o-25;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Idrofuga;25;1;2;125;40.5;64;REI 30
+1225;cp_doppia-c75-fono-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fonoisolante;6;1;2;87;12.0;54;REI 30
+1226;cp_doppia-c75-fono-9.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fonoisolante;9.5;1;2;94;17.3;57;REI 30
+1227;cp_doppia-c75-fono-12.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fonoisolante;12.5;1;2;100;21.8;59;REI 30
+1228;cp_doppia-c75-fono-15;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fonoisolante;15;1;2;105;25.5;61;REI 30
+1229;cp_doppia-c75-fono-18;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fonoisolante;18;1;2;111;30.0;64;REI 30
+1230;cp_doppia-c75-fono-25;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fonoisolante;25;1;2;125;40.5;69;REI 30
+1231;cp_doppia-c75-fuoco-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Antifuoco;6;1;2;87;12.0;49;REI 90
+1232;cp_doppia-c75-fuoco-9.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Antifuoco;9.5;1;2;94;17.3;52;REI 90
+1233;cp_doppia-c75-fuoco-12.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Antifuoco;12.5;1;2;100;21.8;54;REI 90
+1234;cp_doppia-c75-fuoco-15;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Antifuoco;15;1;2;105;25.5;56;REI 90
+1235;cp_doppia-c75-fuoco-18;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Antifuoco;18;1;2;111;30.0;59;REI 90
+1236;cp_doppia-c75-fuoco-25;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Antifuoco;25;1;2;125;40.5;64;REI 90
+1237;cp_doppia-c75-flex-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Flessibile;6;1;2;87;12.0;49;REI 30
+1238;cp_doppia-c75-impatto-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Alta resistenza;6;1;2;87;12.0;49;REI 30
+1239;cp_doppia-c75-impatto-9.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Alta resistenza;9.5;1;2;94;17.3;52;REI 30
+1240;cp_doppia-c75-impatto-12.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Alta resistenza;12.5;1;2;100;21.8;54;REI 30
+1241;cp_doppia-c75-impatto-15;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Alta resistenza;15;1;2;105;25.5;56;REI 30
+1242;cp_doppia-c75-impatto-18;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Alta resistenza;18;1;2;111;30.0;59;REI 30
+1243;cp_doppia-c75-impatto-25;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Alta resistenza;25;1;2;125;40.5;64;REI 30
+1244;cp_doppia-c75-fibra-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fibrorinforzata;6;1;2;87;12.0;49;REI 30
+1245;cp_doppia-c75-fibra-9.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fibrorinforzata;9.5;1;2;94;17.3;52;REI 30
+1246;cp_doppia-c75-fibra-12.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fibrorinforzata;12.5;1;2;100;21.8;54;REI 30
+1247;cp_doppia-c75-fibra-15;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fibrorinforzata;15;1;2;105;25.5;56;REI 30
+1248;cp_doppia-c75-fibra-18;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fibrorinforzata;18;1;2;111;30.0;59;REI 30
+1249;cp_doppia-c75-fibra-25;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Fibrorinforzata;25;1;2;125;40.5;64;REI 30
+1250;cp_doppia-c75-combi-6;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Combinata;6;1;2;87;12.0;49;REI 90
+1251;cp_doppia-c75-combi-9.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Combinata;9.5;1;2;94;17.3;52;REI 90
+1252;cp_doppia-c75-combi-12.5;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Combinata;12.5;1;2;100;21.8;54;REI 90
+1253;cp_doppia-c75-combi-15;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Combinata;15;1;2;105;25.5;56;REI 90
+1254;cp_doppia-c75-combi-18;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Combinata;18;1;2;111;30.0;59;REI 90
+1255;cp_doppia-c75-combi-25;Controparete Doppia Lastra;Controparete;C 75/50;U 75/40;Combinata;25;1;2;125;40.5;64;REI 90
+1256;cp_doppia-c100-std-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Standard;6;1;2;112;12.0;53;REI 30
+1257;cp_doppia-c100-std-9.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Standard;9.5;1;2;119;17.3;56;REI 30
+1258;cp_doppia-c100-std-12.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Standard;12.5;1;2;125;21.8;58;REI 30
+1259;cp_doppia-c100-std-15;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Standard;15;1;2;130;25.5;60;REI 30
+1260;cp_doppia-c100-std-18;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Standard;18;1;2;136;30.0;62;REI 30
+1261;cp_doppia-c100-std-25;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Standard;25;1;2;150;40.5;68;REI 30
+1262;cp_doppia-c100-h2o-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Idrofuga;6;1;2;112;12.0;53;REI 30
+1263;cp_doppia-c100-h2o-9.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Idrofuga;9.5;1;2;119;17.3;56;REI 30
+1264;cp_doppia-c100-h2o-12.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Idrofuga;12.5;1;2;125;21.8;58;REI 30
+1265;cp_doppia-c100-h2o-15;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Idrofuga;15;1;2;130;25.5;60;REI 30
+1266;cp_doppia-c100-h2o-18;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Idrofuga;18;1;2;136;30.0;62;REI 30
+1267;cp_doppia-c100-h2o-25;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Idrofuga;25;1;2;150;40.5;68;REI 30
+1268;cp_doppia-c100-fono-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fonoisolante;6;1;2;112;12.0;58;REI 30
+1269;cp_doppia-c100-fono-9.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fonoisolante;9.5;1;2;119;17.3;61;REI 30
+1270;cp_doppia-c100-fono-12.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fonoisolante;12.5;1;2;125;21.8;63;REI 30
+1271;cp_doppia-c100-fono-15;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fonoisolante;15;1;2;130;25.5;65;REI 30
+1272;cp_doppia-c100-fono-18;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fonoisolante;18;1;2;136;30.0;67;REI 30
+1273;cp_doppia-c100-fono-25;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fonoisolante;25;1;2;150;40.5;73;REI 30
+1274;cp_doppia-c100-fuoco-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Antifuoco;6;1;2;112;12.0;53;REI 90
+1275;cp_doppia-c100-fuoco-9.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Antifuoco;9.5;1;2;119;17.3;56;REI 90
+1276;cp_doppia-c100-fuoco-12.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Antifuoco;12.5;1;2;125;21.8;58;REI 90
+1277;cp_doppia-c100-fuoco-15;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Antifuoco;15;1;2;130;25.5;60;REI 90
+1278;cp_doppia-c100-fuoco-18;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Antifuoco;18;1;2;136;30.0;62;REI 90
+1279;cp_doppia-c100-fuoco-25;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Antifuoco;25;1;2;150;40.5;68;REI 90
+1280;cp_doppia-c100-flex-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Flessibile;6;1;2;112;12.0;53;REI 30
+1281;cp_doppia-c100-impatto-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Alta resistenza;6;1;2;112;12.0;53;REI 30
+1282;cp_doppia-c100-impatto-9.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Alta resistenza;9.5;1;2;119;17.3;56;REI 30
+1283;cp_doppia-c100-impatto-12.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Alta resistenza;12.5;1;2;125;21.8;58;REI 30
+1284;cp_doppia-c100-impatto-15;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Alta resistenza;15;1;2;130;25.5;60;REI 30
+1285;cp_doppia-c100-impatto-18;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Alta resistenza;18;1;2;136;30.0;62;REI 30
+1286;cp_doppia-c100-impatto-25;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Alta resistenza;25;1;2;150;40.5;68;REI 30
+1287;cp_doppia-c100-fibra-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fibrorinforzata;6;1;2;112;12.0;53;REI 30
+1288;cp_doppia-c100-fibra-9.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fibrorinforzata;9.5;1;2;119;17.3;56;REI 30
+1289;cp_doppia-c100-fibra-12.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fibrorinforzata;12.5;1;2;125;21.8;58;REI 30
+1290;cp_doppia-c100-fibra-15;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fibrorinforzata;15;1;2;130;25.5;60;REI 30
+1291;cp_doppia-c100-fibra-18;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fibrorinforzata;18;1;2;136;30.0;62;REI 30
+1292;cp_doppia-c100-fibra-25;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Fibrorinforzata;25;1;2;150;40.5;68;REI 30
+1293;cp_doppia-c100-combi-6;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Combinata;6;1;2;112;12.0;53;REI 90
+1294;cp_doppia-c100-combi-9.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Combinata;9.5;1;2;119;17.3;56;REI 90
+1295;cp_doppia-c100-combi-12.5;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Combinata;12.5;1;2;125;21.8;58;REI 90
+1296;cp_doppia-c100-combi-15;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Combinata;15;1;2;130;25.5;60;REI 90
+1297;cp_doppia-c100-combi-18;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Combinata;18;1;2;136;30.0;62;REI 90
+1298;cp_doppia-c100-combi-25;Controparete Doppia Lastra;Controparete;C 100/50;U 100/40;Combinata;25;1;2;150;40.5;68;REI 90
+1299;cp_distanziata-c50-std-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Standard;6;1;1;56;7.5;42;REI 30
+1300;cp_distanziata-c50-std-9.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Standard;9.5;1;1;59.5;10.1;45;REI 30
+1301;cp_distanziata-c50-std-12.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Standard;12.5;1;1;62.5;12.4;48;REI 30
+1302;cp_distanziata-c50-std-15;Controparete Distanziata;Controparete;C 50/50;U 50/40;Standard;15;1;1;65;14.3;50;REI 30
+1303;cp_distanziata-c50-std-18;Controparete Distanziata;Controparete;C 50/50;U 50/40;Standard;18;1;1;68;16.5;52;REI 30
+1304;cp_distanziata-c50-std-25;Controparete Distanziata;Controparete;C 50/50;U 50/40;Standard;25;1;1;75;21.8;58;REI 30
+1305;cp_distanziata-c50-h2o-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Idrofuga;6;1;1;56;7.5;42;REI 30
+1306;cp_distanziata-c50-h2o-9.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Idrofuga;9.5;1;1;59.5;10.1;45;REI 30
+1307;cp_distanziata-c50-h2o-12.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Idrofuga;12.5;1;1;62.5;12.4;48;REI 30
+1308;cp_distanziata-c50-h2o-15;Controparete Distanziata;Controparete;C 50/50;U 50/40;Idrofuga;15;1;1;65;14.3;50;REI 30
+1309;cp_distanziata-c50-h2o-18;Controparete Distanziata;Controparete;C 50/50;U 50/40;Idrofuga;18;1;1;68;16.5;52;REI 30
+1310;cp_distanziata-c50-h2o-25;Controparete Distanziata;Controparete;C 50/50;U 50/40;Idrofuga;25;1;1;75;21.8;58;REI 30
+1311;cp_distanziata-c50-fono-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fonoisolante;6;1;1;56;7.5;47;REI 30
+1312;cp_distanziata-c50-fono-9.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fonoisolante;9.5;1;1;59.5;10.1;50;REI 30
+1313;cp_distanziata-c50-fono-12.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fonoisolante;12.5;1;1;62.5;12.4;53;REI 30
+1314;cp_distanziata-c50-fono-15;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fonoisolante;15;1;1;65;14.3;55;REI 30
+1315;cp_distanziata-c50-fono-18;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fonoisolante;18;1;1;68;16.5;57;REI 30
+1316;cp_distanziata-c50-fono-25;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fonoisolante;25;1;1;75;21.8;63;REI 30
+1317;cp_distanziata-c50-fuoco-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Antifuoco;6;1;1;56;7.5;42;REI 45
+1318;cp_distanziata-c50-fuoco-9.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Antifuoco;9.5;1;1;59.5;10.1;45;REI 45
+1319;cp_distanziata-c50-fuoco-12.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Antifuoco;12.5;1;1;62.5;12.4;48;REI 45
+1320;cp_distanziata-c50-fuoco-15;Controparete Distanziata;Controparete;C 50/50;U 50/40;Antifuoco;15;1;1;65;14.3;50;REI 60
+1321;cp_distanziata-c50-fuoco-18;Controparete Distanziata;Controparete;C 50/50;U 50/40;Antifuoco;18;1;1;68;16.5;52;REI 60
+1322;cp_distanziata-c50-fuoco-25;Controparete Distanziata;Controparete;C 50/50;U 50/40;Antifuoco;25;1;1;75;21.8;58;REI 60
+1323;cp_distanziata-c50-flex-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Flessibile;6;1;1;56;7.5;42;REI 30
+1324;cp_distanziata-c50-impatto-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Alta resistenza;6;1;1;56;7.5;42;REI 30
+1325;cp_distanziata-c50-impatto-9.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Alta resistenza;9.5;1;1;59.5;10.1;45;REI 30
+1326;cp_distanziata-c50-impatto-12.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Alta resistenza;12.5;1;1;62.5;12.4;48;REI 30
+1327;cp_distanziata-c50-impatto-15;Controparete Distanziata;Controparete;C 50/50;U 50/40;Alta resistenza;15;1;1;65;14.3;50;REI 30
+1328;cp_distanziata-c50-impatto-18;Controparete Distanziata;Controparete;C 50/50;U 50/40;Alta resistenza;18;1;1;68;16.5;52;REI 30
+1329;cp_distanziata-c50-impatto-25;Controparete Distanziata;Controparete;C 50/50;U 50/40;Alta resistenza;25;1;1;75;21.8;58;REI 30
+1330;cp_distanziata-c50-fibra-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fibrorinforzata;6;1;1;56;7.5;42;REI 30
+1331;cp_distanziata-c50-fibra-9.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fibrorinforzata;9.5;1;1;59.5;10.1;45;REI 30
+1332;cp_distanziata-c50-fibra-12.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fibrorinforzata;12.5;1;1;62.5;12.4;48;REI 30
+1333;cp_distanziata-c50-fibra-15;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fibrorinforzata;15;1;1;65;14.3;50;REI 30
+1334;cp_distanziata-c50-fibra-18;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fibrorinforzata;18;1;1;68;16.5;52;REI 30
+1335;cp_distanziata-c50-fibra-25;Controparete Distanziata;Controparete;C 50/50;U 50/40;Fibrorinforzata;25;1;1;75;21.8;58;REI 30
+1336;cp_distanziata-c50-combi-6;Controparete Distanziata;Controparete;C 50/50;U 50/40;Combinata;6;1;1;56;7.5;42;REI 45
+1337;cp_distanziata-c50-combi-9.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Combinata;9.5;1;1;59.5;10.1;45;REI 45
+1338;cp_distanziata-c50-combi-12.5;Controparete Distanziata;Controparete;C 50/50;U 50/40;Combinata;12.5;1;1;62.5;12.4;48;REI 45
+1339;cp_distanziata-c50-combi-15;Controparete Distanziata;Controparete;C 50/50;U 50/40;Combinata;15;1;1;65;14.3;50;REI 60
+1340;cp_distanziata-c50-combi-18;Controparete Distanziata;Controparete;C 50/50;U 50/40;Combinata;18;1;1;68;16.5;52;REI 60
+1341;cp_distanziata-c50-combi-25;Controparete Distanziata;Controparete;C 50/50;U 50/40;Combinata;25;1;1;75;21.8;58;REI 60
+1342;cp_distanziata-c75-std-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Standard;6;1;1;81;7.5;46;REI 30
+1343;cp_distanziata-c75-std-9.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Standard;9.5;1;1;84.5;10.1;49;REI 30
+1344;cp_distanziata-c75-std-12.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Standard;12.5;1;1;87.5;12.4;51;REI 30
+1345;cp_distanziata-c75-std-15;Controparete Distanziata;Controparete;C 75/50;U 75/40;Standard;15;1;1;90;14.3;53;REI 30
+1346;cp_distanziata-c75-std-18;Controparete Distanziata;Controparete;C 75/50;U 75/40;Standard;18;1;1;93;16.5;56;REI 30
+1347;cp_distanziata-c75-std-25;Controparete Distanziata;Controparete;C 75/50;U 75/40;Standard;25;1;1;100;21.8;61;REI 30
+1348;cp_distanziata-c75-h2o-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Idrofuga;6;1;1;81;7.5;46;REI 30
+1349;cp_distanziata-c75-h2o-9.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Idrofuga;9.5;1;1;84.5;10.1;49;REI 30
+1350;cp_distanziata-c75-h2o-12.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Idrofuga;12.5;1;1;87.5;12.4;51;REI 30
+1351;cp_distanziata-c75-h2o-15;Controparete Distanziata;Controparete;C 75/50;U 75/40;Idrofuga;15;1;1;90;14.3;53;REI 30
+1352;cp_distanziata-c75-h2o-18;Controparete Distanziata;Controparete;C 75/50;U 75/40;Idrofuga;18;1;1;93;16.5;56;REI 30
+1353;cp_distanziata-c75-h2o-25;Controparete Distanziata;Controparete;C 75/50;U 75/40;Idrofuga;25;1;1;100;21.8;61;REI 30
+1354;cp_distanziata-c75-fono-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fonoisolante;6;1;1;81;7.5;51;REI 30
+1355;cp_distanziata-c75-fono-9.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fonoisolante;9.5;1;1;84.5;10.1;54;REI 30
+1356;cp_distanziata-c75-fono-12.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fonoisolante;12.5;1;1;87.5;12.4;56;REI 30
+1357;cp_distanziata-c75-fono-15;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fonoisolante;15;1;1;90;14.3;58;REI 30
+1358;cp_distanziata-c75-fono-18;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fonoisolante;18;1;1;93;16.5;61;REI 30
+1359;cp_distanziata-c75-fono-25;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fonoisolante;25;1;1;100;21.8;66;REI 30
+1360;cp_distanziata-c75-fuoco-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Antifuoco;6;1;1;81;7.5;46;REI 45
+1361;cp_distanziata-c75-fuoco-9.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Antifuoco;9.5;1;1;84.5;10.1;49;REI 45
+1362;cp_distanziata-c75-fuoco-12.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Antifuoco;12.5;1;1;87.5;12.4;51;REI 45
+1363;cp_distanziata-c75-fuoco-15;Controparete Distanziata;Controparete;C 75/50;U 75/40;Antifuoco;15;1;1;90;14.3;53;REI 60
+1364;cp_distanziata-c75-fuoco-18;Controparete Distanziata;Controparete;C 75/50;U 75/40;Antifuoco;18;1;1;93;16.5;56;REI 60
+1365;cp_distanziata-c75-fuoco-25;Controparete Distanziata;Controparete;C 75/50;U 75/40;Antifuoco;25;1;1;100;21.8;61;REI 60
+1366;cp_distanziata-c75-flex-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Flessibile;6;1;1;81;7.5;46;REI 30
+1367;cp_distanziata-c75-impatto-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Alta resistenza;6;1;1;81;7.5;46;REI 30
+1368;cp_distanziata-c75-impatto-9.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Alta resistenza;9.5;1;1;84.5;10.1;49;REI 30
+1369;cp_distanziata-c75-impatto-12.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Alta resistenza;12.5;1;1;87.5;12.4;51;REI 30
+1370;cp_distanziata-c75-impatto-15;Controparete Distanziata;Controparete;C 75/50;U 75/40;Alta resistenza;15;1;1;90;14.3;53;REI 30
+1371;cp_distanziata-c75-impatto-18;Controparete Distanziata;Controparete;C 75/50;U 75/40;Alta resistenza;18;1;1;93;16.5;56;REI 30
+1372;cp_distanziata-c75-impatto-25;Controparete Distanziata;Controparete;C 75/50;U 75/40;Alta resistenza;25;1;1;100;21.8;61;REI 30
+1373;cp_distanziata-c75-fibra-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fibrorinforzata;6;1;1;81;7.5;46;REI 30
+1374;cp_distanziata-c75-fibra-9.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fibrorinforzata;9.5;1;1;84.5;10.1;49;REI 30
+1375;cp_distanziata-c75-fibra-12.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fibrorinforzata;12.5;1;1;87.5;12.4;51;REI 30
+1376;cp_distanziata-c75-fibra-15;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fibrorinforzata;15;1;1;90;14.3;53;REI 30
+1377;cp_distanziata-c75-fibra-18;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fibrorinforzata;18;1;1;93;16.5;56;REI 30
+1378;cp_distanziata-c75-fibra-25;Controparete Distanziata;Controparete;C 75/50;U 75/40;Fibrorinforzata;25;1;1;100;21.8;61;REI 30
+1379;cp_distanziata-c75-combi-6;Controparete Distanziata;Controparete;C 75/50;U 75/40;Combinata;6;1;1;81;7.5;46;REI 45
+1380;cp_distanziata-c75-combi-9.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Combinata;9.5;1;1;84.5;10.1;49;REI 45
+1381;cp_distanziata-c75-combi-12.5;Controparete Distanziata;Controparete;C 75/50;U 75/40;Combinata;12.5;1;1;87.5;12.4;51;REI 45
+1382;cp_distanziata-c75-combi-15;Controparete Distanziata;Controparete;C 75/50;U 75/40;Combinata;15;1;1;90;14.3;53;REI 60
+1383;cp_distanziata-c75-combi-18;Controparete Distanziata;Controparete;C 75/50;U 75/40;Combinata;18;1;1;93;16.5;56;REI 60
+1384;cp_distanziata-c75-combi-25;Controparete Distanziata;Controparete;C 75/50;U 75/40;Combinata;25;1;1;100;21.8;61;REI 60
+1385;cp_distanziata-c100-std-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Standard;6;1;1;106;7.5;50;REI 30
+1386;cp_distanziata-c100-std-9.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Standard;9.5;1;1;109.5;10.1;53;REI 30
+1387;cp_distanziata-c100-std-12.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Standard;12.5;1;1;112.5;12.4;55;REI 30
+1388;cp_distanziata-c100-std-15;Controparete Distanziata;Controparete;C 100/50;U 100/40;Standard;15;1;1;115;14.3;57;REI 30
+1389;cp_distanziata-c100-std-18;Controparete Distanziata;Controparete;C 100/50;U 100/40;Standard;18;1;1;118;16.5;59;REI 30
+1390;cp_distanziata-c100-std-25;Controparete Distanziata;Controparete;C 100/50;U 100/40;Standard;25;1;1;125;21.8;65;REI 30
+1391;cp_distanziata-c100-h2o-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Idrofuga;6;1;1;106;7.5;50;REI 30
+1392;cp_distanziata-c100-h2o-9.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Idrofuga;9.5;1;1;109.5;10.1;53;REI 30
+1393;cp_distanziata-c100-h2o-12.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Idrofuga;12.5;1;1;112.5;12.4;55;REI 30
+1394;cp_distanziata-c100-h2o-15;Controparete Distanziata;Controparete;C 100/50;U 100/40;Idrofuga;15;1;1;115;14.3;57;REI 30
+1395;cp_distanziata-c100-h2o-18;Controparete Distanziata;Controparete;C 100/50;U 100/40;Idrofuga;18;1;1;118;16.5;59;REI 30
+1396;cp_distanziata-c100-h2o-25;Controparete Distanziata;Controparete;C 100/50;U 100/40;Idrofuga;25;1;1;125;21.8;65;REI 30
+1397;cp_distanziata-c100-fono-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fonoisolante;6;1;1;106;7.5;55;REI 30
+1398;cp_distanziata-c100-fono-9.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fonoisolante;9.5;1;1;109.5;10.1;58;REI 30
+1399;cp_distanziata-c100-fono-12.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fonoisolante;12.5;1;1;112.5;12.4;60;REI 30
+1400;cp_distanziata-c100-fono-15;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fonoisolante;15;1;1;115;14.3;62;REI 30
+1401;cp_distanziata-c100-fono-18;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fonoisolante;18;1;1;118;16.5;64;REI 30
+1402;cp_distanziata-c100-fono-25;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fonoisolante;25;1;1;125;21.8;70;REI 30
+1403;cp_distanziata-c100-fuoco-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Antifuoco;6;1;1;106;7.5;50;REI 45
+1404;cp_distanziata-c100-fuoco-9.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Antifuoco;9.5;1;1;109.5;10.1;53;REI 45
+1405;cp_distanziata-c100-fuoco-12.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Antifuoco;12.5;1;1;112.5;12.4;55;REI 45
+1406;cp_distanziata-c100-fuoco-15;Controparete Distanziata;Controparete;C 100/50;U 100/40;Antifuoco;15;1;1;115;14.3;57;REI 60
+1407;cp_distanziata-c100-fuoco-18;Controparete Distanziata;Controparete;C 100/50;U 100/40;Antifuoco;18;1;1;118;16.5;59;REI 60
+1408;cp_distanziata-c100-fuoco-25;Controparete Distanziata;Controparete;C 100/50;U 100/40;Antifuoco;25;1;1;125;21.8;65;REI 60
+1409;cp_distanziata-c100-flex-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Flessibile;6;1;1;106;7.5;50;REI 30
+1410;cp_distanziata-c100-impatto-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Alta resistenza;6;1;1;106;7.5;50;REI 30
+1411;cp_distanziata-c100-impatto-9.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Alta resistenza;9.5;1;1;109.5;10.1;53;REI 30
+1412;cp_distanziata-c100-impatto-12.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Alta resistenza;12.5;1;1;112.5;12.4;55;REI 30
+1413;cp_distanziata-c100-impatto-15;Controparete Distanziata;Controparete;C 100/50;U 100/40;Alta resistenza;15;1;1;115;14.3;57;REI 30
+1414;cp_distanziata-c100-impatto-18;Controparete Distanziata;Controparete;C 100/50;U 100/40;Alta resistenza;18;1;1;118;16.5;59;REI 30
+1415;cp_distanziata-c100-impatto-25;Controparete Distanziata;Controparete;C 100/50;U 100/40;Alta resistenza;25;1;1;125;21.8;65;REI 30
+1416;cp_distanziata-c100-fibra-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fibrorinforzata;6;1;1;106;7.5;50;REI 30
+1417;cp_distanziata-c100-fibra-9.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fibrorinforzata;9.5;1;1;109.5;10.1;53;REI 30
+1418;cp_distanziata-c100-fibra-12.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fibrorinforzata;12.5;1;1;112.5;12.4;55;REI 30
+1419;cp_distanziata-c100-fibra-15;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fibrorinforzata;15;1;1;115;14.3;57;REI 30
+1420;cp_distanziata-c100-fibra-18;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fibrorinforzata;18;1;1;118;16.5;59;REI 30
+1421;cp_distanziata-c100-fibra-25;Controparete Distanziata;Controparete;C 100/50;U 100/40;Fibrorinforzata;25;1;1;125;21.8;65;REI 30
+1422;cp_distanziata-c100-combi-6;Controparete Distanziata;Controparete;C 100/50;U 100/40;Combinata;6;1;1;106;7.5;50;REI 45
+1423;cp_distanziata-c100-combi-9.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Combinata;9.5;1;1;109.5;10.1;53;REI 45
+1424;cp_distanziata-c100-combi-12.5;Controparete Distanziata;Controparete;C 100/50;U 100/40;Combinata;12.5;1;1;112.5;12.4;55;REI 45
+1425;cp_distanziata-c100-combi-15;Controparete Distanziata;Controparete;C 100/50;U 100/40;Combinata;15;1;1;115;14.3;57;REI 60
+1426;cp_distanziata-c100-combi-18;Controparete Distanziata;Controparete;C 100/50;U 100/40;Combinata;18;1;1;118;16.5;59;REI 60
+1427;cp_distanziata-c100-combi-25;Controparete Distanziata;Controparete;C 100/50;U 100/40;Combinata;25;1;1;125;21.8;65;REI 60

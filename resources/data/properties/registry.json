@@ -12,9 +12,7 @@
       "name": "Opere da cartongessista",
       "schema": "schema/opere_da_cartongessista.json",
       "required": [
-        "tipologia_lastra",
-        "spessore_mm",
-        "classe_reazione_al_fuoco"
+        "stratigrafia_lastre"
       ],
       "properties": [
         {
@@ -27,32 +25,12 @@
           ]
         },
         {
-          "id": "tipologia_lastra",
-          "title": "Tipologia lastra",
+          "id": "stratigrafia_lastre",
+          "title": "Stratigrafia lastre",
           "type": "string",
-          "description": "Tipologia di lastra in cartongesso",
-          "enum": [
-            "standard",
-            "idrofuga",
-            "ignifuga",
-            "acustica",
-            "fibrogesso",
-            "accoppiata_isolante"
-          ],
+          "description": "Stratigrafia completa con lastre (tipologia + spessore), orditura e isolante",
           "sources": [
-            "matcher",
-            "qa_llm"
-          ]
-        },
-        {
-          "id": "spessore_mm",
-          "title": "Spessore sistema",
-          "type": "number",
-          "unit": "mm",
-          "description": "Spessore complessivo del sistema convertito in millimetri",
-          "sources": [
-            "parser",
-            "qa_llm"
+            "parser"
           ]
         },
         {
@@ -69,8 +47,7 @@
             "EI180"
           ],
           "sources": [
-            "parser",
-            "qa_llm"
+            "parser"
           ]
         },
         {
@@ -86,31 +63,20 @@
             "B-s2,d0"
           ],
           "sources": [
-            "parser",
-            "qa_llm"
+            "parser"
           ]
         },
         {
           "id": "presenza_isolante",
           "title": "Presenza isolante",
           "type": "string",
-          "description": "Indica se è presente materiale isolante accoppiato",
+          "description": "Indica se è presente materiale isolante",
           "enum": [
             "si",
             "no"
           ],
           "sources": [
-            "parser",
-            "qa_llm"
-          ]
-        },
-        {
-          "id": "stratigrafia_lastre",
-          "title": "Stratigrafia lastre",
-          "type": "string",
-          "description": "Descrizione testuale della stratigrafia delle lastre",
-          "sources": [
-            "qa_llm"
+            "parser"
           ]
         },
         {
@@ -120,8 +86,7 @@
           "description": "Standard tecnico o regolamento citato nel testo",
           "sources": [
             "matcher",
-            "parser",
-            "qa_llm"
+            "parser"
           ]
         }
       ]
@@ -555,11 +520,7 @@
       "name": "Apparecchi sanitari e accessori",
       "schema": "schema/apparecchi_sanitari_accessori.json",
       "required": [
-        "materiale",
-        "dimensione_lunghezza",
-        "dimensione_larghezza",
-        "dimensione_altezza",
-        "tipologia_installazione"
+        "materiale"
       ],
       "properties": [
         {
@@ -582,7 +543,10 @@
             "resina",
             "vetro",
             "ghisa",
-            "porcellana"
+            "porcellana",
+            "metallo",
+            "plastica",
+            "legno"
           ],
           "sources": [
             "matcher",

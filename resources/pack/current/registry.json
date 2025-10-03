@@ -340,11 +340,7 @@
       "name": "Apparecchi sanitari e accessori",
       "schema": "schema/apparecchi_sanitari_accessori.json",
       "required": [
-        "materiale",
-        "dimensione_lunghezza",
-        "dimensione_larghezza",
-        "dimensione_altezza",
-        "tipologia_installazione"
+        "materiale"
       ],
       "properties": [
         {
@@ -365,7 +361,10 @@
             "resina",
             "vetro",
             "ghisa",
-            "porcellana"
+            "porcellana",
+            "metallo",
+            "plastica",
+            "legno"
           ],
           "sources": ["matcher", "qa_llm"]
         },
