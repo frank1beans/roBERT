@@ -16,6 +16,7 @@ from ..utils.dataset_prep import (
     build_mask_and_report,
     create_or_load_label_maps,
     prepare_classification_dataset,
+    prepare_dataset_simple,
     prepare_mlm_corpus,
     save_datasets,
 )
@@ -141,6 +142,9 @@ class ConversionConfig:
     # Text column
     text_field: str = "text"
 
+    # Property extraction (deprecated - use `extract properties` instead)
+    extract_properties: bool = False
+
     def iter_mlm_sources(self) -> Iterable[Path]:
         if not self.make_mlm_corpus:
             return []
@@ -216,20 +220,33 @@ def run_conversion(config: ConversionConfig) -> ConversionArtifacts:
         label_maps_path, ontology_path=ontology_path
     )
 
-    # 2) Dataset prep (classification + property extraction)
-    #    Enforce usage of the pack-provided registry + extractors
-    train_df, val_df, label_maps = prepare_classification_dataset(
-        config.train_file,
-        config.val_file,
-        label_maps_path=label_maps_path,
-        ontology_path=ontology_path,
-        done_uids_path=config.done_uids,
-        val_split=config.val_split,
-        random_state=config.random_state,
-        properties_registry_path=config.properties_registry,
-        extractors_pack_path=config.extractors_pack,
-        text_field=config.text_field,
-    )
+    # 2) Dataset prep (classification only, property extraction moved to `extract` command)
+    if config.extract_properties:
+        # Legacy mode with property extraction
+        train_df, val_df, label_maps = prepare_classification_dataset(
+            config.train_file,
+            config.val_file,
+            label_maps_path=label_maps_path,
+            ontology_path=ontology_path,
+            done_uids_path=config.done_uids,
+            val_split=config.val_split,
+            random_state=config.random_state,
+            properties_registry_path=config.properties_registry,
+            extractors_pack_path=config.extractors_pack,
+            text_field=config.text_field,
+        )
+    else:
+        # New mode: just normalize dataset without extraction
+        train_df, val_df, label_maps = prepare_dataset_simple(
+            config.train_file,
+            config.val_file,
+            label_maps_path=label_maps_path,
+            ontology_path=ontology_path,
+            done_uids_path=config.done_uids,
+            val_split=config.val_split,
+            random_state=config.random_state,
+            text_field=config.text_field,
+        )
 
     save_datasets(train_df, val_df, config.out_dir)
 
@@ -384,6 +401,11 @@ def convert_command(
         "--text-field",
         help="Column containing the textual description analysed for property extraction",
     ),
+    extract_properties: bool = typer.Option(
+        False,
+        "--extract-properties/--no-extract-properties",
+        help="Extract properties using legacy system (deprecated - use `robimb extract properties` instead)",
+    ),
 ) -> None:
     """Typer entrypoint that proxies to :func:`run_conversion`."""
 
@@ -403,6 +425,7 @@ def convert_command(
         properties_registry=properties_registry or DEFAULT_PROPERTIES_REGISTRY,
         extractors_pack=extractors_pack or DEFAULT_EXTRACTORS_PACK,
         text_field=text_field,
+        extract_properties=extract_properties,
     )
     artifacts = run_conversion(config)
     typer.echo(json.dumps(artifacts.as_dict(), indent=2, ensure_ascii=False))

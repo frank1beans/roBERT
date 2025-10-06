@@ -1,41 +1,60 @@
-# roBERT - BIM NLP Toolkit
+# roBERT - NLP Toolkit per l'Edilizia
 
-Toolkit Python industriale per l'estrazione di proprietà e la classificazione di descrizioni BIM, con supporto per TAPT (Task-Adaptive Pre-Training) e classificatori gerarchici.
+Toolkit Python industriale per l'estrazione di proprietà e la classificazione di descrizioni di prodotti edili, con supporto per TAPT (Task-Adaptive Pre-Training) e classificatori gerarchici.
 
-## ⭐ NEW: Intelligent Span Extraction System
+## ⭐ Features Principali
 
-**Sistema di estrazione intelligente basato su deep learning** che riduce i falsi positivi da ~14% a <5% e migliora l'accuracy da ~75% a ~90%.
+### 🎯 Modelli ML Disponibili
 
-🔗 **[Vedi documentazione completa →](README_SPAN_EXTRACTION.md)**
+#### 1. **Classificazione**
+- **Label Embedding**: Classificatore multi-label gerarchico
+- **Hierarchical Model**: Modello con masked training gerarchico
 
-### Quick Overview
-- ✅ **Context-aware**: Distingue marchio prodotto vs adesivo ("Florim" ✅ vs "Mapei" ❌)
-- ✅ **Zero falsi positivi**: Non estrae "compensato" da "compreso e compensato"
+#### 2. **Span Extraction**
+**Estrazione intelligente context-aware** basata su QA-style deep learning
 - ✅ **Alta precisione**: ~90% accuracy con confidence scores
-- ✅ **Pipeline end-to-end**: Classificazione → Span Extraction → Parsing
+- ✅ **Context-aware**: Distingue contesto prodotto vs descrizione generica
+- ✅ **Zero falsi positivi**: Previene estrazioni spurie
+- 🔧 Training: `robimb train span --train-data qa_data.jsonl --output-dir outputs/span_model`
+- 🚀 Inferenza: `robimb extract predict-spans --model-dir outputs/span_model --input data.jsonl`
+
+#### 3. **Price Regression**
+**Predizione prezzi unit-aware** basata su descrizione + proprietà estratte
+- 💰 **Unit-aware**: Distingue scale diverse (mm vs m, kg vs g)
+- 📊 **Property conditioning**: Usa proprietà estratte per migliore accuratezza
+- 📈 **Metriche**: MAPE, RMSE, MAE su scala log
+- 🔧 Training: `robimb train price --train-data price_data.jsonl --output-dir outputs/price_model`
+- 🚀 Inferenza: `robimb predict price --model-dir outputs/price_model --input data.jsonl`
+
+### 🔄 Pipeline End-to-End
 
 ```python
-from robimb.extraction.smart_pipeline import SmartExtractionPipeline
+# 1. Classificazione categoria
+from robimb.models.label_model import load_label_embed_model
+classifier = load_label_embed_model("atipiqal/RoBERTino")
 
-pipeline = SmartExtractionPipeline(
-    classifier_model_path="atipiqal/roBERTino",
-    span_extractor_model_path="outputs/span_extractor_model",
-    device="cuda"
-)
+# 2. Span extraction
+from robimb.inference.span_inference import SpanInference
+span_extractor = SpanInference("outputs/span_model")
 
-result = pipeline.process("Pavimento gres Florim 120x280 cm, spessore 6mm")
-# → marchio: "Florim", materiale: "gres", dimensioni: 1200x2800mm, spessore: 6mm
+# 3. Price prediction
+from robimb.inference.price_inference import PriceInference
+price_predictor = PriceInference("outputs/price_model")
+
+# Pipeline completa
+text = "Pavimento gres Florim 120x280 cm, spessore 6mm"
+category = classifier.predict(text)
+properties = span_extractor.extract_properties(text)
+price = price_predictor.predict(text, properties)
 ```
 
-**Documentazione**:
-- 📖 [README Span Extraction](README_SPAN_EXTRACTION.md) - Quick start e panoramica
-- 🏗️ [System Overview](docs/SYSTEM_OVERVIEW.md) - Architettura visuale
-- 📁 [Organization Guide](ORGANIZATION.md) - Struttura completa progetto
-- 🔧 [Setup Guide](docs/SPAN_EXTRACTION_SETUP.md) - Setup dettagliato
+**📚 [Centro Documentazione](docs/README.md)** - Guide complete per tutti i livelli
 
 ---
 
 ## 🚀 Quick Start
+
+**Nuovo a roBERT?** → Inizia dalla [**Guida Introduttiva**](docs/getting-started/README.md) pensata per tutti (anche non tecnici)
 
 ### Installazione
 
@@ -99,27 +118,55 @@ roBERT/
 
 ## 📚 Documentazione
 
-### Comandi CLI
+**[📖 Centro Documentazione Completo](docs/README.md)** - Hub centrale organizzato per tipo di utente
 
-| Comando | Descrizione | Docs |
-|---------|-------------|------|
-| `robimb extract` | Estrazione proprietà da descrizioni BIM | [extract.md](docs/commands/extract.md) |
-| `robimb convert` | Conversione dataset e label map | [convert.md](docs/commands/convert.md) |
-| `robimb train` | Training modelli (label/gerarchico/TAPT) | [train.md](docs/commands/train.md) |
-| `robimb evaluate` | Valutazione performance modelli | [evaluate.md](docs/commands/evaluate.md) |
-| `robimb pack` | Creazione knowledge pack | [pack.md](docs/commands/pack.md) |
-| `robimb config` | Ispezione configurazione | [config.md](docs/commands/config.md) |
+### 🎯 Guide per Iniziare (Per Tutti)
 
-**Panoramica completa**: [docs/commands/overview.md](docs/commands/overview.md)
+<table>
+<tr>
+<td width="33%">
 
-### Guide Tecniche
+**[🚀 Introduzione](docs/getting-started/README.md)**
 
-- [Quick Start GPT-4o-mini](QUICKSTART_GPT4MINI.md) - ⚡ Setup GPT-4o-mini in 5 minuti
-- [Architettura del Sistema](ARCHITECTURE.md) - Overview tecnico e design
-- [Orchestration Improvements](docs/guides/ORCHESTRATION_IMPLEMENTATION.md) - ⭐ Domain heuristics per estrazione migliorata
-- [Production Setup](docs/guides/production_resource_setup.md) - Setup ambiente produzione
-- [LLM Integration](examples/README.md) - Server LLM (mock e GPT-4o-mini)
-- [Scripts README](scripts/README.md) - Documentazione script di supporto
+Cos'è roBERT, come funziona, esempi pratici
+*(Non richiede conoscenze tecniche)*
+
+</td>
+<td width="33%">
+
+**[📦 Installazione](docs/getting-started/installation.md)**
+
+Setup guidato passo-passo
+*(Windows, macOS, Linux)*
+
+</td>
+<td width="33%">
+
+**[🔄 Workflow](docs/getting-started/workflows.md)**
+
+Casi d'uso comuni, comandi pratici
+*(Con esempi reali)*
+
+</td>
+</tr>
+</table>
+
+### 📖 Risorse per Ruolo
+
+| Ruolo | Documenti Consigliati |
+|-------|----------------------|
+| 👤 **Business User** | [Intro](docs/getting-started/README.md) → [Workflow](docs/getting-started/workflows.md) → [Extract](docs/commands/extract.md) |
+| 💻 **Sviluppatore** | [Architettura](docs/architecture/technical.md) → [Pipeline](docs/architecture/pipeline.md) → [Comandi CLI](docs/commands/overview.md) |
+| 🧑‍🔬 **ML Engineer** | [Training Roadmap](docs/models/training-roadmap.md) → [Span Extractor](docs/models/span-extraction.md) → [Price Regressor](docs/models/price-regression.md) |
+| 🏢 **DevOps** | [Installazione](docs/getting-started/installation.md) → [Production Setup](docs/guides/production_resource_setup.md) → [Config](docs/commands/config.md) |
+
+### ⚙️ Riferimenti Rapidi
+
+**Comandi:** [extract](docs/commands/extract.md) | [predict](docs/commands/predict.md) | [train](docs/commands/train.md) | [tutti](docs/commands/overview.md)
+
+**Architettura:** [Overview](docs/architecture/overview.md) | [Tecnica](docs/architecture/technical.md) | [Pipeline](docs/architecture/pipeline.md)
+
+**Modelli:** [Span Extractor](docs/models/span-extraction.md) | [Price Regressor](docs/models/price-regression.md) | [Training](docs/models/training-roadmap.md)
 
 ## 🔧 Workflow Tipico
 
@@ -131,13 +178,27 @@ robimb convert \
   --label-map data/processed/label_map.json
 ```
 
-### 2. Training Modello
+### 2. Training Modelli
+
 ```bash
+# Classificatore label embedding
 robimb train label \
-  --train-data data/processed/train.jsonl \
-  --eval-data data/processed/eval.jsonl \
-  --model-name atipiqal/BOB \
-  --output-dir outputs/models/label
+  --train-jsonl data/train.jsonl \
+  --val-jsonl data/val.jsonl \
+  --base-model atipiqal/BOB \
+  --out-dir outputs/label_model
+
+# Span extractor
+robimb train span \
+  --train-data data/qa_dataset.jsonl \
+  --output-dir outputs/span_model \
+  --backbone-name atipiqal/BOB
+
+# Price regressor
+robimb train price \
+  --train-data data/price_data.jsonl \
+  --output-dir outputs/price_model \
+  --use-properties
 ```
 
 ### 3. Creazione Knowledge Pack
@@ -148,27 +209,30 @@ robimb pack \
 ```
 
 ### 4. Estrazione Proprietà
+
 ```bash
-# Solo regole (veloce, baseline)
+# Estrazione base (rules + matchers)
 robimb extract properties \
   --input data/descriptions.jsonl \
-  --output outputs/extracted.jsonl \
-  --no-qa
+  --output outputs/extracted.jsonl
 
-# Con LLM (migliore qualità)
-robimb extract properties \
+# Span-based extraction
+robimb extract predict-spans \
+  --model-dir outputs/span_model \
   --input data/descriptions.jsonl \
-  --output outputs/extracted.jsonl \
-  --llm-endpoint http://localhost:8000/extract \
-  --llm-model gpt-4o-mini \
-  --no-qa
+  --output outputs/spans.jsonl \
+  --properties marchio,materiale,dimensione_lunghezza
 
-# Pipeline completa (regole + QA + LLM)
+# Price prediction
+robimb predict price \
+  --model-dir outputs/price_model \
+  --input outputs/spans.jsonl \
+  --output outputs/with_prices.jsonl
+
+# Con LLM (opzionale, migliore qualità)
 robimb extract properties \
   --input data/descriptions.jsonl \
-  --output outputs/extracted.jsonl \
-  --use-qa \
-  --qa-model-dir outputs/models/label \
+  --output outputs/extracted_llm.jsonl \
   --llm-endpoint http://localhost:8000/extract \
   --llm-model gpt-4o-mini
 ```
@@ -266,7 +330,7 @@ robimb --config resources/config/production.toml extract properties ...
 - **Colors (RAL)**: [resources/data/properties/lexicon/colors_ral.json](resources/data/properties/lexicon/colors_ral.json)
 
 ### Schema
-Definizioni proprietà per categoria BIM in [resources/data/properties/schema/](resources/data/properties/schema/)
+Definizioni proprietà per categoria in [resources/data/properties/schema/](resources/data/properties/schema/)
 
 ### Registry
 Mapping proprietà-categoria: [resources/data/properties/registry.json](resources/data/properties/registry.json)

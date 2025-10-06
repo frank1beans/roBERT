@@ -7,7 +7,14 @@
       "Bash(python scripts/testing/test_domain_heuristics.py:*)",
       "Bash(python scripts/testing/test_real_examples.py:*)",
       "Bash(python:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(awk:*)",
+      "Bash(cut:*)",
+      "Bash(find:*)",
+      "Bash(powershell:*)",
+      "Bash(curl:*)",
+      "Bash(git mv:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []

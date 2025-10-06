@@ -1,6 +1,6 @@
 # robimb extract - Estrazione Proprietà
 
-Estrae proprietà da descrizioni BIM utilizzando una pipeline configurabile con regole, QA encoder e LLM.
+Estrae proprietà da descrizioni testuali utilizzando una pipeline configurabile con regole, QA encoder e LLM.
 
 ## Sintassi
 
@@ -11,7 +11,7 @@ robimb extract properties [OPTIONS]
 ## Opzioni Principali
 
 ### Input/Output
-- `--input PATH`: File JSONL di input con descrizioni BIM
+- `--input PATH`: File JSONL di input con descrizioni
 - `--output PATH`: File JSONL di output con proprietà estratte
 - `--sample N`: Processa solo i primi N record (utile per test)
 
@@ -73,7 +73,7 @@ Ogni riga del file JSONL di output contiene:
 ```json
 {
   "description": "Testo originale",
-  "category": "categoria_bim",
+  "category": "categoria_prodotto",
   "properties": {
     "dimensioni": {"value": "120x60", "confidence": 0.95},
     "materiale": {"value": "gres porcellanato", "confidence": 0.88}
@@ -135,7 +135,58 @@ curl -X POST http://localhost:8000/extract \
 robimb config inspect
 ```
 
+## Altri Sottocomandi
+
+### predict-spans
+Estrai proprietà usando il modello span-based addestrato.
+
+```bash
+robimb extract predict-spans \
+  --model-dir outputs/span_model \
+  --input data/descriptions.jsonl \
+  --output data/with_spans.jsonl \
+  --properties marchio,materiale,dimensione_lunghezza
+```
+
+**Opzioni**:
+- `--model-dir PATH`: Directory del modello span extractor
+- `--properties LIST`: Proprietà da estrarre (comma-separated)
+- `--confidence-threshold FLOAT`: Soglia minima confidence (default: 0.5)
+
+> Nota: per la regressione prezzi utilizzare `robimb predict price`.
+
+### train-qa
+Fine-tune QA encoder per property spans (legacy).
+
+```bash
+robimb extract train-qa \
+  --train-data data/qa_data.jsonl \
+  --output-dir outputs/qa_model
+```
+
+**Nota**: Preferire `robimb train span` per nuovi progetti.
+
+### predict-qa
+Predici property spans per singolo testo usando QA encoder (legacy).
+
+```bash
+robimb extract predict-qa \
+  --model-dir outputs/qa_model \
+  --text "Pavimento gres 60x60 cm" \
+  --property marchio
+```
+
+### schemas
+Ispeziona gli schemi disponibili per categoria.
+
+```bash
+robimb extract schemas \
+  --category opere_di_pavimentazione
+```
+
 ## Vedi Anche
 
-- [Guida LLM Integration](../guides/llm_integration.md)
+- [prepare.md](prepare.md): Preparazione dataset
+- [train.md](train.md): Training modelli
+- [Price Regressor](../PRICE_REGRESSOR.md): Dettagli price regression
 - [Production Setup](../guides/production_resource_setup.md)

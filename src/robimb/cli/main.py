@@ -9,7 +9,10 @@ from .config import app as config_app
 from .convert import convert_command
 from .evaluate import evaluate_command
 from .extract import app as extract_app
+from .predict import app as predict_app
 from .pack import pack_command
+from .prepare import app as prepare_app
+from .train import app as train_app
 
 
 __all__ = ["app", "run"]
@@ -35,7 +38,10 @@ def version_callback(
 
 app.command("convert", help="Prepara dataset, label map e maschere ontologiche.")(convert_command)
 app.add_typer(extract_app, name="extract")
+app.add_typer(predict_app, name="predict")
 app.add_typer(config_app, name="config")
+app.add_typer(prepare_app, name="prepare")
+app.add_typer(train_app, name="train")
 app.command("evaluate", help="Valuta un modello esportato su un dataset etichettato.")(evaluate_command)
 app.command("pack", help="Impacchetta le cartelle delle proprietà in registry/extractors.")(pack_command)
 

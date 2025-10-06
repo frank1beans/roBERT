@@ -214,6 +214,92 @@ def build_properties_for_category(category_id: str, registry_path: Path | str) -
     ]
 
 
+def prepare_qa_dataset(
+    train_path: Path | str,
+    val_path: Path | str | None,
+    property_registry_path: Path | str,
+    label_maps: Any,
+    val_split: float = 0.2,
+) -> Tuple[Any, Any]:
+    """Prepare QA dataset from JSONL with extraction.
+
+    Returns:
+        Tuple of (train_df, val_df) as pandas DataFrames
+    """
+    import pandas as pd
+    from ..utils.sampling import load_jsonl_to_df
+
+    registry = load_registry(property_registry_path)
+    train_df = load_jsonl_to_df(train_path)
+
+    qa_records = []
+
+    for idx, row in train_df.iterrows():
+        text = row.get("text", "")
+        cat = row.get("cat") or row.get("super")
+
+        # Skip if cat is NaN, None, or empty
+        if not text or cat is None or (isinstance(cat, float) and pd.isna(cat)):
+            continue
+
+        cat = str(cat).strip()
+        if not cat:
+            continue
+
+        category = registry.get(cat)
+        if not category:
+            continue
+
+        # For each property, create a QA example
+        for prop in category.properties:
+            qa_record = {
+                "id": f"{idx}:{prop.id}",
+                "context": text,
+                "question": default_prompt_for(category.name, prop.title),
+                "answers": [],  # Will be filled during training
+                "property_id": prop.id,
+            }
+            qa_records.append(qa_record)
+
+    qa_df = pd.DataFrame(qa_records)
+
+    # Split
+    if val_path:
+        val_df = load_jsonl_to_df(val_path)
+        val_qa_records = []
+        for idx, row in val_df.iterrows():
+            text = row.get("text", "")
+            cat = row.get("cat") or row.get("super")
+
+            # Skip if cat is NaN, None, or empty
+            if not text or cat is None or (isinstance(cat, float) and pd.isna(cat)):
+                continue
+
+            cat = str(cat).strip()
+            if not cat:
+                continue
+
+            category = registry.get(cat)
+            if not category:
+                continue
+            for prop in category.properties:
+                val_qa_records.append({
+                    "id": f"{idx}:{prop.id}",
+                    "context": text,
+                    "question": default_prompt_for(category.name, prop.title),
+                    "answers": [],
+                    "property_id": prop.id,
+                })
+        val_qa_df = pd.DataFrame(val_qa_records)
+    else:
+        qa_df = qa_df.sample(frac=1.0, random_state=42).reset_index(drop=True)
+        split_idx = int(len(qa_df) * (1.0 - val_split))
+        val_qa_df = qa_df.iloc[split_idx:].reset_index(drop=True)
+        qa_df = qa_df.iloc[:split_idx].reset_index(drop=True)
+
+    return qa_df, val_qa_df
+
+
 def make_jsonl_from_rule_outputs(
     rule_output_path: Path | str,
     registry_path: Path | str,
@@ -330,7 +416,7 @@ def train_property_qa(
         learning_rate=learning_rate,
         num_train_epochs=epochs,
         weight_decay=0.01,
-        evaluation_strategy="steps" if eval_dataset else "no",
+        eval_strategy="steps" if eval_dataset else "no",
         logging_steps=50,
         save_steps=200,
         save_total_limit=2,

@@ -5,7 +5,7 @@ Esempi e server di integrazione per roBERT.
 ## 📋 Indice
 
 1. [LLM Server Mock](#llm-server-mock) - Server mock per testing
-2. [LLM Server GPT-4o-mini](#llm-server-gpt-4o-mini) - Server con OpenAI GPT-4o-mini
+2. [LLM Server (OpenAI / Ollama)](#llm-server-openai--ollama) - Server LLM con OpenAI o modelli locali
 3. [Setup e Configurazione](#setup-e-configurazione)
 4. [Integrazione con roBERT](#integrazione-con-robert)
 
@@ -58,11 +58,13 @@ curl -X POST http://localhost:8000/extract \
 
 ---
 
-## LLM Server GPT-4o-mini
+## LLM Server (OpenAI / Ollama)
 
 ### llm_server_gpt4mini.py
 
-Server FastAPI che usa **OpenAI GPT-4o-mini** per estrazione reale tramite API.
+Server FastAPI che usa **OpenAI GPT-4o-mini** oppure un modello **Ollama** (es. `llama3`) per l'estrazione reale.
+
+### Backend OpenAI
 
 #### Prerequisiti
 
@@ -253,9 +255,50 @@ python scripts/analysis/extraction_results.py outputs/mock.jsonl
 python scripts/analysis/extraction_results.py outputs/gpt4mini.jsonl
 ```
 
+### Backend Ollama (locale)
+
+#### Prerequisiti
+
+1. **Installa Ollama**
+   - Scarica da: https://ollama.com/
+   - Avvia il servizio con `ollama serve`
+2. **Scarica un modello istruito**
+   ```bash
+   ollama pull llama3
+   # oppure:
+   ollama pull mistral:7b-instruct
+   ```
+
+#### Avvio server
+
+```bash
+python examples/llm_server_gpt4mini.py \
+  --backend ollama \
+  --ollama-model llama3 \
+  --port 8000
+```
+
+Opzioni utili:
+
+- `--ollama-host` per puntare a un host/porta personalizzati
+- `--temperature` e `--max-tokens` per controllare la generazione
+
+#### Test rapido
+
+```bash
+curl -X POST http://localhost:8000/extract \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "Testo:\nPannello in cartongesso ignifugo spessore 12,5 mm\nDomanda:\nEstrai spessore\nSchema:\n{\"type\": \"string\"}",
+    "schema": {"type": "string"}
+  }'
+```
+
+Il server restituisce sempre `{ "value": ..., "confidence": ... }`, quindi l'orchestrator può alternare OpenAI/Ollama senza modifiche lato `robimb`.
+
 ---
 
-## 💰 Costi Stimati GPT-4o-mini
+### 💰 Costi Stimati (OpenAI)
 
 | Operazione | Token Input | Token Output | Costo | Totale |
 |------------|-------------|--------------|-------|--------|
@@ -267,7 +310,7 @@ python scripts/analysis/extraction_results.py outputs/gpt4mini.jsonl
 
 ---
 
-## 🔒 Sicurezza
+### 🔒 Sicurezza
 
 ### Best Practices
 
@@ -293,7 +336,7 @@ python scripts/analysis/extraction_results.py outputs/gpt4mini.jsonl
 
 ---
 
-## 🐛 Troubleshooting
+### 🐛 Troubleshooting
 
 ### "OPENAI_API_KEY not set"
 
@@ -338,7 +381,7 @@ robimb extract properties ... --llm-timeout 60
 
 ---
 
-## 📚 Vedi Anche
+### 📚 Vedi Anche
 
 - [docs/commands/extract.md](../docs/commands/extract.md) - Documentazione comando extract
 - [docs/guides/production_resource_setup.md](../docs/guides/production_resource_setup.md) - Setup produzione

@@ -1,6 +1,6 @@
 # robimb train - Training Modelli
 
-Training di modelli per classificazione BIM (label e gerarchico).
+Training di modelli per estrazione proprietà e predizione prezzi.
 
 ## Sintassi
 
@@ -10,36 +10,28 @@ robimb train [SUBCOMMAND] [OPTIONS]
 
 ## Subcomandi
 
-### Label Training
-Training di classificatori flat (non gerarchici).
+### Span Extraction Training
+Training del modello QA-based per estrazione span di proprietà.
 
 ```bash
-robimb train label \
-  --train-data data/train.jsonl \
-  --eval-data data/eval.jsonl \
-  --model-name atipiqal/BOB \
-  --output-dir outputs/models/label
+robimb train span \
+  --train-data data/qa_data.jsonl \
+  --output-dir outputs/span_model \
+  --backbone-name atipiqal/BOB \
+  --epochs 3 \
+  --batch-size 8
 ```
 
-### Hierarchical Training
-Training di classificatori gerarchici multi-livello.
+### Price Regression Training
+Training del modello per predizione prezzi unit-aware.
 
 ```bash
-robimb train hierarchical \
-  --train-data data/train.jsonl \
-  --eval-data data/eval.jsonl \
-  --model-name atipiqal/BOB \
-  --output-dir outputs/models/hierarchical
-```
-
-### TAPT (Task-Adaptive Pre-Training)
-Pre-training MLM su dominio BIM.
-
-```bash
-robimb train tapt \
-  --corpus data/bim_corpus.txt \
-  --base-model bert-base-italian-cased \
-  --output-dir outputs/models/tapt
+robimb train price \
+  --train-data data/price_data.jsonl \
+  --output-dir outputs/price_model \
+  --use-properties \
+  --epochs 10 \
+  --batch-size 16
 ```
 
 ## Opzioni Comuni
@@ -52,23 +44,25 @@ robimb train tapt \
 - `--epochs INT`: Numero di epoche (default: 3)
 - `--learning-rate FLOAT`: Learning rate (default: 2e-5)
 
-## Script Avanzati
+## Preparazione Dataset
 
-Per training più complessi, usa gli script in [src/robimb/training/](../../src/robimb/training/):
+Prima del training, usa `robimb prepare` per preparare i dati:
 
 ```bash
-# Label training avanzato
-python -m robimb.training.label_trainer \
-  --config configs/label_training.yaml
+# Prepara dataset per span extraction
+robimb prepare span \
+  --input data/raw.jsonl \
+  --output data/qa_data.jsonl
 
-# Hierarchical training avanzato
-python -m robimb.training.hier_trainer \
-  --config configs/hier_training.yaml
+# Prepara dataset per price regression
+robimb prepare price \
+  --input data/raw.csv \
+  --output data/price_data.jsonl
 
-# TAPT MLM
-python -m robimb.training.tapt_mlm \
-  --corpus data/corpus.txt \
-  --output outputs/tapt_model
+# Prepara tutti i dataset
+robimb prepare all \
+  --input data/raw.jsonl \
+  --output-dir data/prepared/
 ```
 
 ## Vedi Anche

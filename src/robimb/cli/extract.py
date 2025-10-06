@@ -23,6 +23,7 @@ from ..extraction.property_qa import (
 )
 from ..extraction.qa_llm import AsyncHttpLLM, HttpLLM, MockLLM, QALLMConfig
 from ..extraction.schema_registry import load_registry
+from ..inference.span_inference import SpanInference
 from ..utils.logging import configure_json_logger, flush_handlers, generate_trace_id, log_event
 
 __all__ = ["app"]
@@ -387,6 +388,64 @@ def predict_qa_spans(
         max_answer_length=max_answer_length,
     )
     typer.echo(json.dumps(predictions, ensure_ascii=False, indent=2))
+
+
+@app.command("predict-spans")
+def predict_spans(
+    model_dir: Path = typer.Option(..., "--model-dir", exists=True, file_okay=False, help="Directory containing the trained span extractor model"),
+    input_path: Path = typer.Option(..., "--input", exists=True, dir_okay=False, help="JSONL with input records"),
+    output_path: Path = typer.Option(..., "--output", dir_okay=False, help="Destination JSONL for extracted properties"),
+    property_ids: Optional[str] = typer.Option(None, "--properties", help="Comma-separated list of properties to extract (default: all)"),
+    apply_parsers: bool = typer.Option(True, "--parsers/--no-parsers", help="Apply domain-specific parsers to spans"),
+    text_field: str = typer.Option("text", "--text-field", help="Field name containing the text to extract from"),
+) -> None:
+    """Extract properties using the span-based model."""
+
+    # Load model
+    typer.echo(f"Loading span extractor model from {model_dir}...")
+    inferencer = SpanInference(model_dir=model_dir)
+
+    # Parse property IDs
+    props = None
+    if property_ids:
+        props = [p.strip() for p in property_ids.split(",")]
+
+    # Load input
+    with input_path.open("r", encoding="utf-8") as f:
+        records = [json.loads(line) for line in f if line.strip()]
+
+    typer.echo(f"Processing {len(records)} records...")
+
+    # Process records
+    results = []
+    with tqdm(total=len(records), desc="Extracting", unit="doc") as pbar:
+        for record in records:
+            text = record.get(text_field, "")
+            if not text:
+                results.append(record)
+                pbar.update(1)
+                continue
+
+            # Extract properties
+            extractions = inferencer.extract_properties(
+                text=text,
+                property_ids=props,
+                apply_parsers=apply_parsers,
+            )
+
+            # Add to record
+            record["_span_extractions"] = extractions
+            results.append(record)
+            pbar.update(1)
+
+    # Write output
+    with output_path.open("w", encoding="utf-8") as f:
+        for result in results:
+            json.dump(result, f, ensure_ascii=False)
+            f.write("\n")
+
+    typer.echo(f"Completed! Results written to {output_path}")
+
 
 
 @app.command("schemas")

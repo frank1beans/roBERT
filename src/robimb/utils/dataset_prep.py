@@ -30,6 +30,7 @@ __all__ = [
     "create_or_load_label_maps",
     "build_mask_and_report",
     "prepare_classification_dataset",
+    "prepare_dataset_simple",
     "save_datasets",
     "prepare_mlm_corpus",
 ]
@@ -314,6 +315,108 @@ def prepare_classification_dataset(
             properties=extracted_properties_val,
         )
     else:
+        processed = processed.sample(frac=1.0, random_state=random_state).reset_index(
+            drop=True
+        )
+        split_idx = int(len(processed) * (1.0 - val_split))
+        val_processed = processed.iloc[split_idx:].reset_index(drop=True)
+        processed = processed.iloc[:split_idx].reset_index(drop=True)
+
+    return processed, val_processed, label_maps
+
+
+def prepare_dataset_simple(
+    train_path: str | Path,
+    val_path: Optional[str | Path],
+    *,
+    label_maps_path: str | Path,
+    ontology_path: Optional[str | Path] = None,
+    done_uids_path: Optional[str | Path] = None,
+    val_split: float = 0.2,
+    random_state: int = 42,
+    text_field: str = "text",
+) -> Tuple[pd.DataFrame, pd.DataFrame, LabelMaps]:
+    """Prepare dataset without property extraction - just normalize labels and split.
+
+    This is a simplified version that:
+    - Loads data from JSONL/CSV/Excel/TXT
+    - Maps category labels to IDs
+    - Splits into train/val
+    - Does NOT extract properties
+    """
+    label_maps = create_or_load_label_maps(
+        label_maps_path, ontology_path=ontology_path
+    )
+
+    train_df = load_jsonl_to_df(train_path)
+
+    if done_uids_path and Path(done_uids_path).exists():
+        done_uids = {
+            line.strip()
+            for line in open(done_uids_path, "r", encoding="utf-8")
+            if line.strip()
+        }
+        if "uid" in train_df.columns:
+            train_df = train_df[~train_df["uid"].isin(done_uids)]
+
+    def _map_row(row: pd.Series) -> Optional[Tuple[int, int]]:
+        super_name = row.get("super_id") or row.get("super") or row.get("super_name")
+        cat_name = row.get("cat_id") or row.get("cat") or row.get("cat_name")
+        if isinstance(cat_name, str) and "::" in cat_name:
+            _, cat_name = [part.strip() for part in cat_name.split("::", 1)]
+        if super_name is None or cat_name is None:
+            return None
+        super_idx = label_maps.super_name_to_id.get(str(super_name))
+        if super_idx is None:
+            super_idx = label_maps.super_name_to_id.get(str(super_name).lower())
+        cat_idx = label_maps.cat_name_to_id.get(str(cat_name))
+        if cat_idx is None:
+            cat_idx = label_maps.cat_name_to_id.get(str(cat_name).lower())
+        if super_idx is None or cat_idx is None:
+            return None
+        return int(super_idx), int(cat_idx)
+
+    mapped_super: List[int] = []
+    mapped_cat: List[int] = []
+    kept_rows = []
+
+    for _, row in train_df.iterrows():
+        mapping = _map_row(row)
+        if mapping is None:
+            continue
+        s_idx, c_idx = mapping
+        mapped_super.append(s_idx)
+        mapped_cat.append(c_idx)
+        kept_rows.append(row)
+
+    processed = pd.DataFrame(kept_rows)
+    processed = processed.assign(
+        super_label=mapped_super,
+        cat_label=mapped_cat,
+    )
+
+    # Handle validation split
+    if val_path:
+        val_df = load_jsonl_to_df(val_path)
+        val_rows = []
+        mapped_super_val: List[int] = []
+        mapped_cat_val: List[int] = []
+
+        for _, row in val_df.iterrows():
+            mapping = _map_row(row)
+            if mapping is None:
+                continue
+            s_idx, c_idx = mapping
+            mapped_super_val.append(s_idx)
+            mapped_cat_val.append(c_idx)
+            val_rows.append(row)
+
+        val_processed = pd.DataFrame(val_rows).assign(
+            super_label=mapped_super_val,
+            cat_label=mapped_cat_val,
+        )
+    else:
+        # Random split
         processed = processed.sample(frac=1.0, random_state=random_state).reset_index(
             drop=True
         )
