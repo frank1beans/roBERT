@@ -79,6 +79,7 @@ class PriceDataset(Dataset):
 
         # Load data
         self.examples = []
+        filtered_count = 0
         with data_path.open("r", encoding="utf-8") as f:
             for line in f:
                 if not line.strip():
@@ -87,9 +88,17 @@ class PriceDataset(Dataset):
 
                 # Require text and price
                 if "text" in example and "price" in example:
-                    self.examples.append(example)
+                    price = example["price"]
+                    # Filter invalid prices and extreme outliers
+                    # Remove: price <= 0, or price > 99th percentile threshold (50k)
+                    if price > 0 and price <= 50000:
+                        self.examples.append(example)
+                    else:
+                        filtered_count += 1
 
         print(f"Loaded {len(self.examples)} examples from {data_path}")
+        if filtered_count > 0:
+            print(f"Filtered out {filtered_count} examples (invalid or extreme outliers)")
 
         # Calculate statistics for normalization
         self._compute_normalizers()
@@ -307,21 +316,35 @@ def evaluate(
     predictions = np.array(predictions)
     targets_list = np.array(targets_list)
 
-    mse = np.mean((predictions - targets_list) ** 2)
-    mae = np.mean(np.abs(predictions - targets_list))
-    rmse = np.sqrt(mse)
+    # Metrics in log-space (more stable)
+    mse_log = np.mean((predictions - targets_list) ** 2)
+    mae_log = np.mean(np.abs(predictions - targets_list))
+    rmse_log = np.sqrt(mse_log)
 
     # Convert to actual prices for interpretability
     pred_prices = np.exp(predictions)
     true_prices = np.exp(targets_list)
-    mape = np.mean(np.abs((true_prices - pred_prices) / (true_prices + 1e-8))) * 100
+
+    # Clip individual errors to prevent extreme outliers from dominating MAPE
+    percentage_errors = np.abs((true_prices - pred_prices) / (true_prices + 1e-8))
+    percentage_errors_clipped = np.clip(percentage_errors, 0, 5.0)  # Cap at 500%
+    mape = np.mean(percentage_errors_clipped) * 100
+
+    # Additional metrics
+    mae_actual = np.mean(np.abs(true_prices - pred_prices))
+    rmse_actual = np.sqrt(np.mean((true_prices - pred_prices) ** 2))
+
+    # Median metrics (more robust to outliers)
+    median_ape = np.median(percentage_errors_clipped) * 100
 
     return {
         "loss": total_loss / len(dataloader),
-        "mse": mse,
-        "mae": mae,
-        "rmse": rmse,
-        "mape": mape,  # Mean Absolute Percentage Error
+        "rmse": rmse_log,  # RMSE in log-space
+        "mae": mae_log,    # MAE in log-space
+        "mape": mape,      # Clipped MAPE in actual space
+        "median_ape": median_ape,  # Median APE (more robust)
+        "mae_actual": mae_actual,   # MAE in actual euros
+        "rmse_actual": rmse_actual, # RMSE in actual euros
     }
 
 
@@ -493,9 +516,12 @@ def train_price_model(args: PriceTrainingArgs) -> None:
 
         val_metrics = evaluate(model, val_loader, device, args.use_properties)
         print(f"Val loss: {val_metrics['loss']:.4f}")
-        print(f"Val RMSE: {val_metrics['rmse']:.4f}")
-        print(f"Val MAE: {val_metrics['mae']:.4f}")
-        print(f"Val MAPE: {val_metrics['mape']:.2f}%")
+        print(f"Val RMSE (log): {val_metrics['rmse']:.4f}")
+        print(f"Val MAE (log): {val_metrics['mae']:.4f}")
+        print(f"Val MAPE (clipped): {val_metrics['mape']:.2f}%")
+        print(f"Val Median APE: {val_metrics['median_ape']:.2f}%")
+        print(f"Val MAE (actual): €{val_metrics['mae_actual']:.2f}")
+        print(f"Val RMSE (actual): €{val_metrics['rmse_actual']:.2f}")
 
         # Save best model (based on MAPE)
         if val_metrics["mape"] < best_mape:

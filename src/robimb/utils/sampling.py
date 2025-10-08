@@ -12,11 +12,24 @@ __all__ = ["load_jsonl_to_df", "sample_one_record_per_category"]
 
 
 def load_jsonl_to_df(path: str | Path) -> pd.DataFrame:
+    path = Path(path)
+
+    # If it's a CSV file, use pandas read_csv
+    if path.suffix.lower() == ".csv":
+        return pd.read_csv(path, sep=";", encoding="utf-8")
+
+    # Otherwise, load as JSONL
     rows = []
     with open(path, "r", encoding="utf-8") as handle:
-        for line in handle:
-            if line.strip():
-                rows.append(json.loads(line))
+        for line_no, line in enumerate(handle, start=1):
+            line = line.strip()
+            if line:
+                try:
+                    rows.append(json.loads(line))
+                except json.JSONDecodeError as exc:
+                    raise ValueError(
+                        f"Invalid JSON in {path} at line {line_no}: {line[:100]}"
+                    ) from exc
     return pd.DataFrame(rows)
 
 
