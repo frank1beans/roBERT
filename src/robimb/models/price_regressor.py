@@ -139,35 +139,45 @@ class PriceRegressor(nn.Module):
         price_unit_embeds = self.price_unit_embedding(price_unit_ids)  # [batch_size, price_unit_dim]
 
         # Encode properties (if provided)
-        if self.use_properties and property_ids is not None:
-            # Get property type embeddings
-            prop_embeds = self.property_embeddings(property_ids)  # [batch_size, max_props, prop_dim]
+        if self.use_properties:
+            if property_ids is not None:
+                # Get property type embeddings
+                prop_embeds = self.property_embeddings(property_ids)  # [batch_size, max_props, prop_dim]
 
-            # Encode property values
-            if property_values is not None:
-                value_embeds = self.property_value_encoder(
-                    property_values.unsqueeze(-1)
-                )  # [batch_size, max_props, prop_dim]
-                # Combine type and value embeddings
-                prop_embeds = prop_embeds + value_embeds
+                # Encode property values
+                if property_values is not None:
+                    value_embeds = self.property_value_encoder(
+                        property_values.unsqueeze(-1)
+                    )  # [batch_size, max_props, prop_dim]
+                    # Combine type and value embeddings
+                    prop_embeds = prop_embeds + value_embeds
 
-            # Encode units
-            if property_units is not None:
-                unit_embeds = self.unit_embeddings(property_units)  # [batch_size, max_props, unit_dim]
-                # Concatenate property and unit embeddings
-                prop_embeds = torch.cat([prop_embeds, unit_embeds], dim=-1)  # [batch_size, max_props, prop_dim + unit_dim]
+                # Encode units
+                if property_units is not None:
+                    unit_embeds = self.unit_embeddings(property_units)  # [batch_size, max_props, unit_dim]
+                    # Concatenate property and unit embeddings
+                    prop_embeds = torch.cat([prop_embeds, unit_embeds], dim=-1)  # [batch_size, max_props, prop_dim + unit_dim]
 
-            # Apply property mask and pool
-            if property_mask is not None:
-                prop_embeds = prop_embeds * property_mask.unsqueeze(-1)
-                # Average pooling over valid properties
-                prop_count = property_mask.sum(dim=1, keepdim=True).clamp(min=1)
-                prop_pooled = prop_embeds.sum(dim=1) / prop_count  # [batch_size, prop_dim + unit_dim]
+                # Apply property mask and pool
+                if property_mask is not None:
+                    prop_embeds = prop_embeds * property_mask.unsqueeze(-1)
+                    # Average pooling over valid properties
+                    prop_count = property_mask.sum(dim=1, keepdim=True).clamp(min=1)
+                    prop_pooled = prop_embeds.sum(dim=1) / prop_count  # [batch_size, prop_dim + unit_dim]
+                else:
+                    # Simple average pooling
+                    prop_pooled = prop_embeds.mean(dim=1)  # [batch_size, prop_dim + unit_dim]
+
+                prop_pooled = self.property_combiner(prop_pooled)
             else:
-                # Simple average pooling
-                prop_pooled = prop_embeds.mean(dim=1)  # [batch_size, prop_dim + unit_dim]
-
-            prop_pooled = self.property_combiner(prop_pooled)
+                # No properties provided - use zero embeddings
+                batch_size = cls_output.size(0)
+                prop_pooled = torch.zeros(
+                    batch_size,
+                    self.property_embeddings.embedding_dim,
+                    device=cls_output.device,
+                    dtype=cls_output.dtype
+                )
 
             # Concatenate text, price unit, and property representations
             combined = torch.cat([cls_output, price_unit_embeds, prop_pooled], dim=-1)
