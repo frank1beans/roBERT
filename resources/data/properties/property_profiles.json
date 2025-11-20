@@ -1,0 +1,67 @@
+{
+  "profiles": [
+    {
+      "id": "pavimentazioni",
+      "patterns": ["pav", "paviment", "p.av", "p00", "p01"],
+      "properties": [
+        "materiale",
+        "finitura",
+        "spessore_mm",
+        "dimensioni_mm",
+        "classe_antiscivolo",
+        "classe_reazione_al_fuoco",
+        "peso"
+      ]
+    },
+    {
+      "id": "rivestimenti_facciate",
+      "patterns": ["rivest", "facciata", "facciate", "ventilata", "fvb", "fv"],
+      "properties": [
+        "materiale",
+        "finitura",
+        "spessore_mm",
+        "dimensioni_mm",
+        "classe_reazione_al_fuoco",
+        "classe_resistenza_fuoco",
+        "isolamento_acustico_db"
+      ]
+    },
+    {
+      "id": "serramenti",
+      "patterns": ["serr", "infiss", "finest", "porta"],
+      "properties": [
+        "materiale",
+        "finitura",
+        "dimensioni_mm",
+        "trasmittanza_u_w_m2k",
+        "conduttivita_lambda_w_mk",
+        "isolamento_acustico_db",
+        "classe_reazione_al_fuoco",
+        "classe_resistenza_fuoco"
+      ]
+    },
+    {
+      "id": "cartongesso",
+      "patterns": ["gess", "cartong", "controsoff", "cgs"],
+      "properties": [
+        "materiale",
+        "spessore_mm",
+        "dimensioni_mm",
+        "classe_resistenza_fuoco",
+        "classe_reazione_al_fuoco",
+        "isolamento_acustico_db"
+      ]
+    },
+    {
+      "id": "impianti_elettrici",
+      "patterns": ["ele", "impianto elet", "cabl", "qeb", "quadri"],
+      "properties": [
+        "grado_protezione_ip",
+        "grado_protezione_ik",
+        "diametro_mm",
+        "dimensioni_mm",
+        "isolamento_acustico_db"
+      ]
+    }
+  ]
+}

@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import logging
 import re
+import json
+from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence
 
 from pydantic import BaseModel, Field
@@ -125,6 +127,7 @@ class Orchestrator:
         self._brand_matcher = BrandMatcher()
         self._material_matcher = MaterialMatcher()
         self._standard_matcher = StandardMatcher()
+        self._property_profiles = self._load_property_profiles(Path(cfg.registry_path))
 
     def extract_document(
         self,
@@ -168,6 +171,9 @@ class Orchestrator:
             properties_payload[prop_id] = result
 
         post_process_properties(text, category_id, properties_payload, logger=LOGGER)
+
+        # WBS relevance boost (non distruttivo)
+        self._apply_wbs_relevance(doc, properties_payload)
 
         validation_input = {
             prop_id: {
@@ -244,6 +250,72 @@ class Orchestrator:
             "confidence_overall": confidence_overall,
         }
         return result
+
+    def _load_property_profiles(self, registry_path: Path) -> List[Dict[str, Any]]:
+        try:
+            profiles_path = registry_path.parent / "property_profiles.json"
+            if not profiles_path.exists():
+                return []
+            payload = json.loads(profiles_path.read_text(encoding="utf-8"))
+            profiles = payload.get("profiles", [])
+            normalized_profiles: List[Dict[str, Any]] = []
+            for profile in profiles:
+                patterns = [str(pat).lower() for pat in profile.get("patterns", [])]
+                props = [str(p) for p in profile.get("properties", [])]
+                if not patterns or not props:
+                    continue
+                normalized_profiles.append(
+                    {
+                        "id": profile.get("id") or "profile",
+                        "patterns": patterns,
+                        "properties": props,
+                    }
+                )
+            return normalized_profiles
+        except Exception as exc:  # pragma: no cover - robustezza
+            LOGGER.warning("property_profiles_load_failed", exc_info=exc)
+            return []
+
+    def _resolve_profile_properties(self, doc: Dict[str, Any]) -> List[str]:
+        code = str(doc.get("wbs6_code") or doc.get("wbs_code") or "").lower()
+        desc = str(doc.get("wbs6_description") or doc.get("wbs_description") or "").lower()
+        matched: List[str] = []
+        for profile in self._property_profiles:
+            for pat in profile.get("patterns", []):
+                if pat and (pat in code or pat in desc):
+                    matched.extend(profile.get("properties", []))
+                    break
+        # dedup preserving order
+        seen = set()
+        unique: List[str] = []
+        for prop in matched:
+            if prop not in seen:
+                unique.append(prop)
+                seen.add(prop)
+        return unique
+
+    def _apply_wbs_relevance(
+        self,
+        doc: Dict[str, Any],
+        properties_payload: Dict[str, Dict[str, Any]],
+    ) -> None:
+        if not self._property_profiles:
+            return
+        relevant_props = set(self._resolve_profile_properties(doc))
+        if not relevant_props:
+            return
+        for prop_id, payload in properties_payload.items():
+            if payload.get("value") is None:
+                continue
+            if prop_id in relevant_props:
+                payload["relevance"] = "high"
+                if "confidence" in payload and payload["confidence"] is not None:
+                    try:
+                        payload["confidence"] = min(float(payload["confidence"]) + 0.05, 1.0)
+                    except Exception:
+                        pass
+            else:
+                payload.setdefault("relevance", "unspecified")
 
     def _extract_property(
         self,

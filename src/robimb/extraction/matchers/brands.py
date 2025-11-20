@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
@@ -25,6 +26,7 @@ class BrandDefinition:
     canonical: str
     synonyms: Tuple[str, ...]
     categories: Tuple[str, ...]
+    regex: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -87,6 +89,7 @@ def load_brand_dataset(path: str | Path | None = None) -> BrandDataset:
                 continue
             synonyms = entry.get("synonyms", []) or []
             categories = entry.get("categories", []) or []
+            regex = entry.get("regex") or None
             surfaces = tuple(dict.fromkeys([canonical, *synonyms]))
             definitions.append(
                 BrandDefinition(
@@ -94,6 +97,7 @@ def load_brand_dataset(path: str | Path | None = None) -> BrandDataset:
                     canonical=canonical,
                     synonyms=surfaces,
                     categories=tuple(dict.fromkeys(categories)),
+                    regex=regex,
                 )
             )
         return BrandDataset(fallback=fallback, brands=tuple(definitions))
@@ -157,10 +161,17 @@ class BrandMatcher:
 
         self._brand_categories: Dict[str, Optional[set[str]]] = {}
         self._surface_index: List[Tuple[str, str, BrandDefinition]] = []
+        self._regex_index: List[Tuple[re.Pattern[str], BrandDefinition]] = []
 
         for definition in self._definitions:
             categories = set(definition.categories) or None
             self._brand_categories[definition.canonical.lower()] = categories
+            if definition.regex:
+                try:
+                    compiled = re.compile(definition.regex, re.IGNORECASE)
+                    self._regex_index.append((compiled, definition))
+                except re.error:
+                    pass
             for surface in definition.synonyms:
                 normalized_surface = _normalize_token(surface)
                 if not normalized_surface:
@@ -188,6 +199,36 @@ class BrandMatcher:
 
         normalized_text, index_map = _normalize_text_with_mapping(text)
         matches: Dict[Tuple[str, int, int], Tuple[str, Tuple[int, int], float]] = {}
+        penalty_patterns = (
+            r"adesiv",
+            r"collant",
+            r"colla",
+            r"stucc",
+            r"sigillant",
+            r"malta",
+        )
+
+        def _check_category(defn: BrandDefinition) -> bool:
+            allowed_categories = self._brand_categories.get(defn.canonical.lower())
+            return not (category and allowed_categories is not None and category not in allowed_categories)
+
+        # Regex-based matches
+        for pattern, definition in self._regex_index:
+            if not _check_category(definition):
+                continue
+            for m in pattern.finditer(text):
+                span = m.span()
+                if not _is_word_boundary(text, span[0], span[1]):
+                    continue
+                surface_text = text[span[0]:span[1]]
+                base_score = 1.0 if _normalize_token(surface_text) == _normalize_token(definition.canonical) else 0.93
+                window_start = max(0, span[0] - 48)
+                window_end = min(len(text), span[1] + 24)
+                window_text = text[window_start:window_end].lower()
+                has_penalty = any(re.search(pat, window_text) for pat in penalty_patterns)
+                score = base_score * (0.45 if has_penalty else 1.0)
+                key = (definition.canonical, span[0], span[1])
+                matches[key] = (definition.canonical, span, score)
 
         for normalized_surface, _, definition in self._surface_index:
             start = normalized_text.find(normalized_surface)
@@ -200,20 +241,22 @@ class BrandMatcher:
                     start = normalized_text.find(normalized_surface, start + 1)
                     continue
 
-                allowed_categories = self._brand_categories.get(
-                    definition.canonical.lower()
-                )
-                if category and allowed_categories is not None and category not in allowed_categories:
+                if not _check_category(definition):
                     start = normalized_text.find(normalized_surface, start + 1)
                     continue
 
                 surface_text = text[span[0] : span[1]]
-                score = (
+                base_score = (
                     1.0
                     if _normalize_token(surface_text)
                     == _normalize_token(definition.canonical)
                     else 0.95
                 )
+                window_start = max(0, span[0] - 48)
+                window_end = min(len(text), span[1] + 24)
+                window_text = text[window_start:window_end].lower()
+                has_penalty = any(re.search(pat, window_text) for pat in penalty_patterns)
+                score = base_score * (0.45 if has_penalty else 1.0)
                 key = (definition.canonical, span[0], span[1])
                 candidate = (definition.canonical, span, score)
                 existing = matches.get(key)

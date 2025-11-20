@@ -1,7 +1,74 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "notes": "Marchi raggruppati per categoria verticale con sinonimi standardizzati per l'estrazione del campo \"marchio\".",
   "fallback": "Generico",
+  "normalization": {
+    "lowercase": true,
+    "strip_accents": true,
+    "remove_punctuation": true,
+    "collapse_spaces": true,
+    "trim": true,
+    "split_spaced_letters": true,
+    "remove_common_tokens": [
+      "spa",
+      "s.p.a.",
+      "srl",
+      "s.r.l.",
+      "italia",
+      "ceramica",
+      "ceramiche",
+      "rubinetteria",
+      "rubinetterie",
+      "vernici",
+      "group",
+      "parkett",
+      "parquet",
+      "porte",
+      "infissi"
+    ]
+  },
+  "matching": {
+    "case_insensitive": true,
+    "diacritics_insensitive": true,
+    "mode": "token",
+    "allow_substring": false,
+    "min_token_length": 3,
+    "word_boundary_regex": "\\b"
+  },
+  "categories_meta": {
+    "opere_di_pavimentazione": {
+      "label": "Opere di pavimentazione",
+      "macro": "finiture"
+    },
+    "opere_di_rivestimento": {
+      "label": "Opere di rivestimento",
+      "macro": "finiture"
+    },
+    "apparecchi_sanitari_accessori": {
+      "label": "Apparecchi sanitari e accessori",
+      "macro": "bagni"
+    },
+    "opere_da_serramentista": {
+      "label": "Opere da serramentista",
+      "macro": "infissi"
+    },
+    "opere_da_falegname": {
+      "label": "Opere da falegname",
+      "macro": "finiture interne"
+    },
+    "opere_da_cartongessista": {
+      "label": "Opere da cartongessista",
+      "macro": "partizioni"
+    },
+    "controsoffitti": {
+      "label": "Controsoffitti",
+      "macro": "partizioni"
+    },
+    "trasversale": {
+      "label": "Prodotti trasversali",
+      "macro": "trasversale"
+    }
+  },
   "brands": [
     {
       "id": "41zero42",
@@ -511,6 +578,18 @@
       ]
     },
     {
+      "id": "florim",
+      "canonical": "Florim",
+      "synonyms": [
+        "Florim",
+        "Florim Ceramiche"
+      ],
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ]
+    },
+    {
       "id": "ffsystems",
       "canonical": "FF Systems",
       "synonyms": [
@@ -955,22 +1034,174 @@
         "MAPEI",
         "Mapei"
       ],
+      "regex": "\\bma\\s*pe\\s*i\\b",
       "categories": [
         "opere_di_pavimentazione",
         "opere_di_rivestimento",
         "trasversale"
-      ]
+      ],
+      "type": "chimica_edile",
+      "priority": 1
     },
     {
       "id": "marazzi",
       "canonical": "Marazzi",
       "synonyms": [
-        "Marazzi"
+        "Marazzi",
+        "Ceramiche Marazzi",
+        "Marazzi Ceramiche"
       ],
+      "regex": "(ceramic[ae]\\s+)?marazzi",
       "categories": [
         "opere_di_pavimentazione",
         "opere_di_rivestimento"
-      ]
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "ragno",
+      "canonical": "Ragno",
+      "synonyms": [
+        "Ragno",
+        "Ceramiche Ragno",
+        "Ragno Ceramiche"
+      ],
+      "regex": "(ceramic[ae]\\s+)?ragno",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "atlasconcorde",
+      "canonical": "Atlas Concorde",
+      "synonyms": [
+        "Atlas Concorde",
+        "AtlasConcorde",
+        "Atlas",
+        "Atlas Ceramiche"
+      ],
+      "regex": "atlas\\s*concorde",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "mirage",
+      "canonical": "Mirage",
+      "synonyms": [
+        "Mirage",
+        "Ceramiche Mirage",
+        "Mirage Ceramiche"
+      ],
+      "regex": "(ceramic[ae]\\s+)?mirage",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "panaria",
+      "canonical": "Panaria",
+      "synonyms": [
+        "Panaria",
+        "Panaria Ceramiche",
+        "Ceramiche Panaria"
+      ],
+      "regex": "(ceramic[ae]\\s+)?panaria",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "lea",
+      "canonical": "Lea",
+      "synonyms": [
+        "Lea",
+        "Lea Ceramiche",
+        "Ceramiche Lea"
+      ],
+      "regex": "(ceramic[ae]\\s+)?lea",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "cotto_d_este",
+      "canonical": "Cotto d'Este",
+      "synonyms": [
+        "Cotto d'Este",
+        "Cotto d Este",
+        "Cotto dEste",
+        "Cotto d’Este"
+      ],
+      "regex": "cotto\\s*d['’]?\\s*este",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "italgraniti",
+      "canonical": "Italgraniti",
+      "synonyms": [
+        "Italgraniti",
+        "Ital Graniti"
+      ],
+      "regex": "ital\\s*graniti",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "casalgrandepadana",
+      "canonical": "Casalgrande Padana",
+      "synonyms": [
+        "Casalgrande Padana",
+        "CasalgrandePadana"
+      ],
+      "regex": "casalgrande\\s*padana",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
+    },
+    {
+      "id": "keope",
+      "canonical": "Ceramiche Keope",
+      "synonyms": [
+        "Keope",
+        "Ceramiche Keope",
+        "Keope Ceramiche"
+      ],
+      "regex": "(ceramic[ae]\\s+)?keope",
+      "categories": [
+        "opere_di_pavimentazione",
+        "opere_di_rivestimento"
+      ],
+      "type": "ceramica",
+      "priority": 1
     },
     {
       "id": "maxmeyer",
